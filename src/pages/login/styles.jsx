@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { lighten } from "polished";
 
 export const StWraps = styled.div`
   > h1 {
@@ -23,4 +24,28 @@ export const Stinput = styled.input`
   width: 100%;
   min-width: 300px;
   font-family: "MonoplexKR-Regular";
+`;
+export const KakaoBtn = styled.button`
+  height: 52px;
+  padding: 11px 0px 10px;
+  background: #ffcd2a;
+  display: flex;
+  /* -webkit-box-align: center; */
+  align-items: center;
+  /* -webkit-box-pack: center; */
+  justify-content: center;
+  width: 100%;
+  border: 0px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 32px;
+  &:hover {
+    background-color: ${lighten(0.1, "#ffcd2a")};
+  }
+  img {
+    margin: auto 10px;
+  }
 `;

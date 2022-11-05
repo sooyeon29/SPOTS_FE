@@ -1,8 +1,10 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import { LoginAPI } from "../../tools/instance";
-import { StWraps, Stinput } from "./styles";
+import { KAKAO_AUTH_URL } from "./OAuth";
+import { StWraps, Stinput, KakaoBtn } from "./Styles";
 
 const Login = () => {
   const [loginid, onChangeId] = useInput("");
@@ -34,32 +36,39 @@ const Login = () => {
 
   return (
     <>
-      <StWraps>
-        <h1>로그인</h1>
-        <form ref={formRef} onSubmit={login}>
-          <div>
+      <Layout>
+        <StWraps>
+          <h1>로그인</h1>
+          <form ref={formRef} onSubmit={login}>
             <div>
-              <Stinput
-                placeholder="아이디를 입력하세요."
-                id="nameid"
-                type="text"
-                value={loginid}
-                onChange={onChangeId}
-              />
+              <div>
+                <Stinput
+                  placeholder="아이디를 입력하세요."
+                  id="nameid"
+                  type="text"
+                  value={loginid}
+                  onChange={onChangeId}
+                />
+              </div>
+              <div>
+                <Stinput
+                  placeholder="비밀번호를 입력하세요."
+                  id="password"
+                  type="password"
+                  value={loginpwd}
+                  onChange={onChangePwd}
+                />
+              </div>
             </div>
-            <div>
-              <Stinput
-                placeholder="비밀번호를 입력하세요."
-                id="password"
-                type="password"
-                value={loginpwd}
-                onChange={onChangePwd}
-              />
-            </div>
-          </div>
-          <button>로그인</button>
-        </form>
-      </StWraps>
+            <button>로그인</button>
+          </form>{" "}
+          {/* 소셜로그인 - 카카오로그인 */}
+          <KakaoBtn href={KAKAO_AUTH_URL}>
+            <img alt="" src="/kakao.png" width={30} />
+            <span>카카오계정 로그인</span>
+          </KakaoBtn>
+        </StWraps>
+      </Layout>
     </>
   );
 };
