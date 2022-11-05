@@ -16,6 +16,7 @@ const Login = () => {
       password: formRef.current.password.value,
     })
       .then((res) => {
+        console.log("로그인 성공시 res", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token);
           navigate("/");
@@ -23,8 +24,11 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
-        alert(err.response);
+        console.log("로그인 실패시 err", err);
+        // 이미 로그인 된 회원입니다 ---> status 400
+        // 잘못된 아이디 혹은 비밀번호 입니다. ---> status?
+        // 알수없는 오류가 발생했습니다. ---> status?
+        // alert(err.response);
       });
   };
 
