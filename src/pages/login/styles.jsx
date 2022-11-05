@@ -30,9 +30,7 @@ export const KakaoBtn = styled.button`
   padding: 11px 0px 10px;
   background: #ffcd2a;
   display: flex;
-  /* -webkit-box-align: center; */
   align-items: center;
-  /* -webkit-box-pack: center; */
   justify-content: center;
   width: 100%;
   border: 0px;
