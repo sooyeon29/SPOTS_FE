@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { lighten } from "polished";
+import { lighten, darken } from "polished";
 
 export const StWraps = styled.div`
   > h1 {
@@ -14,6 +14,27 @@ export const StWraps = styled.div`
   padding: 0 50px;
   height: 100%;
   text-align: center;
+  form {
+    button {
+      height: 52px;
+      padding: 11px 0px 10px;
+      background: #8fc7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border: 0px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 32px;
+      &:hover {
+        background-color: ${darken(0.1, "#8fc7ff")};
+      }
+    }
+  }
 `;
 
 export const Stinput = styled.input`
@@ -30,9 +51,7 @@ export const KakaoBtn = styled.button`
   padding: 11px 0px 10px;
   background: #ffcd2a;
   display: flex;
-  /* -webkit-box-align: center; */
   align-items: center;
-  /* -webkit-box-pack: center; */
   justify-content: center;
   width: 100%;
   border: 0px;
