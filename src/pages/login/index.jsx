@@ -27,7 +27,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log("로그인 실패시 err", err);
-        // 이미 로그인 된 회원입니다 ---> status 400
+        // 이미 로그인 된 회원입니다 ---> status400
         // 잘못된 아이디 혹은 비밀번호 입니다. ---> status?
         // 알수없는 오류가 발생했습니다. ---> status?
         // alert(err.response);
