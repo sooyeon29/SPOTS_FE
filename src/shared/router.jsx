@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "../components/Header";
-import Login from "../pages/login";
+import Login from "../pages/login/Index";
 
 function Router() {
   return (
