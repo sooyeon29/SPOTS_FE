@@ -1,12 +1,12 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import useInput from "../../hooks/useInput";
-import { LoginAPI } from "../../tools/instance";
-import { StWraps, Stinput } from "./styles";
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
+import { LoginAPI } from '../../tools/instance';
+import { StWraps, Stinput } from './Styles';
 
 const Login = () => {
-  const [loginid, onChangeId] = useInput("");
-  const [loginpwd, onChangePwd] = useInput("");
+  const [loginid, onChangeId] = useInput('');
+  const [loginpwd, onChangePwd] = useInput('');
   const navigate = useNavigate();
   const formRef = useRef();
 
@@ -17,8 +17,8 @@ const Login = () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          localStorage.setItem("token", res.data.token);
-          navigate("/");
+          localStorage.setItem('token', res.data.token);
+          navigate('/');
           window.location.reload();
         }
       })
@@ -36,18 +36,18 @@ const Login = () => {
           <div>
             <div>
               <Stinput
-                placeholder="아이디를 입력하세요."
-                id="nameid"
-                type="text"
+                placeholder='아이디를 입력하세요.'
+                id='nameid'
+                type='text'
                 value={loginid}
                 onChange={onChangeId}
               />
             </div>
             <div>
               <Stinput
-                placeholder="비밀번호를 입력하세요."
-                id="password"
-                type="password"
+                placeholder='비밀번호를 입력하세요.'
+                id='password'
+                type='password'
                 value={loginpwd}
                 onChange={onChangePwd}
               />

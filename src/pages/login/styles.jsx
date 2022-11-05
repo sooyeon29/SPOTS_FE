@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StWraps = styled.div`
   > h1 {
@@ -22,5 +22,5 @@ export const Stinput = styled.input`
   margin: 8px 0 30px 0;
   width: 100%;
   min-width: 300px;
-  font-family: "MonoplexKR-Regular";
+  font-family: 'MonoplexKR-Regular';
 `;
