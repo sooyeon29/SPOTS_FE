@@ -1,12 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import useInput from "../../hooks/useInput";
 import Maps from "./Maps";
 import { SearchBox, SpotsBtns } from "./Styles";
 
 const Main = () => {
+  const navigate = useNavigate();
+  //   const dispatch = useDispatch();
+  const [search, searchInput] = useInput();
+  console.log(search);
   const searchHandler = (e) => {
     e.preventDefalt();
+    navigate(`/book`);
+    // dispatch(__getSearch(search));
   };
+
   return (
     <>
       <Layout>
@@ -19,13 +28,25 @@ const Main = () => {
         </SpotsBtns>
         <Maps />
         <SearchBox onSubmit={searchHandler}>
-          <select>
+          <select
+            required
+            name="sports"
+            // value={search.sports}
+            onChange={searchInput}
+          >
             <option>ALL</option>
             <option>FUTSAL⚽</option>
             <option>TENNIS🥎</option>
             <option>BADMINTON🏸</option>
           </select>
-          <input type="text" required onChange={(e) => e.target.value} />
+          <input
+            type="text"
+            required
+            name="states"
+            // value={search.states}
+            onChange={searchInput}
+          />
+
           <button>검색</button>
         </SearchBox>
       </Layout>
