@@ -19,5 +19,6 @@ export const LoginAPI = {
 
 // userpage
 export const UserpageAPI = {
-  getMypage: () => instance.get(`https://ws-study.shop/api/users/me`),
+  getMypage: () => instance.get(`https://ws-study.shop/users/me`),
+  getMyteam: () => instance.get(`https://ws-study.shop/teams/me`),
 };

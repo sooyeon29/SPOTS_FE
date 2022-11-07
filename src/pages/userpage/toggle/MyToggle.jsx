@@ -1,12 +1,12 @@
 import React from "react";
 import { StWrapToggle, StBox, StWrap } from "./Styles";
 
-const MyToggle = ({ myToggle, myClickToggle }) => {
+const MyToggle = ({ mytoggle, myClickToggle }) => {
   return (
     <StWrapToggle>
       <StWrap>
         <StBox>my</StBox>
-        <button myToggle={myToggle} onClick={myClickToggle}>
+        <button mytoggle={mytoggle} onClick={myClickToggle}>
           +
         </button>
       </StWrap>
