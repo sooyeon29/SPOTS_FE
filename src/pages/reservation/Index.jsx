@@ -1,19 +1,9 @@
-import { useState } from 'react';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
 
 const Reservation = () => {
-  const [search, setSearch] = useState();
-  const onChangeSearch = (e) => {
-    e.preventDefault();
-    setSearch(e.target.value);
-  };
-  
-  const onSearch = (e) => {
-    e.preventDefault();
-    
-  }
-
+  const navigate = useNavigate();
   return (
     <>
       <Layout>
