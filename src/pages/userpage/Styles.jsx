@@ -14,7 +14,7 @@ export const StWrap = styled.div`
   border-radius: 15px;
 `;
 
-export const StBox = styled.button`
+export const StTag = styled.button`
   width: 20%;
   height: 40px;
   border: 1px solid lightgray;
@@ -22,4 +22,11 @@ export const StBox = styled.button`
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+`;
+
+export const StTeam = styled.div`
+  width: 40%;
+  height: 80px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
 `;
