@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 // import { SportMaps } from "./Styles";
 
 const MainMaps = () => {
   const mapRef = useRef();
+  const navigate = useNavigate();
   const [positions, setPositions] = useState([]);
 
   useEffect(() => {
@@ -85,6 +87,7 @@ const MainMaps = () => {
           </MarkerClusterer>
         </Map>
         {/* </SportMaps> */}
+        <button onClick={() => navigate(`/spotsdetail`)}>상세페이지로</button>
       </Layout>
     </>
   );
