@@ -23,7 +23,8 @@ export const SignUpAPI = {
 
 // userpage
 export const UserpageAPI = {
-  getMypage: () => instance.get(`https://ws-study.shop/api/users/me`),
+  getMypage: () => instance.get(`https://ws-study.shop/users/me`),
+  getMyteam: () => instance.get(`https://ws-study.shop/teams/me`),
 };
 
 // reservation 페이지 / 메인에서 검색해서 넘어가는 페이지

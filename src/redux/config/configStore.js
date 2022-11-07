@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import search from "../modules/searchSlice";
+import user from "../modules/userSlice";
 
 const store = configureStore({
-  reducer: {
-    data: search,
-  },
+  reducer: { user: user },
+
   devTools: process.env.NODE_ENV === "development",
 });
 
