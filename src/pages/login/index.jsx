@@ -53,7 +53,6 @@ const Login = () => {
                   type="text"
                   required
                   name="id"
-                  // value={loginId}
                   onChange={idAndPassword}
                 />
               </div>
@@ -63,7 +62,6 @@ const Login = () => {
                   type="password"
                   required
                   name="password"
-                  // value={loginPw}
                   onChange={idAndPassword}
                 />
               </div>
@@ -74,9 +72,10 @@ const Login = () => {
             </div>
           </form>
           {/* 소셜로그인 - 카카오로그인 */}
-          <KakaoBtn href={KAKAO_AUTH_URL}>
+          <KakaoBtn onclick="location.href={KAKAO_AUTH_URL}">
+            {/* // href="https://ws-study.shop/auth/kakao"> */}
             <img alt="" src="/kakao.png" width={30} />
-            <span>카카오계정 로그인</span>
+            <a href={KAKAO_AUTH_URL}>카카오계정 로그인</a>
           </KakaoBtn>
         </StWraps>
       </Layout>

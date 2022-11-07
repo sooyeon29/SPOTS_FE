@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { LoginAPI } from "../../tools/instance";
 
-const Kakao = (props) => {
-  const dispatch = useDispatch();
+const Kakao = () => {
+  console.log(window.location.href);
 
   // 인가코드
-  let code = new URL(window.location.href).searchParams.get("code");
-
-  return <></>;
+  const PARAMS = new URL(document.location).searchParams;
+  const KAKAO_CODE = PARAMS.get("code");
+  console.log(KAKAO_CODE);
+  useEffect(() => {
+    LoginAPI.kakaoLogin(KAKAO_CODE).then((res) => {
+      console.log(res);
+    });
+  }, []);
 };
 
 export default Kakao;

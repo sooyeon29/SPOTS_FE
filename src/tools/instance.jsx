@@ -12,12 +12,15 @@ const instance = axios.create({
 
 // 로그인/ 회원가입 관련 API에 이용
 export const LoginAPI = {
-  login: (payload) =>
+  login: (payload) => instance.post(`users/login`, payload),
+  kakaoLogin: (payload) =>
     // console.log(payload),
-    instance.post(`https://ws-study.shop/users/login`, payload),
+    instance.get(`auth/kakao?code=${payload}`),
 };
 
 // userpage
 export const UserpageAPI = {
-  getMypage: () => instance.get(`https://ws-study.shop/api/users/me`),
+  getMypage: () => instance.get(`users/me`),
 };
+
+// https://ws-study.shop/auth/kakao?code=인가코드
