@@ -61,7 +61,10 @@ const Login = () => {
               </div>
             </div>
             <button>로그인</button>
-          </form>{" "}
+            <div>
+              아직 회원이 아니신가요? <a href="/signup"> 회원가입</a>
+            </div>
+          </form>
           {/* 소셜로그인 - 카카오로그인 */}
           <KakaoBtn href={KAKAO_AUTH_URL}>
             <img alt="" src="/kakao.png" width={30} />
