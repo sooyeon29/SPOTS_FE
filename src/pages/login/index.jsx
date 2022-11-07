@@ -31,6 +31,11 @@ const Login = () => {
         }
       })
       .catch((err) => {
+        if (err.response.status === 400) {
+          alert("이미 로그인 상태입니다.");
+        } else if (err.response.status === 412) {
+          alert("아이디 또는 패스워드를 확인해주세요");
+        }
         console.log("로그인실패시 err", err);
       });
   };
