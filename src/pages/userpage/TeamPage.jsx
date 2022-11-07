@@ -1,13 +1,16 @@
 import React from "react";
-import { StWrap, StBox } from "./Styles";
+import { useNavigate } from "react-router-dom";
+import { StWrap, StTag, StTeam } from "./Styles";
 
 const TeamPage = ({ teamToggle, teamClickToggle }) => {
+  const navigate = useNavigate();
   return (
     <StWrap>
-      <StBox>Team</StBox>
+      <StTag>Team</StTag>
       <button teamToggle={teamToggle} onClick={teamClickToggle}>
         +
       </button>
+      <StTeam onClick={() => navigate("/teamdetail")}>Team name</StTeam>
     </StWrap>
   );
 };
