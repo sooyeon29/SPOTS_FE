@@ -17,6 +17,11 @@ export const LoginAPI = {
     instance.post(`https://ws-study.shop/users/login`, payload),
 };
 
+export const SignUpAPI = {
+  signUp: (payload) => 
+  instance.post('https://ws-study.shop/users/signup', payload),
+  }
+
 // userpage
 export const UserpageAPI = {
   getMypage: () => instance.get(`https://ws-study.shop/api/users/me`),
