@@ -13,3 +13,8 @@ const instance = axios.create({
 export const LoginAPI = {
   login: (payload) => instance.post(`http://localhost:3000/`, payload),
 };
+
+// userpage
+export const UserpageAPI = {
+  getMypage: () => instance.get(`http://localhost:3000/users/me`),
+};

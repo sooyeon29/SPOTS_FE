@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StWrap, StBox } from "./Styles";
 import useToggle from "../../hooks/useToggle";
+import { userpageAPI } from "../../tools/instance";
 
 const MyPage = ({ myToggle, myClickToggle }) => {
-  const [isEdit, setIsEdit, clickEditMode] = useToggle();
+  //const [isEdit, setIsEdit, clickEditMode] = useToggle();
+  const [myInfo, setMyInfo] = useState([]);
+
+  useEffect(() => {
+    userpageAPI
+      .getMypage()
+      .then((response) => {
+        setMyInfo(response);
+      })
+      .catch((error) => alert(error));
+  }, []);
 
   return (
     <StWrap>
@@ -11,19 +22,7 @@ const MyPage = ({ myToggle, myClickToggle }) => {
       <button myToggle={myToggle} onClick={myClickToggle}>
         +
       </button>
-      <>
-        {!isEdit ? (
-          <>
-            <div>닉네임가져오기</div>
-            <button onClick={clickEditMode}>수정</button>
-          </>
-        ) : (
-          <>
-            <input></input>
-            <button onClick={clickEditMode}>등록</button>
-          </>
-        )}
-      </>
+
       <div>남/여</div>
       <div>나의 종목</div>
       <div>관심 종목</div>

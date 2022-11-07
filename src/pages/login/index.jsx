@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useInput from "../../hooks/useInput";
 import { LoginAPI } from "../../tools/instance";
-import { StWraps, Stinput } from "./styles";
+import { StWraps, Stinput } from "./Styles";
 
 const Login = () => {
   const [loginid, onChangeId] = useInput("");
