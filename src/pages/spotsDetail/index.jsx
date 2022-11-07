@@ -7,7 +7,7 @@ import {
   Time,
   Title,
   Wrap,
-} from "./styles";
+} from "./Styles";
 
 const SpotsDetail = () => {
   return (
