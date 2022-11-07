@@ -12,9 +12,9 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<MainMaps />} />
-        <Route path='/book' element={<Reservation />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/book' element={<Reservation />} />
         <Route path='/mypage' element={<Index />} />
         <Route path='/spotsdetail' element={<SpotsDetail />} />
       </Routes>
