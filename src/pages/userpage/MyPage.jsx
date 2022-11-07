@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { StWrap, StBox } from "./Styles";
 import useToggle from "../../hooks/useToggle";
-import { userpageAPI } from "../../tools/instance";
+import { UserpageAPI } from "../../tools/instance";
 
 const MyPage = ({ myToggle, myClickToggle }) => {
   //const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const [myInfo, setMyInfo] = useState([]);
 
   useEffect(() => {
-    userpageAPI
-      .getMypage()
+    UserpageAPI.getMypage()
       .then((response) => {
         setMyInfo(response);
       })
