@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import search from "../modules/searchSlice";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    data: search,
+  },
   devTools: process.env.NODE_ENV === "development",
 });
 
