@@ -7,6 +7,7 @@ import MainMaps from "../pages/mainpage/Index";
 import SpotsDetail from "../pages/spotsDetail";
 import UserPage from "../pages/userpage/Index";
 import TeamDetail from "../pages/userpage/TeamDetail";
+import Reservation from "../pages/reservation/Index";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/userpage" element={<UserPage />} />
         <Route path="/spotsdetail" element={<SpotsDetail />} />
         <Route path="/teamdetail" element={<TeamDetail />} />
+        <Route path="/book" element={<Reservation />} />
       </Routes>
     </BrowserRouter>
   );

@@ -7,6 +7,7 @@ import { StContainer } from "./Styles";
 import useToggle from "../../hooks/useToggle";
 import ReservPage from "./ReservPage";
 import ReservToggle from "./toggle/ReservToggle";
+import Header from "../../components/Header";
 
 const UserPage = () => {
   const [myToggle, setMyToggle, myClickToggle] = useToggle();
@@ -14,29 +15,35 @@ const UserPage = () => {
   const [reservToggle, setReservToggle, reservClickToggle] = useToggle();
 
   return (
-    <StContainer>
-      {!myToggle ? (
-        <MyPage myToggle={myToggle} myClickToggle={myClickToggle} />
-      ) : (
-        <MyToggle myToggle={myToggle} myClickToggle={myClickToggle} />
-      )}
-      {!teamToggle ? (
-        <TeamToggle teamToggle={teamToggle} teamClickToggle={teamClickToggle} />
-      ) : (
-        <TeamPage teamToggle={teamToggle} teamClickToggle={teamClickToggle} />
-      )}
-      {!reservToggle ? (
-        <ReservToggle
-          reservToggle={reservToggle}
-          reservClickToggle={reservClickToggle}
-        />
-      ) : (
-        <ReservPage
-          reservToggle={reservToggle}
-          reservClickToggle={reservClickToggle}
-        />
-      )}
-    </StContainer>
+    <>
+      <Header />
+      <StContainer>
+        {!myToggle ? (
+          <MyPage myToggle={myToggle} myClickToggle={myClickToggle} />
+        ) : (
+          <MyToggle myToggle={myToggle} myClickToggle={myClickToggle} />
+        )}
+        {!teamToggle ? (
+          <TeamToggle
+            teamToggle={teamToggle}
+            teamClickToggle={teamClickToggle}
+          />
+        ) : (
+          <TeamPage teamToggle={teamToggle} teamClickToggle={teamClickToggle} />
+        )}
+        {!reservToggle ? (
+          <ReservToggle
+            reservToggle={reservToggle}
+            reservClickToggle={reservClickToggle}
+          />
+        ) : (
+          <ReservPage
+            reservToggle={reservToggle}
+            reservClickToggle={reservClickToggle}
+          />
+        )}
+      </StContainer>
+    </>
   );
 };
 
