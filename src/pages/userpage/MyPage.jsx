@@ -8,7 +8,8 @@ const MyPage = ({ myToggle, myClickToggle }) => {
   const [myInfo, setMyInfo] = useState([]);
 
   useEffect(() => {
-    UserpageAPI.getMypage()
+    UserpageAPI
+      .getMypage()
       .then((response) => {
         setMyInfo(response);
       })
