@@ -5,10 +5,13 @@ import MyToggle from "./toggle/MyToggle";
 import TeamToggle from "./toggle/TeamToggle";
 import { StContainer } from "./Styles";
 import useToggle from "../../hooks/useToggle";
+import ReservPage from "./ReservPage";
+import ReservToggle from "./toggle/ReservToggle";
 
-const Index = () => {
+const UserPage = () => {
   const [myToggle, setMyToggle, myClickToggle] = useToggle();
   const [teamToggle, setTeamToggle, teamClickToggle] = useToggle();
+  const [reservToggle, setReservToggle, reservClickToggle] = useToggle();
 
   return (
     <StContainer>
@@ -22,8 +25,19 @@ const Index = () => {
       ) : (
         <TeamPage teamToggle={teamToggle} teamClickToggle={teamClickToggle} />
       )}
+      {!reservToggle ? (
+        <ReservToggle
+          reservToggle={reservToggle}
+          reservClickToggle={reservClickToggle}
+        />
+      ) : (
+        <ReservPage
+          reservToggle={reservToggle}
+          reservClickToggle={reservClickToggle}
+        />
+      )}
     </StContainer>
   );
 };
 
-export default Index;
+export default UserPage;

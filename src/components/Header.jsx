@@ -27,6 +27,14 @@ const Header = () => {
 
             <Sta
               onClick={() => {
+                navigate(`/book`);
+              }}
+            >
+              Reservation
+            </Sta>
+
+            <Sta
+              onClick={() => {
                 navigate(`/`);
               }}
             >
