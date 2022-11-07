@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { Red, MySports, Icon, Title } from './Styles';
-import { IoMdFootball } from 'react-icons/io';
+import { Red } from './Styles';
+import Layout from '../../components/Layout';
 
 const SignUp = () => {
   const {
@@ -19,6 +19,7 @@ const SignUp = () => {
 
   return (
     <>
+    <Layout>
       <div>회원가입</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
@@ -166,6 +167,7 @@ const SignUp = () => {
         </div>
         <input type='submit' />
       </form>
+      </Layout>
     </>
   );
 };
