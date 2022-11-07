@@ -19,6 +19,7 @@ function Router() {
         <Route path="/spotsdetail" element={<SpotsDetail />} />
         <Route path="/teamdetail" element={<TeamDetail />} />
         <Route path="/book" element={<Reservation />} />
+
       </Routes>
     </BrowserRouter>
   );

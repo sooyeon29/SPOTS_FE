@@ -8,8 +8,17 @@ const Reservation = () => {
     <>
       <Layout>
         <Header />
-        <div>hi</div>
-        <button onClick={() => navigate(`/spotsdetail`)}>상세페이지로</button>
+        <div>
+          <form onSubmit={(e) => onSearch(e)}>
+            <input
+              type='text'
+              value={search}
+              placeholder='구를 입력하세요 예) 마포구'
+              onChange={onChangeSearch}
+            />
+            <button type='submit'>스팟 찾기</button>
+          </form>
+        </div>
       </Layout>
     </>
   );
