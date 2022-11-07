@@ -44,7 +44,7 @@ export const Stinput = styled.input`
   margin: 8px 0 30px 0;
   width: 100%;
   min-width: 300px;
-  font-family: "MonoplexKR-Regular";
+  font-family: 'MonoplexKR-Regular';
 `;
 export const KakaoBtn = styled.button`
   height: 52px;
