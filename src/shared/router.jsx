@@ -7,6 +7,7 @@ import SpotsDetail from "../pages/spotsDetail/Index";
 import UserPage from "../pages/userpage/Index";
 import TeamDetail from "../pages/userpage/TeamDetail";
 import Reservation from "../pages/reservation/Index";
+import Kakao from "../pages/login/Kakao";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/spotsdetail" element={<SpotsDetail />} />
         <Route path="/teamdetail" element={<TeamDetail />} />
         <Route path="/book" element={<Reservation />} />
+        <Route path="/auth/kakao/callback" element={<Kakao />} />
       </Routes>
     </BrowserRouter>
   );
