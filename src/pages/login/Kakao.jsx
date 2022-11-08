@@ -10,10 +10,12 @@ const Kakao = () => {
   const KAKAO_CODE = PARAMS.get("code");
   console.log(KAKAO_CODE);
   useEffect(() => {
-    LoginAPI.kakaoLogin(KAKAO_CODE).then((res) => {
-      console.log(res);
-      // localStorage.setItem("kakaocode", KAKAO_CODE);
-    });
+    LoginAPI.kakaoLogin(KAKAO_CODE)
+      .then((res) => {
+        console.log(res);
+        // localStorage.setItem("kakaocode", KAKAO_CODE);
+      })
+      .catch((err) => console.log(err));
   }, []);
 };
 

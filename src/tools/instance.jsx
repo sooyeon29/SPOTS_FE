@@ -6,7 +6,8 @@ const isLogin = localStorage.getItem("token");
 const instance = axios.create({
   baseURL: "https://ws-study.shop",
   // baseURL: "http://localhost:3000/",
-  // baseURL: "https://sparta4.shop/",
+  // baseURL: "https://sparta4.shop",
+  // baseURL: "http://13.125.53.34/",
   headers: {
     Authorization: `Bearer ${isLogin}`,
   },
@@ -17,7 +18,7 @@ export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   kakaoLogin: (payload) =>
     // console.log(payload),
-    instance.get(`auth/kakao?code=${payload}`),
+    instance.get(`auth/kakao/callback?code=${payload}`),
 };
 
 // userpage

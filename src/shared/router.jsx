@@ -22,7 +22,7 @@ function Router() {
         <Route path="/spotsdetail" element={<SpotsDetail />} />
         <Route path="/teamdetail" element={<TeamDetail />} />
         <Route path="/book" element={<Reservation />} />
-        <Route path="/auth/kakao" element={<Kakao />} />
+        <Route path="/auth/kakao/callback" element={<Kakao />} />
       </Routes>
     </BrowserRouter>
   );
