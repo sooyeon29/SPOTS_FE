@@ -1,10 +1,12 @@
 import axios from "axios";
 
 const isLogin = localStorage.getItem("token");
+// const isKakaoLogin = localStorage.getItem("kakaocode");
 
 const instance = axios.create({
   baseURL: "https://ws-study.shop",
   // baseURL: "http://localhost:3000/",
+  // baseURL: "https://sparta4.shop/",
   headers: {
     Authorization: `Bearer ${isLogin}`,
   },
@@ -24,3 +26,4 @@ export const UserpageAPI = {
 };
 
 // https://ws-study.shop/auth/kakao?code=인가코드
+// req.query => 요거로...받으실수...없으까요오...?

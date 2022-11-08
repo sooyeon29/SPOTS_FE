@@ -12,6 +12,7 @@ const Kakao = () => {
   useEffect(() => {
     LoginAPI.kakaoLogin(KAKAO_CODE).then((res) => {
       console.log(res);
+      // localStorage.setItem("kakaocode", KAKAO_CODE);
     });
   }, []);
 };
