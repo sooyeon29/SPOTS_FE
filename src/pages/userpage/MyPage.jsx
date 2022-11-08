@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StWrap, StTag } from "./Styles";
 import useToggle from "../../hooks/useToggle";
-import { UserpageAPI } from "../../tools/instance";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyInfo } from "../../redux/modules/userSlice";
 
@@ -13,9 +12,7 @@ const MyPage = ({ mytoggle, myClickToggle }) => {
   useEffect(() => {
     dispatch(__getMyInfo());
   }, []);
-
   const { user } = useSelector((state) => state.user);
-  console.log(user);
 
   return (
     <StWrap>

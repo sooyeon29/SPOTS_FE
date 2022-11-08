@@ -8,11 +8,13 @@ import { SearchBox, SpotsBtns } from "./Styles";
 const Main = () => {
   const navigate = useNavigate();
   //   const dispatch = useDispatch();
-  const [search, searchInput] = useInput();
+  const [search, setSearch, searchInput] = useInput();
+  // setSearch도 값이 가져와야지 search에 바뀌는 값이 들어가게됨
+  // console.log(search.target.value);
   console.log(search);
   const searchHandler = (e) => {
-    e.preventDefalt();
-    navigate(`/book`);
+    e.preventDefault();
+    navigate(`/booktwo`, { state: [search.sports, search.states] });
     // dispatch(__getSearch(search));
   };
 
@@ -31,7 +33,7 @@ const Main = () => {
           <select
             required
             name="sports"
-            // value={search.sports}
+            value={search?.sports}
             onChange={searchInput}
           >
             <option>ALL</option>
@@ -43,7 +45,7 @@ const Main = () => {
             type="text"
             required
             name="states"
-            // value={search.states}
+            value={search?.states}
             onChange={searchInput}
           />
 

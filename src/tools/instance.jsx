@@ -3,7 +3,7 @@ import axios from "axios";
 const isLogin = localStorage.getItem("token");
 
 const instance = axios.create({
-  baseURL: "https://ws-study.shop",
+  baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
   // baseURL: "https://sparta4.shop/",
@@ -19,13 +19,14 @@ export const LoginAPI = {
 };
 
 export const SignUpAPI = {
-  signUp: (payload) => instance.post("users/signup", payload),
+  signUp: (payload) => instance.post(`users/signup`, payload),
 };
 
 // userpage
 export const UserpageAPI = {
   getMypage: () => instance.get(`users/me`),
-  getMyteam: () => instance.get(`teams/me`),
+  getMyteamList: () => instance.get(`teams/me`),
+  getMyteamDetail: (payload) => instance.get(`teams/info`, payload),
 };
 
 // reservation 페이지 / 메인에서 검색해서 넘어가는 페이지

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserpageAPI } from "../../tools/instance";
 
 const initialState = {
@@ -10,10 +10,9 @@ const initialState = {
 
 export const __getMyInfo = createAsyncThunk(
   "getMyInfo",
-  async (paylaod, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
       const { data } = await UserpageAPI.getMypage();
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -23,11 +22,24 @@ export const __getMyInfo = createAsyncThunk(
 
 export const __getMyteam = createAsyncThunk(
   "getMyteam",
-  async (paylaod, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const { data } = await UserpageAPI.getMyteam();
+      const { data } = await UserpageAPI.getMyteamList();
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __getMyteamDatil = createAsyncThunk(
+  "getMyteamDetail",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await UserpageAPI.getMyteamDetail();
       console.log(data);
-      return thunkAPI.fulfillWithValue(data.teamName);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -44,9 +56,6 @@ const userSlice = createSlice({
     },
     [__getMyInfo.fulfilled]: (state, action) => {
       state.user = action.payload.user;
-      //state.team.push(action.paylaod.user.teamName);
-      //console.log(state.team);
-      console.log(state.user);
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.paylaod;
@@ -55,9 +64,17 @@ const userSlice = createSlice({
       state.isLoading = true;
     },
     [__getMyteam.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      state.team.push(action.payload.team);
-      console.log(current(state.team));
+      state.team = action.payload.teamName;
+    },
+    [__getMyteam.rejected]: (state, action) => {
+      state.error = action.paylaod;
+    },
+    [__getMyteamDatil.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getMyteamDatil.fulfilled]: (state, action) => {},
+    [__getMyteamDatil.rejected]: (state, action) => {
+      state.error = action.paylaod;
     },
   },
 });

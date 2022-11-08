@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 
@@ -9,6 +9,9 @@ const Reservation = () => {
     e.preventDeafualt();
     setSearch(e.target.value);
   };
+  const location = useLocation();
+  const keyword = location.state;
+  console.log(keyword);
 
   const onSearch = (e) => {
     e.preventDeafualt();
@@ -26,6 +29,7 @@ const Reservation = () => {
               onChange={onChangeSearch}
             />
             <button type='submit'>스팟 찾기</button>
+            {keyword} 검색 결과
           </form>
         </div>
       </Layout>
