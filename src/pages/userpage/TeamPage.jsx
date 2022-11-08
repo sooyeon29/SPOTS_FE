@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { __getMyteam, __getMyteamDatil } from "../../redux/modules/userSlice";
 import { StWrap, StTag, StTeam } from "./Styles";
 
-const TeamPage = ({ teamToggle, teamClickToggle }) => {
+const TeamPage = ({ teamtoggle, teamClickToggle }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getMyteam());
+  }, []);
+
+  const { team } = useSelector((state) => state.user);
+
   return (
     <StWrap>
       <StTag>Team</StTag>
-      <button teamToggle={teamToggle} onClick={teamClickToggle}>
+      <button teamToggle={teamtoggle} onClick={teamClickToggle}>
         +
       </button>
-      <StTeam onClick={() => navigate("/teamdetail")}>Team name</StTeam>
+      <>
+        {team.team?.map((teamlist) => (
+          <StTeam
+            onClick={() => {
+              dispatch(__getMyteamDatil({ teamName: teamlist }));
+              console.log({ teamName: teamlist });
+              navigate("/teamdetail");
+            }}
+          >
+            teamname : {teamlist}
+          </StTeam>
+        ))}
+      </>
     </StWrap>
   );
 };

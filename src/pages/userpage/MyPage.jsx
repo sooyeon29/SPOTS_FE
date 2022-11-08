@@ -1,33 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { StWrap, StTag } from "./Styles";
 import useToggle from "../../hooks/useToggle";
-import { UserpageAPI } from "../../tools/instance";
+import { useDispatch, useSelector } from "react-redux";
+import { __getMyInfo } from "../../redux/modules/userSlice";
 
-const MyPage = ({ myToggle, myClickToggle }) => {
+const MyPage = ({ mytoggle, myClickToggle }) => {
   //const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const [myInfo, setMyInfo] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    UserpageAPI.getMypage()
-      .then((response) => {
-        setMyInfo(response);
-      })
-      .catch((error) => alert(error));
+    dispatch(__getMyInfo());
   }, []);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <StWrap>
       <StTag>my</StTag>
-      <button myToggle={myToggle} onClick={myClickToggle}>
+      <button mytoggle={mytoggle} onClick={myClickToggle}>
         +
       </button>
-      <div>필수 닉네임</div>
-      <div>필수 남/여</div>
-      <div>필수 핸드폰</div>
-      <div>나의 종목</div>
-      <div>관심 종목</div>
-      <div>나의 포인트</div>
-      <div>즐겨찾기</div>
+      <div>{user.nickname}</div>
+      <div>{user.gender}</div>
+      <div>핸드폰번호 : {user.phone}</div>
+      <div>나의종목 : {user.sports}</div>
+      <div>관심종목 : {user.favSports}</div>
+      <div>point : {user.point}</div>
+      <div>score : {user.score}</div>
     </StWrap>
   );
 };
