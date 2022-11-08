@@ -3,7 +3,8 @@ import axios from "axios";
 const isLogin = localStorage.getItem("token");
 
 const instance = axios.create({
-  baseURL: "https://sparta4.shop/",
+  baseURL: "https://ws-study.shop/",
+  // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   headers: {
     Authorization: `Bearer ${isLogin}`,
@@ -24,6 +25,7 @@ export const UserpageAPI = {
   getMypage: () => instance.get(`users/me`),
   getMyteamList: () => instance.get(`teams/me`),
   getMyteamDetail: (payload) => instance.get(`teams/info`, payload),
+  postMyteam: (payload) => instance.post(`teams/register`, payload),
 };
 
 // reservation 페이지 / 메인에서 검색해서 넘어가는 페이지

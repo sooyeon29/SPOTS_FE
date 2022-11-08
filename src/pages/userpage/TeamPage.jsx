@@ -33,6 +33,7 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
           </StTeam>
         ))}
       </>
+      <button onClick={() => navigate("/teamregister")}>등록하기</button>
     </StWrap>
   );
 };

@@ -37,7 +37,7 @@ export const __getMyteamDatil = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await UserpageAPI.getMyteamDetail();
+      const { data } = await UserpageAPI.getMyteamDetail(payload);
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
