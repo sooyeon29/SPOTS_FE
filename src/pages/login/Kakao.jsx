@@ -11,15 +11,16 @@ const Kakao = () => {
     const KAKAO_CODE = PARAMS.get("code");
     // console.log(KAKAO_CODE);
     let grant_type = "authorization_code";
-    let client_id = "497bb40725964bac025412acbaf9fc7c";
-    // "3da70995df25a93c7655852b81c50a54";
+    let client_id =
+      // "497bb40725964bac025412acbaf9fc7c";
+      "3da70995df25a93c7655852b81c50a54";
 
     axios
       .post(
         `https://kauth.kakao.com/oauth/token?
       grant_type=${grant_type}
       &client_id=${client_id}
-      &redirect_uri=http://localhost:3000/auth/callback/kakao
+      &redirect_uri=http://localhost:3000/auth/kakao/callback
       &code=${KAKAO_CODE}`,
         {
           headers: {
@@ -30,7 +31,6 @@ const Kakao = () => {
       // LoginAPI.kakaoLogin(KAKAO_CODE)
       .then((res) => {
         console.log(res);
-        // localStorage.setItem("kakaocode", KAKAO_CODE);
       })
       .catch((err) => console.log(err));
   }, []);
