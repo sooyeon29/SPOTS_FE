@@ -25,6 +25,7 @@ export const __getMyteam = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await UserpageAPI.getMyteamList();
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,23 +59,25 @@ const userSlice = createSlice({
       state.user = action.payload.user;
     },
     [__getMyInfo.rejected]: (state, action) => {
-      state.error = action.paylaod;
+      state.error = action.payload;
     },
     [__getMyteam.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__getMyteam.fulfilled]: (state, action) => {
-      state.team = action.payload.teamName;
+      state.team = action.payload;
     },
     [__getMyteam.rejected]: (state, action) => {
-      state.error = action.paylaod;
+      console.log(action.payload.response.data.errorMessage);
+      state.error = action.payload.response.data.errorMessage;
+      alert(state.error);
     },
     [__getMyteamDatil.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__getMyteamDatil.fulfilled]: (state, action) => {},
     [__getMyteamDatil.rejected]: (state, action) => {
-      state.error = action.paylaod;
+      state.error = action.payload;
     },
   },
 });

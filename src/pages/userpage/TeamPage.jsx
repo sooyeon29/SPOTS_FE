@@ -13,7 +13,7 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
   }, []);
 
   const { team } = useSelector((state) => state.user);
-
+  console.log(team);
   return (
     <StWrap>
       <StTag>Team</StTag>
@@ -21,15 +21,16 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
         +
       </button>
       <>
-        {team.team?.map((teamlist) => (
+        {team?.map((teamlist) => (
           <StTeam
+            key={teamlist.teamId}
             onClick={() => {
-              dispatch(__getMyteamDatil({ teamName: teamlist }));
+              dispatch(__getMyteamDatil({ teamName: teamlist.teamName }));
               console.log({ teamName: teamlist });
               navigate("/teamdetail");
             }}
           >
-            teamname : {teamlist}
+            teamname : {teamlist.teamName}
           </StTeam>
         ))}
       </>
