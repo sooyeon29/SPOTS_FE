@@ -1,9 +1,14 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Header = () => {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const logout = () => {
+      localStorage.clear();
+      window.location.reload();
+    };
 
   return (
     <>
@@ -11,35 +16,53 @@ const Header = () => {
         <StLogo
           onClick={() => {
             navigate(`/`);
-          }}
-        >
-          <img alt="" src="logo192.png" />
+          }}>
+          <img alt='' src='logo192.png' />
         </StLogo>
         <StButtonsWrap>
           <StButtons>
             <Sta
               onClick={() => {
                 navigate(`/`);
-              }}
-            >
+              }}>
               Home
             </Sta>
 
             <Sta
               onClick={() => {
-                navigate(`/`);
-              }}
-            >
-              About
+                navigate(`/book`);
+              }}>
+              Reservation
             </Sta>
 
             <Sta
               onClick={() => {
-                navigate(`/login`);
-              }}
-            >
-              로그인
+                navigate(`/`);
+              }}>
+              About
             </Sta>
+
+            {!token ? (
+              <Sta
+                onClick={() => {
+                  navigate(`/login`);
+                }}>
+                Login
+              </Sta>
+            ) : (
+              <Sta
+                onClick={() => {
+                  navigate(`/userpage`);
+                }}>
+                My Page
+              </Sta>
+            )}
+
+            <Sta
+              onClick={logout}>
+              Logout
+            </Sta>
+
           </StButtons>
         </StButtonsWrap>
       </StWrap>
@@ -104,7 +127,7 @@ const Sta = styled.a`
   cursor: pointer;
   border-radius: 10px;
   text-decoration: none;
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'SpoqaHanSansNeo-Regular';
 
   &:focus {
     font-weight: bold;

@@ -1,36 +1,42 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
-import useInput from "../../hooks/useInput";
 import { LoginAPI } from "../../tools/instance";
 import { KAKAO_AUTH_URL } from "./OAuth";
 import { StWraps, Stinput, KakaoBtn } from "./Styles";
 
 const Login = () => {
-  const [loginid, onChangeId] = useInput("");
-  const [loginpwd, onChangePwd] = useInput("");
-  const navigate = useNavigate();
-  const formRef = useRef();
+  const [loginInfo, setLoginInfo] = useState({
+    id: "",
+    password: "",
+  });
 
-  const login = () => {
-    LoginAPI.login({
-      nameid: formRef.current.nameid.value,
-      password: formRef.current.password.value,
-    })
+  const navigate = useNavigate();
+
+  const idAndPassword = (e) => {
+    const { name, value } = e.target;
+    setLoginInfo({ ...loginInfo, [name]: value });
+  };
+  console.log("인풋창 잘 들어오나", loginInfo);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    LoginAPI.login({ loginId: loginInfo.id, password: loginInfo.password })
       .then((res) => {
-        console.log("로그인 성공시 res", res);
+        console.log("로그인성공 response", res);
         if (res.status === 200) {
-          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("token", res.data.accessToken);
           navigate("/");
           window.location.reload();
         }
       })
       .catch((err) => {
-        console.log("로그인 실패시 err", err);
-        // 이미 로그인 된 회원입니다 ---> status400
-        // 잘못된 아이디 혹은 비밀번호 입니다. ---> status?
-        // 알수없는 오류가 발생했습니다. ---> status?
-        // alert(err.response);
+        if (err.response.status === 400) {
+          alert("이미 로그인 상태입니다.");
+        } else if (err.response.status === 412) {
+          alert("아이디 또는 패스워드를 확인해주세요");
+        }
+        console.log("로그인실패시 err", err);
       });
   };
 
@@ -39,24 +45,24 @@ const Login = () => {
       <Layout>
         <StWraps>
           <h1>로그인</h1>
-          <form ref={formRef} onSubmit={login}>
+          <form onSubmit={loginHandler}>
             <div>
               <div>
                 <Stinput
                   placeholder="아이디를 입력하세요."
-                  id="nameid"
                   type="text"
-                  value={loginid}
-                  onChange={onChangeId}
+                  required
+                  name="id"
+                  onChange={idAndPassword}
                 />
               </div>
               <div>
                 <Stinput
                   placeholder="비밀번호를 입력하세요."
-                  id="password"
                   type="password"
-                  value={loginpwd}
-                  onChange={onChangePwd}
+                  required
+                  name="password"
+                  onChange={idAndPassword}
                 />
               </div>
             </div>
@@ -66,14 +72,14 @@ const Login = () => {
             </div>
           </form>
           {/* 소셜로그인 - 카카오로그인 */}
-          <KakaoBtn href={KAKAO_AUTH_URL}>
+          <KakaoBtn>
+            {/* // href="https://ws-study.shop/auth/kakao"> */}
             <img alt="" src="/kakao.png" width={30} />
-            <span>카카오계정 로그인</span>
+            <a href={KAKAO_AUTH_URL}>카카오계정 로그인</a>
           </KakaoBtn>
         </StWraps>
       </Layout>
     </>
   );
 };
-
 export default Login;

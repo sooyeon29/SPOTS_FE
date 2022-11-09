@@ -1,17 +1,13 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
 
-  const handler = useCallback((e) => {
-    const blank = /\s/;
-    if (blank.test(e.target.value) === true) {
-      alert("공백은 사용할 수 없습니다.");
-      return;
-    }
-    setValue(e.target.value);
-  }, []);
+  const handler = (e) => {
+    const { name, value } = e.target;
+    setValue({ ...value, [name]: value });
+  };
 
-  return [value, handler, setValue];
+  return [value, setValue, handler];
 };
 export default useInput;
