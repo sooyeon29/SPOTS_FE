@@ -24,6 +24,10 @@ export const LoginAPI = {
 
 export const SignUpAPI = {
   signUp: (payload) => instance.post(`users/signup`, payload),
+  checkId: (payload) => instance.post(`users/checkId`, payload),
+  checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
+  checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
+
 };
 
 // userpage

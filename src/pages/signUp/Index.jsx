@@ -12,6 +12,7 @@ const SignUp = () => {
     register,
     handleSubmit,
     watch,
+    getValues,
     formState: { errors },
   } = useForm();
   const password = useRef();
@@ -47,6 +48,61 @@ const SignUp = () => {
       });
   };
 
+  // ID 중복 확인
+  const checkId = () => {
+    const loginId = getValues('loginId');
+    SignUpAPI.checkId({ loginId })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert('사용 가능한 ID입니다');
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+        if (error.response.status === 412) {
+          alert('이미 사용 중인 ID입니다');
+        }
+      });
+  };
+
+  // 닉네임 중복 확인
+  const checkNn = () => {
+    const nickname = getValues('nickname');
+    SignUpAPI.checkNickname({ nickname })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert('사용 가능한 닉네임입니다');
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+        if (error.response.status === 412) {
+        alert('이미 사용 중인 닉네임입니다');
+      }
+      });
+  };
+
+  // 휴대폰 번호 중복 확인
+  const checkPhoneNum = () => {
+    const phone = getValues('phone');
+    SignUpAPI.checkPhoneNum({ phone })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert('사용 가능한 전화번호입니다');
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+        if (error.response.status === 412) {
+        alert('이미 가입된 전화번호입니다');
+      }
+      });
+  };
+
+
   return (
     <>
       <Layout>
@@ -73,6 +129,9 @@ const SignUp = () => {
               <p> 6~12글자 사이의 영문 또는 숫자만 입력 가능합니다</p>
             )}
           </div>
+          <button type='button' onClick={checkId}>
+            중복확인
+          </button>
           <div>
             비밀번호<Red>*</Red>
             <input
@@ -120,9 +179,12 @@ const SignUp = () => {
               placeholder='닉네임을 입력해주세요'
               autoComplete='off'
             />
-            {errors.userName && errors.userName.type === 'required' && (
-              <p>이름을 입력해주세요</p>
+            {errors.nickname && errors.nickname.type === 'required' && (
+              <p>닉네임을 입력해주세요</p>
             )}
+            <button type='button' onClick={checkNn}>
+              중복확인
+            </button>
           </div>
           <div>
             성별<Red>*</Red>
@@ -159,7 +221,10 @@ const SignUp = () => {
             )}
             {errors.phone && errors.phone.type === 'pattern' && (
               <p>올바른 번호 형식이 아닙니다.</p>
-            )}
+            )}          
+            <button type='button' onClick={checkPhoneNum}>
+            중복확인
+          </button>
           </div>
           <div>
             나의 운동
