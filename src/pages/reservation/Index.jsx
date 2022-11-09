@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import useToggle from "../../hooks/useToggle";
 import SpotsDetail from "../spotsDetail/Index";
 
 const Reservation = () => {
@@ -13,6 +14,7 @@ const Reservation = () => {
   const location = useLocation();
   const keyword = location.state;
   // console.log(keyword[0]);
+  const [spotsDetailOpen, setSpotsDetailOpen] = useToggle();
 
   const onSearch = (e) => {
     e.preventDeafualt();
@@ -37,7 +39,16 @@ const Reservation = () => {
             </div>
           </form>
         </div>
-        <SpotsDetail />
+        <div>
+          <button onClick={() => setSpotsDetailOpen(true)}>
+            전체 시설 조회를 get
+          </button>
+          {spotsDetailOpen && (
+            <SpotsDetail setSpotsDetailOpen={setSpotsDetailOpen} />
+          )}
+          <button>전체 시설 조회를 get</button>
+          <button>전체 시설 조회를 get</button>
+        </div>
       </Layout>
     </>
   );

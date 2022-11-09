@@ -1,24 +1,15 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
 import PickDate from "../../tools/DatePicker";
 import {
   BookingBut,
   BookMatch,
   Croll,
-  DateBut,
   Team,
-  Time,
   Title,
   Wrap,
   MainInfo,
 } from "./Styles";
 
 const SpotsDetail = () => {
-  const [startDate, setStartDate] = useState(new Date());
-
-  let handleColor = (time) => {
-    return time.getHours() > 12 ? "text-success" : "text-error";
-  };
   return (
     <>
       <Wrap>
@@ -33,12 +24,9 @@ const SpotsDetail = () => {
             </div>
           </Croll>
         </MainInfo>
-        <DateBut>
-          <button>모달으로 달력열림</button>
-          <PickDate />
-        </DateBut>
 
-        <Time>10:00-11:00 | 11:00-12:00 | 12:00-13:00 |</Time>
+        <PickDate />
+
         <BookMatch>
           <Team>팀1</Team>
           vs
@@ -46,12 +34,12 @@ const SpotsDetail = () => {
         </BookMatch>
         <BookingBut>예약하기</BookingBut>
       </Wrap>
-      <DatePicker
+      {/* <ReactDatePicker
         showTimeSelect
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         timeClassName={handleColor}
-      />
+      /> */}
     </>
   );
 };

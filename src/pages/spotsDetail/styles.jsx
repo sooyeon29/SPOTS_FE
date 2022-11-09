@@ -29,8 +29,7 @@ export const Croll = styled.div`
     background-color: lightblue;
   }
 `;
-export const DateBut = styled.div``;
-export const Time = styled.div``;
+
 export const BookMatch = styled.div`
   display: flex;
 `;
