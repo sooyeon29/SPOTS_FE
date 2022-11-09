@@ -6,26 +6,25 @@ import ReactDatePicker from "react-datepicker";
 import { setHours, setMinutes } from "date-fns";
 
 const PickDate = () => {
-  const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 0), 9)
-  );
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    // const selectedDate = new Date(time);
-
-    // return currentDate.getTime() < selectedDate.getTime();
+  const [startDate, setStartDate] = useState(new Date());
+  //   console.log(startDate);
+  const pickDateHandler = (date) => {
+    setStartDate(date);
+    const pickedDate = { date: startDate };
+    // console.log(pickedDate);
+    window.sessionStorage.setItem("date", JSON.stringify(pickedDate));
   };
 
   return (
     <ReactDatePicker
       locale={ko}
       selected={startDate}
-      onChange={(date) => setStartDate(date)}
-      //   showTimeSelect
-      filterTime={filterPassedTime}
-      dateFormat="MMMM d, yyyy"
+      onChange={(date) => pickDateHandler(date)}
+      // setStartDate(date)}
+      //   withPortal
       isClearable
-      placeholderText="날짜 및 시간 재선택"
+      //   portalId="root-portal"
+      dateFormat="MM월 dd일 EE요일"
     />
   );
 };
