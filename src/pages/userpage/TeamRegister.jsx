@@ -58,7 +58,7 @@ const TeamRegister = () => {
           console.log(res);
           if (res.status === 200) {
             alert("팀 등록이 완료 되었습니다!");
-            navigate("/teamdetail");
+            navigate(`/teamdetail/${res.data.data.teamId}`);
           }
         })
         .catch((error) => {

@@ -10,7 +10,6 @@ import TeamRegister from "../pages/userpage/TeamRegister";
 import Reservation from "../pages/reservation/Index";
 import Kakao from "../pages/login/Kakao";
 
-
 function Router() {
   return (
     <BrowserRouter>
@@ -23,7 +22,6 @@ function Router() {
         <Route path="/teamdetail/:id" element={<TeamDetail />} />
         <Route path="/teamregister" element={<TeamRegister />} />
         <Route path="/book" element={<Reservation />} />
-        <Route path="/map" element={<Maps2 />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
       </Routes>
     </BrowserRouter>
