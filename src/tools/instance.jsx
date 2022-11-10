@@ -49,5 +49,17 @@ export const BookApi = {
   // instance.get(``)
 };
 
-// https://ws-study.shop/auth/kakao?code=인가코드
-// req.query => 요거로...받으실수...없으까요오...?
+// spotsdetail 실제 예약 서비스
+export const SpotsMatchApi = {
+  postSpotsMatch: (payload) =>
+    // console.log("요기오지?", payload),
+    instance.post(`reservations/register`, payload),
+  // {
+  //   place: payload.place,
+  //   date: payload.date,
+  //   matchId: payload.matchId,
+  //   // isDouble: false,
+  //   teamName: payload.teamName,
+  //   member: parseInt(payload.member),
+  // }),
+};

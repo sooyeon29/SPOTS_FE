@@ -1,14 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { SpotsMatchApi } from "../../tools/instance";
+
+export const __postSpotsMatch = createAsyncThunk(
+  "spotsMatch/postSpotsMatch",
+  async (payload, thunkApi) => {
+    console.log("페이로드!!", payload);
+    try {
+      const { data } = await SpotsMatchApi.postSpotsMatch(payload);
+      console.log("너데이터누구니", data);
+      return thunkApi.fulfillWithValue(data);
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
 
 const initialState = {
   matcher: {
-    matchId: "221107t13",
-    place: "한사랑풋살장",
-    teamName: "항해풋살회",
-    member: 5,
-    date: "2022-11-07",
-    time: "",
-    isDouble: false,
+    place: "",
+    date: "",
+    matchId: "",
+    // isDouble: false,
+    teamName: "",
+    member: 0,
   },
   isLoading: false,
   error: null,
@@ -17,50 +31,24 @@ const initialState = {
 const matchSlice = createSlice({
   name: "MATCHER",
   initialState,
-  reducers: {
-    // 동기적인 액션은 리듀서에서 관리
-    // 예약하기를 원하는 구장 선택
-    setPlace: (state, action) => {
-      state.matcher.place.push(action.payload);
-    },
-    // 매치를 위해 선택한 날짜
-    setDate: (state, action) => {
-      console.log("동기동기리듀서", action.payload);
-      console.log(state);
-      state.matcher.date.push(action.payload);
-    },
-    // 매치를 위해 선택한팀(시간+1or2팀)
-    setTimeTeam: (state, action) => {
-      //   const time = action.payload;
-      state.matcher.time.push(action.payload);
-    },
-    // 우리팀 인원(등록한 팀인원수를 가져옴)
-    setMember: (state, action) => {
-      //   const member = action.payload;
-      state.matcher.member.push(action.payload);
-    },
-    // 단식or복식 선택
-    setDouble: (state, action) => {
-      //   const double = action.payload;
-      state.matcher.isDouble.push(action.payload);
-    },
-    // 나의 팀들 중 매치 신청을 원하는 팀 선택
-    setTeamName: (state, action) => {
-      //   const teamName = action.payload;
-      state.matcher.teamName.push(action.payload);
-    },
-  },
+  reducers: {},
   extraReducers: {
     // 비동기적인 액션은 엑스트라리듀서에서 관리
+    // 예약하기 POST! (매칭을 위해 포스트!)
+    [__postSpotsMatch.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__postSpotsMatch.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log("스테이트는?", state);
+      state.matcher.push(action.payload);
+      console.log("fulfilled 상태", state, action);
+    },
+    [__postSpotsMatch.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const {
-  setPlace,
-  setDate,
-  setTimeTeam,
-  setMember,
-  setDouble,
-  setTeamName,
-} = matchSlice.actions;
-// export default addPartySlice.reducer;
+export default matchSlice.reducer;
