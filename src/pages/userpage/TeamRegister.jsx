@@ -90,6 +90,7 @@ const TeamRegister = () => {
               type="number"
               placeholder="number of members"
               ref={membersRef}
+              min="1"
             />
             <select ref={sportsRef}>
               <option value="">Sports</option>
