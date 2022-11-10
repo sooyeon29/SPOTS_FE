@@ -23,7 +23,7 @@ import {
   Pick,
   One,
   Two,
-} from "./styles";
+} from "./Styles";
 import { __postSpotsMatch } from "../../redux/modules/matchSlice";
 
 const SpotsDetail = () => {

@@ -53,4 +53,5 @@ export const BookApi = {
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
+  getMyMatch: () => instance.get(`/reservations/me`),
 };
