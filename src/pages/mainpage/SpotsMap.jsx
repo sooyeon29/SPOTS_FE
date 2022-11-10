@@ -1,14 +1,39 @@
 import React, { useState } from "react";
-import { Map, ZoomControl, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk"
+import {
+  Map,
+  ZoomControl,
+  MapMarker,
+  CustomOverlayMap,
+} from "react-kakao-maps-sdk";
+import { useSelector } from "react-redux";
+import Geocode from "react-geocode";
 
 const SpotsMap = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [level, setLevel] = useState();
 
-//   const markerPosition = {
-//     lat: 37.541,
-//     lng: 126.986,
-//   };
+  //   const markerPosition = {
+  //     lat: 37.541,
+  //     lng: 126.986,
+  //   };
+
+  const { data } = useSelector((state) => state.private);
+  console.log(data);
+
+  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+  Geocode.setLanguage("en");
+  Geocode.setRegion("es");
+  Geocode.enableDebug();
+
+  // const Map = async (currentAddr) => {
+  //   return Geocode.fromAddress("서울 강서구 화곡로 142 메가스퀘어빌딩")
+  //     .then((response) => {
+  //       const { lat, lng } = response.results[0].geometry.location;
+  //       return {lat, lng}
+  //       console.log(lat, lng);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   const positions = [
     {
@@ -27,7 +52,7 @@ const SpotsMap = () => {
       title: "근린공원",
       latlng: { lat: 33.451393, lng: 126.570738 },
     },
-  ]
+  ];
 
   return (
     <>
@@ -41,80 +66,80 @@ const SpotsMap = () => {
         }}
         style={{
           // 지도의 크기
-          width: '100%',
-          height: '450px',
+          width: "100%",
+          height: "450px",
         }}
         level={8} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
-        
-        {positions.map((position, index) => (
-        <MapMarker 
-        key={`${position.title}-${position.latlng}`}
-        position={position.latlng} onClick={() => setIsOpen(true)} 
-        image={{
-            src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
-            size: {
-              width: 64,
-              height: 69,
-            }, // 마커이미지의 크기입니다
-            options: {
-              offset: {
-                x: 27,
-                y: 69,
-              }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-            },
-          }}
-        />
 
+        {positions.map((position, index) => (
+          <MapMarker
+            key={`${position.title}-${position.latlng}`}
+            position={position.latlng}
+            onClick={() => setIsOpen(true)}
+            image={{
+              src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
+              size: {
+                width: 64,
+                height: 69,
+              }, // 마커이미지의 크기입니다
+              options: {
+                offset: {
+                  x: 27,
+                  y: 69,
+                }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+              },
+            }}
+          />
         ))}
 
-
         {isOpen && (
-
-
-          <CustomOverlayMap 
-        //   position={markerPosition}
-        >
+          <CustomOverlayMap
+          //   position={markerPosition}
+          >
             <div
               style={{
-                padding: '2px',
-                backgroundColor: '#fff',
-                color: '#000',
-              }}>
-              <div className='info'>
-                <div className='title'>
+                padding: "2px",
+                backgroundColor: "#fff",
+                color: "#000",
+              }}
+            >
+              <div className="info">
+                <div className="title">
                   카카오 스페이스닷원
                   <div
-                    className='close'
+                    className="close"
                     onClick={() => setIsOpen(false)}
-                    title='닫기'>
+                    title="닫기"
+                  >
                     닫기
                   </div>
                 </div>
-                <div className='body'>
-                  <div className='img'>
+                <div className="body">
+                  <div className="img">
                     <img
-                      src='//t1.daumcdn.net/thumb/C84x76/?fname=http://t1.daumcdn.net/cfile/2170353A51B82DE005'
-                      width='73'
-                      height='70'
-                      alt='카카오 스페이스닷원'
+                      src="//t1.daumcdn.net/thumb/C84x76/?fname=http://t1.daumcdn.net/cfile/2170353A51B82DE005"
+                      width="73"
+                      height="70"
+                      alt="카카오 스페이스닷원"
                     />
                   </div>
-                  <div className='desc'>
-                    <div className='ellipsis'>
+                  <div className="desc">
+                    <div className="ellipsis">
                       제주특별자치도 제주시 첨단로 242
                     </div>
-                    <div className='jibun ellipsis'>
+                    <div className="jibun ellipsis">
                       (우) 63309 (지번) 영평동 2181
                     </div>
                     <div>
                       <a
-                        href='https://www.kakaocorp.com/main'
-                        target='_blank'
-                        className='link'
-                        rel='noreferrer'>
+                        href="https://www.kakaocorp.com/main"
+                        target="_blank"
+                        className="link"
+                        rel="noreferrer"
+                      >
                         홈페이지
                       </a>
                     </div>
@@ -123,14 +148,10 @@ const SpotsMap = () => {
               </div>
             </div>
           </CustomOverlayMap>
-
-
         )}
-
       </Map>
     </>
   );
 };
 
 export default SpotsMap;
-

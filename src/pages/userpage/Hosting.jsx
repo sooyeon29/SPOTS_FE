@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import { useDaumPostcodePopup } from 'react-daum-postcode';
-import { PrivateApi } from '../../tools/instance';
+import { useState } from "react";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { PrivateApi } from "../../tools/instance";
 
 const Hosting = () => {
   const [spot, setSpot] = useState({});
@@ -21,17 +21,17 @@ const Hosting = () => {
 
   const handleComplete = (data) => {
     let fullAddress = data.address;
-    let extraAddress = '';
+    let extraAddress = "";
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== '') {
+      if (data.buildingName !== "") {
         extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
     setFullAddress(fullAddress);
   };
@@ -45,7 +45,7 @@ const Hosting = () => {
     const fullyAddress = fullAddress + spot.address;
     const data = { ...spot, comfort: checkedList, address: fullyAddress };
     console.log(data);
-    PrivateApi.registerSpot({ data })
+    PrivateApi.registerSpot(data)
       .then((res) => {
         console.log(res);
       })
@@ -61,7 +61,8 @@ const Hosting = () => {
         onSubmit={(e) => {
           e.preventDefault();
           onRegisterHandler(spot);
-        }}>
+        }}
+      >
         <div>
           스포츠 종류
           <select
@@ -71,7 +72,8 @@ const Hosting = () => {
                 ...spot,
                 sports: value,
               });
-            }}>
+            }}
+          >
             <option>선택하세요</option>
             <option>FUTSAL</option>
             <option>TENNIS</option>
@@ -81,7 +83,7 @@ const Hosting = () => {
         <div>
           스팟 이름
           <input
-            type='text'
+            type="text"
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
@@ -100,7 +102,8 @@ const Hosting = () => {
                 ...spot,
                 spotKind: value,
               });
-            }}>
+            }}
+          >
             <option>선택하세요</option>
             <option>실내 스팟</option>
             <option>실외 스팟</option>
@@ -109,7 +112,7 @@ const Hosting = () => {
 
         <div>
           <span>주소</span>
-          <button type='button' onClick={handleClick}>
+          <button type="button" onClick={handleClick}>
             주소 검색
           </button>
         </div>
@@ -120,8 +123,8 @@ const Hosting = () => {
               <div>{fullAddress}</div>
               <input
                 required
-                type='text'
-                placeholder='상세 주소를 입력해주세요'
+                type="text"
+                placeholder="상세 주소를 입력해주세요"
                 onChange={(e) => {
                   const { value } = e.target;
                   setSpot({
@@ -135,60 +138,60 @@ const Hosting = () => {
         ) : null}
         <div>
           <input
-            type='checkbox'
-            name='comforts'
-            value='장비대여'
+            type="checkbox"
+            name="comforts"
+            value="장비대여"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('장비대여') ? true : false}
+            checked={checkedList.includes("장비대여") ? true : false}
           />
           장비대여
           <input
-            type='checkbox'
-            name='comforts'
-            value='주차장'
+            type="checkbox"
+            name="comforts"
+            value="주차장"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('주차장') ? true : false}
+            checked={checkedList.includes("주차장") ? true : false}
           />
           주차장
           <input
-            type='checkbox'
-            name='comforts'
-            value='샤워실'
+            type="checkbox"
+            name="comforts"
+            value="샤워실"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('샤워실') ? true : false}
+            checked={checkedList.includes("샤워실") ? true : false}
           />
           샤워실
           <input
-            type='checkbox'
-            name='comforts'
-            value='탈의실'
+            type="checkbox"
+            name="comforts"
+            value="탈의실"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('탈의실') ? true : false}
+            checked={checkedList.includes("탈의실") ? true : false}
           />
           탈의실
           <input
-            type='checkbox'
-            name='comforts'
-            value='개인락커'
+            type="checkbox"
+            name="comforts"
+            value="개인락커"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('개인락커') ? true : false}
+            checked={checkedList.includes("개인락커") ? true : false}
           />
           개인락커
         </div>
         <div>
           1시간당
           <input
-            type='text'
+            type="text"
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
@@ -203,8 +206,8 @@ const Hosting = () => {
           스팟 설명
           <br />
           <input
-            style={{ height: '200px', width: '400px' }}
-            type='text'
+            style={{ height: "200px", width: "400px" }}
+            type="text"
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
