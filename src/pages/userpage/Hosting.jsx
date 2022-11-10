@@ -3,8 +3,10 @@ import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { PrivateApi } from '../../tools/instance';
+import { useNavigate } from 'react-router-dom';
 
 const Hosting = () => {
+  const navigate = useNavigate();
   const [spot, setSpot] = useState({});
 
   const [checkedList, setCheckedList] = useState([]);
@@ -44,10 +46,23 @@ const Hosting = () => {
   const onRegisterHandler = (spot) => {
     const fullyAddress = fullAddress + spot.address;
     const data = { ...spot, comfort: checkedList, address: fullyAddress };
-    console.log(data);
-    PrivateApi.registerSpot({ data })
+    // if (spot.address.trim() === '') {
+    //   return alert('상세주소를 입력해주세요');
+    // }
+    // if (spot.price.trim() === '') {
+    //   return alert('이용료를 입력해주세요');
+    // }
+    // if (spot.desc.trim() === '') {
+    //   return alert('스팟을 소개해주세요');
+    // }
+
+    PrivateApi.registerSpot(data)
       .then((res) => {
         console.log(res);
+        if (res.status === 201) {
+          alert('스팟 등록이 완료되었습니다');
+          navigate('/');
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -81,6 +96,7 @@ const Hosting = () => {
         <div>
           스팟 이름
           <input
+            required
             type='text'
             onChange={(e) => {
               const { value } = e.target;
@@ -106,7 +122,6 @@ const Hosting = () => {
             <option>실외 스팟</option>
           </select>
         </div>
-
         <div>
           <span>주소</span>
           <button type='button' onClick={handleClick}>
@@ -188,6 +203,7 @@ const Hosting = () => {
         <div>
           1시간당
           <input
+            required
             type='text'
             onChange={(e) => {
               const { value } = e.target;
@@ -203,6 +219,7 @@ const Hosting = () => {
           스팟 설명
           <br />
           <input
+            required
             style={{ height: '200px', width: '400px' }}
             type='text'
             onChange={(e) => {
