@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Map, MapMarker, CustomOverlayMap, ZoomControl } from 'react-kakao-maps-sdk';
+import React, { useState } from "react";
+import { Map, ZoomControl, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk"
 
-const Maps4 = () => {
+const SpotsMap = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [level, setLevel] = useState()
+  const [level, setLevel] = useState();
 
 //   const markerPosition = {
 //     lat: 37.541,
@@ -67,6 +67,7 @@ const Maps4 = () => {
             },
           }}
         />
+
         ))}
 
 
@@ -131,4 +132,5 @@ const Maps4 = () => {
   );
 };
 
-export default Maps4;
+export default SpotsMap;
+
