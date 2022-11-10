@@ -8,8 +8,10 @@ import useToggle from "../../hooks/useToggle";
 import ReservPage from "./ReservPage";
 import ReservToggle from "./toggle/ReservToggle";
 import Header from "../../components/Header";
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
+  const navigate = useNavigate();
   const [myToggle, setMyToggle, myClickToggle] = useToggle();
   const [teamToggle, setTeamToggle, teamClickToggle] = useToggle();
   const [reservToggle, setReservToggle, reservClickToggle] = useToggle();
@@ -42,6 +44,7 @@ const UserPage = () => {
             reservClickToggle={reservClickToggle}
           />
         )}
+        <button onClick={() => navigate("/hosting")}>구장 등록하기</button>
       </StContainer>
     </>
   );

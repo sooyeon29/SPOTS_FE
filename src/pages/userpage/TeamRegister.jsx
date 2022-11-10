@@ -3,20 +3,16 @@ import { StContainer, StTeamForm, StWrap } from "./Styles";
 import Header from "../../components/Header";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { __postMyteam } from "../../redux/modules/userSlice";
 
 const TeamRegister = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  //const imgRef = useRef();
-  const nameRef = useRef();
-  const membersRef = useRef();
-  const sportsRef = useRef();
 
   const [preview, setPreview] = useState([]);
   const [img, setImg] = useState(null);
+
+  const nameRef = useRef();
+  const membersRef = useRef();
+  const sportsRef = useRef();
 
   const handleImagePreview = (file) => {
     setImg(null);
@@ -55,7 +51,7 @@ const TeamRegister = () => {
       for (let a of formData.entries()) {
         console.log("formData출력", a);
       }
-      //dispatch(__postMyteam(formData));
+
       UserpageAPI.postMyteam(formData)
         .then((res) => {
           console.log(res);
