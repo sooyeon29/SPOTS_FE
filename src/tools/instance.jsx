@@ -41,6 +41,7 @@ export const UserpageAPI = {
         "Content-Type": "multipart/form-data",
       },
     }),
+  deleteTeam: (payload) => instance.put(`teams/drop`, payload),
 };
 
 // reservation 페이지 / 메인에서 검색해서 넘어가는 페이지

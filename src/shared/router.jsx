@@ -19,7 +19,7 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/userpage" element={<UserPage />} />
         <Route path="/spotsdetail" element={<SpotsDetail />} />
-        <Route path="/teamdetail" element={<TeamDetail />} />
+        <Route path="/teamdetail/:id" element={<TeamDetail />} />
         <Route path="/teamregister" element={<TeamRegister />} />
         <Route path="/book" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
