@@ -3,7 +3,7 @@ import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import Maps4 from "./Maps4";
+import Maps from "./Maps";
 import { SpotsBtns } from "./Styles";
 
 // import { SportMaps } from "./Styles";
@@ -50,7 +50,7 @@ const MainMaps = () => {
           <button>TENNIS🥎</button>
           <button>BADMINTON🏸</button>
         </SpotsBtns>
-        <Maps4 />
+        <Maps />
         <select onChange={onSportsHandler}>
           <option>ALL</option>
           <option>FUTSAL⚽</option>
