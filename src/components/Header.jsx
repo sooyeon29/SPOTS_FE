@@ -5,6 +5,10 @@ import styled from 'styled-components';
 const Header = () => {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const logout = () => {
+      localStorage.clear();
+      window.location.reload();
+    };
 
   return (
     <>
@@ -53,6 +57,12 @@ const Header = () => {
                 My Page
               </Sta>
             )}
+
+            <Sta
+              onClick={logout}>
+              Logout
+            </Sta>
+
           </StButtons>
         </StButtonsWrap>
       </StWrap>
