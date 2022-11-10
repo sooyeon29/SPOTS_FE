@@ -21,7 +21,7 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
         +
       </button>
       <>
-        {team.team?.map((teamlist) => (
+        {team?.team?.map((teamlist) => (
           <StTeam
             onClick={() => {
               dispatch(__getMyteamDatil({ teamName: teamlist }));

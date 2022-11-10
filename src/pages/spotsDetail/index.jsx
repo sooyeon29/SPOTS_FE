@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
@@ -21,6 +22,10 @@ import {
 } from "./Styles";
 
 const SpotsDetail = () => {
+  const getMyteam = useSelector((state) =>
+    console.log("나의팀", state.user.team)
+  );
+
   const [isOne, setIsOne, pickOneHandler] = useToggle();
   // const myPick = JSON.parse(window.sessionStorage.getItem("matchId"));
   // console.log(myPick.matchId);
@@ -36,10 +41,10 @@ const SpotsDetail = () => {
 
   // 선택한 날짜를 세션스토리지에서 가져옴
   const pickedDate = JSON.parse(window.sessionStorage.getItem("date"));
-  console.log(pickedDate.date.substring(0, 19));
+  // console.log(pickedDate.date.substring(0, 19));
 
-  const newDate = new Date(pickedDate.date.substring(0, 19));
-  console.log(newDate.toLocaleDateString());
+  // const newDate = new Date(pickedDate.date.substring(0, 19));
+  // console.log(newDate.toLocaleDateString());
   // 단식 복식 선택하여 세션스토리지에 저장
   const isDouble = { isDouble: isOne };
   console.log(isDouble);
@@ -68,7 +73,7 @@ const SpotsDetail = () => {
             </SelectTeam>
             <YourSelect>
               <div>
-                <span>{newDate.toLocaleDateString()} </span>
+                {/* <span>{newDate.toLocaleDateString()} </span> */}
                 <button
                 // onClick={noMatchHandler}
                 >
@@ -103,7 +108,7 @@ const SpotsDetail = () => {
           </Select>
 
           <br />
-          <BookingBut>예약하기</BookingBut>
+          {/* <BookingBut>예약하기</BookingBut> */}
         </Wrap>
       </Layout>
     </>

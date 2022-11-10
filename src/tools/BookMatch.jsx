@@ -1,10 +1,16 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setTimeTeam } from "../redux/modules/matchSlice";
 
 const Match = () => {
+  const dispatch = useDispatch();
   const teamPick = (time) => {
-    const pickTimeTeam = { matchId: time };
-    console.log(pickTimeTeam);
-    window.sessionStorage.setItem("matchId", JSON.stringify(pickTimeTeam));
+    // 세션스토리지에 클릭한 팀 저장
+    // const pickTimeTeam = { matchId: time };
+    // console.log(pickTimeTeam);
+    // window.sessionStorage.setItem("matchId", JSON.stringify(pickTimeTeam));
+
+    dispatch(setTimeTeam(time));
   };
 
   return (
@@ -66,7 +72,7 @@ const BookMatch = styled.div`
   display: flex;
 `;
 const Time = styled.div`
-  width: 40%;
+  width: 50%;
 `;
 const Team = styled.button`
   width: 80px;
