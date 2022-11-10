@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
+import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 import SpotsDetail from "../spotsDetail/Index";
 
 const Reservation = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(__getPrivateSpot());
+  }, [])
+
   const onChangeSearch = (e) => {
     e.preventDeafualt();
     setSearch(e.target.value);
@@ -19,6 +27,7 @@ const Reservation = () => {
   const onSearch = (e) => {
     e.preventDeafualt();
   };
+
   return (
     <>
       <Layout>
@@ -43,7 +52,6 @@ const Reservation = () => {
           <button onClick={() => navigate(`/spotsdetail`)}>
             전체 시설 조회를 get
           </button>
-
           <button>전체 시설 조회를 get</button>
           <button>전체 시설 조회를 get</button>
         </div>
