@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { __getMyteam, __getMyteamDatil } from "../../redux/modules/userSlice";
+import {
+  __getMyteamList,
+  __getMyteamDetail,
+} from "../../redux/modules/userSlice";
 import { StWrap, StTag, StTeam } from "./Styles";
 
 const TeamPage = ({ teamtoggle, teamClickToggle }) => {
@@ -9,11 +12,11 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(__getMyteam());
+    dispatch(__getMyteamList());
   }, []);
 
   const { team } = useSelector((state) => state.user);
-
+  console.log(team);
   return (
     <StWrap>
       <StTag>Team</StTag>
@@ -21,15 +24,16 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
         +
       </button>
       <>
-        {team.team?.map((teamlist) => (
+        {team?.map((teamlist) => (
           <StTeam
+            key={teamlist.teamId}
             onClick={() => {
-              dispatch(__getMyteamDatil({ teamName: teamlist }));
-              console.log({ teamName: teamlist });
+              dispatch(__getMyteamDetail(teamlist.teamName));
+              console.log(teamlist.teamName);
               navigate("/teamdetail");
             }}
           >
-            teamname : {teamlist}
+            teamname : {teamlist.teamName}
           </StTeam>
         ))}
       </>
