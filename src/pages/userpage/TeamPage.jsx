@@ -24,16 +24,15 @@ const TeamPage = ({ teamtoggle, teamClickToggle }) => {
         +
       </button>
       <>
-        {team?.map((teamlist) => (
+        {team?.map((team) => (
           <StTeam
-            key={teamlist.teamId}
+            key={team.teamId}
             onClick={() => {
-              dispatch(__getMyteamDetail(teamlist.teamName));
-              console.log(teamlist.teamName);
-              navigate("/teamdetail");
+              dispatch(__getMyteamDetail(team.teamId));
+              navigate(`/teamdetail/${team.teamId}`);
             }}
           >
-            teamname : {teamlist.teamName}
+            teamname : {team.teamName}
           </StTeam>
         ))}
       </>

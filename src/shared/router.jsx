@@ -9,6 +9,7 @@ import TeamDetail from "../pages/userpage/TeamDetail";
 import TeamRegister from "../pages/userpage/TeamRegister";
 import Reservation from "../pages/reservation/Index";
 import Kakao from "../pages/login/Kakao";
+import Hosting from "../pages/userpage/Hosting"
 
 function Router() {
   return (
@@ -19,10 +20,11 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/userpage" element={<UserPage />} />
         <Route path="/spotsdetail" element={<SpotsDetail />} />
-        <Route path="/teamdetail" element={<TeamDetail />} />
+        <Route path="/teamdetail/:id" element={<TeamDetail />} />
         <Route path="/teamregister" element={<TeamRegister />} />
         <Route path="/book" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
+        <Route path="/hosting" element={<Hosting />} />
       </Routes>
     </BrowserRouter>
   );

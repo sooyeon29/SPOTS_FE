@@ -119,7 +119,6 @@ const SpotsDetail = () => {
           </MainInfo>
           {/* <PickDate /> */}
           <ReactDatePicker
-            locale={ko}
             selected={startDate}
             onChange={(date) => pickDateHandler(date)}
             // setStartDate(date)}
