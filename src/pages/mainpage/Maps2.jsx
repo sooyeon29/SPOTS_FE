@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect } from "react";
-import { placesInfo } from "../../tools/dummy";
-=======
 import React, { useEffect } from 'react';
->>>>>>> feat/map
 
 const { kakao } = window;
 
@@ -37,14 +32,6 @@ const Maps2 = () => {
     const map = new kakao.maps.Map(container, options);
     // 주소-좌표 변환 객체를 생성합니다.
     const geocoder = new kakao.maps.services.Geocoder();
-<<<<<<< HEAD
-
-    placesInfo.forEach(function (placeInfo) {
-      geocoder.addressSearch(placeInfo.place, function (result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-          let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-=======
     // 주소로 좌표를 검색합니다.
     for (let i = 0; i < mockData.length; i++) {
       geocoder.addressSearch(mockData[i].address, function (result, status) {
@@ -52,20 +39,10 @@ const Maps2 = () => {
         if (status === kakao.maps.services.Status.OK) {
           let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
           // 결과값으로 받은 위치를 마커로 표시합니다
->>>>>>> feat/map
           let marker = new kakao.maps.Marker({
             map: map,
             position: coords,
           });
-<<<<<<< HEAD
-          let infowindow = new kakao.maps.InfoWindow({
-            content:
-              '<div style="width:150px;color:red;text-align:center;padding:6px 0;">' +
-              placeInfo.name +
-              "</div>",
-          });
-          infowindow.open(map, marker);
-=======
 
           let iwContent =
             '<div style="padding:5px;"><br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>' +
@@ -91,7 +68,6 @@ const Maps2 = () => {
           // infowindow.open(map, marker);
 
           // // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
->>>>>>> feat/map
           map.setCenter(coords);
 
           // // 마커에 마우스오버 이벤트를 등록합니다
@@ -112,37 +88,8 @@ const Maps2 = () => {
           // });
         }
       });
-<<<<<<< HEAD
-      // 주소로 좌표를 검색합니다..
-      // geocoder.addressSearch(
-      //   "서울 용산구 한강대로23길 55 용산아이파크몰",
-      //   function (result, status) {
-      //     // 정상적으로 검색이 완료됐으면
-      //     if (status === kakao.maps.services.Status.OK) {
-      //       let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-      //       // 결과값으로 받은 위치를 마커로 표시합니다
-      //       let marker = new kakao.maps.Marker({
-      //         map: map,
-      //         position: coords,
-      //       });
-
-      // 인포윈도우로 장소에 대한 설명을 표시합니다
-      //   let infowindow = new kakao.maps.InfoWindow({
-      //     content:
-      //       '<div style="width:150px;color:red;text-align:center;padding:6px 0;">풋살장</div>',
-      //   });
-      //   infowindow.open(map, marker);
-
-      //   // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-      //   map.setCenter(coords);
-      // }
-    });
-  }, []);
-=======
     }
   };
->>>>>>> feat/map
 
   return (
     <div
@@ -155,3 +102,4 @@ const Maps2 = () => {
 };
 
 export default Maps2;
+
