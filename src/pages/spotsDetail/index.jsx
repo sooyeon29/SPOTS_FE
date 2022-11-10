@@ -25,7 +25,7 @@ import {
   Pick,
   One,
   Two,
-} from "./Styles";
+} from "./styles";
 
 const SpotsDetail = () => {
   const dispatch = useDispatch();
@@ -117,7 +117,6 @@ const SpotsDetail = () => {
           </MainInfo>
           {/* <PickDate /> */}
           <ReactDatePicker
-            locale={ko}
             selected={startDate}
             onChange={(date) => pickDateHandler(date)}
             // setStartDate(date)}
