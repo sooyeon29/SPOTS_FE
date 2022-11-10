@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
-import { __getMyInfo, __getMyteam } from "../../redux/modules/userSlice";
+import { __getMyInfo, __getMyteamList } from "../../redux/modules/userSlice";
 import Match from "../../tools/BookMatch";
 
 import {
@@ -42,7 +42,7 @@ const SpotsDetail = () => {
   const [pickedTime, setPickedTime] = useState("시간을 선택해주세요");
   const [pickedTimeTwo, setPickedTimeTwo] = useState("시간을 선택해주세요");
   useEffect(() => {
-    dispatch(__getMyteam());
+    dispatch(__getMyteamList());
     dispatch(__getMyInfo());
   }, []);
 
