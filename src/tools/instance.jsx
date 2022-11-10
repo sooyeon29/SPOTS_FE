@@ -34,7 +34,7 @@ export const SignUpAPI = {
 export const UserpageAPI = {
   getMypage: () => instance.get(`users/me`),
   getMyteamList: () => instance.get(`teams/me`),
-  getMyteamDetail: (payload) => instance.get(`teams/info`, payload),
+  getMyteamDetail: (payload) => instance.get(`teams/info/${payload}`),
   postMyteam: (payload) =>
     instance.post(`teams/register`, payload, {
       headers: {
