@@ -12,7 +12,11 @@
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-calendar": "^3.9.0",
+<<<<<<< HEAD
     "react-datepicker": "^4.8.0",
+=======
+    "react-daum-postcode": "^3.1.1",
+>>>>>>> feat/mainmap
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.1",
     "react-icons": "^4.6.0",
