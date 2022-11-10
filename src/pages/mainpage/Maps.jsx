@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useNavigate } from "react-router-dom";
+import { placesInfo } from "../../tools/dummy";
 
 // import { SportMaps } from "./Styles";
-
+const { kakao } = window;
 const Maps = () => {
   const mapRef = useRef();
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Maps = () => {
     // 백에서 저장해준데이터를 가져와서 setPositions에 넣어주어야 한다.
     // ex( https://apis.map.kakao.com/download/web/data/chicken.json )
     // setPositions(clusterPositionsData.positions);
+    // setPositions(placesInfo)
   }, []);
 
   const onClusterclick = (_target, cluster) => {
@@ -23,6 +25,9 @@ const Maps = () => {
     // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
     map.setLevel(level, { anchor: cluster.getCenter() });
   };
+
+  // 주소-좌표 변환 객체를 생성합니다.
+  //  const geocoder = new kakao.maps.services.Geocoder();
 
   return (
     <>
