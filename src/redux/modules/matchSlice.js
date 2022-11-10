@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { SpotsMatchApi } from "../../tools/instance";
 
+// 예약하기! (디테일페이지에서 예약)
 export const __postSpotsMatch = createAsyncThunk(
   "spotsMatch/postSpotsMatch",
   async (payload, thunkApi) => {
@@ -8,6 +9,19 @@ export const __postSpotsMatch = createAsyncThunk(
     try {
       const { data } = await SpotsMatchApi.postSpotsMatch(payload);
       console.log("너데이터누구니", data);
+      return thunkApi.fulfillWithValue(data);
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+// 예약내역 불러오기
+export const __getMyMatch = createAsyncThunk(
+  "spotsMatch/getMyMatch",
+  async (payload, thunkApi) => {
+    try {
+      const { data } = await SpotsMatchApi.getMyMatch(payload);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
