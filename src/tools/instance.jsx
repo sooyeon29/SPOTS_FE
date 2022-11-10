@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
-const isLogin = localStorage.getItem("token");
+const isLogin = localStorage.getItem('token');
 // const isKakaoLogin = localStorage.getItem("kakaocode");
 
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
+  baseURL: 'https://ws-study.shop/',
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "https://sparta4.shop",
@@ -38,7 +38,7 @@ export const UserpageAPI = {
   postMyteam: (payload) =>
     instance.post(`teams/register`, payload, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     }),
   deleteTeam: (payload) => instance.put(`teams/drop`, payload),
@@ -53,4 +53,11 @@ export const BookApi = {
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
+};
+
+export const PrivateApi = {
+  registerSpot: (payload) =>
+    // console.log(payload)
+    instance.post(`places`, payload),
+  getPrivateSpot: () => instance.get(`places`),
 };
