@@ -52,6 +52,7 @@ export const KakaoBtn = styled.button`
   background: #ffcd2a;
   display: flex;
   align-items: center;
+
   justify-content: center;
   width: 100%;
   border: 0px;
