@@ -32,17 +32,17 @@ export const Croll = styled.div`
   }
 `;
 
-// export const BookMatch = styled.div`
-//   display: flex;
-// `;
-// export const Time = styled.div`
-//   width: 40%;
-// `;
-// export const Team = styled.button`
-//   width: 80px;
-//   height: 50px;
-//   border: 1px solid black;
-// `;
+export const BookMatch = styled.div`
+  display: flex;
+`;
+export const Time = styled.div`
+  width: 40%;
+`;
+export const Team = styled.button`
+  width: 80px;
+  height: 50px;
+  border: 1px solid black;
+`;
 export const Select = styled.div`
   display: flex;
 `;

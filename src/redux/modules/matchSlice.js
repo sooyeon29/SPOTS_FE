@@ -24,9 +24,8 @@ const matchSlice = createSlice({
       state.matcher.place.push(action.payload);
     },
     // 매치를 위해 선택한 날짜
-
     setDate: (state, action) => {
-      console.log(action);
+      console.log("동기동기리듀서", action.payload);
       console.log(state);
       state.matcher.date.push(action.payload);
     },
