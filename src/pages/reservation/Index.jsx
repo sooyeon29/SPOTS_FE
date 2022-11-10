@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
-import SpotsDetail from "../spotsDetail/Index";
+import SpotsDetail from "../spotsDetail/index";
 
 const Reservation = () => {
   const navigate = useNavigate();
