@@ -16,14 +16,7 @@ export const __postSpotsMatch = createAsyncThunk(
 );
 
 const initialState = {
-  matcher: {
-    place: "",
-    date: "",
-    matchId: "",
-    // isDouble: false,
-    teamName: "",
-    member: 0,
-  },
+  matcher: [],
   isLoading: false,
   error: null,
 };
@@ -40,8 +33,8 @@ const matchSlice = createSlice({
     },
     [__postSpotsMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("스테이트는?", state);
-      state.matcher.push(action.payload);
+      console.log("액션?", action.payload);
+      state.matcher.push(action.payload.data);
       console.log("fulfilled 상태", state, action);
     },
     [__postSpotsMatch.rejected]: (state, action) => {
