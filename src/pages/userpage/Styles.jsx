@@ -30,3 +30,9 @@ export const StTeam = styled.div`
   border: 1px solid lightgray;
   border-radius: 15px;
 `;
+
+export const StTeamForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+`;

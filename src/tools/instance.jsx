@@ -14,7 +14,7 @@ const instance = axios.create({
   },
 });
 
-// 로그인/ 회원가입 관련 API에 이용
+// 로그인
 export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   kakaoLogin: (payload) =>
@@ -22,12 +22,12 @@ export const LoginAPI = {
     instance.get(`auth/kakao/callback?code=${payload}`),
 };
 
+// 회원가입
 export const SignUpAPI = {
   signUp: (payload) => instance.post(`users/signup`, payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-
 };
 
 // userpage
@@ -35,7 +35,12 @@ export const UserpageAPI = {
   getMypage: () => instance.get(`users/me`),
   getMyteamList: () => instance.get(`teams/me`),
   getMyteamDetail: (payload) => instance.get(`teams/info`, payload),
-  postMyteam: (payload) => instance.post(`teams/register`, payload),
+  postMyteam: (payload) =>
+    instance.post(`teams/register`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }),
 };
 
 // reservation 페이지 / 메인에서 검색해서 넘어가는 페이지
