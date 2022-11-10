@@ -11,7 +11,6 @@ import Reservation from "../pages/reservation/Index";
 import Maps2 from "../pages/mainpage/Maps2";
 import Kakao from "../pages/login/Kakao";
 import ReactMap from "../pages/mainpage/Maps3";
-import Hosting from "../pages/userpage/Hosting";
 
 function Router() {
   return (
@@ -28,7 +27,6 @@ function Router() {
         <Route path="/map" element={<Maps2 />} />
         <Route path="/maptest" element={<ReactMap />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
-        <Route path="/hosting" element={<Hosting />} />
       </Routes>
     </BrowserRouter>
   );
