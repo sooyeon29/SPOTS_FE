@@ -33,6 +33,7 @@ const TeamRegister = () => {
       };
     }
   };
+
   const registerHandler = async (e) => {
     e.preventDefault();
     if (

@@ -4,11 +4,11 @@ const isLogin = localStorage.getItem("token");
 // const isKakaoLogin = localStorage.getItem("kakaocode");
 
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
+  // baseURL: "https://ws-study.shop/",
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "https://sparta4.shop",
-  // baseURL: "http://13.125.53.34/",
+  baseURL: "http://13.125.53.34/",
   headers: {
     Authorization: `Bearer ${isLogin}`,
   },
@@ -41,6 +41,7 @@ export const UserpageAPI = {
         "Content-Type": "multipart/form-data",
       },
     }),
+  deleteTeam: (payload) => instance.put(`teams/drop`, payload),
 };
 
 // reservation 페이지 / 메인에서 검색해서 넘어가는 페이지
