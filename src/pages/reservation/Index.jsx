@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import useToggle from "../../hooks/useToggle";
 import { __getPrivateSpot } from "../../redux/modules/privateSlice";
-import SpotsDetail from "../spotsDetail/index";
+import SpotList from "./HostSpotList";
 
 const Reservation = () => {
-  const navigate = useNavigate();
+  const [search, setSearch] = useState();
   const location = useLocation();
   const keyword = location.state;
   // console.log(keyword[0]);
   // console.log(keyword[1]);
-
-  const [search, setSearch] = useState(keyword[1]);
   const dispatch = useDispatch();
 
-  const { isLoading, error, privateSpot } = useSelector(
-    (state) => state?.privateSpot
-  );
-  console.log(privateSpot);
+  useEffect(() => {
+    dispatch(__getPrivateSpot());
+  }, []);
+
+  const { isLoading, error } = useSelector((state) => state?.privateSpot);
+  const placeList = useSelector((state) => state.privateSpot.privateSpot.data);
+  console.log("플레이스리스트에들은거", placeList);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -43,7 +43,6 @@ const Reservation = () => {
     <>
       <Layout>
         <Header />
-
         <div>
           <form onSubmit={(e) => onSearch(e)}>
             <input
@@ -58,14 +57,10 @@ const Reservation = () => {
               검색 결과
             </div>
           </form>
-        </div>
-        <div>
-          <button onClick={() => navigate(`/spotsdetail`)}>
-            전체 시설 조회를 get
-          </button>
-          <button>전체 시설 조회를 get</button>
-          <button>전체 시설 조회를 get</button>
-        </div>
+        </div>{" "}
+        {placeList?.map((place) => {
+          return <SpotList key={place.placesId} place={place} />;
+        })}
       </Layout>
     </>
   );

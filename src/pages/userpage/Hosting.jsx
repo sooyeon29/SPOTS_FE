@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import { useDaumPostcodePopup } from 'react-daum-postcode';
-import { PrivateApi } from '../../tools/instance';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { PrivateApi } from "../../tools/instance";
+import { useNavigate } from "react-router-dom";
 const { kakao } = window;
 
 const Hosting = () => {
@@ -46,36 +46,44 @@ const Hosting = () => {
   };
 
   const onRegisterHandler = (spot) => {
+    let x = null;
+    let y = null;
+    // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
     const fullyAddress = fullAddress + spot.address;
+    // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
 
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(fullyAddress, function (result, status) {
-      //여기에 내용
+      let x = null;
+      let y = null;
+      // 주소가 정상적으로 좌표로 변환되면
+      if (status === kakao.maps.services.Status.OK) {
+        x = result[0].x;
+        y = result[0].y;
+      }
+      console.log(x, y);
+
+      const data = {
+        ...spot,
+        comfort: checkedList,
+        address: fullyAddress,
+        x: x,
+        y: y,
+      };
+
+      console.log(data);
+      PrivateApi.registerSpot(data)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            alert("스팟 등록이 완료되었습니다");
+            navigate("/");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
-
-    const data = { ...spot, comfort: checkedList, address: fullyAddress };
-    // if (spot.address.trim() === '') {
-    //   return alert('상세주소를 입력해주세요');
-    // }
-    // if (spot.price.trim() === '') {
-    //   return alert('이용료를 입력해주세요');
-    // }
-    // if (spot.desc.trim() === '') {
-    //   return alert('스팟을 소개해주세요');
-    // }
-
-    PrivateApi.registerSpot(data)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 201) {
-          alert('스팟 등록이 완료되었습니다');
-          navigate('/');
-        }
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (
@@ -88,7 +96,7 @@ const Hosting = () => {
         }}
       >
         <div>
-          스포츠 종류
+          스팟 종류
           <select
             onChange={(e) => {
               const { value } = e.target;
@@ -98,19 +106,17 @@ const Hosting = () => {
               });
             }}
           >
-
-
             <option>선택하세요</option>
-            <option>FUTSAL</option>
-            <option>TENNIS</option>
-            <option>BADMINTON</option>
+            <option>풋살장</option>
+            <option>테니스장</option>
+            <option>배드민턴장</option>
           </select>
         </div>
         <div>
           스팟 이름
           <input
             required
-            type='text'
+            type="text"
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
@@ -121,7 +127,7 @@ const Hosting = () => {
           />
         </div>
         <div>
-          스팟 종류
+          실내/외
           <select
             onChange={(e) => {
               const { value } = e.target;
@@ -129,8 +135,8 @@ const Hosting = () => {
                 ...spot,
                 spotKind: value,
               });
-            }}>
-
+            }}
+          >
             <option>선택하세요</option>
             <option>실내 스팟</option>
             <option>실외 스팟</option>
@@ -149,8 +155,8 @@ const Hosting = () => {
               <div>{fullAddress}</div>
               <input
                 required
-                type='text'
-                placeholder='상세 주소를 입력해주세요'
+                type="text"
+                placeholder="상세 주소를 입력해주세요"
                 onChange={(e) => {
                   const { value } = e.target;
                   setSpot({
@@ -164,53 +170,53 @@ const Hosting = () => {
         ) : null}
         <div>
           <input
-            type='checkbox'
-            name='comforts'
-            value='장비대여'
+            type="checkbox"
+            name="comforts"
+            value="장비대여"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('장비대여') ? true : false}
+            checked={checkedList.includes("장비대여") ? true : false}
           />
           장비대여
           <input
-            type='checkbox'
-            name='comforts'
-            value='주차장'
+            type="checkbox"
+            name="comforts"
+            value="주차장"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('주차장') ? true : false}
+            checked={checkedList.includes("주차장") ? true : false}
           />
           주차장
           <input
-            type='checkbox'
-            name='comforts'
-            value='샤워실'
+            type="checkbox"
+            name="comforts"
+            value="샤워실"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('샤워실') ? true : false}
+            checked={checkedList.includes("샤워실") ? true : false}
           />
           샤워실
           <input
-            type='checkbox'
-            name='comforts'
-            value='탈의실'
+            type="checkbox"
+            name="comforts"
+            value="탈의실"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('탈의실') ? true : false}
+            checked={checkedList.includes("탈의실") ? true : false}
           />
           탈의실
           <input
-            type='checkbox'
-            name='comforts'
-            value='개인락커'
+            type="checkbox"
+            name="comforts"
+            value="개인락커"
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('개인락커') ? true : false}
+            checked={checkedList.includes("개인락커") ? true : false}
           />
           개인락커
         </div>
@@ -218,7 +224,7 @@ const Hosting = () => {
           1시간당
           <input
             required
-            type='text'
+            type="text"
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
@@ -232,10 +238,10 @@ const Hosting = () => {
         <div>
           스팟 설명
           <br />
-          <input
+          <textarea
             required
-            style={{ height: '200px', width: '400px' }}
-            type='text'
+            style={{ height: "200px", width: "400px" }}
+            type="text"
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
