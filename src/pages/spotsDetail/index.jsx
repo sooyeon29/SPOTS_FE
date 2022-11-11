@@ -23,7 +23,7 @@ import {
   Pick,
   One,
   Two,
-} from "./styles";
+} from "./Styles";
 import { __postSpotsMatch } from "../../redux/modules/matchSlice";
 import { useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/privateSlice";
