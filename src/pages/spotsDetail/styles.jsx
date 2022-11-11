@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled from "styled-components";
 
 export const Wrap = styled.div`
@@ -42,6 +43,7 @@ export const Team = styled.button`
   width: 80px;
   height: 50px;
   border: 1px solid black;
+  background-color: ${(props) => (props.butcolor ? "pink" : "lightgray")};
 `;
 export const Select = styled.div`
   display: flex;

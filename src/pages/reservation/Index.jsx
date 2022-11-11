@@ -29,10 +29,6 @@ const Reservation = () => {
     return <div>{error.message}</div>;
   }
 
-  // useEffect(()=>{
-  //   dispatch(__getPrivateSpot());
-  // }, [])
-
   const onChangeSearch = (e) => {
     e.preventDeafualt();
     setSearch(e.target.value);

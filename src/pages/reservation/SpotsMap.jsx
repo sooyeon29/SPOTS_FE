@@ -1,42 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from "react";
 import {
   Map,
   ZoomControl,
   MapMarker,
   CustomOverlayMap,
-} from 'react-kakao-maps-sdk';
-import { useDispatch, useSelector } from 'react-redux';
-import { __getPrivateSpot } from '../../redux/modules/privateSlice';
-import { Container } from './Styles';
+} from "react-kakao-maps-sdk";
+import styled from "styled-components";
 
-const SpotsMap = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(__getPrivateSpot());
-  }, []);
-
-  const [isOpen, setIsOpen] = useState([]);
+const SpotsMap = ({ placeList }) => {
+  const [isOpen, setIsOpen] = useState(0);
   const [level, setLevel] = useState();
 
   const handleOnClick = (e, idx) => {
     setIsOpen(idx);
   };
 
-
-  const { isLoading, error, privateSpot } = useSelector(
-    (state) => state?.privateSpot
-  );
-  console.log('---------프라이빗스팟-----------', privateSpot);
-
-  if (isLoading) {
-    return <div>로딩 중....</div>;
-  }
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-  
   return (
     <>
       {/* <RemovableCustomOverlayStyle /> */}
@@ -57,7 +35,7 @@ const SpotsMap = () => {
       >
         <ZoomControl />
 
-        {privateSpot.map((place, idx) => (
+        {placeList.map((place, idx) => (
           <>
             <MapMarker
               key={place.placesId}
@@ -65,7 +43,9 @@ const SpotsMap = () => {
                 lat: place.y,
                 lng: place.x,
               }}
-              onClick={(e) => handleOnClick(e, idx)}
+              onClick={(e) => {
+                handleOnClick(e, idx);
+              }}
               image={{
                 src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
                 size: {
@@ -80,7 +60,7 @@ const SpotsMap = () => {
                 },
               }}
             />
-            {isOpen && (
+            {isOpen === idx ? (
               <CustomOverlayMap
                 position={{
                   lat: place.y,
@@ -92,7 +72,7 @@ const SpotsMap = () => {
                   <div onClick={() => setIsOpen(false)}>X</div>
                 </Container>
               </CustomOverlayMap>
-            )}
+            ) : null}
           </>
         ))}
       </Map>
@@ -101,3 +81,9 @@ const SpotsMap = () => {
 };
 
 export default SpotsMap;
+
+const Container = styled.div`
+  width: 100px;
+  height: 50px;
+  background-color: white;
+`;
