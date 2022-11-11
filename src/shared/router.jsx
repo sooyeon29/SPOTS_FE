@@ -1,9 +1,9 @@
 import SignUp from "../pages/signUp/Index";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../pages/login/index";
+import Login from "../pages/login/Index";
 import MainMaps from "../pages/mainpage/Index";
-import SpotsDetail from "../pages/spotsDetail/index";
+import SpotsDetail from "../pages/spotsDetail/Index";
 import UserPage from "../pages/userpage/Index";
 import TeamDetail from "../pages/userpage/TeamDetail";
 import TeamRegister from "../pages/userpage/TeamRegister";
