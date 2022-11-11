@@ -5,6 +5,8 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 import SpotList from "./HostSpotList";
+import { HostSpots, MapPlace, PlaceList } from "./Style";
+import SpotsMap from "./SpotsMap";
 
 const Reservation = () => {
   const [search, setSearch] = useState();
@@ -19,7 +21,7 @@ const Reservation = () => {
   }, []);
 
   const { isLoading, error } = useSelector((state) => state?.privateSpot);
-  const placeList = useSelector((state) => state.privateSpot.privateSpot.data);
+  const placeList = useSelector((state) => state.privateSpot.privateSpot);
   console.log("플레이스리스트에들은거", placeList);
 
   if (isLoading) {
@@ -58,9 +60,16 @@ const Reservation = () => {
             </div>
           </form>
         </div>{" "}
-        {placeList?.map((place) => {
-          return <SpotList key={place.placesId} place={place} />;
-        })}
+        <HostSpots>
+          <MapPlace>
+            <SpotsMap placeList={placeList} />
+          </MapPlace>
+          <PlaceList>
+            {placeList?.map((place) => {
+              return <SpotList key={place.placesId} place={place} />;
+            })}
+          </PlaceList>
+        </HostSpots>
       </Layout>
     </>
   );

@@ -9,22 +9,17 @@ const SpotList = ({ place }) => {
 
   return (
     <>
-      <HostSpots>
-        <MapPlace>??</MapPlace>
-        <PlaceList>
-          <Place>
-            <h3>{place.spotName}</h3>
-            <button onClick={() => navigate(`/spotsdetail/${place.placesId}`)}>
-              예약하러가기
-            </button>
-            <div>
-              {place.sports}
-              <span>{place.spotKind}</span>
-              <span>{place.price}</span>
-            </div>
-          </Place>
-        </PlaceList>
-      </HostSpots>
+      <Place>
+        <h3>{place.spotName}</h3>
+        <button onClick={() => navigate(`/spotsdetail/${place.placesId}`)}>
+          예약하러가기
+        </button>
+        <div>
+          {place.sports}
+          <span>{place.spotKind}</span>
+          <span>{place.price}</span>
+        </div>
+      </Place>
     </>
   );
 };
