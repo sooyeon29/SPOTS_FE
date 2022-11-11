@@ -10,6 +10,8 @@ const Hosting = () => {
   const navigate = useNavigate();
 
   const [spot, setSpot] = useState({});
+  const [x, setX] = useState();
+  const [y, setY] = useState();
 
   const [checkedList, setCheckedList] = useState([]);
   const onCheckedElement = (checked, item) => {
@@ -46,14 +48,26 @@ const Hosting = () => {
   };
 
   const onRegisterHandler = (spot) => {
+    // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
     const fullyAddress = fullAddress + spot.address;
+    // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
 
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(fullyAddress, function (result, status) {
-      //여기에 내용
+      // 주소가 정상적으로 좌표로 변환되면
+      if (status === kakao.maps.services.Status.OK) {
+        // x, y에 값을 넣어줌
+        setX(result[0].x)
+        setY(result[0].y)
+        // console.log("x:", x, "y:", y);
+      }
     });
 
-    const data = { ...spot, comfort: checkedList, address: fullyAddress };
+    console.log(x, y)
+    const lnglat = {x, y}
+    const data = { ...spot, comfort: checkedList, address: fullyAddress, lnglat: lnglat};
+    console.log(data)
+
     // if (spot.address.trim() === '') {
     //   return alert('상세주소를 입력해주세요');
     // }
@@ -64,18 +78,17 @@ const Hosting = () => {
     //   return alert('스팟을 소개해주세요');
     // }
 
-    PrivateApi.registerSpot(data)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 201) {
-          alert('스팟 등록이 완료되었습니다');
-          navigate('/');
-        }
-
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // PrivateApi.registerSpot(data)
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.status === 201) {
+    //       alert('스팟 등록이 완료되었습니다');
+    //       navigate('/');
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   return (
@@ -88,7 +101,7 @@ const Hosting = () => {
         }}
       >
         <div>
-          스포츠 종류
+          스팟 종류
           <select
             onChange={(e) => {
               const { value } = e.target;
@@ -101,9 +114,9 @@ const Hosting = () => {
 
 
             <option>선택하세요</option>
-            <option>FUTSAL</option>
-            <option>TENNIS</option>
-            <option>BADMINTON</option>
+            <option>풋살장</option>
+            <option>테니스장</option>
+            <option>배드민턴장</option>
           </select>
         </div>
         <div>
@@ -121,7 +134,7 @@ const Hosting = () => {
           />
         </div>
         <div>
-          스팟 종류
+          실내/외
           <select
             onChange={(e) => {
               const { value } = e.target;
@@ -232,7 +245,7 @@ const Hosting = () => {
         <div>
           스팟 설명
           <br />
-          <input
+          <textarea
             required
             style={{ height: '200px', width: '400px' }}
             type='text'
