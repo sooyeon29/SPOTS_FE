@@ -13,8 +13,10 @@ const Reservation = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const keyword = location.state;
-  // console.log(keyword[0]);
 
+  useEffect(()=>{
+    dispatch(__getPrivateSpot());
+  }, [])
 
   const { isLoading, error, privateSpot } = useSelector((state) => state?.privateSpot);
   console.log(privateSpot)
