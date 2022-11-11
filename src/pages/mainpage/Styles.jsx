@@ -15,3 +15,9 @@ export const SpotsBtns = styled.div`
 export const SearchBox = styled.form`
   margin: 30px;
 `;
+
+export const Container = styled.div`
+  background-color: #fff;
+  width: 100px;
+  height: 50px;
+`
