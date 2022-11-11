@@ -37,6 +37,14 @@ const SpotsDetail = () => {
     "18:00 - 20:00",
     "20:00 - 22:00"
   );
+  const Point = new Array(
+    // 풋살
+    50000,
+    // 테니스
+    10000,
+    // 배드민컨
+    5000
+  );
 
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
@@ -49,15 +57,24 @@ const SpotsDetail = () => {
   // 2. 시간과 팀을 선택한다(팀1-a, 팀2-b) => 이것으로 matchId를 만들어줄 예정이다
   const [pickedTime, setPickedTime] = useState("");
   const [pickedTimeTwo, setPickedTimeTwo] = useState("");
+  // 예약 시간,팀 선택시 해당 포인트 확인됨
+  const [payAPrice, setPayAPrice] = useState(0);
+  const [payBPrice, setPayBPrice] = useState(0);
+  // 클릭한 버튼 색변경
+  const [colorChange, setColorChange] = useToggle();
   // ---> 호스트 페이지에 업로드하고 보여주는 것을 완료하면 이 포스트아이디값을 하나 더 받아서 아이디를 만드는데 더해준다
   //=> a팀을 선택한 경우
   const teamPick = (time) => {
     setPickedTime(myTime[time]);
+    setPayAPrice(Point[1]);
+    setColorChange(!colorChange);
   };
   console.log("이거는오디뭐라나오지", pickedTime);
   // => b팀을 선택한 경우
   const teamPickTwo = (time) => {
     setPickedTimeTwo(myTime[time]);
+    setPayBPrice(Point[1]);
+    setColorChange(!colorChange);
   };
 
   // 3.단식경기를할지 복식경기를 할지 선택하기
@@ -97,6 +114,7 @@ const SpotsDetail = () => {
         // isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: parseInt(myMember?.member),
+        price: payAPrice + payBPrice,
       })
     );
   };
@@ -134,7 +152,9 @@ const SpotsDetail = () => {
             <SelectTeam>
               <BookMatch>
                 <Time>{myTime[0]}</Time>
-                <Team onClick={() => teamPick(0)}>팀1</Team>
+                <Team onClick={() => teamPick(0)} butcolor={colorChange}>
+                  팀1
+                </Team>
                 vs
                 <Team onClick={() => teamPickTwo(0)}>팀2</Team>
               </BookMatch>
@@ -184,8 +204,26 @@ const SpotsDetail = () => {
             <YourSelect>
               <div></div>
               <span>팀1 선택시간: {pickedTime}</span>
+              <button
+                onClick={() => {
+                  setPickedTime("");
+                  setPayAPrice(0);
+                  setColorChange(!colorChange);
+                }}
+              >
+                취소
+              </button>
               <br />
               <span>팀2 선택시간: {pickedTimeTwo}</span>
+              <button
+                onClick={() => {
+                  setPickedTimeTwo("");
+                  setPayBPrice(0);
+                  setColorChange(!colorChange);
+                }}
+              >
+                취소
+              </button>
               {!isTwo && (
                 <Pick>
                   <One onClick={pickTwoHandler}>단식</One>
@@ -214,12 +252,14 @@ const SpotsDetail = () => {
               <br />
               {myTeam?.myteam}
               <p>잔여포인트: {myPoint} point</p>
-              <p>예약포인트: 10000 point</p>
+              <p>예약포인트: {payAPrice + payBPrice} point</p>
               <hr />
-              {myPoint > 10000 ? (
-                <p>결제후포인트: {myPoint - 10000} point</p>
+              {myPoint > payAPrice + payBPrice ? (
+                <p>결제후포인트: {myPoint - payAPrice + payBPrice} point</p>
               ) : (
-                <p>충전이 필요한 포인트: {10000 - myPoint} point</p>
+                <p>
+                  충전이 필요한 포인트: {payAPrice + payBPrice - myPoint} point
+                </p>
               )}
 
               <button onClick={bookMyMatch}>예약하기</button>
