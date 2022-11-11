@@ -26,6 +26,7 @@ import {
 } from "./Styles";
 import { __postSpotsMatch } from "../../redux/modules/matchSlice";
 import { useParams } from "react-router-dom";
+import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 
 const SpotsDetail = () => {
   const myTime = new Array(
@@ -44,7 +45,7 @@ const SpotsDetail = () => {
   const placeList = useSelector((state) => state?.privateSpot.privateSpot.data);
   console.log("리스트중에고르자궁", placeList);
 
-  const selectSpot = placeList.filter((place) => {
+  const selectSpot = placeList?.filter((place) => {
     return place.placesId === parseInt(id);
   });
   console.log("골라진스팟", selectSpot);
@@ -67,16 +68,16 @@ const SpotsDetail = () => {
   const [colorChange, setColorChange] = useToggle();
   // ---> 호스트 페이지에 업로드하고 보여주는 것을 완료하면 이 포스트아이디값을 하나 더 받아서 아이디를 만드는데 더해준다
   //=> a팀을 선택한 경우
-  const teamPick = (time) => {
+  const teamPick = (time, price) => {
     setPickedTime(myTime[time]);
-    // setPayAPrice(Point[1]);
+    setPayAPrice(price);
     setColorChange(!colorChange);
   };
   console.log("이거는오디뭐라나오지", pickedTime);
   // => b팀을 선택한 경우
-  const teamPickTwo = (time) => {
+  const teamPickTwo = (time, price) => {
     setPickedTimeTwo(myTime[time]);
-    // setPayBPrice(Point[1]);
+    setPayBPrice(price);
     setColorChange(!colorChange);
   };
 
@@ -90,6 +91,7 @@ const SpotsDetail = () => {
   useEffect(() => {
     dispatch(__getMyteamList());
     dispatch(__getMyInfo());
+    dispatch(__getPrivateSpot());
   }, []);
   const [myTeam, setMyTeam, pickMyTeam] = useInput();
   // 팀이 없더라도 오류가 나지 않도록 옵셔널 체이닝을 사용한다. 세션스토리지에 저장해준다
@@ -126,7 +128,7 @@ const SpotsDetail = () => {
     <>
       <Layout>
         <Header />
-        {selectSpot.map((spot) => {
+        {selectSpot?.map((spot) => {
           return (
             <Wrap>
               <Title>{spot.spotName} </Title>
@@ -161,53 +163,56 @@ const SpotsDetail = () => {
                 <SelectTeam>
                   <BookMatch>
                     <Time>{myTime[0]}</Time>
-                    <Team onClick={() => teamPick(0)} butcolor={colorChange}>
+                    <Team
+                      onClick={() => teamPick(0, spot.price)}
+                      butcolor={colorChange}
+                    >
                       팀1
                     </Team>
                     vs
-                    <Team onClick={() => teamPickTwo(0)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(0, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[1]}</Time>
-                    <Team onClick={() => teamPick(1)}>팀1</Team>
+                    <Team onClick={() => teamPick(1, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(1)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(1, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[2]}</Time>
-                    <Team onClick={() => teamPick(2)}>팀1</Team>
+                    <Team onClick={() => teamPick(2, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(2)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(2, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[3]}</Time>
-                    <Team onClick={() => teamPick(3)}>팀1</Team>
+                    <Team onClick={() => teamPick(3, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(3)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(3, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[4]}</Time>
-                    <Team onClick={() => teamPick(4)}>팀1</Team>
+                    <Team onClick={() => teamPick(4, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(4)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(4, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[5]}</Time>
-                    <Team onClick={() => teamPick(5)}>팀1</Team>
+                    <Team onClick={() => teamPick(5, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(5)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(5, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[6]}</Time>
-                    <Team onClick={() => teamPick(6)}>팀1</Team>
+                    <Team onClick={() => teamPick(6, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(6)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(6, spot.price)}>팀2</Team>
                   </BookMatch>
                   <BookMatch>
                     <Time>{myTime[7]}</Time>
-                    <Team onClick={() => teamPick(7)}>팀1</Team>
+                    <Team onClick={() => teamPick(7, spot.price)}>팀1</Team>
                     vs
-                    <Team onClick={() => teamPickTwo(7)}>팀2</Team>
+                    <Team onClick={() => teamPickTwo(7, spot.price)}>팀2</Team>
                   </BookMatch>
                 </SelectTeam>
                 <YourSelect>
@@ -263,12 +268,15 @@ const SpotsDetail = () => {
                   <br />
                   {myTeam?.myteam}
                   <p>잔여포인트: {myPoint} point</p>
-                  <p>예약포인트: {spot.price} point</p>
+                  <p>예약포인트: {payAPrice + payBPrice} point</p>
                   <hr />
-                  {myPoint > spot.price ? (
-                    <p>결제후포인트: {myPoint - spot.price} point</p>
+                  {myPoint > payAPrice + payBPrice ? (
+                    <p>결제후포인트: {myPoint - payAPrice + payBPrice} point</p>
                   ) : (
-                    <p>충전이 필요한 포인트: {spot.price - myPoint} point</p>
+                    <p>
+                      충전이 필요한 포인트: {payAPrice + payBPrice - myPoint}{" "}
+                      point
+                    </p>
                   )}
 
                   <button onClick={bookMyMatch}>예약하기</button>
