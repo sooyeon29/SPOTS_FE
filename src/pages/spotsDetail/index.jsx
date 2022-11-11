@@ -25,6 +25,7 @@ import {
   Two,
 } from "./Styles";
 import { __postSpotsMatch } from "../../redux/modules/matchSlice";
+import { useParams } from "react-router-dom";
 
 const SpotsDetail = () => {
   const myTime = new Array(
@@ -45,6 +46,16 @@ const SpotsDetail = () => {
     // 배드민컨
     5000
   );
+
+  // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
+  const { id } = useParams();
+  const placeList = useSelector((state) => state?.privateSpot.privateSpot.data);
+  console.log("리스트중에고르자궁", placeList);
+
+  const selectedSpot = placeList.filter((place) => {
+    return place.placeId === parseInt(id);
+  });
+  console.log("골라진스팟", selectedSpot);
 
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
