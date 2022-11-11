@@ -10,8 +10,6 @@ const Hosting = () => {
   const navigate = useNavigate();
 
   const [spot, setSpot] = useState({});
-  const [x, setX] = useState();
-  const [y, setY] = useState();
 
   const [checkedList, setCheckedList] = useState([]);
   const onCheckedElement = (checked, item) => {
@@ -48,47 +46,45 @@ const Hosting = () => {
   };
 
   const onRegisterHandler = (spot) => {
+    let x = null;
+    let y = null;
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
     const fullyAddress = fullAddress + spot.address;
     // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
 
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(fullyAddress, function (result, status) {
+      let x = null;
+      let y = null;
       // 주소가 정상적으로 좌표로 변환되면
       if (status === kakao.maps.services.Status.OK) {
-        // x, y에 값을 넣어줌
-        setX(result[0].x)
-        setY(result[0].y)
-        // console.log("x:", x, "y:", y);
+        x = result[0].x;
+        y = result[0].y;
       }
+      console.log(x, y);
+
+      const data = {
+        ...spot,
+        comfort: checkedList,
+        address: fullyAddress,
+        x: x,
+        y: y,
+      };
+
+      console.log(data);
+      PrivateApi.registerSpot(data)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          alert('스팟 등록이 완료되었습니다');
+          navigate('/');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     });
-
-    console.log(x, y)
-    const lnglat = {x, y}
-    const data = { ...spot, comfort: checkedList, address: fullyAddress, lnglat: lnglat};
-    console.log(data)
-
-    // if (spot.address.trim() === '') {
-    //   return alert('상세주소를 입력해주세요');
-    // }
-    // if (spot.price.trim() === '') {
-    //   return alert('이용료를 입력해주세요');
-    // }
-    // if (spot.desc.trim() === '') {
-    //   return alert('스팟을 소개해주세요');
-    // }
-
-    // PrivateApi.registerSpot(data)
-    //   .then((res) => {
-    //     console.log(res);
-    //     if (res.status === 201) {
-    //       alert('스팟 등록이 완료되었습니다');
-    //       navigate('/');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
 
   return (
