@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
@@ -11,18 +11,30 @@ const Reservation = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const keyword = location.state;
+  // console.log(keyword[0]);
 
-  useEffect(()=>{
-    dispatch(__getPrivateSpot());
-  }, [])
+
+  const { isLoading, error, privateSpot } = useSelector((state) => state?.privateSpot);
+  console.log(privateSpot)
+
+  if (isLoading) {
+    return <div>로딩 중....</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  // useEffect(()=>{
+  //   dispatch(__getPrivateSpot());
+  // }, [])
 
   const onChangeSearch = (e) => {
     e.preventDeafualt();
     setSearch(e.target.value);
   };
-  const location = useLocation();
-  const keyword = location.state;
-  // console.log(keyword[0]);
 
   const onSearch = (e) => {
     e.preventDeafualt();

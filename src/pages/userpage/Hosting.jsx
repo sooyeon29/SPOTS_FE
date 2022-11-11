@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { PrivateApi } from '../../tools/instance';
 import { useNavigate } from 'react-router-dom';
+const { kakao } = window;
 
 const Hosting = () => {
   const navigate = useNavigate();
@@ -45,6 +46,11 @@ const Hosting = () => {
 
   const onRegisterHandler = (spot) => {
     const fullyAddress = fullAddress + spot.address;
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(fullyAddress, function (result, status) {
+      //여기에 내용
+    });
+
     const data = { ...spot, comfort: checkedList, address: fullyAddress };
     // if (spot.address.trim() === '') {
     //   return alert('상세주소를 입력해주세요');
