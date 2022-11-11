@@ -1,16 +1,29 @@
 import React, { useState } from "react";
-import {
-  Map,
-  ZoomControl,
-  MapMarker,
-  CustomOverlayMap,
-} from "react-kakao-maps-sdk";
 import { useSelector } from "react-redux";
-import Geocode from "react-geocode";
+import React, { useEffect, useState } from "react";
+import { Map, ZoomControl, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk"
+import { useDispatch, useSelector } from "react-redux";
+import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 
 const SpotsMap = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [level, setLevel] = useState();
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    dispatch(__getPrivateSpot());
+  }, [])
+
+  const { isLoading, error, privateSpot } = useSelector((state) => state?.privateSpot);
+  console.log(privateSpot)
+
+  if (isLoading) {
+    return <div>로딩 중....</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   //   const markerPosition = {
   //     lat: 37.541,

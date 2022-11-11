@@ -55,6 +55,19 @@ const matchSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    // 나의 예역 가져오기 get
+    [__getMyMatch.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getMyMatch.fulfilled]: (state, action) => {
+      console.log(state);
+      state.isLoading = false;
+      state.data = action.payload.data;
+    },
+    [__getMyMatch.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
