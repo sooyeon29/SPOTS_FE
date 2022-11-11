@@ -2,15 +2,13 @@ import { useState } from 'react';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import { PrivateApi } from '../../tools/instance';
+import { useNavigate } from 'react-router-dom';
+const { kakao } = window;
 
 const Hosting = () => {
-
-  const [spot, setSpot] = useState({
-    spotName: '',
-    price: '',
-    desc: '',
-    address: '',
-  });
+  const navigate = useNavigate();
+  const [spot, setSpot] = useState({});
 
   const [checkedList, setCheckedList] = useState([]);
   const onCheckedElement = (checked, item) => {
@@ -19,12 +17,6 @@ const Hosting = () => {
     } else if (!checked) {
       setCheckedList(checkedList.filter((el) => el !== item));
     }
-  };
-
-  const onRegisterHandler = (e) => {
-    // console.log("체크리스트:", checkedList, "스팟:", spot)
-    setSpot({...spot, comfort: checkedList})
-    console.log(spot)
   };
 
   const open = useDaumPostcodePopup();
@@ -52,6 +44,37 @@ const Hosting = () => {
     open({ onComplete: handleComplete });
   };
 
+  const onRegisterHandler = (spot) => {
+    const fullyAddress = fullAddress + spot.address;
+    const geocoder = new kakao.maps.services.Geocoder();
+    geocoder.addressSearch(fullyAddress, function (result, status) {
+      //여기에 내용
+    });
+
+    const data = { ...spot, comfort: checkedList, address: fullyAddress };
+    // if (spot.address.trim() === '') {
+    //   return alert('상세주소를 입력해주세요');
+    // }
+    // if (spot.price.trim() === '') {
+    //   return alert('이용료를 입력해주세요');
+    // }
+    // if (spot.desc.trim() === '') {
+    //   return alert('스팟을 소개해주세요');
+    // }
+
+    PrivateApi.registerSpot(data)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 201) {
+          alert('스팟 등록이 완료되었습니다');
+          navigate('/');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <Layout>
       <Header />
@@ -70,14 +93,16 @@ const Hosting = () => {
                 sports: value,
               });
             }}>
-            <option>FUTSAL⚽</option>
-            <option>TENNIS🥎</option>
-            <option>BADMINTON🏸</option>
+            <option>선택하세요</option>
+            <option>FUTSAL</option>
+            <option>TENNIS</option>
+            <option>BADMINTON</option>
           </select>
         </div>
         <div>
           스팟 이름
           <input
+            required
             type='text'
             onChange={(e) => {
               const { value } = e.target;
@@ -98,11 +123,11 @@ const Hosting = () => {
                 spotKind: value,
               });
             }}>
+            <option>선택하세요</option>
             <option>실내 스팟</option>
             <option>실외 스팟</option>
           </select>
         </div>
-
         <div>
           <span>주소</span>
           <button type='button' onClick={handleClick}>
@@ -115,13 +140,14 @@ const Hosting = () => {
             <div>
               <div>{fullAddress}</div>
               <input
+                required
                 type='text'
                 placeholder='상세 주소를 입력해주세요'
                 onChange={(e) => {
                   const { value } = e.target;
                   setSpot({
                     ...spot,
-                    address: { fullAddress } + value,
+                    address: value,
                   });
                 }}
               />
@@ -132,63 +158,64 @@ const Hosting = () => {
           <input
             type='checkbox'
             name='comforts'
-            value='stuff'
+            value='장비대여'
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('stuff') ? true : false}
+            checked={checkedList.includes('장비대여') ? true : false}
           />
           장비대여
           <input
             type='checkbox'
             name='comforts'
-            value='park'
+            value='주차장'
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('park') ? true : false}
+            checked={checkedList.includes('주차장') ? true : false}
           />
           주차장
           <input
             type='checkbox'
             name='comforts'
-            value='shower'
+            value='샤워실'
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('shower') ? true : false}
+            checked={checkedList.includes('샤워실') ? true : false}
           />
           샤워실
           <input
             type='checkbox'
             name='comforts'
-            value='dress'
+            value='탈의실'
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('dress') ? true : false}
+            checked={checkedList.includes('탈의실') ? true : false}
           />
           탈의실
           <input
             type='checkbox'
             name='comforts'
-            value='locker'
+            value='개인락커'
             onChange={(e) => {
               onCheckedElement(e.target.checked, e.target.value);
             }}
-            checked={checkedList.includes('locker') ? true : false}
+            checked={checkedList.includes('개인락커') ? true : false}
           />
-          개인사물함
+          개인락커
         </div>
         <div>
           1시간당
           <input
+            required
             type='text'
             onChange={(e) => {
               const { value } = e.target;
               setSpot({
                 ...spot,
-                price: value,
+                price: parseInt(value),
               });
             }}
           />
@@ -198,6 +225,7 @@ const Hosting = () => {
           스팟 설명
           <br />
           <input
+            required
             style={{ height: '200px', width: '400px' }}
             type='text'
             onChange={(e) => {
