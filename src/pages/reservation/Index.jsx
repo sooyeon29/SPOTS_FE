@@ -10,6 +10,7 @@ const Reservation = () => {
   const location = useLocation();
   const keyword = location.state;
   // console.log(keyword[0]);
+  // console.log(keyword[1]);
 
   const { isLoading, error } = useSelector((state) => state?.privateSpot);
 
@@ -38,8 +39,8 @@ const Reservation = () => {
         <div>
           <form onSubmit={(e) => onSearch(e)}>
             <input
-              type="text"
-              // value={keyword[0]}
+              type="type"
+              value={search}
               placeholder="구를 입력하세요 예) 마포구"
               onChange={onChangeSearch}
             />

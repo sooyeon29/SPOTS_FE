@@ -22,6 +22,7 @@ const MainMaps = () => {
   const onSearchHandler = (e) => {
     e.preventDefault();
     navigate("/book", { state: [sports, keyword] });
+    console.log({ state: [sports, keyword] });
   };
   // console.log(keyword)
 
@@ -46,16 +47,16 @@ const MainMaps = () => {
         <Header />
         <img alt="" src="fortest.jpg" width={100} />
         <SpotsBtns>
-          <button>FUTSAL⚽</button>
-          <button>TENNIS🥎</button>
-          <button>BADMINTON🏸</button>
+          <button>풋살장</button>
+          <button>테니스장</button>
+          <button>배드민턴장</button>
         </SpotsBtns>
         <SpotsMap />
         <select onChange={onSportsHandler}>
-          <option>ALL</option>
-          <option>FUTSAL⚽</option>
-          <option>TENNIS🥎</option>
-          <option>BADMINTON🏸</option>
+          <option>전체</option>
+          <option>풋살장</option>
+          <option>테니스장</option>
+          <option>배드민턴장</option>
         </select>
         <form onSubmit={onSearchHandler}>
           <input
