@@ -8,6 +8,7 @@ const { kakao } = window;
 
 const Hosting = () => {
   const navigate = useNavigate();
+
   const [spot, setSpot] = useState({});
   const [x, setX] = useState();
   const [y, setY] = useState();
@@ -26,17 +27,17 @@ const Hosting = () => {
 
   const handleComplete = (data) => {
     let fullAddress = data.address;
-    let extraAddress = '';
+    let extraAddress = "";
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== '') {
+      if (data.buildingName !== "") {
         extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
     setFullAddress(fullAddress);
   };
@@ -50,6 +51,7 @@ const Hosting = () => {
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
     const fullyAddress = fullAddress + spot.address;
     // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
+
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(fullyAddress, function (result, status) {
       // 주소가 정상적으로 좌표로 변환되면
@@ -96,7 +98,8 @@ const Hosting = () => {
         onSubmit={(e) => {
           e.preventDefault();
           onRegisterHandler(spot);
-        }}>
+        }}
+      >
         <div>
           스팟 종류
           <select
@@ -106,7 +109,10 @@ const Hosting = () => {
                 ...spot,
                 sports: value,
               });
-            }}>
+            }}
+          >
+
+
             <option>선택하세요</option>
             <option>풋살장</option>
             <option>테니스장</option>
@@ -137,6 +143,7 @@ const Hosting = () => {
                 spotKind: value,
               });
             }}>
+
             <option>선택하세요</option>
             <option>실내 스팟</option>
             <option>실외 스팟</option>
@@ -144,7 +151,7 @@ const Hosting = () => {
         </div>
         <div>
           <span>주소</span>
-          <button type='button' onClick={handleClick}>
+          <button type="button" onClick={handleClick}>
             주소 검색
           </button>
         </div>

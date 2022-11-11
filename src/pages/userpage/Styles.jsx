@@ -36,3 +36,6 @@ export const StTeamForm = styled.form`
   flex-direction: column;
   width: 60%;
 `;
+export const MyMatch = styled.div`
+  border: 1px solid black;
+`;

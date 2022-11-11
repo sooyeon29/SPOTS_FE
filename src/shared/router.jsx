@@ -9,7 +9,7 @@ import TeamDetail from "../pages/userpage/TeamDetail";
 import TeamRegister from "../pages/userpage/TeamRegister";
 import Reservation from "../pages/reservation/Index";
 import Kakao from "../pages/login/Kakao";
-import Hosting from "../pages/userpage/Hosting"
+import Hosting from "../pages/userpage/Hosting";
 
 function Router() {
   return (

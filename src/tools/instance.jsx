@@ -52,17 +52,15 @@ export const BookApi = {
 
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
-  postSpotsMatch: (payload) =>
-    // console.log("요기오지?", payload),
-    instance.post(`reservations/register`, payload),
-  // {
-  //   place: payload.place,
-  //   date: payload.date,
-  //   matchId: payload.matchId,
-  //   // isDouble: false,
-  //   teamName: payload.teamName,
-  //   member: parseInt(payload.member),
-  // }),
+  postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
+  getMyMatch: () => instance.get(`/reservations/me`),
+};
+
+export const PrivateApi = {
+  registerSpot: (payload) =>
+    // console.log(payload)
+    instance.post(`places`, payload),
+  getPrivateSpot: () => instance.get(`places`),
 };
 
 export const PrivateApi = {
