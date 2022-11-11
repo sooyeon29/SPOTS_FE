@@ -8,6 +8,7 @@ const { kakao } = window;
 
 const Hosting = () => {
   const navigate = useNavigate();
+
   const [spot, setSpot] = useState({});
 
   const [checkedList, setCheckedList] = useState([]);
@@ -24,17 +25,17 @@ const Hosting = () => {
 
   const handleComplete = (data) => {
     let fullAddress = data.address;
-    let extraAddress = '';
+    let extraAddress = "";
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== '') {
+      if (data.buildingName !== "") {
         extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
     setFullAddress(fullAddress);
   };
@@ -46,6 +47,7 @@ const Hosting = () => {
 
   const onRegisterHandler = (spot) => {
     const fullyAddress = fullAddress + spot.address;
+
     const geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(fullyAddress, function (result, status) {
       //여기에 내용
@@ -69,6 +71,7 @@ const Hosting = () => {
           alert('스팟 등록이 완료되었습니다');
           navigate('/');
         }
+
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +85,8 @@ const Hosting = () => {
         onSubmit={(e) => {
           e.preventDefault();
           onRegisterHandler(spot);
-        }}>
+        }}
+      >
         <div>
           스포츠 종류
           <select
@@ -92,7 +96,10 @@ const Hosting = () => {
                 ...spot,
                 sports: value,
               });
-            }}>
+            }}
+          >
+
+
             <option>선택하세요</option>
             <option>FUTSAL</option>
             <option>TENNIS</option>
@@ -123,6 +130,7 @@ const Hosting = () => {
                 spotKind: value,
               });
             }}>
+
             <option>선택하세요</option>
             <option>실내 스팟</option>
             <option>실외 스팟</option>
@@ -130,7 +138,7 @@ const Hosting = () => {
         </div>
         <div>
           <span>주소</span>
-          <button type='button' onClick={handleClick}>
+          <button type="button" onClick={handleClick}>
             주소 검색
           </button>
         </div>

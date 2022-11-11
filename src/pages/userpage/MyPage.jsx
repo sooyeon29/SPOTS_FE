@@ -33,7 +33,7 @@ const MyPage = ({ mytoggle, myClickToggle }) => {
       ) : (
         <div>
           <input type="text"></input>
-          <input type=""></input>
+          <div>{user.gender}</div>
           <input></input>
           <input></input>
           <input></input>
