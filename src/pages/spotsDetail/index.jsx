@@ -42,7 +42,7 @@ const SpotsDetail = () => {
 
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
-  const placeList = useSelector((state) => state?.privateSpot.privateSpot.data);
+  const placeList = useSelector((state) => state?.privateSpot.privateSpot);
   console.log("리스트중에고르자궁", placeList);
 
   const selectSpot = placeList?.filter((place) => {
