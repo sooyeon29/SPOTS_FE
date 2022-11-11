@@ -7,19 +7,20 @@ import useToggle from "../../hooks/useToggle";
 import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 import SpotsDetail from "../spotsDetail/index";
 
-
 const Reservation = () => {
   const navigate = useNavigate();
-  const [search, setSearch] = useState();
-  const dispatch = useDispatch();
-
   const location = useLocation();
   const keyword = location.state;
   // console.log(keyword[0]);
+  // console.log(keyword[1]);
 
+  const [search, setSearch] = useState(keyword[1]);
+  const dispatch = useDispatch();
 
-  const { isLoading, error, privateSpot } = useSelector((state) => state?.privateSpot);
-  console.log(privateSpot)
+  const { isLoading, error, privateSpot } = useSelector(
+    (state) => state?.privateSpot
+  );
+  console.log(privateSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -28,7 +29,6 @@ const Reservation = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
-
 
   const onChangeSearch = (e) => {
     e.preventDeafualt();
@@ -47,8 +47,8 @@ const Reservation = () => {
         <div>
           <form onSubmit={(e) => onSearch(e)}>
             <input
-              type="text"
-              // value={keyword[0]}
+              type="type"
+              value={search}
               placeholder="구를 입력하세요 예) 마포구"
               onChange={onChangeSearch}
             />

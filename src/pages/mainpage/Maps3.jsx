@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 const { kakao } = window;
 
 const Maps2 = () => {
   const mockData = [
     {
-      place: '아디다스 더베이스 서울',
-      address: '서울 용산구 한강대로23길 55 현대아이파크몰 리빙파크',
+      place: "아디다스 더베이스 서울",
+      address: "서울 용산구 한강대로23길 55 현대아이파크몰 리빙파크",
     },
     {
-      place: '스트리트풋살파크',
-      address: '서울 강서구 화곡로 142 메가스퀘어빌딩',
+      place: "스트리트풋살파크",
+      address: "서울 강서구 화곡로 142 메가스퀘어빌딩",
     },
     {
-      place: '파시온FC',
-      address: '서울 중구 다산로22길 14 (신당동) 지하 1층 중구파시온 축구클럽',
+      place: "파시온FC",
+      address: "서울 중구 다산로22길 14 (신당동) 지하 1층 중구파시온 축구클럽",
     },
   ];
 
@@ -23,7 +23,7 @@ const Maps2 = () => {
   }, []);
 
   const mapscript = () => {
-    const container = document.getElementById('myMap');
+    const container = document.getElementById("myMap");
     const options = {
       center: new kakao.maps.LatLng(35.12, 129.1),
       level: 3,
@@ -49,22 +49,22 @@ const Maps2 = () => {
             '<div class="wrap">' +
             `<div class="title"> ${mockData[i].place}` +
             '<div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-            '</div>' +
-            '</div>' +
-            '</div>';
+            "</div>" +
+            "</div>" +
+            "</div>";
 
           // 인포윈도우로 장소에 대한 설명을 표시합니다
           let overlay = new kakao.maps.CustomOverlay({
             content: iwContent,
             map: map,
-            position: marker.getPosition()
+            position: marker.getPosition(),
           });
-          
+
           // let infowindow = new kakao.maps.InfoWindow({
           //   content: iwContent,
           // });
 
-            // '<div style="width:150px;color:red;text-align:center;padding:6px 0;">풋살장</div>',
+          // '<div style="width:150px;color:red;text-align:center;padding:6px 0;">풋살장</div>',
           // infowindow.open(map, marker);
 
           // // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
@@ -93,13 +93,13 @@ const Maps2 = () => {
 
   return (
     <div
-      id='myMap'
+      id="myMap"
       style={{
-        width: '800px',
-        height: '800px',
-      }}></div>
+        width: "800px",
+        height: "800px",
+      }}
+    ></div>
   );
 };
 
 export default Maps2;
-

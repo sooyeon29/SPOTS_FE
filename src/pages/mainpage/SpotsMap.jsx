@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Map, ZoomControl, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk"
+import {
+  Map,
+  ZoomControl,
+  MapMarker,
+  CustomOverlayMap,
+} from "react-kakao-maps-sdk";
 import { useDispatch, useSelector } from "react-redux";
 import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 
@@ -9,13 +12,15 @@ const SpotsMap = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [level, setLevel] = useState();
   const dispatch = useDispatch();
-  
-  useEffect(()=>{
-    dispatch(__getPrivateSpot());
-  }, [])
 
-  const { isLoading, error, privateSpot } = useSelector((state) => state?.privateSpot);
-  console.log(privateSpot)
+  useEffect(() => {
+    dispatch(__getPrivateSpot());
+  }, []);
+
+  const { isLoading, error, privateSpot } = useSelector(
+    (state) => state?.privateSpot
+  );
+  console.log(privateSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -29,14 +34,6 @@ const SpotsMap = () => {
   //     lat: 37.541,
   //     lng: 126.986,
   //   };
-
-  const { data } = useSelector((state) => state.private);
-  console.log(data);
-
-  Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
-  Geocode.setLanguage("en");
-  Geocode.setRegion("es");
-  Geocode.enableDebug();
 
   // const Map = async (currentAddr) => {
   //   return Geocode.fromAddress("서울 강서구 화곡로 142 메가스퀘어빌딩")

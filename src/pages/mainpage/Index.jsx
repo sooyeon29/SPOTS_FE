@@ -22,6 +22,7 @@ const MainMaps = () => {
   const onSearchHandler = (e) => {
     e.preventDefault();
     navigate("/book", { state: [sports, keyword] });
+    console.log({ state: [sports, keyword] });
   };
   // console.log(keyword)
 
