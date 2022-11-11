@@ -13,9 +13,9 @@ const SpotsMap = () => {
   const [level, setLevel] = useState();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(__getPrivateSpot());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(__getPrivateSpot());
+  // }, []);
 
   const { isLoading, error, privateSpot } = useSelector(
     (state) => state?.privateSpot
