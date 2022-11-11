@@ -49,20 +49,21 @@ const SpotsDetail = () => {
   console.log("리스트중에고르자궁", placeList);
 
   const selectSpot = placeList?.filter((place) => {
+    // console.log("각구장쓰", place);
     return place.placesId === parseInt(id);
   });
-  console.log("골라진스팟", selectSpot);
+  // console.log("골라진스팟", selectSpot);
 
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(new Date());
-  // console.log(startDate);
+  console.log("들어오자마자날짜?", startDate);
   const pickDateHandler = (date, name) => {
     setStartDate(date);
     dispatch(
       __getAllMatch({
-        matchId: pickedTime + name + startDate,
         place: name,
+        date: startDate,
       })
     );
   };
@@ -82,13 +83,6 @@ const SpotsDetail = () => {
     setPayAPrice(price);
     setColorChange(!colorChange);
   };
-  console.log("이거는오디뭐라나오지", pickedTime);
-  // => b팀을 선택한 경우
-  // const teamPickTwo = (time, price) => {
-  //   setPickedTimeTwo(myTime[time]);
-  //   setPayBPrice(price);
-  //   setColorChange(!colorChange);
-  // };
 
   // 3.단식경기를할지 복식경기를 할지 선택하기
   const [isTwo, setIsTwo, pickTwoHandler] = useToggle();

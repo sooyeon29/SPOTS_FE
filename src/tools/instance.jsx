@@ -44,17 +44,15 @@ export const UserpageAPI = {
   deleteTeam: (payload) => instance.put(`teams/drop`, payload),
 };
 
-// reservation 페이지 / 메인에서 검색해서 넘어가는 페이지
-export const BookApi = {
-  getSearch: (payload) => console.log(payload),
-  // instance.get(``)
-};
-
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
   getMyMatch: () => instance.get(`/reservations/me`),
-  getAllMatch: () => instance.get(`reservations/register`),
+  getAllMatch: (payload) =>
+    instance.get(`reservations/register/${payload.place}/${payload.date}`, {
+      place: payload.place,
+      date: payload.date,
+    }),
 };
 
 export const PrivateApi = {
