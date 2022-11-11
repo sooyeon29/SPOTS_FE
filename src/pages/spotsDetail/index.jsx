@@ -38,24 +38,16 @@ const SpotsDetail = () => {
     "18:00 - 20:00",
     "20:00 - 22:00"
   );
-  const Point = new Array(
-    // 풋살
-    50000,
-    // 테니스
-    10000,
-    // 배드민컨
-    5000
-  );
 
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
   const placeList = useSelector((state) => state?.privateSpot.privateSpot.data);
   console.log("리스트중에고르자궁", placeList);
 
-  const selectedSpot = placeList.filter((place) => {
-    return place.placeId === parseInt(id);
+  const selectSpot = placeList.filter((place) => {
+    return place.placesId === parseInt(id);
   });
-  console.log("골라진스팟", selectedSpot);
+  console.log("골라진스팟", selectSpot);
 
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
@@ -77,14 +69,14 @@ const SpotsDetail = () => {
   //=> a팀을 선택한 경우
   const teamPick = (time) => {
     setPickedTime(myTime[time]);
-    setPayAPrice(Point[1]);
+    // setPayAPrice(Point[1]);
     setColorChange(!colorChange);
   };
   console.log("이거는오디뭐라나오지", pickedTime);
   // => b팀을 선택한 경우
   const teamPickTwo = (time) => {
     setPickedTimeTwo(myTime[time]);
-    setPayBPrice(Point[1]);
+    // setPayBPrice(Point[1]);
     setColorChange(!colorChange);
   };
 
@@ -134,151 +126,159 @@ const SpotsDetail = () => {
     <>
       <Layout>
         <Header />
-        <Wrap>
-          <Title>스팟츠테니스장 </Title>
-          <MainInfo>
-            <Croll>
-              <img alt="" src="logo512.png" />
-              <div>
-                정보
-                <li>주소</li>
-                <li>02-398-6640</li>
-              </div>
-            </Croll>
-          </MainInfo>
-          {/* <PickDate /> */}
-          <ReactDatePicker
-            locale={ko}
-            selected={startDate}
-            onChange={(date) => pickDateHandler(date)}
-            // setStartDate(date)}
-            //   withPortal
-            isClearable
-            //   portalId="root-portal"
-            dateFormat="MM월 dd일 EE요일"
-          />
-          <br />
-
-          <Select>
-            <SelectTeam>
-              <BookMatch>
-                <Time>{myTime[0]}</Time>
-                <Team onClick={() => teamPick(0)} butcolor={colorChange}>
-                  팀1
-                </Team>
-                vs
-                <Team onClick={() => teamPickTwo(0)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[1]}</Time>
-                <Team onClick={() => teamPick(1)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(1)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[2]}</Time>
-                <Team onClick={() => teamPick(2)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(2)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[3]}</Time>
-                <Team onClick={() => teamPick(3)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(3)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[4]}</Time>
-                <Team onClick={() => teamPick(4)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(4)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[5]}</Time>
-                <Team onClick={() => teamPick(5)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(5)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[6]}</Time>
-                <Team onClick={() => teamPick(6)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(6)}>팀2</Team>
-              </BookMatch>
-              <BookMatch>
-                <Time>{myTime[7]}</Time>
-                <Team onClick={() => teamPick(7)}>팀1</Team>
-                vs
-                <Team onClick={() => teamPickTwo(7)}>팀2</Team>
-              </BookMatch>
-            </SelectTeam>
-            <YourSelect>
-              <div></div>
-              <span>팀1 선택시간: {pickedTime}</span>
-              <button
-                onClick={() => {
-                  setPickedTime("");
-                  setPayAPrice(0);
-                  setColorChange(!colorChange);
-                }}
-              >
-                취소
-              </button>
-              <br />
-              <span>팀2 선택시간: {pickedTimeTwo}</span>
-              <button
-                onClick={() => {
-                  setPickedTimeTwo("");
-                  setPayBPrice(0);
-                  setColorChange(!colorChange);
-                }}
-              >
-                취소
-              </button>
-              {!isTwo && (
-                <Pick>
-                  <One onClick={pickTwoHandler}>단식</One>
-                  <Two onClick={pickTwoHandler}>복식</Two>
-                </Pick>
-              )}
-              {isTwo && (
-                <Pick>
-                  <Two onClick={pickTwoHandler}>단식</Two>
-                  <One onClick={pickTwoHandler}>복식</One>
-                </Pick>
-              )}
-              <select name="myteam" value={myTeam} onChange={pickMyTeam}>
-                <option>선택하기</option>
-                {myTeams?.map((myTeam) => {
-                  return <option key={myTeam.teamId}>{myTeam.teamName}</option>;
-                })}
-              </select>
-              <input
-                type="number"
-                requiered
-                name="member"
-                onChange={memberHandler}
-                placeholder="경기 참석인원"
+        {selectSpot.map((spot) => {
+          return (
+            <Wrap>
+              <Title>{spot.spotName} </Title>
+              <MainInfo>
+                <Croll>
+                  <img alt="" src="logo512.png" />
+                  <div>
+                    정보
+                    <li>{spot.address}</li>
+                    <li>{spot.sports}</li>
+                    <li>{spot.spotKind}</li>
+                    <li>{spot.price}</li>
+                    <li>{spot.desc}</li>
+                    <li>{spot.comforts.comforts}</li>
+                  </div>
+                </Croll>
+              </MainInfo>
+              {/* <PickDate /> */}
+              <ReactDatePicker
+                locale={ko}
+                selected={startDate}
+                onChange={(date) => pickDateHandler(date)}
+                // setStartDate(date)}
+                //   withPortal
+                isClearable
+                //   portalId="root-portal"
+                dateFormat="MM월 dd일 EE요일"
               />
               <br />
-              {myTeam?.myteam}
-              <p>잔여포인트: {myPoint} point</p>
-              <p>예약포인트: {payAPrice + payBPrice} point</p>
-              <hr />
-              {myPoint > payAPrice + payBPrice ? (
-                <p>결제후포인트: {myPoint - payAPrice + payBPrice} point</p>
-              ) : (
-                <p>
-                  충전이 필요한 포인트: {payAPrice + payBPrice - myPoint} point
-                </p>
-              )}
 
-              <button onClick={bookMyMatch}>예약하기</button>
-            </YourSelect>
-          </Select>
+              <Select>
+                <SelectTeam>
+                  <BookMatch>
+                    <Time>{myTime[0]}</Time>
+                    <Team onClick={() => teamPick(0)} butcolor={colorChange}>
+                      팀1
+                    </Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(0)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[1]}</Time>
+                    <Team onClick={() => teamPick(1)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(1)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[2]}</Time>
+                    <Team onClick={() => teamPick(2)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(2)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[3]}</Time>
+                    <Team onClick={() => teamPick(3)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(3)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[4]}</Time>
+                    <Team onClick={() => teamPick(4)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(4)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[5]}</Time>
+                    <Team onClick={() => teamPick(5)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(5)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[6]}</Time>
+                    <Team onClick={() => teamPick(6)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(6)}>팀2</Team>
+                  </BookMatch>
+                  <BookMatch>
+                    <Time>{myTime[7]}</Time>
+                    <Team onClick={() => teamPick(7)}>팀1</Team>
+                    vs
+                    <Team onClick={() => teamPickTwo(7)}>팀2</Team>
+                  </BookMatch>
+                </SelectTeam>
+                <YourSelect>
+                  <div></div>
+                  <span>팀1 선택시간: {pickedTime}</span>
+                  <button
+                    onClick={() => {
+                      setPickedTime("");
+                      setPayAPrice(0);
+                      setColorChange(!colorChange);
+                    }}
+                  >
+                    취소
+                  </button>
+                  <br />
+                  <span>팀2 선택시간: {pickedTimeTwo}</span>
+                  <button
+                    onClick={() => {
+                      setPickedTimeTwo("");
+                      setPayBPrice(0);
+                      setColorChange(!colorChange);
+                    }}
+                  >
+                    취소
+                  </button>
+                  {!isTwo && (
+                    <Pick>
+                      <One onClick={pickTwoHandler}>단식</One>
+                      <Two onClick={pickTwoHandler}>복식</Two>
+                    </Pick>
+                  )}
+                  {isTwo && (
+                    <Pick>
+                      <Two onClick={pickTwoHandler}>단식</Two>
+                      <One onClick={pickTwoHandler}>복식</One>
+                    </Pick>
+                  )}
+                  <select name="myteam" value={myTeam} onChange={pickMyTeam}>
+                    <option>선택하기</option>
+                    {myTeams?.map((myTeam) => {
+                      return (
+                        <option key={myTeam.teamId}>{myTeam.teamName}</option>
+                      );
+                    })}
+                  </select>
+                  <input
+                    type="number"
+                    requiered
+                    name="member"
+                    onChange={memberHandler}
+                    placeholder="경기 참석인원"
+                  />
+                  <br />
+                  {myTeam?.myteam}
+                  <p>잔여포인트: {myPoint} point</p>
+                  <p>예약포인트: {spot.price} point</p>
+                  <hr />
+                  {myPoint > spot.price ? (
+                    <p>결제후포인트: {myPoint - spot.price} point</p>
+                  ) : (
+                    <p>충전이 필요한 포인트: {spot.price - myPoint} point</p>
+                  )}
 
-          <br />
-        </Wrap>
+                  <button onClick={bookMyMatch}>예약하기</button>
+                </YourSelect>
+              </Select>
+
+              <br />
+            </Wrap>
+          );
+        })}
       </Layout>
     </>
   );

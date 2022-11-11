@@ -19,7 +19,7 @@ function Router() {
         <Route path="/" element={<MainMaps />} />
         <Route path="/login" element={<Login />} />
         <Route path="/userpage" element={<UserPage />} />
-        <Route path="/spotsdetail" element={<SpotsDetail />} />
+        <Route path="/spotsdetail/:id" element={<SpotsDetail />} />
         <Route path="/teamdetail/:id" element={<TeamDetail />} />
         <Route path="/teamregister" element={<TeamRegister />} />
         <Route path="/book" element={<Reservation />} />

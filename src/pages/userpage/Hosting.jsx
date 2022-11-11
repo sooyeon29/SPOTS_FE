@@ -64,12 +64,14 @@ const Hosting = () => {
     });
 
     console.log(x, y);
-    const lnglat = { x, y };
+    // const lnglat = { x, y };
     const data = {
       ...spot,
       comfort: checkedList,
       address: fullyAddress,
-      lnglat: lnglat,
+      // lnglat: lnglat,
+      x: x,
+      y: y,
     };
     console.log(data);
 

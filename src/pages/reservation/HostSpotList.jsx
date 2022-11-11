@@ -1,24 +1,31 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
 
 const SpotList = () => {
   const navigate = useNavigate();
-  const placeList = useSelector((state) => state?.privateSpot.privateSpot);
-  console.log("플레이스리스트에들은거", placeList);
+  const dispatch = useDispatch();
 
+  const placeList = useSelector((state) => state.privateSpot.privateSpot.data);
+
+  console.log("플레이스리스트에들은거", placeList);
+  //   useEffect(() => {
+  //     dispatch(__getPrivateSpot());
+  //   }, [dispatch]);
   return (
     <>
       <HostSpots>
         <MapPlace>??</MapPlace>
         <PlaceList>
-          {placeList.data?.map((place) => {
-            console.log("아이디왜안나왕", place.placeId);
+          {placeList?.map((place) => {
+            console.log("아이디왜안나왕", place.placesId);
             return (
-              <Place>
+              <Place key={place.placesId}>
                 <h3>{place.spotName}</h3>
                 <button
-                  onClick={() => navigate(`/spotsdetail/${place.placeId}`)}
+                  onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
                 >
                   예약하러가기
                 </button>
