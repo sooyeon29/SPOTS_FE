@@ -1,19 +1,19 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { PrivateApi } from '../../tools/instance';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PrivateApi } from "../../tools/instance";
 
 const initialState = {
   privateSpot: [],
   isLoading: false,
-  error: '',
+  error: "",
 };
 
 export const __getPrivateSpot = createAsyncThunk(
-  'getPrivateSpot',
+  "getPrivateSpot",
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.getPrivateSpot();
-    //   console.log(data);
-      return thunkAPI.fulfillWithValue(data);
+      //   console.log(data);
+      return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -30,7 +30,7 @@ const privateSlice = createSlice({
     },
     [__getPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-    //   console.log(action.payload)
+      //   console.log(action.payload)
       state.privateSpot = action.payload;
     },
     [__getPrivateSpot.rejected]: (state, action) => {
