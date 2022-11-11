@@ -8,6 +8,7 @@ import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 import SpotList from "./HostSpotList";
 import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
 import SpotsDetail from "../spotsDetail/Index";
+import SpotsMap from "./SpotsMap";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -62,7 +63,9 @@ const Reservation = () => {
           </form>
         </div>
         <HostSpots>
-          <MapPlace>??</MapPlace>
+          <MapPlace>
+            <SpotsMap />
+          </MapPlace>
           <PlaceList>
             {placeList?.map((place) => {
               return <SpotList key={place.placesId} place={place} />;
