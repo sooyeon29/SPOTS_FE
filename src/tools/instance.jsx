@@ -54,6 +54,7 @@ export const BookApi = {
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
   getMyMatch: () => instance.get(`/reservations/me`),
+  getAllMatch: () => instance.get(`reservations/register`),
 };
 
 export const PrivateApi = {
