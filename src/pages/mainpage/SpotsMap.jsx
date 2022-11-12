@@ -14,7 +14,7 @@ const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
   const getPubSpot = useDispatch();
 
-  console.log(sportsKind)
+  console.log(sportsKind);
 
   useEffect(() => {
     getPrivSpot(__getPrivateSpot());
@@ -67,81 +67,157 @@ const SpotsMap = ({ sportsKind }) => {
         onZoomChanged={(map) => setLevel(map.getLevel())}>
         <ZoomControl />
 
-        {privateSpot.map((place, idx) => ( // 사설시설 불러오기
-          <>
-            <MapMarker
-              key={place.placesId}
-              position={{
-                lat: place.y,
-                lng: place.x,
-              }}
-              onClick={(e) => handlePrivateOnClick(e, idx)}
-              image={{
-                src: '/public.png', // 마커이미지의 주소입니다
-                size: {
-                  width: 30,
-                  height: 30,
-                }, // 마커이미지의 크기입니다
-                // options: {
-                //   offset: {
-                //     x: 27,
-                //     y: 69,
-                //   }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-                // },
-              }}
-            />
+        {privateSpot.map((place, idx) => {
+          if (sportsKind === '') {
+            return (
+              <>
+                <MapMarker
+                  key={place.placesId}
+                  position={{
+                    lat: place.y,
+                    lng: place.x,
+                  }}
+                  onClick={(e) => handlePrivateOnClick(e, idx)}
+                  image={{
+                    src: '/public.png', // 마커이미지의 주소입니다
+                    size: {
+                      width: 30,
+                      height: 30,
+                    }, // 마커이미지의 크기입니다
+                    // options: {
+                    //   offset: {
+                    //     x: 27,
+                    //     y: 69,
+                    //   }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                    // },
+                  }}
+                />
 
-            {isPrivateOpen === idx ? (
-              <CustomOverlayMap
-                key={place.idx}
-                position={{
-                  lat: place.y,
-                  lng: place.x,
-                }}>
-                <Container>
-                  {place.spotName}
-                  <div onClick={() => setIsPrivateOpen(false)}>X</div>
-                </Container>
-              </CustomOverlayMap>
-            ) : null}
-          </>
-        ))}
+                {isPrivateOpen === idx ? (
+                  <CustomOverlayMap
+                    key={place.idx}
+                    position={{
+                      lat: place.y,
+                      lng: place.x,
+                    }}>
+                    <Container>
+                      {place.spotName}
+                      <div onClick={() => setIsPrivateOpen(false)}>X</div>
+                    </Container>
+                  </CustomOverlayMap>
+                ) : null}
+              </>
+            );
+          } else if (sportsKind === place.sports) {
+            return (
+              <>
+                <MapMarker
+                  key={place.placesId}
+                  position={{
+                    lat: place.y,
+                    lng: place.x,
+                  }}
+                  onClick={(e) => handlePrivateOnClick(e, idx)}
+                  image={{
+                    src: '/public.png', // 마커이미지의 주소입니다
+                    size: {
+                      width: 30,
+                      height: 30,
+                    }, // 마커이미지의 크기입니다
+                    // options: {
+                    //   offset: {
+                    //     x: 27,
+                    //     y: 69,
+                    //   }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                    // },
+                  }}
+                />
 
-        {publicSpot.map((place, idx) => ( //공공시설 불러오기
-          <>
-            <MapMarker
-              key={place.opensId}
-              position={{
-                lat: place.y,
-                lng: place.x,
-              }}
-              onClick={(e) => handlePublicOnClick(e, idx)}
-              image={{
-                src: '/private.png', // 마커이미지의 주소입니다
-                size: {
-                  width: 30,
-                  height: 30,
-                },
-              }}
-            />
-            {isPublicOpen === idx ? (
-              <CustomOverlayMap
-                key={place.idx}
-                position={{
-                  lat: place.y,
-                  lng: place.x,
-                }}>
-                <Container>
-                  {place.placenm}
-                  <div onClick={() => setIsPublicOpen(false)}>X</div>
-                </Container>
-              </CustomOverlayMap>
-            ) : null}
-          </>
-        ))}
+                {isPrivateOpen === idx ? (
+                  <CustomOverlayMap
+                    key={place.idx}
+                    position={{
+                      lat: place.y,
+                      lng: place.x,
+                    }}>
+                    <Container>
+                      {place.spotName}
+                      <div onClick={() => setIsPrivateOpen(false)}>X</div>
+                    </Container>
+                  </CustomOverlayMap>
+                ) : null}
+              </>
+            );
+          }
+        })}
 
-
-
+        {publicSpot.map((place, idx) => {
+          if (sportsKind === '') {
+            return (
+              <>
+                <MapMarker
+                  key={place.opensId}
+                  position={{
+                    lat: place.y,
+                    lng: place.x,
+                  }}
+                  onClick={(e) => handlePublicOnClick(e, idx)}
+                  image={{
+                    src: '/private.png', // 마커이미지의 주소입니다
+                    size: {
+                      width: 30,
+                      height: 30,
+                    },
+                  }}
+                />
+                {isPublicOpen === idx ? (
+                  <CustomOverlayMap
+                    key={place.idx}
+                    position={{
+                      lat: place.y,
+                      lng: place.x,
+                    }}>
+                    <Container>
+                      {place.placenm}
+                      <div onClick={() => setIsPublicOpen(false)}>X</div>
+                    </Container>
+                  </CustomOverlayMap>
+                ) : null}
+              </>
+            );
+          } else if (sportsKind === place.minclassnm) {
+            return (              <>
+                <MapMarker
+                  key={place.opensId}
+                  position={{
+                    lat: place.y,
+                    lng: place.x,
+                  }}
+                  onClick={(e) => handlePublicOnClick(e, idx)}
+                  image={{
+                    src: '/private.png', // 마커이미지의 주소입니다
+                    size: {
+                      width: 30,
+                      height: 30,
+                    },
+                  }}
+                />
+                {isPublicOpen === idx ? (
+                  <CustomOverlayMap
+                    key={place.idx}
+                    position={{
+                      lat: place.y,
+                      lng: place.x,
+                    }}>
+                    <Container>
+                      {place.placenm}
+                      <div onClick={() => setIsPublicOpen(false)}>X</div>
+                    </Container>
+                  </CustomOverlayMap>
+                ) : null}
+              </>);
+          }
+        })}
       </Map>
     </>
   );

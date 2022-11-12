@@ -18,6 +18,7 @@ export const SearchBox = styled.form`
 
 export const Container = styled.div`
   background-color: #fff;
-  width: 100px;
+  width: 200px;
+  height: auto;
   height: 50px;
 `

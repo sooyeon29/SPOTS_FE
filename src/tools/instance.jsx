@@ -10,7 +10,7 @@ const instance = axios.create({
   // baseURL: "https://sparta4.shop",
   // baseURL: "http://13.125.53.34/",
   headers: {
-    Authorization: `Bearer ${isLogin}`,
+    Authorization: `${isLogin}`,
   },
 });
 
@@ -57,8 +57,8 @@ export const SpotsMatchApi = {
 
 export const PrivateApi = {
   registerSpot: (payload) =>
-    // console.log(payload)
-    instance.post(`places`, payload),
+    console.log(payload),
+    // instance.post(`places`, payload),
   getPrivateSpot: () => instance.get(`places`),
 };
 
