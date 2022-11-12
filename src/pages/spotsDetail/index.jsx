@@ -107,7 +107,8 @@ const SpotsDetail = () => {
   // console.log(typeof startDate);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // 계산을 위해 포인트를 차감하여 patch 도 실행해주자!
-  const bookDate = JSON.stringify(startDate).substring(1, 11);
+  // const bookDate = JSON.stringify(startDate).substring(1, 11);
+  const bookDate = startDate.toLocaleDateString().substring(0, 12);
   const navigate = useNavigate();
   const bookMyMatch = (name) => {
     dispatch(
@@ -125,16 +126,17 @@ const SpotsDetail = () => {
   };
 
   const pickDateHandler = (date, name) => {
-    console.log("이 날짜는??????????????", date);
+    // console.log("이 날짜는??????????????", date);
     setStartDate(date);
-    const bookDate = JSON.stringify(date).substring(1, 11);
+    // const bookDate = JSON.stringify(date).substring(1, 11);
+    const bookDate = date.toLocaleDateString().substring(0, 12);
     dispatch(
       __getAllMatch({
         place: name,
         date: bookDate,
       })
     );
-    console.log("와이ㅏ러낭러ㅣㄴㄹ러", bookDate);
+    // console.log("와이ㅏ러낭러ㅣㄴㄹ러", bookDate);
   };
 
   return (

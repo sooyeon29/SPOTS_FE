@@ -65,7 +65,7 @@ const Hosting = () => {
 
       const data = {
         ...spot,
-        comfort: checkedList,
+        comforts: checkedList,
         address: fullyAddress,
         x: x,
         y: y,
