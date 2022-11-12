@@ -64,7 +64,7 @@ const Reservation = () => {
         </div>
         <HostSpots>
           <MapPlace>
-            <SpotsMap />
+            <SpotsMap placeList={placeList} />
           </MapPlace>
           <PlaceList>
             {placeList?.map((place) => {
