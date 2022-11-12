@@ -19,9 +19,9 @@ const TeamDetail = () => {
     dispatch(__getMyteamDetail(id));
   }, [dispatch, id]);
 
-  const dropTeam = (teamName) => {
-    console.log(teamName);
-    UserpageAPI.deleteTeam({ teamName: teamName })
+  const dropTeam = (teamId) => {
+    console.log(teamId);
+    UserpageAPI.deleteTeam(teamId)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
@@ -54,8 +54,8 @@ const TeamDetail = () => {
           <button>수정하기</button>
           <button
             onClick={() => {
-              dropTeam(teamdetail.teamName);
-              console.log(teamdetail.teamName);
+              dropTeam(teamdetail.teamId);
+              console.log(teamdetail.teamId);
             }}
           >
             삭제하기

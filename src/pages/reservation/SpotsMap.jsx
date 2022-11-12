@@ -84,8 +84,7 @@ const SpotsMap = ({ placeList }) => {
                 ) : null}
               </>
             );
-          }
-          if (filter === place.sports) {
+          } else if (filter === place.sports) {
             return (
               <>
                 <MapMarker
