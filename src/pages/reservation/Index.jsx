@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import useToggle from '../../hooks/useToggle';
-import { __getPrivateSpot } from '../../redux/modules/spotsSlice';
-import SpotList from './HostSpotList';
-import { HostSpots, MapPlace, Place, PlaceList } from './Style';
-import SpotsDetail from '../spotsDetail/Index';
-import SpotsMap from '../reservation/SpotsMap';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import useToggle from "../../hooks/useToggle";
+import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+import SpotList from "./HostSpotList";
+import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
+import SpotsDetail from "../spotsDetail/Index";
+import SpotsMap from "./SpotsMap";
 
 const Reservation = () => {
   const navigate = useNavigate();
