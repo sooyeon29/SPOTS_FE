@@ -15,9 +15,9 @@ const MainMaps = () => {
   const [keyword, setKeyword] = useState("");
   const [sports, setSports] = useState("");
   const [sportsKind, setSportsKind] = useState("");
-  const futsal = "futsal";
-  const tennis = "tennis";
-  const badminton = "badminton";
+  const futsal = "풋살장";
+  const tennis = "테니스장";
+  const badminton = "배드민턴장";
 
   const onSportsHandler = (e) => {
     setSports(e.target.value);
