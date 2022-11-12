@@ -14,7 +14,6 @@ export const __getMyInfo = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await UserpageAPI.getMypage();
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -27,7 +26,6 @@ export const __getMyteamList = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await UserpageAPI.getMyteamList();
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

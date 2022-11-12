@@ -8,7 +8,6 @@ import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { __getMyInfo, __getMyteamList } from "../../redux/modules/userSlice";
-
 import {
   BookMatch,
   Croll,
@@ -57,7 +56,7 @@ const SpotsDetail = () => {
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(new Date());
-  // console.log("들어오자마자날짜?", startDate);
+  console.log("들어오자마자날짜?", startDate);
 
   const todayMatchList = useSelector((state) => state?.matcher.matcher);
   // console.log("-----------오늘의매치----------", state.matcher)
@@ -102,14 +101,13 @@ const SpotsDetail = () => {
   // @@++나의 포인트를 가져와 주었다 이것으로 계산할꺼다 ++@@
   // 아래 예약하기 핸들러를 눌러 patch도 위의 post들과 함께 보내줄꺼다
   const { user } = useSelector((state) => state.user);
-  console.log(user);
+  //console.log(user);
   const myPoint = user.point;
 
   // console.log(typeof startDate);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // 계산을 위해 포인트를 차감하여 patch 도 실행해주자!
-  const bookDate = JSON.stringify(startDate).substring(1, 14);
-  console.log("*************날짜*************", bookDate);
+  const bookDate = JSON.stringify(startDate).substring(1, 11);
   const navigate = useNavigate();
   const bookMyMatch = (name) => {
     dispatch(
@@ -129,12 +127,14 @@ const SpotsDetail = () => {
   const pickDateHandler = (date, name) => {
     console.log("이 날짜는??????????????", date);
     setStartDate(date);
+    const bookDate = JSON.stringify(date).substring(1, 11);
     dispatch(
       __getAllMatch({
         place: name,
         date: bookDate,
       })
     );
+    console.log("와이ㅏ러낭러ㅣㄴㄹ러", bookDate);
   };
 
   return (
@@ -240,19 +240,20 @@ const SpotsDetail = () => {
                   >
                     취소
                   </button>
-                  {/* 배드민턴이랑 테니스일 경우 */}
-                  {!isTwo && (
+
+                  {!isTwo && spot.sports !== "풋살장" && (
                     <Pick>
                       <One onClick={pickTwoHandler}>단식</One>
                       <Two onClick={pickTwoHandler}>복식</Two>
                     </Pick>
                   )}
-                  {isTwo && (
+                  {isTwo && spot.sports !== "풋살장" && (
                     <Pick>
                       <Two onClick={pickTwoHandler}>단식</Two>
                       <One onClick={pickTwoHandler}>복식</One>
                     </Pick>
                   )}
+
                   <select name="myteam" value={myTeam} onChange={pickMyTeam}>
                     <option>선택하기</option>
                     {myTeams?.map((myTeam) => {
@@ -281,7 +282,6 @@ const SpotsDetail = () => {
                       point
                     </p>
                   )}
-
                   <button onClick={() => bookMyMatch(spot.spotName)}>
                     예약하기
                   </button>
