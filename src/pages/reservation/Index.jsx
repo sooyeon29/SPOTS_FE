@@ -7,7 +7,8 @@ import useToggle from "../../hooks/useToggle";
 import { __getPrivateSpot } from "../../redux/modules/privateSlice";
 import SpotList from "./HostSpotList";
 import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
-import SpotsDetail from "../spotsDetail/Index";
+import SpotsDetail from "../spotsDetail/index";
+import SpotsMap from "./SpotsMap";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -62,7 +63,9 @@ const Reservation = () => {
           </form>
         </div>
         <HostSpots>
-          <MapPlace>??</MapPlace>
+          <MapPlace>
+            <SpotsMap placeList={placeList} />
+          </MapPlace>
           <PlaceList>
             {placeList?.map((place) => {
               return <SpotList key={place.placesId} place={place} />;

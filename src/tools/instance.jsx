@@ -10,7 +10,7 @@ const instance = axios.create({
   // baseURL: "https://sparta4.shop",
   // baseURL: "http://13.125.53.34/",
   headers: {
-    Authorization: `Bearer ${isLogin}`,
+    Authorization: `${isLogin}`,
   },
 });
 
@@ -34,14 +34,14 @@ export const SignUpAPI = {
 export const UserpageAPI = {
   getMypage: () => instance.get(`users/me`),
   getMyteamList: () => instance.get(`teams/me`),
-  getMyteamDetail: (payload) => instance.get(`teams/info/${payload}`),
+  getMyteamDetail: (payload) => instance.get(`teams/${payload}`),
   postMyteam: (payload) =>
-    instance.post(`teams/register`, payload, {
+    instance.post(`teams`, payload, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     }),
-  deleteTeam: (payload) => instance.put(`teams/drop`, payload),
+  deleteTeam: (payload) => instance.delete(`teams/${payload}`),
 };
 
 // spotsdetail 실제 예약 서비스

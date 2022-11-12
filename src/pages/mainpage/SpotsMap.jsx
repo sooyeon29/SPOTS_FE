@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Map,
   ZoomControl,
   MapMarker,
   CustomOverlayMap,
-} from 'react-kakao-maps-sdk';
-import { useDispatch, useSelector } from 'react-redux';
-import { __getPrivateSpot } from '../../redux/modules/privateSlice';
-import { Container } from './Styles';
+} from "react-kakao-maps-sdk";
+import { useDispatch, useSelector } from "react-redux";
+import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+import { Container } from "./Styles";
 
 const SpotsMap = () => {
   const dispatch = useDispatch();
@@ -23,11 +23,10 @@ const SpotsMap = () => {
     setIsOpen(idx);
   };
 
-
   const { isLoading, error, privateSpot } = useSelector(
     (state) => state?.privateSpot
   );
-  console.log('---------프라이빗스팟-----------', privateSpot);
+  console.log("---------프라이빗스팟-----------", privateSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -36,7 +35,7 @@ const SpotsMap = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
-  
+
   return (
     <>
       {/* <RemovableCustomOverlayStyle /> */}
