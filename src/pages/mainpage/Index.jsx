@@ -3,7 +3,6 @@ import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import FutsalMap from './FutsalMap';
 import SpotsMap from './SpotsMap';
 import { SpotsBtns } from './Styles';
 
