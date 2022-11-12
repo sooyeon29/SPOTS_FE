@@ -1,14 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PrivateApi } from "../../tools/instance";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PrivateApi, PublicApi } from '../../tools/instance';
 
 const initialState = {
   privateSpot: [],
+  publicSpot: [],
   isLoading: false,
-  error: "",
+  error: '',
 };
 
 export const __getPrivateSpot = createAsyncThunk(
-  "getPrivateSpot",
+  'getPrivateSpot',
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.getPrivateSpot();
@@ -20,8 +21,21 @@ export const __getPrivateSpot = createAsyncThunk(
   }
 );
 
+export const __getPublicSpot = createAsyncThunk(
+  'getPublicSpot',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await PublicApi.getPublicSpot();
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const privateSlice = createSlice({
-  name: "privateSpot",
+  name: 'spots',
   initialState,
   reducer: {},
   extraReducers: {
@@ -34,6 +48,17 @@ const privateSlice = createSlice({
       state.privateSpot = action.payload;
     },
     [__getPrivateSpot.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getPublicSpot.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getPublicSpot.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.publicSpot = action.payload;
+    },
+    [__getPublicSpot.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import { StTag, StTeam, StWrap } from "./Styles";
 
 const HostList = ({ hostToggle, hostClickToggle }) => {
