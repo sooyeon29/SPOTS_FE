@@ -4,13 +4,15 @@ import Layout from "../../components/Layout";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { __postRegister } from "../../redux/modules/spotsSlice";
 const { kakao } = window;
 
 const Hosting = () => {
   const navigate = useNavigate();
 
   const [spot, setSpot] = useState({});
-
+  const dispatch = useDispatch();
   const [checkedList, setCheckedList] = useState([]);
   const onCheckedElement = (checked, item) => {
     if (checked) {
@@ -65,13 +67,12 @@ const Hosting = () => {
 
       const data = {
         ...spot,
-        comfort: checkedList,
+        comforts: checkedList,
         address: fullyAddress,
         x: x,
         y: y,
       };
 
-      console.log(data);
       PrivateApi.registerSpot(data)
         .then((res) => {
           console.log(res);
