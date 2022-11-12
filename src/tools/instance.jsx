@@ -7,7 +7,6 @@ const instance = axios.create({
   baseURL: "https://ws-study.shop/",
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
-  // baseURL: "https://sparta4.shop",
   // baseURL: "http://13.125.53.34/",
   headers: {
     Authorization: `${isLogin}`,

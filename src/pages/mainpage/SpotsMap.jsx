@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Map,
   ZoomControl,
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { __getPrivateSpot } from '../../redux/modules/spotsSlice';
 import { __getPublicSpot } from '../../redux/modules/spotsSlice';
 import { Container, Title } from './Styles';
+
 
 const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
@@ -40,8 +41,8 @@ const SpotsMap = ({ sportsKind }) => {
     (state) => state.spots
   );
 
-  console.log('---------프라이빗스팟-----------', privateSpot);
-  console.log('---------퍼블릭스팟-----------', publicSpot);
+  console.log("---------프라이빗스팟-----------", privateSpot);
+  console.log("---------퍼블릭스팟-----------", publicSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -62,15 +63,16 @@ const SpotsMap = ({ sportsKind }) => {
         }}
         style={{
           // 지도의 크기
-          width: '100%',
-          height: '100%',
+          width: "100%",
+          height: "100%",
         }}
         level={9} // 지도의 확대 레벨
-        onZoomChanged={(map) => setLevel(map.getLevel())}>
+        onZoomChanged={(map) => setLevel(map.getLevel())}
+      >
         <ZoomControl />
 
         {privateSpot.map((place, idx) => {
-          if (sportsKind === '') {
+          if (sportsKind === "") {
             return (
               <>
                 <MapMarker
@@ -154,7 +156,7 @@ const SpotsMap = ({ sportsKind }) => {
         })}
 
         {publicSpot.map((place, idx) => {
-          if (sportsKind === '') {
+          if (sportsKind === "") {
             return (
               <>
                 <MapMarker
