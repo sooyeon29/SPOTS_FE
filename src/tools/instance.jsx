@@ -55,9 +55,7 @@ export const SpotsMatchApi = {
 };
 
 export const PrivateApi = {
-  registerSpot: (payload) =>
-    // console.log(payload),
-    instance.post(`places`, payload),
+  registerSpot: (payload) => instance.post(`places`, payload),
   // 등록한 사설 구장들 리스트
   getPrivateSpot: () => instance.get(`places`),
   // 내가 등록한 구장
