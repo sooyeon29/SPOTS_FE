@@ -34,14 +34,14 @@ export const SignUpAPI = {
 export const UserpageAPI = {
   getMypage: () => instance.get(`users/me`),
   getMyteamList: () => instance.get(`teams/me`),
-  getMyteamDetail: (payload) => instance.get(`teams/info/${payload}`),
+  getMyteamDetail: (payload) => instance.get(`teams/${payload}`),
   postMyteam: (payload) =>
-    instance.post(`teams/register`, payload, {
+    instance.post(`teams`, payload, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     }),
-  deleteTeam: (payload) => instance.put(`teams/drop`, payload),
+  deleteTeam: () => instance.delete(`teams`),
 };
 
 // spotsdetail 실제 예약 서비스
@@ -57,11 +57,14 @@ export const SpotsMatchApi = {
 
 export const PrivateApi = {
   registerSpot: (payload) =>
-    console.log(payload),
-    // instance.post(`places`, payload),
+    // console.log(payload),
+    instance.post(`places`, payload),
+  // 등록한 사설 구장들 리스트
   getPrivateSpot: () => instance.get(`places`),
+  // 내가 등록한 구장
+  getMyPrivateSpot: () => instance.get(`places/me`),
 };
 
 export const PublicApi = {
-  getPublicSpot: () => instance.get(`places/open`)
-}
+  getPublicSpot: () => instance.get(`places/open`),
+};
