@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
-import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import SpotsMap from './SpotsMap';
-import { SpotsBtns } from './Styles';
+import { useEffect, useRef, useState } from "react";
+import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import SpotsMap from "./SpotsMap";
+import { SpotsBtns } from "./Styles";
 
 // import { SportMaps } from "./Styles";
 
@@ -12,8 +12,8 @@ const MainMaps = () => {
   const mapRef = useRef();
   const navigate = useNavigate();
   const [positions, setPositions] = useState([]);
-  const [keyword, setKeyword] = useState('');
-  const [sports, setSports] = useState('');
+  const [keyword, setKeyword] = useState("");
+  const [sports, setSports] = useState("");
   const [sportsKind, setSportsKind] = useState("");
   const futsal = "풋살장";
   const tennis = "테니스장";
@@ -25,7 +25,7 @@ const MainMaps = () => {
 
   const onSearchHandler = (e) => {
     e.preventDefault();
-    navigate('/book', { state: [sports, keyword] });
+    navigate("/book", { state: [sports, keyword] });
     console.log({ state: [sports, keyword] });
   };
   // console.log(keyword)
@@ -49,13 +49,13 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
-        <img alt='' src='fortest.jpg' width={100} />
+        <img alt="" src="fortest.jpg" width={100} />
         <SpotsBtns>
           <button onClick={() => setSportsKind(futsal)}>풋살장</button>
           <button onClick={() => setSportsKind(tennis)}>테니스장</button>
           <button onClick={() => setSportsKind(badminton)}>배드민턴장</button>
         </SpotsBtns>
-        <SpotsMap sportsKind = {sportsKind} />
+        <SpotsMap sportsKind={sportsKind} />
         <select onChange={onSportsHandler}>
           <option>전체</option>
           <option>풋살장</option>
@@ -64,9 +64,9 @@ const MainMaps = () => {
         </select>
         <form onSubmit={onSearchHandler}>
           <input
-            type='text'
+            type="text"
             value={keyword}
-            placeholder='구를 입력하세요 예) 마포구'
+            placeholder="구를 입력하세요 예) 마포구"
             onChange={(e) => {
               setKeyword(e.target.value);
             }}

@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 import { Place } from "./Style";
 
 const SpotList = ({ place }) => {
