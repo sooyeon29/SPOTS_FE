@@ -10,7 +10,7 @@ const instance = axios.create({
   // baseURL: "https://sparta4.shop",
   // baseURL: "http://13.125.53.34/",
   headers: {
-    Authorization: `Bearer ${isLogin}`,
+    Authorization: `${isLogin}`,
   },
 });
 
@@ -57,11 +57,14 @@ export const SpotsMatchApi = {
 
 export const PrivateApi = {
   registerSpot: (payload) =>
-    // console.log(payload)
+    // console.log(payload),
     instance.post(`places`, payload),
+  // 등록한 사설 구장들 리스트
   getPrivateSpot: () => instance.get(`places`),
+  // 내가 등록한 구장
+  getMyPrivateSpot: () => instance.get(`places/me`),
 };
 
 export const PublicApi = {
-  getPublicSpot: () => instance.get(`places/open`)
-}
+  getPublicSpot: () => instance.get(`places/open`),
+};

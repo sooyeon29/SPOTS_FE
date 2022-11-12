@@ -4,11 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
-import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+
 import SpotList from "./HostSpotList";
 import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
 import SpotsDetail from "../spotsDetail/Index";
 import SpotsMap from "../reservation/SpotsMap";
+import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -22,9 +23,8 @@ const Reservation = () => {
   }, []);
 
   const { isLoading, error } = useSelector((state) => state?.spots);
-  const placeList = useSelector((state) => state.spots.privateSpot
-  );
-  console.log('플레이스리스트에들은거', placeList);
+  const placeList = useSelector((state) => state.spots.privateSpot);
+  console.log("플레이스리스트에들은거", placeList);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -51,12 +51,12 @@ const Reservation = () => {
         <div>
           <form onSubmit={(e) => onSearch(e)}>
             <input
-              type='text'
+              type="text"
               // value={keyword[0]}
-              placeholder='구를 입력하세요 예) 마포구'
+              placeholder="구를 입력하세요 예) 마포구"
               onChange={onChangeSearch}
             />
-            <button type='submit'>스팟 찾기</button>
+            <button type="submit">스팟 찾기</button>
             <div>
               {/* {keyword[1]}  */}
               검색 결과

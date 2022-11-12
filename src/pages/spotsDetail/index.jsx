@@ -46,7 +46,7 @@ const SpotsDetail = () => {
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
   const placeList = useSelector((state) => state?.spots.privateSpot);
-  console.log("리스트중에고르자궁", placeList);
+  // console.log("리스트중에고르자궁", placeList);
 
   const selectSpot = placeList?.filter((place) => {
     // console.log("각구장쓰", place);
@@ -57,11 +57,11 @@ const SpotsDetail = () => {
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(new Date());
-  console.log("들어오자마자날짜?", startDate);
+  // console.log("들어오자마자날짜?", startDate);
 
   const todayMatchList = useSelector((state) => state?.matcher.matcher);
   // console.log("-----------오늘의매치----------", state.matcher)
-  console.log("======오늘의매치=========", todayMatchList);
+  // console.log("======오늘의매치=========", todayMatchList);
 
   // 2. 시간과 팀을 선택한다(팀1-a, 팀2-b) => 이것으로 matchId를 만들어줄 예정이다
   const [pickedTime, setPickedTime] = useState("");
@@ -240,7 +240,7 @@ const SpotsDetail = () => {
                   >
                     취소
                   </button>
-
+                  {/* 배드민턴이랑 테니스일 경우 */}
                   {!isTwo && (
                     <Pick>
                       <One onClick={pickTwoHandler}>단식</One>
