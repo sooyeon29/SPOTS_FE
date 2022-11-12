@@ -10,9 +10,11 @@ import { __getPrivateSpot } from '../../redux/modules/spotsSlice';
 import { __getPublicSpot } from '../../redux/modules/spotsSlice';
 import { Container } from './Styles';
 
-const SpotsMap = () => {
+const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
   const getPubSpot = useDispatch();
+
+  console.log(sportsKind)
 
   useEffect(() => {
     getPrivSpot(__getPrivateSpot());
@@ -65,7 +67,7 @@ const SpotsMap = () => {
         onZoomChanged={(map) => setLevel(map.getLevel())}>
         <ZoomControl />
 
-        {privateSpot.map((place, idx) => (
+        {privateSpot.map((place, idx) => ( // 사설시설 불러오기
           <>
             <MapMarker
               key={place.placesId}
@@ -105,7 +107,7 @@ const SpotsMap = () => {
           </>
         ))}
 
-        {publicSpot.map((place, idx) => (
+        {publicSpot.map((place, idx) => ( //공공시설 불러오기
           <>
             <MapMarker
               key={place.opensId}
@@ -137,6 +139,9 @@ const SpotsMap = () => {
             ) : null}
           </>
         ))}
+
+
+
       </Map>
     </>
   );

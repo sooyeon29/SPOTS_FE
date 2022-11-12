@@ -15,7 +15,10 @@ const MainMaps = () => {
   const [positions, setPositions] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [sports, setSports] = useState('');
-  const [futsalView, setFutsalView] = useState(false);
+  const [sportsKind, setSportsKind] = useState("");
+  const futsal = "futsal";
+  const tennis = "tennis";
+  const badminton = "badminton";
 
   const onSportsHandler = (e) => {
     setSports(e.target.value);
@@ -49,11 +52,11 @@ const MainMaps = () => {
         <Header />
         <img alt='' src='fortest.jpg' width={100} />
         <SpotsBtns>
-          <button onClick={() => setFutsalView(!futsalView)}>풋살장</button>
-          <button>테니스장</button>
-          <button>배드민턴장</button>
+          <button onClick={() => setSportsKind(futsal)}>풋살장</button>
+          <button onClick={() => setSportsKind(tennis)}>테니스장</button>
+          <button onClick={() => setSportsKind(badminton)}>배드민턴장</button>
         </SpotsBtns>
-        {futsalView ? <FutsalMap /> : <SpotsMap />}
+        <SpotsMap sportsKind = {sportsKind} />
         <select onChange={onSportsHandler}>
           <option>전체</option>
           <option>풋살장</option>
