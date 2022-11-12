@@ -8,7 +8,7 @@ import {
 import styled from "styled-components";
 
 const SpotsMap = ({ placeList }) => {
-  const [isOpen, setIsOpen] = useState(0);
+  const [isOpen, setIsOpen] = useState([]);
   const [level, setLevel] = useState();
 
   const handleOnClick = (e, idx) => {
