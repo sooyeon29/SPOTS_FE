@@ -56,8 +56,8 @@ const SpotsDetail = () => {
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(new Date());
-  console.log("들어오자마자날짜?", startDate);
-
+  console.log("startDate", startDate);
+  console.log(Date());
   const todayMatchList = useSelector((state) => state?.matcher.matcher);
   // console.log("-----------오늘의매치----------", state.matcher)
   // console.log("======오늘의매치=========", todayMatchList);
@@ -157,7 +157,7 @@ const SpotsDetail = () => {
                     <li>{spot.spotKind}</li>
                     <li>{spot.price}</li>
                     <li>{spot.desc}</li>
-                    <li>{spot.comforts.comforts}</li>
+                    <li>{spot.comforts[0]}</li>
                   </div>
                 </Croll>
               </MainInfo>
