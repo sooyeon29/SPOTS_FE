@@ -21,8 +21,9 @@ const Reservation = () => {
     dispatch(__getPrivateSpot());
   }, []);
 
-  const { isLoading, error } = useSelector((state) => state?.privateSpot);
-  const placeList = useSelector((state) => state.privateSpot.privateSpot);
+  const { isLoading, error } = useSelector((state) => state?.spots);
+  const placeList = useSelector((state) => state.spots.privateSpot
+  );
   console.log('플레이스리스트에들은거', placeList);
 
   if (isLoading) {
