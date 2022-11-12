@@ -13,7 +13,7 @@ const MyPage = ({ mytoggle, myClickToggle }) => {
     dispatch(__getMyInfo());
   }, []);
   const { user } = useSelector((state) => state.user);
-
+  console.log(user);
   return (
     <StWrap>
       <StTag>my</StTag>

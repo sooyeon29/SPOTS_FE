@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
+import { __getMyPrivateSpot } from "../../redux/modules/spotsSlice";
 import { StTag, StTeam, StWrap } from "./Styles";
 
 const HostList = ({ hostToggle, hostClickToggle }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(__getPrivateSpot());
+    dispatch(__getMyPrivateSpot());
   }, []);
-  const placeList = useSelector((state) => state.privateSpot.privateSpot);
+  const placeList = useSelector((state) => state.spots.myPrivateSpot);
+  // state.spots);
+  console.log(placeList);
   return (
     <>
       <StWrap>

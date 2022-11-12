@@ -36,6 +36,7 @@ export const __getAllMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getAllMatch(payload);
+      console.log("^^^^^^^^진짜비었니", payload, "^^^^^^^^^데이터", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -47,7 +48,7 @@ const initialState = {
   // 포스트
   matcher: [],
   // 구장,날짜별
-  data: [],
+  // data: [],
   isLoading: false,
   error: null,
 };
@@ -67,10 +68,12 @@ const matchSlice = createSlice({
       console.log("액션?", action.payload);
       state.matcher.push(action.payload.data);
       console.log("fulfilled 상태", state, action);
+      // alert(state.matcher.message)
     },
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = action.payload.response.data.errorMessage;
+      alert(state.error);
     },
     // 나의 예역 가져오기 get
     [__getMyMatch.pending]: (state) => {
@@ -91,9 +94,9 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getAllMatch.fulfilled]: (state, action) => {
-      console.log(state);
+      console.log("모든매치", state, "모든매치액션", action.payload);
       state.isLoading = false;
-      state.data = action.payload.data;
+      state.matcher = action.payload.data;
     },
     [__getAllMatch.rejected]: (state, action) => {
       state.isLoading = false;
