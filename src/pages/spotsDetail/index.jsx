@@ -29,7 +29,7 @@ import {
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const SpotsDetail = () => {
   const myTime = new Array(

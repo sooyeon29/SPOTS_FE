@@ -6,28 +6,38 @@ import {
   CustomOverlayMap,
 } from 'react-kakao-maps-sdk';
 import { useDispatch, useSelector } from 'react-redux';
-import { __getPrivateSpot } from '../../redux/modules/privateSlice';
+import { __getPrivateSpot } from '../../redux/modules/spotsSlice';
+import { __getPublicSpot } from '../../redux/modules/spotsSlice';
 import { Container } from './Styles';
 
 const SpotsMap = () => {
-  const dispatch = useDispatch();
+  const getPrivSpot = useDispatch();
+  const getPubSpot = useDispatch();
 
   useEffect(() => {
-    dispatch(__getPrivateSpot());
+    getPrivSpot(__getPrivateSpot());
+    getPubSpot(__getPublicSpot());
   }, []);
 
-  const [isOpen, setIsOpen] = useState([]);
+  const [isPrivateOpen, setIsPrivateOpen] = useState([]);
+  const [isPublicOpen, setIsPublicOpen] = useState([]);
+
   const [level, setLevel] = useState();
 
-  const handleOnClick = (e, idx) => {
-    setIsOpen(idx);
+  const handlePrivateOnClick = (e, idx) => {
+    setIsPrivateOpen(idx);
   };
 
+  const handlePublicOnClick = (e, idx) => {
+    setIsPublicOpen(idx);
+  };
 
-  const { isLoading, error, privateSpot } = useSelector(
-    (state) => state?.privateSpot
+  const { isLoading, error, privateSpot, publicSpot } = useSelector(
+    (state) => state.spots
   );
+
   console.log('---------프라이빗스팟-----------', privateSpot);
+  console.log('---------퍼블릭스팟-----------', publicSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -36,10 +46,9 @@ const SpotsMap = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
-  
+
   return (
     <>
-      {/* <RemovableCustomOverlayStyle /> */}
       <Map // 지도를 표시할 Container
         id={`map`}
         center={{
@@ -49,12 +58,11 @@ const SpotsMap = () => {
         }}
         style={{
           // 지도의 크기
-          width: "100%",
-          height: "100%",
+          width: '100%',
+          height: '100%',
         }}
-        level={8} // 지도의 확대 레벨
-        onZoomChanged={(map) => setLevel(map.getLevel())}
-      >
+        level={9} // 지도의 확대 레벨
+        onZoomChanged={(map) => setLevel(map.getLevel())}>
         <ZoomControl />
 
         {privateSpot.map((place, idx) => (
@@ -65,34 +73,68 @@ const SpotsMap = () => {
                 lat: place.y,
                 lng: place.x,
               }}
-              onClick={(e) => handleOnClick(e, idx)}
+              onClick={(e) => handlePrivateOnClick(e, idx)}
               image={{
-                src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 마커이미지의 주소입니다
+                src: '/public.png', // 마커이미지의 주소입니다
                 size: {
-                  width: 64,
-                  height: 69,
+                  width: 30,
+                  height: 30,
                 }, // 마커이미지의 크기입니다
-                options: {
-                  offset: {
-                    x: 27,
-                    y: 69,
-                  }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-                },
+                // options: {
+                //   offset: {
+                //     x: 27,
+                //     y: 69,
+                //   }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                // },
               }}
             />
-            {isOpen && (
+
+            {isPrivateOpen === idx ? (
               <CustomOverlayMap
+                key={place.idx}
                 position={{
                   lat: place.y,
                   lng: place.x,
-                }}
-              >
+                }}>
                 <Container>
                   {place.spotName}
-                  <div onClick={() => setIsOpen(false)}>X</div>
+                  <div onClick={() => setIsPrivateOpen(false)}>X</div>
                 </Container>
               </CustomOverlayMap>
-            )}
+            ) : null}
+          </>
+        ))}
+
+        {publicSpot.map((place, idx) => (
+          <>
+            <MapMarker
+              key={place.opensId}
+              position={{
+                lat: place.y,
+                lng: place.x,
+              }}
+              onClick={(e) => handlePublicOnClick(e, idx)}
+              image={{
+                src: '/private.png', // 마커이미지의 주소입니다
+                size: {
+                  width: 30,
+                  height: 30,
+                },
+              }}
+            />
+            {isPublicOpen === idx ? (
+              <CustomOverlayMap
+                key={place.idx}
+                position={{
+                  lat: place.y,
+                  lng: place.x,
+                }}>
+                <Container>
+                  {place.placenm}
+                  <div onClick={() => setIsPublicOpen(false)}>X</div>
+                </Container>
+              </CustomOverlayMap>
+            ) : null}
           </>
         ))}
       </Map>

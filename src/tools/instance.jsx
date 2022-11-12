@@ -61,3 +61,7 @@ export const PrivateApi = {
     instance.post(`places`, payload),
   getPrivateSpot: () => instance.get(`places`),
 };
+
+export const PublicApi = {
+  getPublicSpot: () => instance.get(`places/open`)
+}
