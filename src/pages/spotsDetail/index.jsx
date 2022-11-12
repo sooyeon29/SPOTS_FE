@@ -29,7 +29,7 @@ import {
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const SpotsDetail = () => {
   const myTime = new Array(
@@ -45,8 +45,8 @@ const SpotsDetail = () => {
 
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
-  const placeList = useSelector((state) => state?.privateSpot.privateSpot);
-  console.log("리스트중에고르자궁", placeList);
+  const placeList = useSelector((state) => state?.spots.privateSpot);
+  // console.log("리스트중에고르자궁", placeList);
 
   const selectSpot = placeList?.filter((place) => {
     // console.log("각구장쓰", place);
@@ -57,16 +57,11 @@ const SpotsDetail = () => {
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(new Date());
-  console.log("들어오자마자날짜?", startDate);
-  const pickDateHandler = (date, name) => {
-    setStartDate(date);
-    dispatch(
-      __getAllMatch({
-        place: name,
-        date: startDate,
-      })
-    );
-  };
+  // console.log("들어오자마자날짜?", startDate);
+
+  const todayMatchList = useSelector((state) => state?.matcher.matcher);
+  // console.log("-----------오늘의매치----------", state.matcher)
+  // console.log("======오늘의매치=========", todayMatchList);
 
   // 2. 시간과 팀을 선택한다(팀1-a, 팀2-b) => 이것으로 matchId를 만들어줄 예정이다
   const [pickedTime, setPickedTime] = useState("");
@@ -110,17 +105,18 @@ const SpotsDetail = () => {
   console.log(user);
   const myPoint = user.point;
 
-  console.log(typeof startDate);
+  // console.log(typeof startDate);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // 계산을 위해 포인트를 차감하여 patch 도 실행해주자!
-
+  const bookDate = JSON.stringify(startDate).substring(1, 14);
+  console.log("*************날짜*************", bookDate);
   const navigate = useNavigate();
   const bookMyMatch = (name) => {
     dispatch(
       __postSpotsMatch({
         place: name,
-        date: startDate,
-        matchId: pickedTime + name + startDate,
+        date: bookDate,
+        matchId: pickedTime + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: parseInt(myMember?.member),
@@ -128,6 +124,17 @@ const SpotsDetail = () => {
       })
     );
     navigate(`/userpage`);
+  };
+
+  const pickDateHandler = (date, name) => {
+    console.log("이 날짜는??????????????", date);
+    setStartDate(date);
+    dispatch(
+      __getAllMatch({
+        place: name,
+        date: bookDate,
+      })
+    );
   };
 
   return (
@@ -233,7 +240,7 @@ const SpotsDetail = () => {
                   >
                     취소
                   </button>
-
+                  {/* 배드민턴이랑 테니스일 경우 */}
                   {!isTwo && (
                     <Pick>
                       <One onClick={pickTwoHandler}>단식</One>

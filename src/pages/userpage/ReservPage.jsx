@@ -17,11 +17,11 @@ const ReservPage = ({ reservToggle, reservClickToggle }) => {
         +
       </button>
       {myMatches.map((myMatch) => {
-        const myDate = new Date(myMatch.date.substring(0, 19));
+        console.log(myMatch);
         return (
           <MyMatch key={myMatch.reservationId}>
             <p>장소: {myMatch.place}</p>
-            <p>날짜: {myDate.toLocaleDateString()}</p>
+            <p>날짜: {myMatch.matchId.substring(13, 28)}</p>
             <p>시간: {myMatch.matchId.substring(0, 13)}</p>
             <p>
               경기인원: {myMatch.member}:{myMatch.member}

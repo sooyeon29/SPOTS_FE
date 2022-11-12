@@ -4,11 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
-import { __getPrivateSpot } from "../../redux/modules/privateSlice";
+
 import SpotList from "./HostSpotList";
 import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
 import SpotsDetail from "../spotsDetail/index";
-import SpotsMap from "./SpotsMap";
+import SpotsMap from "../reservation/SpotsMap";
+import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const Reservation = () => {
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ const Reservation = () => {
     dispatch(__getPrivateSpot());
   }, []);
 
-  const { isLoading, error } = useSelector((state) => state?.privateSpot);
-  const placeList = useSelector((state) => state.privateSpot.privateSpot);
+  const { isLoading, error } = useSelector((state) => state?.spots);
+  const placeList = useSelector((state) => state.spots.privateSpot);
   console.log("플레이스리스트에들은거", placeList);
 
   if (isLoading) {

@@ -18,7 +18,6 @@ const SpotsMap = ({ placeList }) => {
 
   const handleOnFilter = (sports) => {
     setFilter(sports);
-    console.log(sports);
   };
 
   return (
