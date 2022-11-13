@@ -22,7 +22,7 @@ import {
   Pick,
   One,
   Two,
-} from "./Styles";
+} from "./styles";
 import {
   __getAllMatch,
   __postSpotsMatch,

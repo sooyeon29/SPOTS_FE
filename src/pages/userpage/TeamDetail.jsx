@@ -1,20 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
+import useToggle from "../../hooks/useToggle";
 import { __getMyteamDetail } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
 import { StContainer, StWrap } from "./Styles";
 
 const TeamDetail = () => {
   const { teamdetail } = useSelector((state) => state.user);
-  console.log(teamdetail);
+  //console.log(teamdetail);
 
   const { id } = useParams();
-  console.log(id);
+  //console.log(id);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [isEdit, setIsEdit, clickEditMode] = useToggle();
+
+  const nameRef = useRef();
+  const memberRef = useRef();
+  const adminRef = useRef();
+
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
   }, [dispatch, id]);
@@ -42,24 +50,121 @@ const TeamDetail = () => {
       <Header />
       <StContainer>
         <StWrap>
-          <img alt="팀 프로필" src={teamdetail.image} />
-          <div>{teamdetail.teamName}</div>
-          <div>{teamdetail.sports}</div>
-          <div>{teamdetail.member}</div>
-          <div>
-            {teamdetail.wins}승 / {teamdetail.lose}패
-          </div>
-          <div>score: {teamdetail.score}</div>
-          <div>admin: {teamdetail.admin}</div>
-          <button>수정하기</button>
-          <button
-            onClick={() => {
-              dropTeam(teamdetail.teamId);
-              console.log(teamdetail.teamId);
-            }}
-          >
-            삭제하기
-          </button>
+          {!isEdit ? (
+            <>
+              <img alt="팀 프로필" src={teamdetail.image} />
+              <div>{teamdetail.teamName}</div>
+              <div>{teamdetail.sports}</div>
+              <div>{teamdetail.member}</div>
+              <div>
+                {teamdetail.wins}승 / {teamdetail.lose}패
+              </div>
+              <div>score: {teamdetail.score}</div>
+              <div>admin: {teamdetail.admin}</div>
+              <button onClick={clickEditMode}>수정하기</button>
+              <button
+                onClick={() => {
+                  dropTeam(teamdetail.teamId);
+                  console.log(teamdetail.teamId);
+                }}
+              >
+                삭제하기
+              </button>
+            </>
+          ) : (
+            <>
+              <img alt="팀 프로필" src={teamdetail.image} />
+              <p>
+                teamName :
+                <input
+                  type="text"
+                  defaultValue={teamdetail.teamName}
+                  ref={nameRef}
+                />
+                <button
+                  onClick={() => {
+                    UserpageAPI.patchMyTeam({
+                      teamName: nameRef.current.value,
+                    })
+                      .then((res) => {
+                        console.log(res);
+                        if (res.status === 200) {
+                          alert("수정이 완료되었습니다.");
+                          window.location.reload();
+                        }
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                        if (err.response.status === 400) {
+                          alert("수정 권한이 없습니다.");
+                        }
+                      });
+                  }}
+                >
+                  수정하기
+                </button>
+              </p>
+              <p>
+                member :
+                <input
+                  type="number"
+                  min="1"
+                  defaultValue={teamdetail.member}
+                  ref={memberRef}
+                />
+                <button
+                  onClick={() => {
+                    UserpageAPI.patchMyTeam({
+                      newMember: memberRef.current.value,
+                    })
+                      .then((res) => {
+                        console.log(res);
+                        if (res.status === 200) {
+                          alert("수정이 완료되었습니다.");
+                          window.location.reload();
+                        }
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                        if (err.response.status === 400) {
+                          alert("수정 권한이 없습니다.");
+                        }
+                      });
+                  }}
+                >
+                  수정하기
+                </button>
+              </p>
+              admin:
+              <input
+                type="text"
+                defaultValue={teamdetail.admin}
+                ref={adminRef}
+              />
+              <button
+                onClick={() => {
+                  UserpageAPI.patchMyTeam({
+                    newAdmin: adminRef.current.value,
+                  })
+                    .then((res) => {
+                      console.log(res);
+                      if (res.status === 200) {
+                        alert("수정이 완료되었습니다.");
+                        window.location.reload();
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      if (err.response.status === 400) {
+                        alert("수정 권한이 없습니다.");
+                      }
+                    });
+                }}
+              >
+                수정하기
+              </button>
+            </>
+          )}
         </StWrap>
       </StContainer>
     </>

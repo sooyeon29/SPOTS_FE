@@ -41,6 +41,8 @@ export const UserpageAPI = {
       },
     }),
   deleteTeam: () => instance.delete(`teams`),
+  patchMyInfo: (payload) => instance.patch(`users/me`, payload),
+  patchMyTeam: (payload) => instance.patch(`teams`, payload),
 };
 
 // spotsdetail 실제 예약 서비스
