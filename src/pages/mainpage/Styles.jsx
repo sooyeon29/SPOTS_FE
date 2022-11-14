@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
 export const SpotsBtns = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  margin: 30px 10px 10px 10px;
   button {
-    width: 120px;
-    height: 50px;
-    margin: 20px;
+    width: auto;
+    height: 30px;
+    margin-right: 20px;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    border: 2px solid black;
+    cursor: pointer;
   }
 `;
 export const SearchBox = styled.form`
