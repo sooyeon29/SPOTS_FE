@@ -5,9 +5,7 @@ import styled from 'styled-components';
 
 const Search = () => {
   const navigate = useNavigate();
-  const [positions, setPositions] = useState([]);
   const [keyword, setKeyword] = useState('');
-  const [sports, setSports] = useState('');
 
   const onSearchHandler = (e) => {
     e.preventDefault();

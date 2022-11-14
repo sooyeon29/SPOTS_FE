@@ -1,21 +1,41 @@
-import { useNavigate } from "react-router-dom";
-import { Place } from "./Style";
+import { useNavigate } from 'react-router-dom';
+import { Place } from './Style';
 
-const SpotList = ({ place }) => {
+const SpotList = ({ searchedSpot }) => {
   const navigate = useNavigate();
 
   return (
     <>
       <Place>
-        <h3>{place.spotName}</h3>
-        <button onClick={() => navigate(`/spotsdetail/${place.placesId}`)}>
+        { searchedSpot.placesId ? (
+          <>
+            <h3>{searchedSpot.spotName}</h3>
+            <button
+              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
+              매칭 신청하기
+            </button>
+            <div>
+              {searchedSpot.sports}
+              <span>{searchedSpot.spotKind}</span>
+              <span>{searchedSpot.price}</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <h3>{searchedSpot.spotName}</h3>
+            공공시설
+          </>
+        )}
+        {/* <h3>{searchedSpot.spotName}</h3>
+        <button
+          onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
           예약하러가기
         </button>
         <div>
-          {place.sports}
-          <span>{place.spotKind}</span>
-          <span>{place.price}</span>
-        </div>
+          {searchedSpot.sports}
+          <span>{searchedSpot.spotKind}</span>
+          <span>{searchedSpot.price}</span>
+        </div> */}
       </Place>
     </>
   );

@@ -41,8 +41,8 @@ const SpotsMap = ({ sportsKind }) => {
     (state) => state.spots
   );
 
-  console.log("---------프라이빗스팟-----------", privateSpot);
-  console.log("---------퍼블릭스팟-----------", publicSpot);
+  console.log("---------사설시설-----------", privateSpot);
+  console.log("---------공공시설-----------", publicSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -182,7 +182,7 @@ const SpotsMap = ({ sportsKind }) => {
                       lng: place.x,
                     }}>
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.placenm}</Title>
+                      <Title>{place.spotName}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -215,7 +215,7 @@ const SpotsMap = ({ sportsKind }) => {
                       lng: place.x,
                     }}>
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.placenm}</Title>
+                      <Title>{place.spotName}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
