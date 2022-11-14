@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Search from './Search';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const token = localStorage.getItem('token');
@@ -21,7 +21,7 @@ const Header = () => {
             }}>
             <span>SPOTS</span>
           </StLogo>
-          <Search />
+          <SearchBar />
           <StButtonsWrap>
             <StButtons>
               <Sta

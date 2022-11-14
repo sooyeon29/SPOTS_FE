@@ -12,11 +12,11 @@ import SpotsMap from "../reservation/SpotsMap";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const Reservation = () => {
-  const navigate = useNavigate();
   const [search, setSearch] = useState();
   const dispatch = useDispatch();
   const location = useLocation();
   const keyword = location.state;
+  console.log(keyword);
 
   useEffect(() => {
     dispatch(__getPrivateSpot());
@@ -34,14 +34,6 @@ const Reservation = () => {
     return <div>{error.message}</div>;
   }
 
-  const onChangeSearch = (e) => {
-    e.preventDeafualt();
-    setSearch(e.target.value);
-  };
-
-  const onSearch = (e) => {
-    e.preventDeafualt();
-  };
 
   return (
     <>
