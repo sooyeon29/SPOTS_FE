@@ -63,8 +63,8 @@ const SpotsMap = ({ sportsKind }) => {
         }}
         style={{
           // 지도의 크기
-          width: "100%",
-          height: "100%",
+          width: "80%",
+          height: "500px",
         }}
         level={9} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
