@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { Place } from './Style';
+import { useNavigate } from "react-router-dom";
+import { Place } from "./Style";
 
 const SpotList = ({ searchedSpot }) => {
   const navigate = useNavigate();
@@ -7,11 +7,12 @@ const SpotList = ({ searchedSpot }) => {
   return (
     <>
       <Place>
-        { searchedSpot.placesId ? (
+        {searchedSpot.placesId ? (
           <>
             <h3>{searchedSpot.spotName}</h3>
             <button
-              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
+              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}
+            >
               매칭 신청하기
             </button>
             <div>

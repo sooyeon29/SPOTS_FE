@@ -27,7 +27,5 @@ export const Container = styled.div`
   border-radius: 10px;
   background-color: #d5f103;
   border: solid 2px white;
-
-`
-export const Title = styled.div`
-`
+`;
+export const Title = styled.div``;
