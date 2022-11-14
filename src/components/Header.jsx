@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import useDetectClose from "../hooks/useDetectClose";
-import Search from "./Search";
+import SearchBar from "./SearchBar";
 import { BsPersonCircle } from "react-icons/bs";
 
 const Header = () => {
@@ -27,18 +27,16 @@ const Header = () => {
           >
             <span>SPOTS</span>
           </StLogo>
-          <Search />
+          <SearchBar />
           <StButtonsWrap>
             <StButtons>
-              <DropdownContainer>
-                <DropdownButton
+                <Sta
                   onClick={() => {
                     navigate(`/book`);
                   }}
                 >
                   Reservation
-                </DropdownButton>
-              </DropdownContainer>
+                </Sta>
               {!token ? (
                 <Sta
                   onClick={() => {
@@ -122,7 +120,7 @@ const StButtonsWrap = styled.nav`
 `;
 
 const StButtons = styled.ul`
-  /* display: flex; */
+  display: flex;
   /* flex-direction: row; */
   /* list-style: none; */
   /* margin: 0px; */
@@ -136,7 +134,6 @@ const StButtons = styled.ul`
 
 const Sta = styled.a`
   width: 120px;
-  margin-left: 22px;
   font-size: 18px;
   /* line-height: 24px; */
   font-weight: normal;
@@ -161,7 +158,7 @@ const Sta = styled.a`
 const DropdownContainer = styled.div`
   position: relative;
   /* text-align: center; */
-  width: 120px;
+  /* width: 120px; */
   height: auto;
   color: #fff;
 `;
