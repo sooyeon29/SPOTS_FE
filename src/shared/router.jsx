@@ -13,7 +13,7 @@ import Kakao from "../pages/login/Kakao";
 import Hosting from "../pages/userpage/Hosting";
 import SwitchAccount from "../pages/login/SwitchAccount";
 import ReservPage from "../pages/userpage/ReservPage";
-
+import HostList from "../pages/userpage/HostList";
 
 function Router() {
   return (
@@ -31,6 +31,8 @@ function Router() {
         <Route path="/book" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
         <Route path="/hosting" element={<Hosting />} />
+        <Route path="/switchaccount" element={<SwitchAccount />} />
+        <Route path="/hostlist" element={<HostList />} />
       </Routes>
     </BrowserRouter>
   );

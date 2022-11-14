@@ -6,9 +6,11 @@ import { __getMyInfo } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const MyPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(__getMyInfo());
@@ -97,6 +99,7 @@ const MyPage = () => {
                     if (res.status === 200) {
                       window.confirm("탈퇴하시겠습니까?");
                       localStorage.clear();
+                      navigate("/");
                     }
                   })
                   .catch((err) => {
