@@ -13,7 +13,7 @@ const MyPage = ({ mytoggle, myClickToggle }) => {
   }, []);
 
   const { user } = useSelector((state) => state.user);
-  //console.log(user);
+  console.log(user.ID);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
@@ -88,6 +88,25 @@ const MyPage = ({ mytoggle, myClickToggle }) => {
             </button>
           </p>
           <button onClick={clickEditMode}>수정완료</button>
+          <button
+            onClick={() => {
+              UserpageAPI.dropOutMe({ loginId: user.ID })
+                .then((res) => {
+                  console.log(res);
+                  if (res.status === 200) {
+                    window.confirm("탈퇴하시겠습니까?");
+                    localStorage.clear();
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  if (err.status === 400) {
+                  }
+                });
+            }}
+          >
+            회원탈퇴
+          </button>
         </div>
       )}
     </StWrap>

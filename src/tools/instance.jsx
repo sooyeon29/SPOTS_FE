@@ -1,4 +1,5 @@
 import axios from "axios";
+import { intlFormatDistanceWithOptions } from "date-fns/fp";
 
 const isLogin = localStorage.getItem("token");
 // const isKakaoLogin = localStorage.getItem("kakaocode");
@@ -43,6 +44,7 @@ export const UserpageAPI = {
   deleteTeam: () => instance.delete(`teams`),
   patchMyInfo: (payload) => instance.patch(`users/me`, payload),
   patchMyTeam: (payload) => instance.patch(`teams`, payload),
+  dropOutMe: (payload) => instance.patch(`users/drop`, payload),
 };
 
 // spotsdetail 실제 예약 서비스

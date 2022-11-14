@@ -8,20 +8,15 @@ import { UserpageAPI } from "../../tools/instance";
 import { StContainer, StWrap } from "./Styles";
 
 const TeamDetail = () => {
-  const { teamdetail } = useSelector((state) => state.user);
-  //console.log(teamdetail);
-
   const { id } = useParams();
-  //console.log(id);
+  const { teamdetail } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [isEdit, setIsEdit, clickEditMode] = useToggle();
-
-  const nameRef = useRef();
   const memberRef = useRef();
   const adminRef = useRef();
+  const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
@@ -75,34 +70,7 @@ const TeamDetail = () => {
             <>
               <img alt="팀 프로필" src={teamdetail.image} />
               <p>
-                teamName :
-                <input
-                  type="text"
-                  defaultValue={teamdetail.teamName}
-                  ref={nameRef}
-                />
-                <button
-                  onClick={() => {
-                    UserpageAPI.patchMyTeam({
-                      teamName: nameRef.current.value,
-                    })
-                      .then((res) => {
-                        console.log(res);
-                        if (res.status === 200) {
-                          alert("수정이 완료되었습니다.");
-                          window.location.reload();
-                        }
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                        if (err.response.status === 400) {
-                          alert("수정 권한이 없습니다.");
-                        }
-                      });
-                  }}
-                >
-                  수정하기
-                </button>
+                <div> teamName : {teamdetail.teamName}</div>
               </p>
               <p>
                 member :
@@ -115,6 +83,7 @@ const TeamDetail = () => {
                 <button
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
+                      teamName: teamdetail.teamName,
                       newMember: memberRef.current.value,
                     })
                       .then((res) => {
@@ -144,6 +113,7 @@ const TeamDetail = () => {
               <button
                 onClick={() => {
                   UserpageAPI.patchMyTeam({
+                    teamName: teamdetail.teamName,
                     newAdmin: adminRef.current.value,
                   })
                     .then((res) => {
@@ -155,8 +125,8 @@ const TeamDetail = () => {
                     })
                     .catch((err) => {
                       console.log(err);
-                      if (err.response.status === 400) {
-                        alert("수정 권한이 없습니다.");
+                      if (err.response.status === 500) {
+                        alert("admin은 가입한 회원에게만 위임할 수 있습니다.");
                       }
                     });
                 }}
