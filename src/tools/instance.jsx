@@ -45,6 +45,7 @@ export const UserpageAPI = {
   patchMyInfo: (payload) => instance.patch(`users/me`, payload),
   patchMyTeam: (payload) => instance.patch(`teams`, payload),
   dropOutMe: (payload) => instance.patch(`users/drop`, payload),
+  switchMe: (payload) => instance.patch(`users/cancelDrop`, payload),
 };
 
 // spotsdetail 실제 예약 서비스
