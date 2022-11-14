@@ -68,6 +68,9 @@ const Header = () => {
                           <Linkdiv onClick={() => navigate("/hosting ")}>
                             Hosting
                           </Linkdiv>
+                          <Linkdiv onClick={() => navigate("/hostlist ")}>
+                            HostList
+                          </Linkdiv>
                           <Linkdiv onClick={logout}>Log Out</Linkdiv>
                         </Li>
                       </Ul>
