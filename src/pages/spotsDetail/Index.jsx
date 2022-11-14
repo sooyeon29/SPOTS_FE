@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { ko } from 'date-fns/esm/locale';
-import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import useInput from '../../hooks/useInput';
-import useToggle from '../../hooks/useToggle';
-import { __getMyInfo, __getMyteamList } from '../../redux/modules/userSlice';
+import { useEffect, useState } from "react";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ko } from "date-fns/esm/locale";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import useInput from "../../hooks/useInput";
+import useToggle from "../../hooks/useToggle";
+import { __getMyInfo, __getMyteamList } from "../../redux/modules/userSlice";
 import {
   BookMatch,
   Croll,
@@ -28,24 +28,24 @@ import {
   Pick,
   One,
   Two,
-} from './Styles';
+} from "./Styles";
 import {
   __getAllMatch,
   __postSpotsMatch,
-} from '../../redux/modules/matchSlice';
-import { useNavigate, useParams } from 'react-router-dom';
-import { __getPrivateSpot } from '../../redux/modules/spotsSlice';
+} from "../../redux/modules/matchSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const SpotsDetail = () => {
   const myTime = new Array(
-    '06:00 - 08:00',
-    '08:00 - 10:00',
-    '10:00 - 12:00',
-    '12:00 - 14:00',
-    '14:00 - 16:00',
-    '16:00 - 18:00',
-    '18:00 - 20:00',
-    '20:00 - 22:00'
+    "06:00 - 08:00",
+    "08:00 - 10:00",
+    "10:00 - 12:00",
+    "12:00 - 14:00",
+    "14:00 - 16:00",
+    "16:00 - 18:00",
+    "18:00 - 20:00",
+    "20:00 - 22:00"
   );
 
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
@@ -62,14 +62,14 @@ const SpotsDetail = () => {
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(null);
-  console.log('startDate', startDate);
+  console.log("startDate", startDate);
   console.log(Date());
   const todayMatchList = useSelector((state) => state?.matcher.matcher);
   // console.log("-----------오늘의매치----------", state.matcher)
   // console.log("======오늘의매치=========", todayMatchList);
 
   // 2. 시간과 팀을 선택한다(팀1-a, 팀2-b) => 이것으로 matchId를 만들어줄 예정이다
-  const [pickedTime, setPickedTime] = useState('');
+  const [pickedTime, setPickedTime] = useState("");
   // 예약 시간,팀 선택시 해당 포인트 확인됨
   const [payAPrice, setPayAPrice] = useState(0);
   const [payBPrice, setPayBPrice] = useState(0);
@@ -122,14 +122,13 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime + startDate + name + 'nomatch',
+        matchId: pickedTime + "nomatch" + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: parseInt(myMember?.member),
         price: payAPrice + payBPrice,
       })
     );
-    navigate(`/userpage`);
   };
   const [forMatch, setForMatch, matchHandler] = useToggle();
 
@@ -139,7 +138,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime + startDate + name + 'withmatch',
+        matchId: pickedTime + "ismatch" + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: parseInt(myMember?.member),
@@ -164,11 +163,11 @@ const SpotsDetail = () => {
 
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.matcher);
-  console.log('=============오늘 신청된매치', allMatchToday);
-  allMatchToday.map((matchToday) =>
-    console.log('시간만잘잘라줘', matchToday.matchId.substring(0, 13))
-  );
-  console.log(allMatchToday);
+  // console.log("=============오늘 신청된매치", allMatchToday);
+  // allMatchToday.map((matchToday) =>
+  //   console.log("시간만잘잘라줘", matchToday.matchId.substring(0, 13))
+  // );
+  // console.log(allMatchToday);
 
   // const timeSlot = allMatchToday.map((matchToday, index) => (
   //   <li key={index}>
@@ -181,6 +180,8 @@ const SpotsDetail = () => {
     match.matchId.substring(0, 13)
   );
   console.log(timeSlots);
+  const isMatch = allMatchToday.map((match) => match.matchId.substring(13, 20));
+  console.log(isMatch);
 
   return (
     <>
@@ -192,7 +193,7 @@ const SpotsDetail = () => {
               <Title>{spot.spotName}</Title>
               <MainInfo>
                 <Croll>
-                  <img alt='' src='logo512.png' />
+                  <img alt="" src="logo512.png" />
                   <div>
                     정보
                     <li>{spot.address}</li>
@@ -229,45 +230,52 @@ const SpotsDetail = () => {
                     {!forMatch && (
                       <div>
                         <Times>
-                          consloe.log(myTime)
                           <button
                             disabled={timeSlots.includes(myTime[0])}
-                            onClick={() => teamPick(0, spot.price)}>
+                            onClick={() => teamPick(0, spot.price)}
+                          >
                             {myTime[0]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[1])}
-                            onClick={() => teamPick(1, spot.price)}>
+                            onClick={() => teamPick(1, spot.price)}
+                          >
                             {myTime[1]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[2])}
-                            onClick={() => teamPick(2, spot.price)}>
+                            onClick={() => teamPick(2, spot.price)}
+                          >
                             {myTime[2]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[3])}
-                            onClick={() => teamPick(3, spot.price)}>
+                            onClick={() => teamPick(3, spot.price)}
+                          >
                             {myTime[3]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[4])}
-                            onClick={() => teamPick(4, spot.price)}>
+                            onClick={() => teamPick(4, spot.price)}
+                          >
                             {myTime[4]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[5])}
-                            onClick={() => teamPick(5, spot.price)}>
+                            onClick={() => teamPick(5, spot.price)}
+                          >
                             {myTime[5]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[6])}
-                            onClick={() => teamPick(6, spot.price)}>
+                            onClick={() => teamPick(6, spot.price)}
+                          >
                             {myTime[6]}
                           </button>
                           <button
                             disabled={timeSlots.includes(myTime[7])}
-                            onClick={() => teamPick(7, spot.price)}>
+                            onClick={() => teamPick(7, spot.price)}
+                          >
                             {myTime[7]}
                           </button>
                         </Times>
@@ -279,7 +287,10 @@ const SpotsDetail = () => {
                       <SelectTeam>
                         <BookMatch>
                           <Time>{myTime[0]}</Time>
-                          <Team onClick={() => teamPick(0, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[0])}
+                            onClick={() => teamPick(0, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -289,7 +300,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[1]}</Time>
-                          <Team onClick={() => teamPick(1, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[1])}
+                            onClick={() => teamPick(1, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -299,7 +313,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[2]}</Time>
-                          <Team onClick={() => teamPick(2, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[2])}
+                            onClick={() => teamPick(2, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -309,7 +326,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[3]}</Time>
-                          <Team onClick={() => teamPick(3, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[3])}
+                            onClick={() => teamPick(3, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -319,7 +339,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[4]}</Time>
-                          <Team onClick={() => teamPick(4, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[4])}
+                            onClick={() => teamPick(4, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -329,7 +352,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[5]}</Time>
-                          <Team onClick={() => teamPick(5, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[5])}
+                            onClick={() => teamPick(5, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -339,7 +365,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[6]}</Time>
-                          <Team onClick={() => teamPick(6, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[6])}
+                            onClick={() => teamPick(6, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -349,7 +378,10 @@ const SpotsDetail = () => {
                         </BookMatch>
                         <BookMatch>
                           <Time>{myTime[7]}</Time>
-                          <Team onClick={() => teamPick(7, spot.price)}>
+                          <Team
+                            disabled={timeSlots.includes(myTime[7])}
+                            onClick={() => teamPick(7, spot.price)}
+                          >
                             팀1
                           </Team>
                           vs
@@ -369,7 +401,8 @@ const SpotsDetail = () => {
                       <button
                         onClick={() => {
                           setStartDate(null);
-                        }}>
+                        }}
+                      >
                         취소
                       </button>
                     </div>
@@ -378,15 +411,15 @@ const SpotsDetail = () => {
                       <span>{pickedTime}</span>
                       <button
                         onClick={() => {
-                          setPickedTime('');
+                          setPickedTime("");
                           setPayAPrice(0);
-                          // setColorChange(!colorChange);
-                        }}>
+                        }}
+                      >
                         취소
-                      </button>{' '}
+                      </button>{" "}
                     </div>
                   </ShowDateTime>
-                  <select name='myteam' value={myTeam} onChange={pickMyTeam}>
+                  <select name="myteam" value={myTeam} onChange={pickMyTeam}>
                     <option>선택하기</option>
                     {myTeams?.map((myTeam) => {
                       return (
@@ -395,23 +428,23 @@ const SpotsDetail = () => {
                     })}
                   </select>
                   <input
-                    type='number'
+                    type="number"
                     requiered
-                    name='member'
+                    name="member"
                     onChange={memberHandler}
-                    placeholder='경기 참석인원'
+                    placeholder="경기 참석인원"
                   />
                   <br />
                   <div>
                     나의팀: {myTeam?.myteam} 경기인원: {myMember?.member}
                   </div>
-                  {forMatch && !isTwo && spot.sports !== '풋살장' && (
+                  {forMatch && !isTwo && spot.sports !== "풋살장" && (
                     <Pick>
                       <One onClick={pickTwoHandler}>단식</One>
                       <Two onClick={pickTwoHandler}>복식</Two>
                     </Pick>
                   )}
-                  {forMatch && isTwo && spot.sports !== '풋살장' && (
+                  {forMatch && isTwo && spot.sports !== "풋살장" && (
                     <Pick>
                       <Two onClick={pickTwoHandler}>단식</Two>
                       <One onClick={pickTwoHandler}>복식</One>
@@ -439,7 +472,7 @@ const SpotsDetail = () => {
                   )}
 
                   <button onClick={matchHandler}>
-                    {!forMatch ? '매칭 팀 찾기' : '돌아가기'}
+                    {!forMatch ? "매칭 팀 찾기" : "돌아가기"}
                   </button>
                 </YourSelect>
               </TimeDate>
