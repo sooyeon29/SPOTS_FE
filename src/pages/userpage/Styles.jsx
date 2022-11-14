@@ -9,9 +9,11 @@ export const StContainer = styled.div`
 
 export const StWrap = styled.div`
   width: 50%;
-  height: 300px;
+  height: 500px;
   border: 1px solid lightgray;
   border-radius: 15px;
+  margin-top: 50px;
+  align-items: center;
 `;
 
 export const StTag = styled.button`

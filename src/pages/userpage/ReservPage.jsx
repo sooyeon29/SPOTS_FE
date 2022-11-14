@@ -2,14 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __exitMyMatch, __getMyMatch } from "../../redux/modules/matchSlice";
 import { StWrap, StTag, MyMatch } from "./Styles";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
 
-const ReservPage = ({ reservToggle, reservClickToggle }) => {
+const ReservPage = () => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
+ 
   const myMatches = useSelector((state) => state.matcher);
   console.log("요거거", myMatches);
+
   const cancleMatchHandler = (id, place, team) => {
     dispatch(
       __exitMyMatch({
@@ -21,11 +26,10 @@ const ReservPage = ({ reservToggle, reservClickToggle }) => {
   };
 
   return (
-    <StWrap>
+     <Layout>
+      <Header />
+       <StWrap>
       <StTag>Reservation</StTag>
-      <button reservToggle={reservToggle} onClick={reservClickToggle}>
-        +
-      </button>
       {myMatches.matcher?.map((myMatch) => {
         console.log(myMatch);
         return (
@@ -53,6 +57,8 @@ const ReservPage = ({ reservToggle, reservClickToggle }) => {
         );
       })}
     </StWrap>
+</Layout>
+
   );
 };
 
