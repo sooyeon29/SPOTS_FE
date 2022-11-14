@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const useDetectClose = (elem, initialState) => {
+const useDetectClose = (initialState) => {
   const [isOpen, setIsOpen] = useState(initialState);
+  const ref = useRef(null);
+
+  const removeHandler = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     const onClick = (e) => {
-      if (elem.current !== null && !elem.current.contains(e.target)) {
+      if (ref.current !== null && !ref.current.contains(e.target)) {
         setIsOpen(!isOpen);
       }
     };
@@ -15,8 +20,8 @@ const useDetectClose = (elem, initialState) => {
     return () => {
       window.removeEventListener("click", onclick);
     };
-  }, [isOpen, elem]);
-  return [isOpen, setIsOpen];
+  }, [isOpen]);
+  return [isOpen, ref, removeHandler];
 };
 
 export default useDetectClose;

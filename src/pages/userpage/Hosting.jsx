@@ -6,6 +6,8 @@ import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { __postRegister } from "../../redux/modules/spotsSlice";
+import { StWrap } from "./Styles";
+
 const { kakao } = window;
 
 const Hosting = () => {
@@ -90,170 +92,172 @@ const Hosting = () => {
   return (
     <Layout>
       <Header />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onRegisterHandler(spot);
-        }}
-      >
-        <div>
-          스팟 종류
-          <select
-            onChange={(e) => {
-              const { value } = e.target;
-              setSpot({
-                ...spot,
-                sports: value,
-              });
-            }}
-          >
-            <option>선택하세요</option>
-            <option>풋살장</option>
-            <option>테니스장</option>
-            <option>배드민턴장</option>
-          </select>
-        </div>
-        <div>
-          스팟 이름
-          <input
-            required
-            type="text"
-            onChange={(e) => {
-              const { value } = e.target;
-              setSpot({
-                ...spot,
-                spotName: value,
-              });
-            }}
-          />
-        </div>
-        <div>
-          실내/외
-          <select
-            onChange={(e) => {
-              const { value } = e.target;
-              setSpot({
-                ...spot,
-                spotKind: value,
-              });
-            }}
-          >
-            <option>선택하세요</option>
-            <option>실내 스팟</option>
-            <option>실외 스팟</option>
-          </select>
-        </div>
-        <div>
-          <span>주소</span>
-          <button type="button" onClick={handleClick}>
-            주소 검색
-          </button>
-        </div>
-        {fullAddress ? (
+      <StWrap>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onRegisterHandler(spot);
+          }}
+        >
           <div>
-            <span>상세주소</span>
-            <div>
-              <div>{fullAddress}</div>
-              <input
-                required
-                type="text"
-                placeholder="상세 주소를 입력해주세요"
-                onChange={(e) => {
-                  const { value } = e.target;
-                  setSpot({
-                    ...spot,
-                    address: value,
-                  });
-                }}
-              />
-            </div>
+            스팟 종류
+            <select
+              onChange={(e) => {
+                const { value } = e.target;
+                setSpot({
+                  ...spot,
+                  sports: value,
+                });
+              }}
+            >
+              <option>선택하세요</option>
+              <option>풋살장</option>
+              <option>테니스장</option>
+              <option>배드민턴장</option>
+            </select>
           </div>
-        ) : null}
-        <div>
-          <input
-            type="checkbox"
-            name="comforts"
-            value="장비대여"
-            onChange={(e) => {
-              onCheckedElement(e.target.checked, e.target.value);
-            }}
-            checked={checkedList.includes("장비대여") ? true : false}
-          />
-          장비대여
-          <input
-            type="checkbox"
-            name="comforts"
-            value="주차장"
-            onChange={(e) => {
-              onCheckedElement(e.target.checked, e.target.value);
-            }}
-            checked={checkedList.includes("주차장") ? true : false}
-          />
-          주차장
-          <input
-            type="checkbox"
-            name="comforts"
-            value="샤워실"
-            onChange={(e) => {
-              onCheckedElement(e.target.checked, e.target.value);
-            }}
-            checked={checkedList.includes("샤워실") ? true : false}
-          />
-          샤워실
-          <input
-            type="checkbox"
-            name="comforts"
-            value="탈의실"
-            onChange={(e) => {
-              onCheckedElement(e.target.checked, e.target.value);
-            }}
-            checked={checkedList.includes("탈의실") ? true : false}
-          />
-          탈의실
-          <input
-            type="checkbox"
-            name="comforts"
-            value="개인락커"
-            onChange={(e) => {
-              onCheckedElement(e.target.checked, e.target.value);
-            }}
-            checked={checkedList.includes("개인락커") ? true : false}
-          />
-          개인락커
-        </div>
-        <div>
-          1시간당
-          <input
-            required
-            type="text"
-            onChange={(e) => {
-              const { value } = e.target;
-              setSpot({
-                ...spot,
-                price: parseInt(value),
-              });
-            }}
-          />
-          원
-        </div>
-        <div>
-          스팟 설명
-          <br />
-          <textarea
-            required
-            style={{ height: "200px", width: "400px" }}
-            type="text"
-            onChange={(e) => {
-              const { value } = e.target;
-              setSpot({
-                ...spot,
-                desc: value,
-              });
-            }}
-          />
-        </div>
-        <button>등록하기</button>
-      </form>
+          <div>
+            스팟 이름
+            <input
+              required
+              type="text"
+              onChange={(e) => {
+                const { value } = e.target;
+                setSpot({
+                  ...spot,
+                  spotName: value,
+                });
+              }}
+            />
+          </div>
+          <div>
+            실내/외
+            <select
+              onChange={(e) => {
+                const { value } = e.target;
+                setSpot({
+                  ...spot,
+                  spotKind: value,
+                });
+              }}
+            >
+              <option>선택하세요</option>
+              <option>실내 스팟</option>
+              <option>실외 스팟</option>
+            </select>
+          </div>
+          <div>
+            <span>주소</span>
+            <button type="button" onClick={handleClick}>
+              주소 검색
+            </button>
+          </div>
+          {fullAddress ? (
+            <div>
+              <span>상세주소</span>
+              <div>
+                <div>{fullAddress}</div>
+                <input
+                  required
+                  type="text"
+                  placeholder="상세 주소를 입력해주세요"
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setSpot({
+                      ...spot,
+                      address: value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          ) : null}
+          <div>
+            <input
+              type="checkbox"
+              name="comforts"
+              value="장비대여"
+              onChange={(e) => {
+                onCheckedElement(e.target.checked, e.target.value);
+              }}
+              checked={checkedList.includes("장비대여") ? true : false}
+            />
+            장비대여
+            <input
+              type="checkbox"
+              name="comforts"
+              value="주차장"
+              onChange={(e) => {
+                onCheckedElement(e.target.checked, e.target.value);
+              }}
+              checked={checkedList.includes("주차장") ? true : false}
+            />
+            주차장
+            <input
+              type="checkbox"
+              name="comforts"
+              value="샤워실"
+              onChange={(e) => {
+                onCheckedElement(e.target.checked, e.target.value);
+              }}
+              checked={checkedList.includes("샤워실") ? true : false}
+            />
+            샤워실
+            <input
+              type="checkbox"
+              name="comforts"
+              value="탈의실"
+              onChange={(e) => {
+                onCheckedElement(e.target.checked, e.target.value);
+              }}
+              checked={checkedList.includes("탈의실") ? true : false}
+            />
+            탈의실
+            <input
+              type="checkbox"
+              name="comforts"
+              value="개인락커"
+              onChange={(e) => {
+                onCheckedElement(e.target.checked, e.target.value);
+              }}
+              checked={checkedList.includes("개인락커") ? true : false}
+            />
+            개인락커
+          </div>
+          <div>
+            1시간당
+            <input
+              required
+              type="text"
+              onChange={(e) => {
+                const { value } = e.target;
+                setSpot({
+                  ...spot,
+                  price: parseInt(value),
+                });
+              }}
+            />
+            원
+          </div>
+          <div>
+            스팟 설명
+            <br />
+            <textarea
+              required
+              style={{ height: "200px", width: "300px" }}
+              type="text"
+              onChange={(e) => {
+                const { value } = e.target;
+                setSpot({
+                  ...spot,
+                  desc: value,
+                });
+              }}
+            />
+          </div>
+          <button>등록하기</button>
+        </form>
+      </StWrap>
     </Layout>
   );
 };
