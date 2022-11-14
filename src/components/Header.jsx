@@ -38,14 +38,6 @@ const Header = () => {
               Reservation
             </Sta>
 
-            <Sta
-              onClick={() => {
-                navigate(`/`);
-              }}
-            >
-              About
-            </Sta>
-
             {!token ? (
               <Sta
                 onClick={() => {
@@ -78,7 +70,7 @@ const StWrap = styled.div`
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 60px;
+  height: 72px;
   -webkit-box-pack: justify;
   justify-content: space-between;
   -webkit-box-align: center;
