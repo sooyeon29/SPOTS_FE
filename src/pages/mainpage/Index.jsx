@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 import { useNavigate } from "react-router-dom";
+import Banner from "../../components/Banner";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import SpotsMap from "./SpotsMap";
@@ -10,25 +11,10 @@ import { SpotsBtns } from "./Styles";
 
 const MainMaps = () => {
   const mapRef = useRef();
-  const navigate = useNavigate();
-  const [positions, setPositions] = useState([]);
-  const [keyword, setKeyword] = useState("");
-  const [sports, setSports] = useState("");
   const [sportsKind, setSportsKind] = useState("");
   const futsal = "풋살장";
   const tennis = "테니스장";
   const badminton = "배드민턴장";
-
-  const onSportsHandler = (e) => {
-    setSports(e.target.value);
-  };
-
-  const onSearchHandler = (e) => {
-    e.preventDefault();
-    navigate("/book", { state: [sports, keyword] });
-    console.log({ state: [sports, keyword] });
-  };
-  // console.log(keyword)
 
   useEffect(() => {
     // 백에서 저장해준데이터를 가져와서 setPositions에 넣어주어야 한다.
@@ -49,30 +35,13 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
-        <img alt="" src="fortest.jpg" width={100} />
+        <Banner />
         <SpotsBtns>
-          <button onClick={() => setSportsKind(futsal)}>풋살장</button>
-          <button onClick={() => setSportsKind(tennis)}>테니스장</button>
-          <button onClick={() => setSportsKind(badminton)}>배드민턴장</button>
+          <button onClick={() => setSportsKind(futsal)}>풋살</button>
+          <button onClick={() => setSportsKind(tennis)}>테니스</button>
+          <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
         </SpotsBtns>
         <SpotsMap sportsKind={sportsKind} />
-        <select onChange={onSportsHandler}>
-          <option>전체</option>
-          <option>풋살장</option>
-          <option>테니스장</option>
-          <option>배드민턴장</option>
-        </select>
-        <form onSubmit={onSearchHandler}>
-          <input
-            type="text"
-            value={keyword}
-            placeholder="구를 입력하세요 예) 마포구"
-            onChange={(e) => {
-              setKeyword(e.target.value);
-            }}
-          />
-          <button>스팟 검색</button>
-        </form>
       </Layout>
     </>
   );

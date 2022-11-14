@@ -1,9 +1,10 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Search from './Search';
 
 const Header = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -12,116 +13,115 @@ const Header = () => {
 
   return (
     <>
-      <StWrap>
-        <StLogo
-          onClick={() => {
-            navigate(`/`);
-          }}
-        >
-          <img alt="" src="logo192.png" />
-        </StLogo>
-        <StButtonsWrap>
-          <StButtons>
-            <Sta
-              onClick={() => {
-                navigate(`/`);
-              }}
-            >
-              Home
-            </Sta>
-
-            <Sta
-              onClick={() => {
-                navigate(`/book`);
-              }}
-            >
-              Reservation
-            </Sta>
-
-            {!token ? (
+      <StHeader>
+        <StWrap>
+          <StLogo
+            onClick={() => {
+              navigate(`/`);
+            }}>
+            <span>SPOTS</span>
+          </StLogo>
+          <Search />
+          <StButtonsWrap>
+            <StButtons>
               <Sta
                 onClick={() => {
-                  navigate(`/login`);
-                }}
-              >
-                Login
+                  navigate(`/`);
+                }}>
+                Home
               </Sta>
-            ) : (
+
               <Sta
                 onClick={() => {
-                  navigate(`/userpage`);
-                }}
-              >
-                My Page
+                  navigate(`/book`);
+                }}>
+                Reservation
               </Sta>
-            )}
 
-            <Sta onClick={logout}>Logout</Sta>
-          </StButtons>
-        </StButtonsWrap>
-      </StWrap>
+              {!token ? (
+                <Sta
+                  onClick={() => {
+                    navigate(`/login`);
+                  }}>
+                  Login
+                </Sta>
+              ) : (
+                <Sta
+                  onClick={() => {
+                    navigate(`/userpage`);
+                  }}>
+                  My Page
+                </Sta>
+              )}
+
+              <Sta onClick={logout}>Logout</Sta>
+            </StButtons>
+          </StButtonsWrap>
+        </StWrap>
+      </StHeader>
     </>
   );
 };
 
 export default Header;
 
-const StWrap = styled.div`
-  box-sizing: border-box;
-  display: flex;
+const StHeader = styled.div`
+  background-color: #666666;
   width: 100%;
-  height: 72px;
+`;
+
+const StWrap = styled.div`
+  margin: auto;
+  width: 80%;
+  display: flex;
+  /* height: 72px; */
   -webkit-box-pack: justify;
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
-  background-color: beige;
 `;
 
-const StLogo = styled.a`
-  display: block;
+const StLogo = styled.div`
   cursor: pointer;
-  width: 86px;
-  height: 28px;
-  margin-bottom: 20px;
+  /* margin-right: 10px; */
+  display: flex;
 
-  > img {
-    display: block;
+  span {
     cursor: pointer;
-    width: 106px;
-    height: 48px;
+    font-size: large;
+    font-weight: 600;
+    color: #fff;
   }
 `;
 
 const StButtonsWrap = styled.nav`
-  display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
 `;
 
 const StButtons = styled.ul`
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  margin: 0px;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* list-style: none; */
+  /* margin: 0px; */
   padding: 0px;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  /* margin-block-start: 1em; */
+  /* margin-block-end: 1em; */
+  /* margin-inline-start: 0px; */
+  /* margin-inline-end: 0px; */
+  /* padding-inline-start: 40px; */
 `;
 
 const Sta = styled.a`
-  padding: 12px;
-  margin-right: 22px;
+  width: 120px;
+  height: auto;
+  margin-left: 22px;
   font-size: 18px;
-  line-height: 24px;
+  /* line-height: 24px; */
   font-weight: normal;
-  color: var(--gray-700);
+  color: #fff;
+  /* var(--gray-700); */
   cursor: pointer;
-  border-radius: 10px;
   text-decoration: none;
-  font-family: "SpoqaHanSansNeo-Regular";
 
   &:focus {
     font-weight: bold;
@@ -130,6 +130,7 @@ const Sta = styled.a`
     font-weight: bold;
   }
   &:hover {
-    background-color: var(--gray-100);
+    text-decoration: underline;
+    /* background-color: var(--gray-100); */
   }
 `;
