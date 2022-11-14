@@ -133,7 +133,6 @@ const StButtons = styled.ul`
 
 const Sta = styled.a`
   width: 120px;
-  height: auto;
   margin-left: 22px;
   font-size: 18px;
   /* line-height: 24px; */

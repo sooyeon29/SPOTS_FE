@@ -9,16 +9,14 @@ const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [sports, setSports] = useState('');
 
-  const onSportsHandler = (e) => {
-    setSports(e.target.value);
-  };
+
 
   const onSearchHandler = (e) => {
     e.preventDefault();
-    navigate('/book', { state: [sports, keyword] });
-    console.log({ state: [sports, keyword] });
+    navigate('/book', { state: [keyword] });
+    console.log({ state: [keyword] });
   };
-  // console.log(keyword)
+  console.log(keyword)
 
   return (
     <StSearch>
@@ -31,7 +29,9 @@ const Search = () => {
             setKeyword(e.target.value);
           }}
         />
-          <BsSearch style={{ color: 'white', cursor: 'pointer'}} />
+        <StBtn>
+          <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
+        </StBtn>
       </form>
     </StSearch>
   );
@@ -48,14 +48,13 @@ const StInput = styled.input`
     color: white;
 
     ::placeholder {
-        color: transparent;
+      color: transparent;
     }
   }
 
   ::placeholder {
     color: white;
   }
-
 `;
 
 const StSearch = styled.button`
@@ -63,3 +62,8 @@ const StSearch = styled.button`
   border: none;
   border-bottom: 2px solid white;
 `;
+
+const StBtn = styled.button`
+    border: none;
+    background: none;
+`

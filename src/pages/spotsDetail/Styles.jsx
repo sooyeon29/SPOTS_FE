@@ -32,48 +32,85 @@ export const Croll = styled.div`
   }
 `;
 
-export const BookMatch = styled.div`
+export const TimeDate = styled.div`
   display: flex;
+  width: 100%;
+  padding: 10px;
 `;
-export const Time = styled.div`
-  width: 40%;
+export const SelectList = styled.div`
+  width: 50%;
 `;
-export const Team = styled.button`
-  width: 80px;
-  height: 50px;
-  border: 1px solid black;
-  background-color: ${(props) => (props.butcolor ? "pink" : "lightgray")};
-`;
-export const Select = styled.div`
+export const CalTime = styled.div`
   display: flex;
+  /* padding: 0px; */
 `;
-export const SelectTeam = styled.div`
+export const Times = styled(TimeDate)`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 150%;
   padding: 10px;
 `;
+export const SelectTeam = styled.div`
+  flex-direction: column;
+  width: 100%;
+`;
+export const BookMatch = styled.div`
+  display: flex;
+  width: 100%;
+`;
+export const Time = styled.div`
+  /* width: 100%; */
+`;
+export const Team = styled.button`
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+`;
+
 export const YourSelect = styled.div`
-  padding: 10px;
+  margin: auto;
+  padding: 30px;
+  width: 50%;
   div {
     display: flex;
   }
+  select {
+    margin: 10px;
+  }
+  input {
+    margin: 10px;
+  }
+`;
+export const ShowDateTime = styled.div`
+  width: 90%;
+  border: 1px solid black;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+`;
+export const Line = styled.div`
+  width: 300px;
+  height: 1px;
+  background-color: black;
+  margin: 20px 0px;
+`;
+export const NoMatchBook = styled.button`
+  margin: 10px auto;
 `;
 export const BookingBut = styled.button``;
 export const Pick = styled.div`
   display: flex;
   height: 38px;
   justify-content: center;
-  /* position: relative; */
   z-index: 1;
   width: 90%;
-  /* height: 100%; */
   background-color: #f8f9fd;
   border: 1px solid #f1f3f7;
-  /* padding: 0px; */
   border-radius: 8px;
-  /* box-sizing: border-box; */
-  margin: 28px auto 20px auto;
+  margin: 40px auto 20px auto;
 `;
 export const One = styled.button`
   z-index: 2;
