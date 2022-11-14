@@ -9,14 +9,12 @@ const Search = () => {
   const [keyword, setKeyword] = useState('');
   const [sports, setSports] = useState('');
 
-
-
   const onSearchHandler = (e) => {
     e.preventDefault();
     navigate('/book', { state: [keyword] });
     console.log({ state: [keyword] });
   };
-  console.log(keyword)
+  console.log(keyword);
 
   return (
     <StSearch>
@@ -64,6 +62,6 @@ const StSearch = styled.button`
 `;
 
 const StBtn = styled.button`
-    border: none;
-    background: none;
-`
+  border: none;
+  background: none;
+`;

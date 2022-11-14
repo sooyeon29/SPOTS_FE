@@ -30,15 +30,13 @@ const Header = () => {
           <SearchBar />
           <StButtonsWrap>
             <StButtons>
-              <DropdownContainer>
-                <DropdownButton
+                <Sta
                   onClick={() => {
                     navigate(`/book`);
                   }}
                 >
                   Reservation
-                </DropdownButton>
-              </DropdownContainer>
+                </Sta>
               {!token ? (
                 <Sta
                   onClick={() => {
@@ -67,6 +65,9 @@ const Header = () => {
                           </Linkdiv>
                           <Linkdiv onClick={() => navigate("/hosting ")}>
                             Hosting
+                          </Linkdiv>
+                          <Linkdiv onClick={() => navigate("/hostlist ")}>
+                            HostList
                           </Linkdiv>
                           <Linkdiv onClick={logout}>Log Out</Linkdiv>
                         </Li>
@@ -119,7 +120,7 @@ const StButtonsWrap = styled.nav`
 `;
 
 const StButtons = styled.ul`
-  /* display: flex; */
+  display: flex;
   /* flex-direction: row; */
   /* list-style: none; */
   /* margin: 0px; */
@@ -133,7 +134,6 @@ const StButtons = styled.ul`
 
 const Sta = styled.a`
   width: 120px;
-  margin-left: 22px;
   font-size: 18px;
   /* line-height: 24px; */
   font-weight: normal;
@@ -158,7 +158,7 @@ const Sta = styled.a`
 const DropdownContainer = styled.div`
   position: relative;
   /* text-align: center; */
-  width: 120px;
+  /* width: 120px; */
   height: auto;
   color: #fff;
 `;

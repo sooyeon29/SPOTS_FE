@@ -12,7 +12,6 @@ import SpotsMap from "../reservation/SpotsMap";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
 const Reservation = () => {
-  const [search, setSearch] = useState();
   const dispatch = useDispatch();
   const location = useLocation();
   const keyword = location.state;
