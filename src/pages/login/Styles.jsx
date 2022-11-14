@@ -40,7 +40,7 @@ export const StWraps = styled.div`
 export const Stinput = styled.input`
   background-color: #eee;
   border: none;
-  padding: 12px 15px;
+  padding: 13px 15px;
   margin: 8px 0 30px 0;
   width: 100%;
   min-width: 300px;

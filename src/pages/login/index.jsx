@@ -69,6 +69,7 @@ const Login = () => {
             <button>로그인</button>
             <div>
               아직 회원이 아니신가요? <a href="/signup"> 회원가입</a>
+              <div>휴면계정 전환</div>
             </div>
           </form>
           {/* 소셜로그인 - 카카오로그인 */}
