@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
 import { LoginAPI } from "../../tools/instance";
 import { KAKAO_AUTH_URL } from "./OAuth";
-import { StWraps, Stinput, KakaoBtn } from "./styles";
+import { StWraps, Stinput, KakaoBtn } from "./Styles";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({

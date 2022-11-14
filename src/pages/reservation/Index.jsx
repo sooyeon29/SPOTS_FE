@@ -7,7 +7,7 @@ import useToggle from "../../hooks/useToggle";
 
 import SpotList from "./HostSpotList";
 import { HostSpots, MapPlace, Place, PlaceList } from "./Style";
-import SpotsDetail from "../spotsDetail/index";
+import SpotsDetail from "../spotsDetail/Index";
 import SpotsMap from "../reservation/SpotsMap";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 
