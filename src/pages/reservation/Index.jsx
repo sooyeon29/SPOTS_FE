@@ -47,22 +47,6 @@ const Reservation = () => {
     <>
       <Layout>
         <Header />
-
-        <div>
-          <form onSubmit={(e) => onSearch(e)}>
-            <input
-              type="text"
-              // value={keyword[0]}
-              placeholder="구를 입력하세요 예) 마포구"
-              onChange={onChangeSearch}
-            />
-            <button type="submit">스팟 찾기</button>
-            <div>
-              {/* {keyword[1]}  */}
-              검색 결과
-            </div>
-          </form>
-        </div>
         <HostSpots>
           <MapPlace>
             <SpotsMap placeList={placeList} />
