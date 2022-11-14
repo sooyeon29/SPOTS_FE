@@ -114,6 +114,7 @@ const SpotsDetail = () => {
   // 계산을 위해 포인트를 차감하여 patch 도 실행해주자!
   // const bookDate = JSON.stringify(startDate).substring(1, 11);
   const bookDate = startDate?.toLocaleDateString().substring(0, 12);
+  console.log(bookDate);
   const navigate = useNavigate();
   // 매칭없이 예약하기
   const bookWithNoMatch = (name) => {
@@ -167,6 +168,7 @@ const SpotsDetail = () => {
   allMatchToday.map((matchToday) =>
     console.log("시간만잘잘라줘", matchToday.matchId.substring(0, 13))
   );
+
   return (
     <>
       <Layout>
@@ -214,91 +216,64 @@ const SpotsDetail = () => {
                     {!forMatch && (
                       <div>
                         <Times>
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[0] ? (
-                              <button disabled>{myTime[0]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(0, spot.price)}>
-                                {myTime[0]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[1] ? (
-                              <button disabled>{myTime[1]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(1, spot.price)}>
-                                {myTime[1]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[2] ? (
-                              <button disabled>{myTime[2]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(2, spot.price)}>
-                                {myTime[2]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[3] ? (
-                              <button disabled>{myTime[3]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(3, spot.price)}>
-                                {myTime[3]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[4] ? (
-                              <button disabled>{myTime[4]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(4, spot.price)}>
-                                {myTime[4]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[5] ? (
-                              <button disabled>{myTime[5]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(5, spot.price)}>
-                                {myTime[5]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[6] ? (
-                              <button disabled>{myTime[6]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(6, spot.price)}>
-                                {myTime[6]}
-                              </button>
-                            )
-                          )}
-                          {allMatchToday.map((matchToday) =>
-                            matchToday.matchId.substring(0, 13) ===
-                            myTime[7] ? (
-                              <button disabled>{myTime[7]}</button>
-                            ) : (
-                              <button onClick={() => teamPick(7, spot.price)}>
-                                {myTime[7]}
-                              </button>
-                            )
-                          )}
+                          {/* {allMatchToday.map((matchToday) => {
+                            if (
+                              matchToday.matchId.substring(0, 13) ===
+                                myTime[0] ||
+                              myTime[1] ||
+                              myTime[2] ||
+                              myTime[3] ||
+                              myTime[4] ||
+                              myTime[5] ||
+                              myTime[6] ||
+                              myTime[7]
+                            ) {
+                              return (
+                                <>
+                                  <button disabled>{myTime[0]}</button>
+                                  <button disabled>{myTime[1]}</button>
+                                  <button disabled>{myTime[2]}</button>
+                                  <button disabled>{myTime[3]}</button>
+                                  <button disabled>{myTime[4]}</button>
+                                  <button disabled>{myTime[5]}</button>
+                                  <button disabled>{myTime[6]}</button>
+                                  <button disabled>{myTime[7]}</button>
+                                </>
+                              );
+                            } else
+                              <>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[0]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[1]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[2]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[3]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[4]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[5]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[6]}
+                                </button>
+                                <button onClick={() => teamPick(1, spot.price)}>
+                                  {myTime[7]}
+                                </button>
+                              </>;
+                          })} */}
 
-                          {/* <button onClick={() => teamPick(0, spot.price)}>
+                          <button onClick={() => teamPick(0, spot.price)}>
                             {myTime[0]}
-                          </button> */}
-                          {/* <button onClick={() => teamPick(1, spot.price)}>
+                            {/* {allMatchToday.indexOf(myTime[0]) !== -1 ? () : () } */}
+                          </button>
+                          <button onClick={() => teamPick(1, spot.price)}>
                             {myTime[1]}
                           </button>
                           <button onClick={() => teamPick(2, spot.price)}>
@@ -318,7 +293,7 @@ const SpotsDetail = () => {
                           </button>
                           <button onClick={() => teamPick(7, spot.price)}>
                             {myTime[7]}
-                          </button> */}
+                          </button>
                         </Times>
                       </div>
                     )}
