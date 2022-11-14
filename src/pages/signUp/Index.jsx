@@ -1,9 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import Layout from '../../components/Layout';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { Red } from './Styles';
-import Layout from '../../components/Layout';
 import { SignUpAPI } from '../../tools/instance';
 import { useNavigate } from 'react-router-dom';
 
