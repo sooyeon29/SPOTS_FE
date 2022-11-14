@@ -3,6 +3,7 @@ import { StContainer, StTeamForm, StWrap } from "./Styles";
 import Header from "../../components/Header";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/Layout";
 
 const TeamRegister = () => {
   const navigate = useNavigate();
@@ -71,38 +72,37 @@ const TeamRegister = () => {
   };
 
   return (
-    <>
+    <Layout>
       <Header />
-      <StContainer>
-        <StWrap>
-          <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
-            <img alt="미리보기" src={preview} />
-            <input
-              type="file"
-              //ref={imgRef}
-              onChange={(e) => {
-                handleImagePreview(e);
-              }}
-              accept="image/*" //모든 이미지 파일의 확장자를 허용한다
-            />
-            <input type="text" placeholder="team name" ref={nameRef} />
-            <input
-              type="number"
-              placeholder="number of members"
-              ref={membersRef}
-              min="1"
-            />
-            <select ref={sportsRef}>
-              <option value="">Sports</option>
-              <option value="football">FOOTBALL⚽</option>
-              <option value="tennis">TENNIS🥎</option>
-              <option value="badminton">BADMINTON🏸</option>
-            </select>
-            <button>등록하기</button>
-          </StTeamForm>
-        </StWrap>
-      </StContainer>
-    </>
+
+      <StWrap>
+        <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
+          <img alt="미리보기" src={preview} />
+          <input
+            type="file"
+            //ref={imgRef}
+            onChange={(e) => {
+              handleImagePreview(e);
+            }}
+            accept="image/*" //모든 이미지 파일의 확장자를 허용한다
+          />
+          <input type="text" placeholder="team name" ref={nameRef} />
+          <input
+            type="number"
+            placeholder="number of members"
+            ref={membersRef}
+            min="1"
+          />
+          <select ref={sportsRef}>
+            <option value="">Sports</option>
+            <option value="football">FOOTBALL⚽</option>
+            <option value="tennis">TENNIS🥎</option>
+            <option value="badminton">BADMINTON🏸</option>
+          </select>
+          <button>등록하기</button>
+        </StTeamForm>
+      </StWrap>
+    </Layout>
   );
 };
 
