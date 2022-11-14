@@ -11,7 +11,7 @@ import Layout from "../../components/Layout";
 const TeamDetail = () => {
   const { id } = useParams();
   const { teamdetail } = useSelector((state) => state.user);
-
+  console.log(teamdetail);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,14 +28,14 @@ const TeamDetail = () => {
     UserpageAPI.deleteTeam(teamId)
       .then((res) => {
         console.log(res);
-        if (res.status === 200) {
+        if (res.status === 201) {
           alert("팀 삭제가 완료 되었습니다!");
           navigate("/userpage");
         }
       })
       .catch((error) => {
         console.log(error);
-        if (error.response.status === 400) {
+        if (error.response.status === 404) {
           alert("가입 되지 않은 팀 입니다!");
         }
       });
@@ -88,14 +88,14 @@ const TeamDetail = () => {
                   })
                     .then((res) => {
                       console.log(res);
-                      if (res.status === 200) {
+                      if (res.status === 201) {
                         alert("수정이 완료되었습니다.");
                         window.location.reload();
                       }
                     })
                     .catch((err) => {
                       console.log(err);
-                      if (err.response.status === 400) {
+                      if (err.response.status === 403) {
                         alert("수정 권한이 없습니다.");
                       }
                     });
@@ -114,14 +114,14 @@ const TeamDetail = () => {
                 })
                   .then((res) => {
                     console.log(res);
-                    if (res.status === 200) {
+                    if (res.status === 201) {
                       alert("수정이 완료되었습니다.");
                       window.location.reload();
                     }
                   })
                   .catch((err) => {
                     console.log(err);
-                    if (err.response.status === 500) {
+                    if (err.response.status === 400) {
                       alert("admin은 가입한 회원에게만 위임할 수 있습니다.");
                     }
                   });

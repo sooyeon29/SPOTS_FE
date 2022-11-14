@@ -57,14 +57,14 @@ const TeamRegister = () => {
       UserpageAPI.postMyteam(formData)
         .then((res) => {
           console.log(res);
-          if (res.status === 200) {
+          if (res.status === 201) {
             alert("팀 등록이 완료 되었습니다!");
             navigate(`/teamdetail/${res.data.data.teamId}`);
           }
         })
         .catch((error) => {
           console.log(error);
-          if (error.response.status === 400) {
+          if (error.response.status === 403) {
             alert("중복된 팀 이름입니다!");
           }
         });
@@ -74,7 +74,6 @@ const TeamRegister = () => {
   return (
     <Layout>
       <Header />
-
       <StWrap>
         <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
           <img alt="미리보기" src={preview} />

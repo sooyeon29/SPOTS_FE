@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import useDetectClose from "../hooks/useDetectClose";
 import SearchBar from "./SearchBar";
-import { BsPersonCircle } from "react-icons/bs";
 
 const Header = () => {
   const token = localStorage.getItem("token");
@@ -30,13 +29,13 @@ const Header = () => {
           <SearchBar />
           <StButtonsWrap>
             <StButtons>
-                <Sta
-                  onClick={() => {
-                    navigate(`/book`);
-                  }}
-                >
-                  Reservation
-                </Sta>
+              <Sta
+                onClick={() => {
+                  navigate(`/book`);
+                }}
+              >
+                Reservation
+              </Sta>
               {!token ? (
                 <Sta
                   onClick={() => {
@@ -198,7 +197,7 @@ const Menu = styled.div`
   background: gray;
   position: absolute;
   top: 52px;
-  left: 30%;
+  left: 40%;
   width: 100px;
   text-align: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -228,7 +227,7 @@ const Menu = styled.div`
       opacity: 1;
       visibility: visible;
       transform: translate(-50%, 0);
-      left: 30%;
+      left: 40%;
     `};
 `;
 
