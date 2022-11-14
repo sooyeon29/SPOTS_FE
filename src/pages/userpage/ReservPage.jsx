@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getMyMatch } from "../../redux/modules/matchSlice";
+import { __exitMyMatch, __getMyMatch } from "../../redux/modules/matchSlice";
 import { StWrap, StTag, MyMatch } from "./Styles";
 
 const ReservPage = ({ reservToggle, reservClickToggle }) => {
@@ -8,15 +8,25 @@ const ReservPage = ({ reservToggle, reservClickToggle }) => {
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
-  const myMatches = useSelector((state) => state.matcher.matcher);
+  const myMatches = useSelector((state) => state.matcher);
   console.log("요거거", myMatches);
+  const cancleMatchHandler = (id, place, team) => {
+    dispatch(
+      __exitMyMatch({
+        matchId: id,
+        place: place,
+        teamName: team,
+      })
+    );
+  };
+
   return (
     <StWrap>
       <StTag>Reservation</StTag>
       <button reservToggle={reservToggle} onClick={reservClickToggle}>
         +
       </button>
-      {myMatches.map((myMatch) => {
+      {myMatches.matcher?.map((myMatch) => {
         console.log(myMatch);
         return (
           <MyMatch key={myMatch.reservationId}>
@@ -28,6 +38,17 @@ const ReservPage = ({ reservToggle, reservClickToggle }) => {
             </p>
             <p>내팀이름: {myMatch.teamName}</p>
             <p>{myMatch.result}</p>
+            <button
+              onClick={() =>
+                cancleMatchHandler(
+                  myMatch.matchId,
+                  myMatch.place,
+                  myMatch.teamName
+                )
+              }
+            >
+              예약취소하기
+            </button>
           </MyMatch>
         );
       })}

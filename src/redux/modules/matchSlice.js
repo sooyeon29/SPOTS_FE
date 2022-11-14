@@ -16,6 +16,20 @@ export const __postSpotsMatch = createAsyncThunk(
   }
 );
 
+// 해당구장해당날짜 예약내역 불러오기
+export const __getAllMatch = createAsyncThunk(
+  "spotsMatch/getAllMatch",
+  async (payload, thunkApi) => {
+    try {
+      const { data } = await SpotsMatchApi.getAllMatch(payload);
+      // console.log("^^^^^^^^진짜비었니", payload, "^^^^^^^^^데이터", data);
+      return thunkApi.fulfillWithValue(data);
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
 // 나의 예약내역 불러오기
 export const __getMyMatch = createAsyncThunk(
   "spotsMatch/getMyMatch",
@@ -30,13 +44,12 @@ export const __getMyMatch = createAsyncThunk(
   }
 );
 
-// 해당구장해당날짜 예약내역 불러오기
-export const __getAllMatch = createAsyncThunk(
-  "spotsMatch/getAllMatch",
+// 나의 예약내역 삭제하기
+export const __exitMyMatch = createAsyncThunk(
+  "spotsMatch/putMyMatch",
   async (payload, thunkApi) => {
     try {
-      const { data } = await SpotsMatchApi.getAllMatch(payload);
-      console.log("^^^^^^^^진짜비었니", payload, "^^^^^^^^^데이터", data);
+      const { data } = await SpotsMatchApi.exitMyMatch(payload);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -68,12 +81,28 @@ const matchSlice = createSlice({
       console.log("액션?", action.payload);
       state.matcher.push(action.payload.data);
       console.log("fulfilled 상태", state, action);
-      // alert(state.matcher.message)
+      alert(action.payload.message);
+      window.location.replace(`/userpage`);
     },
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload.response.data.errorMessage;
-      alert(state.error);
+      state.error = action.payload;
+      // console.log("에러났을때", action.payload);
+      alert("필수입력값을 모두 입력해주세요");
+    },
+
+    // 해당구장 해당날짜 예약 가져오기 get
+    [__getAllMatch.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getAllMatch.fulfilled]: (state, action) => {
+      console.log("모든매치", state, "모든매치액션", action.payload);
+      state.isLoading = false;
+      state.matcher = action.payload.data;
+    },
+    [__getAllMatch.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
     // 나의 예역 가져오기 get
     [__getMyMatch.pending]: (state) => {
@@ -89,18 +118,21 @@ const matchSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    // 해당구장 해당날짜 예약 가져오기 get
-    [__getAllMatch.pending]: (state) => {
+    // 나의 예약 내역 삭제하기 put
+    [__exitMyMatch.pending]: (state) => {
       state.isLoading = true;
     },
-    [__getAllMatch.fulfilled]: (state, action) => {
-      console.log("모든매치", state, "모든매치액션", action.payload);
+    [__exitMyMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.matcher = action.payload.data;
+      state.matcher = action.payload;
+      console.log(action.payload);
+      alert(action.payload.message);
+      window.location.reload();
     },
-    [__getAllMatch.rejected]: (state, action) => {
+    [__exitMyMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      alert(action.payload.response.data.error);
     },
   },
 });

@@ -51,12 +51,14 @@ export const UserpageAPI = {
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
-  getMyMatch: () => instance.get(`/reservations/me`),
+
   getAllMatch: (payload) =>
     instance.get(`reservations/register/${payload.place}/${payload.date}`, {
       place: payload.place,
       date: payload.date,
-    }),
+    }), // -> for userpage
+  getMyMatch: () => instance.get(`/reservations/me`),
+  exitMyMatch: (payload) => instance.put(`/reservations/register`, payload),
 };
 
 export const PrivateApi = {

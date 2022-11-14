@@ -129,7 +129,6 @@ const SpotsDetail = () => {
         price: payAPrice + payBPrice,
       })
     );
-    navigate(`/userpage`);
   };
   const [forMatch, setForMatch, matchHandler] = useToggle();
 
