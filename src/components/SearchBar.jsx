@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BsSearch } from 'react-icons/bs';
-import styled from 'styled-components';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import styled from "styled-components";
 
 const Search = () => {
   const navigate = useNavigate();
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
 
   const onSearchHandler = (e) => {
     e.preventDefault();
-    navigate('/book', { state: [keyword] });
+    navigate("/book", { state: [keyword] });
     console.log({ state: [keyword] });
   };
   console.log(keyword);
@@ -18,17 +18,17 @@ const Search = () => {
     <StSearch>
       <form onSubmit={onSearchHandler}>
         <StInput
-          type='text'
+          type="text"
           value={keyword}
-          placeholder='어떤 스팟을 찾으시나요?'
+          placeholder="어떤 스팟을 찾으시나요?"
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
         />
+        <StBtn>
+          <BsSearch style={{ color: "white", cursor: "pointer" }} />
+        </StBtn>
       </form>
-      <StBtn>
-        <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
-      </StBtn>
     </StSearch>
   );
 };
