@@ -1,34 +1,45 @@
 import styled from 'styled-components';
 
-export const HostSpots = styled.div`
+export const StWrap = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 20px;
   /* justify-content: center; */
   /* align-items: center; */
   width: 80%;
 `;
 export const MapPlace = styled.div`
   width: 50%;
-  /* background-color: lightsalmon; */
   height: 80vh;
 `;
 
 export const PlaceList = styled.div`
-  /* position: relative; */
+  width: 50%;
   display: flex;
-  flex: 1;
+  margin-top: 70px;
   flex-direction: column;
-  /* width: 50%; */
   height: 80vh;
   overflow: scroll;
+  background-color: #f1f1f1;
+  display: flex;
 `;
 
 export const Place = styled.div`
-  border: 1px solid black;
+  /* border: 2px solid #FF00B3; */
+  margin: auto;
+  margin-top: 10px;
   border-radius: 10px;
-  margin-bottom: 10px;
   padding: 10px;
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 export const BtnWrap = styled.div`
@@ -54,23 +65,22 @@ export const Container = styled.div`
 `;
 
 export const Status = styled.div`
-  background-color: aliceblue;
+  /* background-color: black; */
   margin: 40px 10px 10px 10px;
   display: block;
 
-  span {
+  /* span {
     width: auto;
     margin-left: 10px;
     display: inline-block;
     text-align: right;
-  }
-`;
-
-export const ListBox = styled.div`
-  width: 50%;
-
+  } */
 `;
 
 export const PrivateBlock = styled.div`
   cursor: pointer;
-`
+`;
+
+export const PublicBlock = styled.div`
+  cursor: pointer;
+`;

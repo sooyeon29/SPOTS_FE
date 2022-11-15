@@ -36,8 +36,8 @@ const SpotsMap = ({ placeList }) => {
         }}
         style={{
           // 지도의 크기
-          width: '100%',
-          height: '100%',
+          // width: '80%',
+          height: '80vh',
         }}
         level={8} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}>

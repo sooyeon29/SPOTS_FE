@@ -61,7 +61,7 @@ const SpotsMap = ({ sportsKind }) => {
         }}
         style={{
           // 지도의 크기
-          width: "100%",
+          width: "80%",
           height: "500px",
           margin: "auto",
         }}
@@ -124,9 +124,9 @@ const SpotsMap = ({ sportsKind }) => {
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
                     src:
-                      (place.sports === "풋살장" && "/futsal.png") || // 마커이미지의 주소입니다
-                      (place.sports === "배드민턴장" && "/badmin.png") ||
-                      (place.sports === "테니스장" && "/tennis.png"),
+                      (place.sports === "풋살장" && "/privateFutsal.png") || // 마커이미지의 주소입니다
+                      (place.sports === "배드민턴장" && "/privateBadminton.png") ||
+                      (place.sports === "테니스장" && "/privateTennis.png"),
                     size: {
                       width: 30,
                       height: 30,
@@ -206,9 +206,9 @@ const SpotsMap = ({ sportsKind }) => {
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
                     src:
-                      (place.minclassnm === "풋살장" && "/pubfusal.png") || // 마커이미지의 주소입니다
-                      (place.minclassnm === "배드민턴장" && "/pubbadmin.png") ||
-                      (place.minclassnm === "테니스장" && "/pubtennis.png"),
+                      (place.minclassnm === "풋살장" && "/publicFutsal.png") || // 마커이미지의 주소입니다
+                      (place.minclassnm === "배드민턴장" && "/publicBadminton.png") ||
+                      (place.minclassnm === "테니스장" && "/publicTennis.png"),
                     size: {
                       width: 30,
                       height: 30,
