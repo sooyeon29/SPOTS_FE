@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  __getMyteamList,
-  __getMyteamDetail,
-} from "../../redux/modules/userSlice";
+
 import { StWrap, StTag, StTeam } from "./Styles";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import {
+  __getMyteamDetail,
+  __getMyteamList,
+} from "../../redux/modules/userSlice";
 
 const TeamPage = () => {
   const navigate = useNavigate();

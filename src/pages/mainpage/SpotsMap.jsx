@@ -61,8 +61,9 @@ const SpotsMap = ({ sportsKind }) => {
         }}
         style={{
           // 지도의 크기
-          width: "80%",
+          width: "100%",
           height: "500px",
+          margin: "auto",
         }}
         level={9} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
@@ -122,7 +123,10 @@ const SpotsMap = ({ sportsKind }) => {
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src: "/private.png", // 마커이미지의 주소입니다
+                    src:
+                      (place.sports === "풋살장" && "/futsal.png") || // 마커이미지의 주소입니다
+                      (place.sports === "배드민턴장" && "/badmin.png") ||
+                      (place.sports === "테니스장" && "/tennis.png"),
                     size: {
                       width: 30,
                       height: 30,
@@ -201,7 +205,10 @@ const SpotsMap = ({ sportsKind }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/public.png", // 마커이미지의 주소입니다
+                    src:
+                      (place.minclassnm === "풋살장" && "/pubfusal.png") || // 마커이미지의 주소입니다
+                      (place.minclassnm === "배드민턴장" && "/pubbadmin.png") ||
+                      (place.minclassnm === "테니스장" && "/pubtennis.png"),
                     size: {
                       width: 30,
                       height: 30,

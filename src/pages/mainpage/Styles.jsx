@@ -5,7 +5,7 @@ export const SpotsBtns = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 30px 10px 10px 10px;
+  margin: 10px 10px 10px 0px;
   button {
     width: auto;
     height: 30px;

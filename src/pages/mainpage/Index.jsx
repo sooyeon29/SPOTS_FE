@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Banner from "../../components/Banner";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import MainMapLayout from "../../components/MainMapLayout";
 import SpotsMap from "./SpotsMap";
 import { SpotsBtns } from "./Styles";
 
@@ -36,12 +37,15 @@ const MainMaps = () => {
       <Layout>
         <Header />
         <Banner />
-        <SpotsBtns>
-          <button onClick={() => setSportsKind(futsal)}>풋살</button>
-          <button onClick={() => setSportsKind(tennis)}>테니스</button>
-          <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
-        </SpotsBtns>
-        <SpotsMap sportsKind={sportsKind} />
+        <MainMapLayout>
+          <SpotsBtns>
+            <button onClick={() => setSportsKind(futsal)}>풋살</button>
+            <button onClick={() => setSportsKind(tennis)}>테니스</button>
+            <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
+          </SpotsBtns>
+
+          <SpotsMap sportsKind={sportsKind} />
+        </MainMapLayout>
       </Layout>
     </>
   );
