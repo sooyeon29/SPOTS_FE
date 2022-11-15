@@ -3,12 +3,12 @@ import { io } from "socket.io-client";
 import useInput from "../../hooks/useInput";
 
 const Chat = () => {
-  const socket = io();
+  const socket = io("https://ws-study.shop");
 
-  //   //소켓이 서버에 연결되어 있는지 여부
-  //   socket.on("connect", () => {
-  //     console.log(socket.connected); // true
-  //   });
+  //소켓이 서버에 연결되어 있는지 여부
+  socket.on("connect", () => {
+    console.log(socket.connected); // true
+  });
 
   //   //소켓이 서버에 연결 해제되었는지 여부
   //   socket.on("connect", () => {
