@@ -18,7 +18,8 @@ const Wrap = styled.div`
   align-items: center;
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
+  margin:auto;
   background-color: var(--gray-200);
   position: absolute;
   z-index: -1;

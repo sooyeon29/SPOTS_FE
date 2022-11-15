@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { Place } from "./Style";
+import { useNavigate } from 'react-router-dom';
+import { Place, PrivateBlock } from './Style';
 
-const SpotList = ({ searchedSpot }) => {
+const SpotList = ({ searchedSpot, allSpot }) => {
   const navigate = useNavigate();
 
   return (
@@ -9,21 +9,18 @@ const SpotList = ({ searchedSpot }) => {
       <Place>
         {searchedSpot.placesId ? (
           <>
-            <h3>{searchedSpot.spotName}</h3>
-            <button
-              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}
-            >
-              매칭 신청하기
-            </button>
+          <PrivateBlock onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
+            {searchedSpot.spotName}
             <div>
               {searchedSpot.sports}
               <span>{searchedSpot.spotKind}</span>
               <span>{searchedSpot.price}</span>
             </div>
+            </PrivateBlock>
           </>
         ) : (
           <>
-            <h3>{searchedSpot.spotName}</h3>
+            {searchedSpot.spotName}
             공공시설
           </>
         )}

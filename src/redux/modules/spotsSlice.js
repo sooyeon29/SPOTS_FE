@@ -14,7 +14,7 @@ export const __getPrivateSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.getPrivateSpot();
-      console.log(data);
+      // console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -27,7 +27,7 @@ export const __getMyPrivateSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.getMyPrivateSpot(payload);
-      console.log(data.data);
+      // console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -67,7 +67,7 @@ export const __getPublicSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PublicApi.getPublicSpot();
-      console.log(data);
+      // console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
