@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
-import useDetectClose from "../hooks/useDetectClose";
-import SearchBar from "./SearchBar";
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import useDetectClose from '../hooks/useDetectClose';
+import SearchBar from './SearchBar';
 
 const Header = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -22,61 +22,58 @@ const Header = () => {
           <StLogo
             onClick={() => {
               navigate(`/`);
-            }}
-          >
-            <span>SPOTS</span>
+            }}>
+            <Img src='/logo.png' alt='logo' />
           </StLogo>
+          {/* <StButtonsWrap> */}
+          <StButtons>
           <SearchBar />
-          <StButtonsWrap>
-            <StButtons>
+            <Sta
+              onClick={() => {
+                navigate(`/book`);
+              }}>
+              Reservation
+            </Sta>
+            {!token ? (
               <Sta
                 onClick={() => {
-                  navigate(`/book`);
-                }}
-              >
-                Reservation
+                  navigate(`/login`);
+                }}>
+                Login
               </Sta>
-              {!token ? (
-                <Sta
-                  onClick={() => {
-                    navigate(`/login`);
-                  }}
-                >
-                  Login
-                </Sta>
-              ) : (
-                <>
-                  <DropdownContainer>
-                    <DropdownButton onClick={myPageHandler} ref={myPageRef}>
-                      My Page
-                    </DropdownButton>
-                    <Menu isDropped={myPageIsOpen}>
-                      <Ul ref={dropDownRef}>
-                        <Li>
-                          <Linkdiv onClick={() => navigate("/mypage")}>
-                            My page
-                          </Linkdiv>
-                          <Linkdiv onClick={() => navigate("/teampage")}>
-                            Team Page
-                          </Linkdiv>
-                          <Linkdiv onClick={() => navigate("/reservpage ")}>
-                            Reservation
-                          </Linkdiv>
-                          <Linkdiv onClick={() => navigate("/hosting ")}>
-                            Hosting
-                          </Linkdiv>
-                          <Linkdiv onClick={() => navigate("/hostlist ")}>
-                            HostList
-                          </Linkdiv>
-                          <Linkdiv onClick={logout}>Log Out</Linkdiv>
-                        </Li>
-                      </Ul>
-                    </Menu>
-                  </DropdownContainer>
-                </>
-              )}
-            </StButtons>
-          </StButtonsWrap>
+            ) : (
+              <>
+                <DropdownContainer>
+                  <DropdownButton onClick={myPageHandler} ref={myPageRef}>
+                    My Page
+                  </DropdownButton>
+                  <Menu isDropped={myPageIsOpen}>
+                    <Ul ref={dropDownRef}>
+                      <Li>
+                        <Linkdiv onClick={() => navigate('/mypage')}>
+                          My page
+                        </Linkdiv>
+                        <Linkdiv onClick={() => navigate('/teampage')}>
+                          Team Page
+                        </Linkdiv>
+                        <Linkdiv onClick={() => navigate('/reservpage')}>
+                          Reservation
+                        </Linkdiv>
+                        <Linkdiv onClick={() => navigate('/hosting ')}>
+                          Hosting
+                        </Linkdiv>
+                        <Linkdiv onClick={() => navigate('/hostlist ')}>
+                          HostList
+                        </Linkdiv>
+                        <Linkdiv onClick={logout}>Log Out</Linkdiv>
+                      </Li>
+                    </Ul>
+                  </Menu>
+                </DropdownContainer>
+              </>
+            )}
+          </StButtons>
+          {/* </StButtonsWrap> */}
         </StWrap>
       </StHeader>
     </>
@@ -86,7 +83,7 @@ const Header = () => {
 export default Header;
 
 const StHeader = styled.div`
-  background-color: #666666;
+  background-color: #000000;
   width: 100%;
 `;
 
@@ -132,7 +129,7 @@ const StButtons = styled.ul`
 `;
 
 const Sta = styled.a`
-  width: 120px;
+  margin: 0px 30px 0px 30px;
   font-size: 18px;
   /* line-height: 24px; */
   font-weight: normal;
@@ -209,7 +206,7 @@ const Menu = styled.div`
   z-index: 9;
 
   &:after {
-    content: "";
+    content: '';
     height: 0;
     width: 0;
     position: absolute;
@@ -234,3 +231,7 @@ const Menu = styled.div`
 const Linkdiv = styled.div`
   cursor: pointer;
 `;
+
+const Img = styled.img`
+  width: 100px;
+`

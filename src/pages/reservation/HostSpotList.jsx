@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { Place, PrivateBlock } from './Style';
+import { Place, PrivateBlock, PublicBlock } from './Style';
 
-const SpotList = ({ searchedSpot, allSpot }) => {
+const SpotList = ({ searchedSpot }) => {
   const navigate = useNavigate();
 
   return (
@@ -9,19 +9,24 @@ const SpotList = ({ searchedSpot, allSpot }) => {
       <Place>
         {searchedSpot.placesId ? (
           <>
-          <PrivateBlock onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
-            {searchedSpot.spotName}
-            <div>
-              {searchedSpot.sports}
-              <span>{searchedSpot.spotKind}</span>
-              <span>{searchedSpot.price}</span>
-            </div>
+            <PrivateBlock
+              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
+              <div>{searchedSpot.spotName}</div>
+                <div>{searchedSpot.sports}</div>
+                <div>{searchedSpot.spotKind}</div>
+                <div>{searchedSpot.price}</div>
             </PrivateBlock>
           </>
         ) : (
           <>
-            {searchedSpot.spotName}
-            공공시설
+          <a href={searchedSpot.svcurl}>
+          <PublicBlock>
+            <div>{searchedSpot.spotName}</div>
+            <div>{searchedSpot.svcstatnm}</div>
+            <div>{searchedSpot.minclassnm}</div>
+            <div>{searchedSpot.svcnm}</div>
+            </PublicBlock>
+            </a>
           </>
         )}
         {/* <h3>{searchedSpot.spotName}</h3>

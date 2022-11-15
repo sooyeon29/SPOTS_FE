@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export const SpotsBtns = styled.div`
+export const UpperLine = styled.div`
   width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 10px 10px 10px 0px;
+  justify-content: space-between;
+  margin: 30px 10px 10px 10px;
+  
   button {
     width: auto;
     height: 30px;
@@ -15,7 +17,20 @@ export const SpotsBtns = styled.div`
     border: 2px solid black;
     cursor: pointer;
   }
+
+  span {
+    margin-left: 10px;
+  }
+
+  span:first-child {
+    color: #2B2BFF;
+  }
+
+  span:last-child {
+    color: #FF00B3;
+  }
 `;
+
 export const SearchBox = styled.form`
   margin: 30px;
 `;

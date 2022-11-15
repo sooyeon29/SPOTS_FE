@@ -11,9 +11,10 @@ const MainMapLayout = ({ children }) => {
 export default MainMapLayout;
 
 const Wrap = styled.div`
-  background-color: #afd0ec;
-  width: 90%;
+  /* background-color: #afd0ec; */
+  width: 100%;
   max-width: 1116px;
   padding-bottom: 30px;
-  top: 343px;
+  /* top: 343px; */
 `;
+
