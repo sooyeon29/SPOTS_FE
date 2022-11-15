@@ -9,7 +9,7 @@ export const StContainer = styled.div`
 
 export const StWrap = styled.div`
   width: 50%;
-  height: 500px;
+  padding: 20px 0px;
   border: 1px solid lightgray;
   border-radius: 15px;
   margin-top: 50px;
@@ -27,10 +27,11 @@ export const StTag = styled.button`
 `;
 
 export const StTeam = styled.div`
-  width: 40%;
-  height: 80px;
+  width: 90%;
+
   border: 1px solid lightgray;
   border-radius: 15px;
+  margin: auto;
 `;
 
 export const StTeamForm = styled.form`
