@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import useToggle from "../../hooks/useToggle";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import useToggle from '../../hooks/useToggle';
 
 import SpotList from './HostSpotList';
 import { StWrap, MapPlace, PlaceList, Status } from './Style';

@@ -2,7 +2,7 @@ import axios from "axios";
 import { intlFormatDistanceWithOptions } from "date-fns/fp";
 
 const isLogin = localStorage.getItem("token");
-// const isKakaoLogin = localStorage.getItem("kakaocode");
+const isKakaoLogin = localStorage.getItem("token");
 
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",
@@ -19,7 +19,7 @@ export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   kakaoLogin: (payload) =>
     // console.log(payload),
-    instance.get(`auth/kakao/callback?code=${payload}`),
+    instance.get(`auth/kakao/code?code=${payload}`),
 };
 
 // 회원가입

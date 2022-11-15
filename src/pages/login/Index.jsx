@@ -80,7 +80,12 @@ const Login = () => {
           <KakaoBtn>
             {/* // href="https://ws-study.shop/auth/kakao"> */}
             <img alt="" src="/kakao.png" width={30} />
-            <a href={KAKAO_AUTH_URL}>카카오계정 로그인</a>
+            <a
+              href=// "/auth/kakao/callback"
+              {KAKAO_AUTH_URL}
+            >
+              카카오계정 로그인
+            </a>
           </KakaoBtn>
         </StWraps>
       </Layout>
