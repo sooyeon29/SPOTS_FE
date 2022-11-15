@@ -9,7 +9,7 @@ export const SpotsBtns = styled.div`
   button {
     width: auto;
     height: 30px;
-    margin-right: 20px;
+    margin-right: 10px;
     border-radius: 20px;
     padding: 0px 10px 0px 10px;
     border: 2px solid black;

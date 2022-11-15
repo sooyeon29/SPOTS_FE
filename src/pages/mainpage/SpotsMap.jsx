@@ -15,7 +15,7 @@ const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
   const getPubSpot = useDispatch();
 
-  console.log(sportsKind);
+  // console.log(sportsKind);
 
   useEffect(() => {
     getPrivSpot(__getPrivateSpot());
@@ -38,7 +38,7 @@ const SpotsMap = ({ sportsKind }) => {
   };
 
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
-    (state) => state.spots
+    (state) => state?.spots
   );
 
   console.log("---------사설시설-----------", privateSpot);
