@@ -36,6 +36,7 @@ const HostDetail = () => {
     e.preventDefault();
 
     PrivateApi.editPrivateSpot({
+      placesId: id,
       spotName: newInput.newTitle,
       desc: newInput.newDesc,
       price: newInput.newPrice,
