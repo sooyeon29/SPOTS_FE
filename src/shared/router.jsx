@@ -14,6 +14,7 @@ import Hosting from "../pages/userpage/Hosting";
 import SwitchAccount from "../pages/login/SwitchAccount";
 import ReservPage from "../pages/userpage/ReservPage";
 import HostList from "../pages/userpage/HostList";
+import HostDetail from "../pages/userpage/HostDetail";
 
 function Router() {
   return (
@@ -33,6 +34,7 @@ function Router() {
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
+        <Route path="/hostdetail/:id" element={<HostDetail />} />
       </Routes>
     </BrowserRouter>
   );

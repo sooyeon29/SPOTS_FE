@@ -41,7 +41,7 @@ export const UserpageAPI = {
         "Content-Type": "multipart/form-data",
       },
     }),
-  deleteTeam: () => instance.delete(`teams`),
+  deleteTeam: (payload) => instance.delete(`teams/${payload}`),
   patchMyInfo: (payload) => instance.patch(`users/me`, payload),
   patchMyTeam: (payload) => instance.patch(`teams`, payload),
   dropOutMe: (payload) => instance.patch(`users/drop`, payload),
@@ -67,6 +67,16 @@ export const PrivateApi = {
   getPrivateSpot: () => instance.get(`places`),
   // 내가 등록한 구장
   getMyPrivateSpot: () => instance.get(`places/me`),
+  // 내가 등록한 구장 삭제
+  deletePrivateSpot: (payload) => instance.delete(`places/${payload}`),
+  // 내가 등록한 구장 수정
+  editPrivateSpot: (payload) =>
+    // console.log(payload),
+    instance.patch(`/places/${payload.placesId}`, {
+      spotName: payload.spotName,
+      desc: payload.desc,
+      price: payload.price,
+    }),
 };
 
 export const PublicApi = {
