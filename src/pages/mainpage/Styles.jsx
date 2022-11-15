@@ -1,17 +1,31 @@
 import styled from "styled-components";
 
 export const SpotsBtns = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  margin: 10px 10px 10px 0px;
   button {
-    width: 120px;
-    height: 50px;
-    margin: 20px;
+    width: auto;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    border: 2px solid black;
+    cursor: pointer;
   }
 `;
 export const SearchBox = styled.form`
   margin: 30px;
 `;
+
+export const Container = styled.div`
+  background-color: #fff;
+  width: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #d5f103;
+  border: solid 2px white;
+`;
+export const Title = styled.div``;

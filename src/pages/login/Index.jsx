@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
-import { LoginAPI } from "../../tools/instance";
+import { LoginAPI, UserpageAPI } from "../../tools/instance";
 import { KAKAO_AUTH_URL } from "./OAuth";
 import { StWraps, Stinput, KakaoBtn } from "./Styles";
 
@@ -28,6 +28,11 @@ const Login = () => {
           localStorage.setItem("token", res.data.accessToken);
           navigate("/");
           window.location.reload();
+        } else if (res.status === 202) {
+          if (window.confirm("휴면계정입니다. 계정을 활성화 하시겠습니까?")) {
+            localStorage.setItem("token", res.data.accessToken);
+            navigate("/switchaccount", { state: loginInfo.id });
+          }
         }
       })
       .catch((err) => {

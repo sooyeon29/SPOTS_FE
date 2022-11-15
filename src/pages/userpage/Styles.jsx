@@ -9,9 +9,11 @@ export const StContainer = styled.div`
 
 export const StWrap = styled.div`
   width: 50%;
-  height: 300px;
+  padding: 20px 0px;
   border: 1px solid lightgray;
   border-radius: 15px;
+  margin-top: 50px;
+  align-items: center;
 `;
 
 export const StTag = styled.button`
@@ -25,8 +27,18 @@ export const StTag = styled.button`
 `;
 
 export const StTeam = styled.div`
-  width: 40%;
-  height: 80px;
+  width: 90%;
+
   border: 1px solid lightgray;
   border-radius: 15px;
+  margin: auto;
+`;
+
+export const StTeamForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+`;
+export const MyMatch = styled.div`
+  border: 1px solid black;
 `;
