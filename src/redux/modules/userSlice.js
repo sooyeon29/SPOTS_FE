@@ -67,7 +67,7 @@ const userSlice = createSlice({
       state.team = action.payload;
     },
     [__getMyteamList.rejected]: (state, action) => {
-      state.error = action.payload.response.data.errorMessage;
+      state.error = action.payload.response.data.error;
       alert(state.error);
     },
     [__getMyteamDetail.pending]: (state, action) => {
