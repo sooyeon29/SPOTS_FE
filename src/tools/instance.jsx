@@ -71,6 +71,7 @@ export const PrivateApi = {
   deletePrivateSpot: (payload) => instance.delete(`places/${payload}`),
   // 내가 등록한 구장 수정
   editPrivateSpot: (payload) =>
+    // console.log(payload),
     instance.patch(`/places/${payload.placesId}`, {
       spotName: payload.spotName,
       desc: payload.desc,

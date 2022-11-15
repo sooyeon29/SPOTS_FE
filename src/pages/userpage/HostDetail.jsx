@@ -5,7 +5,10 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
-import { __getMyPrivateSpot } from "../../redux/modules/spotsSlice";
+import {
+  __editPrivateSpot,
+  __getMyPrivateSpot,
+} from "../../redux/modules/spotsSlice";
 import { PrivateApi } from "../../tools/instance";
 import { StTeam, StWrap } from "./Styles";
 
@@ -13,19 +16,17 @@ const HostDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+
   useEffect(() => {
     dispatch(__getMyPrivateSpot());
-  }, []);
+  }, [dispatch]);
+
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
   console.log(placeList);
-  const place = placeList.filter((pla) => pla.placesId === parseInt(id));
+  const place = placeList?.filter((pla) => pla.placesId === parseInt(id));
   console.log(place);
   const [isEditMode, setIsEditMode, editHandler] = useToggle();
-  const [newInput, setNewInput] = useState({
-    newTitle: "",
-    newDesc: "",
-    newPrice: "",
-  });
+  const [newInput, setNewInput] = useState([]);
   console.log(newInput);
   const newNewHandler = (e) => {
     const { name, value } = e.target;
@@ -34,18 +35,14 @@ const HostDetail = () => {
 
   const editInfoHandler = (e) => {
     e.preventDefault();
-
-    PrivateApi.editPrivateSpot({
-      spotName: newInput.newTitle,
-      desc: newInput.newDesc,
-      price: newInput.newPrice,
-    })
-      .then((res) => {
-        console.log("수정하기?!", res);
+    dispatch(
+      __editPrivateSpot({
+        placesId: id,
+        spotName: newInput.newTitle,
+        desc: newInput.newDesc,
+        price: newInput.newPrice,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+    );
   };
 
   return (
@@ -53,7 +50,7 @@ const HostDetail = () => {
       <Layout>
         <Header />
         <StWrap>
-          {place.map((pla) => {
+          {place?.map((pla) => {
             return (
               <StTeam key={pla.placesId}>
                 {!isEditMode && (
@@ -93,7 +90,7 @@ const HostDetail = () => {
                       <textarea
                         type="text"
                         required
-                        style={{ height: "200px", width: "300px" }}
+                        style={{ height: "80px", width: "300px" }}
                         name="newDesc"
                         value={newInput.newDesc}
                         onChange={newNewHandler}

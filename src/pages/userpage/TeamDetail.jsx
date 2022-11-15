@@ -90,7 +90,7 @@ const TeamDetail = () => {
                       console.log(res);
                       if (res.status === 201) {
                         alert("수정이 완료되었습니다.");
-                        window.location.reload();
+                        // window.location.reload();
                       }
                     })
                     .catch((err) => {
