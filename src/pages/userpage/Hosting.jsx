@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { __postRegister } from "../../redux/modules/spotsSlice";
 import { StWrap } from "./Styles";
+import useToggle from "../../hooks/useToggle";
 
 const { kakao } = window;
 
@@ -92,6 +93,7 @@ const Hosting = () => {
   return (
     <Layout>
       <Header />
+
       <StWrap>
         <form
           onSubmit={(e) => {
@@ -99,6 +101,7 @@ const Hosting = () => {
             onRegisterHandler(spot);
           }}
         >
+          <button onClick={() => navigate(`/hostlist`)}>내구장 목록보기</button>
           <div>
             스팟 종류
             <select

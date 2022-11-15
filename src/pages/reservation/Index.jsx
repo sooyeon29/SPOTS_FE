@@ -38,12 +38,12 @@ const Reservation = () => {
     (state) => state?.spots
   );
   const placeList = useSelector((state) => state.spots.privateSpot);
-  console.log('---------사설시설-----------', placeList);
+  console.log("---------사설시설-----------", placeList);
 
   const allSpots = [...(privateSpot || []), ...(publicSpot || [])];
-  console.log('---------전체시설-----------', allSpots);
-
+  console.log("---------전체시설-----------", allSpots);
   console.log('---------검색결과-----------', searchedSpots);
+
 
   if (isLoading) {
     return <div>로딩 중....</div>;

@@ -7,11 +7,11 @@ import Layout from "../../components/Layout";
 
 const ReservPage = () => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
- 
+
   const myMatches = useSelector((state) => state.matcher);
   console.log("요거거", myMatches);
 
@@ -26,39 +26,38 @@ const ReservPage = () => {
   };
 
   return (
-     <Layout>
+    <Layout>
       <Header />
-       <StWrap>
-      <StTag>Reservation</StTag>
-      {myMatches.matcher?.map((myMatch) => {
-        console.log(myMatch);
-        return (
-          <MyMatch key={myMatch.reservationId}>
-            <p>장소: {myMatch.place}</p>
-            <p>날짜: {myMatch.date}</p>
-            <p>시간: {myMatch.matchId.substring(0, 13)}</p>
-            <p>
-              경기인원: {myMatch.member}:{myMatch.member}
-            </p>
-            <p>내팀이름: {myMatch.teamName}</p>
-            <p>{myMatch.result}</p>
-            <button
-              onClick={() =>
-                cancleMatchHandler(
-                  myMatch.matchId,
-                  myMatch.place,
-                  myMatch.teamName
-                )
-              }
-            >
-              예약취소하기
-            </button>
-          </MyMatch>
-        );
-      })}
-    </StWrap>
-</Layout>
-
+      <StWrap>
+        <StTag>Reservation</StTag>
+        {myMatches.matcher?.map((myMatch) => {
+          console.log(myMatch);
+          return (
+            <MyMatch key={myMatch.reservationId}>
+              <p>장소: {myMatch.place}</p>
+              <p>날짜: {myMatch.date}</p>
+              <p>시간: {myMatch.matchId.substring(0, 13)}</p>
+              <p>
+                경기인원: {myMatch.member}:{myMatch.member}
+              </p>
+              <p>내팀이름: {myMatch.teamName}</p>
+              <p>{myMatch.result}</p>
+              <button
+                onClick={() =>
+                  cancleMatchHandler(
+                    myMatch.matchId,
+                    myMatch.place,
+                    myMatch.teamName
+                  )
+                }
+              >
+                예약취소하기
+              </button>
+            </MyMatch>
+          );
+        })}
+      </StWrap>
+    </Layout>
   );
 };
 

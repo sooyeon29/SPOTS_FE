@@ -7,7 +7,7 @@ const SpotList = ({ searchedSpot, allSpot }) => {
   return (
     <>
       <Place>
-        { searchedSpot.placesId ? (
+        {searchedSpot.placesId ? (
           <>
           <PrivateBlock onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
             {searchedSpot.spotName}
