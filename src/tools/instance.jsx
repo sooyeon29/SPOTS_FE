@@ -67,6 +67,15 @@ export const PrivateApi = {
   getPrivateSpot: () => instance.get(`places`),
   // 내가 등록한 구장
   getMyPrivateSpot: () => instance.get(`places/me`),
+  // 내가 등록한 구장 삭제
+  deletePrivateSpot: (payload) => instance.delete(`places/${payload}`),
+  // 내가 등록한 구장 수정
+  editPrivateSpot: (payload) =>
+    instance.patch(`/places/${payload.placesId}`, {
+      spotName: payload.spotName,
+      desc: payload.desc,
+      price: payload.price,
+    }),
 };
 
 export const PublicApi = {
