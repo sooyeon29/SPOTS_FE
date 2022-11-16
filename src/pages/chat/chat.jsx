@@ -3,7 +3,12 @@ import { io } from "socket.io-client";
 import useInput from "../../hooks/useInput";
 
 const Chat = () => {
-  const socket = io("https://ws-study.shop");
+  const socket = io("https://ws-study.shop", {
+    cors: {
+      origin: "http://localhost:3000",
+    },
+    transports: ["websocket", "polling"],
+  });
 
   //소켓이 서버에 연결되어 있는지 여부
   socket.on("connect", () => {
