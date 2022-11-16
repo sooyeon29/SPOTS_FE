@@ -1,11 +1,12 @@
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import useDetectClose from '../hooks/useDetectClose';
-import SearchBar from './SearchBar';
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+import useDetectClose from "../hooks/useDetectClose";
+
+import SearchBar from "./SearchBar";
 
 const Header = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -28,18 +29,20 @@ const Header = () => {
           </StLogo>
           {/* <StButtonsWrap> */}
           <StButtons>
-          <SearchBar />
+            <SearchBar />
             <Sta
               onClick={() => {
                 navigate(`/book`);
-              }}>
+              }}
+            >
               Reservation
             </Sta>
             {!token ? (
               <Sta
                 onClick={() => {
                   navigate(`/login`);
-                }}>
+                }}
+              >
                 Login
               </Sta>
             ) : (
@@ -51,19 +54,19 @@ const Header = () => {
                   <Menu isDropped={myPageIsOpen}>
                     <Ul ref={dropDownRef}>
                       <Li>
-                        <Linkdiv onClick={() => navigate('/mypage')}>
+                        <Linkdiv onClick={() => navigate("/mypage")}>
                           My page
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/teampage')}>
+                        <Linkdiv onClick={() => navigate("/teampage")}>
                           Team Page
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/reservpage')}>
+                        <Linkdiv onClick={() => navigate("/reservpage")}>
                           Reservation
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/hosting ')}>
+                        <Linkdiv onClick={() => navigate("/hosting ")}>
                           Hosting
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/hostlist ')}>
+                        <Linkdiv onClick={() => navigate("/hostlist ")}>
                           HostList
                         </Linkdiv>
                         <Linkdiv onClick={logout}>Log Out</Linkdiv>
@@ -207,7 +210,7 @@ const Menu = styled.div`
   z-index: 9;
 
   &:after {
-    content: '';
+    content: "";
     height: 0;
     width: 0;
     position: absolute;
@@ -235,4 +238,4 @@ const Linkdiv = styled.div`
 
 const Img = styled.img`
   width: 100px;
-`
+`;

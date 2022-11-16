@@ -129,6 +129,8 @@ const privateSlice = createSlice({
       state.isLoading = false;
       console.log(action.payload);
       state.myPrivateSpot = action.payload;
+      alert(action.payload);
+      window.location.reload();
     },
     [__editPrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;

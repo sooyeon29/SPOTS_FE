@@ -17,4 +17,3 @@ const Wrap = styled.div`
   padding-bottom: 30px;
   /* top: 343px; */
 `;
-

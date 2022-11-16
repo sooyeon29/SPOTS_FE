@@ -58,7 +58,8 @@ export const SpotsMatchApi = {
       date: payload.date,
     }), // -> for userpage
   getMyMatch: () => instance.get(`/reservations/me`),
-  exitMyMatch: (payload) => instance.put(`/reservations/register`, payload),
+  exitMyMatch: (payload) =>
+    instance.put(`/reservations/register/delete`, payload),
 };
 
 export const PrivateApi = {
