@@ -82,7 +82,7 @@ const matchSlice = createSlice({
       state.matcher.push(action.payload.data);
       console.log("fulfilled 상태", state, action);
       alert(action.payload.message);
-      window.location.replace(`/userpage`);
+      window.location.replace(`/reservpage`);
     },
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
