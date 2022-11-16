@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { Place, PrivateBlock, PublicBlock } from './Style';
+import { useNavigate } from "react-router-dom";
+import { Place, PrivateBlock, PublicBlock } from "./Style";
 
 const SpotList = ({ searchedSpot }) => {
   const navigate = useNavigate();
@@ -10,22 +10,23 @@ const SpotList = ({ searchedSpot }) => {
         {searchedSpot.placesId ? (
           <>
             <PrivateBlock
-              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
+              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}
+            >
               <div>{searchedSpot.spotName}</div>
-                <div>{searchedSpot.sports}</div>
-                <div>{searchedSpot.spotKind}</div>
-                <div>{searchedSpot.price}</div>
+              <div>{searchedSpot.sports}</div>
+              <div>{searchedSpot.spotKind}</div>
+              <div>{searchedSpot.price}</div>
             </PrivateBlock>
           </>
         ) : (
           <>
-          <a href={searchedSpot.svcurl}>
-          <PublicBlock>
-            <div>{searchedSpot.spotName}</div>
-            <div>{searchedSpot.svcstatnm}</div>
-            <div>{searchedSpot.minclassnm}</div>
-            <div>{searchedSpot.svcnm}</div>
-            </PublicBlock>
+            <a href={searchedSpot.svcurl}>
+              <PublicBlock>
+                <div>{searchedSpot.spotName}</div>
+                <div>{searchedSpot.svcstatnm}</div>
+                <div>{searchedSpot.minclassnm}</div>
+                <div>{searchedSpot.svcnm}</div>
+              </PublicBlock>
             </a>
           </>
         )}

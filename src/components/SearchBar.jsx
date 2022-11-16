@@ -1,26 +1,31 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
-import styled from "styled-components";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { BsSearch } from 'react-icons/bs';
+import styled from 'styled-components';
 
 const Search = () => {
-  const navigate = useNavigate();
-  const [keyword, setKeyword] = useState("");
+  //const navigate = useNavigate();
+  const [keyword, setKeyword] = useState('');
 
-  const onSearchHandler = (e) => {
+  const onSearchHandler = async (e) => {
     e.preventDefault();
-    navigate("/book", { state: [keyword] });
-    console.log({ state: [keyword] });
+    window.location.href = "/book/" + keyword;
+    // if (keyword.trim() === '') {
+    //   return alert('검색어를 입력해주세요!');
+    // }
+    // navigate('/book', { state: [keyword] });
+    // console.log({ state: [keyword] });
+    // localStorage.setItem('savedKeyword', keyword);
   };
-  console.log(keyword);
 
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
+
         <StInput
           type="text"
           value={keyword}
-          placeholder="어떤 스팟을 찾으시나요?"
+          placeholder="어떤 스팟을요?"
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
@@ -34,11 +39,27 @@ const Search = () => {
 };
 export default Search;
 
+const StSearch = styled.div`
+  width: 200px;
+  margin-right: 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  form {
+    display: flex;
+    padding: 0;
+  }
+`;
+
 const StInput = styled.input`
-  background-color: transparent;
+  width: 100px;
+  background-color: red;
   border: none;
   display: flex;
-
+  padding: 0;
   :focus {
     outline: none;
     color: white;
@@ -55,16 +76,8 @@ const StInput = styled.input`
   }
 `;
 
-const StSearch = styled.div`
-  width: 200px;
-  background: none;
-  border: none;
-  border-bottom: 2px solid white;
-  display: flex;
-  justify-content: center;
-`;
-
 const StBtn = styled.button`
   border: none;
   background: none;
+  cursor: pointer;
 `;
