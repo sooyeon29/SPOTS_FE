@@ -27,8 +27,8 @@ const MainMaps = () => {
             <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
           </div>
           <div>
-            <span>● 공공스팟</span>
-            <span>● 사설스팟</span>
+            <span>●공공스팟</span>
+            <span>●사설스팟</span>
           </div>
         </UpperLine>
         <SpotsMap sportsKind={sportsKind} />

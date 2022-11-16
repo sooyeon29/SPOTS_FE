@@ -22,6 +22,7 @@ const Header = () => {
           <StLogo
             onClick={() => {
               navigate(`/`);
+              localStorage.clear();
             }}>
             <Img src='/logo.png' alt='logo' />
           </StLogo>
@@ -129,7 +130,7 @@ const StButtons = styled.ul`
 `;
 
 const Sta = styled.a`
-  margin: 0px 30px 0px 30px;
+  margin: 0px 0px 0px 30px;
   font-size: 18px;
   /* line-height: 24px; */
   font-weight: normal;
