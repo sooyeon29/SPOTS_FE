@@ -18,16 +18,16 @@ const Search = () => {
       <form onSubmit={onSearchHandler}>
         <StInput
           type="text"
-          defaultValue={setKeyword}
+          value={keyword}
           placeholder="어떤 스팟을 찾으시나요?"
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
         />
+        <StBtn>
+          <BsSearch style={{ color: "white", cursor: "pointer" }} />
+        </StBtn>
       </form>
-      <StBtn>
-        <BsSearch style={{ color: "white", cursor: "pointer" }} />
-      </StBtn>
     </StSearch>
   );
 };

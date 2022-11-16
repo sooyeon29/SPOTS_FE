@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { LoginAPI, UserpageAPI } from "../../tools/instance";
 import { KAKAO_AUTH_URL } from "./OAuth";
@@ -48,6 +49,7 @@ const Login = () => {
   return (
     <>
       <Layout>
+        <Header />
         <StWraps>
           <h1>로그인</h1>
           <form onSubmit={loginHandler}>
@@ -81,8 +83,9 @@ const Login = () => {
             {/* // href="https://ws-study.shop/auth/kakao"> */}
             <img alt="" src="/kakao.png" width={30} />
             <a
-              href=// "/auth/kakao/callback"
-              {KAKAO_AUTH_URL}
+              href={ // "/auth/kakao/callback"
+                KAKAO_AUTH_URL
+              }
             >
               카카오계정 로그인
             </a>

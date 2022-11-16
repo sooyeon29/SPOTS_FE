@@ -12,7 +12,7 @@ const ReservPage = () => {
     dispatch(__getMyMatch());
   }, [dispatch]);
 
-  const myMatches = useSelector((state) => state.matcher);
+  const myMatches = useSelector((state) => state.matcher.matcher);
   console.log("요거거", myMatches);
 
   const cancleMatchHandler = (id, place, team) => {
@@ -30,7 +30,7 @@ const ReservPage = () => {
       <Header />
       <StWrap>
         <StTag>Reservation</StTag>
-        {myMatches.matcher?.map((myMatch) => {
+        {myMatches?.map((myMatch) => {
           console.log(myMatch);
           return (
             <MyMatch key={myMatch.reservationId}>

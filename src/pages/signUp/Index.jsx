@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Red } from "./Styles";
 import { SignUpAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
 
 const SignUp = () => {
   const {
@@ -104,6 +105,7 @@ const SignUp = () => {
   return (
     <>
       <Layout>
+        <Header />
         <div>회원가입</div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
