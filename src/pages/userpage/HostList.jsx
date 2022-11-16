@@ -4,7 +4,15 @@ import {
   __deletePrivateSpot,
   __getMyPrivateSpot,
 } from "../../redux/modules/spotsSlice";
-import { StTag, StTeam, StWrap } from "./Styles";
+import {
+  ButWrap,
+  ImageInfo,
+  MyHostList,
+  StTag,
+  StTeam,
+  StWrap,
+  WordInfo,
+} from "./Styles";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { useNavigate } from "react-router-dom";
@@ -35,15 +43,22 @@ const HostList = () => {
         {placeList?.map((place) => {
           return (
             <StTeam key={place.placesId}>
-              <h5>{place.spotName}</h5>
-              {place.sports}
-              <span>- {place.spotKind}</span>
-              <br />
-              {place.address}
-              <br />
-              <span>{place.price}원</span>
+              <MyHostList>
+                <WordInfo>
+                  <h5>{place.spotName}</h5>
+                  {place.sports}
+                  <span>- {place.spotKind}</span>
+                  <br />
+                  {place.address}
+                  <br />
+                  <span>{place.price}원</span>
+                </WordInfo>
+                <ImageInfo>
+                  <img alt="" src={place.image} />
+                </ImageInfo>
+              </MyHostList>
 
-              <div>
+              <ButWrap>
                 <button
                   onClick={() => {
                     navigate(`/hostdetail/${place.placesId}`);
@@ -54,7 +69,7 @@ const HostList = () => {
                 <button onClick={() => deleteHostHandler(place.placesId)}>
                   삭제하기
                 </button>
-              </div>
+              </ButWrap>
             </StTeam>
           );
         })}

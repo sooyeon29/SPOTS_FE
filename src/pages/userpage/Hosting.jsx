@@ -122,15 +122,15 @@ const Hosting = () => {
 
       const sendFD = new FormData();
       sendFD.append("image", img);
-      sendFD.append("comforts", JSON.stringify(checkedList));
-      sendFD.append("address", JSON.stringify(fullyAddress));
-      sendFD.append("x", JSON.stringify(x));
-      sendFD.append("y", JSON.stringify(y));
-      sendFD.append("sports", JSON.stringify(sports));
-      sendFD.append("spotName", JSON.stringify(spotName));
-      sendFD.append("spotKind", JSON.stringify(spotKind));
-      sendFD.append("price", JSON.stringify(price));
-      sendFD.append("desc", JSON.stringify(desc));
+      sendFD.append("comforts", checkedList);
+      sendFD.append("address", fullyAddress);
+      sendFD.append("x", x);
+      sendFD.append("y", y);
+      sendFD.append("sports", sports);
+      sendFD.append("spotName", spotName);
+      sendFD.append("spotKind", spotKind);
+      sendFD.append("price", price);
+      sendFD.append("desc", desc);
 
       PrivateApi.registerSpot(sendFD)
         .then((res) => {

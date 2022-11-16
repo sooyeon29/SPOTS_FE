@@ -56,14 +56,13 @@ const HostDetail = () => {
                 {!isEditMode && (
                   <>
                     <h5>{pla.spotName}</h5>
+                    <img alt="" src={pla.image} width="300px" />
                     <p>{pla.address}</p>
                     <p>
                       {pla.sports} - {pla.spotKind}
                     </p>
                     <p>{pla.desc}</p>
-                    <p>
-                      {pla.comforts[0]},{pla.comforts[1]},{pla.comforts[2]}...
-                    </p>
+                    <p>{pla.comforts}</p>
                     <p>{pla.price}</p>
                     <button onClick={editHandler}>수정하기</button>
                     <button onClick={() => navigate(`/hostlist`)}>
@@ -82,6 +81,7 @@ const HostDetail = () => {
                         onChange={newNewHandler}
                       />
                     </h5>
+                    <img alt="" src={pla.image} width="300px" />
                     <p>{pla.address}</p>
                     <p>
                       {pla.sports} - {pla.spotKind}
@@ -96,9 +96,7 @@ const HostDetail = () => {
                         onChange={newNewHandler}
                       />
                     </p>
-                    <p>
-                      {pla.comforts[0]},{pla.comforts[1]},{pla.comforts[2]}...
-                    </p>
+                    <p>{pla.comforts}</p>
                     <p>
                       <input
                         type="text"

@@ -92,3 +92,25 @@ export const Upload = styled.div`
     }
   }
 `;
+export const MyHostList = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const WordInfo = styled.div`
+  margin-left: 50px;
+`;
+export const ImageInfo = styled.div`
+  img {
+    width: 120px;
+    margin: 20px 50px 10px auto;
+  }
+`;
+export const ButWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0px 40px 20px auto;
+`;

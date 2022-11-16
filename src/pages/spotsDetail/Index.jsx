@@ -57,7 +57,7 @@ const SpotsDetail = () => {
     // console.log("각구장쓰", place);
     return place.placesId === parseInt(id);
   });
-  // console.log("골라진스팟", selectSpot);
+  console.log("골라진스팟", selectSpot);
 
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
@@ -193,7 +193,7 @@ const SpotsDetail = () => {
               <Title>{spot.spotName}</Title>
               <MainInfo>
                 <Croll>
-                  <img alt="" src="logo512.png" />
+                  <img alt="" src={spot.image} />
                   <div>
                     정보
                     <li>{spot.address}</li>
@@ -201,7 +201,7 @@ const SpotsDetail = () => {
                     <li>{spot.spotKind}</li>
                     <li>{spot.price}</li>
                     <li>{spot.desc}</li>
-                    <li>{spot.comforts[0]}</li>
+                    <li>{spot.comforts}</li>
                   </div>
                 </Croll>
               </MainInfo>
