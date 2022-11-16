@@ -7,7 +7,7 @@ export const UpperLine = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 30px 10px 10px 10px;
-  
+
   button {
     width: auto;
     height: 30px;
@@ -23,11 +23,11 @@ export const UpperLine = styled.div`
   }
 
   span:first-child {
-    color: #2B2BFF;
+    color: #2b2bff;
   }
 
   span:last-child {
-    color: #FF00B3;
+    color: #ff00b3;
   }
 `;
 
@@ -44,3 +44,32 @@ export const Container = styled.div`
   border: solid 2px white;
 `;
 export const Title = styled.div``;
+
+export const BtnWrap = styled.div`
+  border: none;
+  border-radius: 30px;
+  background-color: white;
+  width: 330px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+
+  button {
+    width: 90px;
+    height: 30px;
+    margin: auto;
+    border: none;
+    cursor: pointer;
+    border-radius: 23px;
+    :focus {
+      background-color: #2b2bff;
+      color: white;
+    }
+  }
+  z-index: 2;
+  top: 43%;
+  right: 40%;
+  position: absolute;
+`;

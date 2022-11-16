@@ -12,7 +12,6 @@ const Search = () => {
     navigate("/book", { state: [keyword] });
     console.log({ state: [keyword] });
   };
-  console.log(keyword);
 
   return (
     <StSearch>
