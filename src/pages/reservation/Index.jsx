@@ -39,7 +39,7 @@ const Reservation = () => {
     dispatch(__getPrivateSpot());
     dispatch(__getPublicSpot());
 
-    if (keyword === null) {
+    if (keyword === null || keyword === "") {
       setSearchedSpots(allSpots);
     } else {
       setSearchedSpots(

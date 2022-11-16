@@ -5,12 +5,11 @@ import {
   MapMarker,
   CustomOverlayMap,
 } from "react-kakao-maps-sdk";
-import styled from "styled-components";
 import { BtnWrap, Container } from "./Style";
 
 const SpotsMap = ({ placeList }) => {
-  const [isOpen, setIsOpen] = useState([]);
   const [level, setLevel] = useState();
+  const [isOpen, setIsOpen] = useState([]);
   const [filter, setFilter] = useState(false);
 
   const handleOnClick = (e, idx) => {
@@ -136,28 +135,3 @@ const SpotsMap = ({ placeList }) => {
 };
 
 export default SpotsMap;
-
-// const Container = styled.div`
-//   width: 100px;
-//   height: 50px;
-//   background-color: white;
-// `;
-
-const Btn = styled.button`
-  display: flex;
-  position: absolute;
-  top: 130px;
-  z-index: 1;
-`;
-const Btn2 = styled.button`
-  display: flex;
-  position: absolute;
-  top: 130px;
-  z-index: 1;
-`;
-const Btn3 = styled.button`
-  display: flex;
-  position: absolute;
-  top: 130px;
-  z-index: 1;
-`;

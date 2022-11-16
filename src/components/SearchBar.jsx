@@ -19,7 +19,7 @@ const Search = () => {
         <StInput
           type="text"
           value={keyword}
-          placeholder="어떤 스팟을 찾으시나요?"
+          placeholder="어떤 스팟을요?"
           onChange={(e) => {
             setKeyword(e.target.value);
           }}
@@ -33,11 +33,27 @@ const Search = () => {
 };
 export default Search;
 
+const StSearch = styled.div`
+  width: 200px;
+  margin-right: 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  form {
+    display: flex;
+    padding: 0;
+  }
+`;
+
 const StInput = styled.input`
-  background-color: transparent;
+  width: 100px;
+  background-color: red;
   border: none;
   display: flex;
-
+  padding: 0;
   :focus {
     outline: none;
     color: white;
@@ -54,16 +70,8 @@ const StInput = styled.input`
   }
 `;
 
-const StSearch = styled.div`
-  width: 200px;
-  background: none;
-  border: none;
-  border-bottom: 2px solid white;
-  display: flex;
-  justify-content: center;
-`;
-
 const StBtn = styled.button`
   border: none;
   background: none;
+  cursor: pointer;
 `;
