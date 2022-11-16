@@ -45,7 +45,6 @@ const Reservation = ({keyword}) => {
   console.log('---------지도로들어감-----------', placeList);
   console.log('---------검색결과-----------', searchedSpots);
 
-
   if (isLoading) {
     return <div>로딩 중....</div>;
   }

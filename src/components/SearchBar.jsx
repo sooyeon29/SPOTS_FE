@@ -4,7 +4,7 @@ import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
 
 const Search = () => {
-  // const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
 
   const onSearchHandler = async (e) => {
@@ -21,31 +21,45 @@ const Search = () => {
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
-        <SearchBar>
-          <StInput
-            type='text'
-            value={keyword}
-            placeholder='어떤 스팟을 찾으시나요?'
-            onChange={(e) => {
-              setKeyword(e.target.value);
-            }}
-          />
-          <StBtn type="button">
-            <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
-          </StBtn>
-        </SearchBar>
+
+        <StInput
+          type="text"
+          value={keyword}
+          placeholder="어떤 스팟을요?"
+          onChange={(e) => {
+            setKeyword(e.target.value);
+          }}
+        />
+        <StBtn>
+          <BsSearch style={{ color: "white", cursor: "pointer" }} />
+        </StBtn>
       </form>
     </StSearch>
   );
 };
 export default Search;
 
+const StSearch = styled.div`
+  width: 200px;
+  margin-right: 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  form {
+    display: flex;
+    padding: 0;
+  }
+`;
+
 const StInput = styled.input`
-  background-color: transparent;
+  width: 100px;
+  background-color: red;
   border: none;
   display: flex;
-  color: white;
-
+  padding: 0;
   :focus {
     outline: none;
     color: white;
@@ -62,21 +76,8 @@ const StInput = styled.input`
   }
 `;
 
-const StSearch = styled.div`
-  /* width: 200px; */
-  background: none;
-  border: none;
-  border-bottom: 2px solid white;
-  display: flex;
-  /* background-color: #f1f1f1; */
-  justify-content: center;
-`;
-
 const StBtn = styled.button`
   border: none;
   background: none;
-`;
-
-const SearchBar = styled.div`
-  display: flex;
+  cursor: pointer;
 `;

@@ -1,9 +1,13 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import useDetectClose from '../hooks/useDetectClose';
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+import useDetectClose from "../hooks/useDetectClose";
+import { GoSearch } from "react-icons/go";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { FaSearchLocation } from "react-icons/fa";
+import SearchBar from "./SearchBar";
+import useToggle from "../hooks/useToggle";
 
-import SearchBar from './SearchBar';
 
 const Header = () => {
   const token = localStorage.getItem('token');
@@ -12,7 +16,7 @@ const Header = () => {
     localStorage.clear();
     window.location.reload();
   };
-
+  const [toggle, setToggle, ClickToggle] = useToggle(false);
   const dropDownRef = useRef(null);
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
@@ -27,16 +31,18 @@ const Header = () => {
             }}>
             <Img src='/logo.png' alt='logo' />
           </StLogo>
-          {/* <StButtonsWrap> */}
           <StButtons>
-            <SearchBar />
-            <Sta
-              onClick={() => {
-                navigate(`/book`);
-                localStorage.clear();
-              }}>
-              Reservation
-            </Sta>
+            {!toggle ? (
+              <StSearch>
+                <FaSearchLocation
+                  color="white"
+                  size="20"
+                  onClick={ClickToggle}
+                />
+              </StSearch>
+            ) : (
+              <SearchBar />
+            )}
             {!token ? (
               <Sta
                 onClick={() => {
@@ -48,7 +54,7 @@ const Header = () => {
               <>
                 <DropdownContainer>
                   <DropdownButton onClick={myPageHandler} ref={myPageRef}>
-                    My Page
+                    <GiHamburgerMenu size="25" />
                   </DropdownButton>
                   <Menu isDropped={myPageIsOpen}>
                     <Ul ref={dropDownRef}>
@@ -77,7 +83,6 @@ const Header = () => {
               </>
             )}
           </StButtons>
-          {/* </StButtonsWrap> */}
         </StWrap>
       </StHeader>
     </>
@@ -87,49 +92,34 @@ const Header = () => {
 export default Header;
 
 const StHeader = styled.div`
-  background-color: #000000;
   width: 100%;
+  padding: 0;
+  background-color: #000000;
 `;
 
 const StWrap = styled.div`
-  margin: auto;
-  width: 80%;
   display: flex;
-  /* height: 72px; */
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
+  margin: auto;
+  width: 90%;
   align-items: center;
 `;
 
 const StLogo = styled.div`
-  cursor: pointer;
-  /* margin-right: 10px; */
   display: flex;
-
-  span {
-    cursor: pointer;
-    font-size: large;
-    font-weight: 600;
-    color: #fff;
-  }
+  cursor: pointer;
 `;
 
+const StSearch = styled.div`
+  margin: 3px 15px 0 0;
+  cursor: pointer;
+`;
 const StButtonsWrap = styled.nav`
   /* flex-direction: row; */
 `;
 
 const StButtons = styled.ul`
   display: flex;
-  /* flex-direction: row; */
-  /* list-style: none; */
-  /* margin: 0px; */
-  padding: 0px;
-  /* margin-block-start: 1em; */
-  /* margin-block-end: 1em; */
-  /* margin-inline-start: 0px; */
-  /* margin-inline-end: 0px; */
-  /* padding-inline-start: 40px; */
 `;
 
 const Sta = styled.a`
