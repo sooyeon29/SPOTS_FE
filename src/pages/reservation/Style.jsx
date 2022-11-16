@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StWrap = styled.div`
   display: flex;
@@ -11,6 +11,7 @@ export const StWrap = styled.div`
 export const MapPlace = styled.div`
   width: 50%;
   height: 80vh;
+  margin-top: 70px;
 `;
 
 export const PlaceList = styled.div`
@@ -43,16 +44,32 @@ export const Place = styled.div`
 `;
 
 export const BtnWrap = styled.div`
-  margin: 30px 10px 10px 10px;
+  border: none;
+  border-radius: 30px;
+  background-color: white;
+  width: 330px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+
   button {
-    width: auto;
+    width: 90px;
     height: 30px;
-    margin-right: 10px;
-    border-radius: 20px;
-    padding: 0px 10px 0px 10px;
-    border: 2px solid black;
+    margin: auto;
+    border: none;
     cursor: pointer;
+    border-radius: 23px;
+    :focus {
+      background-color: #2b2bff;
+      color: white;
+    }
   }
+  z-index: 2;
+  top: 20%;
+  right: 59%;
+  position: absolute;
 `;
 
 export const Container = styled.div`

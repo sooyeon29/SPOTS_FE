@@ -44,7 +44,7 @@ const SpotsMap = ({ placeList }) => {
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
-        <Btn>와우</Btn>
+
         {placeList.map((place, idx) => {
           if (filter === false) {
             return (
@@ -144,6 +144,18 @@ export default SpotsMap;
 // `;
 
 const Btn = styled.button`
+  display: flex;
+  position: absolute;
+  top: 130px;
+  z-index: 1;
+`;
+const Btn2 = styled.button`
+  display: flex;
+  position: absolute;
+  top: 130px;
+  z-index: 1;
+`;
+const Btn3 = styled.button`
   display: flex;
   position: absolute;
   top: 130px;

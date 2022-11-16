@@ -64,6 +64,7 @@ const Reservation = () => {
           <MapPlace>
             <SpotsMap placeList={placeList} />
           </MapPlace>
+
           <PlaceList>
             {searchedSpots.map((searchedSpot, index) => {
               return <SpotList key={index} searchedSpot={searchedSpot} />;
