@@ -20,9 +20,9 @@ const Reservation = () => {
 
   console.log("---------키워드-----------", keyword);
 
-  if (keyword === null) {
-    console.log("키워드 없음");
-  }
+  // if (keyword === null) {
+  //   console.log("키워드 없음");
+  // }
 
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
@@ -65,7 +65,7 @@ const Reservation = () => {
             <SpotsMap placeList={placeList} />
           </MapPlace>
           <PlaceList>
-            {searchedSpots?.map((searchedSpot, index) => {
+            {searchedSpots.map((searchedSpot, index) => {
               return <SpotList key={index} searchedSpot={searchedSpot} />;
             })}
           </PlaceList>
