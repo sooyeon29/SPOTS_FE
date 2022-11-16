@@ -17,7 +17,6 @@ const Search = () => {
     // console.log({ state: [keyword] });
     // localStorage.setItem('savedKeyword', keyword);
   };
-  console.log(keyword);
 
   return (
     <StSearch>
