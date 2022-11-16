@@ -5,16 +5,61 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { StWrap } from "./Styles";
+import {
+  HostCard,
+  Photo,
+  Preview,
+  StWrap,
+  Upload,
+  UploadInput,
+  UploadInputDesign,
+} from "./Styles";
 
 const { kakao } = window;
 
 const Hosting = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [spot, setSpot] = useState({});
-  const dispatch = useDispatch();
   const [checkedList, setCheckedList] = useState([]);
+  const [preview, setPreview] = useState([]);
+  const [img, setImg] = useState(null);
+  const [sports, setSports] = useState("");
+  const [spotName, setSpotName] = useState("");
+  const [spotKind, setSpotKind] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDesc] = useState("");
+
+  const handleImagePreview = (file) => {
+    setImg(null);
+    setPreview([]);
+    console.log(file.target.files);
+    // setImg(file.target.files);
+    // file.target.files.length < 4
+    //   ? setImg(file.target.files)
+    //   : alert("사진은 최대 4개까지만 추가 가능합니다");
+
+    //프리뷰 (핸들러를 통해 받은 이미지를 base64로 인코딩)
+    // for (let i = 0; i < file.target.files.length; i++) {
+    if (file.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file.target.files[0]);
+
+      reader.onloadend = () => {
+        setImg(file.target.files[0]);
+
+        //.onloadend : 읽기가 완료 되었을 때
+        const base64 = reader.result;
+        if (base64) {
+          const previewSub = base64.toString();
+          setPreview(previewSub);
+        }
+      };
+    }
+    // }
+  };
+
   const onCheckedElement = (checked, item) => {
     if (checked) {
       setCheckedList([...checkedList, item]);
@@ -27,6 +72,7 @@ const Hosting = () => {
   const [fullAddress, setFullAddress] = useState();
 
   const handleComplete = (data) => {
+    console.log("도대체무슨데이터???", data);
     let fullAddress = data.address;
     let extraAddress = "";
 
@@ -66,15 +112,27 @@ const Hosting = () => {
       }
       console.log(x, y);
 
-      const data = {
-        ...spot,
-        comforts: checkedList,
-        address: fullyAddress,
-        x: x,
-        y: y,
-      };
+      // const data = {
+      //   ...spot,
+      //   comforts: checkedList,
+      //   address: fullyAddress,
+      //   x: x,
+      //   y: y,
+      // };
 
-      PrivateApi.registerSpot(data)
+      const sendFD = new FormData();
+      sendFD.append("image", img);
+      sendFD.append("comforts", JSON.stringify(checkedList));
+      sendFD.append("address", JSON.stringify(fullyAddress));
+      sendFD.append("x", JSON.stringify(x));
+      sendFD.append("y", JSON.stringify(y));
+      sendFD.append("sports", JSON.stringify(sports));
+      sendFD.append("spotName", JSON.stringify(spotName));
+      sendFD.append("spotKind", JSON.stringify(spotKind));
+      sendFD.append("price", JSON.stringify(price));
+      sendFD.append("desc", JSON.stringify(desc));
+
+      PrivateApi.registerSpot(sendFD)
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
@@ -93,171 +151,212 @@ const Hosting = () => {
       <Header />
 
       <StWrap>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onRegisterHandler(spot);
-          }}
-        >
-          <button onClick={() => navigate(`/hostlist`)}>내구장 목록보기</button>
-          <div>
-            스팟 종류
-            <select
-              onChange={(e) => {
-                const { value } = e.target;
-                setSpot({
-                  ...spot,
-                  sports: value,
-                });
-              }}
-            >
-              <option>선택하세요</option>
-              <option>풋살장</option>
-              <option>테니스장</option>
-              <option>배드민턴장</option>
-            </select>
-          </div>
-          <div>
-            스팟 이름
-            <input
-              required
-              type="text"
-              onChange={(e) => {
-                const { value } = e.target;
-                setSpot({
-                  ...spot,
-                  spotName: value,
-                });
-              }}
-            />
-          </div>
-          <div>
-            실내/외
-            <select
-              onChange={(e) => {
-                const { value } = e.target;
-                setSpot({
-                  ...spot,
-                  spotKind: value,
-                });
-              }}
-            >
-              <option>선택하세요</option>
-              <option>실내 스팟</option>
-              <option>실외 스팟</option>
-            </select>
-          </div>
-          <div>
-            <span>주소</span>
-            <button type="button" onClick={handleClick}>
-              주소 검색
+        <HostCard enctype="multipart/form-data">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              onRegisterHandler(spot);
+            }}
+          >
+            <button type="button" onClick={() => navigate(`/hostlist`)}>
+              내구장 목록보기
             </button>
-          </div>
-          {fullAddress ? (
             <div>
-              <span>상세주소</span>
-              <div>
-                <div>{fullAddress}</div>
-                <input
-                  required
-                  type="text"
-                  placeholder="상세 주소를 입력해주세요"
-                  onChange={(e) => {
-                    const { value } = e.target;
-                    setSpot({
-                      ...spot,
-                      address: value,
-                    });
-                  }}
-                />
-              </div>
+              스팟 종류
+              <select
+                onChange={(e) => {
+                  setSports(e.target.value);
+                  // const { value } = e.target;
+                  // setSpot({
+                  //   ...spot,
+                  //   sports: value,
+                  // });
+                }}
+              >
+                <option>선택하세요</option>
+                <option>풋살장</option>
+                <option>테니스장</option>
+                <option>배드민턴장</option>
+              </select>
             </div>
-          ) : null}
-          <div>
-            <input
-              type="checkbox"
-              name="comforts"
-              value="장비대여"
-              onChange={(e) => {
-                onCheckedElement(e.target.checked, e.target.value);
-              }}
-              checked={checkedList.includes("장비대여") ? true : false}
-            />
-            장비대여
-            <input
-              type="checkbox"
-              name="comforts"
-              value="주차장"
-              onChange={(e) => {
-                onCheckedElement(e.target.checked, e.target.value);
-              }}
-              checked={checkedList.includes("주차장") ? true : false}
-            />
-            주차장
-            <input
-              type="checkbox"
-              name="comforts"
-              value="샤워실"
-              onChange={(e) => {
-                onCheckedElement(e.target.checked, e.target.value);
-              }}
-              checked={checkedList.includes("샤워실") ? true : false}
-            />
-            샤워실
-            <input
-              type="checkbox"
-              name="comforts"
-              value="탈의실"
-              onChange={(e) => {
-                onCheckedElement(e.target.checked, e.target.value);
-              }}
-              checked={checkedList.includes("탈의실") ? true : false}
-            />
-            탈의실
-            <input
-              type="checkbox"
-              name="comforts"
-              value="개인락커"
-              onChange={(e) => {
-                onCheckedElement(e.target.checked, e.target.value);
-              }}
-              checked={checkedList.includes("개인락커") ? true : false}
-            />
-            개인락커
-          </div>
-          <div>
-            1시간당
-            <input
-              required
-              type="text"
-              onChange={(e) => {
-                const { value } = e.target;
-                setSpot({
-                  ...spot,
-                  price: parseInt(value),
-                });
-              }}
-            />
-            원
-          </div>
-          <div>
-            스팟 설명
-            <br />
-            <textarea
-              required
-              style={{ height: "200px", width: "300px" }}
-              type="text"
-              onChange={(e) => {
-                const { value } = e.target;
-                setSpot({
-                  ...spot,
-                  desc: value,
-                });
-              }}
-            />
-          </div>
-          <button>등록하기</button>
-        </form>
+            <div>
+              스팟 이름
+              <input
+                required
+                type="text"
+                onChange={(e) => {
+                  setSpotName(e.target.value);
+                  // const { value } = e.target;
+                  // setSpot({
+                  //   ...spot,
+                  //   spotName: value,
+                  // });
+                }}
+              />
+            </div>
+            <Photo>
+              <Preview>
+                {preview.length > 0 ? (
+                  <img
+                    key={1}
+                    src={preview}
+                    alt="미리보기"
+                    style={{
+                      width: `100%`,
+                      height: `100%`,
+                    }}
+                  />
+                ) : (
+                  <div>사진을 추가해 주세요</div>
+                )}
+              </Preview>
+              <Upload>
+                <UploadInput
+                  id="upload-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    handleImagePreview(e);
+                  }}
+                  multiple="multiple"
+                ></UploadInput>
+                {/* <UploadInputDesign htmlFor="upload-input">
+                  사진 추가
+                </UploadInputDesign> */}
+              </Upload>
+            </Photo>
+
+            <div>
+              실내/외
+              <select
+                onChange={(e) => {
+                  setSpotKind(e.target.value);
+                  // const { value } = e.target;
+                  // setSpot({
+                  //   ...spot,
+                  //   spotKind: value,
+                  // });
+                }}
+              >
+                <option>선택하세요</option>
+                <option>실내 스팟</option>
+                <option>실외 스팟</option>
+              </select>
+            </div>
+            <div>
+              <span>주소</span>
+              <button type="button" onClick={handleClick}>
+                주소 검색
+              </button>
+            </div>
+            {fullAddress ? (
+              <div>
+                <span>상세주소</span>
+                <div>
+                  <div>{fullAddress}</div>
+                  <input
+                    required
+                    type="text"
+                    placeholder="상세 주소를 입력해주세요"
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      setSpot({
+                        ...spot,
+                        address: value,
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            ) : null}
+            <div>
+              <input
+                type="checkbox"
+                name="comforts"
+                value="장비대여"
+                onChange={(e) => {
+                  onCheckedElement(e.target.checked, e.target.value);
+                }}
+                checked={checkedList.includes("장비대여") ? true : false}
+              />
+              장비대여
+              <input
+                type="checkbox"
+                name="comforts"
+                value="주차장"
+                onChange={(e) => {
+                  onCheckedElement(e.target.checked, e.target.value);
+                }}
+                checked={checkedList.includes("주차장") ? true : false}
+              />
+              주차장
+              <input
+                type="checkbox"
+                name="comforts"
+                value="샤워실"
+                onChange={(e) => {
+                  onCheckedElement(e.target.checked, e.target.value);
+                }}
+                checked={checkedList.includes("샤워실") ? true : false}
+              />
+              샤워실
+              <input
+                type="checkbox"
+                name="comforts"
+                value="탈의실"
+                onChange={(e) => {
+                  onCheckedElement(e.target.checked, e.target.value);
+                }}
+                checked={checkedList.includes("탈의실") ? true : false}
+              />
+              탈의실
+              <input
+                type="checkbox"
+                name="comforts"
+                value="개인락커"
+                onChange={(e) => {
+                  onCheckedElement(e.target.checked, e.target.value);
+                }}
+                checked={checkedList.includes("개인락커") ? true : false}
+              />
+              개인락커
+            </div>
+            <div>
+              1시간당
+              <input
+                required
+                type="text"
+                onChange={(e) => {
+                  setPrice(e.target.value);
+                  // const { value } = e.target;
+                  // setSpot({
+                  //   ...spot,
+                  //   price: parseInt(value),
+                  // });
+                }}
+              />
+              원
+            </div>
+            <div>
+              스팟 설명
+              <br />
+              <textarea
+                required
+                style={{ height: "100px", width: "300px" }}
+                type="text"
+                onChange={(e) => {
+                  setDesc(e.target.value);
+                  // const { value } = e.target;
+                  // setSpot({
+                  //   ...spot,
+                  //   desc: value,
+                  // });
+                }}
+              />
+            </div>
+            <button>등록하기</button>
+          </form>
+        </HostCard>
       </StWrap>
     </Layout>
   );

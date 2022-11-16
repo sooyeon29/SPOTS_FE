@@ -8,8 +8,8 @@ export const StContainer = styled.div`
 `;
 
 export const StWrap = styled.div`
-  width: 50%;
-  padding: 20px 0px;
+  width: 90%;
+  padding: 20px;
   border: 1px solid lightgray;
   border-radius: 15px;
   margin-top: 50px;
@@ -41,4 +41,54 @@ export const StTeamForm = styled.form`
 `;
 export const MyMatch = styled.div`
   border: 1px solid black;
+`;
+export const HostCard = styled.div``;
+export const Preview = styled.div``;
+export const Photo = styled.div`
+  ${Preview} {
+    border: 1px solid black;
+    height: 200px;
+    width: 80%;
+    /* margin-bottom: 20px; */
+    line-height: 300px; //글자를 vertical로 중앙 정렬시 line-height 주고 vertical-align 주기
+    vertical-align: middle;
+    display: flex;
+    flex-wrap: wrap;
+    img {
+      //스타일드 컴포넌트내에 있는 태그
+      object-fit: cover;
+      background-color: beige;
+      /* border: 1px solid black; */
+    }
+    div {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+`;
+export const UploadInput = styled.input``;
+export const UploadInputDesign = styled.label``;
+
+export const Upload = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+
+  ${UploadInput} {
+    /* display: none; */
+  }
+
+  ${UploadInputDesign} {
+    display: inline-block;
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    background-color: lightgray;
+    border-radius: 10px;
+    margin-right: 10px;
+    :hover {
+      background: gray;
+    }
+  }
 `;
