@@ -83,3 +83,9 @@ export const PrivateApi = {
 export const PublicApi = {
   getPublicSpot: () => instance.get(`places/open`),
 };
+
+
+// 검색 API
+export const SearchApi = {
+  getSearchedSpot: (payload) => instance.get(`places/keyword/${payload}`),
+}

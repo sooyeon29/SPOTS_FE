@@ -8,8 +8,9 @@ import { FaSearchLocation } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import useToggle from "../hooks/useToggle";
 
+
 const Header = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
@@ -26,9 +27,9 @@ const Header = () => {
           <StLogo
             onClick={() => {
               navigate(`/`);
-            }}
-          >
-            <Img src="/logo.png" alt="logo" />
+              localStorage.clear();
+            }}>
+            <Img src='/logo.png' alt='logo' />
           </StLogo>
           <StButtons>
             {!toggle ? (
@@ -42,13 +43,11 @@ const Header = () => {
             ) : (
               <SearchBar />
             )}
-
             {!token ? (
               <Sta
                 onClick={() => {
                   navigate(`/login`);
-                }}
-              >
+                }}>
                 Login
               </Sta>
             ) : (
@@ -60,19 +59,20 @@ const Header = () => {
                   <Menu isDropped={myPageIsOpen}>
                     <Ul ref={dropDownRef}>
                       <Li>
-                        <Linkdiv onClick={() => navigate("/mypage")}>
+                        <Linkdiv onClick={() => navigate('/mypage')}>
                           My page
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate("/teampage")}>
+                        <Linkdiv onClick={() => navigate('/teampage')}>
                           Team Page
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate("/reservpage")}>
+                        <Linkdiv onClick={() => 
+                          navigate('/reservpage')}>
                           Reservation
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate("/hosting ")}>
+                        <Linkdiv onClick={() => navigate('/hosting ')}>
                           Hosting
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate("/hostlist ")}>
+                        <Linkdiv onClick={() => navigate('/hostlist ')}>
                           HostList
                         </Linkdiv>
                         <Linkdiv onClick={logout}>Log Out</Linkdiv>
@@ -123,7 +123,7 @@ const StButtons = styled.ul`
 `;
 
 const Sta = styled.a`
-  margin: 0px 30px 0px 30px;
+  margin: 0px 0px 0px 30px;
   font-size: 18px;
   /* line-height: 24px; */
   font-weight: normal;
@@ -155,6 +155,7 @@ const DropdownContainer = styled.div`
 
 const DropdownButton = styled.div`
   cursor: pointer;
+  margin-left: 30px;
 `;
 
 const Li = styled.li``;
@@ -200,7 +201,7 @@ const Menu = styled.div`
   z-index: 9;
 
   &:after {
-    content: "";
+    content: '';
     height: 0;
     width: 0;
     position: absolute;

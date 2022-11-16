@@ -1,21 +1,27 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
-import styled from "styled-components";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { BsSearch } from 'react-icons/bs';
+import styled from 'styled-components';
 
 const Search = () => {
-  const navigate = useNavigate();
-  const [keyword, setKeyword] = useState("");
+  //const navigate = useNavigate();
+  const [keyword, setKeyword] = useState('');
 
-  const onSearchHandler = (e) => {
+  const onSearchHandler = async (e) => {
     e.preventDefault();
-    navigate("/book", { state: [keyword] });
-    console.log({ state: [keyword] });
+    window.location.href = "/book/" + keyword;
+    // if (keyword.trim() === '') {
+    //   return alert('검색어를 입력해주세요!');
+    // }
+    // navigate('/book', { state: [keyword] });
+    // console.log({ state: [keyword] });
+    // localStorage.setItem('savedKeyword', keyword);
   };
 
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
+
         <StInput
           type="text"
           value={keyword}
