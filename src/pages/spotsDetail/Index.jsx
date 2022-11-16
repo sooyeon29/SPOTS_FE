@@ -145,7 +145,7 @@ const SpotsDetail = () => {
         price: payAPrice + payBPrice,
       })
     );
-    navigate(`/userpage`);
+    navigate(`/reservpage`);
   };
 
   const pickDateHandler = (date, name) => {
@@ -289,12 +289,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[0]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[0])}
-                            onClick={() => teamPick(0, spot.price)}
+                            onClick={() => teamPick(0, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(0, spot.price)}>
+                          <Team onClick={() => teamPick(0, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -302,12 +302,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[1]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[1])}
-                            onClick={() => teamPick(1, spot.price)}
+                            onClick={() => teamPick(1, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(1, spot.price)}>
+                          <Team onClick={() => teamPick(1, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -315,12 +315,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[2]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[2])}
-                            onClick={() => teamPick(2, spot.price)}
+                            onClick={() => teamPick(2, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(2, spot.price)}>
+                          <Team onClick={() => teamPick(2, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -328,12 +328,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[3]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[3])}
-                            onClick={() => teamPick(3, spot.price)}
+                            onClick={() => teamPick(3, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(3, spot.price)}>
+                          <Team onClick={() => teamPick(3, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -341,12 +341,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[4]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[4])}
-                            onClick={() => teamPick(4, spot.price)}
+                            onClick={() => teamPick(4, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(4, spot.price)}>
+                          <Team onClick={() => teamPick(4, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -354,12 +354,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[5]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[5])}
-                            onClick={() => teamPick(5, spot.price)}
+                            onClick={() => teamPick(5, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(5, spot.price)}>
+                          <Team onClick={() => teamPick(5, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -367,12 +367,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[6]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[6])}
-                            onClick={() => teamPick(6, spot.price)}
+                            onClick={() => teamPick(6, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(6, spot.price)}>
+                          <Team onClick={() => teamPick(6, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>
@@ -380,12 +380,12 @@ const SpotsDetail = () => {
                           <Time>{myTime[7]}</Time>
                           <Team
                             disabled={timeSlots.includes(myTime[7])}
-                            onClick={() => teamPick(7, spot.price)}
+                            onClick={() => teamPick(7, spot.price / 2)}
                           >
                             팀1
                           </Team>
                           vs
-                          <Team onClick={() => teamPick(7, spot.price)}>
+                          <Team onClick={() => teamPick(7, spot.price / 2)}>
                             팀2
                           </Team>
                         </BookMatch>

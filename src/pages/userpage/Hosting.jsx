@@ -5,9 +5,7 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { __postRegister } from "../../redux/modules/spotsSlice";
 import { StWrap } from "./Styles";
-import useToggle from "../../hooks/useToggle";
 
 const { kakao } = window;
 
