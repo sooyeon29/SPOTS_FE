@@ -21,13 +21,14 @@ export const Title = styled.div`
 `;
 export const Croll = styled.div`
   display: flex;
-
+  width: 100%;
   img {
-    width: 100px;
-    height: 50px;
+    width: 50%;
+    height: 300px;
     background-color: lightcoral;
   }
   div {
+    width: 50%;
     background-color: lightblue;
   }
 `;
