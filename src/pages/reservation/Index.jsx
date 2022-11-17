@@ -13,38 +13,43 @@ import {
 import axios from 'axios';
 import { SearchApi } from '../../tools/instance';
 
-const Reservation = ({keyword}) => {
+const Reservation = () => {
   const dispatch = useDispatch();
-  const params = useParams(false);
+  const params = useParams();
   const [searchedSpots, setsearchedSpots] = useState();
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
   );
-  const searchTerm = params.keyword
-  console.log('키워드', searchTerm)
-  console.log('파람', params)
-
+  const searchTerm = params.keywords;
+  // console.log('검색어', searchTerm);
+  // console.log('파라미터', params);
+  
+  
   const allSpots = [...(privateSpot || []), ...(publicSpot || [])];
-  console.log("---------전체시설-----------", allSpots);
+  console.log('---------전체시설-----------', allSpots);
 
   useEffect(() => {
+    
+    if(!params.keywords) {return }
     async function fetchData() {
-      const searched = await SearchApi.getSearchedSpot(params.keyword);
-      setsearchedSpots(searched.data.data);
+      
+      const searched = await SearchApi.getSearchedSpot(params.keywords);
+
+      setsearchedSpots([...searched.data.data.private, ...searched.data.data.public]);
     }
     fetchData();
-  }, []);
+  },[]);
 
   useEffect(() => {
     dispatch(__getPrivateSpot());
     dispatch(__getPublicSpot());
-    setsearchedSpots(allSpots)
+    
   }, []);
+  
 
   const placeList = useSelector((state) => state.spots.privateSpot);
-  console.log('---------지도로들어감-----------', placeList);
-  console.log('---------검색결과-----------', searchedSpots);
-
+  // console.log('---------지도로들어감-----------', placeList);
+  // console.log('---------검색결과-----------', searchedSpots);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -54,18 +59,22 @@ const Reservation = ({keyword}) => {
     return <div>{error.message}</div>;
   }
 
-
   return (
     <>
       <Layout>
         <Header />
-        <h1>{params.keyword} 검색 결과</h1>
+        <h1>{params.keywords} 검색 결과</h1>
         <StWrap>
-          <MapPlace>
-            {/* <SpotsMap placeList={placeList} /> */}
-          </MapPlace>
+        
+          <MapPlace>{/* <SpotsMap placeList={placeList} /> */}</MapPlace>
           <PlaceList>
-            {searchedSpots?.map((searchedSpot, index) => {
+
+            {!params.keywords && allSpots?.map((searchedSpot, index) => {
+              
+              return <SpotList key={index} searchedSpot={searchedSpot} />;
+            })}
+                  {searchedSpots?.map((searchedSpot, index) => {
+              
               return <SpotList key={index} searchedSpot={searchedSpot} />;
             })}
           </PlaceList>

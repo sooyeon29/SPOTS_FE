@@ -14,8 +14,6 @@ const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
   const getPubSpot = useDispatch();
 
-  // console.log(sportsKind);
-
   useEffect(() => {
     getPrivSpot(__getPrivateSpot());
     getPubSpot(__getPublicSpot());
@@ -38,6 +36,9 @@ const SpotsMap = ({ sportsKind }) => {
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
   );
+  
+  const pub = useSelector((state) => state?.spots)
+  console.log(pub);
 
   console.log("---------사설시설-----------", privateSpot);
   console.log("---------공공시설-----------", publicSpot);
@@ -149,7 +150,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPrivateOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -187,7 +188,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
