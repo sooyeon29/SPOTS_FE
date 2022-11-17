@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
-import Chat from "../chat/Chat";
+import Chat from "./Chat";
 import { io } from "socket.io-client";
 
 const Chat1 = () => {

@@ -1,9 +1,10 @@
 import axios from "axios";
-import { intlFormatDistanceWithOptions } from "date-fns/fp";
+// import { intlFormatDistanceWithOptions } from "date-fns/fp";
 
 const isLogin = localStorage.getItem("token");
-const isKakaoLogin = localStorage.getItem("token");
-
+// const isKakaoLogin = localStorage.getItem("token");
+// const isMember = localStorage.getItem("loginId");
+// console.log(isMember);
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",
   baseURL: "https://sparta4.shop/",
@@ -19,6 +20,8 @@ export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   // 소셜로그인(카카오)
   kakaoLogin: (payload) => instance.get(`auth/kakao/code?code=${payload}`),
+  kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
+
   // 인증번호
   postforVCode: (payload) => instance.post(`user/sendSms`, payload),
   postforCheckVCode: (payload) => instance.post(`user/checkSms`, payload),
@@ -42,7 +45,7 @@ export const SignUpAPI = {
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  kakaoSingUp: (payload) => instance.post(`users/signup/add`, payload),
+  kakaoSingUp: (payload) => instance.post(`auth/signup`, payload),
 };
 
 // userpage
