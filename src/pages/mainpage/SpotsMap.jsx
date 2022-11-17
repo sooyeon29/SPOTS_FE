@@ -15,6 +15,11 @@ const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
   const getPubSpot = useDispatch();
 
+  useEffect(() => {
+    getPrivSpot(__getPrivateSpot());
+    getPubSpot(__getPublicSpot());
+  }, []);
+
   const [isPrivateOpen, setIsPrivateOpen] = useState([]);
   const [isPublicOpen, setIsPublicOpen] = useState([]);
   const [level, setLevel] = useState();
@@ -43,10 +48,8 @@ const SpotsMap = ({ sportsKind }) => {
     setIsPrivateOpen(false);
   };
 
-  useEffect(() => {
-    getPrivSpot(__getPrivateSpot());
-    getPubSpot(__getPublicSpot());
-  }, []);
+  const pub = useSelector((state) => state?.spots)
+  console.log(pub);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -93,7 +96,7 @@ const SpotsMap = ({ sportsKind }) => {
         center={state.center}
         style={{
           // 지도의 크기
-          width: "80%",
+          width: "100%",
           height: "500px",
           margin: "auto",
         }}
@@ -185,7 +188,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPrivateOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -261,7 +264,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>

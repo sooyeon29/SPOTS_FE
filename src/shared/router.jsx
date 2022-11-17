@@ -16,6 +16,10 @@ import ReservPage from "../pages/userpage/ReservPage";
 import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
 import Chat from "../pages/chat/Chat";
+import FindPw from "../pages/login/FindPw";
+import FindId from "../pages/login/FindId";
+import ChatRoom from "../pages/chat/ChatRoom";
+import KakaoAdd from "../pages/login/KakaoAdd";
 
 function Router() {
   return (
@@ -24,6 +28,8 @@ function Router() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<MainMaps />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/findpw" element={<FindPw />} />
+        <Route path="/findid" element={<FindId />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/teampage" element={<TeamPage />} />
         <Route path="/teamdetail/:id" element={<TeamDetail />} />
@@ -31,13 +37,15 @@ function Router() {
         <Route path="/reservpage" element={<ReservPage />} />
         <Route path="/spotsdetail/:id" element={<SpotsDetail />} />
         <Route path="/book" element={<Reservation />} />
-        <Route path="/book/:keyword" element={<Reservation />} />
+        <Route path="/book/:keywords" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
+        <Route path="/addlogin" element={<KakaoAdd />} />
       </Routes>
     </BrowserRouter>
   );

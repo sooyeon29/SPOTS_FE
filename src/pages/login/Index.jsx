@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { LoginAPI, UserpageAPI } from "../../tools/instance";
 import { KAKAO_AUTH_URL } from "./OAuth";
-import { StWraps, Stinput, KakaoBtn } from "./Styles";
+import { StWraps, Stinput, KakaoBtn, FindButs } from "./Styles";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -74,16 +74,19 @@ const Login = () => {
               </div>
             </div>
             <button>로그인</button>
-            <div>
-              아직 회원이 아니신가요? <a href="/signup"> 회원가입</a>
-            </div>
           </form>
+          <FindButs>
+            <button onClick={() => navigate(`/signup`)}>회원가입</button>|{" "}
+            <button onClick={() => navigate(`/findid`)}>아이디찾기</button>|
+            <button onClick={() => navigate(`/findpw`)}>비밀번호찾기</button>
+          </FindButs>
           {/* 소셜로그인 - 카카오로그인 */}
           <KakaoBtn>
             {/* // href="https://ws-study.shop/auth/kakao"> */}
             <img alt="" src="/kakao.png" width={30} />
             <a
-              href={ // "/auth/kakao/callback"
+              href={
+                // "/auth/kakao/callback"
                 KAKAO_AUTH_URL
               }
             >

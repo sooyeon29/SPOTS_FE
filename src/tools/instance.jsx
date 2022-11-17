@@ -1,9 +1,10 @@
 import axios from "axios";
-import { intlFormatDistanceWithOptions } from "date-fns/fp";
+// import { intlFormatDistanceWithOptions } from "date-fns/fp";
 
 const isLogin = localStorage.getItem("token");
-const isKakaoLogin = localStorage.getItem("token");
-
+// const isKakaoLogin = localStorage.getItem("token");
+// const isMember = localStorage.getItem("loginId");
+// console.log(isMember);
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",
   baseURL: "https://sparta4.shop/",
@@ -17,9 +18,25 @@ const instance = axios.create({
 // 로그인
 export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
-  kakaoLogin: (payload) =>
-    // console.log(payload),
-    instance.get(`auth/kakao/code?code=${payload}`),
+  // 소셜로그인(카카오)
+  kakaoLogin: (payload) => instance.get(`auth/kakao/code?code=${payload}`),
+  kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
+
+  // 인증번호
+  postforVCode: (payload) => instance.post(`user/sendSms`, payload),
+  postforCheckVCode: (payload) => instance.post(`user/checkSms`, payload),
+  // 아이디 찾기
+  findId: (payload) =>
+    instance.post(`user/findId`, {
+      phone: payload.phoneNum,
+      code: payload.veriCode,
+    }),
+  findPw: (payload) =>
+    instance.post(`users/findPw`, {
+      loginId: payload.id,
+      phone: payload.phoneNum,
+      code: payload.veriCode,
+    }),
 };
 
 // 회원가입
@@ -27,7 +44,8 @@ export const SignUpAPI = {
   signUp: (payload) => instance.post(`users/signup`, payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
-  checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
+  // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
+  kakaoSingUp: (payload) => instance.post(`auth/signup`, payload),
 };
 
 // userpage
@@ -84,8 +102,8 @@ export const PublicApi = {
   getPublicSpot: () => instance.get(`places/open`),
 };
 
-
 // 검색 API
 export const SearchApi = {
   getSearchedSpot: (payload) => instance.get(`places/keyword/${payload}`),
-}
+  getAllSpot: () => instance.get(`places/all`),
+};

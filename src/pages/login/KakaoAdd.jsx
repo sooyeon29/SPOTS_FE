@@ -1,72 +1,67 @@
-import React from "react";
-import Layout from "../../components/Layout";
-import { useRef } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Red } from "./Styles";
-import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
-import useInput from "../../hooks/useInput";
+import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
+import { LoginAPI, SignUpAPI } from "../../tools/instance";
+import { Red } from "../signUp/Styles";
 
-const SignUp = () => {
+const KakaoAdd = () => {
   const [isCode, setIsCode] = useToggle();
 
   const {
     register,
     handleSubmit,
-    watch,
     getValues,
     formState: { errors },
   } = useForm();
-  const password = useRef();
-  password.current = watch("password");
+
   const navigate = useNavigate();
+  const isMember = localStorage.getItem("loginId");
+  console.log(isMember);
+  //   useEffect(() => {
+  //     LoginAPI.kakaoId(isMember)
+  //       .then((res) => {
+  //         if (res.data.code !== 1) navigate(`/`);
+  //       })
+
+  //       .catch((err) =>
+  //         console.log("에러ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ", err)
+  //       );
+  //   }, []);
 
   const onSubmit = async (data) => {
-    SignUpAPI.signUp(data)
+    // 소셜로그인용 인스턴스 만들어서 바꿔주어야함!
+    SignUpAPI.kakaoSingUp({ ...data, loginId: isMember })
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
           alert("회원가입을 환영합니다!");
-          navigate("/login");
+          navigate(`/`);
+          // LoginAPI.kakaoId(isMember)
+          //   .then((res) => {
+          //     console.log(res);
+          //     localStorage.setItem("token", res.data.accessToken);
+          //     console.log(res.data.accessToken);
+          //     ;
+          //   })
+          //   .catch((err) => console.log(err));
         }
       })
-      .catch((error) => {
-        const errorMsg = error.response.data.code;
-        if (errorMsg === -1) {
-          alert("사용 중인 아이디입니다");
-        }
-        if (errorMsg === -2) {
-          alert("사용 중인 닉네임입니다");
-        }
-        if (errorMsg === -3) {
-          alert("사용 중인 번호입니다");
-        }
-        if (errorMsg === -4) {
-          alert("해당 추천인 ID가 없습니다");
-        }
-        if (errorMsg === -5) {
-          alert("비밀번호를 확인해주세요");
-        }
-      });
-  };
 
-  // ID 중복 확인
-  const checkId = () => {
-    const loginId = getValues("loginId");
-    SignUpAPI.checkId({ loginId })
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          alert("사용 가능한 ID입니다");
-        }
-      })
       .catch((error) => {
-        console.log(error.response.status);
-        if (error.response.status === 412) {
-          alert("이미 사용 중인 ID입니다");
-        }
+        console.log(error);
+        // const errorMsg = error.response.data.code;
+        // if (errorMsg === -3) {
+        //   alert("사용 중인 번호입니다");
+        // }
+        // if (errorMsg === -4) {
+        //   alert("해당 추천인 ID가 없습니다");
+        // }
+        // if (errorMsg === -5) {
+        //   alert("비밀번호를 확인해주세요");
+        // }
       });
   };
 
@@ -76,18 +71,19 @@ const SignUp = () => {
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
         console.log(res);
-        if (res.status === 200) {
-          alert("사용 가능한 닉네임입니다");
-        }
+        // if (res.status === 200) {
+        alert("사용 가능한 닉네임입니다");
+        // }
       })
       .catch((error) => {
         console.log(error.response.status);
-        if (error.response.status === 412) {
-          alert("이미 사용 중인 닉네임입니다");
-        }
+        // if (error.response.status === 412) {
+        alert("이미 사용 중인 닉네임입니다");
+        // }
       });
   };
   // 핸드폰 인증코드 받기
+
   const sendPhoneForCode = () => {
     setIsCode(true);
     const phone = getValues("phone");
@@ -113,91 +109,11 @@ const SignUp = () => {
         alert("인증번호를 재확인 해주세요");
       });
   };
-
-  // // 휴대폰 번호 중복 확인
-  // const checkPhoneNum = () => {
-  //   const phone = getValues("phone");
-  //   SignUpAPI.checkPhoneNum({ phone })
-  //     .then((res) => {
-  //       console.log(res);
-  //       if (res.status === 200) {
-  //         alert("사용 가능한 전화번호입니다");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.status);
-  //       if (error.response.status === 412) {
-  //         alert("이미 가입된 전화번호입니다");
-  //       }
-  //     });
-  // };
-
   return (
     <>
       <Layout>
         <Header />
-        <div>회원가입</div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            필수입력사항<Red>*</Red>
-          </div>
-          <div>
-            아이디<Red>*</Red>
-            <input
-              type="text"
-              {...register("loginId", {
-                required: true,
-                pattern: /^[A-za-z0-9]{6,12}$/,
-              })}
-              placeholder="아이디를 입력해주세요"
-              autoComplete="off"
-            />
-            {errors.loginId && errors.loginId.type === "required" && (
-              <p>아이디를 입력해주세요.</p>
-            )}
-            {errors.loginId && errors.loginId.type === "pattern" && (
-              <p> 6~12글자 사이의 영문 또는 숫자만 입력 가능합니다</p>
-            )}
-          </div>
-          <button type="button" onClick={checkId}>
-            중복확인
-          </button>
-          <div>
-            비밀번호<Red>*</Red>
-            <input
-              type="password"
-              {...register("password", {
-                required: true,
-                pattern: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
-              })}
-              placeholder="비밀번호를 입력해주세요"
-            />
-            {errors.password && errors.password.type === "required" && (
-              <p>비밀번호를 입력해주세요</p>
-            )}
-            {errors.password && errors.password.type === "pattern" && (
-              <p>영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
-            )}
-          </div>
-          <div>
-            비밀번호 확인<Red>*</Red>
-            <input
-              type="password"
-              {...register("confirmPassword", {
-                required: true,
-                validate: (value) => value === password.current,
-              })}
-              placeholder="비밀번호를 한번 더 입력해주세요"
-            />
-            {errors.confirmPassword &&
-              errors.confirmPassword.type === "required" && (
-                <p>다시 한번 비밀번호를 입력해주세요</p>
-              )}
-            {errors.confirmPassword &&
-              errors.confirmPassword.type === "validate" && (
-                <p>비밀번호가 일치하지 않습니다</p>
-              )}
-          </div>
           <div>
             닉네임<Red>*</Red>
             <input
@@ -238,8 +154,7 @@ const SignUp = () => {
             )}
           </div>
           <div>
-            휴대폰 번호
-            <Red>*</Red>
+            휴대폰 번호<Red>*</Red>
             <div>
               <input
                 type="text"
@@ -270,7 +185,7 @@ const SignUp = () => {
                   <input
                     placeholder="인증번호를 입력하세요"
                     type="text"
-                    required
+                    // required
                     name="code"
                     autoComplete="off"
                   />
@@ -280,25 +195,6 @@ const SignUp = () => {
                 </div>
               )}
             </div>
-            {/* <input
-              type="text"
-              {...register("phone", {
-                required: true,
-                minLegnth: 10,
-                pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
-              })}
-              placeholder="휴대폰 번호를 입력해주세요"
-              autoComplete="off"
-            />
-            {errors.phone && errors.phone.type === "required" && (
-              <p>휴대폰 번호를 입력해주세요</p>
-            )}
-            {errors.phone && errors.phone.type === "pattern" && (
-              <p>올바른 번호 형식이 아닙니다.</p>
-            )}
-            <button type="button" onClick={checkPhoneNum}>
-              중복확인
-            </button> */}
           </div>
           <div>
             나의 운동
@@ -348,4 +244,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default KakaoAdd;
