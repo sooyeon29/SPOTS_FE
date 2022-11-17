@@ -3,11 +3,15 @@ import Layout from "../../components/Layout";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Red } from "./Styles";
-import { SignUpAPI } from "../../tools/instance";
+import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import useInput from "../../hooks/useInput";
+import useToggle from "../../hooks/useToggle";
 
 const SignUp = () => {
+  const [isCode, setIsCode] = useToggle();
+
   const {
     register,
     handleSubmit,
@@ -83,24 +87,50 @@ const SignUp = () => {
         }
       });
   };
-
-  // 휴대폰 번호 중복 확인
-  const checkPhoneNum = () => {
+  // 핸드폰 인증코드 받기
+  const sendPhoneForCode = () => {
+    setIsCode(true);
     const phone = getValues("phone");
-    SignUpAPI.checkPhoneNum({ phone })
+    LoginAPI.postforVCode({ phone })
       .then((res) => {
         console.log(res);
-        if (res.status === 200) {
-          alert("사용 가능한 전화번호입니다");
-        }
+        alert("인증번호가 전송되었습니다.");
       })
-      .catch((error) => {
-        console.log(error.response.status);
-        if (error.response.status === 412) {
-          alert("이미 가입된 전화번호입니다");
-        }
+      .catch((err) => {
+        console.log(err);
+        alert("유효하지 않은 번호입니다.");
       });
   };
+  const checkVCode = () => {
+    const code = getValues("code");
+    LoginAPI.postforCheckVCode(code)
+      .then((res) => {
+        console.log(res);
+        alert("인증이 완료되었습니다.");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("인증번호를 재확인 해주세요");
+      });
+  };
+
+  // // 휴대폰 번호 중복 확인
+  // const checkPhoneNum = () => {
+  //   const phone = getValues("phone");
+  //   SignUpAPI.checkPhoneNum({ phone })
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.status === 200) {
+  //         alert("사용 가능한 전화번호입니다");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.status);
+  //       if (error.response.status === 412) {
+  //         alert("이미 가입된 전화번호입니다");
+  //       }
+  //     });
+  // };
 
   return (
     <>
@@ -208,8 +238,49 @@ const SignUp = () => {
             )}
           </div>
           <div>
-            휴대폰 번호<Red>*</Red>
-            <input
+            휴대폰 번호
+            <Red>*</Red>
+            <div>
+              <input
+                type="text"
+                {...register("phone", {
+                  required: true,
+                  minLegnth: 10,
+                  pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
+                })}
+                placeholder="휴대폰 번호를 입력해주세요"
+                autoComplete="off"
+              />
+              {errors.phone && errors.phone.type === "required" && (
+                <p>휴대폰 번호를 입력해주세요</p>
+              )}
+              {errors.phone && errors.phone.type === "pattern" && (
+                <p>올바른 번호 형식이 아닙니다.</p>
+              )}
+
+              <button type="button" onClick={sendPhoneForCode}>
+                인증번호받기
+              </button>
+              {isCode && (
+                <div>
+                  <div>
+                    인증번호
+                    <Red>*</Red>
+                  </div>
+                  <input
+                    placeholder="인증번호를 입력하세요"
+                    type="text"
+                    required
+                    name="code"
+                    autoComplete="off"
+                  />
+                  <button type="button" onClick={checkVCode}>
+                    확인
+                  </button>
+                </div>
+              )}
+            </div>
+            {/* <input
               type="text"
               {...register("phone", {
                 required: true,
@@ -227,7 +298,7 @@ const SignUp = () => {
             )}
             <button type="button" onClick={checkPhoneNum}>
               중복확인
-            </button>
+            </button> */}
           </div>
           <div>
             나의 운동
