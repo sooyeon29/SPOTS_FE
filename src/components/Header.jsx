@@ -104,6 +104,7 @@ const StHeader = styled.div`
   width: 100%;
   padding: 0;
   background-color: #000000;
+  min-width: 50px;
 `;
 
 const StWrap = styled.div`

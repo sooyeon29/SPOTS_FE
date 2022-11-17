@@ -17,7 +17,7 @@ const TapBar = () => {
         <TbCalendarTime size="28" />
       </div>
       <div>
-        <FiSearch size="25" />
+        <FiSearch size="25" onClick={() => navigate("/book")} />
       </div>
       <div>
         <IoPersonOutline size="27" />

@@ -31,7 +31,7 @@ function Router() {
         <Route path="/reservpage" element={<ReservPage />} />
         <Route path="/spotsdetail/:id" element={<SpotsDetail />} />
         <Route path="/book" element={<Reservation />} />
-        <Route path="/book/:keyword" element={<Reservation />} />
+        <Route path="/book/:keywords" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/switchaccount" element={<SwitchAccount />} />

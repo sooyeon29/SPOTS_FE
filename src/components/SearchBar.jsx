@@ -4,12 +4,12 @@ import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
 
 const Search = () => {
-  //const navigate = useNavigate();
-  const [keyword, setKeyword] = useState("");
+  // const navigate = useNavigate();
+  const [keywords, setKeywords] = useState('');
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
-    window.location.href = "/book/" + keyword;
+    window.location.href = "/book/" + keywords;
     // if (keyword.trim() === '') {
     //   return alert('검색어를 입력해주세요!');
     // }
@@ -17,21 +17,24 @@ const Search = () => {
     // console.log({ state: [keyword] });
     // localStorage.setItem('savedKeyword', keyword);
   };
+  console.log(keywords);
 
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
-        <StInput
-          type="text"
-          value={keyword}
-          placeholder="어떤 스팟을 찾으시나요?"
-          onChange={(e) => {
-            setKeyword(e.target.value);
-          }}
-        />
-        <StBtn>
-          <BsSearch style={{ color: "white", cursor: "pointer" }} />
-        </StBtn>
+        {/* <SearchBar> */}
+          <StInput
+            type='text'
+            value={keywords}
+            placeholder='어떤 스팟을 찾으시나요?'
+            onChange={(e) => {
+              setKeywords(e.target.value);
+            }}
+          />
+          <StBtn type="button">
+            <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
+          </StBtn>
+        {/* </SearchBar> */}
       </form>
     </StSearch>
   );
