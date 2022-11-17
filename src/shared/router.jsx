@@ -16,6 +16,7 @@ import ReservPage from "../pages/userpage/ReservPage";
 import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
 import Chat from "../pages/chat/Chat";
+import ChatRoom from "../pages/chat/ChatRoom";
 
 function Router() {
   return (
@@ -38,6 +39,7 @@ function Router() {
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
       </Routes>
     </BrowserRouter>
   );
