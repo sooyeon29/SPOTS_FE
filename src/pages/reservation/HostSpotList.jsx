@@ -22,7 +22,7 @@ const SpotList = ({ searchedSpot }) => {
           <>
             <a href={searchedSpot.svcurl}>
               <PublicBlock>
-                <div>{searchedSpot.spotName}</div>
+                <div>{searchedSpot.placenm}</div>
                 <div>{searchedSpot.svcstatnm}</div>
                 <div>{searchedSpot.minclassnm}</div>
                 <div>{searchedSpot.svcnm}</div>

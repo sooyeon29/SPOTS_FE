@@ -223,7 +223,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
