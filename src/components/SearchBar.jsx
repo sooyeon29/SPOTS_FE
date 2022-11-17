@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BsSearch } from 'react-icons/bs';
-import styled from 'styled-components';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import styled from "styled-components";
 
 const Search = () => {
-  //const navigate = useNavigate();
-  const [keyword, setKeyword] = useState('');
+  // const navigate = useNavigate();
+  const [keywords, setKeywords] = useState('');
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
-    window.location.href = "/book/" + keyword;
+    window.location.href = "/book/" + keywords;
     // if (keyword.trim() === '') {
     //   return alert('검색어를 입력해주세요!');
     // }
@@ -17,22 +17,24 @@ const Search = () => {
     // console.log({ state: [keyword] });
     // localStorage.setItem('savedKeyword', keyword);
   };
+  console.log(keywords);
 
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
-
-        <StInput
-          type="text"
-          value={keyword}
-          placeholder="어떤 스팟을요?"
-          onChange={(e) => {
-            setKeyword(e.target.value);
-          }}
-        />
-        <StBtn>
-          <BsSearch style={{ color: "white", cursor: "pointer" }} />
-        </StBtn>
+        {/* <SearchBar> */}
+          <StInput
+            type='text'
+            value={keywords}
+            placeholder='어떤 스팟을 찾으시나요?'
+            onChange={(e) => {
+              setKeywords(e.target.value);
+            }}
+          />
+          <StBtn type="button">
+            <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
+          </StBtn>
+        {/* </SearchBar> */}
       </form>
     </StSearch>
   );
@@ -40,8 +42,8 @@ const Search = () => {
 export default Search;
 
 const StSearch = styled.div`
-  width: 200px;
-  margin-right: 10px;
+  width: 100%;
+  margin-right: 20px;
   background: none;
   border: none;
   border-bottom: 2px solid white;
@@ -55,8 +57,8 @@ const StSearch = styled.div`
 `;
 
 const StInput = styled.input`
-  width: 100px;
-  background-color: red;
+  width: 130px;
+  background-color: transparent;
   border: none;
   display: flex;
   padding: 0;
@@ -77,6 +79,7 @@ const StInput = styled.input`
 `;
 
 const StBtn = styled.button`
+  margin-left: 5px;
   border: none;
   background: none;
   cursor: pointer;

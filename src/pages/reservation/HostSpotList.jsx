@@ -4,6 +4,10 @@ import { Place, PrivateBlock, PublicBlock } from "./Style";
 const SpotList = ({ searchedSpot }) => {
   const navigate = useNavigate();
 
+  console.log(searchedSpot)
+
+  // return
+
   return (
     <>
       <Place>

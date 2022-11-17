@@ -18,6 +18,7 @@ import HostDetail from "../pages/userpage/HostDetail";
 import Chat from "../pages/chat/Chat";
 import FindPw from "../pages/login/FindPw";
 import FindId from "../pages/login/FindId";
+import ChatRoom from "../pages/chat/ChatRoom";
 
 function Router() {
   return (
@@ -35,13 +36,14 @@ function Router() {
         <Route path="/reservpage" element={<ReservPage />} />
         <Route path="/spotsdetail/:id" element={<SpotsDetail />} />
         <Route path="/book" element={<Reservation />} />
-        <Route path="/book/:keyword" element={<Reservation />} />
+        <Route path="/book/:keywords" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
       </Routes>
     </BrowserRouter>
   );

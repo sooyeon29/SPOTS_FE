@@ -67,7 +67,7 @@ export const __getPublicSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PublicApi.getPublicSpot();
-      // console.log(data);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
