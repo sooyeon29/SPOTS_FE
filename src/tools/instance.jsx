@@ -87,5 +87,9 @@ export const PublicApi = {
 
 // 검색 API
 export const SearchApi = {
+  // 스팟 검색(필터) Api
+  
   getSearchedSpot: (payload) => instance.get(`places/keyword/${payload}`),
-}
+  // 스팟 검색(노 필터-전체 조회) Api
+  getAllSpot: () => instance.get(`places/all`),
+};

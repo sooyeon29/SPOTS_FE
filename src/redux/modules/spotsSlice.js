@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PrivateApi, PublicApi } from "../../tools/instance";
+import { PrivateApi, PublicApi, SearchApi } from "../../tools/instance";
 
 const initialState = {
   privateSpot: [],
@@ -67,13 +67,41 @@ export const __getPublicSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PublicApi.getPublicSpot();
-      console.log(data);
+      // console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
+
+
+export const __getSearchedSpot = createAsyncThunk(
+  "getSearchedSpots",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await SearchApi.getSearchedSpot(payload);
+      // console.log("----데이터----", data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      // console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
+
+export const __getAllSpot = createAsyncThunk(
+  "getAllSpots",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await SearchApi.getAllSpot();
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+)
+
 
 const privateSlice = createSlice({
   name: "spots",
@@ -149,7 +177,33 @@ const privateSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+
+
+    [__getSearchedSpot.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getSearchedSpot.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.searchedSpot = action.payload;
+    },
+    [__getSearchedSpot.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getAllSpot.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getAllSpot.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.allSpot = action.payload;
+    },
+    [__getAllSpot.pending]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
+
+
 
 export default privateSlice.reducer;

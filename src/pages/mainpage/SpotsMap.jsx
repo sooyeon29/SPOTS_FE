@@ -49,7 +49,7 @@ const SpotsMap = ({ sportsKind }) => {
   };
 
   const pub = useSelector((state) => state?.spots)
-  console.log(pub);
+  // console.log(pub);
 
   useEffect(() => {
     if (navigator.geolocation) {
