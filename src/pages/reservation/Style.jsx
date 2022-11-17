@@ -38,7 +38,7 @@ export const Place = styled.div`
   border-radius: 10px;
   padding: 10px;
   width: 90%;
-  height: 80px;
+  height: 120px;
   background-color: #fff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   /* justify-content: center;
@@ -108,6 +108,9 @@ export const PrivateBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  p {
+    margin: auto;
+  }
 `;
 
 export const PublicBlock = styled.div`
@@ -115,4 +118,11 @@ export const PublicBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  p {
+    margin: auto;
+  }
+  span {
+    display: flex;
+    justify-content: space-between;
+  }
 `;

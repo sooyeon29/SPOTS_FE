@@ -1,78 +1,36 @@
-import { useNavigate } from "react-router-dom";
-import { Place, PrivateBlock, PublicBlock } from "./Style";
+import { useNavigate } from 'react-router-dom';
+import { Place, PrivateBlock, PublicBlock } from './Style';
 
-const SpotList = ({ searchedSpot }) => {
+const SpotList = ({ spotList }) => {
   const navigate = useNavigate();
-
-  console.log(searchedSpot);
-
-  // return
+  console.log('----검색결과(사설)----', spotList?.private);
+  console.log('----검색결과(공공)----', spotList?.public);
 
   return (
     <>
-      <Place>
-        {searchedSpot.placesId ? (
-          <>
-            <PrivateBlock
-              onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}
-            >
-              <div>
-                {searchedSpot.sports === "테니스장" ? (
-                  <img alt="tennis img" src="/privateTennis.png" />
-                ) : (
-                  <>
-                    {searchedSpot.sports === "풋살장" ? (
-                      <img alt="futsal img" src="/privateFutsal.png" />
-                    ) : (
-                      <img alt="badminton img" src="/privateBadminton.png" />
-                    )}
-                  </>
-                )}
-              </div>
-              <div>
-                <p>{searchedSpot.spotName}</p>
-                <p>{searchedSpot.spotKind}</p>
-                <p>{searchedSpot.price}</p>
-              </div>
-            </PrivateBlock>
-          </>
-        ) : (
-          <>
-            <a href={searchedSpot.svcurl}>
-              <PublicBlock>
-                <div>
-                  {searchedSpot.minclassnm === "테니스장" ? (
-                    <img alt="tennis img" src="/publicTennis.png" />
-                  ) : (
-                    <>
-                      {searchedSpot.minclassnm === "풋살장" ? (
-                        <img alt="futsal img" src="/publicFutsal.png" />
-                      ) : (
-                        <img alt="badminton img" src="/publicBadminton.png" />
-                      )}
-                    </>
-                  )}
-                </div>
-                <div>
-                  <p>{searchedSpot.spotName}</p>
-                  <p>{searchedSpot.svcstatnm}</p>
-                  <p>{searchedSpot.svcnm}</p>
-                </div>
-              </PublicBlock>
-            </a>
-          </>
-        )}
-        {/* <h3>{searchedSpot.spotName}</h3>
-        <button
-          onClick={() => navigate(`/spotsdetail/${searchedSpot.placesId}`)}>
-          예약하러가기
-        </button>
-        <div>
-          {searchedSpot.sports}
-          <span>{searchedSpot.spotKind}</span>
-          <span>{searchedSpot.price}</span>
-        </div> */}
-      </Place>
+      {spotList?.private.map((privSpot) => {
+        return (
+          <Place>
+            <h3>{privSpot.spotName}</h3>
+            <div>{privSpot.sports}</div>
+            <div>{privSpot.spotKind}</div>
+            <div>{privSpot.address}</div>
+            <div>{privSpot.comforts}</div>
+            <div>{privSpot.price}원</div>
+          </Place>
+        );
+      })}
+      {spotList?.public.map((pubSpot) => {
+        return (
+          <Place>
+            <h3>{pubSpot.placenm}</h3>
+            <div>{pubSpot.svcstatnm}</div>
+            <div>{pubSpot.minclassnm}</div>
+            <div>{pubSpot.svcnm}</div>
+            <div>{pubSpot.areanm}</div>
+          </Place>
+        );
+      })}
     </>
   );
 };
