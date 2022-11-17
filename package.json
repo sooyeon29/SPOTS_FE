@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.1.3",
     "date-fns": "^2.29.3",
+    "env-cmd": "^10.1.0",
     "polished": "^4.2.2",
     "react": "^18.2.0",
     "react-calendar": "^3.9.0",
@@ -36,7 +37,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:integration": "env-cmd -f .env.integration yarn run build"
   },
   "eslintConfig": {
     "extends": [

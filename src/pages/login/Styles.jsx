@@ -46,6 +46,22 @@ export const Stinput = styled.input`
   min-width: 300px;
   font-family: "MonoplexKR-Regular";
 `;
+
+export const FindButs = styled.div`
+  width: 100%;
+  margin: 10px auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: lightcyan;
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+  }
+`;
 export const KakaoBtn = styled.button`
   height: 52px;
   padding: 11px 0px 10px;
