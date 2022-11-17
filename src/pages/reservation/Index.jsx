@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import SpotList from './HostSpotList';
-import { StWrap, MapPlace, PlaceList, Status } from './Style';
-import SpotsMap from '../reservation/SpotsMap';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import SpotList from "./HostSpotList";
+import { StWrap, MapPlace, PlaceList, Status } from "./Style";
+import SpotsMap from "../reservation/SpotsMap";
 import {
   __getPrivateSpot,
   __getPublicSpot,
-} from '../../redux/modules/spotsSlice';
-import { SearchApi } from '../../tools/instance';
+} from "../../redux/modules/spotsSlice";
+import { SearchApi } from "../../tools/instance";
 
 const Reservation = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Reservation = () => {
   );
 
   const allSpots = [...(privateSpot || []), ...(publicSpot || [])];
-  console.log('---------전체시설-----------', allSpots);
+  console.log("---------전체시설-----------", allSpots);
 
   useEffect(() => {
     if (!params.keywords) {
@@ -59,9 +59,11 @@ const Reservation = () => {
       <Layout>
         <Header />
         {!params.keywords ? (
-         <h1>당신만의 스팟을 찾아보세요!</h1>
+          <h1>당신만의 스팟을 찾아보세요!</h1>
         ) : (
-          <><h1>'{params.keywords}' 스팟 검색 결과</h1></>
+          <>
+            <h1>'{params.keywords}' 스팟 검색 결과</h1>
+          </>
         )}
         <StWrap>
           <MapPlace>
