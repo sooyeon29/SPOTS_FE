@@ -4,6 +4,7 @@ import styled from "styled-components";
 import useInput from "../../hooks/useInput";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsXLg } from "react-icons/bs";
+import { FiSend } from "react-icons/fi";
 
 const Chat = ({ setInquiry }) => {
   const socket = io("https://ws-study.shop", {
@@ -69,7 +70,9 @@ const Chat = ({ setInquiry }) => {
             onChange={onChange}
             placeholder="메시지를 입력해주세요"
           />
-          <StBtn>send</StBtn>
+          <button>
+            <FiSend size="23" />
+          </button>
         </StForm>
         {chatArr?.map((chat) =>
           chat.from ? (
@@ -79,7 +82,7 @@ const Chat = ({ setInquiry }) => {
             </div>
           ) : (
             <div>
-              <div>메세지:{chat.message}</div>
+              <StMsgBox>{chat.message}</StMsgBox>
               {/* <SendBtn onClick={() => DeletHandler(chat)}>Send</SendBtn> */}
             </div>
           )
@@ -133,19 +136,25 @@ const StForm = styled.form`
   position: absolute;
   margin: 0 auto 0 auto;
   bottom: 20px;
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 10px 0 10px;
+  }
 `;
 const StInput = styled.input`
   width: 360px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 20px;
+  border: 1px;
+  margin-left: 25px;
 `;
 
-const StBtn = styled.div`
-  width: 65px;
-  height: 40px;
-  cursor: pointer;
-  border: 1px solid;
-  border-radius: 10px;
-  text-align: center;
-  line-height: 40px;
+const StMsgBox = styled.div`
+  width: 100px;
+  background-color: #2b2bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
 `;

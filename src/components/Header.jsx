@@ -173,7 +173,7 @@ const Menu = styled.div`
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
   visibility: hidden;
-  z-index: 2;
+  z-index: 999;
 
   &:after {
     content: "";
