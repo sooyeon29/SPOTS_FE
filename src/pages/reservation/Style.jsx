@@ -2,22 +2,28 @@ import styled from "styled-components";
 
 export const StWrap = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  /* justify-content: center; */
-  /* align-items: center; */
-  width: 80%;
+  flex-direction: column;
+  width: 90%;
+  padding-bottom: 0;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
 `;
 export const MapPlace = styled.div`
-  width: 50%;
-  height: 80vh;
-  margin-top: 70px;
+  width: 100%;
+  height: 100%;
 `;
-
-export const PlaceList = styled.div`
-  width: 50%;
+export const Index = styled.div`
   display: flex;
-  margin-top: 70px;
+  justify-content: row;
+  margin-top: 10px;
+`;
+export const PlaceList = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
   flex-direction: column;
   height: 80vh;
   overflow: scroll;
@@ -26,20 +32,25 @@ export const PlaceList = styled.div`
 `;
 
 export const Place = styled.div`
-  /* border: 2px solid #FF00B3; */
+  display: flex;
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
   padding: 10px;
   width: 90%;
+  height: 80px;
   background-color: #fff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  justify-content: center;
-  align-items: center;
-
+  /* justify-content: center;
+  align-items: center; */
   a {
     text-decoration: none;
     color: black;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
   }
 `;
 
@@ -50,8 +61,6 @@ export const BtnWrap = styled.div`
   width: 330px;
   height: 50px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 
   button {
@@ -67,8 +76,8 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 20%;
-  right: 59%;
+  top: 12%;
+  right: 7%;
   position: absolute;
 `;
 
@@ -96,8 +105,14 @@ export const Status = styled.div`
 
 export const PrivateBlock = styled.div`
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const PublicBlock = styled.div`
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

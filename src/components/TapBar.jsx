@@ -32,9 +32,9 @@ const Container = styled.div`
   width: 100%;
   height: 60px;
   background-color: #ffffff;
-  position: absolute;
-  top: 800px;
-  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
   display: flex;
   justify-content: space-between;
   div {

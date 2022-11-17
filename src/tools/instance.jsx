@@ -87,4 +87,5 @@ export const PublicApi = {
 // 검색 API
 export const SearchApi = {
   getSearchedSpot: (payload) => instance.get(`places/keyword/${payload}`),
+  getAllSpot: () => instance.get(`places/all`),
 };
