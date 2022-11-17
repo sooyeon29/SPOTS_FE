@@ -1,135 +1,120 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import { Red } from "../signUp/Styles";
 
-const Kakao = () => {
-  console.log(window.location.href);
-  // const [isLogin, setIsLogin] = useState(false);
+const KakaoAdd = () => {
   const [isCode, setIsCode] = useToggle();
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm();
+
   const navigate = useNavigate();
-  // 인가코드
-  const PARAMS = new URL(document.location).searchParams;
-  const KAKAO_CODE = PARAMS.get("code");
-  console.log(KAKAO_CODE);
+  const isMember = localStorage.getItem("loginId");
+  console.log(isMember);
   useEffect(() => {
-    LoginAPI.kakaoLogin(KAKAO_CODE)
+    LoginAPI.kakaoId(isMember)
       .then((res) => {
-        console.log(res);
-        // localStorage.setItem("token", JSON.stringify(res.data));
-        // const isMember = localStorage.getItem("token");
-        // if (res.data.code === 1) {
-        localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
-        if (res.status === 200) navigate(`/addlogin`);
-
-        //   setIsLogin(true);
-        //   alert("로그인 성공!😎");
-        //   navigate(`/`);
-        // } else {
-        //   setIsLogin(false);
-        //   alert("회원가입계속하기");
-        // }
-        // console.log(isMember);
+        if (res.data.code === 1) navigate(`/`);
       })
-      // .then(() => {
-      //   // const isMember = localStorage.getItem("loginId");
-      //   // console.log(isMember);
 
-      //   // LoginAPI.Id().then((res) => console.log("2번", res));
-      //   // LoginAPI.IDS().then((res) => console.log("3번", res));
-      // })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        console.log("에러ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ", err)
+      );
   }, []);
 
-  //==============================================================카카오로그인
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   getValues,
-  //   formState: { errors },
-  // } = useForm();
+  const onSubmit = async (data) => {
+    // 소셜로그인용 인스턴스 만들어서 바꿔주어야함!
+    SignUpAPI.kakaoSingUp({ ...data, loginId: isMember })
+      .then((res) => {
+        console.log(res);
+        // if (res.status === 201) {
 
-  // const navigate = useNavigate();
+        LoginAPI.kakaoId(isMember)
+          .then(
+            (res) => {
+              console.log(res);
+              localStorage.setItem("token", res.data.accessToken);
+              console.log(res.data.accessToken);
+              alert("회원가입을 환영합니다!");
+            }
+            // navigate(`/`);
+          )
+          .catch((err) => console.log(err));
 
-  // const onSubmit = async (data) => {
-  //   // 소셜로그인용 인스턴스 만들어서 바꿔주어야함!
-  //   SignUpAPI.signUp(data)
-  //     .then((res) => {
-  //       console.log(res);
-  //       // if (res.status === 201) {
-  //       alert("회원가입을 환영합니다!");
-  //       navigate(`/`);
-  //       // }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       // const errorMsg = error.response.data.code;
-  //       // if (errorMsg === -3) {
-  //       //   alert("사용 중인 번호입니다");
-  //       // }
-  //       // if (errorMsg === -4) {
-  //       //   alert("해당 추천인 ID가 없습니다");
-  //       // }
-  //       // if (errorMsg === -5) {
-  //       //   alert("비밀번호를 확인해주세요");
-  //       // }
-  //     });
-  // };
+        // }
+      })
 
-  // // 닉네임 중복 확인
-  // const checkNn = () => {
-  //   const nickname = getValues("nickname");
-  //   SignUpAPI.checkNickname({ nickname })
-  //     .then((res) => {
-  //       console.log(res);
-  //       // if (res.status === 200) {
-  //       alert("사용 가능한 닉네임입니다");
-  //       // }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.status);
-  //       // if (error.response.status === 412) {
-  //       alert("이미 사용 중인 닉네임입니다");
-  //       // }
-  //     });
-  // };
-  // // 핸드폰 인증코드 받기
+      .catch((error) => {
+        console.log(error);
+        // const errorMsg = error.response.data.code;
+        // if (errorMsg === -3) {
+        //   alert("사용 중인 번호입니다");
+        // }
+        // if (errorMsg === -4) {
+        //   alert("해당 추천인 ID가 없습니다");
+        // }
+        // if (errorMsg === -5) {
+        //   alert("비밀번호를 확인해주세요");
+        // }
+      });
+  };
 
-  // const sendPhoneForCode = () => {
-  //   setIsCode(true);
-  //   const phone = getValues("phone");
-  //   LoginAPI.postforVCode({ phone })
-  //     .then((res) => {
-  //       console.log(res);
-  //       alert("인증번호가 전송되었습니다.");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("유효하지 않은 번호입니다.");
-  //     });
-  // };
-  // const checkVCode = () => {
-  //   const code = getValues("code");
-  //   LoginAPI.postforCheckVCode(code)
-  //     .then((res) => {
-  //       console.log(res);
-  //       alert("인증이 완료되었습니다.");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("인증번호를 재확인 해주세요");
-  //     });
-  // };
+  // 닉네임 중복 확인
+  const checkNn = () => {
+    const nickname = getValues("nickname");
+    SignUpAPI.checkNickname({ nickname })
+      .then((res) => {
+        console.log(res);
+        // if (res.status === 200) {
+        alert("사용 가능한 닉네임입니다");
+        // }
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+        // if (error.response.status === 412) {
+        alert("이미 사용 중인 닉네임입니다");
+        // }
+      });
+  };
+  // 핸드폰 인증코드 받기
 
+  const sendPhoneForCode = () => {
+    setIsCode(true);
+    const phone = getValues("phone");
+    LoginAPI.postforVCode({ phone })
+      .then((res) => {
+        console.log(res);
+        alert("인증번호가 전송되었습니다.");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("유효하지 않은 번호입니다.");
+      });
+  };
+  const checkVCode = () => {
+    const code = getValues("code");
+    LoginAPI.postforCheckVCode(code)
+      .then((res) => {
+        console.log(res);
+        alert("인증이 완료되었습니다.");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("인증번호를 재확인 해주세요");
+      });
+  };
   return (
     <>
-      {/* <Layout>
+      <Layout>
         <Header />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -203,7 +188,7 @@ const Kakao = () => {
                   <input
                     placeholder="인증번호를 입력하세요"
                     type="text"
-                    required
+                    // required
                     name="code"
                     autoComplete="off"
                   />
@@ -257,10 +242,9 @@ const Kakao = () => {
           </div>
           <input type="submit" />
         </form>
-      </Layout> */}
-      ...로딩중
+      </Layout>
     </>
   );
 };
 
-export default Kakao;
+export default KakaoAdd;

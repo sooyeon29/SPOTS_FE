@@ -19,6 +19,7 @@ import Chat from "../pages/chat/Chat";
 import FindPw from "../pages/login/FindPw";
 import FindId from "../pages/login/FindId";
 import ChatRoom from "../pages/chat/ChatRoom";
+import KakaoAdd from "../pages/login/KakaoAdd";
 
 function Router() {
   return (
@@ -44,6 +45,7 @@ function Router() {
         <Route path="/hostdetail/:id" element={<HostDetail />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/chatroom" element={<ChatRoom />} />
+        <Route path="/addlogin" element={<KakaoAdd />} />
       </Routes>
     </BrowserRouter>
   );
