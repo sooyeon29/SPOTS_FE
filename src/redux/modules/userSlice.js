@@ -4,6 +4,7 @@ import { UserpageAPI } from "../../tools/instance";
 const initialState = {
   user: [],
   team: [],
+  teamdetail: [],
   isLoading: false,
   error: "",
 };
@@ -20,7 +21,7 @@ export const __getMyInfo = createAsyncThunk(
   }
 );
 
-export const __getMyteam = createAsyncThunk(
+export const __getMyteamList = createAsyncThunk(
   "getMyteam",
   async (payload, thunkAPI) => {
     try {
@@ -32,13 +33,12 @@ export const __getMyteam = createAsyncThunk(
   }
 );
 
-export const __getMyteamDatil = createAsyncThunk(
+export const __getMyteamDetail = createAsyncThunk(
   "getMyteamDetail",
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
       const { data } = await UserpageAPI.getMyteamDetail(payload);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,23 +58,26 @@ const userSlice = createSlice({
       state.user = action.payload.user;
     },
     [__getMyInfo.rejected]: (state, action) => {
-      state.error = action.paylaod;
+      state.error = action.payload;
     },
-    [__getMyteam.pending]: (state, action) => {
+    [__getMyteamList.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [__getMyteam.fulfilled]: (state, action) => {
-      state.team = action.payload.teamName;
+    [__getMyteamList.fulfilled]: (state, action) => {
+      state.team = action.payload;
     },
-    [__getMyteam.rejected]: (state, action) => {
-      state.error = action.paylaod;
+    [__getMyteamList.rejected]: (state, action) => {
+      state.error = action.payload.response.data.error;
+      alert(state.error);
     },
-    [__getMyteamDatil.pending]: (state, action) => {
+    [__getMyteamDetail.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [__getMyteamDatil.fulfilled]: (state, action) => {},
-    [__getMyteamDatil.rejected]: (state, action) => {
-      state.error = action.paylaod;
+    [__getMyteamDetail.fulfilled]: (state, action) => {
+      state.teamdetail = action.payload;
+    },
+    [__getMyteamDetail.rejected]: (state, action) => {
+      state.error = action.payload;
     },
   },
 });

@@ -1,73 +1,37 @@
-import { useEffect, useRef, useState } from "react";
-import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import styled from "styled-components";
+import Banner from "../../components/Banner";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import Maps from "./Maps";
-import { SpotsBtns } from "./Styles";
-
-// import { SportMaps } from "./Styles";
+import MainMapLayout from "../../components/MainMapLayout";
+import SpotsMap from "./SpotsMap";
+import { UpperLine, BtnWrap } from "./Styles";
 
 const MainMaps = () => {
-  const mapRef = useRef();
-  const navigate = useNavigate();
-  const [positions, setPositions] = useState([]);
-  const [keyword, setKeyword] = useState("");
-  const [sports, setSports] = useState("");
-
-  const onSportsHandler = (e) => {
-    setSports(e.target.value);
-  };
-
-  const onSearchHandler = (e) => {
-    e.preventDefault();
-    navigate("/book", { state: [sports, keyword] });
-  };
-  // console.log(keyword)
-
-  useEffect(() => {
-    // 백에서 저장해준데이터를 가져와서 setPositions에 넣어주어야 한다.
-    // ex( https://apis.map.kakao.com/download/web/data/chicken.json )
-    // setPositions(clusterPositionsData.positions);
-  }, []);
-
-  const onClusterclick = (_target, cluster) => {
-    const map = mapRef.current;
-    // 현재 지도 레벨에서 1레벨 확대한 레벨
-    const level = map.getLevel() - 1;
-
-    // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-    map.setLevel(level, { anchor: cluster.getCenter() });
-  };
+  const [sportsKind, setSportsKind] = useState("");
+  const futsal = "풋살장";
+  const tennis = "테니스장";
+  const badminton = "배드민턴장";
 
   return (
     <>
       <Layout>
         <Header />
-        <img alt="" src="fortest.jpg" width={100} />
-        <SpotsBtns>
-          <button>FUTSAL⚽</button>
-          <button>TENNIS🥎</button>
-          <button>BADMINTON🏸</button>
-        </SpotsBtns>
-        <Maps />
-        <select onChange={onSportsHandler}>
-          <option>ALL</option>
-          <option>FUTSAL⚽</option>
-          <option>TENNIS🥎</option>
-          <option>BADMINTON🏸</option>
-        </select>
-        <form onSubmit={onSearchHandler}>
-          <input
-            type="text"
-            value={keyword}
-            placeholder="구를 입력하세요 예) 마포구"
-            onChange={(e) => {
-              setKeyword(e.target.value);
-            }}
-          />
-          <button>스팟 검색</button>
-        </form>
+        <Banner />
+        {/* <MainMapLayout> */}
+        <UpperLine>
+          <BtnWrap>
+            <button onClick={() => setSportsKind(futsal)}>풋살</button>
+            <button onClick={() => setSportsKind(tennis)}>테니스</button>
+            <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
+          </BtnWrap>
+          <div>
+            <span>●공공스팟</span>
+            <span>●사설스팟</span>
+          </div>
+        </UpperLine>
+        <SpotsMap sportsKind={sportsKind} />
+        {/* </MainMapLayout> */}
       </Layout>
     </>
   );
