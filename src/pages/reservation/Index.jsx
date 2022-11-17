@@ -19,9 +19,6 @@ const Reservation = () => {
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
   );
-  const searchTerm = params.keywords;
-  // console.log('검색어', searchTerm);
-  // console.log('파라미터', params);
 
   const allSpots = [...(privateSpot || []), ...(publicSpot || [])];
   console.log('---------전체시설-----------', allSpots);
@@ -32,7 +29,6 @@ const Reservation = () => {
     }
     async function fetchData() {
       const searched = await SearchApi.getSearchedSpot(params.keywords);
-
       setsearchedSpots([
         ...searched.data.data.private,
         ...searched.data.data.public,
@@ -62,9 +58,15 @@ const Reservation = () => {
     <>
       <Layout>
         <Header />
-        <h1>{params.keywords} 검색 결과</h1>
+        {!params.keywords ? (
+         <h1>당신만의 스팟을 찾아보세요!</h1>
+        ) : (
+          <><h1>'{params.keywords}' 스팟 검색 결과</h1></>
+        )}
         <StWrap>
-          <MapPlace>{/* <SpotsMap placeList={placeList} /> */}</MapPlace>
+          <MapPlace>
+            <SpotsMap placeList={placeList} />
+          </MapPlace>
           <PlaceList>
             {!params.keywords &&
               allSpots?.map((searchedSpot, index) => {

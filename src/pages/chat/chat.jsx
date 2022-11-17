@@ -11,21 +11,19 @@ const Chat = () => {
   });
 
   //소켓이 서버에 연결되어 있는지 여부
-  socket.on("connect", () => {
-    console.log(socket.connected); // true
+  socket.on("a", (data) => {
+    console.log("됐다"); // true
+    console.log(data);
+    console.log(data.msg); // true/false
   });
-
-  //   //소켓이 서버에 연결 해제되었는지 여부
-  //   socket.on("connect", () => {
-  //     console.log(socket.connected); // false
-  //   });
 
   const initialState = { nickname: "", message: "", from: false };
   const [chatArr, setChatArr] = useState([]);
   const [message, setMessage, onChange] = useInput(initialState);
   const [name, setName] = useState("");
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     socket.emit("chatting", {
       nickname: name,
       message: message.message,
@@ -52,22 +50,24 @@ const Chat = () => {
   console.log(chatArr);
   return (
     <>
-      <input
-        value={name}
-        name="nickname"
-        placeholder="닉네임"
-        onChange={(e) => {
-          console.log(name);
-          setName(e.target.value);
-        }}
-      />
-      <input
-        value={message.message}
-        name="message"
-        onChange={onChange}
-        placeholder="메시지를 입력해주세요"
-      />
-      <button onClick={() => submitHandler()}>send</button>
+      <form onSubmit={submitHandler}>
+        <input
+          value={name}
+          name="nickname"
+          placeholder="닉네임"
+          onChange={(e) => {
+            console.log(name);
+            setName(e.target.value);
+          }}
+        />
+        <input
+          value={message.message}
+          name="message"
+          onChange={onChange}
+          placeholder="메시지를 입력해주세요"
+        />
+        <button>send</button>
+      </form>
       {chatArr?.map((chat) =>
         chat.from ? (
           <div>
