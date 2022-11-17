@@ -26,7 +26,7 @@ const Kakao = () => {
         // const isMember = localStorage.getItem("token");
         // if (res.data.code === 1) {
         localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
-        if (res.status === 200) navigate(`/addlogin`);
+        if (res.status === 200) navigate(`/`);
 
         //   setIsLogin(true);
         //   alert("로그인 성공!😎");

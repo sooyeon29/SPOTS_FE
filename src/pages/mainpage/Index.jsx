@@ -22,11 +22,11 @@ const MainMaps = () => {
   useEffect(() => {
     LoginAPI.kakaoId(isMember)
       .then((res) => {
-        console.log(res);
-        if (res.data.code !== 1) {
+        if (!res.data.nickname) return;
+        if (res.data.nickname) {
           localStorage.setItem("token", res.data.accessToken);
-          console.log(res.data.accessToken);
-        } else {
+          return;
+        } else if (res.data.code === -1) {
           navigate(`/addlogin`);
         }
       })
