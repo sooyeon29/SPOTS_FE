@@ -15,6 +15,7 @@ import SwitchAccount from "../pages/login/SwitchAccount";
 import ReservPage from "../pages/userpage/ReservPage";
 import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
+import Chat from "../pages/chat/Chat";
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </BrowserRouter>
   );

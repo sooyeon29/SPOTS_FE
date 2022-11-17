@@ -1,3 +1,4 @@
+import { position } from "polished";
 import React, { useEffect, useState } from "react";
 import {
   Map,
@@ -22,6 +23,20 @@ const SpotsMap = ({ sportsKind }) => {
   const [isPrivateOpen, setIsPrivateOpen] = useState([]);
   const [isPublicOpen, setIsPublicOpen] = useState([]);
   const [level, setLevel] = useState();
+  const [state, setState] = useState({
+    center: {
+      lat: 37.5666805,
+      lng: 126.9784147,
+    },
+    errMsg: null,
+    isLoading: true,
+  });
+
+  const { isLoading, error, privateSpot, publicSpot } = useSelector(
+    (state) => state?.spots
+  );
+  console.log("---------사설시설-----------", privateSpot);
+  console.log("---------공공시설-----------", publicSpot);
 
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
@@ -33,15 +48,38 @@ const SpotsMap = ({ sportsKind }) => {
     setIsPrivateOpen(false);
   };
 
-  const { isLoading, error, privateSpot, publicSpot } = useSelector(
-    (state) => state?.spots
-  );
-  
   const pub = useSelector((state) => state?.spots)
   console.log(pub);
 
-  console.log("---------사설시설-----------", privateSpot);
-  console.log("---------공공시설-----------", publicSpot);
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setState((prev) => ({
+            ...prev,
+            center: {
+              lat: position.coords.latitude, //위도
+              lng: position.coords.longitude, //경도
+            },
+            isLoading: false,
+          }));
+        },
+        (err) => {
+          setState((prev) => ({
+            ...prev,
+            errMsg: err.message,
+            isLoading: false,
+          }));
+        }
+      );
+    } else {
+      setState((prev) => ({
+        ...prev,
+        errMsg: "현재 위치를 불러올 수 없습니다...",
+        isLoading: false,
+      }));
+    }
+  }, []);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -55,21 +93,20 @@ const SpotsMap = ({ sportsKind }) => {
     <>
       <Map // 지도를 표시할 Container
         id={`map`}
-        center={{
-          // 지도의 중심좌표
-          lat: 37.5666805,
-          lng: 126.9784147,
-        }}
+        center={state.center}
         style={{
           // 지도의 크기
-          width: "80%",
+          width: "100%",
           height: "500px",
           margin: "auto",
         }}
-        level={9} // 지도의 확대 레벨
+        level={5} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
+
+        {/* 현재위치 */}
+        <MapMarker position={state.center} />
 
         {privateSpot.map((place, idx) => {
           if (sportsKind === "") {
@@ -126,7 +163,8 @@ const SpotsMap = ({ sportsKind }) => {
                   image={{
                     src:
                       (place.sports === "풋살장" && "/privateFutsal.png") || // 마커이미지의 주소입니다
-                      (place.sports === "배드민턴장" && "/privateBadminton.png") ||
+                      (place.sports === "배드민턴장" &&
+                        "/privateBadminton.png") ||
                       (place.sports === "테니스장" && "/privateTennis.png"),
                     size: {
                       width: 30,
@@ -208,7 +246,8 @@ const SpotsMap = ({ sportsKind }) => {
                   image={{
                     src:
                       (place.minclassnm === "풋살장" && "/publicFutsal.png") || // 마커이미지의 주소입니다
-                      (place.minclassnm === "배드민턴장" && "/publicBadminton.png") ||
+                      (place.minclassnm === "배드민턴장" &&
+                        "/publicBadminton.png") ||
                       (place.minclassnm === "테니스장" && "/publicTennis.png"),
                     size: {
                       width: 30,
@@ -225,7 +264,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>

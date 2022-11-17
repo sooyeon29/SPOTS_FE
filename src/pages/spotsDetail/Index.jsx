@@ -28,6 +28,10 @@ import {
   Pick,
   One,
   Two,
+  SpotPhoto,
+  SpotInfo,
+  MoreInfo,
+  FindMatch,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -190,25 +194,43 @@ const SpotsDetail = () => {
         {selectSpot?.map((spot) => {
           return (
             <Wrap>
-              <Title>{spot.spotName}</Title>
               <MainInfo>
-                <Croll>
+                <SpotPhoto>
                   <img alt="" src={spot.image} />
-                  <div>
-                    정보
-                    <li>{spot.address}</li>
-                    <li>{spot.sports}</li>
-                    <li>{spot.spotKind}</li>
-                    <li>{spot.price}</li>
-                    <li>{spot.desc}</li>
-                    <li>{spot.comforts}</li>
-                  </div>
-                </Croll>
+                </SpotPhoto>
+                <SpotInfo>
+                  <Title>{spot.spotName}</Title>
+                  <span>{spot.address}</span>
+                  <p>{spot.desc}</p>
+                  <Line></Line>
+                  <h5>시설 소개</h5>
+
+                  <Line></Line>
+                  <MoreInfo>
+                    <div>
+                      <span>
+                        {spot.sports === "풋살장" && <>⚽</>}
+                        {spot.sports === "테니스장" && <>🥎</>}
+                        {spot.sports === "배드민턴장" && <>🏸</>}
+                        {spot.sports}
+                      </span>
+                      <span>
+                        {spot.spotKind === "실내 스팟" && <>🪴</>}
+                        {spot.spotKind === "실외 스팟" && <>🌳</>}
+                        {spot.spotKind}
+                      </span>
+                    </div>
+                    <span>💰이용료💰 {spot.price}포인트</span>
+                    <Line></Line>
+                    <span>👍 {spot.comforts}</span>
+                  </MoreInfo>
+                </SpotInfo>
               </MainInfo>
-              {/* <PickDate /> */}
+
               <TimeDate>
                 <SelectList>
-                  날짜/시간선택
+                  <span>날짜/시간선택</span>
+                  <Line></Line>
                   <CalTime>
                     <div>
                       <ReactDatePicker
@@ -228,7 +250,7 @@ const SpotsDetail = () => {
                       />
                     </div>
                     {!forMatch && (
-                      <div>
+                      <>
                         <Times>
                           <button
                             disabled={timeSlots.includes(myTime[0])}
@@ -279,9 +301,17 @@ const SpotsDetail = () => {
                             {myTime[7]}
                           </button>
                         </Times>
-                      </div>
+                      </>
+                    )}
+                    {forMatch && (
+                      <>
+                        <Times>팀매칭하기✨</Times>
+                      </>
                     )}
                   </CalTime>
+                  <FindMatch onClick={matchHandler}>
+                    {!forMatch ? "매칭 팀 찾기" : "돌아가기"}
+                  </FindMatch>
                   {forMatch && (
                     <div>
                       <SelectTeam>
@@ -470,10 +500,6 @@ const SpotsDetail = () => {
                       팀매칭으로 예약하기
                     </button>
                   )}
-
-                  <button onClick={matchHandler}>
-                    {!forMatch ? "매칭 팀 찾기" : "돌아가기"}
-                  </button>
                 </YourSelect>
               </TimeDate>
             </Wrap>

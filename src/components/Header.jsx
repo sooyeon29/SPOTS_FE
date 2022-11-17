@@ -1,18 +1,20 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import useDetectClose from '../hooks/useDetectClose';
-
-import SearchBar from './SearchBar';
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+import useDetectClose from "../hooks/useDetectClose";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { FaSearchLocation } from "react-icons/fa";
+import SearchBar from "./SearchBar";
+import useToggle from "../hooks/useToggle";
 
 const Header = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
     window.location.reload();
   };
-
+  const [toggle, setToggle, ClickToggle] = useToggle(false);
   const dropDownRef = useRef(null);
   const [myPageIsOpen, myPageRef, myPageHandler] = useDetectClose(false);
 
@@ -24,49 +26,62 @@ const Header = () => {
             onClick={() => {
               navigate(`/`);
               localStorage.clear();
-            }}>
-            <Img src='/logo.png' alt='logo' />
+            }}
+          >
+            <Img src="/logo.png" alt="logo" />
           </StLogo>
-          {/* <StButtonsWrap> */}
           <StButtons>
-            <SearchBar />
-            <Sta
-              onClick={() => {
-                navigate(`/book`);
-                localStorage.clear();
-              }}>
-              Reservation
-            </Sta>
+            {!toggle ? (
+              <StSearch>
+                <FaSearchLocation
+                  color="white"
+                  size="20"
+                  onClick={ClickToggle}
+                />
+              </StSearch>
+            ) : (
+              <SearchBar />
+            )}
             {!token ? (
-              <Sta
-                onClick={() => {
-                  navigate(`/login`);
-                }}>
-                Login
-              </Sta>
+              <DropdownContainer>
+                <DropdownButton onClick={myPageHandler} ref={myPageRef}>
+                  <GiHamburgerMenu size="25" />
+                </DropdownButton>
+                <Menu isDropped={myPageIsOpen}>
+                  <Ul ref={dropDownRef}>
+                    <Li>
+                      <Linkdiv onClick={() => navigate("/login")}>
+                        Log In
+                      </Linkdiv>
+                      <Linkdiv onClick={() => navigate("/signup")}>
+                        Sign Up
+                      </Linkdiv>
+                    </Li>
+                  </Ul>
+                </Menu>
+              </DropdownContainer>
             ) : (
               <>
                 <DropdownContainer>
                   <DropdownButton onClick={myPageHandler} ref={myPageRef}>
-                    My Page
+                    <GiHamburgerMenu size="25" />
                   </DropdownButton>
                   <Menu isDropped={myPageIsOpen}>
                     <Ul ref={dropDownRef}>
                       <Li>
-                        <Linkdiv onClick={() => navigate('/mypage')}>
-                          My page
+                        <Linkdiv onClick={() => navigate("/mypage")}>
+                          My Profile
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/teampage')}>
-                          Team Page
+                        <Linkdiv onClick={() => navigate("/teampage")}>
+                          Team Profile
                         </Linkdiv>
-                        <Linkdiv onClick={() => 
-                          navigate('/reservpage')}>
+                        <Linkdiv onClick={() => navigate("/reservpage")}>
                           Reservation
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/hosting ')}>
+                        <Linkdiv onClick={() => navigate("/hosting ")}>
                           Hosting
                         </Linkdiv>
-                        <Linkdiv onClick={() => navigate('/hostlist ')}>
+                        <Linkdiv onClick={() => navigate("/hostlist ")}>
                           HostList
                         </Linkdiv>
                         <Linkdiv onClick={logout}>Log Out</Linkdiv>
@@ -77,7 +92,6 @@ const Header = () => {
               </>
             )}
           </StButtons>
-          {/* </StButtonsWrap> */}
         </StWrap>
       </StHeader>
     </>
@@ -87,85 +101,42 @@ const Header = () => {
 export default Header;
 
 const StHeader = styled.div`
-  background-color: #000000;
   width: 100%;
+  padding: 0;
+  background-color: #000000;
 `;
 
 const StWrap = styled.div`
-  margin: auto;
-  width: 80%;
   display: flex;
-  /* height: 72px; */
-  -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
+  margin: auto;
+  width: 90%;
   align-items: center;
 `;
 
 const StLogo = styled.div`
-  cursor: pointer;
-  /* margin-right: 10px; */
   display: flex;
-
-  span {
-    cursor: pointer;
-    font-size: large;
-    font-weight: 600;
-    color: #fff;
-  }
+  cursor: pointer;
 `;
 
-const StButtonsWrap = styled.nav`
-  /* flex-direction: row; */
+const StSearch = styled.div`
+  margin: 3px 15px 0 0;
+  cursor: pointer;
 `;
 
 const StButtons = styled.ul`
   display: flex;
-  /* flex-direction: row; */
-  /* list-style: none; */
-  /* margin: 0px; */
-  padding: 0px;
-  /* margin-block-start: 1em; */
-  /* margin-block-end: 1em; */
-  /* margin-inline-start: 0px; */
-  /* margin-inline-end: 0px; */
-  /* padding-inline-start: 40px; */
-`;
-
-const Sta = styled.a`
-  margin: 0px 0px 0px 30px;
-  font-size: 18px;
-  /* line-height: 24px; */
-  font-weight: normal;
-  color: #fff;
-  /* var(--gray-700); */
-  cursor: pointer;
-  text-decoration: none;
-  position: relative;
-
-  &:focus {
-    font-weight: bold;
-  }
-  &:active {
-    font-weight: bold;
-  }
-  &:hover {
-    text-decoration: underline;
-    /* background-color: var(--gray-100); */
-  }
 `;
 
 const DropdownContainer = styled.div`
   position: relative;
-  /* text-align: center; */
-  /* width: 120px; */
   height: auto;
   color: #fff;
+  padding: 0;
 `;
 
 const DropdownButton = styled.div`
   cursor: pointer;
-  margin-left: 30px;
 `;
 
 const Li = styled.li``;
@@ -185,42 +156,33 @@ const Ul = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   text-decoration: none;
 `;
 
-// const LinkWrapper = styled.a`
-//   font-size: 16px;
-//   text-decoration: none;
-//   color: white;
-// `;
-
 const Menu = styled.div`
-  background: gray;
   position: absolute;
-  top: 52px;
-  left: 40%;
-  width: 100px;
+  top: 40px;
+  width: 200px;
+  transform: translate(-45%, 20px);
+  background-color: #242526;
+  border: 1px solid #474a4d;
+  border-radius: 8px;
+  padding: 1rem;
   text-align: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -20px);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  z-index: 9;
+  z-index: 2;
 
   &:after {
-    content: '';
+    content: "";
     height: 0;
     width: 0;
     position: absolute;
-    top: -3px;
-    left: 50%;
+    left: 90%;
     transform: translate(-50%, -50%);
     border: 12px solid transparent;
     border-top-width: 0;
-    border-bottom-color: gray;
   }
 
   ${({ isDropped }) =>
@@ -228,13 +190,21 @@ const Menu = styled.div`
     css`
       opacity: 1;
       visibility: visible;
-      transform: translate(-50%, 0);
-      left: 40%;
+      transform: translate(-45%, 0);
+      left: -340%;
     `};
 `;
 
 const Linkdiv = styled.div`
   cursor: pointer;
+  height: 40px;
+  font-size: 20px;
+  width: 200px;
+  border-radius: 8px;
+  line-height: 40px;
+  :hover {
+    background-color: #525357;
+  }
 `;
 
 const Img = styled.img`

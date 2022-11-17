@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BsSearch } from 'react-icons/bs';
-import styled from 'styled-components';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import styled from "styled-components";
 
 const Search = () => {
   // const navigate = useNavigate();
@@ -22,7 +22,7 @@ const Search = () => {
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
-        <SearchBar>
+        {/* <SearchBar> */}
           <StInput
             type='text'
             value={keywords}
@@ -34,19 +34,34 @@ const Search = () => {
           <StBtn type="button">
             <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
           </StBtn>
-        </SearchBar>
+        {/* </SearchBar> */}
       </form>
     </StSearch>
   );
 };
 export default Search;
 
+const StSearch = styled.div`
+  width: 100%;
+  margin-right: 20px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  form {
+    display: flex;
+    padding: 0;
+  }
+`;
+
 const StInput = styled.input`
+  width: 130px;
   background-color: transparent;
   border: none;
   display: flex;
-  color: white;
-
+  padding: 0;
   :focus {
     outline: none;
     color: white;
@@ -63,21 +78,9 @@ const StInput = styled.input`
   }
 `;
 
-const StSearch = styled.div`
-  /* width: 200px; */
-  background: none;
-  border: none;
-  border-bottom: 2px solid white;
-  display: flex;
-  /* background-color: #f1f1f1; */
-  justify-content: center;
-`;
-
 const StBtn = styled.button`
+  margin-left: 5px;
   border: none;
   background: none;
-`;
-
-const SearchBar = styled.div`
-  display: flex;
+  cursor: pointer;
 `;

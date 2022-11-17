@@ -10,7 +10,6 @@ import {
   __getPrivateSpot,
   __getPublicSpot,
 } from '../../redux/modules/spotsSlice';
-import axios from 'axios';
 import { SearchApi } from '../../tools/instance';
 
 const Reservation = () => {
@@ -23,29 +22,29 @@ const Reservation = () => {
   const searchTerm = params.keywords;
   // console.log('검색어', searchTerm);
   // console.log('파라미터', params);
-  
-  
+
   const allSpots = [...(privateSpot || []), ...(publicSpot || [])];
   console.log('---------전체시설-----------', allSpots);
 
   useEffect(() => {
-    
-    if(!params.keywords) {return }
+    if (!params.keywords) {
+      return;
+    }
     async function fetchData() {
-      
       const searched = await SearchApi.getSearchedSpot(params.keywords);
 
-      setsearchedSpots([...searched.data.data.private, ...searched.data.data.public]);
+      setsearchedSpots([
+        ...searched.data.data.private,
+        ...searched.data.data.public,
+      ]);
     }
     fetchData();
-  },[]);
+  }, []);
 
   useEffect(() => {
     dispatch(__getPrivateSpot());
     dispatch(__getPublicSpot());
-    
   }, []);
-  
 
   const placeList = useSelector((state) => state.spots.privateSpot);
   // console.log('---------지도로들어감-----------', placeList);
@@ -65,16 +64,13 @@ const Reservation = () => {
         <Header />
         <h1>{params.keywords} 검색 결과</h1>
         <StWrap>
-        
           <MapPlace>{/* <SpotsMap placeList={placeList} /> */}</MapPlace>
           <PlaceList>
-
-            {!params.keywords && allSpots?.map((searchedSpot, index) => {
-              
-              return <SpotList key={index} searchedSpot={searchedSpot} />;
-            })}
-                  {searchedSpots?.map((searchedSpot, index) => {
-              
+            {!params.keywords &&
+              allSpots?.map((searchedSpot, index) => {
+                return <SpotList key={index} searchedSpot={searchedSpot} />;
+              })}
+            {searchedSpots?.map((searchedSpot, index) => {
               return <SpotList key={index} searchedSpot={searchedSpot} />;
             })}
           </PlaceList>
