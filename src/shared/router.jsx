@@ -16,6 +16,8 @@ import ReservPage from "../pages/userpage/ReservPage";
 import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
 import Chat from "../pages/chat/Chat";
+import FindPw from "../pages/login/FindPw";
+import FindId from "../pages/login/FindId";
 import ChatRoom from "../pages/chat/ChatRoom";
 
 function Router() {
@@ -25,6 +27,8 @@ function Router() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<MainMaps />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/findpw" element={<FindPw />} />
+        <Route path="/findid" element={<FindId />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/teampage" element={<TeamPage />} />
         <Route path="/teamdetail/:id" element={<TeamDetail />} />
