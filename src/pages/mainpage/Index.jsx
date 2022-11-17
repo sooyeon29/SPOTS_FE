@@ -6,6 +6,7 @@ import Layout from "../../components/Layout";
 import MainMapLayout from "../../components/MainMapLayout";
 import SpotsMap from "./SpotsMap";
 import { UpperLine, BtnWrap } from "./Styles";
+import TapBar from "../../components/TapBar";
 
 const MainMaps = () => {
   const [sportsKind, setSportsKind] = useState("");
@@ -32,6 +33,7 @@ const MainMaps = () => {
         </UpperLine>
         <SpotsMap sportsKind={sportsKind} />
         {/* </MainMapLayout> */}
+        <TapBar />
       </Layout>
     </>
   );

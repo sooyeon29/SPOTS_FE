@@ -93,7 +93,7 @@ const SpotsMap = ({ sportsKind }) => {
         center={state.center}
         style={{
           // 지도의 크기
-          width: "80%",
+          width: "100%",
           height: "500px",
           margin: "auto",
         }}
@@ -223,7 +223,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -261,7 +261,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <Title>{place.placenm}</Title>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>

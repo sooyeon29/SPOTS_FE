@@ -19,7 +19,7 @@ export const UpperLine = styled.div`
   }
 
   span {
-    margin-left: 10px;
+    margin-right: 10px;
   }
 
   span:first-child {
@@ -50,7 +50,7 @@ export const BtnWrap = styled.div`
   border-radius: 30px;
   background-color: white;
   width: 330px;
-  height: 50px;
+  height: 52px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,6 +70,6 @@ export const BtnWrap = styled.div`
   }
   z-index: 2;
   top: 43%;
-  right: 40%;
+  right: 8%;
   position: absolute;
 `;
