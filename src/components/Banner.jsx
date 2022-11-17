@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import React from 'react';
-import Slider from 'react-slick';
+import styled from "styled-components";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import React from "react";
+import Slider from "react-slick";
 
 const Banner = () => {
   const settings = {
@@ -21,16 +21,16 @@ const Banner = () => {
     <Container>
       <BannerSlider {...settings}>
         <div>
-          <Image src='/mainBanner.png' />
+          <Image src="/mainBanner.png" />
         </div>
         <div>
-          <Image src='/banner1.png' />
+          <Image src="/banner1.png" />
         </div>
         <div>
-          <Image src='/banner2.png' />
+          <Image src="/banner2.png" />
         </div>
         <div>
-          <Image src='/banner3.png' />
+          <Image src="/banner3.png" />
         </div>
       </BannerSlider>
     </Container>
@@ -42,7 +42,7 @@ export default Banner;
 const Container = styled.div`
   overflow: hidden;
   width: 100%;
-  height: 220px;
+  height: 230px;
   background-color: ghostwhite;
 `;
 
@@ -57,5 +57,5 @@ const BannerSlider = styled(Slider)`
 
 const Image = styled.img`
   max-width: 100%;
-  max-height: 100%;
+  height: 230px;
 `;
