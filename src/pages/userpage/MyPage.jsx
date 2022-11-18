@@ -6,7 +6,7 @@ import { __getMyInfo } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
   const dispatch = useDispatch();

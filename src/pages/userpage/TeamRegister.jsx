@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { StContainer, StTeamForm, StWrap } from "./Styles";
+import { StTeamForm, StWrap } from "./Styles";
 import Header from "../../components/Header";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
@@ -79,11 +79,10 @@ const TeamRegister = () => {
           <img alt="미리보기" src={preview} />
           <input
             type="file"
-            //ref={imgRef}
             onChange={(e) => {
               handleImagePreview(e);
             }}
-            accept="image/*" //모든 이미지 파일의 확장자를 허용한다
+            accept="image/*"
           />
           <input type="text" placeholder="team name" ref={nameRef} />
           <input
