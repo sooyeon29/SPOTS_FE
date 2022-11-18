@@ -57,7 +57,7 @@ const SpotsDetail = () => {
   );
   const [toggle, setToggel, clickedToggle] = useToggle();
   const [toggleTwo, setToggelTwo, clickedToggleTwo] = useToggle();
-  const [count, setCount] = useState(0);
+
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
   const placeList = useSelector((state) => state?.spots.privateSpot);
@@ -112,14 +112,17 @@ const SpotsDetail = () => {
   // console.log(myTeams);
 
   // 5. 경기에 참가할 인원수를 작성해준다.
-  const [myMember, setMember, memberHandler] = useInput();
+  const [count, setCount] = useState(0);
 
   // @@++나의 포인트를 가져와 주었다 이것으로 계산할꺼다 ++@@
   // 아래 예약하기 핸들러를 눌러 patch도 위의 post들과 함께 보내줄꺼다
   const { user } = useSelector((state) => state.user);
   // console.log(user);
   const myPoint = user.point;
-
+  console.log(
+    "=========================경기참가인원=============================",
+    count
+  );
   // console.log(typeof startDate);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // 계산을 위해 포인트를 차감하여 patch 도 실행해주자!
@@ -136,7 +139,7 @@ const SpotsDetail = () => {
         matchId: pickedTime + "nomatch" + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
-        member: parseInt(myMember?.member),
+        member: count,
         price: payAPrice + payBPrice,
       })
     );
@@ -152,7 +155,7 @@ const SpotsDetail = () => {
         matchId: pickedTime + "ismatch" + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
-        member: parseInt(myMember?.member),
+        member: count,
         price: payAPrice + payBPrice,
       })
     );
@@ -175,18 +178,6 @@ const SpotsDetail = () => {
 
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.matcher);
-  // console.log("=============오늘 신청된매치", allMatchToday);
-  // allMatchToday.map((matchToday) =>
-  //   console.log("시간만잘잘라줘", matchToday.matchId.substring(0, 13))
-  // );
-  // console.log(allMatchToday);
-
-  // const timeSlot = allMatchToday.map((matchToday, index) => (
-  //   <li key={index}>
-  //     {matchToday.matchId.substring(0, 13)}
-  //   </li>
-  // ));
-  // console.log(timeSlot);
 
   const timeSlots = allMatchToday.map((match) =>
     match.matchId.substring(0, 13)
