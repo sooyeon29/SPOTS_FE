@@ -73,17 +73,3 @@ export const BtnWrap = styled.div`
   right: 8%;
   position: absolute;
 `;
-
-export const MylocationBtn = styled.button`
-  position: absolute;
-  width: 146px;
-  height: 40px;
-  left: 117px;
-  top: 800px;
-  border: none;
-  background: #ffffff;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
-  border-radius: 26px;
-  z-index: 999;
-  cursor: pointer;
-`;
