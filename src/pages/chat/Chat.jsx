@@ -1,56 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 import styled from "styled-components";
 import useInput from "../../hooks/useInput";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 
-const Chat = ({ setInquiry }) => {
-  const socket = io("https://ws-study.shop", {
-    cors: {
-      origin: "http://localhost:3000",
-    },
-    transports: ["websocket", "polling"],
-  });
-
-  //소켓이 서버에 연결되어 있는지 여부
-  socket.on("a", (data) => {
-    console.log("됐다"); // true
-    console.log(data);
-    console.log(data.msg); // true/false
-  });
-
+const Chat = ({ socket }) => {
   const initialState = { message: "", from: false };
-  const [chatArr, setChatArr] = useState([]);
+  const [messageList, setMessageList] = useState([]);
   const [message, setMessage, onChange] = useInput(initialState);
   const [name, setName] = useState("");
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    socket.emit("chatting", {
-      message: message.message,
-      from: false,
-    });
-    setMessage(initialState);
-  };
-
   useEffect(() => {
-    return () => socket.disconnect();
-  }, []);
-
-  useEffect(() => {
-    socket.on("receive", (message, from) => {
-      console.log(message);
-      setChatArr((chatArr) => [
-        ...chatArr,
-        { message: message.message, from: from },
-      ]);
-      console.log(name);
+    socket.on("enter_notice", (data) => {
+      console.log("데이터들어온다", data);
+      setMessageList((list) => [...list, data]);
     });
   }, []);
 
-  console.log(chatArr);
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   socket.emit("chatting", {
+  //     message: message.message,
+  //     from: false,
+  //   });
+  //   setMessage(initialState);
+  // };
+
+  // useEffect(() => {
+  //   socket.on("receive", (message, from) => {
+  //     console.log(message);
+  //     setChatArr((chatArr) => [
+  //       ...chatArr,
+  //       { message: message.message, from: from },
+  //     ]);
+  //     console.log(name);
+  //   });
+  // }, []);
+
+  // console.log(chatArr);
   return (
     <StContainer>
       <StBox>
@@ -63,7 +51,7 @@ const Chat = ({ setInquiry }) => {
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
-        <StForm onSubmit={submitHandler}>
+        <StForm>
           <StInput
             value={message.message}
             name="message"
@@ -74,7 +62,7 @@ const Chat = ({ setInquiry }) => {
             <FiSend size="23" />
           </button>
         </StForm>
-        {chatArr?.map((chat) =>
+        {messageList?.map((chat) =>
           chat.from ? (
             <div>
               <div>메세지={chat.message}</div>

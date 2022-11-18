@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import SpotList from './HostSpotList';
-import { StWrap, MapPlace, PlaceList, Index } from './Style';
-import SpotsMap from '../reservation/SpotsMap';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import SpotList from "./HostSpotList";
+import { StWrap, MapPlace, PlaceList, Index } from "./Style";
+import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,
   __getSearchedSpot,
-} from '../../redux/modules/spotsSlice';
-import TapBar from '../../components/TapBar';
+} from "../../redux/modules/spotsSlice";
+import TapBar from "../../components/TapBar";
 
 const Reservation = () => {
   const dispatch = useDispatch();
@@ -18,19 +18,22 @@ const Reservation = () => {
   const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
+  const searchTerm = params.keyword;
+  console.log("키워드", searchTerm);
+  console.log("파람", params);
 
   useEffect(() => {
     if (!params.keywords) {
       dispatch(__getAllSpot());
-      console.log('No Params');
+      console.log("No Params");
     } else {
       dispatch(__getSearchedSpot(params.keywords));
-      console.log('Yes Params');
+      console.log("Yes Params");
     }
   }, []);
 
-  console.log('---검색---', searchedSpot);
-  console.log('---전체---', allSpot);
+  console.log("---검색---", searchedSpot);
+  console.log("---전체---", allSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -57,20 +60,20 @@ const Reservation = () => {
           <MapPlace>
             {!params.keywords ? (
               <>
-                {console.log('-----No Params-----', allSpot)}
+                {console.log("-----No Params-----", allSpot)}
                 <SpotsMap spotMarkers={allSpot} />
               </>
             ) : (
               <>
-                {console.log('-----Yes Params-----', searchedSpot)}
+                {console.log("-----Yes Params-----", searchedSpot)}
                 <SpotsMap spotMarkers={searchedSpot} />
               </>
             )}
           </MapPlace>
           <Index>
-            <img alt='공공스팟' src='/public.png' />
+            <img alt="공공스팟" src="/public.png" />
             <div>공공시설</div>
-            <img alt='사설스팟' src='/private.png' />
+            <img alt="사설스팟" src="/private.png" />
             <div>사설시설</div>
           </Index>
           <PlaceList>
@@ -85,6 +88,7 @@ const Reservation = () => {
             )}
           </PlaceList>
         </StWrap>
+        <TapBar />
       </Layout>
     </>
   );

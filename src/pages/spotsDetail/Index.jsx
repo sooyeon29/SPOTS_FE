@@ -32,6 +32,9 @@ import {
   SpotInfo,
   MoreInfo,
   FindMatch,
+  Sports,
+  PlaceInfo,
+  Calen,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -39,6 +42,8 @@ import {
 } from "../../redux/modules/matchSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
+import ReservHeader from "../../components/ReservHeader";
+import { Calendar } from "react-calendar";
 
 const SpotsDetail = () => {
   const myTime = new Array(
@@ -110,7 +115,7 @@ const SpotsDetail = () => {
   // @@++나의 포인트를 가져와 주었다 이것으로 계산할꺼다 ++@@
   // 아래 예약하기 핸들러를 눌러 patch도 위의 post들과 함께 보내줄꺼다
   const { user } = useSelector((state) => state.user);
-  //console.log(user);
+  // console.log(user);
   const myPoint = user.point;
 
   // console.log(typeof startDate);
@@ -190,319 +195,488 @@ const SpotsDetail = () => {
   return (
     <>
       <Layout>
-        <Header />
+        <ReservHeader />
         {selectSpot?.map((spot) => {
           return (
-            <Wrap>
-              <MainInfo>
-                <SpotPhoto>
-                  <img alt="" src={spot.image} />
-                </SpotPhoto>
-                <SpotInfo>
-                  <Title>{spot.spotName}</Title>
-                  <span>{spot.address}</span>
-                  <p>{spot.desc}</p>
-                  <Line></Line>
-                  <h5>시설 소개</h5>
+            <>
+              <Sports>
+                {spot.sports === "풋살장" && <>⚽</>}
+                {spot.sports === "테니스장" && <>🥎</>}
+                {spot.sports === "배드민턴장" && <>🏸</>}
+                {spot.sports}
+              </Sports>
+              <SpotPhoto>
+                <img alt="" src={spot.image} />
+              </SpotPhoto>
+              <PlaceInfo>
+                <Title>{spot.spotName}</Title>
+                <div>{spot.address}</div>
+                <div>{spot.desc}</div>
 
-                  <Line></Line>
-                  <MoreInfo>
-                    <div>
-                      <span>
-                        {spot.sports === "풋살장" && <>⚽</>}
-                        {spot.sports === "테니스장" && <>🥎</>}
-                        {spot.sports === "배드민턴장" && <>🏸</>}
-                        {spot.sports}
-                      </span>
-                      <span>
-                        {spot.spotKind === "실내 스팟" && <>🪴</>}
-                        {spot.spotKind === "실외 스팟" && <>🌳</>}
-                        {spot.spotKind}
-                      </span>
-                    </div>
-                    <span>💰이용료💰 {spot.price}포인트</span>
-                    <Line></Line>
-                    <span>👍 {spot.comforts}</span>
-                  </MoreInfo>
-                </SpotInfo>
-              </MainInfo>
-
-              <TimeDate>
-                <SelectList>
-                  <span>날짜/시간선택</span>
-                  <Line></Line>
-                  <CalTime>
-                    <div>
-                      <ReactDatePicker
-                        locale={ko}
-                        selected={startDate}
-                        onChange={(date) =>
-                          pickDateHandler(date, spot.spotName)
-                        }
-                        inline
-                        required
-                        // setStartDate(date)}
-                        //   withPortal
-                        // isClearable
-                        //   portalId="root-portal"
-                        // dateFormat="MM월 dd일 EE요일"
-                        // placeholderText="날짜를 선택해주세요"
-                      />
-                    </div>
-                    {!forMatch && (
-                      <>
-                        <Times>
-                          <button
-                            disabled={timeSlots.includes(myTime[0])}
-                            onClick={() => teamPick(0, spot.price)}
-                          >
-                            {myTime[0]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[1])}
-                            onClick={() => teamPick(1, spot.price)}
-                          >
-                            {myTime[1]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[2])}
-                            onClick={() => teamPick(2, spot.price)}
-                          >
-                            {myTime[2]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[3])}
-                            onClick={() => teamPick(3, spot.price)}
-                          >
-                            {myTime[3]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[4])}
-                            onClick={() => teamPick(4, spot.price)}
-                          >
-                            {myTime[4]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[5])}
-                            onClick={() => teamPick(5, spot.price)}
-                          >
-                            {myTime[5]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[6])}
-                            onClick={() => teamPick(6, spot.price)}
-                          >
-                            {myTime[6]}
-                          </button>
-                          <button
-                            disabled={timeSlots.includes(myTime[7])}
-                            onClick={() => teamPick(7, spot.price)}
-                          >
-                            {myTime[7]}
-                          </button>
-                        </Times>
-                      </>
-                    )}
-                    {forMatch && (
-                      <>
-                        <Times>팀매칭하기✨</Times>
-                      </>
-                    )}
-                  </CalTime>
-                  <FindMatch onClick={matchHandler}>
-                    {!forMatch ? "매칭 팀 찾기" : "돌아가기"}
-                  </FindMatch>
-                  {forMatch && (
-                    <div>
-                      <SelectTeam>
-                        <BookMatch>
-                          <Time>{myTime[0]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[0])}
-                            onClick={() => teamPick(0, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(0, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[1]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[1])}
-                            onClick={() => teamPick(1, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(1, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[2]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[2])}
-                            onClick={() => teamPick(2, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(2, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[3]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[3])}
-                            onClick={() => teamPick(3, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(3, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[4]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[4])}
-                            onClick={() => teamPick(4, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(4, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[5]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[5])}
-                            onClick={() => teamPick(5, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(5, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[6]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[6])}
-                            onClick={() => teamPick(6, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(6, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                        <BookMatch>
-                          <Time>{myTime[7]}</Time>
-                          <Team
-                            disabled={timeSlots.includes(myTime[7])}
-                            onClick={() => teamPick(7, spot.price / 2)}
-                          >
-                            팀1
-                          </Team>
-                          vs
-                          <Team onClick={() => teamPick(7, spot.price / 2)}>
-                            팀2
-                          </Team>
-                        </BookMatch>
-                      </SelectTeam>
-                    </div>
-                  )}
-                </SelectList>
-
-                <YourSelect>
-                  <ShowDateTime>
-                    <div>
-                      <span>{bookDate}</span>
-                      <button
-                        onClick={() => {
-                          setStartDate(null);
-                        }}
-                      >
-                        취소
-                      </button>
-                    </div>
-                    <Line></Line>
-                    <div>
-                      <span>{pickedTime}</span>
-                      <button
-                        onClick={() => {
-                          setPickedTime("");
-                          setPayAPrice(0);
-                        }}
-                      >
-                        취소
-                      </button>{" "}
-                    </div>
-                  </ShowDateTime>
-                  <select name="myteam" value={myTeam} onChange={pickMyTeam}>
-                    <option>선택하기</option>
-                    {myTeams?.map((myTeam) => {
-                      return (
-                        <option key={myTeam.teamId}>{myTeam.teamName}</option>
-                      );
-                    })}
-                  </select>
-                  <input
-                    type="number"
-                    requiered
-                    name="member"
-                    onChange={memberHandler}
-                    placeholder="경기 참석인원"
-                  />
-                  <br />
+                <MoreInfo>
+                  <span>시설 현황</span>
                   <div>
-                    나의팀: {myTeam?.myteam} 경기인원: {myMember?.member}
+                    <div>
+                      {spot.spotKind === "실내 스팟" && <>🪴</>}
+                      {spot.spotKind === "실외 스팟" && <>🌳</>}
+                      {spot.spotKind}
+                    </div>
+                    <div>👍 {spot.comforts}</div>
                   </div>
-                  {forMatch && !isTwo && spot.sports !== "풋살장" && (
-                    <Pick>
-                      <One onClick={pickTwoHandler}>단식</One>
-                      <Two onClick={pickTwoHandler}>복식</Two>
-                    </Pick>
-                  )}
-                  {forMatch && isTwo && spot.sports !== "풋살장" && (
-                    <Pick>
-                      <Two onClick={pickTwoHandler}>단식</Two>
-                      <One onClick={pickTwoHandler}>복식</One>
-                    </Pick>
-                  )}
-                  <p>잔여포인트: {myPoint} point</p>
-                  <p>예약포인트: {payAPrice + payBPrice} point</p>
-                  <hr />
-                  {myPoint > payAPrice + payBPrice ? (
-                    <p>결제후포인트: {myPoint - payAPrice + payBPrice} point</p>
-                  ) : (
-                    <p>
-                      충전이 필요한 포인트: {payAPrice + payBPrice - myPoint}
-                      point
-                    </p>
-                  )}
-                  {!forMatch ? (
-                    <NoMatchBook onClick={() => bookWithNoMatch(spot.spotName)}>
-                      매칭없이 예약하기
-                    </NoMatchBook>
-                  ) : (
-                    <button onClick={() => bookMyMatch(spot.spotName)}>
-                      팀매칭으로 예약하기
-                    </button>
-                  )}
-                </YourSelect>
-              </TimeDate>
-            </Wrap>
+                  <div>💰이용료 {spot.price}포인트💰</div>
+                </MoreInfo>
+              </PlaceInfo>
+              <Calen>
+                <ReactDatePicker
+                  locale={ko}
+                  selected={startDate}
+                  onChange={(date) => pickDateHandler(date, spot.spotName)}
+                  inline
+                  required
+                />
+              </Calen>
+              <CalTime>
+                {!forMatch && (
+                  <>
+                    <Times>
+                      <button
+                        disabled={timeSlots.includes(myTime[0])}
+                        onClick={() => teamPick(0, spot.price)}
+                      >
+                        {myTime[0]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[1])}
+                        onClick={() => teamPick(1, spot.price)}
+                      >
+                        {myTime[1]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[2])}
+                        onClick={() => teamPick(2, spot.price)}
+                      >
+                        {myTime[2]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[3])}
+                        onClick={() => teamPick(3, spot.price)}
+                      >
+                        {myTime[3]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[4])}
+                        onClick={() => teamPick(4, spot.price)}
+                      >
+                        {myTime[4]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[5])}
+                        onClick={() => teamPick(5, spot.price)}
+                      >
+                        {myTime[5]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[6])}
+                        onClick={() => teamPick(6, spot.price)}
+                      >
+                        {myTime[6]}
+                      </button>
+                      <button
+                        disabled={timeSlots.includes(myTime[7])}
+                        onClick={() => teamPick(7, spot.price)}
+                      >
+                        {myTime[7]}
+                      </button>
+                      <FindMatch onClick={matchHandler}>
+                        {!forMatch ? "매칭 팀 찾기" : "돌아가기"}
+                      </FindMatch>
+                    </Times>
+                  </>
+                )}
+                {forMatch && (
+                  <>
+                    <Times>팀매칭하기✨</Times>
+                  </>
+                )}
+
+                {forMatch && (
+                  <div>
+                    <SelectTeam>
+                      <BookMatch>
+                        <Time>{myTime[0]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[0])}
+                          onClick={() => teamPick(0, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(0, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[1]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[1])}
+                          onClick={() => teamPick(1, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(1, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[2]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[2])}
+                          onClick={() => teamPick(2, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(2, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[3]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[3])}
+                          onClick={() => teamPick(3, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(3, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[4]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[4])}
+                          onClick={() => teamPick(4, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(4, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[5]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[5])}
+                          onClick={() => teamPick(5, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(5, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[6]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[6])}
+                          onClick={() => teamPick(6, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(6, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                      <BookMatch>
+                        <Time>{myTime[7]}</Time>
+                        <Team
+                          disabled={timeSlots.includes(myTime[7])}
+                          onClick={() => teamPick(7, spot.price / 2)}
+                        >
+                          팀1
+                        </Team>
+                        vs
+                        <Team onClick={() => teamPick(7, spot.price / 2)}>
+                          팀2
+                        </Team>
+                      </BookMatch>
+                    </SelectTeam>
+                  </div>
+                )}
+              </CalTime>
+
+              <Wrap>
+                <TimeDate>
+                  <SelectList>
+                    <span>날짜/시간선택</span>
+                    <Line></Line>
+                    <CalTime>
+                      <div></div>
+                      {!forMatch && (
+                        <>
+                          <Times>
+                            <button
+                              disabled={timeSlots.includes(myTime[0])}
+                              onClick={() => teamPick(0, spot.price)}
+                            >
+                              {myTime[0]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[1])}
+                              onClick={() => teamPick(1, spot.price)}
+                            >
+                              {myTime[1]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[2])}
+                              onClick={() => teamPick(2, spot.price)}
+                            >
+                              {myTime[2]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[3])}
+                              onClick={() => teamPick(3, spot.price)}
+                            >
+                              {myTime[3]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[4])}
+                              onClick={() => teamPick(4, spot.price)}
+                            >
+                              {myTime[4]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[5])}
+                              onClick={() => teamPick(5, spot.price)}
+                            >
+                              {myTime[5]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[6])}
+                              onClick={() => teamPick(6, spot.price)}
+                            >
+                              {myTime[6]}
+                            </button>
+                            <button
+                              disabled={timeSlots.includes(myTime[7])}
+                              onClick={() => teamPick(7, spot.price)}
+                            >
+                              {myTime[7]}
+                            </button>
+                          </Times>
+                        </>
+                      )}
+                      {forMatch && (
+                        <>
+                          <Times>팀매칭하기✨</Times>
+                        </>
+                      )}
+                    </CalTime>
+                    <FindMatch onClick={matchHandler}>
+                      {!forMatch ? "매칭 팀 찾기" : "돌아가기"}
+                    </FindMatch>
+                    {forMatch && (
+                      <div>
+                        <SelectTeam>
+                          <BookMatch>
+                            <Time>{myTime[0]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[0])}
+                              onClick={() => teamPick(0, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(0, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[1]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[1])}
+                              onClick={() => teamPick(1, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(1, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[2]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[2])}
+                              onClick={() => teamPick(2, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(2, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[3]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[3])}
+                              onClick={() => teamPick(3, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(3, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[4]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[4])}
+                              onClick={() => teamPick(4, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(4, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[5]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[5])}
+                              onClick={() => teamPick(5, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(5, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[6]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[6])}
+                              onClick={() => teamPick(6, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(6, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                          <BookMatch>
+                            <Time>{myTime[7]}</Time>
+                            <Team
+                              disabled={timeSlots.includes(myTime[7])}
+                              onClick={() => teamPick(7, spot.price / 2)}
+                            >
+                              팀1
+                            </Team>
+                            vs
+                            <Team onClick={() => teamPick(7, spot.price / 2)}>
+                              팀2
+                            </Team>
+                          </BookMatch>
+                        </SelectTeam>
+                      </div>
+                    )}
+                  </SelectList>
+
+                  <YourSelect>
+                    <ShowDateTime>
+                      <div>
+                        <span>{bookDate}</span>
+                        <button
+                          onClick={() => {
+                            setStartDate(null);
+                          }}
+                        >
+                          취소
+                        </button>
+                      </div>
+                      <Line></Line>
+                      <div>
+                        <span>{pickedTime}</span>
+                        <button
+                          onClick={() => {
+                            setPickedTime("");
+                            setPayAPrice(0);
+                          }}
+                        >
+                          취소
+                        </button>{" "}
+                      </div>
+                    </ShowDateTime>
+                    <select name="myteam" value={myTeam} onChange={pickMyTeam}>
+                      <option>선택하기</option>
+                      {myTeams?.map((myTeam) => {
+                        return (
+                          <option key={myTeam.teamId}>{myTeam.teamName}</option>
+                        );
+                      })}
+                    </select>
+                    <input
+                      type="number"
+                      requiered
+                      name="member"
+                      onChange={memberHandler}
+                      placeholder="경기 참석인원"
+                    />
+                    <br />
+                    <div>
+                      나의팀: {myTeam?.myteam} 경기인원: {myMember?.member}
+                    </div>
+                    {forMatch && !isTwo && spot.sports !== "풋살장" && (
+                      <Pick>
+                        <One onClick={pickTwoHandler}>단식</One>
+                        <Two onClick={pickTwoHandler}>복식</Two>
+                      </Pick>
+                    )}
+                    {forMatch && isTwo && spot.sports !== "풋살장" && (
+                      <Pick>
+                        <Two onClick={pickTwoHandler}>단식</Two>
+                        <One onClick={pickTwoHandler}>복식</One>
+                      </Pick>
+                    )}
+                    <p>잔여포인트: {myPoint} point</p>
+                    <p>예약포인트: {payAPrice + payBPrice} point</p>
+                    <hr />
+                    {myPoint > payAPrice + payBPrice ? (
+                      <p>
+                        결제후포인트: {myPoint - payAPrice + payBPrice} point
+                      </p>
+                    ) : (
+                      <p>
+                        충전이 필요한 포인트: {payAPrice + payBPrice - myPoint}
+                        point
+                      </p>
+                    )}
+                    {!forMatch ? (
+                      <NoMatchBook
+                        onClick={() => bookWithNoMatch(spot.spotName)}
+                      >
+                        매칭없이 예약하기
+                      </NoMatchBook>
+                    ) : (
+                      <button onClick={() => bookMyMatch(spot.spotName)}>
+                        팀매칭으로 예약하기
+                      </button>
+                    )}
+                  </YourSelect>
+                </TimeDate>
+              </Wrap>
+            </>
           );
         })}
       </Layout>

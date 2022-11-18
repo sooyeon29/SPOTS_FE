@@ -51,7 +51,7 @@ const SpotsMap = ({ sportsKind }) => {
   const pub = useSelector((state) => state?.spots);
   // console.log(pub);
 
-  useEffect(() => {
+  const locationHandler = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -79,7 +79,7 @@ const SpotsMap = ({ sportsKind }) => {
         isLoading: false,
       }));
     }
-  }, []);
+  };
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -104,7 +104,9 @@ const SpotsMap = ({ sportsKind }) => {
         onZoomChanged={(map) => setLevel(map.getLevel())}>
         <ZoomControl />
 
-        {/* 현재위치 */}
+        <MylocationBtn onClick={locationHandler}>
+          현재 위치로 이동
+        </MylocationBtn>
         <MapMarker position={state.center} />
 
         {privateSpot.map((place, idx) => {
