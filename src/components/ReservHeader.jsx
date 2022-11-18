@@ -6,8 +6,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearchLocation } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import useToggle from "../hooks/useToggle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-const Header = () => {
+const ReservHeader = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const logout = () => {
@@ -24,23 +26,20 @@ const Header = () => {
         <StWrap>
           <StLogo
             onClick={() => {
-              navigate(`/`);
+              navigate(`/book`);
             }}
           >
-            <Img src="/logo.png" alt="logo" />
+            <FontAwesomeIcon
+              style={{
+                color: "#AEB4BF",
+                fontSize: "17",
+              }}
+              icon={faChevronLeft}
+              // className="move-page"
+            />
           </StLogo>
+          <Reserve>예약</Reserve>
           <StButtons>
-            {!toggle ? (
-              <StSearch>
-                <FaSearchLocation
-                  color="white"
-                  size="20"
-                  onClick={ClickToggle}
-                />
-              </StSearch>
-            ) : (
-              <SearchBar />
-            )}
             {!token ? (
               <DropdownContainer>
                 <DropdownButton onClick={myPageHandler} ref={myPageRef}>
@@ -97,7 +96,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default ReservHeader;
 
 const StHeader = styled.div`
   width: 100%;
@@ -119,9 +118,10 @@ const StLogo = styled.div`
   cursor: pointer;
 `;
 
-const StSearch = styled.div`
-  margin: 3px 15px 0 0;
-  cursor: pointer;
+const Reserve = styled.div`
+  color: white;
+  font-weight: bold;
+  margin-left: 61px;
 `;
 
 const StButtons = styled.ul`
