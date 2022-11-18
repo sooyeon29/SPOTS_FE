@@ -32,6 +32,7 @@ import {
   Counter,
   SelectChoice,
   FinalBooking,
+  WrapAll,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -41,6 +42,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import ReservHeader from "../../components/ReservHeader";
 import { Calendar } from "react-calendar";
+import TapBar from "../../components/TapBar";
 
 const SpotsDetail = () => {
   const myTime = new Array(
@@ -199,7 +201,7 @@ const SpotsDetail = () => {
         <ReservHeader />
         {selectSpot?.map((spot) => {
           return (
-            <>
+            <WrapAll>
               <Sports>
                 {spot.sports === "풋살장" && <>⚽</>}
                 {spot.sports === "테니스장" && <>🥎</>}
@@ -429,10 +431,10 @@ const SpotsDetail = () => {
                 <TeamSelect
                   name="myteam"
                   required
-                  value={myTeam}
+                  value={myTeam?.teamName}
                   onChange={pickMyTeam}
                 >
-                  <option value="">---선택하기---</option>
+                  <option>---선택하기---</option>
                   {myTeams?.map((myTeam) => {
                     return (
                       <>
@@ -455,23 +457,23 @@ const SpotsDetail = () => {
                   <button onClick={() => setCount(count + 1)}>+</button>
                 </Counter>
               </SelectChoice>
-              <CalTime>
-                {forMatch && !isTwo && spot.sports !== "풋살장" && (
-                  <Pick>
-                    <One onClick={pickTwoHandler}>단식</One>
-                    <Two onClick={pickTwoHandler}>복식</Two>
-                  </Pick>
-                )}
-                {forMatch && isTwo && spot.sports !== "풋살장" && (
-                  <Pick>
-                    <Two onClick={pickTwoHandler}>단식</Two>
-                    <One onClick={pickTwoHandler}>복식</One>
-                  </Pick>
-                )}
-              </CalTime>
+
+              {forMatch && !isTwo && spot.sports !== "풋살장" && (
+                <Pick>
+                  <One onClick={pickTwoHandler}>단식</One>
+                  <Two onClick={pickTwoHandler}>복식</Two>
+                </Pick>
+              )}
+              {forMatch && isTwo && spot.sports !== "풋살장" && (
+                <Pick>
+                  <Two onClick={pickTwoHandler}>단식</Two>
+                  <One onClick={pickTwoHandler}>복식</One>
+                </Pick>
+              )}
+
               <CalTime>
                 <p>잔여포인트: {myPoint} point</p>
-                <div>예약포인트: {payAPrice + payBPrice} point</div>
+                <span>예약포인트: {payAPrice + payBPrice} point</span>
 
                 {myPoint > payAPrice + payBPrice ? (
                   <p>결제후포인트: {myPoint - payAPrice + payBPrice} point</p>
@@ -492,9 +494,10 @@ const SpotsDetail = () => {
                   팀매칭 예약하기
                 </FinalBooking>
               )}
-            </>
+            </WrapAll>
           );
         })}
+        <TapBar />
       </Layout>
     </>
   );
