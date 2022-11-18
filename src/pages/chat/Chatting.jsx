@@ -9,29 +9,28 @@ const Chat = ({ socket, roomName }) => {
   const initialState = { message: "", from: false };
   const [message, setMessage, onChange] = useInput(initialState);
   const [messageList, setMessageList] = useState([]);
-  console.log(message);
 
   useEffect(() => {
-    socket.on("enter_notice", (data) => {
-      console.log("enter_notice", data);
-      setMessageList((list) => [...list, data]);
+    socket.on("enter_notice", (message) => {
+      console.log("enter_notice", message);
+      setMessageList((list) => [...list, message]);
     });
-    socket.on("new_message", (data) => {
-      console.log("new_message", data);
-      setMessageList((list) => [...list, data]);
+    socket.on("new_message", (message) => {
+      console.log("new_message", message);
+      setMessageList((list) => [...list, message]);
+    });
+    socket.on("left_notice", (message) => {
+      console.log("left_notice", message);
     });
   }, [socket, messageList]);
 
   const onSendMsg = (e) => {
     e.preventDefault();
-    socket.emit("chatting", {
-      roomName: roomName,
-      message: message.message,
-    });
+    socket.emit("chatting", roomName, message.message);
     setMessageList((list) => [...list, message]);
     setMessage(initialState);
   };
-  console.log(messageList);
+  //console.log(messageList);
 
   return (
     <StContainer>
@@ -56,19 +55,11 @@ const Chat = ({ socket, roomName }) => {
             <FiSend size="23" />
           </button>
         </StForm>
-        {messageList?.map((chat) =>
-          chat.from ? (
-            <div>
-              <div>메세지={chat.message}</div>
-              {/* <SendBtn onClick={() => DeletHandler(chat)}>Send</SendBtn> */}
-            </div>
-          ) : (
-            <div>
-              <StMsgBox>{chat.message}</StMsgBox>
-              {/* <SendBtn onClick={() => DeletHandler(chat)}>Send</SendBtn> */}
-            </div>
-          )
-        )}
+        {messageList?.map((chat) => (
+          <div>
+            <StMsgBox>{chat.message}</StMsgBox>
+          </div>
+        ))}
       </StBox>
     </StContainer>
   );

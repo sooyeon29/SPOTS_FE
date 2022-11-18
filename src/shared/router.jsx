@@ -15,7 +15,6 @@ import SwitchAccount from "../pages/login/SwitchAccount";
 import ReservPage from "../pages/userpage/ReservPage";
 import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
-import Chat from "../pages/chat/Chat";
 import FindPw from "../pages/login/FindPw";
 import FindId from "../pages/login/FindId";
 import ChatRoom from "../pages/chat/ChatRoom";
@@ -43,7 +42,6 @@ function Router() {
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
-        <Route path="/chat" element={<Chat />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/addlogin" element={<KakaoAdd />} />
       </Routes>
