@@ -9,13 +9,13 @@ export const SpotPhoto = styled.div`
   max-width: 800px;
   padding: 0px;
   overflow: hidden;
-  background-color: lightcyan;
+  /* background-color: lightcyan; */
   border-radius: 10px;
   img {
     width: 100%;
     height: 350px;
     object-fit: cover;
-
+    border-radius: 10px;
     margin: auto;
   }
 `;
@@ -63,12 +63,41 @@ export const Calen = styled.div`
     }
   }
 `;
+export const SelectDone = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  height: 40px;
+  font-weight: bold;
+  max-width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  button {
+    background: #d9d9d9;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border: #d9d9d9;
+    border-radius: 8px;
+  }
+`;
+
 export const CalTime = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
   width: 95%;
   max-width: 800px;
   padding: 10px 0px;
+  margin-bottom: 10px;
+  p {
+    margin-left: 20px;
+  }
+  div {
+    margin-left: 20px;
+    font-weight: bold;
+  }
 `;
 export const Times = styled.div`
   display: flex;
@@ -92,6 +121,48 @@ export const Times = styled.div`
     }
   }
 `;
+export const SelectChoice = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+`;
+
+export const TeamSelect = styled.select`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 60%;
+  height: 50px;
+  max-width: 800px;
+  padding: 10px 10px;
+  font-size: 15px;
+  margin-left: 10px;
+`;
+
+export const Counter = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 20px;
+  button {
+    width: 25px;
+    height: 25px;
+    background: #d9d9d9;
+    border: #d9d9d9;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  span {
+    margin: 0px 20px;
+    font-size: 18px;
+  }
+`;
+
 export const FindMatch = styled.button`
   background: #d9d9d9;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -162,16 +233,25 @@ export const BookMatch = styled.div`
   width: 100%;
 `;
 export const Time = styled.div`
+  margin-top: 12px;
+  margin-left: 20px;
   /* width: 100%; */
 `;
 export const Team = styled.button`
-  width: 100px;
-  height: 27px;
-  margin: 0px auto 3px auto;
-  background: #f5f5f5;
+  background: #ffffff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  border: #bcbcbc;
+  border: #d9d9d9;
+  border-radius: 8px;
+  margin-left: 10px;
+  margin-bottom: 6px;
+  width: 100px;
+  height: 44px;
+  font-weight: 400;
+  font-size: 15px;
+  &:hover {
+    background: #d9d9d9;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export const YourSelect = styled.div`
@@ -198,12 +278,7 @@ export const ShowDateTime = styled.div`
   align-items: center;
   padding: 10px;
 `;
-export const Line = styled.div`
-  width: 98%;
-  height: 1px;
-  background-color: black;
-  margin: 5px auto;
-`;
+
 export const NoMatchBook = styled.button`
   margin: 10px auto;
 `;
@@ -217,11 +292,11 @@ export const Pick = styled.div`
   background-color: #f8f9fd;
   border: 1px solid #f1f3f7;
   border-radius: 8px;
-  margin: 40px auto 20px auto;
+  margin: 10px auto 20px auto;
 `;
 export const One = styled.button`
   z-index: 2;
-  width: 50%;
+  width: 48%;
   height: 100%;
   background-color: white;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #e9ebec;
@@ -235,4 +310,18 @@ export const Two = styled.button`
   align-items: center;
   cursor: pointer;
   border: 0px;
+`;
+export const FinalBooking = styled.button`
+  display: flex;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 1; */
+  width: 95%;
+  background-color: #bcbcbc;
+  border: 1px solid #f1f3f7;
+  border-radius: 8px;
+  margin: 10px auto 20px auto;
 `;
