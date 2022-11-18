@@ -24,16 +24,12 @@ const MainMaps = () => {
       .then((res) => {
         console.log("여기===========================", res);
         if (res.data.loginId === null) return;
-
-        if (res.data.loginId && !res.data.nickname) {
-          navigate(`/addlogin`);
-        }
-        // return;
         if (res.data.nickname) {
           localStorage.setItem("token", res.data.accessToken);
           return;
-        } else {
-          // navigate(`/addlogin`);
+        }
+        if (res.data.loginId && !res.data.nickname) {
+          navigate(`/addlogin`);
         }
       })
       .catch((err) => console.log(err));
