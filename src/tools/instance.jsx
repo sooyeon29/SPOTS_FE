@@ -1,13 +1,15 @@
 import axios from "axios";
 // import { intlFormatDistanceWithOptions } from "date-fns/fp";
-
 const isLogin = localStorage.getItem("token");
+
 // const isKakaoLogin = localStorage.getItem("token");
 // const isMember = localStorage.getItem("loginId");
 // console.log(isMember);
+if (isLogin) {
+}
 const instance = axios.create({
-  // baseURL: "https://ws-study.shop/",
-  baseURL: "https://sparta4.shop/",
+  baseURL: "https://ws-study.shop/",
+  // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
   headers: {
@@ -105,10 +107,8 @@ export const PublicApi = {
 // 검색 API
 export const SearchApi = {
   // 스팟 검색(필터) Api
-  
+
   getSearchedSpot: (payload) => instance.get(`places/keyword/${payload}`),
   // 스팟 검색(노 필터-전체 조회) Api
-  getAllSpot: () => instance.get(`places/all`),
-};
   getAllSpot: () => instance.get(`places/all`),
 };
