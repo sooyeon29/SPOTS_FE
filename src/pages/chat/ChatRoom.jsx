@@ -8,11 +8,11 @@ import socket from "../../tools/socket";
 const ChatRoom = () => {
   const [inquiry, setInquiry] = useState(false);
   const nickname = localStorage.getItem("nickname");
-  const roomId = "roomIdis" + nickname;
-  console.log(roomId);
+  const roomName = "roomIdis" + nickname;
+  console.log(roomName);
 
   const enterRoom = () => {
-    socket.emit("enter_room", roomId);
+    socket.emit("enter_room", roomName);
     setInquiry(!inquiry);
   };
 
@@ -45,7 +45,7 @@ const ChatRoom = () => {
             <IoSend />
             <strong>새 문의하기</strong>
           </Button>
-          {inquiry ? <Chat socket={socket} /> : null}
+          {inquiry ? <Chat socket={socket} roomName={roomName} /> : null}
         </StChat>
       </StBox>
     </StContainer>

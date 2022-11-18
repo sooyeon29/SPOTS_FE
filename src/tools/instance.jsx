@@ -1,7 +1,6 @@
 import axios from "axios";
 // import { intlFormatDistanceWithOptions } from "date-fns/fp";
 const isLogin = localStorage.getItem("token");
-
 // const isKakaoLogin = localStorage.getItem("token");
 // const isMember = localStorage.getItem("loginId");
 // console.log(isMember);

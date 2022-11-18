@@ -5,40 +5,34 @@ import { IoIosArrowBack } from "react-icons/io";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 
-const Chat = ({ socket }) => {
+const Chat = ({ socket, roomName }) => {
   const initialState = { message: "", from: false };
-  const [messageList, setMessageList] = useState([]);
   const [message, setMessage, onChange] = useInput(initialState);
-  const [name, setName] = useState("");
+  const [messageList, setMessageList] = useState([]);
+  console.log(message);
 
   useEffect(() => {
     socket.on("enter_notice", (data) => {
-      console.log("데이터들어온다", data);
+      console.log("enter_notice", data);
       setMessageList((list) => [...list, data]);
     });
-  }, []);
+    socket.on("new_message", (data) => {
+      console.log("new_message", data);
+      setMessageList((list) => [...list, data]);
+    });
+  }, [socket, messageList]);
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   socket.emit("chatting", {
-  //     message: message.message,
-  //     from: false,
-  //   });
-  //   setMessage(initialState);
-  // };
+  const onSendMsg = (e) => {
+    e.preventDefault();
+    socket.emit("chatting", {
+      roomName: roomName,
+      message: message.message,
+    });
+    setMessageList((list) => [...list, message]);
+    setMessage(initialState);
+  };
+  console.log(messageList);
 
-  // useEffect(() => {
-  //   socket.on("receive", (message, from) => {
-  //     console.log(message);
-  //     setChatArr((chatArr) => [
-  //       ...chatArr,
-  //       { message: message.message, from: from },
-  //     ]);
-  //     console.log(name);
-  //   });
-  // }, []);
-
-  // console.log(chatArr);
   return (
     <StContainer>
       <StBox>
@@ -51,7 +45,7 @@ const Chat = ({ socket }) => {
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
-        <StForm>
+        <StForm onSubmit={onSendMsg}>
           <StInput
             value={message.message}
             name="message"
