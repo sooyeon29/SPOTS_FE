@@ -1,9 +1,116 @@
 import styled from "styled-components";
+export const Sports = styled.div`
+  margin: 10px;
+  font-weight: 700;
+  font-size: 16px;
+`;
+export const SpotPhoto = styled.div`
+  width: 95%;
+  max-width: 800px;
+  padding: 0px;
+  overflow: hidden;
+  background-color: lightcyan;
+  border-radius: 10px;
+  img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+
+    margin: auto;
+  }
+`;
+export const PlaceInfo = styled.div`
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  div {
+    margin-top: 5px;
+  }
+`;
+export const Title = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+export const MoreInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  span {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+export const Calen = styled.div`
+  margin: 5px;
+  div {
+    background-color: white;
+    color: black;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 17px;
+    button {
+      margin-top: 18px;
+    }
+  }
+`;
+export const CalTime = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 800px;
+  padding: 10px 0px;
+`;
+export const Times = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  button {
+    background: #ffffff;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    border: #d9d9d9;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    width: 318px;
+    height: 44px;
+    font-weight: 400;
+    font-size: 15px;
+    &:hover {
+      background: #d9d9d9;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+`;
+export const FindMatch = styled.button`
+  background: #d9d9d9;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  border: #d9d9d9;
+  border-radius: 10px;
+`;
+
+export const MainInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0px;
+  padding: 10px;
+`;
 
 export const Wrap = styled.div`
-  width: 90%;
   border: 1px solid black;
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 0px 20px 0px 0px;
   display: flex;
   flex-direction: column;
@@ -11,32 +118,7 @@ export const Wrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const MainInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* align-items: center; */
-  width: 100%;
-  margin: 0px;
-  padding: 10px;
-`;
-export const Title = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-`;
 
-export const SpotPhoto = styled.div`
-  width: 55%;
-  padding: 0px;
-  overflow: hidden;
-  background-color: lightcyan;
-  img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    margin: auto;
-  }
-`;
 export const SpotInfo = styled.div`
   width: 45%;
   display: flex;
@@ -56,19 +138,6 @@ export const SpotInfo = styled.div`
     margin: 7px auto 0px 3px;
   }
 `;
-export const MoreInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    span {
-      font-size: 10px;
-    }
-  }
-`;
 
 export const TimeDate = styled.div`
   /* display: flex; */
@@ -83,49 +152,7 @@ export const SelectList = styled.div`
     font-weight: bold;
   }
 `;
-export const CalTime = styled.div`
-  display: flex;
-  padding: 5px;
-  width: 100%;
-  div {
-    /* width: 50%; */
-    div {
-      margin: auto;
-      background-color: white;
-      color: black;
-    }
-  }
-`;
-export const Times = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 170%;
-  justify-content: center;
-  align-items: center;
-  button {
-    background: #f5f5f5;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    border: #d9d9d9;
-    border-radius: 8px;
-    margin-bottom: 3px;
-    height: 22px;
-    width: 120px;
-    &:hover {
-      background: #d9d9d9;
-      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    }
-  }
-`;
-export const FindMatch = styled.button`
-  display: flex;
-  justify-content: center;
-  margin: 0px auto 10px auto;
-  width: 98%;
-  background: #d9d9d9;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border: #d9d9d9;
-  border-radius: 8px;
-`;
+
 export const SelectTeam = styled.div`
   flex-direction: column;
   width: 100%;

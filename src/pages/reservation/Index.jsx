@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
@@ -18,6 +18,9 @@ const Reservation = () => {
   const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
+  const searchTerm = params.keyword;
+  console.log("키워드", searchTerm);
+  console.log("파람", params);
 
   useEffect(() => {
     if (!params.keywords) {
