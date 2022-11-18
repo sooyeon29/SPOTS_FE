@@ -53,7 +53,7 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 12%;
+  top: 10%;
   right: 7%;
   position: absolute;
 `;

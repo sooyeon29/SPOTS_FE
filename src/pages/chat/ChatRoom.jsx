@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
-import Chat from "./Chat";
+import Chatting from "./Chatting";
 import socket from "../../tools/socket";
 
 const ChatRoom = () => {
@@ -45,7 +45,7 @@ const ChatRoom = () => {
             <IoSend />
             <strong>새 문의하기</strong>
           </Button>
-          {inquiry ? <Chat socket={socket} roomName={roomName} /> : null}
+          {inquiry ? <Chatting socket={socket} roomName={roomName} /> : null}
         </StChat>
       </StBox>
     </StContainer>
