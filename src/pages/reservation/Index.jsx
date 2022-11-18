@@ -8,8 +8,6 @@ import { StWrap, MapPlace, PlaceList, Index } from './Style';
 import SpotsMap from '../reservation/SpotsMap';
 import {
   __getAllSpot,
-  __getPrivateSpot,
-  __getPublicSpot,
   __getSearchedSpot,
 } from '../../redux/modules/spotsSlice';
 import TapBar from '../../components/TapBar';
@@ -41,17 +39,19 @@ const Reservation = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
+  const letters = "서울시 강남구 가양대로 123".split(' ')
+  console.log(letters);
 
   return (
     <>
       <Layout>
         <Header />
         {!params.keywords ? (
-          <h1>당신만의 스팟을 찾아보세요!</h1>
+          <h1></h1>
         ) : (
           <>
             <h1>'{params.keywords}' 스팟 검색 결과</h1>
-          </>
+          </> 
         )}
         <StWrap>
           <MapPlace>

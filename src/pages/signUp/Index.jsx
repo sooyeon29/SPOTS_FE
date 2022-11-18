@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
+import TapBar from "../../components/TapBar";
 
 const SignUp = () => {
   const [isCode, setIsCode] = useToggle();
@@ -343,6 +344,7 @@ const SignUp = () => {
           </div>
           <input type="submit" />
         </form>
+        <TapBar/>
       </Layout>
     </>
   );

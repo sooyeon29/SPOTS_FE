@@ -13,8 +13,13 @@ const SpotList = ({ spotList }) => {
           <Place>
             <h3>{privSpot.spotName}</h3>
             <div>{privSpot.sports}</div>
-            <div>{privSpot.spotKind}</div>
-            <div>{privSpot.address}</div>
+            <div>{privSpot.spotKind.
+            substring(0,2)
+            }</div>
+            <div>
+              {privSpot.address
+              .split(' ')[1]
+              }</div>
             <div>{privSpot.comforts}</div>
             <div>{privSpot.price}원</div>
           </Place>
