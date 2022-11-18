@@ -121,8 +121,8 @@ const SignUp = () => {
     <>
       <Layout>
         <Header />
+        <div>회원가입</div>
         <Pc>
-          <div>회원가입</div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               필수입력사항<Red>*</Red>

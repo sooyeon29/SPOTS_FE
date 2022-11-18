@@ -20,7 +20,7 @@ const TapBar = () => {
         <FiSearch size="25" onClick={() => navigate("/book")} />
       </div>
       <div>
-        <IoPersonOutline size="27" />
+        <IoPersonOutline size="27" onClick={() => navigate("/login")} />
       </div>
     </Container>
   );
