@@ -25,7 +25,6 @@ const Header = () => {
           <StLogo
             onClick={() => {
               navigate(`/`);
-              localStorage.clear();
             }}
           >
             <Img src="/logo.png" alt="logo" />

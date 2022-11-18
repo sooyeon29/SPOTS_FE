@@ -27,6 +27,7 @@ const Login = () => {
         console.log("로그인성공 response", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
+          localStorage.setItem("nickname", res.data.nickname);
           navigate("/");
           window.location.reload();
         } else if (res.status === 202) {
