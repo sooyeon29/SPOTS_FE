@@ -3,22 +3,18 @@ import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import Chat from "./Chat";
-import { io } from "socket.io-client";
+import socket from "../../tools/socket";
 
-const Chat1 = () => {
-  const socket = io("https://ws-study.shop", {
-    cors: {
-      origin: "http://localhost:3000",
-    },
-    transports: ["websocket", "polling"],
-  });
-
-  socket.on("a", (data) => {
-    console.log("됐다"); // true
-    console.log(data);
-    console.log(data.msg); // true/false
-  });
+const ChatRoom = () => {
   const [inquiry, setInquiry] = useState(false);
+  const nickname = localStorage.getItem("nickname");
+  const roomId = "roomIdis" + nickname;
+  console.log(roomId);
+
+  const enterRoom = () => {
+    socket.emit("enter_room", roomId);
+    setInquiry(!inquiry);
+  };
 
   return (
     <StContainer>
@@ -45,18 +41,18 @@ const Chat1 = () => {
               <p>오늘도 SPOTS을 이용해주셔서 감사해요.</p>
             </div>
           </StChatContent>
-          <Button onClick={() => setInquiry(!inquiry)}>
+          <Button onClick={enterRoom}>
             <IoSend />
             <strong>새 문의하기</strong>
           </Button>
-          {inquiry ? <Chat setInquiry={setInquiry} /> : null}
+          {inquiry ? <Chat socket={socket} /> : null}
         </StChat>
       </StBox>
     </StContainer>
   );
 };
 
-export default Chat1;
+export default ChatRoom;
 
 const Button = styled.button`
   width: 370px;

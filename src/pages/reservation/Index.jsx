@@ -8,8 +8,6 @@ import { StWrap, MapPlace, PlaceList, Index } from "./Style";
 import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,
-  __getPrivateSpot,
-  __getPublicSpot,
   __getSearchedSpot,
 } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
@@ -88,6 +86,7 @@ const Reservation = () => {
             )}
           </PlaceList>
         </StWrap>
+        <TapBar />
       </Layout>
     </>
   );

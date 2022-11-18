@@ -31,29 +31,6 @@ export const PlaceList = styled.div`
   display: flex;
 `;
 
-export const Place = styled.div`
-  display: flex;
-  margin: auto;
-  margin-top: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  width: 90%;
-  height: 120px;
-  background-color: #fff;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  /* justify-content: center;
-  align-items: center; */
-  a {
-    text-decoration: none;
-    color: black;
-  }
-  img {
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-  }
-`;
-
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -104,20 +81,52 @@ export const Status = styled.div`
 `;
 
 export const PrivateBlock = styled.div`
-  cursor: pointer;
   display: flex;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
   flex-direction: row;
   align-items: center;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
   p {
     margin: auto;
   }
 `;
 
 export const PublicBlock = styled.div`
-  cursor: pointer;
   display: flex;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px 5px 10px 5px;
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
   flex-direction: row;
   align-items: center;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
   p {
     margin: auto;
   }
