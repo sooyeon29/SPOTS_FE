@@ -13,7 +13,6 @@ const ReservPage = () => {
   }, [dispatch]);
 
   const myMatches = useSelector((state) => state.matcher.matcher);
-  console.log("요거거", myMatches);
 
   const cancleMatchHandler = (id, place, team) => {
     dispatch(

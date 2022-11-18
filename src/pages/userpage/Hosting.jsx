@@ -12,7 +12,6 @@ import {
   StWrap,
   Upload,
   UploadInput,
-  UploadInputDesign,
 } from "./Styles";
 
 const { kakao } = window;

@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import {
   __editPrivateSpot,
   __getMyPrivateSpot,
 } from "../../redux/modules/spotsSlice";
-import { PrivateApi } from "../../tools/instance";
 import { StTeam, StWrap } from "./Styles";
 
 const HostDetail = () => {
