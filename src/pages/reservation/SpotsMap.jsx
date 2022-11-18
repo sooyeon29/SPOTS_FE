@@ -5,14 +5,21 @@ import {
   MapMarker,
   CustomOverlayMap,
 } from "react-kakao-maps-sdk";
-import { BtnWrap } from "./Style";
+import { BtnWrap, MylocationBtn } from "./Style";
 
 const SpotsMap = ({ spotMarkers }) => {
   const [isPrivateOpen, setIsPrivateOpen] = useState([]);
   const [isPublicOpen, setIsPublicOpen] = useState([]);
   const [level, setLevel] = useState();
   const [filter, setFilter] = useState(false);
-
+  const [state, setState] = useState({
+    center: {
+      lat: 37.5666805,
+      lng: 126.9784147,
+    },
+    errMsg: null,
+    isLoading: true,
+  });
   // console.log('----검색결과----', spotMarkers);
   const privateSpots = spotMarkers?.private;
   const publicSpots = spotMarkers?.public;
@@ -38,6 +45,35 @@ const SpotsMap = ({ spotMarkers }) => {
   };
   console.log(filter);
 
+  const locationHandler = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setState((prev) => ({
+            ...prev,
+            center: {
+              lat: position.coords.latitude, //위도
+              lng: position.coords.longitude, //경도
+            },
+            isLoading: false,
+          }));
+        },
+        (err) => {
+          setState((prev) => ({
+            ...prev,
+            errMsg: err.message,
+            isLoading: false,
+          }));
+        }
+      );
+    } else {
+      setState((prev) => ({
+        ...prev,
+        errMsg: "현재 위치를 불러올 수 없습니다...",
+        isLoading: false,
+      }));
+    }
+  };
   return (
     <>
       <BtnWrap>
@@ -47,11 +83,7 @@ const SpotsMap = ({ spotMarkers }) => {
       </BtnWrap>
       <Map
         id={`map`}
-        center={{
-          // 지도의 중심좌표
-          lat: 37.5666805,
-          lng: 126.9784147,
-        }}
+        center={state.center}
         style={{
           //지도의 크기
           width: "100%",
@@ -60,6 +92,11 @@ const SpotsMap = ({ spotMarkers }) => {
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
+
+        <MylocationBtn onClick={locationHandler}>
+          현재 위치로 이동
+        </MylocationBtn>
+        <MapMarker position={state.center} />
 
         {privateSpots?.map((privSpot, idx) => {
           if (filter === false) {
