@@ -1,21 +1,29 @@
-import axios from "axios";
-// import { intlFormatDistanceWithOptions } from "date-fns/fp";
-const isLogin = localStorage.getItem("token");
+import axios from 'axios';
+const isLogin = localStorage.getItem('token');
+console.log(isLogin);
 
-// const isKakaoLogin = localStorage.getItem("token");
-// const isMember = localStorage.getItem("loginId");
-// console.log(isMember);
-if (isLogin) {
-}
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
-  // baseURL: "https://sparta4.shop/",
+  // baseURL: 'https://ws-study.shop/',
+  baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
   headers: {
     Authorization: `${isLogin}`,
   },
 });
+
+instance.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = token
+    }
+    return config
+  },
+  error => {
+    Promise.reject(error)
+  }
+)
 
 // 로그인
 export const LoginAPI = {
@@ -58,7 +66,7 @@ export const UserpageAPI = {
   postMyteam: (payload) =>
     instance.post(`teams`, payload, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     }),
   deleteTeam: (payload) => instance.delete(`teams/${payload}`),
