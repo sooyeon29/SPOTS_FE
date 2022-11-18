@@ -40,6 +40,7 @@ const Banner = () => {
 export default Banner;
 
 const Container = styled.div`
+  margin-top: 61px;
   overflow: hidden;
   width: 100%;
   height: 230px;

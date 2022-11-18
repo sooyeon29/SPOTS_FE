@@ -1,5 +1,11 @@
 import styled from "styled-components";
+export const WrapAll = styled.div`
+  margin: 71px auto;
+`;
+
 export const Sports = styled.div`
+  display: flex;
+  justify-content: center;
   margin: 10px;
   font-weight: 700;
   font-size: 16px;
@@ -52,6 +58,7 @@ export const MoreInfo = styled.div`
 `;
 export const Calen = styled.div`
   margin: 5px;
+  z-index: -1;
   div {
     background-color: white;
     color: black;
@@ -94,7 +101,7 @@ export const CalTime = styled.div`
   p {
     margin-left: 20px;
   }
-  div {
+  span {
     margin-left: 20px;
     font-weight: bold;
   }
@@ -106,6 +113,7 @@ export const Times = styled.div`
   justify-content: center;
   align-items: center;
   button {
+    /* font-weight: bold; */
     background: #ffffff;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     border: #d9d9d9;

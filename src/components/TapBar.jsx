@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const TapBar = () => {
   const navigate = useNavigate();
+  // const isLogin = localStorage.getItem();
   return (
     <Container>
       <div>

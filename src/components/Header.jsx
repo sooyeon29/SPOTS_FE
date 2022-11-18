@@ -12,7 +12,8 @@ const Header = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
-    window.location.reload();
+    // window.location.reload();
+    navigate(`/`);
   };
   const [toggle, setToggle, ClickToggle] = useToggle(false);
   const dropDownRef = useRef(null);
@@ -104,6 +105,8 @@ const StHeader = styled.div`
   padding: 0;
   background-color: #000000;
   min-width: 50px;
+  position: fixed;
+  z-index: 9999;
 `;
 
 const StWrap = styled.div`

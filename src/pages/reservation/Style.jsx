@@ -5,7 +5,7 @@ export const StWrap = styled.div`
   flex-direction: column;
   width: 90%;
   padding-bottom: 0;
-
+  margin-bottom: 80px;
   img {
     width: 30px;
     height: 30px;
@@ -84,6 +84,7 @@ export const PrivateBlock = styled.div`
   display: flex;
   margin: auto;
   margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 10px;
   width: 90%;
