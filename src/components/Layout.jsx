@@ -25,4 +25,5 @@ const Wrap = styled.div`
   /* z-index: -1; */
   left: 0px;
   top: 0px;
+  overflow-x: hidden;
 `;

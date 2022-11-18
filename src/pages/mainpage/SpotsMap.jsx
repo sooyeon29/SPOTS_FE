@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { __getPrivateSpot } from '../../redux/modules/spotsSlice';
 import { __getPublicSpot } from '../../redux/modules/spotsSlice';
-import { Container, Title } from './Styles';
+import { Container, Title, MylocationBtn } from './Styles';
 
 const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();

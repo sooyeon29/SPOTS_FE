@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 // import { intlFormatDistanceWithOptions } from "date-fns/fp";
-const isLogin = localStorage.getItem("token");
-
+const isLogin = localStorage.getItem('token');
 // const isKakaoLogin = localStorage.getItem("token");
 // const isMember = localStorage.getItem("loginId");
 // console.log(isMember);
 if (isLogin) {
 }
+
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
+  baseURL: 'https://ws-study.shop/',
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
@@ -58,7 +58,7 @@ export const UserpageAPI = {
   postMyteam: (payload) =>
     instance.post(`teams`, payload, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     }),
   deleteTeam: (payload) => instance.delete(`teams/${payload}`),
