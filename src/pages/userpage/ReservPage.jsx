@@ -4,15 +4,16 @@ import { __exitMyMatch, __getMyMatch } from "../../redux/modules/matchSlice";
 import { StWrap, StTag, MyMatch } from "./Styles";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import TapBar from "../../components/TapBar";
 
 const ReservPage = () => {
   const dispatch = useDispatch();
+  const myMatches = useSelector((state) => state.matcher);
+  console.log("요거거", myMatches);
 
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
-
-  const myMatches = useSelector((state) => state.matcher.matcher);
 
   const cancleMatchHandler = (id, place, team) => {
     dispatch(
@@ -29,8 +30,8 @@ const ReservPage = () => {
       <Header />
       <StWrap>
         <StTag>Reservation</StTag>
-        {myMatches?.map((myMatch) => {
-          console.log(myMatch);
+        {myMatches.matcher?.map((myMatch) => {
+          // console.log(myMatch);
           return (
             <MyMatch key={myMatch.reservationId}>
               <p>장소: {myMatch.place}</p>
@@ -56,6 +57,7 @@ const ReservPage = () => {
           );
         })}
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };

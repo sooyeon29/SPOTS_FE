@@ -128,7 +128,7 @@ const Hosting = () => {
           console.log(res);
           if (res.status === 201) {
             alert("스팟 등록이 완료되었습니다");
-            navigate("/");
+            navigate("/hostlist");
           }
         })
         .catch((error) => {

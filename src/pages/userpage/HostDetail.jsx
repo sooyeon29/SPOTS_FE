@@ -20,12 +20,12 @@ const HostDetail = () => {
   }, [dispatch]);
 
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
-  console.log(placeList);
+  // console.log(placeList);
   const place = placeList?.filter((pla) => pla.placesId === parseInt(id));
-  console.log(place);
+  // console.log(place);
   const [isEditMode, setIsEditMode, editHandler] = useToggle();
   const [newInput, setNewInput] = useState([]);
-  console.log(newInput);
+  // console.log(newInput);
   const newNewHandler = (e) => {
     const { name, value } = e.target;
     setNewInput({ ...newInput, [name]: value });
@@ -41,6 +41,8 @@ const HostDetail = () => {
         price: newInput.newPrice,
       })
     );
+    setIsEditMode(false);
+    setNewInput([]);
   };
 
   return (
@@ -61,7 +63,7 @@ const HostDetail = () => {
                     </p>
                     <p>{pla.desc}</p>
                     <p>{pla.comforts}</p>
-                    <p>{pla.price}</p>
+                    <p>{pla.price}포인트</p>
                     <button onClick={editHandler}>수정하기</button>
                     <button onClick={() => navigate(`/hostlist`)}>
                       목록으로돌아가기
@@ -75,6 +77,7 @@ const HostDetail = () => {
                         type="text"
                         required
                         name="newTitle"
+                        defaultValue={pla.spotName}
                         value={newInput.newTitle}
                         onChange={newNewHandler}
                       />
@@ -90,6 +93,7 @@ const HostDetail = () => {
                         required
                         style={{ height: "80px", width: "300px" }}
                         name="newDesc"
+                        defaultValue={pla.desc}
                         value={newInput.newDesc}
                         onChange={newNewHandler}
                       />
@@ -100,9 +104,11 @@ const HostDetail = () => {
                         type="text"
                         required
                         name="newPrice"
+                        defaultValue={pla.price}
                         value={newInput.newPrice}
                         onChange={newNewHandler}
                       />
+                      포인트
                     </p>
                     <button>수정저장</button>
                     <button onClick={editHandler}>수정취소</button>
