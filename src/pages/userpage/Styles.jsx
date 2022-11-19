@@ -13,6 +13,7 @@ export const StWrap = styled.div`
   border: 1px solid lightgray;
   border-radius: 15px;
   margin-top: 50px;
+  margin-bottom: 50px;
   align-items: center;
 `;
 
