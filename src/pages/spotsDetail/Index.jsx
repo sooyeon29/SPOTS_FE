@@ -250,17 +250,17 @@ const SpotsDetail = () => {
                 <SelectDone>
                   <button onClick={clickedToggle}>
                     <div>날짜를 선택해 주세요</div>
-                    <div>[ 선택날짜 {bookDate} ]</div>
+                    <div>[ 선택 날짜 {bookDate}]</div>
                   </button>
                 </SelectDone>
               )}
 
-              {toggleTwo && (
+              {toggleTwo && !forMatch && (
                 <CalTime>
-                  {/* <Pick>
+                  <Pick>
                     <One>구장 예약하기</One>
                     <Two onClick={matchHandler}>팀매칭 예약하기</Two>
-                  </Pick> */}
+                  </Pick>
                   <Times>
                     <button
                       disabled={
@@ -337,12 +337,12 @@ const SpotsDetail = () => {
                   </Times>
                 </CalTime>
               )}
-              {toggleTwo && (
+              {toggleTwo && forMatch && (
                 <CalTime>
-                  {/* <Pick>
+                  <Pick>
                     <Two onClick={matchHandler}>구장 예약하기</Two>
                     <One>팀매칭 예약하기</One>
-                  </Pick> */}
+                  </Pick>
 
                   <SelectTeam>
                     <BookMatch>
@@ -536,10 +536,10 @@ const SpotsDetail = () => {
               {!toggleTwo && (
                 <SelectDone2>
                   <button onClick={clickedToggleTwo}>
-                    <div>시간을 선택해주세요</div>
+                    <div>시간을 선택해 주세요</div>
                     <div>
-                      {forMatch ? "팀매칭 예약하기" : "구장 예약하기"}
-                      {pickedTime}
+                      {/* [{forMatch ? "팀매칭 예약하기" : "구장 예약하기"}]  */}
+                      [ 선택 시간 {pickedTime} ]
                     </div>
                   </button>
                 </SelectDone2>
