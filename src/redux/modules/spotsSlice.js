@@ -5,6 +5,7 @@ const initialState = {
   privateSpot: [],
   myPrivateSpot: [],
   publicSpot: [],
+  message: "",
   isLoading: false,
   error: "",
 };
@@ -40,7 +41,7 @@ export const __deletePrivateSpot = createAsyncThunk(
     try {
       const { data } = await PrivateApi.deletePrivateSpot(payload);
       console.log("삭제할때 데이타!!", data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -54,7 +55,7 @@ export const __editPrivateSpot = createAsyncThunk(
     try {
       const { data } = await PrivateApi.editPrivateSpot(payload);
       console.log("수정할때 데이타!!", data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -136,10 +137,10 @@ const privateSlice = createSlice({
     },
     [__deletePrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
-      state.myPrivateSpot = action.payload;
       alert(action.payload);
-      window.location.reload();
+      state.myPrivateSpot = state.myPrivateSpot.filter(
+        (privSpot) => action.payload !== privSpot.placesId
+      );
     },
     [__deletePrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
@@ -152,10 +153,19 @@ const privateSlice = createSlice({
     },
     [__editPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
-      state.myPrivateSpot = action.payload;
-      alert(action.payload);
-      window.location.reload();
+      state.message = action.payload.message;
+      alert(action.payload.message);
+      console.log(action.payload.data);
+      state.myPrivateSpot = state.myPrivateSpot.map((spot) =>
+        spot.placesId === action.payload.data.placesId
+          ? {
+              ...spot,
+              spotName: action.payload.data.spotName,
+              desc: action.payload.data.desc,
+              price: action.payload.data.price,
+            }
+          : spot
+      );
     },
     [__editPrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
