@@ -74,7 +74,6 @@ export const __getPublicSpot = createAsyncThunk(
   }
 );
 
-
 export const __getSearchedSpot = createAsyncThunk(
   "getSearchedSpots",
   async (payload, thunkAPI) => {
@@ -87,7 +86,7 @@ export const __getSearchedSpot = createAsyncThunk(
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
+);
 
 export const __getAllSpot = createAsyncThunk(
   "getAllSpots",
@@ -99,8 +98,7 @@ export const __getAllSpot = createAsyncThunk(
       return thunkAPI.rejectWithValue(error);
     }
   }
-)
-
+);
 
 const privateSlice = createSlice({
   name: "spots",
@@ -177,7 +175,6 @@ const privateSlice = createSlice({
       state.error = action.payload;
     },
 
-
     [__getSearchedSpot.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -202,7 +199,5 @@ const privateSlice = createSlice({
     },
   },
 });
-
-
 
 export default privateSlice.reducer;
