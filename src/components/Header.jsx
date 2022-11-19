@@ -9,12 +9,7 @@ import useToggle from "../hooks/useToggle";
 import SideBar from "./SideBar";
 
 const Header = () => {
-  const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  const logout = () => {
-    localStorage.clear();
-    navigate(`/`);
-  };
   const [toggle, setToggle, ClickToggle] = useToggle(false);
   const [barIsOpen, barRef, barHandler] = useDetectClose(false);
   const dropDownRef = useRef(null);

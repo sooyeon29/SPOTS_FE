@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { StWrap, StTag, StTeam } from "./Styles";
-import Header from "../../components/Header";
+import FlexibleHeader from "../../components/FlexibleHeader";
 import Layout from "../../components/Layout";
 import {
   __getMyteamDetail,
@@ -10,6 +10,7 @@ import {
 } from "../../redux/modules/userSlice";
 
 const TeamPage = () => {
+  const title = "TeamPage";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const TeamPage = () => {
   const { team } = useSelector((state) => state.user);
   return (
     <Layout>
-      <Header />
+      <FlexibleHeader title={title} />
       <StWrap>
         <StTag>Team</StTag>
         <>
