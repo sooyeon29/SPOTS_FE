@@ -22,7 +22,6 @@ export const __getAllMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getAllMatch(payload);
-      // console.log("^^^^^^^^진짜비었니", payload, "^^^^^^^^^데이터", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -60,6 +59,7 @@ export const __exitMyMatch = createAsyncThunk(
 const initialState = {
   // 포스트
   matcher: [],
+  message: "",
   // 구장,날짜별
   // data: [],
   isLoading: false,
@@ -124,7 +124,7 @@ const matchSlice = createSlice({
     },
     [__exitMyMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.matcher = action.payload;
+      state.message = action.payload;
       console.log(action.payload);
       alert(action.payload.message);
       // window.location.reload();

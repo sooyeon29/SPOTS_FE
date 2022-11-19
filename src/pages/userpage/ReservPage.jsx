@@ -4,6 +4,7 @@ import { __exitMyMatch, __getMyMatch } from "../../redux/modules/matchSlice";
 import { StWrap, StTag, MyMatch } from "./Styles";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import TapBar from "../../components/TapBar";
 
 const ReservPage = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const ReservPage = () => {
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
-  console.log();
+
   const cancleMatchHandler = (id, place, team) => {
     dispatch(
       __exitMyMatch({
@@ -56,6 +57,7 @@ const ReservPage = () => {
           );
         })}
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };
