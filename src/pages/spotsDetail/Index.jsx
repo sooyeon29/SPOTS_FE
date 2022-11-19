@@ -40,11 +40,11 @@ import {
 } from "../../redux/modules/matchSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
-import ReservHeader from "../../components/ReservHeader";
-
 import TapBar from "../../components/TapBar";
+import FlexibleHeader from "../../components/FlexibleHeader";
 
 const SpotsDetail = () => {
+  const title = "예약";
   const myTime = [
     "06:00 - 08:00",
     "08:00 - 10:00",
@@ -203,7 +203,7 @@ const SpotsDetail = () => {
   return (
     <>
       <Layout>
-        <ReservHeader />
+        <FlexibleHeader title={title} />
         {selectSpot?.map((spot, idx) => {
           return (
             <WrapAll key={idx}>

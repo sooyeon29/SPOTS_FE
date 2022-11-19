@@ -25,7 +25,7 @@ const TapBar = () => {
         <IoPersonOutline
           size="27"
           onClick={() => {
-            !token ? navigate("/login") : navigate("/mypage");
+            !token ? navigate("/login") : navigate("/userpage");
           }}
         />
       </div>
