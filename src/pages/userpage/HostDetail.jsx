@@ -22,12 +22,12 @@ const HostDetail = () => {
   }, [dispatch]);
 
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
-  console.log(placeList);
+  // console.log(placeList);
   const place = placeList?.filter((pla) => pla.placesId === parseInt(id));
-  console.log(place);
+  // console.log(place);
   const [isEditMode, setIsEditMode, editHandler] = useToggle();
   const [newInput, setNewInput] = useState([]);
-  console.log(newInput);
+  // console.log(newInput);
   const newNewHandler = (e) => {
     const { name, value } = e.target;
     setNewInput({ ...newInput, [name]: value });

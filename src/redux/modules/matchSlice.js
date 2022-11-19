@@ -127,7 +127,7 @@ const matchSlice = createSlice({
       state.matcher = action.payload;
       console.log(action.payload);
       alert(action.payload.message);
-      window.location.reload();
+      // window.location.reload();
     },
     [__exitMyMatch.rejected]: (state, action) => {
       state.isLoading = false;

@@ -178,7 +178,10 @@ const SpotsDetail = () => {
 
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.matcher);
-
+  console.log(
+    "=================================오늘날짜에있는 예약===================================",
+    allMatchToday
+  );
   const timeSlots = allMatchToday.map((match) =>
     match.matchId.substring(0, 13)
   );

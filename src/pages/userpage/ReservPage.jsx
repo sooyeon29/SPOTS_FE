@@ -7,14 +7,13 @@ import Layout from "../../components/Layout";
 
 const ReservPage = () => {
   const dispatch = useDispatch();
+  const myMatches = useSelector((state) => state.matcher);
+  console.log("요거거", myMatches);
 
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
-
-  const myMatches = useSelector((state) => state.matcher.matcher);
-  console.log("요거거", myMatches);
-
+  console.log();
   const cancleMatchHandler = (id, place, team) => {
     dispatch(
       __exitMyMatch({
@@ -30,8 +29,8 @@ const ReservPage = () => {
       <Header />
       <StWrap>
         <StTag>Reservation</StTag>
-        {myMatches?.map((myMatch) => {
-          console.log(myMatch);
+        {myMatches.matcher?.map((myMatch) => {
+          // console.log(myMatch);
           return (
             <MyMatch key={myMatch.reservationId}>
               <p>장소: {myMatch.place}</p>
