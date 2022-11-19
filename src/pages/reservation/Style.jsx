@@ -150,3 +150,8 @@ export const MylocationBtn = styled.button`
   z-index: 999;
   cursor: pointer;
 `;
+
+export const SearchTerm = styled.div`
+  margin-top: 65px;
+
+`
