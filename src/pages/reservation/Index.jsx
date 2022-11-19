@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import SpotList from "./HostSpotList";
-import { StWrap, MapPlace, PlaceList, Index } from "./Style";
+import { StWrap, MapPlace, PlaceList, Index, SearchTerm } from "./Style";
 import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,
@@ -19,8 +19,8 @@ const Reservation = () => {
     (state) => state?.spots
   );
   const searchTerm = params.keyword;
-  console.log("키워드", searchTerm);
-  console.log("파람", params);
+  // console.log("키워드", searchTerm);
+  // console.log("파람", params);
 
   useEffect(() => {
     if (!params.keywords) {
@@ -32,8 +32,8 @@ const Reservation = () => {
     }
   }, []);
 
-  console.log("---검색---", searchedSpot);
-  console.log("---전체---", allSpot);
+  // console.log("---검색---", searchedSpot);
+  // console.log("---전체---", allSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -42,20 +42,20 @@ const Reservation = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
-  const letters = "서울시 강남구 가양대로 123".split(' ')
-  console.log(letters);
 
   return (
     <>
       <Layout>
         <Header />
+        <SearchTerm>
         {!params.keywords ? (
-          <h1></h1>
+          <h2>마음에 드는 스팟을 찾아보세요!</h2>
         ) : (
           <>
-            <h1>'{params.keywords}' 스팟 검색 결과</h1>
+            <h2>'{params.keywords}' 스팟 검색 결과</h2>
           </> 
         )}
+        </SearchTerm>
         <StWrap>
           <MapPlace>
             {!params.keywords ? (
@@ -72,9 +72,9 @@ const Reservation = () => {
           </MapPlace>
           <Index>
             <img alt="공공스팟" src="/public.png" />
-            <div>공공시설</div>
+            <div>공공스팟</div>
             <img alt="사설스팟" src="/private.png" />
-            <div>사설시설</div>
+            <div>사설스팟</div>
           </Index>
           <PlaceList>
             {!params.keywords ? (

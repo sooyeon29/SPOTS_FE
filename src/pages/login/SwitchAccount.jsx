@@ -23,7 +23,7 @@ const SwitchAccount = () => {
               .then((res) => {
                 console.log(res);
                 if (res.status === 200) {
-                  alert("계정이 활성화되었습니다. 로그인페이지로 이동합니다.");
+                  alert("계정이 활성화되었습니다. 로그인 페이지로 이동합니다.");
                   localStorage.clear();
                   navigate("/login");
                 }
