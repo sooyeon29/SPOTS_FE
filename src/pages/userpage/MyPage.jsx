@@ -31,6 +31,7 @@ const MyPage = () => {
         <StTag>my</StTag>
         {!isEdit ? (
           <div>
+            <img src="" />
             <div>{user.nickname}</div>
             <div>{user.gender}</div>
             <div>핸드폰번호 : {user.phone}</div>
@@ -42,6 +43,7 @@ const MyPage = () => {
           </div>
         ) : (
           <div>
+            <input type="file" />
             <p>
               nickname :
               <input type="text" defaultValue={user.nickname} ref={nickRef} />
