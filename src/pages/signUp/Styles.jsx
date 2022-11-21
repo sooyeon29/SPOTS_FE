@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-
 export const Red = styled.span`
   color: red;
 `;
 
-export const phonNum= styled.div`
+export const phonNum = styled.div`
   width: auto;
   cursor: pointer;
   color: #ff00b3;
@@ -121,9 +120,7 @@ export const SecondPage = styled.div`
     text-align: center;
     color: #ff00b3;
   }
-
 `;
-
 
 export const ThirdPage = styled.div`
   input {
@@ -145,15 +142,70 @@ export const ThirdPage = styled.div`
     text-align: center;
     color: #ff00b3;
   }
-
 `;
 
 export const GenderSelect = styled.div`
-display: flex;
-background-color: black;
-`
-
+  /* display: flex; */
+  /* background-color: black; */
+`;
 
 export const ForthPage = styled.div`
+  margin: auto;
+  /* display: flex; */
+`;
+export const MySports = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  /* background-color: aliceblue; */
+`;
+
+export const SportInput = styled.input`
+display: none`;
+
+export const SportLabel = styled.label`
+gap: 20px;
+`;
+
+export const SportDiv = styled.div`
+  background-color: #fff;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #303030;
+  border: 1.5px solid transparent;
+  box-shadow: 0px 5px 20px 2px rgba(0,0,0,0.1);
+  font-size: 12px;
   
-`
+
+  ${SportInput}:checked + && {
+    color: #ff00b3;
+    border-color: #ff00b3;
+  }
+`;
+
+export const FavSports = styled.div`
+font-size: 14px;
+`;
+
+export const SportsBlock = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const RecommendId = styled.input`
+  border: none;
+  width: 220px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  /* margin-bottom: 10px; */
+  /* background-color: aliceblue; */
+  :focus {
+    outline: none;
+  }
+`;
