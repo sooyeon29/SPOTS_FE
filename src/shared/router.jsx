@@ -20,14 +20,13 @@ import FindId from "../pages/login/FindId";
 import ChatRoom from "../pages/chat/ChatRoom";
 import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
-import SignUp2 from "../pages/signUp/SignUp";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainMaps />} />
-        <Route path="/signup" element={<SignUp2 />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/findpw" element={<FindPw />} />
         <Route path="/findid" element={<FindId />} />

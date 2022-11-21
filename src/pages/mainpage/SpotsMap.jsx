@@ -100,7 +100,7 @@ const SpotsMap = ({ sportsKind }) => {
           height: "500px",
           margin: "auto",
         }}
-        level={5} // 지도의 확대 레벨
+        level={8} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
