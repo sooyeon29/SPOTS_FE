@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
 
-const Search = () => {
+const SearchBar = () => {
   // const navigate = useNavigate();
   const [keywords, setKeywords] = useState('');
 
@@ -39,7 +39,7 @@ const Search = () => {
     </StSearch>
   );
 };
-export default Search;
+export default SearchBar;
 
 const StSearch = styled.div`
   width: 100%;
@@ -58,7 +58,7 @@ const StSearch = styled.div`
 
 const StInput = styled.input`
   width: 130px;
-  background-color: transparent;
+  background-color: black;
   border: none;
   display: flex;
   padding: 0;
