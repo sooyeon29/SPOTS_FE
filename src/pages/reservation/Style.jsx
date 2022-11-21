@@ -5,6 +5,7 @@ export const StWrap = styled.div`
   flex-direction: column;
   width: 90%;
   padding-bottom: 0;
+  margin: auto;
   margin-bottom: 80px;
   img {
     width: 30px;
@@ -67,17 +68,10 @@ export const Container = styled.div`
   border: solid 2px white;
 `;
 
-export const Status = styled.div`
-  /* background-color: black; */
-  margin: 40px 10px 10px 10px;
-  display: block;
-
-  /* span {
-    width: auto;
-    margin-left: 10px;
-    display: inline-block;
-    text-align: right;
-  } */
+export const Status = styled.span`
+font-weight: 600;
+color: #2b2bff;
+margin-bottom: 5px;
 `;
 
 export const PrivateBlock = styled.div`

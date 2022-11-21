@@ -1,6 +1,6 @@
 import axios from "axios";
 const isLogin = localStorage.getItem("token");
-console.log(isLogin);
+// console.log(isLogin);
 
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",
@@ -106,6 +106,7 @@ export const PrivateApi = {
       desc: payload.desc,
       price: payload.price,
     }),
+  getNewSpot: () => instance.get(`places/new`),
 };
 
 export const PublicApi = {
