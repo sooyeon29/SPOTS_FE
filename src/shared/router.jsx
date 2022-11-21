@@ -22,6 +22,7 @@ import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
 import SignUp2 from "../pages/signUp/SignUp";
 import Matching from "../pages/spotsDetail/Matching";
+import WaitMatch from "../pages/spotsDetail/WaitMatch";
 
 function Router() {
   return (
@@ -49,6 +50,7 @@ function Router() {
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/addlogin" element={<KakaoAdd />} />
         <Route path="/matching/:id" element={<Matching />} />
+        <Route path="/waitlist" element={<WaitMatch />} />
       </Routes>
     </BrowserRouter>
   );

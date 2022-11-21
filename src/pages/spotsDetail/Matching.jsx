@@ -2,7 +2,7 @@ import { ko } from "date-fns/esm/locale";
 import { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -51,6 +51,7 @@ const Matching = () => {
 
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
+  const navigate = useNavigate();
   const placeList = useSelector((state) => state?.spots.privateSpot);
   const selectSpot = placeList?.filter((place) => {
     return place.placesId === parseInt(id);
@@ -77,7 +78,6 @@ const Matching = () => {
         date: bookDate,
       })
     );
-
     setToggle(false);
   };
   const exitMatchDate = () => {
@@ -143,7 +143,7 @@ const Matching = () => {
   );
   console.log("오늘매치성사리스트", MatchOkList);
 
-  const timeSlots = MatchOkList.map((match) => match.matchId.substring(0, 13));
+  const timeSlots = MatchOkList?.map((match) => match.matchId.substring(0, 13));
 
   return (
     <>
@@ -209,6 +209,7 @@ const Matching = () => {
                     <Times>
                       <button
                         disabled={timeSlots.includes(myTime[0])}
+                        // color={timeSlots.includes(myTime[0]) ? "red" : "auto"}
                         onClick={() => teamPick(0, spot.price)}
                       >
                         {myTime[0]}
@@ -257,7 +258,11 @@ const Matching = () => {
                       </button>
                     </Times>
                     <GoMatch>
-                      <button>선택 날짜에 매칭을 기다리는 팀 둘러보기</button>
+                      <button
+                        onClick={() => navigate(`/waitlist/${parseInt(id)}`)}
+                      >
+                        선택 날짜에 매칭을 기다리는 팀 둘러보기
+                      </button>
                     </GoMatch>
                   </MakeMatch>
                   <Pick>
