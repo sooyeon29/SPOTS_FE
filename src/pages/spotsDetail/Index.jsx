@@ -33,6 +33,7 @@ import {
   SelectChoice,
   FinalBooking,
   WrapAll,
+  SelectDone2,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -85,7 +86,7 @@ const SpotsDetail = () => {
     setPickedTime(myTime[time]);
     setPayAPrice(price);
 
-    setToggelTwo(true);
+    setToggelTwo(false);
   };
 
   // 3.단식경기를할지 복식경기를 할지 선택하기
@@ -159,7 +160,7 @@ const SpotsDetail = () => {
         date: bookDate,
       })
     );
-    setToggel(true);
+    setToggel(false);
   };
 
   // 해당구장 해당일에 신청된 매치 불러오기
@@ -222,7 +223,7 @@ const SpotsDetail = () => {
                 <div>{spot.desc}</div>
 
                 <MoreInfo>
-                  <span>시설 현황</span>
+                  <li>시설 현황</li>
                   <div>
                     <div>
                       {spot.spotKind === "실내 스팟" && <>🪴</>}
@@ -234,7 +235,7 @@ const SpotsDetail = () => {
                   <div>💰이용료 {spot.price}포인트</div>
                 </MoreInfo>
               </PlaceInfo>
-              {!toggle ? (
+              {toggle && (
                 <Calen>
                   <ReactDatePicker
                     locale={ko}
@@ -244,14 +245,17 @@ const SpotsDetail = () => {
                     required
                   />
                 </Calen>
-              ) : (
+              )}
+              {!toggle && (
                 <SelectDone>
-                  {bookDate}
-                  <button onClick={clickedToggle}>변경</button>
+                  <button onClick={clickedToggle}>
+                    <div>날짜를 선택해 주세요</div>
+                    <div>[ 선택 날짜 {bookDate}]</div>
+                  </button>
                 </SelectDone>
               )}
 
-              {!toggleTwo && !forMatch && (
+              {toggleTwo && !forMatch && (
                 <CalTime>
                   <Pick>
                     <One>구장 예약하기</One>
@@ -333,7 +337,7 @@ const SpotsDetail = () => {
                   </Times>
                 </CalTime>
               )}
-              {!toggleTwo && forMatch && (
+              {toggleTwo && forMatch && (
                 <CalTime>
                   <Pick>
                     <Two onClick={matchHandler}>구장 예약하기</Two>
@@ -529,12 +533,16 @@ const SpotsDetail = () => {
                 </CalTime>
               )}
 
-              {toggleTwo && (
-                <SelectDone>
-                  {forMatch ? "팀매칭 예약하기" : "구장 예약하기"}
-                  {pickedTime}
-                  <button onClick={clickedToggleTwo}>변경</button>
-                </SelectDone>
+              {!toggleTwo && (
+                <SelectDone2>
+                  <button onClick={clickedToggleTwo}>
+                    <div>시간을 선택해 주세요</div>
+                    <div>
+                      {/* [{forMatch ? "팀매칭 예약하기" : "구장 예약하기"}]  */}
+                      [ 선택 시간 {pickedTime} ]
+                    </div>
+                  </button>
+                </SelectDone2>
               )}
               <SelectChoice>
                 <TeamSelect
