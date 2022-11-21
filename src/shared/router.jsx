@@ -23,13 +23,15 @@ import UserPage from "../pages/userpage/Index";
 import SignUp2 from "../pages/signUp/SignUp";
 import AdminHome from "../pages/chat/AdminHome";
 import AdminChat from "../pages/chat/AdminChat";
+import Matching from "../pages/spotsDetail/Matching";
+import WaitMatch from "../pages/spotsDetail/WaitMatch";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainMaps />} />
-        <Route path="/signup" element={<SignUp2 />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/findpw" element={<FindPw />} />
         <Route path="/findid" element={<FindId />} />
@@ -47,10 +49,12 @@ function Router() {
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
-        <Route path="/chatroom" element={<ChatRoom />} />
+        {/* <Route path="/chatroom" element={<ChatRoom />} /> */}
         <Route path="/addlogin" element={<KakaoAdd />} />
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
+        <Route path="/matching/:id" element={<Matching />} />
+        <Route path="/waitlist" element={<WaitMatch />} />
       </Routes>
     </BrowserRouter>
   );

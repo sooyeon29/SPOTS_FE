@@ -43,7 +43,7 @@ const SpotsMap = ({ spotMarkers }) => {
   const handleOnFilter = (sports) => {
     setFilter(sports);
   };
-  console.log(filter);
+  // console.log(filter);
 
   const locationHandler = () => {
     if (navigator.geolocation) {
@@ -89,6 +89,7 @@ const SpotsMap = ({ spotMarkers }) => {
           width: "100%",
           height: "40vh",
         }}
+        level={9} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />

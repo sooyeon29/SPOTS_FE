@@ -45,7 +45,7 @@ export const Title = styled.div`
 export const MoreInfo = styled.div`
   display: flex;
   flex-direction: column;
-  span {
+  li {
     margin-top: 10px;
     font-weight: bold;
   }
@@ -58,15 +58,17 @@ export const MoreInfo = styled.div`
 `;
 export const Calen = styled.div`
   margin: 5px;
-  z-index: -1;
+
   div {
     background-color: white;
     color: black;
     padding: 6px;
     border-radius: 10px;
     font-size: 17px;
+
     button {
       margin-top: 18px;
+      cursor: pointer;
     }
   }
 `;
@@ -83,14 +85,53 @@ export const SelectDone = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  background-color: #1646c7;
   button {
-    background: #d9d9d9;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    border: #d9d9d9;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
   }
 `;
-
+export const SelectDone2 = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  height: 40px;
+  font-weight: bold;
+  max-width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #eaeffc;
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: #1646c7;
+    font-size: 15px;
+    cursor: pointer;
+  }
+`;
+export const ExitBut = styled.button`
+  cursor: pointer;
+  width: 10%;
+`;
 export const CalTime = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
@@ -113,13 +154,14 @@ export const Times = styled.div`
   justify-content: center;
   align-items: center;
   button {
-    /* font-weight: bold; */
+    /* color: ${(props) => (props.butColor ? "auto" : "red")}; */
+    cursor: pointer;
     background: #ffffff;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     border: #d9d9d9;
     border-radius: 8px;
     margin-bottom: 6px;
-    width: 318px;
+    width: 100%;
     height: 44px;
     font-weight: 400;
     font-size: 15px;
@@ -164,6 +206,7 @@ export const Counter = styled.div`
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-size: 20px;
+    cursor: pointer;
   }
   span {
     margin: 0px 20px;
@@ -176,6 +219,7 @@ export const FindMatch = styled.button`
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border: #d9d9d9;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const MainInfo = styled.div`
@@ -239,6 +283,8 @@ export const SelectTeam = styled.div`
 export const BookMatch = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 export const Time = styled.div`
   margin-top: 12px;
@@ -256,6 +302,7 @@ export const Team = styled.button`
   height: 44px;
   font-weight: 400;
   font-size: 15px;
+  cursor: pointer;
   &:hover {
     background: #d9d9d9;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -289,8 +336,11 @@ export const ShowDateTime = styled.div`
 
 export const NoMatchBook = styled.button`
   margin: 10px auto;
+  cursor: pointer;
 `;
-export const BookingBut = styled.button``;
+export const BookingBut = styled.button`
+  cursor: pointer;
+`;
 export const Pick = styled.div`
   display: flex;
   height: 38px;
@@ -304,12 +354,18 @@ export const Pick = styled.div`
 `;
 export const One = styled.button`
   z-index: 2;
-  width: 48%;
+  width: 50%;
   height: 100%;
   background-color: white;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #e9ebec;
   border-radius: 7px;
   border: 0px;
+  /* margin-right: 3%; */
+  cursor: pointer;
+  &:hover {
+    background: #d9d9d9;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
 `;
 export const Two = styled.button`
   width: 50%;
@@ -332,4 +388,15 @@ export const FinalBooking = styled.button`
   border: 1px solid #f1f3f7;
   border-radius: 8px;
   margin: 10px auto 20px auto;
+  cursor: pointer;
+`;
+export const MakeMatch = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const GoMatch = styled.div`
+  button {
+    height: 95%;
+    margin: 10px;
+  }
 `;
