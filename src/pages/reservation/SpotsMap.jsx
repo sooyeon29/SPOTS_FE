@@ -88,7 +88,6 @@ const SpotsMap = ({ spotMarkers }) => {
           //지도의 크기
           width: "100%",
           height: "40vh",
-          marginTop: "61px",
         }}
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >

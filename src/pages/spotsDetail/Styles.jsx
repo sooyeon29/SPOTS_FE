@@ -45,7 +45,7 @@ export const Title = styled.div`
 export const MoreInfo = styled.div`
   display: flex;
   flex-direction: column;
-  span {
+  li {
     margin-top: 10px;
     font-weight: bold;
   }
@@ -58,13 +58,14 @@ export const MoreInfo = styled.div`
 `;
 export const Calen = styled.div`
   margin: 5px;
-  z-index: -1;
+
   div {
     background-color: white;
     color: black;
     padding: 6px;
     border-radius: 10px;
     font-size: 17px;
+
     button {
       margin-top: 18px;
     }
@@ -83,11 +84,45 @@ export const SelectDone = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  background-color: #1646c7;
   button {
-    background: #d9d9d9;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    border: #d9d9d9;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+  }
+`;
+export const SelectDone2 = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  height: 40px;
+  font-weight: bold;
+  max-width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #eaeffc;
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: #1646c7;
+    font-size: 15px;
   }
 `;
 

@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const TapBar = () => {
   const navigate = useNavigate();
-  // const isLogin = localStorage.getItem();
+  const token = localStorage.getItem("token");
+
   return (
     <Container>
       <div>
@@ -21,7 +22,12 @@ const TapBar = () => {
         <FiSearch size="25" onClick={() => navigate("/book")} />
       </div>
       <div>
-        <IoPersonOutline size="27" onClick={() => navigate("/login")} />
+        <IoPersonOutline
+          size="27"
+          onClick={() => {
+            !token ? navigate("/login") : navigate("/userpage");
+          }}
+        />
       </div>
     </Container>
   );
