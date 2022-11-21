@@ -21,6 +21,7 @@ import ChatRoom from "../pages/chat/ChatRoom";
 import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
 import SignUp2 from "../pages/signUp/SignUp";
+import Matching from "../pages/spotsDetail/Matching";
 
 function Router() {
   return (
@@ -47,6 +48,7 @@ function Router() {
         <Route path="/hostdetail/:id" element={<HostDetail />} />
         <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/addlogin" element={<KakaoAdd />} />
+        <Route path="/matching/:id" element={<Matching />} />
       </Routes>
     </BrowserRouter>
   );

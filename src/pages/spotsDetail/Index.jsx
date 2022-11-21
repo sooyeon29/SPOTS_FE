@@ -3,7 +3,7 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../../components/Header";
+
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
@@ -13,12 +13,9 @@ import {
   CalTime,
   Team,
   Title,
-  TimeDate,
   Times,
   Time,
   SelectTeam,
-  YourSelect,
-  NoMatchBook,
   Pick,
   One,
   Two,
@@ -57,7 +54,8 @@ const SpotsDetail = () => {
     "20:00 - 22:00",
   ];
   const [toggle, setToggel, clickedToggle] = useToggle();
-  const [toggleTwo, setToggelTwo, clickedToggleTwo] = useToggle();
+  const [toggleTwo, setToggleTwo, clickedToggleTwo] = useToggle();
+  const [toggleThree, setToggleThree, clickedToggleThree] = useToggle();
 
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
@@ -75,6 +73,7 @@ const SpotsDetail = () => {
   console.log(todayMatchList);
   // 2. 시간과 팀을 선택한다(팀1-a, 팀2-b) => 이것으로 matchId를 만들어줄 예정이다
   const [pickedTime, setPickedTime] = useState("");
+  const [pickedTime2, setPickedTime2] = useState("");
   // 예약 시간,팀 선택시 해당 포인트 확인됨
   const [payAPrice, setPayAPrice] = useState(0);
   const [payBPrice, setPayBPrice] = useState(0);
@@ -85,8 +84,22 @@ const SpotsDetail = () => {
     console.log(myTime[time], "*********************");
     setPickedTime(myTime[time]);
     setPayAPrice(price);
+    setToggleTwo(false);
+  };
+  const exitNoMatch = () => {
+    setPickedTime("");
+    setToggleTwo(false);
+  };
 
-    setToggelTwo(false);
+  const teamPick2 = (time, price) => {
+    console.log(myTime[time], "*********************");
+    setPickedTime2(myTime[time]);
+    setPayAPrice(price);
+    setToggleThree(false);
+  };
+  const exitNoMatch2 = () => {
+    setPickedTime2("");
+    setToggleThree(false);
   };
 
   // 3.단식경기를할지 복식경기를 할지 선택하기
@@ -117,7 +130,7 @@ const SpotsDetail = () => {
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // const bookDate = JSON.stringify(startDate).substring(1, 11);
   const bookDate = startDate?.toLocaleDateString().substring(0, 12);
-
+  console.log(pickedTime);
   const navigate = useNavigate();
   // 매칭없이 예약하기
   const bookWithNoMatch = (name) => {
@@ -141,7 +154,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime + "ismatch" + startDate + name,
+        matchId: pickedTime2 + "ismatch" + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
@@ -255,12 +268,8 @@ const SpotsDetail = () => {
                 </SelectDone>
               )}
 
-              {toggleTwo && !forMatch && (
+              {toggleTwo && (
                 <CalTime>
-                  <Pick>
-                    <One>구장 예약하기</One>
-                    <Two onClick={matchHandler}>팀매칭 예약하기</Two>
-                  </Pick>
                   <Times>
                     <button
                       disabled={
@@ -335,15 +344,26 @@ const SpotsDetail = () => {
                       {myTime[7]}
                     </button>
                   </Times>
+                  <Pick>
+                    <One onClick={clickedToggleTwo}>닫기</One>
+                    <One onClick={exitNoMatch}>취소하기</One>
+                  </Pick>
                 </CalTime>
               )}
-              {toggleTwo && forMatch && (
-                <CalTime>
-                  <Pick>
-                    <Two onClick={matchHandler}>구장 예약하기</Two>
-                    <One>팀매칭 예약하기</One>
-                  </Pick>
+              {!toggleTwo && (
+                <SelectDone2>
+                  <button
+                    disabled={bookDate === undefined || pickedTime2 !== ""}
+                    onClick={clickedToggleTwo}
+                  >
+                    <div>구장 예약하기</div>
+                    <div>[ 선택 시간 {pickedTime} ]</div>
+                  </button>
+                </SelectDone2>
+              )}
 
+              {toggleThree && (
+                <CalTime>
                   <SelectTeam>
                     <BookMatch>
                       <Time>{myTime[0]}</Time>
@@ -353,7 +373,7 @@ const SpotsDetail = () => {
                           myTime[0] in completeTimeSlots ||
                           myTime[0] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(0, spot.price / 2)}
+                        onClick={() => teamPick2(0, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -363,7 +383,7 @@ const SpotsDetail = () => {
                           myTime[0] in completeTimeSlots ||
                           myTime[0] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(0, spot.price / 2)}
+                        onClick={() => teamPick2(0, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -376,7 +396,7 @@ const SpotsDetail = () => {
                           myTime[1] in completeTimeSlots ||
                           myTime[1] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(1, spot.price / 2)}
+                        onClick={() => teamPick2(1, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -386,7 +406,7 @@ const SpotsDetail = () => {
                           myTime[1] in completeTimeSlots ||
                           myTime[1] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(1, spot.price / 2)}
+                        onClick={() => teamPick2(1, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -399,7 +419,7 @@ const SpotsDetail = () => {
                           myTime[2] in completeTimeSlots ||
                           myTime[2] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(2, spot.price / 2)}
+                        onClick={() => teamPick2(2, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -409,7 +429,7 @@ const SpotsDetail = () => {
                           myTime[2] in completeTimeSlots ||
                           myTime[2] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(2, spot.price / 2)}
+                        onClick={() => teamPick2(2, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -422,7 +442,7 @@ const SpotsDetail = () => {
                           myTime[3] in completeTimeSlots ||
                           myTime[3] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(3, spot.price / 2)}
+                        onClick={() => teamPick2(3, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -432,7 +452,7 @@ const SpotsDetail = () => {
                           myTime[3] in completeTimeSlots ||
                           myTime[3] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(3, spot.price / 2)}
+                        onClick={() => teamPick2(3, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -445,7 +465,7 @@ const SpotsDetail = () => {
                           myTime[4] in completeTimeSlots ||
                           myTime[4] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(4, spot.price / 2)}
+                        onClick={() => teamPick2(4, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -455,7 +475,7 @@ const SpotsDetail = () => {
                           myTime[4] in completeTimeSlots ||
                           myTime[4] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(4, spot.price / 2)}
+                        onClick={() => teamPick2(4, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -468,7 +488,7 @@ const SpotsDetail = () => {
                           myTime[5] in completeTimeSlots ||
                           myTime[5] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(5, spot.price / 2)}
+                        onClick={() => teamPick2(5, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -478,7 +498,7 @@ const SpotsDetail = () => {
                           myTime[5] in completeTimeSlots ||
                           myTime[5] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(5, spot.price / 2)}
+                        onClick={() => teamPick2(5, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -491,7 +511,7 @@ const SpotsDetail = () => {
                           myTime[6] in completeTimeSlots ||
                           myTime[6] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(6, spot.price / 2)}
+                        onClick={() => teamPick2(6, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -501,7 +521,7 @@ const SpotsDetail = () => {
                           myTime[6] in completeTimeSlots ||
                           myTime[6] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(6, spot.price / 2)}
+                        onClick={() => teamPick2(6, spot.price / 2)}
                       >
                         팀2
                       </Team>
@@ -514,7 +534,7 @@ const SpotsDetail = () => {
                           myTime[7] in completeTimeSlots ||
                           myTime[7] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(7, spot.price / 2)}
+                        onClick={() => teamPick2(7, spot.price / 2)}
                       >
                         팀1
                       </Team>
@@ -524,26 +544,31 @@ const SpotsDetail = () => {
                           myTime[7] in completeTimeSlots ||
                           myTime[7] in reservedSpotTimeSlots
                         }
-                        onClick={() => teamPick(7, spot.price / 2)}
+                        onClick={() => teamPick2(7, spot.price / 2)}
                       >
                         팀2
                       </Team>
                     </BookMatch>
                   </SelectTeam>
+                  <Pick>
+                    <One onClick={clickedToggleThree}>닫기</One>
+                    <One onClick={exitNoMatch2}>취소하기</One>
+                  </Pick>
                 </CalTime>
               )}
 
-              {!toggleTwo && (
+              {!toggleThree && (
                 <SelectDone2>
-                  <button onClick={clickedToggleTwo}>
-                    <div>시간을 선택해 주세요</div>
-                    <div>
-                      {/* [{forMatch ? "팀매칭 예약하기" : "구장 예약하기"}]  */}
-                      [ 선택 시간 {pickedTime} ]
-                    </div>
+                  <button
+                    disabled={bookDate === undefined || pickedTime !== ""}
+                    onClick={clickedToggleThree}
+                  >
+                    <div>팀매칭 예약하기</div>
+                    <div>[ 선택 시간 {pickedTime2} ]</div>
                   </button>
                 </SelectDone2>
               )}
+
               <SelectChoice>
                 <TeamSelect
                   name="myteam"
@@ -600,15 +625,9 @@ const SpotsDetail = () => {
                 )}
               </CalTime>
 
-              {!forMatch ? (
-                <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
-                  구장 예약하기
-                </FinalBooking>
-              ) : (
-                <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
-                  팀매칭 예약하기
-                </FinalBooking>
-              )}
+              <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
+                포인트로 결제하기
+              </FinalBooking>
             </WrapAll>
           );
         })}

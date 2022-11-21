@@ -29,6 +29,19 @@ export const __getAllMatch = createAsyncThunk(
   }
 );
 
+// 해당구장해당날짜 매칭완료된 예약내역 불러오기
+export const __getOkMatch = createAsyncThunk(
+  "spotsMatch/getOkMatch",
+  async (payload, thunkApi) => {
+    try {
+      const { data } = await SpotsMatchApi.getOkMatch(payload);
+      return thunkApi.fulfillWithValue(data);
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
 // 나의 예약내역 불러오기
 export const __getMyMatch = createAsyncThunk(
   "spotsMatch/getMyMatch",
@@ -104,6 +117,20 @@ const matchSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    // 해당구장 해당날짜 매칭완료예약 가져오기 get
+    [__getOkMatch.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getOkMatch.fulfilled]: (state, action) => {
+      console.log("성사된매치", action.payload);
+      state.isLoading = false;
+      state.matcher = action.payload;
+    },
+    [__getOkMatch.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
     // 나의 예역 가져오기 get
     [__getMyMatch.pending]: (state) => {
       state.isLoading = true;
