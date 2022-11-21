@@ -1,6 +1,5 @@
 import axios from "axios";
 const isLogin = localStorage.getItem("token");
-// console.log(isLogin);
 
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",

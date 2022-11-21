@@ -53,6 +53,7 @@ const MyPage = () => {
         <StTag>my</StTag>
         {!isEdit ? (
           <div>
+            <img src="" />
             <div>{user.nickname}</div>
             <div>{user.gender}</div>
             <div>핸드폰번호 : {user.phone}</div>
