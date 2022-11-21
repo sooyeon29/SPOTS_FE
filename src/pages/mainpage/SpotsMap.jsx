@@ -35,8 +35,8 @@ const SpotsMap = ({ sportsKind }) => {
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
   );
-  console.log("---------사설시설-----------", privateSpot);
-  console.log("---------공공시설-----------", publicSpot);
+  // console.log("---------사설시설-----------", privateSpot);
+  // console.log("---------공공시설-----------", publicSpot);
 
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);

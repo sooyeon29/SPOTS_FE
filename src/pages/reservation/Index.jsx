@@ -11,6 +11,7 @@ import {
   __getSearchedSpot,
 } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
+import FlexibleHeader from "../../components/FlexibleHeader";
 
 const Reservation = () => {
   const dispatch = useDispatch();
@@ -18,17 +19,18 @@ const Reservation = () => {
   const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
-  const searchTerm = params.keyword;
+  const title = "스팟 검색"
+  // const searchTerm = params.keyword;
   // console.log("키워드", searchTerm);
   // console.log("파람", params);
 
   useEffect(() => {
     if (!params.keywords) {
       dispatch(__getAllSpot());
-      console.log("No Params");
+      // console.log("No Params");
     } else {
       dispatch(__getSearchedSpot(params.keywords));
-      console.log("Yes Params");
+      // console.log("Yes Params");
     }
   }, []);
 
@@ -46,26 +48,26 @@ const Reservation = () => {
   return (
     <>
       <Layout>
-        <Header />
+      <FlexibleHeader title={title} />
+      <StWrap>
         <SearchTerm>
         {!params.keywords ? (
-          <h2>마음에 드는 스팟을 찾아보세요!</h2>
+          <h3>마음에 드는 스팟을 찾아보세요!</h3>
         ) : (
           <>
-            <h2>'{params.keywords}' 스팟 검색 결과</h2>
+            <h3>'{params.keywords}' 스팟 검색 결과</h3>
           </> 
         )}
         </SearchTerm>
-        <StWrap>
           <MapPlace>
             {!params.keywords ? (
               <>
-                {console.log("-----No Params-----", allSpot)}
+                {/* {console.log("-----No Params-----", allSpot)} */}
                 <SpotsMap spotMarkers={allSpot} />
               </>
             ) : (
               <>
-                {console.log("-----Yes Params-----", searchedSpot)}
+                {/* {console.log("-----Yes Params-----", searchedSpot)} */}
                 <SpotsMap spotMarkers={searchedSpot} />
               </>
             )}
