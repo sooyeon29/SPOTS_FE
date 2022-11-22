@@ -5,7 +5,8 @@ import {
   MapMarker,
   CustomOverlayMap,
 } from 'react-kakao-maps-sdk';
-import { BtnWrap, MylocationBtn } from './Style';
+import { useSelector } from 'react-redux';
+import { BtnWrap, MylocationBtn, Container } from './Style';
 
 const SpotsMap = ({ spotMarkers }) => {
   const [isPrivateOpen, setIsPrivateOpen] = useState([]);
@@ -30,13 +31,17 @@ const SpotsMap = ({ spotMarkers }) => {
   //   setIsOpen(idx);
   // };
 
+  const pub = useSelector((state) => state?.spots);
+
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
+    console.log(idx);
     setIsPublicOpen(false);
   };
 
   const handlePublicOnClick = (e, idx) => {
     setIsPublicOpen(idx);
+    console.log(idx);
     setIsPrivateOpen(false);
   };
 
@@ -125,9 +130,9 @@ const SpotsMap = ({ spotMarkers }) => {
                       lat: privSpot.y,
                       lng: privSpot.x,
                     }}>
-                    <div onClick={() => setIsPrivateOpen(false)}>
+                    <Container onClick={() => setIsPrivateOpen(false)}>
                       <div>{privSpot.spotName}</div>
-                    </div>
+                    </Container>
                   </CustomOverlayMap>
                 ) : null}
               </div>
@@ -162,9 +167,9 @@ const SpotsMap = ({ spotMarkers }) => {
                       lat: privSpot.y,
                       lng: privSpot.x,
                     }}>
-                    <div onClick={() => setIsPrivateOpen(false)}>
+                    <Container onClick={() => setIsPrivateOpen(false)}>
                       <div>{privSpot.spotName}</div>
-                    </div>
+                    </Container>
                   </CustomOverlayMap>
                 ) : null}
               </div>
@@ -198,9 +203,9 @@ const SpotsMap = ({ spotMarkers }) => {
                       lat: pubSpot.y,
                       lng: pubSpot.x,
                     }}>
-                    <div onClick={() => setIsPublicOpen(false)}>
+                    <Container onClick={() => setIsPublicOpen(false)}>
                       <title>{pubSpot.placenm}</title>
-                    </div>
+                    </Container>
                   </CustomOverlayMap>
                 ) : null}
               </div>
@@ -236,9 +241,9 @@ const SpotsMap = ({ spotMarkers }) => {
                       lat: pubSpot.y,
                       lng: pubSpot.x,
                     }}>
-                    <div onClick={() => setIsPublicOpen(false)}>
+                    <Container onClick={() => setIsPublicOpen(false)}>
                       <div>{pubSpot.placenm}</div>
-                    </div>
+                    </Container>
                   </CustomOverlayMap>
                 ) : null}
               </div>

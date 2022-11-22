@@ -71,6 +71,9 @@ const MainMaps = () => {
       .catch((err) => console.log(err));
   }, []);
 
+
+  console.log(newSpot);
+
   return (
     <>
       <Layout>
@@ -123,7 +126,7 @@ const MainMaps = () => {
                         {place.address.split(' ')[2]}
                       </div>
                     </Info>
-                    <LinkIcon>〉</LinkIcon>
+                    <LinkIcon onClick={()=> navigate(`/spotsdetail/${place.placesId}`)}>〉</LinkIcon>
                   </InfoDiv>
                 </div>
               </New>

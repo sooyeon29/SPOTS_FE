@@ -65,7 +65,7 @@ export const Container = styled.div`
   width: auto;
   padding: 10px;
   border-radius: 10px;
-  background-color: #d5f103;
+  background-color: #49E7A5;
   border: solid 2px white;
 `;
 
