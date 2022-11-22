@@ -77,7 +77,7 @@ const MyPage = () => {
                   }}
                 />
               ) : (
-                <div>사진을 추가해 주세요</div>
+                <div>사진을 추가해 주세요!!!!</div>
               )}
               <input
                 id="upload-input"
