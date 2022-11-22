@@ -15,6 +15,7 @@ const Wrap = styled.div`
   /* display: flex; */
   /* flex-direction: column; */
   -webkit-box-align: center;
+  /* justify-content: center; */
   /* align-items: center; */
   box-sizing: border-box;
   width: 100%;

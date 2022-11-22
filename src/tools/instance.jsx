@@ -1,10 +1,9 @@
 import axios from "axios";
 const isLogin = localStorage.getItem("token");
-console.log(isLogin);
 
 const instance = axios.create({
-  // baseURL: "https://ws-study.shop/",
-  baseURL: "https://sparta4.shop/",
+  baseURL: "https://ws-study.shop/",
+  // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
   headers: {
@@ -33,11 +32,11 @@ export const LoginAPI = {
   kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
 
   // 인증번호
-  postforVCode: (payload) => instance.post(`user/sendSms`, payload),
-  postforCheckVCode: (payload) => instance.post(`user/checkSms`, payload),
+  postforVCode: (payload) => instance.post(`users/sendSms`, payload),
+  postforCheckVCode: (payload) => instance.post(`users/checkSms`, payload),
   // 아이디 찾기
   findId: (payload) =>
-    instance.post(`user/findId`, {
+    instance.post(`users/findId`, {
       phone: payload.phoneNum,
       code: payload.veriCode,
     }),
@@ -85,6 +84,15 @@ export const SpotsMatchApi = {
       place: payload.place,
       date: payload.date,
     }), // -> for userpage
+  getOkMatch: (payload) =>
+    instance.get(
+      `reservations/register/result/${payload.place}/${payload.date}`,
+      {
+        place: payload.place,
+        date: payload.date,
+      }
+    ),
+
   getMyMatch: () => instance.get(`/reservations/me`),
   exitMyMatch: (payload) =>
     instance.put(`/reservations/register/delete`, payload),
@@ -106,6 +114,7 @@ export const PrivateApi = {
       desc: payload.desc,
       price: payload.price,
     }),
+  getNewSpot: () => instance.get(`places/new`),
 };
 
 export const PublicApi = {

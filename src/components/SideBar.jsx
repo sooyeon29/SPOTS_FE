@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaRegBell } from "react-icons/fa";
 import { VscSettingsGear } from "react-icons/vsc";
-import { RiLogoutBoxRLine } from "react-icons/ri";
+import { BiLogOut } from "react-icons/bi";
 
 const SideBar = ({ barIsOpen, dropDownRef }) => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
     localStorage.clear();
     navigate(`/`);
   };
+
   return (
     <SideMenu>
       {!token ? (
@@ -56,28 +57,28 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/mypage")}>
               <div>
-                <img alt="내정보수정" src="/Ellipse 69.png" />
+                <img alt="내정보수정" src="/myprofile_icon.png" />
                 <p>내정보수정</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/teampage")}>
               <div>
-                <img alt="팀관리" src="/Ellipse 69.png" />
+                <img alt="팀관리" src="/myteam_icon.png" />
                 <p>팀관리</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/reservpage")}>
               <div>
-                <img alt="나의 예약리스트" src="/Ellipse 69.png" />
+                <img alt="나의 예약리스트" src="/myreserv_icon.png" />
                 <p>나의 예약리스트</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="나의 구장 등록하기" src="/Ellipse 69.png" />
+                <img alt="나의 구장 등록하기" src="/myhost_icon.png" />
                 <p>나의 구장 등록하기</p>
               </div>
               <IoIosArrowForward className="arrow" />
@@ -85,7 +86,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           </Ul>
           <Bottom>
             <FaRegBell className="icon" />
-            <RiLogoutBoxRLine className="icon" onClick={logout} />
+            <BiLogOut className="icon" onClick={logout} />
           </Bottom>
         </Section>
       )}
@@ -107,7 +108,7 @@ const Section = styled.div`
   bottom: 0;
   right: -300px;
   visibility: hidden;
-  transition: 1s ease;
+  transition: 0.8s ease;
   opacity: 0;
   z-index: 99999;
 
@@ -148,6 +149,8 @@ const Li = styled.li`
 
   img {
     margin-right: 20px;
+    width: 50px;
+    height: 50px;
   }
   div {
     display: flex;
@@ -169,11 +172,12 @@ const Bottom = styled.div`
   height: 65px;
   border-top: 1px solid #cecece;
   .icon {
-    font-size: 28px;
+    font-size: 30px;
     color: #cecece;
     margin-top: 12px;
   }
   .icon:first-child {
-    margin-right: 20px;
+    margin-right: 13px;
+    font-size: 27px;
   }
 `;

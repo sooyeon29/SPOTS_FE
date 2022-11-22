@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
   padding-bottom: 0;
-  margin-bottom: 80px;
+  margin: auto;
   img {
     width: 30px;
     height: 30px;
@@ -29,19 +29,21 @@ export const PlaceList = styled.div`
   overflow: scroll;
   background-color: #f1f1f1;
   display: flex;
+  margin-bottom: 80px;
+  padding-bottom: 20px;
 `;
 
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
   background-color: white;
-  width: 330px;
-  height: 50px;
+  width: 280px;
+  height: 45px;
   display: flex;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 
   button {
-    width: 90px;
+    width: 80px;
     height: 30px;
     margin: auto;
     border: none;
@@ -53,8 +55,8 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 10%;
-  right: 7%;
+  top: 11.5%;
+  right: 16%;
   position: absolute;
 `;
 
@@ -63,30 +65,24 @@ export const Container = styled.div`
   width: auto;
   padding: 10px;
   border-radius: 10px;
-  background-color: #d5f103;
+  background-color: #49E7A5;
   border: solid 2px white;
 `;
 
-export const Status = styled.div`
-  /* background-color: black; */
-  margin: 40px 10px 10px 10px;
-  display: block;
-
-  /* span {
-    width: auto;
-    margin-left: 10px;
-    display: inline-block;
-    text-align: right;
-  } */
+export const Status = styled.span`
+  font-weight: 600;
+  color: #2b2bff;
+  margin-bottom: 5px;
 `;
 
 export const PrivateBlock = styled.div`
   display: flex;
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
+  /* padding-left: 15px; */
   width: 90%;
   background-color: #fff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -98,9 +94,9 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 50px;
+    width: 45px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 15px;
   }
   p {
     margin: auto;
@@ -112,7 +108,7 @@ export const PublicBlock = styled.div`
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
-  padding: 10px 5px 10px 5px;
+  padding: 15px;
   width: 90%;
   background-color: #fff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -124,9 +120,9 @@ export const PublicBlock = styled.div`
     color: black;
   }
   img {
-    width: 50px;
+    width: 45px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 15px;
   }
   p {
     margin: auto;
@@ -142,7 +138,7 @@ export const MylocationBtn = styled.button`
   width: 146px;
   height: 40px;
   left: 117px;
-  top: 400px;
+  top: 420px;
   border: none;
   background: #ffffff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
@@ -152,6 +148,34 @@ export const MylocationBtn = styled.button`
 `;
 
 export const SearchTerm = styled.div`
-  margin-top: 65px;
+  /* margin: auto; */
+`;
 
+export const StSearch = styled.div`
+  margin-top: 70px;
+  background-color: #f1f1f1;
+  width: 350px;
+  height: 40px;
+  display: flex;
+  margin: auto;
+  margin-top: 80px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-bottom: 20px;
+`;
+
+export const SearchInput = styled.input`
+  border: none;
+  width: 300px;
+  background-color: transparent;
+  :focus {
+    outline: none;
+  }
+  padding: 5px;
+`;
+
+export const PublicReserve = styled.a`
+  text-decoration: none;
+  color:black;
 `

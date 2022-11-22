@@ -1,27 +1,27 @@
-import { useNavigate } from "react-router-dom";
-import { PrivateBlock, PublicBlock } from "./Style";
+import { useNavigate } from 'react-router-dom';
+import { PrivateBlock, PublicBlock, Status, PublicReserve } from './Style';
 
 const SpotList = ({ spotList }) => {
   const navigate = useNavigate();
-  console.log("----검색결과(사설)----", spotList?.private);
-  console.log("----검색결과(공공)----", spotList?.public);
+  // console.log("----검색결과(사설)----", spotList?.private);
+  // console.log("----검색결과(공공)----", spotList?.public);
 
   return (
     <>
-      {spotList?.private.map((privSpot) => {
+      {spotList?.private.map((privSpot, idx) => {
         return (
           <PrivateBlock
-            onClick={() => navigate(`/spotsdetail/${privSpot.placesId}`)}
-          >
+            key={privSpot.placesId}
+            onClick={() => navigate(`/spotsdetail/${privSpot.placesId}`)}>
             <div>
-              {privSpot.sports === "테니스장" ? (
-                <img alt="tennis img" src="/privateTennis.png" />
+              {privSpot.sports === '테니스장' ? (
+                <img alt='tennis img' src='/privateTennis.png' />
               ) : (
                 <>
-                  {privSpot.sports === "풋살장" ? (
-                    <img alt="futsal img" src="/privateFutsal.png" />
+                  {privSpot.sports === '풋살장' ? (
+                    <img alt='futsal img' src='/privateFutsal.png' />
                   ) : (
-                    <img alt="badminton img" src="/privateBadminton.png" />
+                    <img alt='badminton img' src='/privateBadminton.png' />
                   )}
                 </>
               )}
@@ -29,36 +29,36 @@ const SpotList = ({ spotList }) => {
             <div>
               <p>{privSpot.spotName}</p>
               <p>{privSpot.spotKind}</p>
-              <p>{privSpot.address.split("", 6)}</p>
+              <p>{privSpot.address.split('', 6)}</p>
             </div>
           </PrivateBlock>
         );
       })}
-      {spotList?.public.map((pubSpot) => {
+      {spotList?.public.map((pubSpot, idx) => {
         return (
-          <PublicBlock>
-            <div>
-              {pubSpot.minclassnm === "테니스장" ? (
-                <img alt="tennis img" src="/publicTennis.png" />
-              ) : (
-                <>
-                  {pubSpot.minclassnm === "풋살장" ? (
-                    <img alt="futsal img" src="/publicFutsal.png" />
-                  ) : (
-                    <img alt="badminton img" src="/publicBadminton.png" />
-                  )}
-                </>
-              )}
-            </div>
-            <div>
-              <span>
-                {pubSpot.placenm}
-                <span>{pubSpot.svcstatnm}</span>
-              </span>
-              <p>{pubSpot.svcnm}</p>
-              <p>{pubSpot.areanm}</p>
-            </div>
-          </PublicBlock>
+          <PublicReserve href={pubSpot.svcurl} target='_blank' key={pubSpot.opensId}>
+            <PublicBlock>
+              <div>
+                {pubSpot.minclassnm === '테니스장' ? (
+                  <img alt='tennis img' src='/publicTennis.png' />
+                ) : (
+                  <>
+                    {pubSpot.minclassnm === '풋살장' ? (
+                      <img alt='futsal img' src='/publicFutsal.png' />
+                    ) : (
+                      <img alt='badminton img' src='/publicBadminton.png' />
+                    )}
+                  </>
+                )}
+              </div>
+              <div>
+                <Status>{pubSpot.svcstatnm}</Status>
+                <span>{pubSpot.placenm}</span>
+                <p>{pubSpot.svcnm}</p>
+                <p>서울시 {pubSpot.areanm}</p>
+              </div>
+            </PublicBlock>
+          </PublicReserve>
         );
       })}
     </>
