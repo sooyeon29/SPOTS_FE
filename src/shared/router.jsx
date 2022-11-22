@@ -20,7 +20,6 @@ import FindId from "../pages/login/FindId";
 import ChatRoom from "../pages/chat/ChatRoom";
 import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
-import SignUp2 from "../pages/signUp/SignUp";
 import AdminHome from "../pages/chat/AdminHome";
 import AdminChat from "../pages/chat/AdminChat";
 import Matching from "../pages/spotsDetail/Matching";
