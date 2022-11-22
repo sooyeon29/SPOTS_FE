@@ -71,7 +71,7 @@ const Hosting = () => {
   const [fullAddress, setFullAddress] = useState();
 
   const handleComplete = (data) => {
-    console.log("도대체무슨데이터???", data);
+    // console.log("도대체무슨데이터???", data);
     let fullAddress = data.address;
     let extraAddress = "";
 

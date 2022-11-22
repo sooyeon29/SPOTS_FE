@@ -10,14 +10,8 @@ const SearchBar = () => {
   const onSearchHandler = async (e) => {
     e.preventDefault();
     window.location.href = "/book/" + keywords;
-    // if (keyword.trim() === '') {
-    //   return alert('검색어를 입력해주세요!');
-    // }
-    // navigate('/book', { state: [keyword] });
-    // console.log({ state: [keyword] });
-    // localStorage.setItem('savedKeyword', keyword);
   };
-  console.log(keywords);
+  // console.log(keywords);
 
   return (
     <StSearch>

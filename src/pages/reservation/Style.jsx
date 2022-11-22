@@ -81,8 +81,8 @@ export const PrivateBlock = styled.div`
   margin-top: 10px;
   /* margin-bottom: 10px; */
   border-radius: 10px;
-  padding: 10px;
-  padding-left: 10px;
+  padding: 15px;
+  /* padding-left: 15px; */
   width: 90%;
   background-color: #fff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -94,9 +94,9 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 50px;
+    width: 45px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 15px;
   }
   p {
     margin: auto;
@@ -108,7 +108,7 @@ export const PublicBlock = styled.div`
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 15px;
   width: 90%;
   background-color: #fff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -120,9 +120,9 @@ export const PublicBlock = styled.div`
     color: black;
   }
   img {
-    width: 50px;
+    width: 45px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 15px;
   }
   p {
     margin: auto;
@@ -174,3 +174,8 @@ export const SearchInput = styled.input`
   }
   padding: 5px;
 `;
+
+export const PublicReserve = styled.a`
+  text-decoration: none;
+  color:black;
+`

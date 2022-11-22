@@ -31,9 +31,7 @@ const Reservation = () => {
     (state) => state?.spots
   );
   const title = '스팟 검색';
-  // const searchTerm = params.keyword;
-  // console.log("키워드", searchTerm);
-  // console.log("파람", params);
+
 
   useEffect(() => {
     if (!params.keywords) {
@@ -78,13 +76,6 @@ const Reservation = () => {
             </form>
           </StSearch>
           <SearchTerm>
-            {/* {!params.keywords ? (
-              null
-            ) : (
-              <>
-                <h4>'{params.keywords}' 스팟 검색 결과</h4>
-              </>
-            )} */}
           </SearchTerm>
           <MapPlace>
             {!params.keywords ? (
