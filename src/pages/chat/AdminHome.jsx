@@ -5,13 +5,8 @@ import socket from "../../tools/socket.js";
 
 const AdminHome = () => {
   const navigate = useNavigate();
-  //const initialState = ["eunrain", "melongbbang", "dduyamott"];
   const [roomList, setRoomList] = useState();
-  console.log(roomList);
-
   const [roomName, setRoomName] = useState();
-
-  //const [enterRoom, setEnterRoom] = useState(false);
 
   useEffect(() => {
     socket.on("admin_roomlist", (roomList) => {

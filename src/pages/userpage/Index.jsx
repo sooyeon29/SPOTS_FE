@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import styled from "styled-components";
-import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import TapBar from "../../components/TapBar";
 
@@ -10,6 +9,7 @@ const UserPage = () => {
   const title = "MyPage";
   const navigate = useNavigate();
   const nickname = localStorage.getItem("nickname");
+  const userPoint = localStorage.getItem("point");
 
   return (
     <Layout>
@@ -19,36 +19,10 @@ const UserPage = () => {
           <img alt="프로필이미지" src="/SidebarProfile.png"></img>
           <div>{nickname}</div>
         </Profile>
-        <Ul>
-          <Li onClick={() => navigate("/mypage")}>
-            <div>
-              <img alt="내정보수정" src="/Ellipse 69.png" />
-              <p>내정보수정</p>
-            </div>
-            <IoIosArrowForward className="arrow" />
-          </Li>
-          <Li onClick={() => navigate("/teampage")}>
-            <div>
-              <img alt="팀관리" src="/Ellipse 69.png" />
-              <p>팀관리</p>
-            </div>
-            <IoIosArrowForward className="arrow" />
-          </Li>
-          <Li onClick={() => navigate("/reservpage")}>
-            <div>
-              <img alt="나의 예약리스트" src="/Ellipse 69.png" />
-              <p>나의 예약리스트</p>
-            </div>
-            <IoIosArrowForward className="arrow" />
-          </Li>
-          <Li onClick={() => navigate("/hostlist ")}>
-            <div>
-              <img alt="나의 구장 등록하기" src="/Ellipse 69.png" />
-              <p>나의 구장 등록하기</p>
-            </div>
-            <IoIosArrowForward className="arrow" />
-          </Li>
-        </Ul>
+        <PointBox>
+          <h2>point</h2>
+          <h1>{Number(userPoint).toLocaleString("ko-KR")}</h1>
+        </PointBox>
       </Container>
       <TapBar />
     </Layout>
@@ -60,51 +34,38 @@ export default UserPage;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Profile = styled.div`
-  width: 330px;
-  height: 180px;
+  width: 100%;
+  height: 120px;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  border-bottom: 1px solid #eaeffc;
-  padding-top: 70px;
+  padding-top: 120px;
+  padding-left: 100px;
+  background-color: skyblue;
   img {
     width: 88px;
     height: 88px;
   }
   div {
-    margin-top: 20px;
+    margin: 30px 0 0 30px;
     font-size: 20px;
     font-weight: 700;
   }
 `;
 
-const Ul = styled.ul`
-  padding-left: 10px;
-`;
-const Li = styled.li`
-  margin: 13px 0;
-  padding-bottom: 13px;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #eaeffc;
-  cursor: pointer;
-  font-weight: 600;
-
-  img {
-    margin-right: 25px;
+const PointBox = styled.div`
+  width: 80%;
+  height: 80px;
+  border-radius: 8px;
+  background-color: lightgreen;
+  h2 {
+    margin: 5px 0 0 10px;
   }
-  div {
-    display: flex;
-    align-items: center;
-  }
-  .arrow {
-    color: #1746c7;
-    margin-right: 8px;
-    font-size: 23px;
+  h1 {
+    position: absolute;
+    right: 60px;
+    top: 250px;
   }
 `;

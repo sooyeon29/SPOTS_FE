@@ -29,7 +29,7 @@ const Chat = ({ socket, roomName }) => {
     const obj = {
       roomName: roomName,
       nickname: nickname,
-      message: msg,
+      value: msg,
     };
     socket.emit("chatting", JSON.stringify(obj));
     console.log(obj);
@@ -39,7 +39,7 @@ const Chat = ({ socket, roomName }) => {
   console.log(chatting);
   return (
     <StContainer>
-      <StBox>
+      <StWrap>
         <StHeader>
           <button>
             <IoIosArrowBack size="25" color="#FF00B3" />
@@ -49,6 +49,24 @@ const Chat = ({ socket, roomName }) => {
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
+        <ChatBox>
+          {chatting?.map((chat, index) => (
+            <div key={index}>
+              {chat.nickname === "admin" ? (
+                <StAdmin>
+                  <img alt="기본프로필" src="/myprofile_icon.png" />
+                  <StAdminMsg>{chat.message}</StAdminMsg>
+                </StAdmin>
+              ) : (
+                <StAdmin>
+                  <StNickname>{chat.nickname}</StNickname>
+                  <StUserMsg>{chat.message}</StUserMsg>
+                </StAdmin>
+              )}
+            </div>
+          ))}
+        </ChatBox>
+
         <StForm onSubmit={onSendMsg}>
           <StInput
             value={msg}
@@ -61,13 +79,7 @@ const Chat = ({ socket, roomName }) => {
             <FiSend size="23" />
           </button>
         </StForm>
-        {chatting?.map((chat, index) => (
-          <div key={index}>
-            <StMsgBox>{chat.nickname}</StMsgBox>
-            <StMsgBox>{chat.message}</StMsgBox>
-          </div>
-        ))}
-      </StBox>
+      </StWrap>
     </StContainer>
   );
 };
@@ -80,9 +92,10 @@ const StContainer = styled.div`
   position: fixed;
 `;
 
-const StBox = styled.div`
+const StWrap = styled.div`
   width: 450px;
   height: 600px;
+
   display: flex;
   flex-direction: column;
   border-radius: 35px;
@@ -111,11 +124,26 @@ const StHeader = styled.div`
   }
 `;
 
+const ChatBox = styled.div`
+  height: 485px;
+  overflow: scroll;
+  border: none;
+  margin: 10px 10px 0 10px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 const StForm = styled.form`
   display: flex;
-  position: absolute;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: 0 auto 0 auto;
-  bottom: 20px;
+  bottom: 0px;
+  border-radius: 35px;
+
   button {
     border: none;
     background-color: transparent;
@@ -128,13 +156,45 @@ const StInput = styled.input`
   height: 40px;
   border-radius: 20px;
   border: 1px;
-  margin-left: 25px;
 `;
 
-const StMsgBox = styled.div`
-  width: 100px;
-  background-color: #2b2bff;
+const StAdmin = styled.div`
+  img {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
+const StAdminMsg = styled.div`
+  margin: 0 auto 0 0;
+  margin-bottom: 10px;
+  padding: 15px;
+  max-width: 45%;
+  height: auto;
+  background-color: #eaeffc;
+  color: #545454;
+  border: none;
+  border-radius: 15px;
+`;
+
+const StUserMsg = styled.div`
+  margin: 10px 10px 0 10px;
+  padding: 15px;
+  max-width: 40%;
+  height: auto;
+  background-color: #5087ff;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  margin: 0 0 0 auto;
+  margin-bottom: 10px;
+`;
+
+const StNickname = styled.div`
+  max-width: 20%;
+  text-align: right;
+  margin: 0 5px 0 auto;
+  color: #545454;
 `;

@@ -48,7 +48,7 @@ function Router() {
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
-        {/* <Route path="/chatroom" element={<ChatRoom />} /> */}
+        <Route path="/chatroom" element={<ChatRoom />} />
         <Route path="/addlogin" element={<KakaoAdd />} />
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
