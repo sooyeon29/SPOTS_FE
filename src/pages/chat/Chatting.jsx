@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Layout from "../../components/Layout";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 
-const Chat = ({ socket, roomName }) => {
+const Chatting = ({ socket, roomName }) => {
+  const navigate = useNavigate();
+  const nickname = localStorage.getItem("nickname");
   const [msg, setMsg] = useState("");
   const [chatting, setChatting] = useState([]);
-  console.log(roomName);
-  const nickname = localStorage.getItem("nickname");
 
   useEffect(() => {
     socket.on("new_message", (data) => {
@@ -35,17 +37,16 @@ const Chat = ({ socket, roomName }) => {
     console.log(obj);
     setMsg("");
   };
-
   console.log(chatting);
   return (
     <StContainer>
       <StWrap>
         <StHeader>
-          <button>
+          <button onClick={() => navigate(-1)}>
             <IoIosArrowBack size="25" color="#FF00B3" />
           </button>
           <div>SPOTS</div>
-          <button>
+          <button onClick={() => navigate("/")}>
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
@@ -84,7 +85,7 @@ const Chat = ({ socket, roomName }) => {
   );
 };
 
-export default Chat;
+export default Chatting;
 
 const StContainer = styled.div`
   bottom: 40px;
@@ -95,7 +96,6 @@ const StContainer = styled.div`
 const StWrap = styled.div`
   width: 450px;
   height: 600px;
-
   display: flex;
   flex-direction: column;
   border-radius: 35px;
@@ -136,14 +136,11 @@ const ChatBox = styled.div`
 
 const StForm = styled.form`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin: 0 auto 0 auto;
-  bottom: 0px;
-  border-radius: 35px;
-
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 10px;
+  margin: 210px auto 0 auto;
+  background-color: #0000000d;
   button {
     border: none;
     background-color: transparent;

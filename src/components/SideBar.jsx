@@ -20,7 +20,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       {!token ? (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/SidebarProfile.png"></img>
+            <img alt="프로필이미지" src="/myprofile_icon.png"></img>
             <div>
               <p>로그인 후 이용해주세요.</p>
             </div>
@@ -28,14 +28,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/login")}>
               <div>
-                <img alt="로그인" src="/Ellipse 69.png" />
+                <img alt="로그인" src="/login_icon.png" />
                 <p>로그인하기</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/signup")}>
               <div>
-                <img alt="회원가입" src="/Ellipse 69.png" />
+                <img alt="회원가입" src="/join_icon.png" />
                 <p>회원가입</p>
               </div>
               <IoIosArrowForward className="arrow" />
@@ -49,7 +49,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       ) : (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/SidebarProfile.png"></img>
+            <img alt="프로필이미지" src="/myprofile_icon.png"></img>
             <div>
               <p>{nickname}</p>
             </div>
@@ -83,6 +83,15 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
+            {nickname === "spotsadmin" ? (
+              <Li onClick={() => navigate("/adminhome ")}>
+                <div>
+                  <img alt="관리자채팅방" src="/myhost_icon.png" />
+                  <p>관리자 채팅방</p>
+                </div>
+                <IoIosArrowForward className="arrow" />
+              </Li>
+            ) : null}
           </Ul>
           <Bottom>
             <FaRegBell className="icon" />
@@ -110,7 +119,7 @@ const Section = styled.div`
   visibility: hidden;
   transition: 1s ease;
   opacity: 0;
-  z-index: 99999;
+  z-index: 999999;
 
   ${({ isOpen }) =>
     isOpen &&
