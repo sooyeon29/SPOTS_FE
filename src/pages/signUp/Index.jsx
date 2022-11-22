@@ -155,7 +155,9 @@ const SignUp = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("유효하지 않은 번호입니다.");
+        if (err.status === 412) {
+          alert("이미 회원가입된 번호입니다.");
+        } else alert("유효하지 않은 번호입니다.");
       });
   };
   const checkVCode = () => {
@@ -170,6 +172,7 @@ const SignUp = () => {
       .catch((err) => {
         console.log(err);
         // if(err.response.data === 401)
+
         alert("인증번호를 재확인 해주세요");
       });
   };

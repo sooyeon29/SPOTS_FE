@@ -70,6 +70,7 @@ export const UserpageAPI = {
     }),
   deleteTeam: (payload) => instance.delete(`teams/${payload}`),
   patchMyInfo: (payload) => instance.patch(`users/me`, payload),
+
   patchMyTeam: (payload) => instance.patch(`teams`, payload),
   dropOutMe: (payload) => instance.patch(`users/drop`, payload),
   switchMe: (payload) => instance.patch(`users/cancelDrop`, payload),
