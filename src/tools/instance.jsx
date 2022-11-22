@@ -1,6 +1,5 @@
 import axios from "axios";
 const isLogin = localStorage.getItem("token");
-// console.log(isLogin);
 
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",
@@ -85,6 +84,15 @@ export const SpotsMatchApi = {
       place: payload.place,
       date: payload.date,
     }), // -> for userpage
+  getOkMatch: (payload) =>
+    instance.get(
+      `reservations/register/result/${payload.place}/${payload.date}`,
+      {
+        place: payload.place,
+        date: payload.date,
+      }
+    ),
+
   getMyMatch: () => instance.get(`/reservations/me`),
   exitMyMatch: (payload) =>
     instance.put(`/reservations/register/delete`, payload),
