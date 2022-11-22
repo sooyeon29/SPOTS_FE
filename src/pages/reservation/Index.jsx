@@ -34,6 +34,9 @@ const Reservation = () => {
   // const searchTerm = params.keyword;
   // console.log("키워드", searchTerm);
   // console.log("파람", params);
+  // console.log(searchedSpot);
+  // console.log(allSpot);
+
 
   useEffect(() => {
     if (!params.keywords) {
@@ -89,12 +92,12 @@ const Reservation = () => {
           <MapPlace>
             {!params.keywords ? (
               <>
-                {/* {console.log("-----No Params-----", allSpot)} */}
+                {console.log("-----No Params-----", allSpot)}
                 <SpotsMap spotMarkers={allSpot} />
               </>
             ) : (
               <>
-                {/* {console.log("-----Yes Params-----", searchedSpot)} */}
+                {console.log("-----Yes Params-----", searchedSpot)}
                 <SpotsMap spotMarkers={searchedSpot} />
               </>
             )}

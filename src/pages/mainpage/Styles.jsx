@@ -160,3 +160,13 @@ export const SpotName = styled.div`
 font-weight: 600;
 
 `
+
+export const MapBlock = styled.div`
+  width: 400px;
+  height: 200px;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+`
