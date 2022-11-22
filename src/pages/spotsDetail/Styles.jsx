@@ -400,3 +400,12 @@ export const GoMatch = styled.div`
     margin: 10px;
   }
 `;
+export const WaitingMatch = styled.div`
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: fit-content;
+`;

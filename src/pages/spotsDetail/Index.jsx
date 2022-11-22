@@ -31,9 +31,11 @@ import {
   FinalBooking,
   WrapAll,
   SelectDone2,
+  WaitingMatch,
 } from "./Styles";
 import {
   __getAllMatch,
+  __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
 import { useNavigate, useParams } from "react-router-dom";
@@ -175,12 +177,22 @@ const SpotsDetail = () => {
         date: bookDate,
       })
     );
+    dispatch(
+      __getOkMatch({
+        place: name,
+        date: bookDate,
+      })
+    );
+
     setToggel(false);
   };
 
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.matcher);
   console.log("allMatch", allMatchToday);
+
+  const waitMatchToday = useSelector((state) => state?.matcher.newmatcher);
+  console.log("매칭전후", waitMatchToday);
 
   // 구장 예약이 된경우
   const reservedSpotTimeSlots = allMatchToday
@@ -200,10 +212,12 @@ const SpotsDetail = () => {
     .reduce((prevObj, c) => {
       if (c in prevObj) {
         prevObj[c] += 1;
+        return prevObj;
+      } else {
+        const newObj = { ...prevObj };
+        newObj[c] = 1;
+        return newObj;
       }
-      const newObj = { ...prevObj };
-      newObj[c] = 1;
-      return newObj;
     }, {});
 
   console.log("------", allMatchingSlots);
@@ -558,6 +572,27 @@ const SpotsDetail = () => {
                         팀2
                       </Team>
                     </BookMatch>
+                    {waitMatchToday.map((waitMatch) => {
+                      return (
+                        <BookMatch>
+                          <WaitingMatch key={waitMatch.reservationId}>
+                            <div>
+                              <span>
+                                시간: {waitMatch.matchId.substring(0, 13)}
+                              </span>
+                              <span>팀이름: {waitMatch.teamName}</span>
+                            </div>
+                            <div>
+                              <span>경기인원: {waitMatch.member}</span>
+                              <span>
+                                단식/복식:
+                                {waitMatch.isDoubled ? "복식" : "단식"}
+                              </span>
+                            </div>
+                          </WaitingMatch>
+                        </BookMatch>
+                      );
+                    })}
                   </SelectTeam>
                   <Pick>
                     <One onClick={clickedToggleThree}>닫기</One>

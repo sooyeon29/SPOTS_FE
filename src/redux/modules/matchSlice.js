@@ -73,6 +73,7 @@ const initialState = {
   // 포스트
   matcher: [],
   message: "",
+  newmatcher: [],
   // 구장,날짜별
   // data: [],
   isLoading: false,
@@ -117,14 +118,15 @@ const matchSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    // 해당구장 해당날짜 매칭완료예약 가져오기 get
+    // 해당구장 해당날짜 매칭대기중예약 가져오기 get
     [__getOkMatch.pending]: (state) => {
       state.isLoading = true;
     },
     [__getOkMatch.fulfilled]: (state, action) => {
-      console.log("성사된매치", action.payload);
+      console.log("대기중매치", action.payload);
       state.isLoading = false;
-      state.matcher = action.payload;
+      state.newmatcher = action.payload.noneMatching;
+      console.log(state.newmatcher);
     },
     [__getOkMatch.rejected]: (state, action) => {
       state.isLoading = false;
