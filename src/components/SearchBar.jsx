@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const SearchBar = () => {
   // const navigate = useNavigate();
-  const [keywords, setKeywords] = useState('');
+  const [keywords, setKeywords] = useState("");
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
@@ -23,17 +23,17 @@ const SearchBar = () => {
     <StSearch>
       <form onSubmit={onSearchHandler}>
         {/* <SearchBar> */}
-          <StInput
-            type='text'
-            value={keywords}
-            placeholder='어떤 스팟을 찾으시나요?'
-            onChange={(e) => {
-              setKeywords(e.target.value);
-            }}
-          />
-          <StBtn type="button">
-            <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
-          </StBtn>
+        <StInput
+          type="text"
+          value={keywords}
+          placeholder="어떤 스팟을 찾으시나요?"
+          onChange={(e) => {
+            setKeywords(e.target.value);
+          }}
+        />
+        <StBtn type="button">
+          <BsSearch style={{ color: "white", cursor: "pointer" }} />
+        </StBtn>
         {/* </SearchBar> */}
       </form>
     </StSearch>

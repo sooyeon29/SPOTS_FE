@@ -20,15 +20,9 @@ const SpotsMap = ({ spotMarkers }) => {
     errMsg: null,
     isLoading: true,
   });
-  // console.log('----검색결과----', spotMarkers);
+
   const privateSpots = spotMarkers?.private;
   const publicSpots = spotMarkers?.public;
-  // console.log('----사설----', privateSpots);
-  // console.log('----공공----', publicSpots);
-
-  // const handleOnClick = (e, idx) => {
-  //   setIsOpen(idx);
-  // };
 
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
@@ -43,7 +37,6 @@ const SpotsMap = ({ spotMarkers }) => {
   const handleOnFilter = (sports) => {
     setFilter(sports);
   };
-  // console.log(filter);
 
   const locationHandler = () => {
     if (navigator.geolocation) {

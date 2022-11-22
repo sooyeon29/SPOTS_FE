@@ -3,8 +3,8 @@ import { PrivateBlock, PublicBlock, Status } from './Style';
 
 const SpotList = ({ spotList }) => {
   const navigate = useNavigate();
-  // console.log("----검색결과(사설)----", spotList?.private);
-  // console.log("----검색결과(공공)----", spotList?.public);
+  console.log("----검색결과(사설)----", spotList?.private);
+  console.log("----검색결과(공공)----", spotList?.public);
 
   return (
     <>
