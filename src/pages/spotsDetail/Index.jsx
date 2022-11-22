@@ -187,6 +187,10 @@ const SpotsDetail = () => {
     setToggel(false);
   };
 
+  const exitDate = () => {
+    setStartDate(null);
+    setToggel(false);
+  };
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.matcher);
   console.log("allMatch", allMatchToday);
@@ -277,6 +281,10 @@ const SpotsDetail = () => {
                     inline
                     required
                   />
+                  <Pick>
+                    <One onClick={clickedToggle}>닫기</One>
+                    <One onClick={exitDate}>취소하기</One>
+                  </Pick>
                 </Calen>
               )}
               {!toggle && (

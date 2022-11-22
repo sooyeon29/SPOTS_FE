@@ -32,11 +32,11 @@ export const LoginAPI = {
   kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
 
   // 인증번호
-  postforVCode: (payload) => instance.post(`user/sendSms`, payload),
-  postforCheckVCode: (payload) => instance.post(`user/checkSms`, payload),
+  postforVCode: (payload) => instance.post(`users/sendSms`, payload),
+  postforCheckVCode: (payload) => instance.post(`users/checkSms`, payload),
   // 아이디 찾기
   findId: (payload) =>
-    instance.post(`user/findId`, {
+    instance.post(`users/findId`, {
       phone: payload.phoneNum,
       code: payload.veriCode,
     }),
