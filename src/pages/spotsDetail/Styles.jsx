@@ -58,15 +58,13 @@ export const MoreInfo = styled.div`
   }
 `;
 export const Calen = styled.div`
-  margin: 5px;
-
+  margin: 5px auto 0px auto;
   div {
     background-color: white;
     color: black;
     padding: 6px;
     border-radius: 10px;
     font-size: 17px;
-
     button {
       margin-top: 18px;
       cursor: pointer;
@@ -85,7 +83,7 @@ export const SelectDone = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px auto 0px auto;
   background-color: #1646c7;
   button {
     display: flex;
@@ -113,7 +111,7 @@ export const SelectDone2 = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px auto 0px auto;
   background-color: #eaeffc;
   button {
     display: flex;
@@ -139,7 +137,7 @@ export const CalTime = styled.div`
   width: 95%;
   max-width: 800px;
   padding: 10px 0px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   p {
     margin-left: 20px;
   }
@@ -406,8 +404,10 @@ export const MatchList = styled(BookMatch)`
   margin: 10px;
   display: flex;
   flex-direction: row;
-  /* justify-content: ; */
+  justify-content: flex-start;
   flex-wrap: wrap;
+  /* display: flex;
+  flex-direction: column; */
 `;
 export const WaitingMatch = styled.div`
   font-size: 12px;
@@ -416,9 +416,9 @@ export const WaitingMatch = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-
-  border: 1px solid black;
-  width: 50%;
+  width: 45%;
+  margin: 3px;
   background-image: url(/test.png);
   background-size: cover;
+  /* border-radius: 40px; */
 `;

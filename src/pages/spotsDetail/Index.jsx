@@ -195,8 +195,11 @@ const SpotsDetail = () => {
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.matcher);
   console.log("allMatch", allMatchToday);
-
-  const waitMatchToday = useSelector((state) => state?.matcher.newmatcher);
+  // 매칭이 완료되지 않은 리스트 (구장예약건들도 들어있음)
+  const noneMatchToday = useSelector((state) => state?.matcher.newmatcher);
+  const waitMatchToday = noneMatchToday.filter(
+    (match) => match.matchId.substring(13, 20) === "ismatch"
+  );
   console.log("매칭전후", waitMatchToday);
 
   // 구장 예약이 된경우
@@ -283,7 +286,15 @@ const SpotsDetail = () => {
                     required
                   />
                   <Pick>
-                    <One onClick={clickedToggle}>닫기</One>
+                    <One
+                      onClick={() => {
+                        clickedToggle();
+                        setToggleTwo(false);
+                        setToggleThree(false);
+                      }}
+                    >
+                      닫기
+                    </One>
                     <One onClick={exitDate}>취소하기</One>
                   </Pick>
                 </Calen>
@@ -385,6 +396,7 @@ const SpotsDetail = () => {
                     disabled={bookDate === undefined || pickedTime2 !== ""}
                     onClick={() => {
                       clickedToggleTwo();
+                      setToggel(false);
                       setToggleThree(false);
                     }}
                   >
@@ -581,26 +593,23 @@ const SpotsDetail = () => {
                         팀2
                       </Team>
                     </BookMatch>
+
                     <MatchList>
                       {waitMatchToday.map((waitMatch) => {
                         return (
                           <WaitingMatch key={waitMatch.reservationId}>
-                            {/* <div> */}
                             <span>
                               시간: {waitMatch.matchId.substring(0, 13)}
                             </span>
                             <span>팀이름: {waitMatch.teamName}</span>
-                            {/* </div>
-                            <div> */}
                             <span>경기인원: {waitMatch.member}</span>
                             <span>
                               단식/복식:
                               {waitMatch.isDoubled ? "복식" : "단식"}
                             </span>
-                            {/* </div> */}
                           </WaitingMatch>
                         );
-                      })}{" "}
+                      })}
                     </MatchList>
                   </SelectTeam>
                   <Pick>
@@ -617,6 +626,7 @@ const SpotsDetail = () => {
                     onClick={() => {
                       clickedToggleThree();
                       setToggleTwo(false);
+                      setToggel(false);
                     }}
                   >
                     <div>팀매칭 예약하기</div>
@@ -654,13 +664,13 @@ const SpotsDetail = () => {
                 </Counter>
               </SelectChoice>
 
-              {forMatch && !isTwo && spot.sports !== "풋살장" && (
+              {!isTwo && spot.sports !== "풋살장" && (
                 <Pick>
                   <One onClick={pickTwoHandler}>단식</One>
                   <Two onClick={pickTwoHandler}>복식</Two>
                 </Pick>
               )}
-              {forMatch && isTwo && spot.sports !== "풋살장" && (
+              {isTwo && spot.sports !== "풋살장" && (
                 <Pick>
                   <Two onClick={pickTwoHandler}>단식</Two>
                   <One onClick={pickTwoHandler}>복식</One>
