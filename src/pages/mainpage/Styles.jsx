@@ -75,7 +75,7 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 43%;
+  top: 370px;
   right: 8%;
   position: absolute;
 `;
@@ -142,7 +142,8 @@ export const LinkIcon = styled.div`
   justify-content: center;
   display: flex;
   align-items: center;
-  width: 80px;
+  min-width: 70px;
+  min-height: 70px;
   border-radius: 50%;
   font-size: 30px;
   color: #1746C7;

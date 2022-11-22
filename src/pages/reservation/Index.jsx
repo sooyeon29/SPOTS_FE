@@ -38,10 +38,8 @@ const Reservation = () => {
   useEffect(() => {
     if (!params.keywords) {
       dispatch(__getAllSpot());
-      // console.log("No Params");
     } else {
       dispatch(__getSearchedSpot(params.keywords));
-      // console.log("Yes Params");
     }
   }, []);
 
