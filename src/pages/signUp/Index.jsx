@@ -1,13 +1,13 @@
-import React, { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import TapBar from "../../components/TapBar";
-import useToggle from "../../hooks/useToggle";
-import { IoFootball } from "react-icons/io5";
-import { IoMdTennisball } from "react-icons/io";
-import { GiShuttlecock } from "react-icons/gi";
-import { LoginAPI, SignUpAPI } from "../../tools/instance";
+import React, { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import TapBar from '../../components/TapBar';
+import useToggle from '../../hooks/useToggle';
+import { IoFootball } from 'react-icons/io5';
+import { IoMdTennisball } from 'react-icons/io';
+import { GiShuttlecock } from 'react-icons/gi';
+import { LoginAPI, SignUpAPI } from '../../tools/instance';
 import {
   StWrap,
   PageTitle,
@@ -27,8 +27,9 @@ import {
   SportLabel,
   SportInput,
   SportDiv,
-} from "./Styles";
-import { useNavigate } from "react-router-dom";
+} from './Styles';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
@@ -52,20 +53,53 @@ const SignUp = () => {
 
   const onIdPwPageHandler = (e) => {
     e.preventDefault();
-    const loginId = getValues("loginId");
-    if (loginId.trim() === "") {
-      return alert("아이디를 입력해주세요");
+    const loginId = getValues('loginId');
+    if (loginId.trim() === '') {
+      Swal.fire({
+        text: '아이디를 입력해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      });
+      return
+      // return alert('아이디를 입력해주세요');
     }
-    const pw = getValues("password");
-    if (pw.trim() === "") {
-      return alert("비밀번호를 입력해주세요");
+    const pw = getValues('password');
+    if (pw.trim() === '') {
+      Swal.fire({
+        text: '비밀번호를 입력해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      });
+      return 
     }
-    const pwConfirm = getValues("confirmPassword");
-    if (pwConfirm.trim() === "") {
-      return alert("비밀번호를 다시 한번 확인해주세요");
+    const pwConfirm = getValues('confirmPassword');
+    if (pwConfirm.trim() === '') {
+      Swal.fire({
+        text: '비밀번호를 다시 한번 확인해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      })
+      return;
     }
     if (!idConfirm) {
-      return alert("ID 중복 확인을 해주세요");
+      Swal.fire({
+        text: 'ID 중복 확인을 해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      })
+      return;
     }
     setIdAndPwPage(false);
     setPhoneCertify(true);
@@ -101,8 +135,8 @@ const SignUp = () => {
       .then((res) => {
         // console.log(res);
         if (res.status === 201) {
-          alert("회원가입을 환영합니다!");
-          navigate("/login");
+          alert('회원가입을 환영합니다!');
+          navigate('/login');
         }
       })
       .catch((error) => {
@@ -127,19 +161,44 @@ const SignUp = () => {
 
   // ID 중복 확인
   const checkId = () => {
-    setIdConfirm(true);
-    const loginId = getValues("loginId");
+    const loginId = getValues('loginId');
+    if (loginId.trim() === '') {
+      Swal.fire({
+        text: '아이디를 입력해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      })
+      return{};
+    } 
     SignUpAPI.checkId({ loginId })
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          alert("사용 가능한 ID입니다");
+          Swal.fire({
+            text: '사용 가능한 아이디입니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
+          setIdConfirm(true);
         }
       })
       .catch((error) => {
         console.log(error.response.status);
         if (error.response.status === 412) {
-          alert("이미 사용 중인 ID입니다");
+          Swal.fire({
+            text: '이미 사용 중인 아이디입니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         }
       });
   };

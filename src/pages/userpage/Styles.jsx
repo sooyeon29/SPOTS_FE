@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StContainer = styled.div`
   display: flex;
@@ -15,6 +15,7 @@ export const StWrap = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
   align-items: center;
+  margin: auto;
 `;
 
 export const Image = styled.div`
@@ -50,8 +51,12 @@ export const StTeamForm = styled.form`
   width: 60%;
 `;
 export const MyMatch = styled.div`
-  border: 1px solid black;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding:20px 0px 20px 20px;
+  border-radius: 10px;
 `;
+
 export const HostCard = styled.div``;
 export const Preview = styled.div``;
 export const Photo = styled.div`
@@ -124,3 +129,51 @@ export const ButWrap = styled.div`
   align-items: center;
   margin: 0px 40px 20px auto;
 `;
+
+export const MyReserve = styled.div`
+  width: 90%;
+  margin: auto;
+  margin-top: 72px;
+  margin-bottom: 60px;
+  align-items: center;
+  /* background-color: aliceblue; */
+`;
+
+export const ReservedSpot = styled.div`
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+export const CompletedMath = styled.div`
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+
+export const WaitedMatch = styled.div`
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+
+export const SpotName = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+`
+export const MatchDate = styled.div`
+    margin-bottom: 20px;
+`
+export const MatchTime = styled.div`
+  
+`
+export const MatchMember = styled.div`
+  
+`
+export const MatchTeam = styled.div`
+    margin-bottom: 20px;
+
+`
