@@ -17,6 +17,15 @@ export const StWrap = styled.div`
   align-items: center;
 `;
 
+export const Image = styled.div`
+  border-radius: 50px;
+
+  img {
+    width: 50px;
+    background-size: contain;
+  }
+`;
+
 export const StTag = styled.button`
   width: 20%;
   height: 40px;

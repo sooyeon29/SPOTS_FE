@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { StWrap, StTag } from "./Styles";
+import { StWrap, StTag, Image } from "./Styles";
 import useToggle from "../../hooks/useToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyInfo } from "../../redux/modules/userSlice";
@@ -19,7 +19,7 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state.user);
-  // console.log(user.ID);
+  console.log(user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
@@ -48,10 +48,16 @@ const MyPage = () => {
 
   const savePhoto = () => {
     const sendFD = new FormData();
-    sendFD.append("profileImg", img);
+    sendFD.append("image", img);
 
     UserpageAPI.patchMyInfo(sendFD)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert("프로필 수정이 완료되었습니다.");
+        }
+      })
+
       .catch((err) => console.log(err));
   };
 
@@ -62,7 +68,9 @@ const MyPage = () => {
         <StTag>my</StTag>
         {!isEdit ? (
           <div>
-            <img alt="기본프로필사진" src="/myprofile_icon.png" />
+            <Image>
+              <img alt="기본프로필사진" src={user.profileImg} />
+            </Image>
             <div>{user.nickname}</div>
             <div>{user.gender}</div>
             <div>핸드폰번호 : {user.phone}</div>
@@ -91,7 +99,7 @@ const MyPage = () => {
 
               <input
                 id="upload-input"
-                defaultValue={user.profileImg}
+                // defaultValue={user.profileImg}
                 type="file"
                 onChange={(e) => {
                   handleImagePreview(e);

@@ -401,12 +401,24 @@ export const FinalBooking = styled.button`
 //     margin: 10px;
 //   }
 // `;
+
+export const MatchList = styled(BookMatch)`
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: ; */
+  flex-wrap: wrap;
+`;
 export const WaitingMatch = styled.div`
-  font-size: 10px;
+  font-size: 12px;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+
   border: 1px solid black;
-  width: fit-content;
+  width: 50%;
+  background-image: url(/test.png);
+  background-size: cover;
 `;

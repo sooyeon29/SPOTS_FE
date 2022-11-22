@@ -32,6 +32,7 @@ import {
   WrapAll,
   SelectDone2,
   WaitingMatch,
+  MatchList,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -580,27 +581,27 @@ const SpotsDetail = () => {
                         팀2
                       </Team>
                     </BookMatch>
-                    {waitMatchToday.map((waitMatch) => {
-                      return (
-                        <BookMatch>
+                    <MatchList>
+                      {waitMatchToday.map((waitMatch) => {
+                        return (
                           <WaitingMatch key={waitMatch.reservationId}>
-                            <div>
-                              <span>
-                                시간: {waitMatch.matchId.substring(0, 13)}
-                              </span>
-                              <span>팀이름: {waitMatch.teamName}</span>
-                            </div>
-                            <div>
-                              <span>경기인원: {waitMatch.member}</span>
-                              <span>
-                                단식/복식:
-                                {waitMatch.isDoubled ? "복식" : "단식"}
-                              </span>
-                            </div>
+                            {/* <div> */}
+                            <span>
+                              시간: {waitMatch.matchId.substring(0, 13)}
+                            </span>
+                            <span>팀이름: {waitMatch.teamName}</span>
+                            {/* </div>
+                            <div> */}
+                            <span>경기인원: {waitMatch.member}</span>
+                            <span>
+                              단식/복식:
+                              {waitMatch.isDoubled ? "복식" : "단식"}
+                            </span>
+                            {/* </div> */}
                           </WaitingMatch>
-                        </BookMatch>
-                      );
-                    })}
+                        );
+                      })}{" "}
+                    </MatchList>
                   </SelectTeam>
                   <Pick>
                     <One onClick={clickedToggleThree}>닫기</One>
