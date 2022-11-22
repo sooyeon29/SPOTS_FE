@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI, SignUpAPI } from "../../tools/instance";
-import { Red } from "../signUp/Styles";
+import { Red, StWrap } from "../signUp/Styles";
 
 const KakaoAdd = () => {
   const [isCode, setIsCode] = useToggle();
@@ -113,6 +113,7 @@ const KakaoAdd = () => {
     <>
       <Layout>
         <Header />
+        <StWrap>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             닉네임<Red>*</Red>
@@ -239,6 +240,7 @@ const KakaoAdd = () => {
           </div>
           <input type="submit" />
         </form>
+        </StWrap>
       </Layout>
     </>
   );

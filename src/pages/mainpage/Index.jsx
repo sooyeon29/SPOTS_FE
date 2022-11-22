@@ -67,7 +67,7 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        console.log(newSpot);
+        // console.log(newSpot);
       })
       .catch((err) => console.log(err));
   }, []);
