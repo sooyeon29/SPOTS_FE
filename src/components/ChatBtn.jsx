@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import ChatRoom from "../pages/chat/ChatRoom";
 
-const ChatBtn = () => {
-  const [openChat, setOpenChat] = useState(false);
-
+const ChatBtn = ({ chatHandler, chatRef }) => {
   return (
     <>
-      <Btn onClick={() => setOpenChat(!openChat)}>
+      <Btn onClick={chatHandler} ref={chatRef}>
         <img alt="chatBtn" src="/private.png" />
       </Btn>
-      {openChat ? <ChatRoom /> : null}
     </>
   );
 };

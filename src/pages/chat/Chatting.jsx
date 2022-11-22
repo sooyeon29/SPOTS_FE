@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Layout from "../../components/Layout";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
@@ -88,30 +87,32 @@ const Chatting = ({ socket, roomName }) => {
 export default Chatting;
 
 const StContainer = styled.div`
-  bottom: 40px;
+  bottom: 60px;
   right: 35px;
   position: fixed;
+  z-index: 999999;
+  left: 0px;
+  display: flex;
 `;
 
 const StWrap = styled.div`
-  width: 450px;
-  height: 600px;
+  width: 390px;
+  height: 550px;
   display: flex;
   flex-direction: column;
-  border-radius: 35px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
   border: 1px solid lightgray;
   background-color: #f8f8f8;
-  box-shadow: 15px 10px 30px #efeff0;
 `;
 
 const StHeader = styled.div`
-  height: 70px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #0000000d;
-  border-top-left-radius: 35px;
-  border-top-right-radius: 35px;
+  border-radius: 8px;
   div {
     font-size: 19px;
     font-weight: 700;
@@ -125,7 +126,7 @@ const StHeader = styled.div`
 `;
 
 const ChatBox = styled.div`
-  height: 485px;
+  height: 505px;
   overflow: scroll;
   border: none;
   margin: 10px 10px 0 10px;
@@ -139,7 +140,6 @@ const StForm = styled.form`
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 10px;
-  margin: 210px auto 0 auto;
   background-color: #0000000d;
   button {
     border: none;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Banner from "../../components/Banner";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
@@ -24,6 +24,8 @@ import TapBar from "../../components/TapBar";
 import { LoginAPI, PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import ChatBtn from "../../components/ChatBtn";
+import useDetectClose from "../../hooks/useDetectClose";
+import ChatRoom from "../chat/ChatRoom";
 
 const MainMaps = () => {
   const [sportsKind, setSportsKind] = useState("");
@@ -32,6 +34,10 @@ const MainMaps = () => {
   const futsal = "풋살장";
   const tennis = "테니스장";
   const badminton = "배드민턴장";
+
+  //chatbtn
+  const [chatOpen, chatRef, chatHandler] = useDetectClose(false);
+  const chatOpenRef = useRef(null);
 
   const settings = {
     dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
@@ -137,7 +143,8 @@ const MainMaps = () => {
             ))}
           </BannerSlider>
         </SpotContainer>
-        <ChatBtn />
+        <ChatBtn chatHandler={chatHandler} chatRef={chatRef} />
+        <ChatRoom chatOpen={chatOpen} chatOpenRef={chatOpenRef} />
         <TapBar />
       </Layout>
     </>

@@ -16,13 +16,42 @@ const UserPage = () => {
       <FlexibleHeader title={title} />
       <Container>
         <Profile>
-          <img alt="프로필이미지" src="/SidebarProfile.png"></img>
-          <div>{nickname}</div>
+          <img alt="프로필이미지" src="/myprofile_logo.png" />
+          <div>
+            <p>안녕하세요!</p>
+            <p>
+              {nickname}
+              <span>님</span>
+            </p>
+          </div>
         </Profile>
         <PointBox>
-          <h2>point</h2>
+          <div>총 보유 포인트</div>
           <h1>{Number(userPoint).toLocaleString("ko-KR")}</h1>
+          <div>P</div>
         </PointBox>
+        <MenuBox>
+          <img
+            alt="나의정보"
+            src="/my.png"
+            onClick={() => navigate("/mypage")}
+          />
+          <img
+            alt="팀관리"
+            src="/Teamsetting.png"
+            onClick={() => navigate("/teampage")}
+          />
+          <img
+            alt="나의예약리스트"
+            src="/myreservationlist.png"
+            onClick={() => navigate("/reservpage")}
+          />
+          <img
+            alt="나의구장등록"
+            src="/myplace.png"
+            onClick={() => navigate("/hostlist")}
+          />
+        </MenuBox>
       </Container>
       <TapBar />
     </Layout>
@@ -39,33 +68,86 @@ const Container = styled.div`
 
 const Profile = styled.div`
   width: 100%;
-  height: 120px;
+  height: 180px;
   display: flex;
   padding-top: 120px;
   padding-left: 100px;
-  background-color: skyblue;
+  background-color: #000000;
+  position: relative;
+  z-index: 1;
   img {
     width: 88px;
     height: 88px;
+    border: 4px solid #1746c7;
+    border-radius: 50px;
+    margin-top: -20px;
   }
   div {
-    margin: 30px 0 0 30px;
+    margin-top: -18px;
+    margin-left: 90px;
     font-size: 20px;
     font-weight: 700;
+    color: #fefefe;
+  }
+  p:first-child {
+    text-align: right;
+  }
+  p:last-child {
+    font-size: 40px;
+    margin-top: -5px;
+    margin-left: -35px;
+    span {
+      font-size: 20px;
+      margin-left: 10px;
+    }
   }
 `;
 
 const PointBox = styled.div`
-  width: 80%;
-  height: 80px;
+  width: 75%;
+  height: 119px;
   border-radius: 8px;
-  background-color: lightgreen;
-  h2 {
-    margin: 5px 0 0 10px;
+  background-color: #1746c7;
+  position: relative;
+  z-index: 2;
+  top: -60px;
+  color: #fefefe;
+
+  div {
+    margin: 18px 0 0 20px;
   }
   h1 {
-    position: absolute;
-    right: 60px;
-    top: 250px;
+    margin-right: 55px;
+    text-align: right;
+    margin-left: 105px;
+  }
+  div:last-child {
+    color: #49e7a5;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: black;
+    position: relative;
+    z-index: 2;
+    top: -59px;
+    left: 227px;
+  }
+`;
+
+const MenuBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 380px;
+  height: 390px;
+  margin-top: -40px;
+  padding: auto;
+  img {
+    width: 170px;
+    height: 170px;
+    margin: auto;
   }
 `;

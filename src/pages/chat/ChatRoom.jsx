@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { css } from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
-import { io } from "socket.io-client";
 import Chatting from "./Chatting";
+import socket from "../../tools/socket";
+import useDetectClose from "../../hooks/useDetectClose";
 
-const ChatRoom = () => {
-  const socket = io(process.env.REACT_APP_SOCKET, {
-    cors: {
-      origin: "http://localhost:3000",
-    },
-    transports: ["websocket", "polling"],
-  });
-
+const ChatRoom = ({ chatOpen, chatOpenRef }) => {
   const [inquiry, setInquiry] = useState(false);
   const [roomName, setRoomName] = useState();
+
+  // const [chattingOpen, chattingRef, chatttingHandler] = useDetectClose(false);
+  // const chattingOpenRef = useRef(null);
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {
@@ -32,7 +29,7 @@ const ChatRoom = () => {
       {inquiry ? (
         <Chatting socket={socket} roomName={roomName} />
       ) : (
-        <StContainer>
+        <StContainer isOpen={chatOpen} ref={chatOpenRef}>
           <StBox>
             <StHeader>
               <img alt="spots logo" src="/public.png" />
@@ -85,12 +82,20 @@ const Button = styled.button`
 `;
 
 const StContainer = styled.div`
-  bottom: 40px;
+  bottom: 60px;
   right: 35px;
   position: fixed;
-  z-index: 999999;
+  z-index: 9999;
   left: 0px;
-  display: flex;
+  visibility: hidden;
+  transition: 0.8s ease;
+  opacity: 0;
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      opacity: 1;
+      visibility: visible;
+    `}
 `;
 
 const StBox = styled.div`
@@ -98,7 +103,8 @@ const StBox = styled.div`
   height: 550px;
   display: flex;
   flex-direction: column;
-  border-radius: 30px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
   border: 1px solid lightgray;
   background-color: #f8f8f8;
 `;
