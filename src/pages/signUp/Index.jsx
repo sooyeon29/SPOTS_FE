@@ -315,7 +315,6 @@ const SignUp = () => {
                       placeholder='인증번호를 입력하세요'
                       type='text'
                       required
-                      name='code'
                       autoComplete='off'
                     />
                     <button

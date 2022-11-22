@@ -108,7 +108,7 @@ const Section = styled.div`
   bottom: 0;
   right: -300px;
   visibility: hidden;
-  transition: 1s ease;
+  transition: 0.8s ease;
   opacity: 0;
   z-index: 99999;
 

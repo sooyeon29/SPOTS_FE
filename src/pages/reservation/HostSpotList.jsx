@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { PrivateBlock, PublicBlock, Status } from './Style';
+import { PrivateBlock, PublicBlock, Status, PublicReserve } from './Style';
 
 const SpotList = ({ spotList }) => {
   const navigate = useNavigate();
-  console.log("----검색결과(사설)----", spotList?.private);
-  console.log("----검색결과(공공)----", spotList?.public);
+  // console.log("----검색결과(사설)----", spotList?.private);
+  // console.log("----검색결과(공공)----", spotList?.public);
 
   return (
     <>
@@ -36,27 +36,29 @@ const SpotList = ({ spotList }) => {
       })}
       {spotList?.public.map((pubSpot, idx) => {
         return (
-          <PublicBlock key={pubSpot.opensId}>
-            <div>
-              {pubSpot.minclassnm === '테니스장' ? (
-                <img alt='tennis img' src='/publicTennis.png' />
-              ) : (
-                <>
-                  {pubSpot.minclassnm === '풋살장' ? (
-                    <img alt='futsal img' src='/publicFutsal.png' />
-                  ) : (
-                    <img alt='badminton img' src='/publicBadminton.png' />
-                  )}
-                </>
-              )}
-            </div>
-            <div>
-              <Status>{pubSpot.svcstatnm}</Status>
-              <span>{pubSpot.placenm}</span>
-              <p>{pubSpot.svcnm}</p>
-              <p>서울시 {pubSpot.areanm}</p>
-            </div>
-          </PublicBlock>
+          <PublicReserve href={pubSpot.svcurl} target='_blank' key={pubSpot.opensId}>
+            <PublicBlock>
+              <div>
+                {pubSpot.minclassnm === '테니스장' ? (
+                  <img alt='tennis img' src='/publicTennis.png' />
+                ) : (
+                  <>
+                    {pubSpot.minclassnm === '풋살장' ? (
+                      <img alt='futsal img' src='/publicFutsal.png' />
+                    ) : (
+                      <img alt='badminton img' src='/publicBadminton.png' />
+                    )}
+                  </>
+                )}
+              </div>
+              <div>
+                <Status>{pubSpot.svcstatnm}</Status>
+                <span>{pubSpot.placenm}</span>
+                <p>{pubSpot.svcnm}</p>
+                <p>서울시 {pubSpot.areanm}</p>
+              </div>
+            </PublicBlock>
+          </PublicReserve>
         );
       })}
     </>
