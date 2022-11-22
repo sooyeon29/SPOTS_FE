@@ -1,9 +1,239 @@
 import styled from "styled-components";
+export const WrapAll = styled.div`
+  margin: 71px auto;
+`;
+
+export const Sports = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  font-weight: 700;
+  font-size: 16px;
+`;
+export const SpotPhoto = styled.div`
+  width: 95%;
+  max-width: 800px;
+  padding: 0px;
+  overflow: hidden;
+  /* background-color: lightcyan; */
+  border-radius: 10px;
+  img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: auto;
+  }
+`;
+export const PlaceInfo = styled.div`
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  div {
+    margin-top: 5px;
+  }
+`;
+export const Title = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+export const MoreInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  li {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+export const Calen = styled.div`
+  margin: 5px;
+
+  div {
+    background-color: white;
+    color: black;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 17px;
+
+    button {
+      margin-top: 18px;
+      cursor: pointer;
+    }
+  }
+`;
+export const SelectDone = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  height: 40px;
+  font-weight: bold;
+  max-width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #1646c7;
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+  }
+`;
+export const SelectDone2 = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 85%;
+  height: 40px;
+  font-weight: bold;
+  max-width: 800px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #eaeffc;
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: #1646c7;
+    font-size: 15px;
+    cursor: pointer;
+  }
+`;
+export const ExitBut = styled.button`
+  cursor: pointer;
+  width: 10%;
+`;
+export const CalTime = styled.div`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 800px;
+  padding: 10px 0px;
+  margin-bottom: 10px;
+  p {
+    margin-left: 20px;
+  }
+  span {
+    margin-left: 20px;
+    font-weight: bold;
+  }
+`;
+export const Times = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  button {
+    /* color: ${(props) => (props.butColor ? "auto" : "red")}; */
+    cursor: pointer;
+    background: #ffffff;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    border: #d9d9d9;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    width: 100%;
+    height: 44px;
+    font-weight: 400;
+    font-size: 15px;
+    &:hover {
+      background: #d9d9d9;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+`;
+export const SelectChoice = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+`;
+
+export const TeamSelect = styled.select`
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  width: 60%;
+  height: 50px;
+  max-width: 800px;
+  padding: 10px 10px;
+  font-size: 15px;
+  margin-left: 10px;
+`;
+
+export const Counter = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 20px;
+  button {
+    width: 25px;
+    height: 25px;
+    background: #d9d9d9;
+    border: #d9d9d9;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  span {
+    margin: 0px 20px;
+    font-size: 18px;
+  }
+`;
+
+export const FindMatch = styled.button`
+  background: #d9d9d9;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  border: #d9d9d9;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
+export const MainInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0px;
+  padding: 10px;
+`;
 
 export const Wrap = styled.div`
-  width: 90%;
   border: 1px solid black;
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 0px 20px 0px 0px;
   display: flex;
   flex-direction: column;
@@ -11,32 +241,7 @@ export const Wrap = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const MainInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* align-items: center; */
-  width: 100%;
-  margin: 0px;
-  padding: 10px;
-`;
-export const Title = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-`;
 
-export const SpotPhoto = styled.div`
-  width: 55%;
-  padding: 0px;
-  overflow: hidden;
-  background-color: lightcyan;
-  img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    margin: auto;
-  }
-`;
 export const SpotInfo = styled.div`
   width: 45%;
   display: flex;
@@ -56,19 +261,6 @@ export const SpotInfo = styled.div`
     margin: 7px auto 0px 3px;
   }
 `;
-export const MoreInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    span {
-      font-size: 10px;
-    }
-  }
-`;
 
 export const TimeDate = styled.div`
   /* display: flex; */
@@ -83,49 +275,7 @@ export const SelectList = styled.div`
     font-weight: bold;
   }
 `;
-export const CalTime = styled.div`
-  display: flex;
-  padding: 5px;
-  width: 100%;
-  div {
-    /* width: 50%; */
-    div {
-      margin: auto;
-      background-color: white;
-      color: black;
-    }
-  }
-`;
-export const Times = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 170%;
-  justify-content: center;
-  align-items: center;
-  button {
-    background: #f5f5f5;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    border: #d9d9d9;
-    border-radius: 8px;
-    margin-bottom: 3px;
-    height: 22px;
-    width: 120px;
-    &:hover {
-      background: #d9d9d9;
-      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    }
-  }
-`;
-export const FindMatch = styled.button`
-  display: flex;
-  justify-content: center;
-  margin: 0px auto 10px auto;
-  width: 98%;
-  background: #d9d9d9;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border: #d9d9d9;
-  border-radius: 8px;
-`;
+
 export const SelectTeam = styled.div`
   flex-direction: column;
   width: 100%;
@@ -133,18 +283,30 @@ export const SelectTeam = styled.div`
 export const BookMatch = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 export const Time = styled.div`
+  margin-top: 12px;
+  margin-left: 20px;
   /* width: 100%; */
 `;
 export const Team = styled.button`
-  width: 100px;
-  height: 27px;
-  margin: 0px auto 3px auto;
-  background: #f5f5f5;
+  background: #ffffff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  border: #bcbcbc;
+  border: #d9d9d9;
+  border-radius: 8px;
+  margin-left: 10px;
+  margin-bottom: 6px;
+  width: 100px;
+  height: 44px;
+  font-weight: 400;
+  font-size: 15px;
+  cursor: pointer;
+  &:hover {
+    background: #d9d9d9;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export const YourSelect = styled.div`
@@ -171,16 +333,14 @@ export const ShowDateTime = styled.div`
   align-items: center;
   padding: 10px;
 `;
-export const Line = styled.div`
-  width: 98%;
-  height: 1px;
-  background-color: black;
-  margin: 5px auto;
-`;
+
 export const NoMatchBook = styled.button`
   margin: 10px auto;
+  cursor: pointer;
 `;
-export const BookingBut = styled.button``;
+export const BookingBut = styled.button`
+  cursor: pointer;
+`;
 export const Pick = styled.div`
   display: flex;
   height: 38px;
@@ -190,7 +350,7 @@ export const Pick = styled.div`
   background-color: #f8f9fd;
   border: 1px solid #f1f3f7;
   border-radius: 8px;
-  margin: 40px auto 20px auto;
+  margin: 10px auto 20px auto;
 `;
 export const One = styled.button`
   z-index: 2;
@@ -200,6 +360,12 @@ export const One = styled.button`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #e9ebec;
   border-radius: 7px;
   border: 0px;
+  /* margin-right: 3%; */
+  cursor: pointer;
+  &:hover {
+    background: #d9d9d9;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
 `;
 export const Two = styled.button`
   width: 50%;
@@ -208,4 +374,38 @@ export const Two = styled.button`
   align-items: center;
   cursor: pointer;
   border: 0px;
+`;
+export const FinalBooking = styled.button`
+  display: flex;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 1; */
+  width: 95%;
+  background-color: #bcbcbc;
+  border: 1px solid #f1f3f7;
+  border-radius: 8px;
+  margin: 10px auto 20px auto;
+  cursor: pointer;
+`;
+export const MakeMatch = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const GoMatch = styled.div`
+  button {
+    height: 95%;
+    margin: 10px;
+  }
+`;
+export const WaitingMatch = styled.div`
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: fit-content;
 `;

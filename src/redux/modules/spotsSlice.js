@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PrivateApi, PublicApi } from "../../tools/instance";
+import { PrivateApi, PublicApi, SearchApi } from "../../tools/instance";
 
 const initialState = {
   privateSpot: [],
   myPrivateSpot: [],
   publicSpot: [],
+  message: "",
   isLoading: false,
   error: "",
 };
@@ -14,7 +15,6 @@ export const __getPrivateSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.getPrivateSpot();
-      // console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -41,7 +41,7 @@ export const __deletePrivateSpot = createAsyncThunk(
     try {
       const { data } = await PrivateApi.deletePrivateSpot(payload);
       console.log("삭제할때 데이타!!", data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -55,7 +55,7 @@ export const __editPrivateSpot = createAsyncThunk(
     try {
       const { data } = await PrivateApi.editPrivateSpot(payload);
       console.log("수정할때 데이타!!", data);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -67,7 +67,33 @@ export const __getPublicSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PublicApi.getPublicSpot();
-      console.log(data);
+      // console.log(data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __getSearchedSpot = createAsyncThunk(
+  "getSearchedSpots",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await SearchApi.getSearchedSpot(payload);
+      // console.log("----데이터----", data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      // console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __getAllSpot = createAsyncThunk(
+  "getAllSpots",
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await SearchApi.getAllSpot();
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -111,10 +137,10 @@ const privateSlice = createSlice({
     },
     [__deletePrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
-      state.myPrivateSpot = action.payload;
       alert(action.payload);
-      window.location.reload();
+      state.myPrivateSpot = state.myPrivateSpot.filter(
+        (privSpot) => action.payload !== privSpot.placesId
+      );
     },
     [__deletePrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
@@ -127,10 +153,19 @@ const privateSlice = createSlice({
     },
     [__editPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
-      state.myPrivateSpot = action.payload;
-      alert(action.payload);
-      window.location.reload();
+      state.message = action.payload.message;
+      alert(action.payload.message);
+      console.log(action.payload.data);
+      state.myPrivateSpot = state.myPrivateSpot.map((spot) =>
+        spot.placesId === action.payload.data.placesId
+          ? {
+              ...spot,
+              spotName: action.payload.data.spotName,
+              desc: action.payload.data.desc,
+              price: action.payload.data.price,
+            }
+          : spot
+      );
     },
     [__editPrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
@@ -146,6 +181,29 @@ const privateSlice = createSlice({
       state.publicSpot = action.payload;
     },
     [__getPublicSpot.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    [__getSearchedSpot.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getSearchedSpot.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.searchedSpot = action.payload;
+    },
+    [__getSearchedSpot.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getAllSpot.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getAllSpot.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.allSpot = action.payload;
+    },
+    [__getAllSpot.pending]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

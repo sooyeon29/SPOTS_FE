@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import Slider from 'react-slick';
+import styled from 'styled-components';
 
+export const MainBanner = styled.img`
+  margin-top: 62px;
+  width: 100%;
+`
 export const UpperLine = styled.div`
   width: 80%;
   display: flex;
@@ -20,6 +25,7 @@ export const UpperLine = styled.div`
 
   span {
     margin-right: 10px;
+    font-weight: 600;
   }
 
   span:first-child {
@@ -38,7 +44,7 @@ export const SearchBox = styled.form`
 export const Container = styled.div`
   background-color: #fff;
   width: auto;
-  padding: 10px;
+  /* padding: 10px; */
   border-radius: 10px;
   background-color: #d5f103;
   border: solid 2px white;
@@ -69,7 +75,88 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 43%;
+  top: 370px;
   right: 8%;
   position: absolute;
 `;
+
+export const BannerSlider = styled(Slider)`
+  .slick-slide div {
+    /* border-radius: 10px; */
+    margin: 0px 10px 0px 0px;
+  }
+  .slick-dots {
+    color: red;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 20px 10px rgba(0,0,0,0.1);
+  /* border: 2px solid #49E7A5; */
+  margin-bottom: 80px;
+`;
+
+export const SpotContainer = styled.div`
+  overflow: hidden;
+  /* width: 50%; */
+  /* height: 300px; */
+  /* background-color: ghostwhite; */
+  margin-bottom: 100px;
+`;
+
+export const New = styled.div`
+border: 2px sold black;
+width: 80%;
+`;
+
+export const Section = styled.div`
+  margin:30px 0px 10px 10px;
+  font-weight: 600;
+`
+
+export const InfoDiv = styled.div`
+  background-color: #fff;
+  padding: 10px;
+  width: 260px;
+  border-radius: 10px;
+  position: absolute;
+  top: 60%;
+  box-shadow: 0px 20px 10px rgba(0,0,0,0.1);
+  display: flex;
+  /* border: 2px solid #49E7A5; */
+
+`
+
+
+export const Icon = styled.img`
+  height: 25px;
+  margin-bottom: 5px;
+`
+
+export const LinkIcon = styled.div`
+  background-color: #EAEFFC;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #1746C7;
+  font-weight: 900;
+  cursor: pointer;
+
+`
+
+export const Info = styled.div`
+width: 200px;
+`
+
+export const SpotName = styled.div`
+font-weight: 600;
+
+`

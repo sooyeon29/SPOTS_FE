@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const TapBar = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
   return (
     <Container>
       <div>
@@ -17,10 +19,15 @@ const TapBar = () => {
         <TbCalendarTime size="28" />
       </div>
       <div>
-        <FiSearch size="25" />
+        <FiSearch size="25" onClick={() => navigate("/book")} />
       </div>
       <div>
-        <IoPersonOutline size="27" />
+        <IoPersonOutline
+          size="27"
+          onClick={() => {
+            !token ? navigate("/login") : navigate("/userpage");
+          }}
+        />
       </div>
     </Container>
   );
@@ -32,9 +39,9 @@ const Container = styled.div`
   width: 100%;
   height: 60px;
   background-color: #ffffff;
-  position: absolute;
-  top: 800px;
-  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
   display: flex;
   justify-content: space-between;
   div {

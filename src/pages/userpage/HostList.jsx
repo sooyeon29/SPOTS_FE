@@ -25,7 +25,6 @@ const HostList = () => {
     dispatch(__getMyPrivateSpot());
   }, []);
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
-  // state.spots);
   console.log(placeList);
 
   const deleteHostHandler = (id) => {

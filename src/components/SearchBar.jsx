@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
 
-const Search = () => {
+const SearchBar = () => {
   // const navigate = useNavigate();
-  const [keywords, setKeywords] = useState('');
+  const [keywords, setKeywords] = useState("");
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
@@ -23,23 +23,23 @@ const Search = () => {
     <StSearch>
       <form onSubmit={onSearchHandler}>
         {/* <SearchBar> */}
-          <StInput
-            type='text'
-            value={keywords}
-            placeholder='어떤 스팟을 찾으시나요?'
-            onChange={(e) => {
-              setKeywords(e.target.value);
-            }}
-          />
-          <StBtn type="button">
-            <BsSearch style={{ color: 'white', cursor: 'pointer' }} />
-          </StBtn>
+        <StInput
+          type="text"
+          value={keywords}
+          placeholder="어떤 스팟을 찾으시나요?"
+          onChange={(e) => {
+            setKeywords(e.target.value);
+          }}
+        />
+        <StBtn type="button">
+          <BsSearch style={{ color: "white", cursor: "pointer" }} />
+        </StBtn>
         {/* </SearchBar> */}
       </form>
     </StSearch>
   );
 };
-export default Search;
+export default SearchBar;
 
 const StSearch = styled.div`
   width: 100%;
@@ -58,7 +58,7 @@ const StSearch = styled.div`
 
 const StInput = styled.input`
   width: 130px;
-  background-color: transparent;
+  background-color: black;
   border: none;
   display: flex;
   padding: 0;

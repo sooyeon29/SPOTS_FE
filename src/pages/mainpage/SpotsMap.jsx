@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import { __getPublicSpot } from "../../redux/modules/spotsSlice";
-import { Container, Title } from "./Styles";
+import { Container, Title, MylocationBtn } from "./Styles";
 
 const SpotsMap = ({ sportsKind }) => {
   const getPrivSpot = useDispatch();
@@ -35,8 +35,8 @@ const SpotsMap = ({ sportsKind }) => {
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
   );
-  console.log("---------사설시설-----------", privateSpot);
-  console.log("---------공공시설-----------", publicSpot);
+  // console.log("---------사설시설-----------", privateSpot);
+  // console.log("---------공공시설-----------", publicSpot);
 
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
@@ -48,10 +48,10 @@ const SpotsMap = ({ sportsKind }) => {
     setIsPrivateOpen(false);
   };
 
-  const pub = useSelector((state) => state?.spots)
-  console.log(pub);
+  const pub = useSelector((state) => state?.spots);
+  // console.log(pub);
 
-  useEffect(() => {
+  const locationHandler = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -79,7 +79,7 @@ const SpotsMap = ({ sportsKind }) => {
         isLoading: false,
       }));
     }
-  }, []);
+  };
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -100,13 +100,10 @@ const SpotsMap = ({ sportsKind }) => {
           height: "500px",
           margin: "auto",
         }}
-        level={5} // 지도의 확대 레벨
+        level={8} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
-
-        {/* 현재위치 */}
-        <MapMarker position={state.center} />
 
         {privateSpot.map((place, idx) => {
           if (sportsKind === "") {

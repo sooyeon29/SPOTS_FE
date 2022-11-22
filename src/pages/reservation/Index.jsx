@@ -4,51 +4,51 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import SpotList from './HostSpotList';
-import { StWrap, MapPlace, PlaceList, Status } from './Style';
-import SpotsMap from '../reservation/SpotsMap';
+import { FaSearchLocation } from 'react-icons/fa'
 import {
-  __getPrivateSpot,
-  __getPublicSpot,
+  StWrap,
+  MapPlace,
+  PlaceList,
+  Index,
+  SearchTerm,
+  StSearch,
+  SearchInput,
+} from './Style';
+import SpotsMap from '../reservation/SpotsMap';
+import SearchBar from '../../components/SearchBar';
+import {
+  __getAllSpot,
+  __getSearchedSpot,
 } from '../../redux/modules/spotsSlice';
-import { SearchApi } from '../../tools/instance';
+import TapBar from '../../components/TapBar';
+import FlexibleHeader from '../../components/FlexibleHeader';
 
 const Reservation = () => {
+  const [keywords, setKeywords] = useState('');
   const dispatch = useDispatch();
   const params = useParams();
-  const [searchedSpots, setsearchedSpots] = useState();
-  const { isLoading, error, privateSpot, publicSpot } = useSelector(
+  const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
-  const searchTerm = params.keywords;
-  // console.log('검색어', searchTerm);
-  // console.log('파라미터', params);
-
-  const allSpots = [...(privateSpot || []), ...(publicSpot || [])];
-  console.log('---------전체시설-----------', allSpots);
+  const title = '스팟 검색';
+  // const searchTerm = params.keyword;
+  // console.log("키워드", searchTerm);
+  // console.log("파람", params);
 
   useEffect(() => {
     if (!params.keywords) {
-      return;
+      dispatch(__getAllSpot());
+    } else {
+      dispatch(__getSearchedSpot(params.keywords));
     }
-    async function fetchData() {
-      const searched = await SearchApi.getSearchedSpot(params.keywords);
-
-      setsearchedSpots([
-        ...searched.data.data.private,
-        ...searched.data.data.public,
-      ]);
-    }
-    fetchData();
   }, []);
 
-  useEffect(() => {
-    dispatch(__getPrivateSpot());
-    dispatch(__getPublicSpot());
-  }, []);
-
-  const placeList = useSelector((state) => state.spots.privateSpot);
-  // console.log('---------지도로들어감-----------', placeList);
-  // console.log('---------검색결과-----------', searchedSpots);
+  const onSearchHandler = async (e) => {
+    e.preventDefault();
+    window.location.href = "/book/" + keywords;
+  }
+  // console.log("---검색---", searchedSpot);
+  // console.log("---전체---", allSpot);
 
   if (isLoading) {
     return <div>로딩 중....</div>;
@@ -61,20 +61,63 @@ const Reservation = () => {
   return (
     <>
       <Layout>
-        <Header />
-        <h1>{params.keywords} 검색 결과</h1>
+        <FlexibleHeader title={title} />
         <StWrap>
-          <MapPlace>{/* <SpotsMap placeList={placeList} /> */}</MapPlace>
+          <StSearch>
+          <FaSearchLocation />
+            <form onSubmit={onSearchHandler}>
+              <SearchInput
+                type='text'
+                // value={keywords}
+                defaultValue={keywords}
+                placeholder='지역, 스팟 이름으로 찾기'
+                onChange={(e) => {
+                  setKeywords(e.target.value);
+                }}
+              />
+            </form>
+          </StSearch>
+          <SearchTerm>
+            {/* {!params.keywords ? (
+              null
+            ) : (
+              <>
+                <h4>'{params.keywords}' 스팟 검색 결과</h4>
+              </>
+            )} */}
+          </SearchTerm>
+          <MapPlace>
+            {!params.keywords ? (
+              <>
+                {/* {console.log("-----No Params-----", allSpot)} */}
+                <SpotsMap spotMarkers={allSpot} />
+              </>
+            ) : (
+              <>
+                {/* {console.log("-----Yes Params-----", searchedSpot)} */}
+                <SpotsMap spotMarkers={searchedSpot} />
+              </>
+            )}
+          </MapPlace>
+          <Index>
+            <img alt='공공스팟' src='/public.png' />
+            <div>공공스팟</div>
+            <img alt='사설스팟' src='/private.png' />
+            <div>사설스팟</div>
+          </Index>
           <PlaceList>
-            {!params.keywords &&
-              allSpots?.map((searchedSpot, index) => {
-                return <SpotList key={index} searchedSpot={searchedSpot} />;
-              })}
-            {searchedSpots?.map((searchedSpot, index) => {
-              return <SpotList key={index} searchedSpot={searchedSpot} />;
-            })}
+            {!params.keywords ? (
+              <>
+                <SpotList spotList={allSpot} />
+              </>
+            ) : (
+              <>
+                <SpotList spotList={searchedSpot} />
+              </>
+            )}
           </PlaceList>
         </StWrap>
+        <TapBar />
       </Layout>
     </>
   );

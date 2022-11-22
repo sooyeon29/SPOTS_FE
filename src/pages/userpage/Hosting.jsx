@@ -12,7 +12,6 @@ import {
   StWrap,
   Upload,
   UploadInput,
-  UploadInputDesign,
 } from "./Styles";
 
 const { kakao } = window;
@@ -112,14 +111,6 @@ const Hosting = () => {
       }
       console.log(x, y);
 
-      // const data = {
-      //   ...spot,
-      //   comforts: checkedList,
-      //   address: fullyAddress,
-      //   x: x,
-      //   y: y,
-      // };
-
       const sendFD = new FormData();
       sendFD.append("image", img);
       sendFD.append("comforts", checkedList);
@@ -137,7 +128,7 @@ const Hosting = () => {
           console.log(res);
           if (res.status === 201) {
             alert("스팟 등록이 완료되었습니다");
-            navigate("/");
+            navigate("/hostlist");
           }
         })
         .catch((error) => {
@@ -166,11 +157,6 @@ const Hosting = () => {
               <select
                 onChange={(e) => {
                   setSports(e.target.value);
-                  // const { value } = e.target;
-                  // setSpot({
-                  //   ...spot,
-                  //   sports: value,
-                  // });
                 }}
               >
                 <option>선택하세요</option>
@@ -186,11 +172,6 @@ const Hosting = () => {
                 type="text"
                 onChange={(e) => {
                   setSpotName(e.target.value);
-                  // const { value } = e.target;
-                  // setSpot({
-                  //   ...spot,
-                  //   spotName: value,
-                  // });
                 }}
               />
             </div>
@@ -220,9 +201,6 @@ const Hosting = () => {
                   }}
                   multiple="multiple"
                 ></UploadInput>
-                {/* <UploadInputDesign htmlFor="upload-input">
-                  사진 추가
-                </UploadInputDesign> */}
               </Upload>
             </Photo>
 
@@ -231,11 +209,6 @@ const Hosting = () => {
               <select
                 onChange={(e) => {
                   setSpotKind(e.target.value);
-                  // const { value } = e.target;
-                  // setSpot({
-                  //   ...spot,
-                  //   spotKind: value,
-                  // });
                 }}
               >
                 <option>선택하세요</option>
@@ -328,11 +301,6 @@ const Hosting = () => {
                 type="text"
                 onChange={(e) => {
                   setPrice(e.target.value);
-                  // const { value } = e.target;
-                  // setSpot({
-                  //   ...spot,
-                  //   price: parseInt(value),
-                  // });
                 }}
               />
               원
@@ -346,11 +314,6 @@ const Hosting = () => {
                 type="text"
                 onChange={(e) => {
                   setDesc(e.target.value);
-                  // const { value } = e.target;
-                  // setSpot({
-                  //   ...spot,
-                  //   desc: value,
-                  // });
                 }}
               />
             </div>

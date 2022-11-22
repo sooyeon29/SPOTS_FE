@@ -10,13 +10,11 @@ import Layout from "../../components/Layout";
 
 const TeamDetail = () => {
   const { id } = useParams();
-  const { teamdetail } = useSelector((state) => state.user);
-  console.log(teamdetail);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const memberRef = useRef();
   const adminRef = useRef();
+  const { teamdetail } = useSelector((state) => state.user);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
   useEffect(() => {
@@ -90,7 +88,6 @@ const TeamDetail = () => {
                       console.log(res);
                       if (res.status === 201) {
                         alert("수정이 완료되었습니다.");
-                        // window.location.reload();
                       }
                     })
                     .catch((err) => {
