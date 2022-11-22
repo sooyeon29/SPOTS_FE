@@ -10,19 +10,21 @@ import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import { Red } from "../signUp/Styles";
 
 const Kakao = () => {
-  console.log(window.location.href);
+  // console.log(window.location.href);
   // const [isLogin, setIsLogin] = useState(false);
   const [isCode, setIsCode] = useToggle();
   const navigate = useNavigate();
   // 인가코드
   const PARAMS = new URL(document.location).searchParams;
   const KAKAO_CODE = PARAMS.get("code");
-  console.log(KAKAO_CODE);
+  // console.log(KAKAO_CODE);
   useEffect(() => {
     LoginAPI.kakaoLogin(KAKAO_CODE)
       .then((res) => {
-        console.log(res);
-
+        // console.log(res);
+        // localStorage.setItem("token", JSON.stringify(res.data));
+        // const isMember = localStorage.getItem("token");
+        // if (res.data.code === 1) {
         localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
         if (res.status === 200) navigate(`/`);
       })
