@@ -32,19 +32,22 @@ export const LoginAPI = {
   kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
 
   // 인증번호
-  postforVCode: (payload) => instance.post(`users/sendSms`, payload),
+  postforFindIdPw: (payload) => instance.post(`users/sendSms`, payload), //-> 아이디비밀번호찾기시
+  postforVCode: (payload) => instance.post(`users/signupSms`, payload), //-> 회원가입시
   postforCheckVCode: (payload) => instance.post(`users/checkSms`, payload),
   // 아이디 찾기
   findId: (payload) =>
+    // console.log(payload),
     instance.post(`users/findId`, {
-      phone: payload.phoneNum,
-      code: payload.veriCode,
+      phone: payload.phone.phone,
+      code: payload.code.code,
     }),
   findPw: (payload) =>
+    // console.log(payload),
     instance.post(`users/findPw`, {
-      loginId: payload.id,
-      phone: payload.phoneNum,
-      code: payload.veriCode,
+      loginId: payload.loginId.id,
+      phone: payload.phone.phone,
+      code: payload.code.vericode,
     }),
 };
 
@@ -70,6 +73,7 @@ export const UserpageAPI = {
     }),
   deleteTeam: (payload) => instance.delete(`teams/${payload}`),
   patchMyInfo: (payload) => instance.patch(`users/me`, payload),
+  patchMyPhoto: (payload) => instance.patch(`users/profileImg`, payload),
   patchMyTeam: (payload) => instance.patch(`teams`, payload),
   dropOutMe: (payload) => instance.patch(`users/drop`, payload),
   switchMe: (payload) => instance.patch(`users/cancelDrop`, payload),

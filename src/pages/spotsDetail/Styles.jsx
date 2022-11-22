@@ -15,6 +15,7 @@ export const SpotPhoto = styled.div`
   max-width: 800px;
   padding: 0px;
   overflow: hidden;
+  margin: auto;
   /* background-color: lightcyan; */
   border-radius: 10px;
   img {
@@ -26,7 +27,7 @@ export const SpotPhoto = styled.div`
   }
 `;
 export const PlaceInfo = styled.div`
-  margin-top: 10px;
+  margin: auto;
   padding: 10px 20px;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
@@ -57,15 +58,13 @@ export const MoreInfo = styled.div`
   }
 `;
 export const Calen = styled.div`
-  margin: 5px;
-
+  margin: 5px auto 0px auto;
   div {
     background-color: white;
     color: black;
     padding: 6px;
     border-radius: 10px;
     font-size: 17px;
-
     button {
       margin-top: 18px;
       cursor: pointer;
@@ -82,9 +81,9 @@ export const SelectDone = styled.div`
   padding: 10px 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px auto 0px auto;
   background-color: #1646c7;
   button {
     display: flex;
@@ -112,7 +111,7 @@ export const SelectDone2 = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px auto 0px auto;
   background-color: #eaeffc;
   button {
     display: flex;
@@ -138,7 +137,7 @@ export const CalTime = styled.div`
   width: 95%;
   max-width: 800px;
   padding: 10px 0px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   p {
     margin-left: 20px;
   }
@@ -214,67 +213,67 @@ export const Counter = styled.div`
   }
 `;
 
-export const FindMatch = styled.button`
-  background: #d9d9d9;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border: #d9d9d9;
-  border-radius: 10px;
-  cursor: pointer;
-`;
+// export const FindMatch = styled.button`
+//   background: #d9d9d9;
+//   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+//   border: #d9d9d9;
+//   border-radius: 10px;
+//   cursor: pointer;
+// `;
 
-export const MainInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0px;
-  padding: 10px;
-`;
+// export const MainInfo = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   width: 100%;
+//   margin: 0px;
+//   padding: 10px;
+// `;
 
-export const Wrap = styled.div`
-  border: 1px solid black;
-  margin-top: 10px;
-  padding: 0px 20px 0px 0px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
+// export const Wrap = styled.div`
+//   border: 1px solid black;
+//   margin-top: 10px;
+//   padding: 0px 20px 0px 0px;
+//   display: flex;
+//   flex-direction: column;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-export const SpotInfo = styled.div`
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: first baseline;
-  padding: 10px;
-  /* height: 400px; */
-  span {
-    font-size: 10px;
-    margin: 7px auto 7px 0px;
-  }
-  p {
-    font-size: 10px;
-    margin: 0px;
-  }
-  h5 {
-    margin: 7px auto 0px 3px;
-  }
-`;
+// export const SpotInfo = styled.div`
+//   width: 45%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: first baseline;
+//   padding: 10px;
+//   /* height: 400px; */
+//   span {
+//     font-size: 10px;
+//     margin: 7px auto 7px 0px;
+//   }
+//   p {
+//     font-size: 10px;
+//     margin: 0px;
+//   }
+//   h5 {
+//     margin: 7px auto 0px 3px;
+//   }
+// `;
 
-export const TimeDate = styled.div`
-  /* display: flex; */
-  width: 100%;
-  padding: 10px;
-`;
-export const SelectList = styled.div`
-  /* width: 55%; */
-  span {
-    font-size: 12px;
-    margin-left: 5px;
-    font-weight: bold;
-  }
-`;
+// export const TimeDate = styled.div`
+//   /* display: flex; */
+//   width: 100%;
+//   padding: 10px;
+// `;
+// export const SelectList = styled.div`
+//   /* width: 55%; */
+//   span {
+//     font-size: 12px;
+//     margin-left: 5px;
+//     font-weight: bold;
+//   }
+// `;
 
 export const SelectTeam = styled.div`
   flex-direction: column;
@@ -309,38 +308,38 @@ export const Team = styled.button`
   }
 `;
 
-export const YourSelect = styled.div`
-  margin: auto;
-  padding: 30px;
+// export const YourSelect = styled.div`
+//   margin: auto;
+//   padding: 30px;
 
-  div {
-    display: flex;
-  }
-  select {
-    margin: 10px;
-  }
-  input {
-    margin: 10px;
-  }
-`;
-export const ShowDateTime = styled.div`
-  width: 90%;
-  border: 1px solid black;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-`;
+//   div {
+//     display: flex;
+//   }
+//   select {
+//     margin: 10px;
+//   }
+//   input {
+//     margin: 10px;
+//   }
+// `;
+// export const ShowDateTime = styled.div`
+//   width: 90%;
+//   border: 1px solid black;
+//   height: 150px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 10px;
+// `;
 
-export const NoMatchBook = styled.button`
-  margin: 10px auto;
-  cursor: pointer;
-`;
-export const BookingBut = styled.button`
-  cursor: pointer;
-`;
+// export const NoMatchBook = styled.button`
+//   margin: 10px auto;
+//   cursor: pointer;
+// `;
+// export const BookingBut = styled.button`
+//   cursor: pointer;
+// `;
 export const Pick = styled.div`
   display: flex;
   height: 38px;
@@ -390,22 +389,36 @@ export const FinalBooking = styled.button`
   margin: 10px auto 20px auto;
   cursor: pointer;
 `;
-export const MakeMatch = styled.div`
+// export const MakeMatch = styled.div`
+//   display: flex;
+//   flex-direction: row;
+// `;
+// export const GoMatch = styled.div`
+//   button {
+//     height: 95%;
+//     margin: 10px;
+//   }
+// `;
+
+export const MatchList = styled(BookMatch)`
+  margin: 10px;
   display: flex;
   flex-direction: row;
-`;
-export const GoMatch = styled.div`
-  button {
-    height: 95%;
-    margin: 10px;
-  }
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /* display: flex;
+  flex-direction: column; */
 `;
 export const WaitingMatch = styled.div`
-  font-size: 10px;
+  font-size: 12px;
+  color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  border: 1px solid black;
-  width: fit-content;
+  width: 45%;
+  margin: 3px;
+  background-image: url(/test.png);
+  background-size: cover;
+  /* border-radius: 40px; */
 `;

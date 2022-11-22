@@ -20,16 +20,6 @@ const KakaoAdd = () => {
   const navigate = useNavigate();
   const isMember = localStorage.getItem("loginId");
   console.log(isMember);
-  //   useEffect(() => {
-  //     LoginAPI.kakaoId(isMember)
-  //       .then((res) => {
-  //         if (res.data.code !== 1) navigate(`/`);
-  //       })
-
-  //       .catch((err) =>
-  //         console.log("에러ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ", err)
-  //       );
-  //   }, []);
 
   const onSubmit = async (data) => {
     // 소셜로그인용 인스턴스 만들어서 바꿔주어야함!
@@ -39,29 +29,10 @@ const KakaoAdd = () => {
         if (res.status === 201) {
           alert("회원가입을 환영합니다!");
           navigate(`/`);
-          // LoginAPI.kakaoId(isMember)
-          //   .then((res) => {
-          //     console.log(res);
-          //     localStorage.setItem("token", res.data.accessToken);
-          //     console.log(res.data.accessToken);
-          //     ;
-          //   })
-          //   .catch((err) => console.log(err));
         }
       })
-
       .catch((error) => {
         console.log(error);
-        // const errorMsg = error.response.data.code;
-        // if (errorMsg === -3) {
-        //   alert("사용 중인 번호입니다");
-        // }
-        // if (errorMsg === -4) {
-        //   alert("해당 추천인 ID가 없습니다");
-        // }
-        // if (errorMsg === -5) {
-        //   alert("비밀번호를 확인해주세요");
-        // }
       });
   };
 
