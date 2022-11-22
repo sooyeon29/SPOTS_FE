@@ -2,8 +2,8 @@ import axios from "axios";
 const isLogin = localStorage.getItem("token");
 
 const instance = axios.create({
-  // baseURL: "https://ws-study.shop/",
-  baseURL: "https://sparta4.shop/",
+  baseURL: "https://ws-study.shop/",
+  // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
   headers: {
@@ -33,7 +33,9 @@ export const LoginAPI = {
 
   // 인증번호
   postforVCode: (payload) => instance.post(`users/sendSms`, payload),
-  postforCheckVCode: (payload) => instance.post(`users/checkSms`, payload),
+  postforCheckVCode: (payload) =>
+    // console.log(payload),
+    instance.post(`users/checkSms`, payload),
   // 아이디 찾기
   findId: (payload) =>
     instance.post(`users/findId`, {
