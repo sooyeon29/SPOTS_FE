@@ -50,7 +50,7 @@ const MyPage = () => {
     const sendFD = new FormData();
     sendFD.append("image", img);
 
-    UserpageAPI.patchMyInfo(sendFD)
+    UserpageAPI.patchMyPhoto(sendFD)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
@@ -60,7 +60,7 @@ const MyPage = () => {
 
       .catch((err) => console.log(err));
   };
-
+  console.log("마이페이지유저", user);
   return (
     <Layout>
       <Header />

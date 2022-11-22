@@ -221,7 +221,7 @@ const SignUp = () => {
   };
   const checkVCode = () => {
     // const code = getValues("code");
-    console.log(code);
+    // console.log(code);
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
       .then((res) => {

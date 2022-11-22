@@ -77,6 +77,9 @@ const userSlice = createSlice({
       // console.log("요기에러------------", action.payload);
       if (action.payload.response.status === 401) {
         alert("예약은 로그인 후 이용 가능합니다.");
+      }
+      if (action.payload.response.status === 404) {
+        alert("등록한 팀이 없습니다. 예약은 팀등록 이후 가능합니다.");
       } else alert(state.error);
     },
     [__getMyteamDetail.pending]: (state, action) => {
