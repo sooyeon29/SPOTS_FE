@@ -29,7 +29,7 @@ const Chat = ({ socket, roomName }) => {
     const obj = {
       roomName: roomName,
       nickname: nickname,
-      message: msg,
+      value: msg,
     };
     socket.emit("chatting", JSON.stringify(obj));
     console.log(obj);
