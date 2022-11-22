@@ -46,6 +46,15 @@ const MyPage = () => {
     }
   };
 
+  const savePhoto = () => {
+    const sendFD = new FormData();
+    sendFD.append("profileImg", img);
+
+    UserpageAPI.patchMyInfo(sendFD)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Layout>
       <Header />
@@ -77,16 +86,19 @@ const MyPage = () => {
                   }}
                 />
               ) : (
-                <div>사진을 추가해 주세요</div>
+                <div>사진을 추가해 주세요!!!!</div>
               )}
+
               <input
                 id="upload-input"
+                defaultValue={user.profileImg}
                 type="file"
                 onChange={(e) => {
                   handleImagePreview(e);
                 }}
                 accept="image/*"
               />
+              <button onClick={savePhoto}>프로필저장</button>
             </div>
             <p>
               nickname :
