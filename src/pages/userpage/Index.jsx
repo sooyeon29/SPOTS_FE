@@ -27,8 +27,10 @@ const UserPage = () => {
         </Profile>
         <PointBox>
           <div>총 보유 포인트</div>
-          <h1>{Number(userPoint).toLocaleString("ko-KR")}</h1>
-          <div>P</div>
+          <div>
+            <h1>{Number(userPoint).toLocaleString("ko-KR")}</h1>
+            <p>P</p>
+          </div>
         </PointBox>
         <MenuBox>
           <img
@@ -113,28 +115,31 @@ const PointBox = styled.div`
   top: -60px;
   color: #fefefe;
 
-  div {
+  div:first-child {
     margin: 18px 0 0 20px;
   }
-  h1 {
-    margin-right: 55px;
-    text-align: right;
-    margin-left: 105px;
-  }
+
   div:last-child {
-    color: #49e7a5;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 35px;
-    border-radius: 40px;
-    font-size: 20px;
-    font-weight: 700;
-    background-color: black;
-    position: relative;
-    z-index: 2;
-    top: -59px;
-    left: 227px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 13px;
+
+    h1 {
+      text-align: right;
+      margin-right: 10px;
+      margin-top: 18px;
+    }
+    p {
+      color: #49e7a5;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 35px;
+      border-radius: 40px;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: black;
+    }
   }
 `;
 
@@ -145,6 +150,7 @@ const MenuBox = styled.div`
   height: 390px;
   margin-top: -40px;
   padding: auto;
+  padding-bottom: 70px;
   img {
     width: 170px;
     height: 170px;

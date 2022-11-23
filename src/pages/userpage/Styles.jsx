@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StContainer = styled.div`
   display: flex;
@@ -80,6 +80,11 @@ export const StTeamForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+  }
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
@@ -92,14 +97,39 @@ export const SpotInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  div {
-    margin-right: 25px;
-    font-size: 22px;
-    font-weight: bold;
-  }
+  width: 350px;
+
   img {
-    width: 70px;
-    margin: 20px auto 10px 20px;
+    width: 100px;
+    margin: 15px 10px 5px 15px;
+    border-radius: 10px;
+  }
+  div {
+    padding: 5px;
+    button {
+      margin-top: 10px;
+      margin-right: 25px;
+      font-size: 22px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+    }
+    p {
+      margin: 5px;
+    }
+    span:last-child {
+      color: #49e7a5;
+      padding: 2px 8px;
+      text-align: center;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      background-color: black;
+      position: relative;
+      z-index: 2;
+      top: 3px;
+      left: 8px;
+    }
   }
 `;
 
@@ -160,14 +190,38 @@ export const MyHostList = styled.div`
   align-items: center;
 `;
 export const WordInfo = styled.div`
-  margin-left: 50px;
+  margin: auto;
 `;
 export const ImageInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   img {
+    border-radius: 10px;
     width: 120px;
-    margin: 20px 50px 10px auto;
+    margin: 10px auto 10px 10px;
   }
 `;
+export const MySpot = styled.div`
+  display: flex;
+  flex-direction: column;
+  span {
+    margin: 7px auto;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  div {
+    margin: auto;
+    padding: 0px 15px;
+  }
+`;
+export const AboutMySpot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+`;
+
 export const ButWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -333,7 +387,7 @@ export const ProfilePhotoInput = styled.input`
 export const ProfilePhotoUpload = styled.div`
   div {
     background-color: #fff;
-    border: 2px solid #00F78E;
+    border: 2px solid #00f78e;
     font-size: 30px;
     font-weight: 800;
     width: 30px;
@@ -348,25 +402,25 @@ export const ProfilePhotoUpload = styled.div`
 `;
 
 export const SaveImage = styled.button`
-  background-color: #FF00B4;
+  background-color: #ff00b4;
   width: 300px;
   height: 40px;
   border-radius: 20px;
   border: none;
   margin: auto;
-  display:flex;
+  display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: 600;
-`
+`;
 
 export const ModifyDiv = styled.div`
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
-`
+`;
 
 export const ModifyBlock = styled.div`
   display: flex;
@@ -400,7 +454,7 @@ export const ModifyBlock = styled.div`
     color: black;
     font-weight: 600;
   }
-`
+`;
 
 export const ModifyBtns = styled.div`
   display: flex;
@@ -410,14 +464,24 @@ export const ModifyBtns = styled.div`
   margin-top: 40px;
 
   button {
-  background-color: #f1f1f1;
-  width: 300px;
-  height: 40px;
-  border-radius: 20px;
-  border: none;
-  margin: auto;
-  color: black;
-  font-weight: 600;
-  margin-left: 10px;
+    background-color: #f1f1f1;
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    margin: auto;
+    color: black;
+    font-weight: 600;
+    margin-left: 10px;
   }
-`
+`;
+export const Btn = styled.button`
+  width: 360px;
+  height: 50px;
+  color: #09225c;
+  background-color: #00f78e;
+  border-radius: 43px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+`;

@@ -64,7 +64,7 @@ const SpotsDetail = () => {
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
   const { id } = useParams();
   const placeList = useSelector((state) => state?.spots.privateSpot);
-
+  console.log(placeList);
   const selectSpot = placeList?.filter((place) => {
     return place.placesId === parseInt(id);
   });

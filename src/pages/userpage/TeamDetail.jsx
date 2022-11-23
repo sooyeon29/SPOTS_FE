@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../components/Header";
 import useToggle from "../../hooks/useToggle";
 import { __getMyteamDetail } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
-import { StWrap, TeamPhoto } from "./Styles";
+import { StWrap, TeamPhoto, StTeamForm, PageDesc, InfoLayout } from "./Styles";
 import Layout from "../../components/Layout";
+import FlexibleHeader from "../../components/FlexibleHeader";
+import TapBar from "../../components/TapBar";
 
 const TeamDetail = () => {
+  const title = "Team Page";
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ const TeamDetail = () => {
 
   return (
     <Layout>
-      <Header />
+      <FlexibleHeader title={title} />
       <StWrap>
         {!isEdit ? (
           <>
@@ -134,6 +136,7 @@ const TeamDetail = () => {
           </>
         )}
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };
