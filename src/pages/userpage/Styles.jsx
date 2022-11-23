@@ -92,14 +92,39 @@ export const SpotInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  div {
-    margin-right: 25px;
-    font-size: 22px;
-    font-weight: bold;
-  }
+  width: 350px;
+
   img {
-    width: 70px;
-    margin: 20px auto 10px 20px;
+    width: 100px;
+    margin: 15px 10px 5px 15px;
+    border-radius: 10px;
+  }
+  div {
+    padding: 5px;
+    button {
+      margin-top: 10px;
+      margin-right: 25px;
+      font-size: 22px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+    }
+    p {
+      margin: 5px;
+    }
+    span:last-child {
+      color: #49e7a5;
+      padding: 2px 8px;
+      text-align: center;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      background-color: black;
+      position: relative;
+      z-index: 2;
+      top: 3px;
+      left: 8px;
+    }
   }
 `;
 
