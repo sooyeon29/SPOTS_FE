@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import { LoginAPI, UserpageAPI } from '../../tools/instance';
-import { KAKAO_AUTH_URL } from './OAuth';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import { LoginAPI, UserpageAPI } from "../../tools/instance";
+import { KAKAO_AUTH_URL } from "./OAuth";
 import {
   StWraps,
   Stinput,
@@ -13,15 +13,27 @@ import {
   PwInput,
   LoginBtn,
   InputWrap,
-} from './Styles';
+  Logo,
+  StinputId,
+  StinputPw,
+  InputWrapLower,
+} from "./Styles";
 // import { BsEye } from 'react-icons/bs';
-import TapBar from '../../components/TapBar';
+import TapBar from "../../components/TapBar";
+import useToggle from "../../hooks/useToggle";
+import { AiFillEye } from "react-icons/ai";
+import { BsEye, BsFillPersonFill } from "react-icons/bs";
+import { BsEyeSlash } from "react-icons/bs";
+import { BiLock } from "react-icons/bi";
+import { IoIosLock } from "react-icons/io";
+import { IdInput } from "../signUp/Styles";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
-    id: '',
-    password: '',
+    id: "",
+    password: "",
   });
+  const [showPw, setShowPw, showPwHandler] = useToggle();
 
   const navigate = useNavigate();
 
@@ -35,26 +47,26 @@ const Login = () => {
     e.preventDefault();
     LoginAPI.login({ loginId: loginInfo.id, password: loginInfo.password })
       .then((res) => {
-        console.log('로그인성공 response', res);
+        console.log("로그인성공 response", res);
         if (res.status === 200) {
-          localStorage.setItem('token', res.data.accessToken);
-          localStorage.setItem('nickname', res.data.nickname);
-          navigate('/');
+          localStorage.setItem("token", res.data.accessToken);
+          localStorage.setItem("nickname", res.data.nickname);
+          navigate("/");
           window.location.reload();
         } else if (res.status === 202) {
-          if (window.confirm('휴면계정입니다. 계정을 활성화 하시겠습니까?')) {
-            localStorage.setItem('token', res.data.accessToken);
-            navigate('/switchaccount', { state: loginInfo.id });
+          if (window.confirm("휴면계정입니다. 계정을 활성화 하시겠습니까?")) {
+            localStorage.setItem("token", res.data.accessToken);
+            navigate("/switchaccount", { state: loginInfo.id });
           }
         }
       })
       .catch((err) => {
         if (err.response.status === 400) {
-          alert('이미 로그인 상태입니다.');
+          alert("이미 로그인 상태입니다.");
         } else if (err.response.status === 412) {
-          alert('아이디 또는 패스워드를 확인해주세요');
+          alert("아이디 또는 패스워드를 확인해주세요");
         }
-        console.log('로그인실패시 err', err);
+        console.log("로그인실패시 err", err);
       });
   };
 
@@ -63,38 +75,51 @@ const Login = () => {
       <Layout>
         <Header />
         <StWraps>
-          <PageTitle>로그인</PageTitle>
+          {/* <PageTitle>로그인</PageTitle> */}
           <form onSubmit={loginHandler}>
             <InputWrap>
-              <Stinput
-                placeholder='아이디를 입력해주세요'
-                type='text'
-                required
-                name='id'
-                onChange={idAndPassword}
-                autoComplete='off'
-              />
-              <PwInput>
+              <Logo>
+                <img alt="" src="/spotslogo.png" />
+              </Logo>
+              <InputWrapLower>
+                <BsFillPersonFill size={24} color={"#949494"} />
                 <Stinput
-                  placeholder='비밀번호를 입력해주세요'
-                  type='password'
+                  placeholder="아이디를 입력해주세요"
+                  type="text"
                   required
-                  name='password'
-                  onChange={idAndPassword}></Stinput>
-                {/* <button type='button'><BsEye size={25}/></button> */}
-              </PwInput>
+                  name="id"
+                  onChange={idAndPassword}
+                  autoComplete="off"
+                />
+              </InputWrapLower>
+              <InputWrapLower>
+                <IoIosLock size={24} color={"#949494"} />
+                <Stinput
+                  placeholder="비밀번호를 입력해주세요"
+                  type={showPw ? "text" : "password"}
+                  required
+                  name="password"
+                  value={loginInfo.password}
+                  onChange={idAndPassword}
+                />
+
+                <button type="button" onClick={showPwHandler}>
+                  <BsEyeSlash size={23} color={"#949494"} />
+                </button>
+              </InputWrapLower>
             </InputWrap>
             <LoginBtn>로그인</LoginBtn>
           </form>
           {/* 소셜로그인 - 카카오로그인 */}
           <KakaoBtn>
             {/* // href="https://ws-study.shop/auth/kakao"> */}
-            <img alt='' src='/kakao.png' width={30} />
+            <img alt="" src="/kakao.png" width={30} />
             <a
               href={
                 // "/auth/kakao/callback"
                 KAKAO_AUTH_URL
-              }>
+              }
+            >
               카카오톡으로 로그인
             </a>
           </KakaoBtn>

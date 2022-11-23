@@ -5,8 +5,18 @@ import TapBar from "../../components/TapBar";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
-import { Stinput, StWraps, PageTitle, InputWrap } from "./Styles";
+import {
+  Stinput,
+  StWraps,
+  PageTitle,
+  InputWrap,
+  LoginBtn,
+  CodeBtn,
+  Logo,
+  InputWrapLower,
+} from "./Styles";
 import { useState } from "react";
+import { ContentWrap, NextBtn } from "../signUp/Styles";
 
 const FindId = () => {
   const navigate = useNavigate();
@@ -36,42 +46,46 @@ const FindId = () => {
       });
   };
   return (
-    <>
-      <div>
-        <h2>아이디찾기</h2>
+    <Layout>
+      <Header />
+      <StWraps>
+        <ContentWrap>
+          <Logo>
+            <img alt="" src="/spotslogo.png" />
+          </Logo>
 
-        <div>
-          <div>
+          <InputWrapLower>
+            + 82 |
             <Stinput
-              placeholder=" '-' 제외한 핸드폰번호를 입력하세요"
+              placeholder="01012345678"
               type="text"
               required
               name="phone"
               onChange={enterPhoneNum}
             />
-          </div>
-          <button type="button" onClick={sendPhoneForCode}>
-            인증번호받기
-          </button>
+          </InputWrapLower>
+
           {isCode && (
-            <div>
+            <InputWrapLower>
               <Stinput
-                placeholder="인증번호를 입력하세요"
+                placeholder="인증번호 입력 (제한시간3분)"
                 type="text"
                 required
                 name="code"
                 onChange={enterVeriCode}
               />
-            </div>
+            </InputWrapLower>
           )}
-        </div>
-        <button onClick={findIdHandler}>아이디 찾기</button>
+          <CodeBtn type="button" onClick={sendPhoneForCode}>
+            인증번호받기
+          </CodeBtn>
+        </ContentWrap>
+        <LoginBtn onClick={findIdHandler}>아이디 찾기</LoginBtn>
 
-        <button onClick={() => navigate(`/findpw`)}>
-          비밀번호 찾으러🐾🐾🐾
-        </button>
-      </div>
-    </>
+        <LoginBtn onClick={() => navigate(`/findpw`)}>비밀번호 찾기</LoginBtn>
+      </StWraps>
+      <TapBar />
+    </Layout>
   );
 };
 export default FindId;

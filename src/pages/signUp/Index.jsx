@@ -526,19 +526,19 @@ const SignUp = () => {
                       style={{
                         width: "30px",
                       }}
-                      checked="checked"
-                      type="radio"
-                      value="female"
-                      {...register("gender", { required: true })}
+                      checked='checked'
+                      type='radio'
+                      value='여성'
+                      {...register('gender', { required: true })}
                     />
                     여성
                     <input
                       style={{
                         width: "30px",
                       }}
-                      type="radio"
-                      value="male"
-                      {...register("gender", { required: true })}
+                      type='radio'
+                      value='남성'
+                      {...register('gender', { required: true })}
                     />
                     남성
                     {errors.gender && errors.gender.type === "required" && (

@@ -52,7 +52,7 @@ const KakaoAdd = () => {
         console.log(res);
         if (res.status === 201) {
           alert("회원가입을 환영합니다!");
-          navigate(`/`);
+          navigate(`/welcome`);
         }
       })
       .catch((error) => {
@@ -123,7 +123,7 @@ const KakaoAdd = () => {
                 </div>
                 <br />
                 <div>
-                  SPOTS 가입을 환영합니다.
+                  SPOTS 방문을 환영합니다.
                   <br />
                   서비스 이용을 위해 추가 가입이 필요합니다.
                 </div>
@@ -222,6 +222,12 @@ const KakaoAdd = () => {
                       placeholder="휴대폰 번호를 입력해주세요"
                       autoComplete="off"
                     />
+                    {errors.phone && errors.phone.type === "required" && (
+                      <p>휴대폰 번호를 입력해주세요</p>
+                    )}
+                    {errors.phone && errors.phone.type === "pattern" && (
+                      <p>올바른 번호 형식이 아닙니다.</p>
+                    )}
                     {!codeSent ? (
                       <button
                         style={{
@@ -252,12 +258,6 @@ const KakaoAdd = () => {
                       >
                         다시받기
                       </button>
-                    )}
-                    {errors.phone && errors.phone.type === "required" && (
-                      <p>휴대폰 번호를 입력해주세요</p>
-                    )}
-                    {errors.phone && errors.phone.type === "pattern" && (
-                      <p>올바른 번호 형식이 아닙니다.</p>
                     )}
 
                     {isCode && (
