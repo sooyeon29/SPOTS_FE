@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StWrap, StTag } from "./Styles";
-import useToggle from "../../hooks/useToggle";
-import { useDispatch, useSelector } from "react-redux";
-import { __getMyInfo } from "../../redux/modules/userSlice";
-import { UserpageAPI } from "../../tools/instance";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from 'react';
+import { StWrap, PageDesc, Image, InfoLayout } from './Styles';
+import useToggle from '../../hooks/useToggle';
+import { useDispatch, useSelector } from 'react-redux';
+import { __getMyInfo } from '../../redux/modules/userSlice';
+import { UserpageAPI } from '../../tools/instance';
+import Layout from '../../components/Layout';
+import { useNavigate } from 'react-router-dom';
+import FlexibleHeader from '../../components/FlexibleHeader';
+import TapBar from '../../components/TapBar';
 
 const MyPage = () => {
+  const title = 'My Page';
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preview, setPreview] = useState([]);
@@ -19,7 +21,7 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state.user);
-  // console.log(user.ID);
+  // console.log(user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
@@ -48,28 +50,43 @@ const MyPage = () => {
 
   const savePhoto = () => {
     const sendFD = new FormData();
-    sendFD.append("profileImg", img);
+    sendFD.append('image', img);
 
-    UserpageAPI.patchMyInfo(sendFD)
-      .then((res) => console.log(res))
+    UserpageAPI.patchMyPhoto(sendFD)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert('프로필 수정이 완료되었습니다.');
+        }
+      })
+
       .catch((err) => console.log(err));
   };
-
+  console.log("마이페이지유저", user);
   return (
     <Layout>
-      <Header />
+      <FlexibleHeader title={title} />
       <StWrap>
-        <StTag>my</StTag>
+        <PageDesc>나의 정보</PageDesc>
         {!isEdit ? (
           <div>
-            <img alt="기본프로필사진" src="/myprofile_icon.png" />
-            <div>{user.nickname}</div>
-            <div>{user.gender}</div>
-            <div>핸드폰번호 : {user.phone}</div>
-            <div>나의종목 : {user.sports}</div>
-            <div>관심종목 : {user.favSports}</div>
-            <div>point : {user.point}</div>
-            <div>score : {user.score}</div>
+            <Image>
+              <img alt='기본프로필사진' src={user.profileImg} />
+            </Image>
+            <InfoLayout>
+              <div>닉네임</div>
+              <div>{user.nickname}</div>
+            </InfoLayout>
+            <InfoLayout>
+              <div>성별</div>
+              <div>{user.gender}</div>
+            </InfoLayout>
+            <InfoLayout>
+              <div>휴대폰 번호</div>
+              <div>{user.phone}</div>
+            </InfoLayout>
+            <div>나의 운동<div>{user.sports}</div></div>
+            <div>관심종목<div>{user.favSports}</div></div>
             <button onClick={clickEditMode}>수정하기</button>
           </div>
         ) : (
@@ -79,10 +96,10 @@ const MyPage = () => {
                 <img
                   key={1}
                   src={preview}
-                  alt="미리보기"
+                  alt='미리보기'
                   style={{
-                    width: "50px",
-                    height: "50px",
+                    width: '50px',
+                    height: '50px',
                   }}
                 />
               ) : (
@@ -90,61 +107,59 @@ const MyPage = () => {
               )}
 
               <input
-                id="upload-input"
-                defaultValue={user.profileImg}
-                type="file"
+                id='upload-input'
+                // defaultValue={user.profileImg}
+                type='file'
                 onChange={(e) => {
                   handleImagePreview(e);
                 }}
-                accept="image/*"
+                accept='image/*'
               />
               <button onClick={savePhoto}>프로필저장</button>
             </div>
             <p>
               nickname :
-              <input type="text" defaultValue={user.nickname} ref={nickRef} />
+              <input type='text' defaultValue={user.nickname} ref={nickRef} />
               <button
                 onClick={() => {
                   UserpageAPI.patchMyInfo({ nickname: nickRef.current.value })
                     .then((res) => {
                       console.log(res);
                       if (res.status === 200) {
-                        alert("수정이 완료되었습니다.");
+                        alert('수정이 완료되었습니다.');
                         window.location.reload();
                       }
                     })
                     .catch((err) => {
                       console.log(err);
                       if (err.response.status === 412) {
-                        alert("중복된 닉네임입니다.");
+                        alert('중복된 닉네임입니다.');
                       }
                     });
-                }}
-              >
+                }}>
                 중복확인
               </button>
             </p>
             <p>
               핸드폰번호 :
-              <input type="text" defaultValue={user.phone} ref={phoneRef} />
+              <input type='text' defaultValue={user.phone} ref={phoneRef} />
               <button
                 onClick={() => {
                   UserpageAPI.patchMyInfo({ phone: phoneRef.current.value })
                     .then((res) => {
                       console.log(res);
                       if (res.status === 200) {
-                        alert("수정이 완료되었습니다.");
+                        alert('수정이 완료되었습니다.');
                         window.location.reload();
                       }
                     })
                     .catch((err) => {
                       console.log(err);
                       if (err.response.status === 412) {
-                        alert("중복된 번호입니다.");
+                        alert('중복된 번호입니다.');
                       }
                     });
-                }}
-              >
+                }}>
                 중복확인
               </button>
             </p>
@@ -155,9 +170,9 @@ const MyPage = () => {
                   .then((res) => {
                     console.log(res);
                     if (res.status === 200) {
-                      window.confirm("탈퇴하시겠습니까?");
+                      window.confirm('탈퇴하시겠습니까?');
                       localStorage.clear();
-                      navigate("/");
+                      navigate('/');
                     }
                   })
                   .catch((err) => {
@@ -165,13 +180,13 @@ const MyPage = () => {
                     if (err.status === 400) {
                     }
                   });
-              }}
-            >
+              }}>
               회원탈퇴
             </button>
           </div>
         )}
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };

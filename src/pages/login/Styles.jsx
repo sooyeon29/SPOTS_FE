@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { lighten, darken } from 'polished';
+import styled from "styled-components";
+import { lighten, darken } from "polished";
 
 export const StWraps = styled.div`
   margin-top: 200px;
@@ -18,7 +18,6 @@ export const PageTitle = styled.div`
   margin-bottom: 40px;
   font-weight: 700;
   align-items: left;
-  
 `;
 
 export const LoginBtn = styled.button`
@@ -41,7 +40,7 @@ export const LoginBtn = styled.button`
   margin-top: 20px;
   cursor: pointer;
   &:hover {
-    /* background-color: ${darken(0.1, '#8fc7ff')}; */
+    /* background-color: ${darken(0.1, "#8fc7ff")}; */
   }
 `;
 
@@ -49,7 +48,7 @@ export const InputWrap = styled.div`
   /* border: 2px solid black; */
   width: 330px;
   margin: auto;
-`
+`;
 
 export const Stinput = styled.input`
   background-color: #fff;
@@ -61,7 +60,7 @@ export const Stinput = styled.input`
   /* margin: 8px 0 30px 0; */
   /* width: 100%; */
   /* min-width: 300px; */
-  font-family: 'MonoplexKR-Regular';
+  font-family: "MonoplexKR-Regular";
 `;
 
 export const FindButs = styled.div`
@@ -105,7 +104,7 @@ export const KakaoBtn = styled.button`
     color: #3a1d1d;
   }
   &:hover {
-    /* background-color: ${lighten(0.1, '#ffcd2a')}; */
+    /* background-color: ${lighten(0.1, "#ffcd2a")}; */
   }
   img {
     margin: auto 2px;

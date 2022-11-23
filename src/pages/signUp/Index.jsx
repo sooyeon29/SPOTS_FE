@@ -27,16 +27,19 @@ import {
   SportLabel,
   SportInput,
   SportDiv,
+  Welcome,
 } from "./Styles";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
   const [phoneCertify, setPhoneCertify] = useState(false);
   const [addInfoPage, setAddInfoPage] = useState(false);
   const [addSportsPage, setAddSportsPage] = useState(false);
-  const [codeSent, setCodeSent] = useToggle(false);
+  const [codeSent, setCodeSent] = useState(false);
   const [idConfirm, setIdConfirm] = useState(false);
+  const [nnConfirm, setNnConfirm] = useState(false);
   const [code, setCode] = useState("");
 
   const {
@@ -54,18 +57,51 @@ const SignUp = () => {
     e.preventDefault();
     const loginId = getValues("loginId");
     if (loginId.trim() === "") {
-      return alert("아이디를 입력해주세요");
+      Swal.fire({
+        text: "아이디를 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+      // return alert('아이디를 입력해주세요');
     }
     const pw = getValues("password");
     if (pw.trim() === "") {
-      return alert("비밀번호를 입력해주세요");
+      Swal.fire({
+        text: "비밀번호를 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     const pwConfirm = getValues("confirmPassword");
     if (pwConfirm.trim() === "") {
-      return alert("비밀번호를 다시 한번 확인해주세요");
+      Swal.fire({
+        text: "비밀번호를 다시 한번 확인해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     if (!idConfirm) {
-      return alert("ID 중복 확인을 해주세요");
+      Swal.fire({
+        text: "ID 중복 확인을 해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     setIdAndPwPage(false);
     setPhoneCertify(true);
@@ -76,7 +112,15 @@ const SignUp = () => {
   const onNumberCertifiHandler = (e) => {
     e.preventDefault();
     if (!codeSent) {
-      return alert("휴대번호 인증을 해주세요");
+      Swal.fire({
+        text: "휴대폰 인증을 해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     setIdAndPwPage(false);
     setPhoneCertify(false);
@@ -88,7 +132,26 @@ const SignUp = () => {
     e.preventDefault();
     const nickname = getValues("nickname");
     if (!nickname) {
-      return alert("닉네임을 입력해주세요");
+      Swal.fire({
+        text: "닉네임을 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+    }
+    if (!nnConfirm) {
+      Swal.fire({
+        text: "닉네임을 중복확인을 해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     setIdAndPwPage(false);
     setPhoneCertify(false);
@@ -101,8 +164,7 @@ const SignUp = () => {
       .then((res) => {
         // console.log(res);
         if (res.status === 201) {
-          alert("회원가입을 환영합니다!");
-          navigate("/login");
+          navigate("/welcome");
         }
       })
       .catch((error) => {
@@ -127,50 +189,106 @@ const SignUp = () => {
 
   // ID 중복 확인
   const checkId = () => {
-    setIdConfirm(true);
     const loginId = getValues("loginId");
+    if (loginId.trim() === "") {
+      Swal.fire({
+        text: "아이디를 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return {};
+    }
     SignUpAPI.checkId({ loginId })
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          alert("사용 가능한 ID입니다");
+          Swal.fire({
+            text: "사용 가능한 아이디입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          setIdConfirm(true);
         }
       })
       .catch((error) => {
         console.log(error.response.status);
         if (error.response.status === 412) {
-          alert("이미 사용 중인 ID입니다");
+          Swal.fire({
+            text: "이미 사용 중인 아이디입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         }
       });
   };
 
   // 핸드폰 인증코드 받기
   const sendPhoneForCode = () => {
-    setCodeSent(true);
     const phone = getValues("phone");
     LoginAPI.postforVCode({ phone })
       .then((res) => {
         console.log(res);
-        alert("인증번호가 전송되었습니다.");
+        Swal.fire({
+          text: "인증번호가 전송되었습니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+        setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);
-        alert("유효하지 않은 번호입니다.");
+        Swal.fire({
+          text: "유효하지 않은 휴대폰 번호입니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+        return;
       });
   };
+
   const checkVCode = () => {
-    // const code = getValues("code");
-    console.log(code);
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
       .then((res) => {
         console.log(res);
-        if (res.status === 200) alert("인증이 완료되었습니다.");
+        if (res.status === 200) {
+          Swal.fire({
+            text: "인증이 완료되었습니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        }
+        // setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);
         // if(err.response.data === 401)
-        alert("인증번호를 재확인 해주세요");
+        Swal.fire({
+          text: "인증 번호를 다시 확인해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
       });
   };
 
@@ -178,19 +296,43 @@ const SignUp = () => {
   const checkNn = () => {
     const nickname = getValues("nickname");
     if (nickname.trim() === "") {
-      return alert("닉네임을 입력해주세요");
+      Swal.fire({
+        text: "닉네임을 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          alert("사용 가능한 닉네임입니다");
+          Swal.fire({
+            text: "사용 가능한 닉네임입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          setNnConfirm(true);
         }
       })
       .catch((error) => {
         console.log(error.response.status);
         if (error.response.status === 412) {
-          alert("이미 사용 중인 닉네임입니다");
+          Swal.fire({
+            text: "이미 사용 중인 닉네임입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          return;
         }
       });
   };
@@ -477,10 +619,16 @@ const SignUp = () => {
                     러닝
                     <input
                       type="checkbox"
-                      value="pingpong"
+                      value="golf"
                       {...register("favSports")}
                     />
-                    탁구
+                    골프
+                    <input
+                      type="checkbox"
+                      value="health"
+                      {...register("favSports")}
+                    />
+                    헬스
                   </FavSports>
                   <div>
                     <RecommendId

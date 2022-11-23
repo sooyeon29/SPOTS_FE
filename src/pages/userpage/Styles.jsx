@@ -8,20 +8,60 @@ export const StContainer = styled.div`
 `;
 
 export const StWrap = styled.div`
+  margin: auto;
+  margin-top: 72px;
   width: 90%;
-  padding: 20px;
-  border: 1px solid lightgray;
+  /* background-color: #f1f1f1; */
   border-radius: 15px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-bottom: 50px;
   align-items: center;
+  margin: 71px auto;
 `;
 
-export const StTag = styled.button`
+export const TeamPhoto = styled.div`
+  width: 30%;
+  max-width: 800px;
+  padding: 0px;
+  overflow: hidden;
+  /* margin: auto; */
+  /* background-color: lightcyan; */
+  border-radius: 10px;
+  img {
+    width: 100%;
+    /* height: 350px; */
+    object-fit: cover;
+    border-radius: 10px;
+    margin: auto;
+  }
+`;
+
+export const Image = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    /* transform: translate(50, 50); */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+`;
+
+export const PageDesc = styled.div`
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  margin: 80px 0px 20px 0px;
+`;
+
+export const StTag = styled.span`
   width: 20%;
   height: 40px;
-  border: 1px solid lightgray;
-  border-radius: 15px;
+  /* border: 1px solid lightgray; */
+  /* border-radius: 15px; */
   text-align: center;
   line-height: 40px;
   cursor: pointer;
@@ -41,8 +81,12 @@ export const StTeamForm = styled.form`
   width: 60%;
 `;
 export const MyMatch = styled.div`
-  border: 1px solid black;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding: 20px 0px 20px 20px;
+  border-radius: 10px;
 `;
+
 export const HostCard = styled.div``;
 export const Preview = styled.div``;
 export const Photo = styled.div`
@@ -114,4 +158,65 @@ export const ButWrap = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin: 0px 40px 20px auto;
+`;
+
+export const MyReserve = styled.div`
+  width: 90%;
+  margin: auto;
+  margin-top: 72px;
+  margin-bottom: 60px;
+  align-items: center;
+  /* background-color: aliceblue; */
+`;
+
+export const ReservedSpot = styled.div`
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+export const CompletedMath = styled.div`
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+
+export const WaitedMatch = styled.div`
+  span {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+
+export const SpotName = styled.div`
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+export const MatchDate = styled.div`
+  margin-bottom: 20px;
+`;
+export const MatchTime = styled.div``;
+export const MatchMember = styled.div``;
+export const MatchTeam = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const InfoLayout = styled.div`
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1px solid #cecece;
+  font-size: 14px;
+
+  div:first-child {
+    width: 100px;
+    /* background-color: aliceblue; */
+    text-align: center;
+    border-right: 1px solid #cecece;
+  }
+
+  div:last-child {
+    margin-left: 20px;
+  }
 `;

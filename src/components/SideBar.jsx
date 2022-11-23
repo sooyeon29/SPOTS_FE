@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegBell } from "react-icons/fa";
 import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const SideBar = ({ barIsOpen, dropDownRef }) => {
   const navigate = useNavigate();
@@ -14,13 +15,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
     localStorage.clear();
     navigate(`/`);
   };
-
+  const { user } = useSelector((state) => state.user);
+  // console.log("탭바", user);
   return (
     <SideMenu>
       {!token ? (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/SidebarProfile.png"></img>
+            <img alt="프로필이미지" src={user.profileImg}></img>
             <div>
               <p>로그인 후 이용해주세요.</p>
             </div>
@@ -28,14 +30,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/login")}>
               <div>
-                <img alt="로그인" src="/Ellipse 69.png" />
+                <img alt="로그인" src="/login_icon.png" />
                 <p>로그인하기</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/signup")}>
               <div>
-                <img alt="회원가입" src="/Ellipse 69.png" />
+                <img alt="회원가입" src="/join_icon.png" />
                 <p>회원가입</p>
               </div>
               <IoIosArrowForward className="arrow" />
@@ -49,7 +51,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       ) : (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/SidebarProfile.png"></img>
+            <img alt="프로필이미지" src="/myprofile_icon.png"></img>
             <div>
               <p>{nickname}</p>
             </div>
@@ -57,32 +59,41 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/mypage")}>
               <div>
-                <img alt="내정보수정" src="/myprofile_icon.png" />
-                <p>내정보수정</p>
+                <img alt="내 정보" src="/myprofile_icon.png" />
+                <p>내 정보</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/teampage")}>
               <div>
-                <img alt="팀관리" src="/myteam_icon.png" />
-                <p>팀관리</p>
+                <img alt="나의 팀" src="/myteam_icon.png" />
+                <p>나의 팀</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/reservpage")}>
               <div>
-                <img alt="나의 예약리스트" src="/myreserv_icon.png" />
-                <p>나의 예약리스트</p>
+                <img alt="나의 예약" src="/myreserv_icon.png" />
+                <p>나의 예약</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="나의 구장 등록하기" src="/myhost_icon.png" />
-                <p>나의 구장 등록하기</p>
+                <img alt="구장 등록" src="/myhost_icon.png" />
+                <p>구장 등록</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
+            {nickname === "spotsadmin" ? (
+              <Li onClick={() => navigate("/adminhome ")}>
+                <div>
+                  <img alt="관리자채팅방" src="/myhost_icon.png" />
+                  <p>관리자 채팅방</p>
+                </div>
+                <IoIosArrowForward className="arrow" />
+              </Li>
+            ) : null}
           </Ul>
           <Bottom>
             <FaRegBell className="icon" />
@@ -110,7 +121,7 @@ const Section = styled.div`
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
-  z-index: 99999;
+  z-index: 999999;
 
   ${({ isOpen }) =>
     isOpen &&

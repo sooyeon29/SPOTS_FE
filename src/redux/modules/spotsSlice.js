@@ -137,15 +137,15 @@ const privateSlice = createSlice({
     },
     [__deletePrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      alert(action.payload);
       state.myPrivateSpot = state.myPrivateSpot.filter(
         (privSpot) => action.payload !== privSpot.placesId
       );
+      alert("나의 구장이 삭제되었습니다.");
     },
     [__deletePrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      alert(action.payload);
+      console.log(state.error);
     },
     // 내가 등록한 구장 수정하기
     [__editPrivateSpot.pending]: (state, action) => {

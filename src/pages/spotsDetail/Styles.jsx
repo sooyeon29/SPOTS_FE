@@ -58,15 +58,13 @@ export const MoreInfo = styled.div`
   }
 `;
 export const Calen = styled.div`
-  margin: 5px;
-
+  margin: 5px auto 0px auto;
   div {
     background-color: white;
     color: black;
     padding: 6px;
     border-radius: 10px;
     font-size: 17px;
-
     button {
       margin-top: 18px;
       cursor: pointer;
@@ -85,7 +83,7 @@ export const SelectDone = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px auto 0px auto;
   background-color: #1646c7;
   button {
     display: flex;
@@ -113,7 +111,7 @@ export const SelectDone2 = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px auto 0px auto;
   background-color: #eaeffc;
   button {
     display: flex;
@@ -139,7 +137,7 @@ export const CalTime = styled.div`
   width: 95%;
   max-width: 800px;
   padding: 10px 0px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   p {
     margin-left: 20px;
   }
@@ -401,12 +399,52 @@ export const FinalBooking = styled.button`
 //     margin: 10px;
 //   }
 // `;
-export const WaitingMatch = styled.div`
-  font-size: 10px;
+export const WaitList = styled.div`
+  margin: 10px auto 5px auto;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  background-color: #ff00b4;
+  color: white;
+  width: 40%;
+  padding: 8px;
+`;
+
+export const MatchList = styled(BookMatch)`
+  margin: 5px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /* display: flex;
+  flex-direction: column; */
+`;
+export const WaitingMatch = styled.div`
+  font-size: 12px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: start; */
   align-items: center;
-  border: 1px solid black;
-  width: fit-content;
+  width: 48%;
+  height: 50px;
+  border-radius: 5px;
+  margin: 3px;
+  background-image: url(/spotswaitlist.png);
+  background-size: cover;
+  padding: 2px;
+  /* border-radius: 40px; */
+  div {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    padding: 3px;
+    span {
+      font-size: 12px;
+      margin: 2px 5px 2px 3px;
+    }
+  }
 `;

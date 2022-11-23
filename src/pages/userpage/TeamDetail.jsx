@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 import useToggle from "../../hooks/useToggle";
 import { __getMyteamDetail } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
-import { StWrap } from "./Styles";
+import { StWrap, TeamPhoto } from "./Styles";
 import Layout from "../../components/Layout";
 
 const TeamDetail = () => {
@@ -45,7 +45,9 @@ const TeamDetail = () => {
       <StWrap>
         {!isEdit ? (
           <>
-            <img alt="팀 프로필" src={teamdetail.image} />
+            <TeamPhoto>
+              <img alt="팀 프로필" src={teamdetail.image} />
+            </TeamPhoto>
             <div>{teamdetail.teamName}</div>
             <div>{teamdetail.sports}</div>
             <div>{teamdetail.member}</div>
@@ -66,7 +68,9 @@ const TeamDetail = () => {
           </>
         ) : (
           <>
-            <img alt="팀 프로필" src={teamdetail.image} />
+            <TeamPhoto>
+              <img alt="팀 프로필" src={teamdetail.image} />
+            </TeamPhoto>
             <p>
               <div> teamName : {teamdetail.teamName}</div>
             </p>
@@ -96,6 +100,7 @@ const TeamDetail = () => {
                         alert("수정 권한이 없습니다.");
                       }
                     });
+                  setIsEdit(false);
                 }}
               >
                 수정하기
