@@ -5,10 +5,10 @@ import { SpotsMatchApi } from "../../tools/instance";
 export const __postSpotsMatch = createAsyncThunk(
   "spotsMatch/postSpotsMatch",
   async (payload, thunkApi) => {
-    console.log("페이로드!!", payload);
+    // console.log("페이로드!!", payload);
     try {
       const { data } = await SpotsMatchApi.postSpotsMatch(payload);
-      console.log("너데이터누구니", data);
+      // console.log("너데이터누구니", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -48,7 +48,7 @@ export const __getMyMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getMyMatch(payload);
-      console.log("내예약", data);
+      // console.log("내예약", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -92,9 +92,9 @@ const matchSlice = createSlice({
     },
     [__postSpotsMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("액션?", action.payload);
+      // console.log("액션?", action.payload);
       state.matcher.push(action.payload.data);
-      console.log("fulfilled 상태", state, action);
+      // console.log("fulfilled 상태", state, action);
       alert(action.payload.message);
       window.location.replace(`/reservpage`);
     },
@@ -110,7 +110,7 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getAllMatch.fulfilled]: (state, action) => {
-      console.log("모든매치", state, "모든매치액션", action.payload);
+      // console.log("모든매치", state, "모든매치액션", action.payload);
       state.isLoading = false;
       state.matcher = action.payload.data;
     },
@@ -123,10 +123,10 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getOkMatch.fulfilled]: (state, action) => {
-      console.log("대기중매치", action.payload);
+      // console.log("대기중매치", action.payload);
       state.isLoading = false;
       state.newmatcher = action.payload.noneMatching;
-      console.log(state.newmatcher);
+      // console.log(state.newmatcher);
     },
     [__getOkMatch.rejected]: (state, action) => {
       state.isLoading = false;
@@ -138,10 +138,10 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getMyMatch.fulfilled]: (state, action) => {
-      console.log("스테잇", state, "액션", action.payload);
+      // console.log("스테잇", state, "액션", action.payload);
       state.isLoading = false;
       state.matcher = action.payload;
-      console.log("마이메치", state.matcher);
+      // console.log("마이메치", state.matcher);
     },
     [__getMyMatch.rejected]: (state, action) => {
       state.isLoading = false;
@@ -154,7 +154,7 @@ const matchSlice = createSlice({
     [__exitMyMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.message = action.payload;
-      console.log(action.payload);
+      // console.log(action.payload);
       alert(action.payload.message);
       // window.location.reload();
     },

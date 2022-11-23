@@ -25,8 +25,7 @@ const SpotsMap = ({ spotMarkers }) => {
   const privateSpots = spotMarkers?.private;
   const publicSpots = spotMarkers?.public;
 
-  const pub = useSelector((state) => state?.spots);
-
+  // console.log(publicSpots)
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
     console.log(idx);
@@ -147,8 +146,8 @@ const SpotsMap = ({ spotMarkers }) => {
                         '/privateBadminton.png') ||
                       (privSpot.sports === '테니스장' && '/privateTennis.png'),
                     size: {
-                      width: 30,
-                      height: 30,
+                      width: 23.4,
+                      height: 27.2,
                     },
                   }}
                 />
@@ -197,7 +196,7 @@ const SpotsMap = ({ spotMarkers }) => {
                       lng: pubSpot.x,
                     }}>
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <title>{pubSpot.placenm}</title>
+                      <div>{pubSpot.placenm}</div>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}
@@ -222,8 +221,8 @@ const SpotsMap = ({ spotMarkers }) => {
                       (pubSpot.minclassnm === '테니스장' &&
                         '/publicTennis.png'),
                     size: {
-                      width: 30,
-                      height: 30,
+                      width: 23.4,
+                      height: 27.2,
                     },
                   }}
                 />

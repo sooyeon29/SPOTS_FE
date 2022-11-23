@@ -19,6 +19,7 @@ import {
   Icon,
   Info,
   SpotName,
+  MapBlock,
 } from "./Styles";
 import TapBar from "../../components/TapBar";
 import { LoginAPI, PrivateApi } from "../../tools/instance";
@@ -73,12 +74,12 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        console.log(newSpot);
+        // console.log(newSpot);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(newSpot);
+  // console.log(newSpot);
 
   return (
     <>
@@ -86,7 +87,7 @@ const MainMaps = () => {
         <Header />
         <MainBanner src="mobileMainBanner.png" />
         {/* <MainMapLayout> */}
-        <UpperLine>
+        {/* <UpperLine>
           <BtnWrap>
             <button onClick={() => setSportsKind(futsal)}>풋살</button>
             <button onClick={() => setSportsKind(tennis)}>테니스</button>
@@ -96,8 +97,9 @@ const MainMaps = () => {
             <span>● 공공스팟</span>
             <span>● 사설스팟</span>
           </div>
-        </UpperLine>
-        <SpotsMap sportsKind={sportsKind} />
+        </UpperLine> */}
+        <MapBlock>Map</MapBlock>
+        {/* <SpotsMap sportsKind={sportsKind} /> */}
         {/* </MainMapLayout> */}
         <SpotContainer>
           <Section>최신 등록 스팟</Section>

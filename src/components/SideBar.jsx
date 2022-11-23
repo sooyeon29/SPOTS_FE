@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegBell } from "react-icons/fa";
 import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 const SideBar = ({ barIsOpen, dropDownRef }) => {
   const navigate = useNavigate();
@@ -14,13 +15,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
     localStorage.clear();
     navigate(`/`);
   };
-
+  const { user } = useSelector((state) => state.user);
+  console.log("탭바", user);
   return (
     <SideMenu>
       {!token ? (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/myprofile_icon.png"></img>
+            <img alt="프로필이미지" src={user.profileImg}></img>
             <div>
               <p>로그인 후 이용해주세요.</p>
             </div>
@@ -117,7 +119,7 @@ const Section = styled.div`
   bottom: 0;
   right: -300px;
   visibility: hidden;
-  transition: 1s ease;
+  transition: 0.8s ease;
   opacity: 0;
   z-index: 999999;
 
