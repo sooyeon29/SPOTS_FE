@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { lighten, darken } from "polished";
 
 export const StWraps = styled.div`
-  margin-top: 200px;
+  margin-top: 110px;
   /* background-color: #f1f1f1; */
   /* display: flex; */
   /* align-items: center; */
@@ -41,7 +41,13 @@ export const LoginBtn = styled.button`
   margin-bottom: 25px;
   cursor: pointer;
   &:hover {
-    /* background-color: ${darken(0.1, "#8fc7ff")}; */
+    background-color: ${lighten(0.1, "#1746c7")};
+  }
+`;
+export const CodeBtn = styled(LoginBtn)`
+  background: #ff00b4;
+  &:hover {
+    background-color: ${lighten(0.1, "#FF00B4")};
   }
 `;
 

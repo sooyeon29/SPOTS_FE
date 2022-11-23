@@ -5,8 +5,17 @@ import TapBar from "../../components/TapBar";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
-import { Stinput, StWraps, PageTitle, InputWrap } from "./Styles";
+import {
+  Stinput,
+  StWraps,
+  PageTitle,
+  InputWrap,
+  LoginBtn,
+  CodeBtn,
+  Logo,
+} from "./Styles";
 import { useState } from "react";
+import { ContentWrap, NextBtn } from "../signUp/Styles";
 
 const FindId = () => {
   const navigate = useNavigate();
@@ -36,11 +45,14 @@ const FindId = () => {
       });
   };
   return (
-    <>
-      <div>
-        <h2>아이디찾기</h2>
-
-        <div>
+    <Layout>
+      <Header />
+      <StWraps>
+        <ContentWrap>
+          <Logo>
+            <img alt="" src="/spotslogo.png" />
+          </Logo>
+          <PageTitle>아이디찾기</PageTitle>
           <div>
             <Stinput
               placeholder=" '-' 제외한 핸드폰번호를 입력하세요"
@@ -50,9 +62,9 @@ const FindId = () => {
               onChange={enterPhoneNum}
             />
           </div>
-          <button type="button" onClick={sendPhoneForCode}>
+          <CodeBtn type="button" onClick={sendPhoneForCode}>
             인증번호받기
-          </button>
+          </CodeBtn>
           {isCode && (
             <div>
               <Stinput
@@ -64,14 +76,13 @@ const FindId = () => {
               />
             </div>
           )}
-        </div>
-        <button onClick={findIdHandler}>아이디 찾기</button>
+        </ContentWrap>
+        <LoginBtn onClick={findIdHandler}>아이디 찾기</LoginBtn>
 
-        <button onClick={() => navigate(`/findpw`)}>
-          비밀번호 찾으러🐾🐾🐾
-        </button>
-      </div>
-    </>
+        <LoginBtn onClick={() => navigate(`/findpw`)}>비밀번호 찾기</LoginBtn>
+      </StWraps>
+      <TapBar />
+    </Layout>
   );
 };
 export default FindId;
