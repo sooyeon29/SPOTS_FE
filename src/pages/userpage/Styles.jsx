@@ -80,6 +80,11 @@ export const StTeamForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+  }
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
@@ -255,11 +260,9 @@ export const SportTitle = styled.div`
 `;
 
 export const ModifyBtn = styled.button`
-  background: #D9D9D9;
+  background: #d9d9d9;
   border-radius: 10px;
   border: none;
   margin-left: 80px;
   font-weight: 600;
-
 `;
-

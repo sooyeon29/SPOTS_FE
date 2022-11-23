@@ -21,6 +21,7 @@ const TeamPage = () => {
 
   const { team } = useSelector((state) => state.user);
 
+  console.log(team);
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -28,27 +29,75 @@ const TeamPage = () => {
         <Title>나의 팀 리스트</Title>
 
         <TeamBox>
-          {team?.map((team) => (
-            <TeamCard
-              key={team.teamId}
-              onClick={() => {
-                dispatch(__getMyteamDetail(team.teamId));
-                navigate(`/teamdetail/${team.teamId}`);
-              }}
-            >
-              {team.image === "" ? (
-                <img alt="spots" src="/myprofile_logo.png" />
-              ) : (
-                <img alt="팀프로필" src={team.image} />
-              )}
+          {team?.map((team) => {
+            if (team.sports === "football") {
+              return (
+                <TeamCardFootball
+                  key={team.teamId}
+                  onClick={() => {
+                    dispatch(__getMyteamDetail(team.teamId));
+                    navigate(`/teamdetail/${team.teamId}`);
+                  }}
+                >
+                  {team.image === null ? (
+                    <img alt="spots" src="/myprofile_logo.png" />
+                  ) : (
+                    <img alt="팀프로필" src={team.image} />
+                  )}
 
-              <TeamName>{team.teamName}</TeamName>
-              <TeamMember>
-                {team.member}
-                <p>people</p>
-              </TeamMember>
-            </TeamCard>
-          ))}
+                  <TeamName>{team.teamName}</TeamName>
+                  <TeamMember>
+                    {team.member}
+                    <p>people</p>
+                  </TeamMember>
+                </TeamCardFootball>
+              );
+            } else if (team.sports === "tennis") {
+              return (
+                <TeamCardTennis
+                  key={team.teamId}
+                  onClick={() => {
+                    dispatch(__getMyteamDetail(team.teamId));
+                    navigate(`/teamdetail/${team.teamId}`);
+                  }}
+                >
+                  {team.image === null ? (
+                    <img alt="spots" src="/myprofile_logo.png" />
+                  ) : (
+                    <img alt="팀프로필" src={team.image} />
+                  )}
+
+                  <TeamName>{team.teamName}</TeamName>
+                  <TeamMember>
+                    {team.member}
+                    <p>people</p>
+                  </TeamMember>
+                </TeamCardTennis>
+              );
+            } else {
+              return (
+                <TeamCardBadminton
+                  key={team.teamId}
+                  onClick={() => {
+                    dispatch(__getMyteamDetail(team.teamId));
+                    navigate(`/teamdetail/${team.teamId}`);
+                  }}
+                >
+                  {team.image === null ? (
+                    <img alt="spots" src="/myprofile_logo.png" />
+                  ) : (
+                    <img alt="팀프로필" src={team.image} />
+                  )}
+
+                  <TeamName>{team.teamName}</TeamName>
+                  <TeamMember>
+                    {team.member}
+                    <p>people</p>
+                  </TeamMember>
+                </TeamCardBadminton>
+              );
+            }
+          })}
         </TeamBox>
         <Btn onClick={() => navigate("/teamregister")}> 팀 등록하기</Btn>
       </Container>
@@ -79,11 +128,49 @@ const TeamBox = styled.div`
     display: none;
   }
 `;
-const TeamCard = styled.div`
+const TeamCardFootball = styled.div`
   width: 362px;
   height: 136px;
   margin-bottom: 25px;
-  background-image: url(/spotswaitlist.png);
+  background-image: url(/football.png);
+  background-size: cover;
+  border-radius: 17px;
+  color: #fefefe;
+  display: flex;
+  align-items: center;
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    margin-left: 35px;
+  }
+`;
+
+const TeamCardTennis = styled.div`
+  width: 362px;
+  height: 136px;
+  margin-bottom: 25px;
+  background-image: url(/tennis.png);
+  background-size: cover;
+  border-radius: 17px;
+  color: #fefefe;
+  display: flex;
+  align-items: center;
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    margin-left: 35px;
+  }
+`;
+
+const TeamCardBadminton = styled.div`
+  width: 362px;
+  height: 136px;
+  margin-bottom: 25px;
+  background-image: url(/badminton.png);
+  background-size: cover;
+  border-radius: 17px;
   color: #fefefe;
   display: flex;
   align-items: center;
