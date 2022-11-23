@@ -83,7 +83,7 @@ export const StTeamForm = styled.form`
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
-  background-color: #f1f1f1;
+  border: 1px solid black;
   padding: 20px 0px 20px 20px;
   border-radius: 10px;
 `;
@@ -170,11 +170,13 @@ export const MyReserve = styled.div`
   /* background-color: aliceblue; */
 `;
 
-export const ReservedSpot = styled.div`
-  span {
-    font-size: 16px;
-    font-weight: 600;
-  }
+export const ReservedSpot = styled.div``;
+
+export const AboutMatch = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
 `;
 export const CompletedMath = styled.div`
   span {
@@ -255,11 +257,18 @@ export const SportTitle = styled.div`
 `;
 
 export const ModifyBtn = styled.button`
-  background: #D9D9D9;
+  background: #d9d9d9;
   border-radius: 10px;
   border: none;
   margin-left: 80px;
   font-weight: 600;
-
+`;
+export const ReservTitle = styled.div`
+  padding-top: 15px;
+  margin: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 `;
 

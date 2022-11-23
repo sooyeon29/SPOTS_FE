@@ -98,9 +98,9 @@ const TeamRegister = () => {
           />
           <select ref={sportsRef}>
             <option value="">Sports</option>
-            <option value="football">FOOTBALL⚽</option>
-            <option value="tennis">TENNIS🥎</option>
-            <option value="badminton">BADMINTON🏸</option>
+            <option value="풋살장">FOOTBALL⚽</option>
+            <option value="테니스장">TENNIS🥎</option>
+            <option value="배드민턴장">BADMINTON🏸</option>
           </select>
           <button>등록하기</button>
         </StTeamForm>
