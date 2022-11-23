@@ -21,7 +21,6 @@ import {
   TeamPhoto,
   SpotInfo,
 } from "./Styles";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";

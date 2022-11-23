@@ -15,7 +15,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
     localStorage.clear();
     navigate(`/`);
   };
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state?.user);
   // console.log("탭바", user);
   return (
     <SideMenu>
@@ -51,7 +51,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       ) : (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src={user.profileImg} />
+            <img alt="프로필이미지" src={user?.profileImg} />
             <div>
               <p>{nickname}</p>
             </div>
@@ -80,8 +80,8 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="구장 등록" src="/myhost_icon.png" />
-                <p>구장 등록</p>
+                <img alt="스팟 등록" src="/myhost_icon.png" />
+                <p>스팟 등록</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
