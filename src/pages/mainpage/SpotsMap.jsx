@@ -140,7 +140,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
-                      <Title>{place.spotName}</Title>
+                      <div>{place.spotName}</div>
                       {/* <div onClick={() => setIsPrivateOpen(false)}>닫기</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -185,7 +185,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
-                      <Title>{place.placenm}</Title>
+                      <div>{place.placenm}</div>
                       {/* <div onClick={() => setIsPrivateOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -223,7 +223,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.placenm}</Title>
+                      <div>{place.placenm}</div>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
@@ -261,7 +261,7 @@ const SpotsMap = ({ sportsKind }) => {
                     }}
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
-                      <Title>{place.placenm}</Title>
+                      <div>{place.placenm}</div>
                       {/* <div onClick={() => setIsPublicOpen(false)}>X</div> */}
                     </Container>
                   </CustomOverlayMap>
