@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaRegBell } from "react-icons/fa";
 import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { __getMyInfo } from "../redux/modules/userSlice";
 
 const SideBar = ({ barIsOpen, dropDownRef }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const nickname = localStorage.getItem("nickname");
+
   const logout = () => {
     localStorage.clear();
     navigate(`/`);
   };
+
+  useEffect(() => {
+    dispatch(__getMyInfo());
+  }, []);
+
   const { user } = useSelector((state) => state?.user);
-  // console.log("탭바", user);
+ // console.log("탭바", user);
+ 
   return (
     <SideMenu>
       {!token ? (
@@ -53,7 +61,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Profile>
             <img alt="프로필이미지" src={user?.profileImg} />
             <div>
-              <p>{nickname}</p>
+              <p>{user.nickname}</p>
             </div>
           </Profile>
           <Ul ref={dropDownRef}>
@@ -85,10 +93,10 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
-            {nickname === "spotsadmin" ? (
+            {user.nickname === "spotsadmin" ? (
               <Li onClick={() => navigate("/adminhome ")}>
                 <div>
-                  <img alt="관리자채팅방" src="/myhost_icon.png" />
+                  <img alt="관리자 채팅방" src="/myhost_icon.png" />
                   <p>관리자 채팅방</p>
                 </div>
                 <IoIosArrowForward className="arrow" />
@@ -139,14 +147,13 @@ const Profile = styled.div`
   margin-left: 10px;
   border-bottom: 1px solid #eaeffc;
 
-    img {
+  img {
     /* transform: translate(50, 50); */
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 50%;
     margin-right: 10px;
-
   }
 `;
 const Ul = styled.ul`

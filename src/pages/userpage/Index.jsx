@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import TapBar from "../../components/TapBar";
+import { useDispatch, useSelector } from "react-redux";
+import { __getMyInfo } from "../../redux/modules/userSlice";
 
 const UserPage = () => {
+  const dispatch = useDispatch();
   const title = "My Page";
   const navigate = useNavigate();
-  const nickname = localStorage.getItem("nickname");
-  const userPoint = localStorage.getItem("point");
+
+  useEffect(() => {
+    dispatch(__getMyInfo());
+  }, []);
+
+  const { user } = useSelector((state) => state.user);
+  //console.log(user);
 
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
         <Profile>
-          <img alt="프로필이미지" src="/myprofile_logo.png" />
+          <img alt="프로필이미지" src={user.profileImg} />
           <div>
             <p>안녕하세요!</p>
             <p>
-              {nickname}
+              {user.nickname}
               <span>님</span>
             </p>
           </div>
@@ -28,28 +36,28 @@ const UserPage = () => {
         <PointBox>
           <div>총 보유 포인트</div>
           <div>
-            <h1>{Number(userPoint).toLocaleString("ko-KR")}</h1>
+            <h1>{Number(user.point).toLocaleString("ko-KR")}</h1>
             <p>P</p>
           </div>
         </PointBox>
         <MenuBox>
           <img
-            alt="나의정보"
+            alt="내 정보"
             src="/my.png"
             onClick={() => navigate("/mypage")}
           />
           <img
-            alt="팀관리"
+            alt="나의 팀"
             src="/Teamsetting.png"
             onClick={() => navigate("/teampage")}
           />
           <img
-            alt="나의예약리스트"
+            alt="나의 예약"
             src="/myreservationlist.png"
             onClick={() => navigate("/reservpage")}
           />
           <img
-            alt="나의구장등록"
+            alt="구장 등록"
             src="/myplace.png"
             onClick={() => navigate("/hostlist")}
           />

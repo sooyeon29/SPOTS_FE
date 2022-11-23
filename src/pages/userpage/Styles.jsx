@@ -53,7 +53,7 @@ export const Image = styled.div`
 export const PageDesc = styled.div`
   display: flex;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 700;
   margin: 80px 0px 20px 0px;
 `;
 
@@ -84,6 +84,7 @@ export const StTeamForm = styled.form`
     width: 100px;
     height: 100px;
     border-radius: 100px;
+    margin-top: 15px;
   }
 `;
 export const MyMatch = styled.div`
