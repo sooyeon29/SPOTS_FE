@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import TapBar from "../../components/TapBar";
 
 const UserPage = () => {
-  const title = "MyPage";
+  const title = "My Page";
   const navigate = useNavigate();
   const nickname = localStorage.getItem("nickname");
   const userPoint = localStorage.getItem("point");

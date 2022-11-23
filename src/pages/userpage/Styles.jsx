@@ -87,9 +87,10 @@ export const StTeamForm = styled.form`
   }
 `;
 export const MyMatch = styled.div`
-  margin-bottom: 10px;
+background-color: #f1f1f1;
+  /* margin-bottom: 10px;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 10px; */
 `;
 
 export const SpotInfo = styled.div`

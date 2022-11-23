@@ -27,7 +27,7 @@ import TapBar from '../../components/TapBar';
 import Swal from 'sweetalert2';
 
 const MyPage = () => {
-  const title = 'My Page';
+  const title = 'My Profile';
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preview, setPreview] = useState([]);
@@ -91,7 +91,7 @@ const MyPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>나의 정보</PageDesc>
+        <PageDesc>내 정보</PageDesc>
         {!isEdit ? (
           <div>
             <Image>
