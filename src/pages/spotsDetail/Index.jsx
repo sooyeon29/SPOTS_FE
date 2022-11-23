@@ -602,9 +602,9 @@ const SpotsDetail = () => {
                             <WaitingMatch key={waitMatch.reservationId}>
                               <div>
                                 <span>
-                                  시간: {waitMatch.matchId.substring(0, 13)}
+                                  {waitMatch.matchId.substring(0, 13)}
                                 </span>
-                                <span>팀이름: {waitMatch.teamName}</span>
+                                <span>{waitMatch.teamName}</span>
 
                                 {spot.sports !== "football" && (
                                   <span>
