@@ -679,13 +679,13 @@ const SpotsDetail = () => {
                 </Counter>
               </SelectChoice>
 
-              {pickedTime2 !== "" && !isTwo && spot.sports !== "football" && (
+              {pickedTime2 !== "" && !isTwo && spot.sports !== "풋살장" && (
                 <Pick>
                   <One onClick={pickTwoHandler}>단식</One>
                   <Two onClick={pickTwoHandler}>복식</Two>
                 </Pick>
               )}
-              {pickedTime2 !== "" && isTwo && spot.sports !== "football" && (
+              {pickedTime2 !== "" && isTwo && spot.sports !== "풋살장" && (
                 <Pick>
                   <Two onClick={pickTwoHandler}>단식</Two>
                   <One onClick={pickTwoHandler}>복식</One>
