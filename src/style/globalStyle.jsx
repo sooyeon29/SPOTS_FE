@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import SpoqaHanSansNeoRegular from './fonts/SpoqaHanSansNeoRegular.woff';
+import { createGlobalStyle } from "styled-components";
+import SpoqaHanSansNeoRegular from "./fonts/SpoqaHanSansNeoRegular.woff";
 
 const GlobalStyle = createGlobalStyle`
 
