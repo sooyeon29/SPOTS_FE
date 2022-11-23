@@ -150,7 +150,7 @@ const Hosting = () => {
             }}
           >
             <button type="button" onClick={() => navigate(`/hostlist`)}>
-              내구장 목록보기
+              내 구장 목록 보기
             </button>
             <div>
               스팟 종류

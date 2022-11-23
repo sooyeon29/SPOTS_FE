@@ -208,12 +208,14 @@ export const InfoLayout = styled.div`
   padding: 10px 10px 10px 10px;
   border-bottom: 1px solid #cecece;
   font-size: 14px;
+  font-weight: 600;
 
   div:first-child {
     width: 100px;
     /* background-color: aliceblue; */
     text-align: center;
     border-right: 1px solid #cecece;
+    color: #545454;
   }
 
   div:last-child {
@@ -221,3 +223,41 @@ export const InfoLayout = styled.div`
   }
 `;
 
+export const NickName = styled.div`
+  margin-left: 20px;
+  display: flex;
+`;
+
+export const SportsLayout = styled.div`
+  padding: 10px;
+
+  div:first-child {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  img {
+    width: 100px;
+  }
+`;
+
+export const SportBlock = styled.div`
+  display: flex;
+  margin: auto;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* width: 390px; */
+`;
+export const SportTitle = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const ModifyBtn = styled.button`
+  background: #D9D9D9;
+  border-radius: 10px;
+  border: none;
+  margin-left: 80px;
+  font-weight: 600;
+
+`;

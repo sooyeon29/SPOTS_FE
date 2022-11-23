@@ -1,5 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StWrap, PageDesc, Image, InfoLayout } from './Styles';
+import {
+  StWrap,
+  PageDesc,
+  Image,
+  InfoLayout,
+  SportsLayout,
+  SportBlock,
+  SportTitle,
+  ModifyBtn,
+  NickName,
+} from './Styles';
 import useToggle from '../../hooks/useToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { __getMyInfo } from '../../redux/modules/userSlice';
@@ -62,7 +72,7 @@ const MyPage = () => {
 
       .catch((err) => console.log(err));
   };
-  console.log("마이페이지유저", user);
+  // console.log('마이페이지유저', user);
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -75,7 +85,9 @@ const MyPage = () => {
             </Image>
             <InfoLayout>
               <div>닉네임</div>
-              <div>{user.nickname}</div>
+              <NickName>{user.nickname}</NickName>
+
+              <ModifyBtn onClick={clickEditMode}>수정하기</ModifyBtn>
             </InfoLayout>
             <InfoLayout>
               <div>성별</div>
@@ -83,11 +95,124 @@ const MyPage = () => {
             </InfoLayout>
             <InfoLayout>
               <div>휴대폰 번호</div>
-              <div>{user.phone}</div>
+              <div>
+                {user?.phone?.substr(0, 3)} - {user?.phone?.substr(3, 4)} -{' '}
+                {user?.phone?.substr(7)}
+              </div>
             </InfoLayout>
-            <div>나의 운동<div>{user.sports}</div></div>
-            <div>관심종목<div>{user.favSports}</div></div>
-            <button onClick={clickEditMode}>수정하기</button>
+            <SportsLayout>
+              <SportTitle>나의 운동</SportTitle>
+              <SportBlock>
+                <div>
+                  {user?.sports?.includes('football') ? (
+                    <>
+                      <img src='/mypage/football_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      <img src='/mypage/football_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.sports?.includes('tennis') ? (
+                    <>
+                      <img src='/mypage/tennis_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      <img src='/mypage/tennis_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.sports?.includes('badminton') ? (
+                    <>
+                      <img src='/mypage/badminton_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      <img src='/mypage/badminton_gray.png' />
+                    </>
+                  )}
+                </div>
+              </SportBlock>
+            </SportsLayout>
+            <SportsLayout>
+              <SportTitle>관심 운동</SportTitle>
+              <SportBlock>
+                <div>
+                  {user?.favSports?.includes('baseball') ? (
+                    <>
+                      <img src='/mypage/baseball_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      <img src='/mypage/baseball_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.favSports?.includes('basketball') ? (
+                    <>
+                      <img src='/mypage/basketball_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <img src='/mypage/basketball_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.favSports?.includes('swim') ? (
+                    <>
+                      <img src='/mypage/swimming_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <img src='/mypage/swimming_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.favSports?.includes('running') ? (
+                    <>
+                      <img src='/mypage/running_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <img src='/mypage/running_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.favSports?.includes('golf') ? (
+                    <>
+                      <img src='/mypage/golf_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      <img src='/mypage/golf_gray.png' />
+                    </>
+                  )}
+                </div>
+                <div>
+                  {user?.favSports?.includes('health') ? (
+                    <>
+                      <img src='/mypage/health_blue.png' />
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <img src='/mypage/health_gray.png' />
+                    </>
+                  )}
+                </div>
+              </SportBlock>
+            </SportsLayout>
           </div>
         ) : (
           <div>
