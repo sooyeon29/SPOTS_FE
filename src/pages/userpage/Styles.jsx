@@ -220,3 +220,4 @@ export const InfoLayout = styled.div`
     margin-left: 20px;
   }
 `;
+
