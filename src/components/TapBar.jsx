@@ -16,11 +16,15 @@ const TapBar = () => {
         <BiHomeAlt size="29" onClick={() => navigate("/")} />
       </div>
       <div>
-        <TbCalendarTime size="28" onClick={() => navigate("/reservpage")}/>
+        <FiSearch size="25" onClick={() => window.location.replace("/book")} />
       </div>
       <div>
-        <FiSearch size="25" onClick={() => navigate("/book")} />
+        <TbCalendarTime
+          size="28"
+          onClick={() => window.location.replace("/reservpage")}
+        />
       </div>
+
       <div>
         <IoPersonOutline
           size="27"

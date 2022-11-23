@@ -198,18 +198,28 @@ export const Counter = styled.div`
   align-items: center;
   margin: 0px 20px;
   button {
-    width: 25px;
-    height: 25px;
-    background: #d9d9d9;
-    border: #d9d9d9;
+    border: none;
+    width: 28px;
+    height: 28px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 50px;
     font-size: 20px;
     cursor: pointer;
   }
-  span {
-    margin: 0px 20px;
-    font-size: 18px;
+  button:first-child {
+    background-color: #d9d9d9;
+  }
+  button:last-child {
+    background-color: #1746c7;
+    color: white;
+  }
+  div {
+    width: 50px;
+    height: 28px;
+    text-align: center;
+    /* margin: 0px 20px; */
+    font-size: 20px;
+    background-color: #f5f5f5;
   }
 `;
 
