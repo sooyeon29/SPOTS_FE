@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StContainer = styled.div`
   display: flex;
@@ -88,9 +88,24 @@ export const StTeamForm = styled.form`
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
-  background-color: #f1f1f1;
-  padding: 20px 0px 20px 20px;
+  border: 1px solid black;
   border-radius: 10px;
+`;
+
+export const SpotInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    margin-right: 25px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  img {
+    width: 70px;
+    margin: 20px auto 10px 20px;
+  }
 `;
 
 export const HostCard = styled.div``;
@@ -175,11 +190,14 @@ export const MyReserve = styled.div`
   /* background-color: aliceblue; */
 `;
 
-export const ReservedSpot = styled.div`
-  span {
-    font-size: 16px;
-    font-weight: 600;
-  }
+export const ReservedSpot = styled.div``;
+
+export const AboutMatch = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
   span {
@@ -266,3 +284,145 @@ export const ModifyBtn = styled.button`
   margin-left: 80px;
   font-weight: 600;
 `;
+export const ReservTitle = styled.div`
+  padding-top: 15px;
+  margin: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`;
+export const MoreInfo = styled.div`
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+`;
+export const DayTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+`;
+export const ForMatch = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    color: red;
+    font-weight: 700;
+  }
+`;
+
+export const ProfilePhotoInput = styled.input`
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;
+
+export const ProfilePhotoUpload = styled.div`
+  div {
+    background-color: #fff;
+    border: 2px solid #00F78E;
+    font-size: 30px;
+    font-weight: 800;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    left: 55%;
+  }
+`;
+
+export const SaveImage = styled.button`
+  background-color: #FF00B4;
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  margin: auto;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+`
+
+export const ModifyDiv = styled.div`
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+`
+
+export const ModifyBlock = styled.div`
+  display: flex;
+  padding: 10px 0px 5px 10px;
+  border-bottom: 1px solid #cecece;
+
+  div:first-child {
+    width: 100px;
+    /* background-color: aliceblue; */
+    text-align: center;
+    border-right: 1px solid #cecece;
+    color: #545454;
+  }
+
+  input {
+    margin-left: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 0px 0px 0px 10px;
+    width: 100px;
+
+    :focus {
+      outline: none;
+    }
+  }
+
+  button {
+    margin-left: 20px;
+    border: none;
+    background-color: #fff;
+    color: black;
+    font-weight: 600;
+  }
+`
+
+export const ModifyBtns = styled.div`
+  display: flex;
+  /* justify-content: center;
+  align-items: center;
+  text-align: center; */
+  margin-top: 40px;
+
+  button {
+  background-color: #f1f1f1;
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  margin: auto;
+  color: black;
+  font-weight: 600;
+  margin-left: 10px;
+  }
+`

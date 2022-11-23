@@ -161,9 +161,9 @@ const Hosting = () => {
                 }}
               >
                 <option>선택하세요</option>
-                <option>football</option>
-                <option>tennis</option>
-                <option>badminton</option>
+                <option>풋살장</option>
+                <option>테니스장</option>
+                <option>배드민턴장</option>
               </select>
             </div>
             <div>
