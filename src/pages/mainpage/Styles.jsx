@@ -14,6 +14,7 @@ export const MainElement = styled.div`
 `
 export const MainBanner = styled.img`
   width: 100%;
+  margin-top: 62px;
 `;
 export const UpperLine = styled.div`
   width: 80%;

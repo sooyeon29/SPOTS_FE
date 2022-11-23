@@ -524,7 +524,7 @@ const SignUp = () => {
                       }}
                       checked='checked'
                       type='radio'
-                      value='female'
+                      value='여성'
                       {...register('gender', { required: true })}
                     />
                     여성
@@ -533,7 +533,7 @@ const SignUp = () => {
                         width: '30px',
                       }}
                       type='radio'
-                      value='male'
+                      value='남성'
                       {...register('gender', { required: true })}
                     />
                     남성
