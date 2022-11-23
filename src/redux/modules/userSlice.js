@@ -14,7 +14,7 @@ export const __getMyInfo = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await UserpageAPI.getMypage();
-      console.log(data);
+      // console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -61,6 +61,7 @@ const userSlice = createSlice({
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;
+      console.log(state.error);
     },
     [__getMyteamList.pending]: (state, action) => {
       state.isLoading = true;
@@ -70,15 +71,21 @@ const userSlice = createSlice({
     },
     [__getMyteamList.rejected]: (state, action) => {
       state.error = action.payload.response.data;
+      if (action.payload.response.status === 401) {
+        alert("예약은 로그인 후 이용 가능합니다.");
+      }
       // console.log(state.error.status);
-      // if (state.error.status === 404 ) {
-      //   alert ("팀 등록을 먼저 해주세요")
+      // if (state.error.status === 404) {
+      //   alert("팀 등록을 먼저 해주세요");
       // }
       // console.log("요기에러------------", action.payload);
       if (action.payload.response.status === 401) {
         alert("예약은 로그인 후 이용 가능합니다.");
-        // else alert(state.error);
       }
+      // if (action.payload.response.status === 404) {
+      //   alert("등록한 팀이 없습니다. 예약은 팀등록 이후 가능합니다.");
+      // }
+      // else alert(state.error);
     },
     [__getMyteamDetail.pending]: (state, action) => {
       state.isLoading = true;

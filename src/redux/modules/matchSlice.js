@@ -101,8 +101,9 @@ const matchSlice = createSlice({
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      // console.log("에러났을때", action.payload);
-      alert("필수입력값을 모두 입력해주세요");
+      console.log("에러났을때", state.error);
+      alert(state.error.response.data.error);
+      // alert("필수입력값을 모두 입력해주세요");
     },
 
     // 해당구장 해당날짜 예약 가져오기 get
