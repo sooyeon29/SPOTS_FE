@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getMyInfo } from "../../redux/modules/userSlice";
 
 const UserPage = () => {
-  const title = "MyPage";
   const dispatch = useDispatch();
+  const title = "My Page";
   const navigate = useNavigate();
 
   useEffect(() => {

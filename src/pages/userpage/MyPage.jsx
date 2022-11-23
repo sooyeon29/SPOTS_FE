@@ -27,7 +27,7 @@ import TapBar from "../../components/TapBar";
 import Swal from "sweetalert2";
 
 const MyPage = () => {
-  const title = "My Page";
+  const title = 'My Profile';
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preview, setPreview] = useState([]);
@@ -37,7 +37,7 @@ const MyPage = () => {
     dispatch(__getMyInfo());
   }, []);
 
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state?.user);
   // console.log(user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
@@ -91,15 +91,15 @@ const MyPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>나의 정보</PageDesc>
+        <PageDesc>내 정보</PageDesc>
         {!isEdit ? (
           <div>
             <Image>
-              <img alt="기본프로필사진" src={user.profileImg} />
+              <img alt='기본프로필사진' src={user?.profileImg} />
             </Image>
             <InfoLayout>
               <div>닉네임</div>
-              <NickName>{user.nickname}</NickName>
+              <NickName>{user?.nickname}</NickName>
               <ModifyBtn onClick={clickEditMode}>프로필 수정</ModifyBtn>
             </InfoLayout>
             <InfoLayout>
