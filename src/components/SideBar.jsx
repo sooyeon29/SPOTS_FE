@@ -138,10 +138,15 @@ const Profile = styled.div`
   font-weight: 900;
   margin-left: 10px;
   border-bottom: 1px solid #eaeffc;
-  img {
-    width: 77px;
-    height: 77px;
-    margin-right: 20px;
+
+    img {
+    /* transform: translate(50, 50); */
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+
   }
 `;
 const Ul = styled.ul`

@@ -1,24 +1,28 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+import SpoqaHanSansNeoRegular from './fonts/SpoqaHanSansNeoRegular.woff';
 
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
-    font-family: 'SpoqaHanSansNeo-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+  font-family: 'SpoqaHanSansNeoRegular';
+        src: local('SpoqaHanSansNeoRegular'), local('GmarketSansTTFBold');
+        font-style: normal;
+        src: url(${SpoqaHanSansNeoRegular}) format('truetype');
 
 }
+
   *, *::before, *::after {
-    font-family: 'SpoqaHanSansNeo-Regular';
-    box-sizing: border-box;
+    /* font-family: 'SpoqaHanSansNeo-Regular'; */
+    /* box-sizing: border-box; */
   }
 
   body {
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'SpoqaHanSansNeoRegular';
     font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--gray-900);
-        display: block;
+    /* font-size: 16px; */
+    /* line-height: 24px; */
+    /* color: var(--gray-900); */
+        /* display: block; */
 
   }
   :root {

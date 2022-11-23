@@ -78,7 +78,7 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
-        <MainBanner src="mobileMainBanner.png" />
+        <MainBanner src="spotsMobile.jpeg" />
         <MapBlock>Map</MapBlock>
         <SpotContainer>
           <Section>최신 등록 스팟</Section>
