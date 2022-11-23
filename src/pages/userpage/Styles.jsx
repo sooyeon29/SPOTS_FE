@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StContainer = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const StContainer = styled.div`
 
 export const StWrap = styled.div`
   width: 90%;
-  padding: 20px;
+  padding: 60px;
   border: 1px solid lightgray;
   border-radius: 15px;
   margin-top: 50px;
@@ -53,7 +53,7 @@ export const StTeamForm = styled.form`
 export const MyMatch = styled.div`
   margin-bottom: 10px;
   background-color: #f1f1f1;
-  padding:20px 0px 20px 20px;
+  padding: 20px 0px 20px 20px;
   border-radius: 10px;
 `;
 
@@ -163,17 +163,12 @@ export const SpotName = styled.div`
   font-weight: 600;
   font-size: 20px;
   margin-bottom: 10px;
-`
+`;
 export const MatchDate = styled.div`
-    margin-bottom: 20px;
-`
-export const MatchTime = styled.div`
-  
-`
-export const MatchMember = styled.div`
-  
-`
+  margin-bottom: 20px;
+`;
+export const MatchTime = styled.div``;
+export const MatchMember = styled.div``;
 export const MatchTeam = styled.div`
-    margin-bottom: 20px;
-
-`
+  margin-bottom: 20px;
+`;

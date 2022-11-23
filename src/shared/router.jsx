@@ -17,14 +17,10 @@ import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
 import FindPw from "../pages/login/FindPw";
 import FindId from "../pages/login/FindId";
-//import Chatting from "../pages/chat/Chatting";
-// import ChatRoom from "../pages/chat/ChatRoom";
 import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
 import AdminHome from "../pages/chat/AdminHome";
 import AdminChat from "../pages/chat/AdminChat";
-import Matching from "../pages/spotsDetail/Matching";
-import WaitMatch from "../pages/spotsDetail/WaitMatch";
 
 function Router() {
   return (
@@ -49,13 +45,9 @@ function Router() {
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
-        {/* <Route path="/chatting" element={<Chatting />} /> */}
-        {/* <Route path="/chatroom" element={<ChatRoom />} /> */}
         <Route path="/addlogin" element={<KakaoAdd />} />
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
-        <Route path="/matching/:id" element={<Matching />} />
-        <Route path="/waitlist" element={<WaitMatch />} />
       </Routes>
     </BrowserRouter>
   );
