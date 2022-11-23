@@ -13,6 +13,7 @@ import {
   LoginBtn,
   CodeBtn,
   Logo,
+  InputWrapLower,
 } from "./Styles";
 import { useState } from "react";
 import { ContentWrap, NextBtn } from "../signUp/Styles";
@@ -52,30 +53,32 @@ const FindId = () => {
           <Logo>
             <img alt="" src="/spotslogo.png" />
           </Logo>
-          <PageTitle>아이디찾기</PageTitle>
-          <div>
+
+          <InputWrapLower>
+            + 82 |
             <Stinput
-              placeholder=" '-' 제외한 핸드폰번호를 입력하세요"
+              placeholder="01012345678"
               type="text"
               required
               name="phone"
               onChange={enterPhoneNum}
             />
-          </div>
-          <CodeBtn type="button" onClick={sendPhoneForCode}>
-            인증번호받기
-          </CodeBtn>
+          </InputWrapLower>
+
           {isCode && (
-            <div>
+            <InputWrapLower>
               <Stinput
-                placeholder="인증번호를 입력하세요"
+                placeholder="인증번호 입력 (제한시간3분)"
                 type="text"
                 required
                 name="code"
                 onChange={enterVeriCode}
               />
-            </div>
+            </InputWrapLower>
           )}
+          <CodeBtn type="button" onClick={sendPhoneForCode}>
+            인증번호받기
+          </CodeBtn>
         </ContentWrap>
         <LoginBtn onClick={findIdHandler}>아이디 찾기</LoginBtn>
 
