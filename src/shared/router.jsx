@@ -23,8 +23,9 @@ import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
 import AdminHome from "../pages/chat/AdminHome";
 import AdminChat from "../pages/chat/AdminChat";
-import Matching from "../pages/spotsDetail/Matching";
+// import Matching from "../pages/spotsDetail/Matching";
 import WaitMatch from "../pages/spotsDetail/WaitMatch";
+import Welcome from "../components/Welcome";
 
 function Router() {
   return (
@@ -54,8 +55,9 @@ function Router() {
         <Route path="/addlogin" element={<KakaoAdd />} />
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
-        <Route path="/matching/:id" element={<Matching />} />
+        {/* <Route path="/matching/:id" element={<Matching />} /> */}
         <Route path="/waitlist" element={<WaitMatch />} />
+        <Route path="/welcome" element={<Welcome />} />
       </Routes>
     </BrowserRouter>
   );
