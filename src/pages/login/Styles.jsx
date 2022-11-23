@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { lighten, darken } from "polished";
 
 export const StWraps = styled.div`
-  margin-top: 200px;
-  background-color: #f1f1f1;
+  margin-top: 110px;
+  /* background-color: #f1f1f1; */
   /* display: flex; */
   /* align-items: center; */
   /* justify-content: center; */
@@ -23,7 +23,7 @@ export const PageTitle = styled.div`
 export const LoginBtn = styled.button`
   height: 50px;
   /* padding: 11px 0px 10px; */
-  background: #2b2bff;
+  background: #1746c7;
   color: white;
   display: flex;
   /* text-align: center; */
@@ -31,16 +31,23 @@ export const LoginBtn = styled.button`
   justify-content: center;
   width: 330px;
   border: none;
-  border-radius: 5px;
+  border-radius: 47px;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 5px;
+  margin-bottom: 25px;
   cursor: pointer;
   &:hover {
-    /* background-color: ${darken(0.1, "#8fc7ff")}; */
+    background-color: ${lighten(0.1, "#1746c7")};
+  }
+`;
+export const CodeBtn = styled(LoginBtn)`
+  background: #ff00b4;
+  &:hover {
+    background-color: ${lighten(0.1, "#FF00B4")};
   }
 `;
 
@@ -49,10 +56,15 @@ export const InputWrap = styled.div`
   width: 330px;
   margin: auto;
 `;
-
+export const Logo = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+`;
 export const Stinput = styled.input`
   background-color: #fff;
   border: none;
+  border-radius: 26px;
   padding: 12px 15px;
   width: 300px;
   margin: auto;
@@ -89,10 +101,10 @@ export const KakaoBtn = styled.button`
   justify-content: center;
   height: 50px;
   /* padding: 11px 0px 10px; */
-  background: #f7e600;
+  background: #fed600;
   width: 330px;
   border: none;
-  border-radius: 5px;
+  border-radius: 47px;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
