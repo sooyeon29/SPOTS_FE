@@ -78,7 +78,8 @@ export const StTeam = styled.div`
 export const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  align-items: center;
+  width: 100%;
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
@@ -261,3 +262,4 @@ export const ModifyBtn = styled.button`
   font-weight: 600;
 
 `;
+
