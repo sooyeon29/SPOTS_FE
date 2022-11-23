@@ -80,6 +80,11 @@ export const StTeamForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+  }
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;

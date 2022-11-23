@@ -13,7 +13,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    console.log("인스턴스인터셉터리스판스:", config);
+    //console.log("인스턴스인터셉터리스판스:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
