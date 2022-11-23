@@ -61,6 +61,7 @@ const userSlice = createSlice({
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;
+      console.log(state.error);
     },
     [__getMyteamList.pending]: (state, action) => {
       state.isLoading = true;
