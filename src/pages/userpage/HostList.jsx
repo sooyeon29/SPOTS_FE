@@ -1,23 +1,27 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   __deletePrivateSpot,
   __getMyPrivateSpot,
-} from "../../redux/modules/spotsSlice";
+} from '../../redux/modules/spotsSlice';
 import {
+  AboutMySpot,
+  Btn,
   ButWrap,
   ImageInfo,
   MyHostList,
-  StTag,
-  StTeam,
+  MyMatch,
+  MySpot,
+  SpotInfo,
   StWrap,
-  WordInfo,
-} from "./Styles";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import { useNavigate } from "react-router-dom";
+} from './Styles';
+import Layout from '../../components/Layout';
+import { useNavigate } from 'react-router-dom';
+import FlexibleHeader from '../../components/FlexibleHeader';
+import TapBar from '../../components/TapBar';
 
 const HostList = () => {
+  const title = 'My Spots';
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,46 +37,74 @@ const HostList = () => {
 
   return (
     <Layout>
-      <Header />
+      <FlexibleHeader title={title} />
       <StWrap>
-        <StTag>HostList</StTag>
-        <button onClick={() => navigate(`/hosting`)}>내구장 등록하기</button>
-        <h5>내가 등록한 구장</h5>
-
         {placeList?.map((place) => {
           return (
-            <StTeam key={place.placesId}>
+            <MyMatch key={place?.placesId}>
+              <div>
+                <img src={place?.image} />
+              </div>
+              <div>
+                <div>
+                  <div>{place?.spotName}</div>
+                  <div>
+                    {' '}
+                    {place?.sports === '배드민턴장' ? (
+                      <>
+                        <img src='/host_badminton.png' />
+                      </>
+                    ) : null}
+                  </div>
+                </div>
+                <div>{place?.address}</div>
+                <div>{place?.spotKind}</div>
+              </div>
+
+              {/* <ImageInfo>
+                <img alt="" src={place.image} />
+                <MySpot>
+                  <span>{place.spotName}</span>
+                  <div>{place.address}</div>
+                </MySpot>
+              </ImageInfo>
               <MyHostList>
-                <WordInfo>
-                  <h5>{place.spotName}</h5>
-                  {place.sports}
-                  <span>- {place.spotKind}</span>
-                  <br />
-                  {place.address}
-                  <br />
-                  <span>{place.price}원</span>
-                </WordInfo>
-                <ImageInfo>
-                  <img alt="" src={place.image} />
-                </ImageInfo>
-              </MyHostList>
+                <SpotInfo>
+                  {place.sports === "풋살장" && (
+                    <img alt="" src="/privateFutsal 2.png" />
+                  )}
+                  {place.sports === "배드민턴장" && (
+                    <img alt="" src="/privateBadminton 2.png" />
+                  )}
+                  {place.sports === "테니스장" && (
+                    <img alt="" src="/privateTennis 2.png" />
+                  )}
+                </SpotInfo>
+                <AboutMySpot>
+                  <div>- {place.spotKind}</div>
+                  <div>{place.price}원</div>
+                </AboutMySpot>
+              </MyHostList> */}
 
               <ButWrap>
                 <button
                   onClick={() => {
                     navigate(`/hostdetail/${place.placesId}`);
-                  }}
-                >
+                  }}>
                   수정하기
                 </button>
                 <button onClick={() => deleteHostHandler(place.placesId)}>
                   삭제하기
                 </button>
               </ButWrap>
-            </StTeam>
+            </MyMatch>
           );
         })}
+
+        <Btn onClick={() => navigate(`/hosting`)}>내구장 등록하기</Btn>
+        {/* </MyReserve> */}
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };

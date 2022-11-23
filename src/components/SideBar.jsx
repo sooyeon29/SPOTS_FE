@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaRegBell } from "react-icons/fa";
 import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { __getMyInfo } from "../redux/modules/userSlice";
 
 const SideBar = ({ barIsOpen, dropDownRef }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const nickname = localStorage.getItem("nickname");
+
   const logout = () => {
     localStorage.clear();
     navigate(`/`);
   };
-  const { user } = useSelector((state) => state.user);
-  // console.log("탭바", user);
+
+  useEffect(() => {
+    dispatch(__getMyInfo());
+  }, []);
+
+  const { user } = useSelector((state) => state?.user);
+ // console.log("탭바", user);
+ 
   return (
     <SideMenu>
       {!token ? (
@@ -51,9 +59,9 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       ) : (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src={user.profileImg} />
+            <img alt="프로필이미지" src={user?.profileImg} />
             <div>
-              <p>{nickname}</p>
+              <p>{user.nickname}</p>
             </div>
           </Profile>
           <Ul ref={dropDownRef}>
@@ -80,15 +88,15 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="구장 등록" src="/myhost_icon.png" />
-                <p>구장 등록</p>
+                <img alt="스팟 등록" src="/myhost_icon.png" />
+                <p>스팟 등록</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
-            {nickname === "spotsadmin" ? (
+            {user.nickname === "spotsadmin" ? (
               <Li onClick={() => navigate("/adminhome ")}>
                 <div>
-                  <img alt="관리자채팅방" src="/myhost_icon.png" />
+                  <img alt="관리자 채팅방" src="/myhost_icon.png" />
                   <p>관리자 채팅방</p>
                 </div>
                 <IoIosArrowForward className="arrow" />
@@ -138,10 +146,14 @@ const Profile = styled.div`
   font-weight: 900;
   margin-left: 10px;
   border-bottom: 1px solid #eaeffc;
+
   img {
-    width: 77px;
-    height: 77px;
-    margin-right: 20px;
+    /* transform: translate(50, 50); */
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
   }
 `;
 const Ul = styled.ul`

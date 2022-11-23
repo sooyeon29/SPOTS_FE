@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
-import { StTeamForm, StWrap, PageDesc, InfoLayout } from "./Styles";
-import Header from "../../components/Header";
+import {
+  StTeamForm,
+  StWrap,
+  PageDesc,
+  Image,
+  ProfilePhotoUpload,
+  ProfilePhotoInput,
+} from "./Styles";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
@@ -9,10 +15,10 @@ import TapBar from "../../components/TapBar";
 import styled from "styled-components";
 
 const TeamRegister = () => {
-  const title = "Team Page";
+  const title = "TeamPage";
   const navigate = useNavigate();
 
-  const [preview, setPreview] = useState([]);
+  const [preview, setPreview] = useState("/myprofile_logo.png");
   const [img, setImg] = useState(null);
 
   const nameRef = useRef();
@@ -81,28 +87,49 @@ const TeamRegister = () => {
       <StWrap>
         <PageDesc>팀 등록</PageDesc>
         <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
-          <img alt="미리보기" src={preview} />
-          <Input
-            type="file"
-            onChange={(e) => {
-              handleImagePreview(e);
-            }}
-            accept="image/*"
-          />
-          <input type="text" placeholder="team name" ref={nameRef} />
-          <input
-            type="number"
-            placeholder="number of members"
-            ref={membersRef}
-            min="1"
-          />
-          <select ref={sportsRef}>
-            <option value="">Sports</option>
-            <option value="풋살장">FOOTBALL⚽</option>
-            <option value="테니스장">TENNIS🥎</option>
-            <option value="배드민턴장">BADMINTON🏸</option>
-          </select>
-          <button>등록하기</button>
+          <Image>
+            <img alt="미리보기" src={preview} />
+          </Image>
+          <ProfilePhotoUpload>
+            <label htmlFor="upload-input">
+              <div>+</div>
+            </label>
+            <ProfilePhotoInput
+              id="upload-input"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                handleImagePreview(e);
+              }}
+              accept="image/*"
+            />
+          </ProfilePhotoUpload>
+          <InputBox>
+            <TeamLayout>
+              <div>팀이름</div>
+              <InputText type="text" placeholder="team name" ref={nameRef} />
+            </TeamLayout>
+            <TeamLayout>
+              <div>팀인원</div>
+              <InputText
+                type="number"
+                placeholder="number of members"
+                ref={membersRef}
+                min="1"
+              />
+            </TeamLayout>
+
+            <TeamLayout>
+              <div>종목</div>
+              <SelectBox ref={sportsRef}>
+                <option value="">Sports</option>
+                <option value="football">FOOTBALL⚽</option>
+                <option value="tennis">TENNIS🥎</option>
+                <option value="badminton">BADMINTON🏸</option>
+              </SelectBox>
+            </TeamLayout>
+          </InputBox>
+          <Btn>등록하기</Btn>
         </StTeamForm>
       </StWrap>
       <TapBar />
@@ -112,13 +139,55 @@ const TeamRegister = () => {
 
 export default TeamRegister;
 
-const Input = styled.input`
-  ::file-selector-button {
-    display: none;
+const InputBox = styled.div`
+  //margin-top: 10px;
+  margin-bottom: 40px;
+`;
+
+const InputText = styled.input`
+  display: flex;
+  border: none;
+  width: 150px;
+  :focus {
+    outline: none;
   }
-  width: 50px;
-  height: 50px;
-  border: 1px solid lightgray;
-  border-radius: 50px;
-  background-color: #d9d9d9;
+`;
+
+const SelectBox = styled.select`
+  border: none;
+  width: 150px;
+`;
+
+const TeamLayout = styled.div`
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1px solid #cecece;
+  font-size: 14px;
+  font-weight: 600;
+
+  div:first-child {
+    width: 100px;
+    /* background-color: aliceblue; */
+    text-align: center;
+    border-right: 1px solid #cecece;
+    color: #545454;
+    padding: 8px 8px 8px 8px;
+  }
+
+  div:last-child {
+    margin-left: 20px;
+  }
+`;
+
+const Btn = styled.button`
+  width: 90%;
+  height: 52px;
+  background-color: #1746c7;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 47px;
+  line-height: 52px;
+  text-align: center;
+  border: none;
 `;

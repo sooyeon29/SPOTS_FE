@@ -53,7 +53,7 @@ export const Image = styled.div`
 export const PageDesc = styled.div`
   display: flex;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 700;
   margin: 80px 0px 20px 0px;
 `;
 
@@ -80,12 +80,59 @@ export const StTeamForm = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-top: 15px;
+  }
 `;
 export const MyMatch = styled.div`
-  margin-bottom: 10px;
+background-color: #f1f1f1;
+  /* margin-bottom: 10px;
   border: 1px solid black;
-  padding: 20px 0px 20px 20px;
-  border-radius: 10px;
+  border-radius: 10px; */
+`;
+
+export const SpotInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+
+  img {
+    width: 100px;
+    margin: 15px 10px 5px 15px;
+    border-radius: 10px;
+  }
+  div {
+    padding: 5px;
+    button {
+      margin-top: 10px;
+      margin-right: 25px;
+      font-size: 22px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+    }
+    p {
+      margin: 5px;
+    }
+    span:last-child {
+      color: #49e7a5;
+      padding: 2px 8px;
+      text-align: center;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      background-color: black;
+      position: relative;
+      z-index: 2;
+      top: 3px;
+      left: 8px;
+    }
+  }
 `;
 
 export const HostCard = styled.div``;
@@ -145,14 +192,38 @@ export const MyHostList = styled.div`
   align-items: center;
 `;
 export const WordInfo = styled.div`
-  margin-left: 50px;
+  margin: auto;
 `;
 export const ImageInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   img {
+    border-radius: 10px;
     width: 120px;
-    margin: 20px 50px 10px auto;
+    margin: 10px auto 10px 10px;
   }
 `;
+export const MySpot = styled.div`
+  display: flex;
+  flex-direction: column;
+  span {
+    margin: 7px auto;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  div {
+    margin: auto;
+    padding: 0px 15px;
+  }
+`;
+export const AboutMySpot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+`;
+
 export const ButWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -165,7 +236,7 @@ export const MyReserve = styled.div`
   width: 90%;
   margin: auto;
   margin-top: 72px;
-  margin-bottom: 60px;
+  margin-bottom: 72px;
   align-items: center;
   /* background-color: aliceblue; */
 `;
@@ -173,10 +244,11 @@ export const MyReserve = styled.div`
 export const ReservedSpot = styled.div``;
 
 export const AboutMatch = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
   span {
@@ -271,4 +343,149 @@ export const ReservTitle = styled.div`
   display: flex;
   justify-content: center;
 `;
+export const MoreInfo = styled.div`
+  border: none;
+  color: white;
+  background-color: #1746c7;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+`;
+export const DayTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+`;
+export const ForMatch = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 15px;
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    color: red;
+    font-weight: 700;
+  }
+`;
 
+export const ProfilePhotoInput = styled.input`
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+`;
+
+export const ProfilePhotoUpload = styled.div`
+  div {
+    background-color: #fff;
+    border: 2px solid #00f78e;
+    font-size: 30px;
+    font-weight: 800;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 35%;
+    left: 55%;
+  }
+`;
+
+export const SaveImage = styled.button`
+  background-color: #ff00b4;
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  margin: auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+`;
+
+export const ModifyDiv = styled.div`
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+export const ModifyBlock = styled.div`
+  display: flex;
+  padding: 10px 0px 5px 10px;
+  border-bottom: 1px solid #cecece;
+
+  div:first-child {
+    width: 100px;
+    /* background-color: aliceblue; */
+    text-align: center;
+    border-right: 1px solid #cecece;
+    color: #545454;
+  }
+
+  input {
+    margin-left: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 0px 0px 0px 10px;
+    width: 100px;
+
+    :focus {
+      outline: none;
+    }
+  }
+
+  button {
+    margin-left: 20px;
+    border: none;
+    background-color: #fff;
+    color: black;
+    font-weight: 600;
+  }
+`;
+
+export const ModifyBtns = styled.div`
+  display: flex;
+  /* justify-content: center;
+  align-items: center;
+  text-align: center; */
+  margin-top: 40px;
+
+  button {
+    background-color: #f1f1f1;
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    margin: auto;
+    color: black;
+    font-weight: 600;
+    margin-left: 10px;
+  }
+`;
+export const Btn = styled.button`
+  width: 360px;
+  height: 50px;
+  color: #09225c;
+  background-color: #00f78e;
+  border-radius: 43px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+`;
