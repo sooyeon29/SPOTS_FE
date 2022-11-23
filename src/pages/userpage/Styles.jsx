@@ -78,11 +78,12 @@ export const StTeam = styled.div`
 export const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  align-items: center;
+  width: 100%;
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
-  background-color: #f1f1f1;
+  border: 1px solid black;
   padding: 20px 0px 20px 20px;
   border-radius: 10px;
 `;
@@ -169,11 +170,13 @@ export const MyReserve = styled.div`
   /* background-color: aliceblue; */
 `;
 
-export const ReservedSpot = styled.div`
-  span {
-    font-size: 16px;
-    font-weight: 600;
-  }
+export const ReservedSpot = styled.div``;
+
+export const AboutMatch = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
 `;
 export const CompletedMath = styled.div`
   span {
@@ -208,16 +211,64 @@ export const InfoLayout = styled.div`
   padding: 10px 10px 10px 10px;
   border-bottom: 1px solid #cecece;
   font-size: 14px;
+  font-weight: 600;
 
   div:first-child {
     width: 100px;
     /* background-color: aliceblue; */
     text-align: center;
     border-right: 1px solid #cecece;
+    color: #545454;
   }
 
   div:last-child {
     margin-left: 20px;
   }
+`;
+
+export const NickName = styled.div`
+  margin-left: 20px;
+  display: flex;
+`;
+
+export const SportsLayout = styled.div`
+  padding: 10px;
+
+  div:first-child {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  img {
+    width: 100px;
+  }
+`;
+
+export const SportBlock = styled.div`
+  display: flex;
+  margin: auto;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* width: 390px; */
+`;
+export const SportTitle = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const ModifyBtn = styled.button`
+  background: #d9d9d9;
+  border-radius: 10px;
+  border: none;
+  margin-left: 80px;
+  font-weight: 600;
+`;
+export const ReservTitle = styled.div`
+  padding-top: 15px;
+  margin: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
 `;
 

@@ -6,8 +6,6 @@ import SpotsMap from "./SpotsMap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
-  UpperLine,
-  BtnWrap,
   New,
   Image,
   BannerSlider,
@@ -29,13 +27,8 @@ import useDetectClose from "../../hooks/useDetectClose";
 import ChatRoom from "../chat/ChatRoom";
 
 const MainMaps = () => {
-  const [sportsKind, setSportsKind] = useState("");
   const [newSpot, setNewSpot] = useState();
   const navigate = useNavigate();
-  const futsal = "풋살장";
-  const tennis = "테니스장";
-  const badminton = "배드민턴장";
-
   //chatbtn
   const [chatOpen, chatRef, chatHandler] = useDetectClose(false);
   const chatOpenRef = useRef(null);
@@ -74,7 +67,7 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        // console.log(newSpot);
+        console.log(newSpot);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -86,21 +79,7 @@ const MainMaps = () => {
       <Layout>
         <Header />
         <MainBanner src="mobileMainBanner.png" />
-        {/* <MainMapLayout> */}
-        {/* <UpperLine>
-          <BtnWrap>
-            <button onClick={() => setSportsKind(futsal)}>풋살</button>
-            <button onClick={() => setSportsKind(tennis)}>테니스</button>
-            <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
-          </BtnWrap>
-          <div>
-            <span>● 공공스팟</span>
-            <span>● 사설스팟</span>
-          </div>
-        </UpperLine> */}
         <MapBlock>Map</MapBlock>
-        {/* <SpotsMap sportsKind={sportsKind} /> */}
-        {/* </MainMapLayout> */}
         <SpotContainer>
           <Section>최신 등록 스팟</Section>
           <BannerSlider {...settings}>

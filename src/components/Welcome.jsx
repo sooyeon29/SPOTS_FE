@@ -10,7 +10,7 @@ const Welcome = () => {
     <Layout>
       <Header />
       <Wrap>
-        <Img src='/welcome_image.png' />{' '}
+        <Img src='/welcome_image.jpeg' />{' '}
       <Button onClick={()=>navigate('/login')}>로그인하러 가기</Button>
       </Wrap>
       <TapBar />

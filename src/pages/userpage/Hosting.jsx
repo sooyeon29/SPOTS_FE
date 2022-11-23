@@ -150,7 +150,7 @@ const Hosting = () => {
             }}
           >
             <button type="button" onClick={() => navigate(`/hostlist`)}>
-              내구장 목록보기
+              내 구장 목록 보기
             </button>
             <div>
               스팟 종류
@@ -161,9 +161,9 @@ const Hosting = () => {
                 }}
               >
                 <option>선택하세요</option>
-                <option>football</option>
-                <option>tennis</option>
-                <option>badminton</option>
+                <option>풋살장</option>
+                <option>테니스장</option>
+                <option>배드민턴장</option>
               </select>
             </div>
             <div>

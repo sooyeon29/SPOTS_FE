@@ -13,11 +13,14 @@ import {
   MatchMember,
   MatchTeam,
   underLine,
+  ReservTitle,
+  AboutMatch,
 } from "./Styles";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
+import { Title } from "../spotsDetail/Styles";
 
 const ReservPage = () => {
   const title = "나의 예약";
@@ -60,8 +63,9 @@ const ReservPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <MyReserve>
+        <ReservTitle>나의 예약리스트</ReservTitle>
         <ReservedSpot>
-          <span>스팟 예약</span>
+          <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.map((matchCom) => {
             return (
               <MyMatch key={matchCom.reservationId}>
@@ -89,7 +93,7 @@ const ReservPage = () => {
           })}
         </ReservedSpot>
         <CompletedMath>
-          <span>매칭 완료</span>
+          <AboutMatch>매칭 완료</AboutMatch>
           {matchComplete?.map((matchCom) => {
             return (
               <MyMatch key={matchCom.reservationId}>
@@ -117,7 +121,7 @@ const ReservPage = () => {
           })}
         </CompletedMath>
         <WaitedMatch>
-          <span>매칭 대기</span>
+          <AboutMatch>매칭 대기</AboutMatch>
           {matchWaiting?.map((matchWait) => {
             return (
               <MyMatch key={matchWait.reservationId}>
