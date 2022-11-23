@@ -16,7 +16,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
     navigate(`/`);
   };
   const { user } = useSelector((state) => state.user);
-  console.log("탭바", user);
+  // console.log("탭바", user);
   return (
     <SideMenu>
       {!token ? (
@@ -59,29 +59,29 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/mypage")}>
               <div>
-                <img alt="내정보수정" src="/myprofile_icon.png" />
-                <p>내정보수정</p>
+                <img alt="내 정보" src="/myprofile_icon.png" />
+                <p>내 정보</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/teampage")}>
               <div>
-                <img alt="팀관리" src="/myteam_icon.png" />
-                <p>팀관리</p>
+                <img alt="나의 팀" src="/myteam_icon.png" />
+                <p>나의 팀</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/reservpage")}>
               <div>
-                <img alt="나의 예약리스트" src="/myreserv_icon.png" />
-                <p>나의 예약리스트</p>
+                <img alt="나의 예약" src="/myreserv_icon.png" />
+                <p>나의 예약</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="나의 구장 등록하기" src="/myhost_icon.png" />
-                <p>나의 구장 등록하기</p>
+                <img alt="구장 등록" src="/myhost_icon.png" />
+                <p>구장 등록</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>

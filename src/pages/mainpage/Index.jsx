@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
-import Banner from '../../components/Banner';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import SpotsMap from './SpotsMap';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {
-  UpperLine,
-  BtnWrap,
   New,
   Image,
   BannerSlider,
@@ -20,18 +16,16 @@ import {
   Info,
   SpotName,
   MapBlock,
+  StWrap, 
+  MainElement,
 } from './Styles';
 import TapBar from '../../components/TapBar';
 import { LoginAPI, PrivateApi } from '../../tools/instance';
 import { useNavigate } from 'react-router-dom';
 
 const MainMaps = () => {
-  const [sportsKind, setSportsKind] = useState('');
   const [newSpot, setNewSpot] = useState();
   const navigate = useNavigate();
-  const futsal = '풋살장';
-  const tennis = '테니스장';
-  const badminton = '배드민턴장';
 
   const settings = {
     dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
@@ -79,19 +73,9 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
+        <StWrap>
+          <MainElement>
         <MainBanner src='mobileMainBanner.png' />
-        {/* <MainMapLayout> */}
-        {/* <UpperLine>
-          <BtnWrap>
-            <button onClick={() => setSportsKind(futsal)}>풋살</button>
-            <button onClick={() => setSportsKind(tennis)}>테니스</button>
-            <button onClick={() => setSportsKind(badminton)}>배드민턴</button>
-          </BtnWrap>
-          <div>
-            <span>● 공공스팟</span>
-            <span>● 사설스팟</span>
-          </div>
-        </UpperLine> */}
         <MapBlock>Map</MapBlock>
         {/* <SpotsMap sportsKind={sportsKind} /> */}
         {/* </MainMapLayout> */}
@@ -135,6 +119,8 @@ const MainMaps = () => {
             ))}
           </BannerSlider>
         </SpotContainer>
+        </MainElement>
+        </StWrap>
         <TapBar />
       </Layout>
     </>
