@@ -1,5 +1,12 @@
 import React, { useRef, useState } from "react";
-import { StTeamForm, StWrap, PageDesc, InfoLayout } from "./Styles";
+import {
+  StTeamForm,
+  StWrap,
+  PageDesc,
+  Image,
+  ProfilePhotoUpload,
+  ProfilePhotoInput,
+} from "./Styles";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
@@ -8,7 +15,7 @@ import TapBar from "../../components/TapBar";
 import styled from "styled-components";
 
 const TeamRegister = () => {
-  const title = "Team Page";
+  const title = "TeamPage";
   const navigate = useNavigate();
 
   const [preview, setPreview] = useState("/myprofile_logo.png");
@@ -80,21 +87,28 @@ const TeamRegister = () => {
       <StWrap>
         <PageDesc>팀 등록</PageDesc>
         <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
-          <img alt="미리보기" src={preview} />
-          <InputFile
-            type="file"
-            placeholder=""
-            onChange={(e) => {
-              handleImagePreview(e);
-            }}
-            accept="image/*"
-          />
+          <Image>
+            <img alt="미리보기" src={preview} />
+          </Image>
+          <ProfilePhotoUpload>
+            <label htmlFor="upload-input">
+              <div>+</div>
+            </label>
+            <ProfilePhotoInput
+              id="upload-input"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                handleImagePreview(e);
+              }}
+              accept="image/*"
+            />
+          </ProfilePhotoUpload>
           <InputBox>
             <TeamLayout>
               <div>팀이름</div>
               <InputText type="text" placeholder="team name" ref={nameRef} />
             </TeamLayout>
-
             <TeamLayout>
               <div>팀인원</div>
               <InputText
@@ -125,20 +139,9 @@ const TeamRegister = () => {
 
 export default TeamRegister;
 
-const InputFile = styled.input`
-  ::file-selector-button {
-    display: none;
-  }
-  width: 50px;
-  height: 50px;
-  border-bottom: 1px solid lightgray;
-  border-radius: 50px;
-  background-color: #d9d9d9;
-`;
-
 const InputBox = styled.div`
-  margin-top: 30px;
-  margin-bottom: 30px;
+  //margin-top: 10px;
+  margin-bottom: 40px;
 `;
 
 const InputText = styled.input`
