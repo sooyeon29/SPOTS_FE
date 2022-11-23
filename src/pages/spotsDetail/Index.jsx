@@ -67,7 +67,7 @@ const SpotsDetail = () => {
   const selectSpot = placeList?.filter((place) => {
     return place.placesId === parseInt(id);
   });
-
+  console.log("이구장정보", selectSpot);
   // 1. 예약을 원하는 날짜를 선택한다
   // --> 달력에 선택하는 날짜가 선택됨
   const [startDate, setStartDate] = useState(null);
@@ -121,7 +121,7 @@ const SpotsDetail = () => {
   const [myTeam, setMyTeam, pickMyTeam] = useInput();
   // 팀이 없더라도 오류가 나지 않도록 옵셔널 체이닝을 사용한다. 세션스토리지에 저장해준다
   const myTeams = useSelector((state) => state.user.team);
-
+  console.log("내팀들", myTeams);
   // 5. 경기에 참가할 인원수를 작성해준다.
   const [count, setCount] = useState(0);
 
@@ -151,7 +151,6 @@ const SpotsDetail = () => {
       })
     );
   };
-  const [forMatch, setForMatch, matchHandler] = useToggle();
 
   // 팀 매칭
   const bookMyMatch = (name) => {
@@ -603,10 +602,12 @@ const SpotsDetail = () => {
                             </span>
                             <span>팀이름: {waitMatch.teamName}</span>
                             <span>경기인원: {waitMatch.member}</span>
-                            <span>
-                              단식/복식:
-                              {waitMatch.isDoubled ? "복식" : "단식"}
-                            </span>
+                            {spot.sports !== "풋살장" && (
+                              <span>
+                                단식/복식:
+                                {waitMatch.isDoubled ? "복식" : "단식"}
+                              </span>
+                            )}
                           </WaitingMatch>
                         );
                       })}

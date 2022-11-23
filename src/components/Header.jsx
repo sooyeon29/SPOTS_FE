@@ -20,6 +20,7 @@ const Header = () => {
         <StWrap>
           <StLogo
             onClick={() => {
+              localStorage.removeItem("loginId");
               navigate(`/`);
             }}
           >

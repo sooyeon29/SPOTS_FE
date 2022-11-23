@@ -418,7 +418,7 @@ export const WaitingMatch = styled.div`
   align-items: center;
   width: 45%;
   margin: 3px;
-  background-image: url(/test.png);
+  background-image: url(/spotwaitlist.png);
   background-size: cover;
   /* border-radius: 40px; */
 `;

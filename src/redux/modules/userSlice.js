@@ -71,9 +71,9 @@ const userSlice = createSlice({
     [__getMyteamList.rejected]: (state, action) => {
       state.error = action.payload.response.data;
       // console.log(state.error.status);
-      if (state.error.status === 404) {
-        alert("팀 등록을 먼저 해주세요");
-      }
+      // if (state.error.status === 404) {
+      //   alert("팀 등록을 먼저 해주세요");
+      // }
       // console.log("요기에러------------", action.payload);
       if (action.payload.response.status === 401) {
         alert("예약은 로그인 후 이용 가능합니다.");

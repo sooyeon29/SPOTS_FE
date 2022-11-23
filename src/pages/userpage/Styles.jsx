@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StContainer = styled.div`
   display: flex;
@@ -12,10 +12,27 @@ export const StWrap = styled.div`
   padding: 20px;
   border: 1px solid lightgray;
   border-radius: 15px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-bottom: 50px;
   align-items: center;
-  margin: auto;
+  margin: 71px auto;
+`;
+
+export const TeamPhoto = styled.div`
+  width: 30%;
+  max-width: 800px;
+  padding: 0px;
+  overflow: hidden;
+  /* margin: auto; */
+  /* background-color: lightcyan; */
+  border-radius: 10px;
+  img {
+    width: 100%;
+    /* height: 350px; */
+    object-fit: cover;
+    border-radius: 10px;
+    margin: auto;
+  }
 `;
 
 export const Image = styled.div`
@@ -53,7 +70,7 @@ export const StTeamForm = styled.form`
 export const MyMatch = styled.div`
   margin-bottom: 10px;
   background-color: #f1f1f1;
-  padding:20px 0px 20px 20px;
+  padding: 20px 0px 20px 20px;
   border-radius: 10px;
 `;
 
@@ -163,17 +180,12 @@ export const SpotName = styled.div`
   font-weight: 600;
   font-size: 20px;
   margin-bottom: 10px;
-`
+`;
 export const MatchDate = styled.div`
-    margin-bottom: 20px;
-`
-export const MatchTime = styled.div`
-  
-`
-export const MatchMember = styled.div`
-  
-`
+  margin-bottom: 20px;
+`;
+export const MatchTime = styled.div``;
+export const MatchMember = styled.div``;
 export const MatchTeam = styled.div`
-    margin-bottom: 20px;
-
-`
+  margin-bottom: 20px;
+`;
