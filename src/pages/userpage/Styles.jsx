@@ -78,13 +78,29 @@ export const StTeam = styled.div`
 export const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  align-items: center;
+  width: 100%;
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
-  background-color: #f1f1f1;
-  padding: 20px 0px 20px 20px;
+  border: 1px solid black;
   border-radius: 10px;
+`;
+
+export const SpotInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    margin-right: 25px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  img {
+    width: 70px;
+    margin: 20px auto 10px 20px;
+  }
 `;
 
 export const HostCard = styled.div``;
@@ -169,11 +185,14 @@ export const MyReserve = styled.div`
   /* background-color: aliceblue; */
 `;
 
-export const ReservedSpot = styled.div`
-  span {
-    font-size: 16px;
-    font-weight: 600;
-  }
+export const ReservedSpot = styled.div``;
+
+export const AboutMatch = styled.div`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
   span {
@@ -259,6 +278,46 @@ export const ModifyBtn = styled.button`
   border: none;
   margin-left: 80px;
   font-weight: 600;
+`;
+export const ReservTitle = styled.div`
+  padding-top: 15px;
+  margin: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`;
+export const MoreInfo = styled.div`
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+`;
+export const DayTime = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+`;
+export const ForMatch = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+  button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    color: red;
+    font-weight: 700;
+  }
 `;
 
 export const ProfilePhotoInput = styled.input`

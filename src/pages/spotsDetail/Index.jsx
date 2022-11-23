@@ -606,7 +606,7 @@ const SpotsDetail = () => {
                                 </span>
                                 <span>{waitMatch.teamName}</span>
 
-                                {spot.sports !== "football" && (
+                                {spot.sports !== "풋살장" && (
                                   <span>
                                     단식/복식:
                                     {waitMatch.isDoubled ? "복식" : "단식"}

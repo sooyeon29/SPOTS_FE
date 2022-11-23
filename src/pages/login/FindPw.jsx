@@ -12,6 +12,7 @@ import {
   LoginBtn,
   CodeBtn,
   Logo,
+  InputWrapLower,
 } from "./Styles";
 
 import Swal from "sweetalert2";
@@ -72,8 +73,8 @@ const FindPw = () => {
           <Logo>
             <img alt="" src="/spotslogo.png" />
           </Logo>
-          <PageTitle>비밀번호 찾기</PageTitle>
-          <div>
+
+          <InputWrapLower>
             <Stinput
               placeholder="아이디를 입력해주세요"
               type="text"
@@ -81,30 +82,32 @@ const FindPw = () => {
               name="id"
               onChange={enterId}
             />
-          </div>
-          <div>
+          </InputWrapLower>
+          <InputWrapLower>
+            + 82 |
             <Stinput
-              placeholder=" '-' 제외한 핸드폰번호를 입력하세요"
+              placeholder="01012345678"
               type="text"
               required
               name="phone"
               onChange={enterPhoneNum}
             />
-          </div>
-          <CodeBtn type="button" onClick={sendPhoneForCode}>
-            인증번호받기
-          </CodeBtn>
+          </InputWrapLower>
+
           {isCode && (
-            <div>
+            <InputWrapLower>
               <Stinput
-                placeholder="인증번호를 입력하세요"
+                placeholder="인증번호 입력 (제한시간3분)"
                 type="text"
                 required
                 name="vericode"
                 onChange={enterVeriCode}
               />
-            </div>
+            </InputWrapLower>
           )}
+          <CodeBtn type="button" onClick={sendPhoneForCode}>
+            인증번호받기
+          </CodeBtn>
         </ContentWrap>
         <LoginBtn onClick={findPwHandler}>비밀번호 찾기</LoginBtn>
 

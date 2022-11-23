@@ -14,11 +14,19 @@ import {
   LoginBtn,
   InputWrap,
   Logo,
+  StinputId,
+  StinputPw,
+  InputWrapLower,
 } from "./Styles";
 // import { BsEye } from 'react-icons/bs';
 import TapBar from "../../components/TapBar";
 import useToggle from "../../hooks/useToggle";
 import { AiFillEye } from "react-icons/ai";
+import { BsEye, BsFillPersonFill } from "react-icons/bs";
+import { BsEyeSlash } from "react-icons/bs";
+import { BiLock } from "react-icons/bi";
+import { IoIosLock } from "react-icons/io";
+import { IdInput } from "../signUp/Styles";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -73,15 +81,19 @@ const Login = () => {
               <Logo>
                 <img alt="" src="/spotslogo.png" />
               </Logo>
-              <Stinput
-                placeholder="아이디를 입력해주세요"
-                type="text"
-                required
-                name="id"
-                onChange={idAndPassword}
-                autoComplete="off"
-              />
-              <PwInput>
+              <InputWrapLower>
+                <BsFillPersonFill size={24} color={"#949494"} />
+                <Stinput
+                  placeholder="아이디를 입력해주세요"
+                  type="text"
+                  required
+                  name="id"
+                  onChange={idAndPassword}
+                  autoComplete="off"
+                />
+              </InputWrapLower>
+              <InputWrapLower>
+                <IoIosLock size={24} color={"#949494"} />
                 <Stinput
                   placeholder="비밀번호를 입력해주세요"
                   type={showPw ? "text" : "password"}
@@ -89,11 +101,12 @@ const Login = () => {
                   name="password"
                   value={loginInfo.password}
                   onChange={idAndPassword}
-                >
-                  {/* <AiFillEye /> */}
-                </Stinput>
-                {/* <button type='button'><BsEye size={25}/></button> */}
-              </PwInput>
+                />
+
+                <button type="button" onClick={showPwHandler}>
+                  <BsEyeSlash size={23} color={"#949494"} />
+                </button>
+              </InputWrapLower>
             </InputWrap>
             <LoginBtn>로그인</LoginBtn>
           </form>
