@@ -399,9 +399,22 @@ export const FinalBooking = styled.button`
 //     margin: 10px;
 //   }
 // `;
+export const WaitList = styled.div`
+  margin: 12px auto 5px auto;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  background-color: #ff00b4;
+  color: white;
+  width: 40%;
+  padding: 7px;
+`;
 
 export const MatchList = styled(BookMatch)`
-  margin: 10px;
+  margin: 5px 2px 10px 1px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -413,12 +426,25 @@ export const WaitingMatch = styled.div`
   font-size: 12px;
   color: white;
   display: flex;
-  flex-direction: column;
-  justify-content: start;
+  flex-direction: row;
+  /* justify-content: start; */
   align-items: center;
-  width: 45%;
+  width: 47%;
+  /* height: 51px; */
+  border-radius: 10px;
   margin: 3px;
-  background-image: url(/test.png);
+  background-image: url(/spotswaitlist.png);
   background-size: cover;
+  padding: 2px;
   /* border-radius: 40px; */
+  div {
+    display: flex;
+    flex-direction: column;
+    font-size: 23px;
+    padding: 3px;
+    span {
+      font-size: 12px;
+      margin: 2px 15px 2px 5px;
+    }
+  }
 `;

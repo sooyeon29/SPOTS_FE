@@ -155,14 +155,15 @@ const Hosting = () => {
             <div>
               스팟 종류
               <select
+                required
                 onChange={(e) => {
                   setSports(e.target.value);
                 }}
               >
                 <option>선택하세요</option>
-                <option>풋살장</option>
-                <option>테니스장</option>
-                <option>배드민턴장</option>
+                <option>football</option>
+                <option>tennis</option>
+                <option>badminton</option>
               </select>
             </div>
             <div>
