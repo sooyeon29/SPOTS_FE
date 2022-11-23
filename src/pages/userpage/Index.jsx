@@ -149,5 +149,6 @@ const MenuBox = styled.div`
     width: 170px;
     height: 170px;
     margin: auto;
+    cursor: pointer;
   }
 `;

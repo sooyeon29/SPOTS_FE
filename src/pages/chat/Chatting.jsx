@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { IoIosArrowBack } from "react-icons/io";
+import styled, { css } from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 
-const Chatting = ({ socket, roomName }) => {
-  const navigate = useNavigate();
-  const nickname = localStorage.getItem("nickname");
+const Chatting = ({ socket, roomName, onChat }) => {
   const [msg, setMsg] = useState("");
   const [chatting, setChatting] = useState([]);
+  const [endChat, setEndChat] = useState(false);
+  const nickname = localStorage.getItem("nickname");
 
   useEffect(() => {
     socket.on("new_message", (data) => {
@@ -37,15 +35,13 @@ const Chatting = ({ socket, roomName }) => {
     setMsg("");
   };
   console.log(chatting);
+
   return (
-    <StContainer>
+    <StContainer isOpen={onChat} isClose={endChat}>
       <StWrap>
         <StHeader>
-          <button onClick={() => navigate(-1)}>
-            <IoIosArrowBack size="25" color="#FF00B3" />
-          </button>
           <div>SPOTS</div>
-          <button onClick={() => navigate("/")}>
+          <button onClick={() => setEndChat(!endChat)}>
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
@@ -92,7 +88,20 @@ const StContainer = styled.div`
   position: fixed;
   z-index: 999999;
   left: 0px;
-  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      opacity: 1;
+      visibility: visible;
+    `}
+  ${({ isClose }) =>
+    isClose &&
+    css`
+      opacity: 0;
+      visibility: hidden;
+    `}
 `;
 
 const StWrap = styled.div`
@@ -100,14 +109,14 @@ const StWrap = styled.div`
   height: 550px;
   display: flex;
   flex-direction: column;
-  border-top-left-radius: 35px;
-  border-top-right-radius: 35px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   border: 1px solid lightgray;
   background-color: #f8f8f8;
 `;
 
 const StHeader = styled.div`
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -116,6 +125,7 @@ const StHeader = styled.div`
   div {
     font-size: 19px;
     font-weight: 700;
+    margin-left: 30px;
   }
   button {
     border: none;

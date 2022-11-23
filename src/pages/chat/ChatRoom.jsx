@@ -1,17 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import Chatting from "./Chatting";
 import socket from "../../tools/socket";
-import useDetectClose from "../../hooks/useDetectClose";
 
 const ChatRoom = ({ chatOpen, chatOpenRef }) => {
-  const [inquiry, setInquiry] = useState(false);
   const [roomName, setRoomName] = useState();
-
-  // const [chattingOpen, chattingRef, chatttingHandler] = useDetectClose(false);
-  // const chattingOpenRef = useRef(null);
+  const [onChat, setOnChat] = useState(false);
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {
@@ -20,66 +16,45 @@ const ChatRoom = ({ chatOpen, chatOpenRef }) => {
     });
   }, []);
 
-  const enterRoom = () => {
-    setInquiry(!inquiry);
-  };
-
   return (
     <>
-      {inquiry ? (
-        <Chatting socket={socket} roomName={roomName} />
-      ) : (
-        <StContainer isOpen={chatOpen} ref={chatOpenRef}>
-          <StBox>
-            <StHeader>
-              <img alt="spots logo" src="/public.png" />
-              <div>SPOTS</div>
-              <button>
-                <BsXLg size="20" color="#FF00B3" />
-              </button>
-            </StHeader>
-            <StContent>
-              성장기회의 평등🌱
-              <p>궁금한 점은 언제든지 문의해주세요.</p>
-            </StContent>
-            <StChat>
-              <StChatContent>
-                <img alt="인프런 로고 화이트" src="/public.png" />
-                <div>
-                  SPOTS
-                  <p>
-                    안녕하세요 <strong>SPOTS</strong>입니다 😀
-                  </p>
-                  <p>오늘도 SPOTS을 이용해주셔서 감사해요.</p>
-                </div>
-              </StChatContent>
-              <Button onClick={enterRoom}>
-                <IoSend />
-                <strong>새 문의하기</strong>
-              </Button>
-            </StChat>
-          </StBox>
-        </StContainer>
-      )}
+      <StContainer isOpen={chatOpen} ref={chatOpenRef}>
+        <StBox>
+          <StHeader>
+            <img alt="spots logo" src="/public.png" />
+            <div>SPOTS</div>
+            <button>
+              <BsXLg size="20" color="#FF00B3" />
+            </button>
+          </StHeader>
+          <StContent>
+            성장기회의 평등🌱
+            <p>궁금한 점은 언제든지 문의해주세요.</p>
+          </StContent>
+          <StChat>
+            <StChatContent>
+              <img alt="인프런 로고 화이트" src="/public.png" />
+              <div>
+                SPOTS
+                <p>
+                  안녕하세요 <strong>SPOTS</strong>입니다 😀
+                </p>
+                <p>오늘도 SPOTS을 이용해주셔서 감사해요.</p>
+              </div>
+            </StChatContent>
+            <Button onClick={() => setOnChat(!onChat)}>
+              <IoSend />
+              <strong>새 문의하기</strong>
+            </Button>
+          </StChat>
+        </StBox>
+      </StContainer>
+      <Chatting socket={socket} roomName={roomName} onChat={onChat} />
     </>
   );
 };
 
 export default ChatRoom;
-
-const Button = styled.button`
-  width: 370px;
-  height: 60px;
-  margin: auto;
-  border-radius: 20px;
-  border: none;
-  font-size: 19px;
-  cursor: pointer;
-  background-color: #0000000d;
-  :hover {
-    background-color: #00000014;
-  }
-`;
 
 const StContainer = styled.div`
   bottom: 60px;
@@ -169,5 +144,19 @@ const StChatContent = styled.div`
   p {
     margin: 1px;
     font-size: 18px;
+  }
+`;
+
+const Button = styled.button`
+  width: 370px;
+  height: 60px;
+  margin: auto;
+  border-radius: 20px;
+  border: none;
+  font-size: 19px;
+  cursor: pointer;
+  background-color: #0000000d;
+  :hover {
+    background-color: #00000014;
   }
 `;
