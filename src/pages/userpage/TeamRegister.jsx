@@ -1,11 +1,15 @@
 import React, { useRef, useState } from "react";
-import { StTeamForm, StWrap } from "./Styles";
+import { StTeamForm, StWrap, PageDesc, InfoLayout } from "./Styles";
 import Header from "../../components/Header";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
+import FlexibleHeader from "../../components/FlexibleHeader";
+import TapBar from "../../components/TapBar";
+import styled from "styled-components";
 
 const TeamRegister = () => {
+  const title = "Team Page";
   const navigate = useNavigate();
 
   const [preview, setPreview] = useState([]);
@@ -73,11 +77,12 @@ const TeamRegister = () => {
 
   return (
     <Layout>
-      <Header />
+      <FlexibleHeader title={title} />
       <StWrap>
+        <PageDesc>팀 등록</PageDesc>
         <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
           <img alt="미리보기" src={preview} />
-          <input
+          <Input
             type="file"
             onChange={(e) => {
               handleImagePreview(e);
@@ -100,8 +105,20 @@ const TeamRegister = () => {
           <button>등록하기</button>
         </StTeamForm>
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };
 
 export default TeamRegister;
+
+const Input = styled.input`
+  ::file-selector-button {
+    display: none;
+  }
+  width: 50px;
+  height: 50px;
+  border: 1px solid lightgray;
+  border-radius: 50px;
+  background-color: #d9d9d9;
+`;
