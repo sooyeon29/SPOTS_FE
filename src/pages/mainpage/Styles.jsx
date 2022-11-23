@@ -1,10 +1,20 @@
 import Slider from 'react-slick';
 import styled from 'styled-components';
 
-export const MainBanner = styled.img`
+export const StWrap = styled.div`
   margin-top: 62px;
   width: 100%;
+  height: 100%;
+  background-color: #f1f1f1;
+`;
+
+export const MainElement = styled.div`
+  /* width: 390px; */
+  margin: auto;
 `
+export const MainBanner = styled.img`
+  width: 100%;
+`;
 export const UpperLine = styled.div`
   width: 80%;
   display: flex;
@@ -44,12 +54,11 @@ export const SearchBox = styled.form`
 export const Container = styled.div`
   background-color: #fff;
   width: auto;
-  /* padding: 10px; */
   border-radius: 10px;
   background-color: #d5f103;
   border: solid 2px white;
 `;
-export const Title = styled.div``;
+
 
 export const BtnWrap = styled.div`
   border: none;
@@ -95,7 +104,7 @@ export const Image = styled.img`
   height: 200px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  box-shadow: 0px 20px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
   /* border: 2px solid #49E7A5; */
   margin-bottom: 80px;
 `;
@@ -105,18 +114,18 @@ export const SpotContainer = styled.div`
   /* width: 50%; */
   /* height: 300px; */
   /* background-color: ghostwhite; */
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 `;
 
 export const New = styled.div`
-border: 2px sold black;
-width: 80%;
+  border: 2px sold black;
+  width: 80%;
 `;
 
 export const Section = styled.div`
-  margin:30px 0px 10px 10px;
+  margin: 30px 0px 10px 10px;
   font-weight: 600;
-`
+`;
 
 export const InfoDiv = styled.div`
   background-color: #fff;
@@ -125,20 +134,18 @@ export const InfoDiv = styled.div`
   border-radius: 10px;
   position: absolute;
   top: 60%;
-  box-shadow: 0px 20px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   /* border: 2px solid #49E7A5; */
-
-`
-
+`;
 
 export const Icon = styled.img`
   height: 25px;
   margin-bottom: 5px;
-`
+`;
 
 export const LinkIcon = styled.div`
-  background-color: #EAEFFC;
+  background-color: #eaeffc;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -146,20 +153,18 @@ export const LinkIcon = styled.div`
   min-height: 70px;
   border-radius: 50%;
   font-size: 30px;
-  color: #1746C7;
+  color: #1746c7;
   font-weight: 900;
   cursor: pointer;
-
-`
+`;
 
 export const Info = styled.div`
-width: 200px;
-`
+  width: 200px;
+`;
 
 export const SpotName = styled.div`
-font-weight: 600;
-
-`
+  font-weight: 600;
+`;
 
 export const MapBlock = styled.div`
   width: 400px;
@@ -169,4 +174,4 @@ export const MapBlock = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-`
+`;

@@ -161,7 +161,8 @@ export const MySports = styled.div`
 `;
 
 export const SportInput = styled.input`
-display: none`;
+display: none
+`;
 
 export const SportLabel = styled.label`
 gap: 20px;
