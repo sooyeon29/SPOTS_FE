@@ -28,7 +28,7 @@ import FlexibleHeader from "../../components/FlexibleHeader";
 import { Title } from "../spotsDetail/Styles";
 
 const ReservPage = () => {
-  const title = "나의 예약";
+  const title = "My Booking";
   const dispatch = useDispatch();
   const myMatches = useSelector((state) => state.matcher.matcher);
   // console.log("요거거", myMatches);

@@ -13,10 +13,12 @@ import {
   Upload,
   UploadInput,
 } from "./Styles";
+import FlexibleHeader from "../../components/FlexibleHeader";
 
 const { kakao } = window;
 
 const Hosting = () => {
+  const title = "Host Page";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -139,7 +141,7 @@ const Hosting = () => {
 
   return (
     <Layout>
-      <Header />
+      <FlexibleHeader title={title} />
 
       <StWrap>
         <HostCard enctype="multipart/form-data">

@@ -160,14 +160,38 @@ export const MyHostList = styled.div`
   align-items: center;
 `;
 export const WordInfo = styled.div`
-  margin-left: 50px;
+  margin: auto;
 `;
 export const ImageInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   img {
+    border-radius: 10px;
     width: 120px;
-    margin: 20px 50px 10px auto;
+    margin: 10px auto 10px 10px;
   }
 `;
+export const MySpot = styled.div`
+  display: flex;
+  flex-direction: column;
+  span {
+    margin: 7px auto;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  div {
+    margin: auto;
+    padding: 0px 15px;
+  }
+`;
+export const AboutMySpot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+`;
+
 export const ButWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -318,4 +342,14 @@ export const ForMatch = styled.div`
     color: red;
     font-weight: 700;
   }
+`;
+export const Btn = styled.button`
+  width: 360px;
+  height: 50px;
+  color: #09225c;
+  background-color: #00f78e;
+  border-radius: 43px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
 `;
