@@ -48,9 +48,6 @@ const SpotsMap = ({ sportsKind }) => {
     setIsPrivateOpen(false);
   };
 
-  const pub = useSelector((state) => state?.spots);
-  // console.log(pub);
-
   const locationHandler = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

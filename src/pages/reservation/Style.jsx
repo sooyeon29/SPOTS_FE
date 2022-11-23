@@ -18,8 +18,14 @@ export const MapPlace = styled.div`
 export const Index = styled.div`
   display: flex;
   justify-content: row;
-  margin-top: 10px;
+  margin:10px 0px 0px 0px;
+
+  div {
+    margin-top: 7px;
+  }
+
 `;
+
 export const PlaceList = styled.div`
   width: 100%;
   display: flex;

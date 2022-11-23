@@ -28,13 +28,13 @@ const SpotsMap = ({ spotMarkers }) => {
   // console.log(publicSpots)
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
-    console.log(idx);
+    // console.log(idx);
     setIsPublicOpen(false);
   };
 
   const handlePublicOnClick = (e, idx) => {
     setIsPublicOpen(idx);
-    console.log(idx);
+    // console.log(idx);
     setIsPrivateOpen(false);
   };
 
@@ -42,35 +42,35 @@ const SpotsMap = ({ spotMarkers }) => {
     setFilter(sports);
   };
 
-  const locationHandler = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setState((prev) => ({
-            ...prev,
-            center: {
-              lat: position.coords.latitude, //위도
-              lng: position.coords.longitude, //경도
-            },
-            isLoading: false,
-          }));
-        },
-        (err) => {
-          setState((prev) => ({
-            ...prev,
-            errMsg: err.message,
-            isLoading: false,
-          }));
-        }
-      );
-    } else {
-      setState((prev) => ({
-        ...prev,
-        errMsg: '현재 위치를 불러올 수 없습니다...',
-        isLoading: false,
-      }));
-    }
-  };
+  // const locationHandler = () => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setState((prev) => ({
+  //           ...prev,
+  //           center: {
+  //             lat: position.coords.latitude, //위도
+  //             lng: position.coords.longitude, //경도
+  //           },
+  //           isLoading: false,
+  //         }));
+  //       },
+  //       (err) => {
+  //         setState((prev) => ({
+  //           ...prev,
+  //           errMsg: err.message,
+  //           isLoading: false,
+  //         }));
+  //       }
+  //     );
+  //   } else {
+  //     setState((prev) => ({
+  //       ...prev,
+  //       errMsg: '현재 위치를 불러올 수 없습니다...',
+  //       isLoading: false,
+  //     }));
+  //   }
+  // };
   return (
     <>
       <BtnWrap>
@@ -89,11 +89,11 @@ const SpotsMap = ({ spotMarkers }) => {
         level={9} // 지도의 확대 레벨
         onZoomChanged={(map) => setLevel(map.getLevel())}>
         <ZoomControl />
-
+{/* 
         <MylocationBtn onClick={locationHandler}>
           현재 위치로 이동
         </MylocationBtn>
-        <MapMarker position={state.center} />
+        <MapMarker position={state.center} /> */}
 
         {privateSpots?.map((privSpot, idx) => {
           if (filter === false) {

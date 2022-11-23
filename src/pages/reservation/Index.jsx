@@ -91,10 +91,10 @@ const Reservation = () => {
             )}
           </MapPlace>
           <Index>
-            <img alt='공공스팟' src='/public.png' />
-            <div>공공스팟</div>
-            <img alt='사설스팟' src='/private.png' />
-            <div>사설스팟</div>
+            <img src='/public.png' />
+            <div>공공</div>
+            <img src='/private.png' />
+            <div>사설</div>
           </Index>
           <PlaceList>
             {!params.keywords ? (
