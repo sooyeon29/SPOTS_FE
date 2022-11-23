@@ -2,8 +2,8 @@ import axios from "axios";
 const isLogin = localStorage.getItem("token");
 
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
-  // baseURL: "https://sparta4.shop/",
+  // baseURL: "https://ws-study.shop/",
+  baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
   headers: {
@@ -13,6 +13,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
+    console.log("인스턴스인터셉터리스판스:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
@@ -20,6 +21,7 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log("인스턴스인터셉터에러", error);
     Promise.reject(error);
   }
 );
