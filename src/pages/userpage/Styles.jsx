@@ -83,7 +83,7 @@ export const StTeamForm = styled.form`
 `;
 export const MyMatch = styled.div`
   margin-bottom: 10px;
-  border: 1px solid black;
+  border: 1px solid #1746c7;
   border-radius: 10px;
 `;
 
@@ -229,7 +229,7 @@ export const MyReserve = styled.div`
   width: 90%;
   margin: auto;
   margin-top: 72px;
-  margin-bottom: 60px;
+  margin-bottom: 72px;
   align-items: center;
   /* background-color: aliceblue; */
 `;
@@ -237,10 +237,10 @@ export const MyReserve = styled.div`
 export const ReservedSpot = styled.div``;
 
 export const AboutMatch = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
@@ -337,9 +337,11 @@ export const ReservTitle = styled.div`
   justify-content: center;
 `;
 export const MoreInfo = styled.div`
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-top: 15px;
+  border: none;
+  color: white;
+  background-color: #1746c7;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
@@ -359,7 +361,7 @@ export const ForMatch = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 18px;
-  margin-top: 10px;
+  margin: 10px 15px;
   button {
     background-color: transparent;
     border: none;

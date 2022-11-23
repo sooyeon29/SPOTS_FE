@@ -37,6 +37,7 @@ import {
 } from "./Styles";
 import {
   __getAllMatch,
+  __getMyMatch,
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
@@ -46,7 +47,7 @@ import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
 
 const SpotsDetail = () => {
-  const title = "예약";
+  const title = "Booking";
   const myTime = [
     "06:00 - 08:00",
     "08:00 - 10:00",
@@ -199,14 +200,14 @@ const SpotsDetail = () => {
   // 매칭이 완료되지 않은 리스트 (구장예약건들도 들어있음)
   const noneMatchToday = useSelector((state) => state?.matcher.newmatcher);
   const waitMatchToday = noneMatchToday.filter(
-    (match) => match.matchId.substring(13, 20) === "ismatch"
+    (match) => match.matchId?.substring(13, 20) === "ismatch"
   );
   console.log("매칭대기팀들:", waitMatchToday);
 
   // 구장 예약이 된경우
   const reservedSpotTimeSlots = allMatchToday
-    .filter((match) => match.matchId.substring(13, 20) === "nomatch")
-    .map((match) => match.matchId.substring(0, 13))
+    .filter((match) => match.matchId?.substring(13, 20) === "nomatch")
+    .map((match) => match.matchId?.substring(0, 13))
     .reduce((a, c) => {
       const newObj = { ...a };
       newObj[c] = true;
@@ -216,8 +217,8 @@ const SpotsDetail = () => {
   let completeTimeSlots = [];
   let inCompleteTimeSlots = [];
   let allMatchingSlots = allMatchToday
-    .filter((match) => match.matchId.substring(13, 20) === "ismatch")
-    .map((match) => match.matchId.substring(0, 13))
+    .filter((match) => match.matchId?.substring(13, 20) === "ismatch")
+    .map((match) => match.matchId?.substring(0, 13))
     .reduce((prevObj, c) => {
       if (c in prevObj) {
         prevObj[c] += 1;
@@ -608,8 +609,8 @@ const SpotsDetail = () => {
 
                                 {spot.sports !== "풋살장" && (
                                   <span>
-                                    단식/복식:
-                                    {waitMatch.isDoubled ? "복식" : "단식"}
+                                    {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                    경기
                                   </span>
                                 )}
                               </div>
@@ -673,18 +674,18 @@ const SpotsDetail = () => {
                   ) : (
                     <button onClick={() => setCount(count - 1)}>-</button>
                   )}
-                  <span>{count}</span>
+                  <div>{count}</div>
                   <button onClick={() => setCount(count + 1)}>+</button>
                 </Counter>
               </SelectChoice>
 
-              {!isTwo && spot.sports !== "football" && (
+              {pickedTime2 !== "" && !isTwo && spot.sports !== "football" && (
                 <Pick>
                   <One onClick={pickTwoHandler}>단식</One>
                   <Two onClick={pickTwoHandler}>복식</Two>
                 </Pick>
               )}
-              {isTwo && spot.sports !== "football" && (
+              {pickedTime2 !== "" && isTwo && spot.sports !== "football" && (
                 <Pick>
                   <Two onClick={pickTwoHandler}>단식</Two>
                   <One onClick={pickTwoHandler}>복식</One>
