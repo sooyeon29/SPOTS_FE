@@ -80,8 +80,9 @@ const Profile = styled.div`
   width: 100%;
   height: 180px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   padding-top: 120px;
-  padding-left: 100px;
   background-color: #000000;
   position: relative;
   z-index: 1;
@@ -90,10 +91,10 @@ const Profile = styled.div`
     height: 88px;
     border: 4px solid #1746c7;
     border-radius: 50px;
-    margin-top: -20px;
+    margin-top: -90px;
   }
   div {
-    margin-top: -18px;
+    margin-top: -50px;
     margin-left: 90px;
     font-size: 20px;
     font-weight: 700;

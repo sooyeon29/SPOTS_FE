@@ -435,7 +435,7 @@ export const ModifyBtn = styled.button`
   background: #d9d9d9;
   border-radius: 10px;
   border: none;
-  margin-left: 80px;
+  margin-left: 60px;
   font-weight: 600;
 `;
 export const ReservTitle = styled.div`
