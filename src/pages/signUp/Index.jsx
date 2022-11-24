@@ -169,20 +169,56 @@ const SignUp = () => {
       })
       .catch((error) => {
         const errorMsg = error.response.data.code;
+        console.log(errorMsg);
         if (errorMsg === -1) {
-          alert('사용 중인 아이디입니다');
+          Swal.fire({
+            text: '사용 중인 아이디입니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         }
         if (errorMsg === -2) {
-          alert('사용 중인 닉네임입니다');
+          Swal.fire({
+            text: '사용 중인 닉네임입니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         }
         if (errorMsg === -3) {
-          alert('사용 중인 번호입니다');
+          Swal.fire({
+            text: '사용 중인 휴대폰 번호입니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         }
         if (errorMsg === -4) {
-          alert('해당 추천인 ID가 없습니다');
+          Swal.fire({
+            text: '해당 추천인 아이디가 없습니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         }
         if (errorMsg === -5) {
-          alert('비밀번호를 확인해주세요');
+          Swal.fire({
+            text: '비밀번호를 확인해주세요',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         }
       });
   };

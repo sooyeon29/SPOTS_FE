@@ -45,7 +45,6 @@ const TeamDetail = () => {
       .catch((error) => {
         console.log(error);
         if (error.response.status === 404) {
-          //navigate("/teampages");
           Swal.fire({
             text: "해당 팀이 존재하지 않습니다.",
             width: "300px",
@@ -153,9 +152,8 @@ const TeamDetail = () => {
                             showClass: { popup: "animated fadeInDown faster" },
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
-                          dispatch(__getMyteamDetail(id));
                         }
-                        dispatch(__getMyteamDetail(id))
+                        dispatch(__getMyteamDetail(id));
                       })
                       .catch((err) => {
                         console.log(err);
@@ -192,16 +190,28 @@ const TeamDetail = () => {
                       .then((res) => {
                         console.log(res);
                         if (res.status === 201) {
-                          alert("수정이 완료되었습니다.");
-                          window.location.reload();
+                          Swal.fire({
+                            text: "수정이 완료되었습니다.",
+                            width: "300px",
+                            confirmButtonText: "확인",
+                            confirmButtonColor: "#40d295",
+                            showClass: { popup: "animated fadeInDown faster" },
+                            hideClass: { popup: "animated fadeOutUp faster" },
+                          });
                         }
+                        dispatch(__getMyteamDetail(id));
                       })
                       .catch((err) => {
                         console.log(err);
                         if (err.response.status === 400) {
-                          alert(
-                            "admin은 가입한 회원에게만 위임할 수 있습니다."
-                          );
+                          Swal.fire({
+                            text: "admin은 가입한 회원에게만 위임할 수 있습니다.",
+                            width: "300px",
+                            confirmButtonText: "확인",
+                            confirmButtonColor: "#40d295",
+                            showClass: { popup: "animated fadeInDown faster" },
+                            hideClass: { popup: "animated fadeOutUp faster" },
+                          });
                         }
                       });
                   }}

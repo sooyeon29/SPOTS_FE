@@ -17,7 +17,7 @@ export const phonNum = styled.div`
 
 export const StWrap = styled.div`
   margin-top: 200px;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   padding: 30px;
 `;
 
@@ -30,7 +30,7 @@ export const PageTitle = styled.div`
 
 export const IdInput = styled.input`
   border: none;
-  width: 220px;
+  width: 200px;
   padding: 12px 15px;
   margin-bottom: 10px;
   /* margin-bottom: 10px; */
@@ -42,7 +42,7 @@ export const IdInput = styled.input`
 
 export const PwInput = styled.input`
   border: none;
-  width: 300px;
+  width: 280px;
   padding: 12px 15px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -81,7 +81,7 @@ export const IdConfirmBtn = styled.button`
   font-weight: 600;
   background-color: white;
   width: 80px;
-  height: 40px;
+  height: 39px;
   border: none;
   /* border-bottom: 2px solid #ff00b3; */
 `;
@@ -103,7 +103,7 @@ export const NextBtn = styled.button`
 export const SecondPage = styled.div`
   input {
     border: none;
-    width: 240px;
+    width: 220px;
     padding: 12px 15px;
     margin-bottom: 10px;
     /* margin-bottom: 10px; */
@@ -125,7 +125,7 @@ export const SecondPage = styled.div`
 export const ThirdPage = styled.div`
   input {
     border: none;
-    width: 240px;
+    width: 220px;
     padding: 12px 15px;
     margin-bottom: 10px;
     /* margin-bottom: 10px; */
@@ -196,6 +196,7 @@ export const SportsBlock = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 `;
 
 export const RecommendId = styled.input`
