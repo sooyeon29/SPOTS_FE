@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
@@ -9,6 +9,7 @@ import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import TapBar from "../../components/TapBar";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 const TeamDetail = () => {
   const title = "TeamPage";
@@ -20,24 +21,42 @@ const TeamDetail = () => {
   const { teamdetail } = useSelector((state) => state.user);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
+  const [member, setMember] = useState();
+  const [admin, setAdmin] = useState();
+
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, member]);
 
   const dropTeam = (teamId) => {
     console.log(teamId);
+    navigate("/teampage");
     UserpageAPI.deleteTeam(teamId)
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          alert("팀 삭제가 완료 되었습니다!");
-          navigate("/userpage");
+          Swal.fire({
+            text: "팀 삭제가 완료되었습니다.",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         }
       })
       .catch((error) => {
         console.log(error);
         if (error.response.status === 404) {
-          alert("가입 되지 않은 팀 입니다!");
+          //navigate("/teampages");
+          Swal.fire({
+            text: "해당 팀이 존재하지 않습니다.",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         }
       });
   };
@@ -118,24 +137,40 @@ const TeamDetail = () => {
                   type="number"
                   min="1"
                   defaultValue={teamdetail.member}
-                  ref={memberRef}
+                  //ref={memberRef}
+                  onChange={(e) => setMember(e.target.value)}
                 />
                 <EditBtn
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
                       teamName: teamdetail.teamName,
-                      newMember: memberRef.current.value,
+                      newMember: member,
                     })
                       .then((res) => {
                         console.log(res);
                         if (res.status === 201) {
-                          alert("수정이 완료되었습니다.");
+                          Swal.fire({
+                            text: "수정이 완료되었습니다.",
+                            width: "300px",
+                            confirmButtonText: "확인",
+                            confirmButtonColor: "#40d295",
+                            showClass: { popup: "animated fadeInDown faster" },
+                            hideClass: { popup: "animated fadeOutUp faster" },
+                          });
+                          //window.location.reload();
                         }
                       })
                       .catch((err) => {
                         console.log(err);
                         if (err.response.status === 403) {
-                          alert("수정 권한이 없습니다.");
+                          Swal.fire({
+                            text: "수정 권한이 없습니다.",
+                            width: "300px",
+                            confirmButtonText: "확인",
+                            confirmButtonColor: "#40d295",
+                            showClass: { popup: "animated fadeInDown faster" },
+                            hideClass: { popup: "animated fadeOutUp faster" },
+                          });
                         }
                       });
                     setIsEdit(false);
@@ -149,13 +184,14 @@ const TeamDetail = () => {
                 <InputText
                   type="text"
                   defaultValue={teamdetail.admin}
-                  ref={adminRef}
+                  //ref={adminRef}
+                  onChange={(e) => setAdmin(e.target.value)}
                 />
                 <EditBtn
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
                       teamName: teamdetail.teamName,
-                      newAdmin: adminRef.current.value,
+                      newAdmin: admin,
                     })
                       .then((res) => {
                         console.log(res);

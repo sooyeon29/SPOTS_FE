@@ -13,6 +13,7 @@ import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import TapBar from "../../components/TapBar";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 const TeamRegister = () => {
   const title = "TeamPage";
@@ -68,7 +69,14 @@ const TeamRegister = () => {
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
-            alert("팀 등록이 완료 되었습니다!");
+            Swal.fire({
+              text: "팀 등록이 완료되었습니다.",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
             navigate(`/teamdetail/${res.data.data.teamId}`);
           }
         })
