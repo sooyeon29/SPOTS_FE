@@ -19,12 +19,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
   };
 
   useEffect(() => {
-    dispatch(__getMyInfo());
+    if (token) {
+      dispatch(__getMyInfo());
+    }
   }, []);
 
   const { user } = useSelector((state) => state?.user);
- // console.log("탭바", user);
- 
+  // console.log("탭바", user);
+
   return (
     <SideMenu>
       {!token ? (

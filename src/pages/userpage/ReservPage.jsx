@@ -232,14 +232,14 @@ const ReservPage = () => {
                 </SpotInfo>
                 <ForMatch>
                   <div>
-                    <div>{matchCom.matchData.teamName}</div>
+                    <div>{matchCom.matchData?.teamName}</div>
                     <div>
-                      {matchCom.matchData.member} : {matchCom.matchData.member}{" "}
-                      경기
+                      {matchCom.matchData?.member} :{" "}
+                      {matchCom.matchData?.member} 경기
                     </div>
-                    {matchCom.teamData.sports !== "풋살장" && (
+                    {matchCom.teamData?.sports !== "풋살장" && (
                       <div>
-                        {!matchCom.matchData.isDouble ? "복식" : "단식"}
+                        {!matchCom.matchData?.isDouble ? "복식" : "단식"}
                       </div>
                     )}
                   </div>
@@ -247,9 +247,9 @@ const ReservPage = () => {
                   <button
                     onClick={() =>
                       cancleMatchHandler(
-                        matchCom.matchData.matchId,
-                        matchCom.matchData.place,
-                        matchCom.matchData.teamName
+                        matchCom.matchData?.matchId,
+                        matchCom.matchData?.place,
+                        matchCom.matchData?.teamName
                       )
                     }
                   >
