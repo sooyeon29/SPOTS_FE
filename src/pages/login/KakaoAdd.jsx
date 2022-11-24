@@ -4,6 +4,7 @@ import { GiShuttlecock } from "react-icons/gi";
 import { IoMdTennisball } from "react-icons/io";
 import { IoFootball } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -51,14 +52,20 @@ const KakaoAdd = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          alert("회원가입을 환영합니다!");
           navigate(`/welcome`);
         }
       })
       .catch((error) => {
         console.log(error);
         if (error.status === 412 && error.response.data.code === -4) {
-          alert("잘못된 추천인아이디입니다");
+          Swal.fire({
+            text: "잘못된 추천인아이디입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         }
       });
   };
@@ -67,19 +74,43 @@ const KakaoAdd = () => {
   const checkNn = () => {
     const nickname = getValues("nickname");
     if (!nickname) {
-      return alert("닉네임을 입력해주세요");
+      Swal.fire({
+        text: "닉네임을 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
     }
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
         console.log(res);
         // if (res.status === 200) {
-        alert("사용 가능한 닉네임입니다");
+
+        Swal.fire({
+          text: "사용 가능한 닉네임입니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
         // }
       })
       .catch((error) => {
         console.log(error.response.status);
         // if (error.response.status === 412) {
-        alert("이미 사용 중인 닉네임입니다");
+
+        Swal.fire({
+          text: "이미 사용 중인 닉네임입니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
         // }
       });
   };
@@ -91,11 +122,27 @@ const KakaoAdd = () => {
     LoginAPI.postforVCode({ phone })
       .then((res) => {
         console.log(res);
-        alert("인증번호가 전송되었습니다.");
+
+        Swal.fire({
+          text: "인증번호가 전송되었습니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
       })
       .catch((err) => {
         console.log(err);
-        alert("유효하지 않은 번호입니다.");
+
+        Swal.fire({
+          text: "유효하지 않은 번호입니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
       });
   };
   const checkVCode = () => {
@@ -103,11 +150,27 @@ const KakaoAdd = () => {
     LoginAPI.postforCheckVCode(code)
       .then((res) => {
         console.log(res);
-        alert("인증이 완료되었습니다.");
+
+        Swal.fire({
+          text: "인증이 완료되었습니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
       })
       .catch((err) => {
         console.log(err);
-        alert("인증번호를 재확인 해주세요");
+
+        Swal.fire({
+          text: "인증번호를 재확인 해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
       });
   };
   return (

@@ -246,9 +246,7 @@ const ReservPage = () => {
                   매칭대기
                   <span>
                     {matchCom.teamData?.sports !== "풋살장" && (
-                      <>
-                        {!matchCom.matchData?.isDouble ? "복식" : "단식"} 경기
-                      </>
+                      <>{matchCom.matchData?.isDouble ? "복식" : "단식"} 경기</>
                     )}
                   </span>
                 </MidTitle>

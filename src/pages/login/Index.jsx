@@ -52,8 +52,16 @@ const Login = () => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
+          Swal.fire({
+            text: "SPOTS에 오신걸 환영합니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
           navigate("/");
-          window.location.reload();
+          // window.location.reload();
         } else if (res.status === 202) {
           if (window.confirm("휴면계정입니다. 계정을 활성화 하시겠습니까?")) {
             localStorage.setItem("token", res.data.accessToken);
@@ -64,17 +72,23 @@ const Login = () => {
       .catch((err) => {
         if (err.response.status === 400) {
           Swal.fire({
-            text: '이미 로그인된 상태입니다',
-            width: '300px',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#40d295',
-            showClass: { popup: 'animated fadeInDown faster' },
-            hideClass: { popup: 'animated fadeOutUp faster' },
+            text: "이미 로그인 상태입니다.",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
           });
         } else if (err.response.status === 412) {
-          alert("아이디 또는 패스워드를 확인해주세요");
+          Swal.fire({
+            text: "아이디 또는 패스워드를 확인해주세요",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         }
-        console.log("로그인실패시 err", err);
       });
   };
 
