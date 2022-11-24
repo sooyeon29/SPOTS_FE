@@ -27,6 +27,7 @@ import { BsEyeSlash } from "react-icons/bs";
 import { BiLock } from "react-icons/bi";
 import { IoIosLock } from "react-icons/io";
 import { IdInput } from "../signUp/Styles";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -62,7 +63,14 @@ const Login = () => {
       })
       .catch((err) => {
         if (err.response.status === 400) {
-          alert("이미 로그인 상태입니다.");
+          Swal.fire({
+            text: '이미 로그인된 상태입니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
+          });
         } else if (err.response.status === 412) {
           alert("아이디 또는 패스워드를 확인해주세요");
         }

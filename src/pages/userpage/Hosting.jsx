@@ -103,7 +103,7 @@ const Hosting = () => {
         x = result[0].x;
         y = result[0].y;
       }
-      console.log(x, y);
+      // console.log(x, y);
 
       const sendFD = new FormData();
       sendFD.append("image", img);
