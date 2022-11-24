@@ -30,7 +30,7 @@ const TeamPage = () => {
 
         <TeamBox>
           {team?.map((team) => {
-            if (team.sports === "football") {
+            if (team.sports === "풋살장") {
               return (
                 <TeamCardFootball
                   key={team.teamId}
@@ -52,7 +52,7 @@ const TeamPage = () => {
                   </TeamMember>
                 </TeamCardFootball>
               );
-            } else if (team.sports === "tennis") {
+            } else if (team.sports === "테니스장") {
               return (
                 <TeamCardTennis
                   key={team.teamId}

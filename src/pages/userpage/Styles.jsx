@@ -177,7 +177,7 @@ export const SpotIcons = styled.div`
   }
   background-color: transparent;
   margin-bottom: 10px;
-  border: 1px solid #1746c7;
+  /* border: 1px solid #1746c7; */
   border-radius: 10px;
 `;
 

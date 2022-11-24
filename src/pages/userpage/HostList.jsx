@@ -45,7 +45,11 @@ const HostList = () => {
               </SpotImage>
               <SpotInfos>
                 <div>{place?.spotName}</div>
-                <div> {place?.address?.split(' ', 3)} </div>
+                <div>
+                  {place?.address?.split(' ')[0]}{' '}
+                  {place?.address?.split(' ')[1]}{' '}
+                  {place?.address?.split(' ')[2]}
+                </div>
                 <div> {place?.spotKind} </div>
               </SpotInfos>
               <SpotIcons>
@@ -116,7 +120,7 @@ const HostList = () => {
 
         <ResisterBtn onClick={() => navigate(`/hosting`)}>
           <div>
-            <img src="/plus_icon.png"/>
+            <img src='/plus_icon.png' />
           </div>
           <div>나의 스팟 등록하기</div>
         </ResisterBtn>

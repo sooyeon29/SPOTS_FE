@@ -23,7 +23,8 @@ const Btn = styled.div`
   justify-content: center;
   position: fixed;
   z-index: 9;
-  border-radius: 80px;
+  border-radius: 50%;
+  border: 3px solid #00F78E;
   background-color: #fefefe;
   img {
     width: 70px;

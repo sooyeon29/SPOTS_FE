@@ -154,8 +154,8 @@ const PointBox = styled.div`
 const MenuBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 380px;
-  height: 390px;
+  width: 360px;
+  height: 360px;
   margin-top: -40px;
   padding: auto;
   padding-bottom: 70px;
