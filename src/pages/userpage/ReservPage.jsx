@@ -7,24 +7,20 @@ import {
   ReservedSpot,
   MyMatch,
   MyReserve,
-  SpotName,
-  MatchDate,
-  MatchTime,
-  MatchMember,
-  MatchTeam,
-  underLine,
   ReservTitle,
   AboutMatch,
   MoreInfo,
   DayTime,
   ForMatch,
-  TeamPhoto,
   SpotInfo,
+  CancleBtn,
+  MatchVS,
+  MidTitle,
+  OneOrTwo,
 } from "./Styles";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
-import { Title } from "../spotsDetail/Styles";
 import { useNavigate } from "react-router-dom";
 
 const ReservPage = () => {
@@ -90,7 +86,6 @@ const ReservPage = () => {
                   <div>
                     <button
                       onClick={() =>
-                        // navigate(`/spotsdetail/${matchCom.placeData.placesId}`)
                         window.location.replace(
                           `/spotsdetail/${matchCom.placeData.placesId}`
                         )
@@ -105,26 +100,105 @@ const ReservPage = () => {
                   </div>
                 </SpotInfo>
                 <ForMatch>
-                  <div>
-                    <div>{matchCom.matchData.teamName}</div>
-                  </div>
-
-                  <button
-                    onClick={() =>
-                      cancleMatchHandler(
-                        matchCom.matchData.matchId,
-                        matchCom.matchData.place,
-                        matchCom.matchData.teamName
-                      )
-                    }
-                  >
-                    예약 취소
-                  </button>
+                  <div>나의팀</div>
+                  <img alt="팀로고" src={matchCom.teamData?.image} />
+                  <div>{matchCom.matchData?.teamName}</div>
+                  <div>{matchCom.matchData?.member} 명</div>
                 </ForMatch>
+                <CancleBtn
+                  onClick={() =>
+                    cancleMatchHandler(
+                      matchCom.matchData.matchId,
+                      matchCom.matchData.place,
+                      matchCom.matchData.teamName
+                    )
+                  }
+                >
+                  예약 취소
+                </CancleBtn>
               </MyMatch>
             );
           })}
         </ReservedSpot>
+
+        <WaitedMatch>
+          <AboutMatch>매칭 대기/팀매칭 대기</AboutMatch>
+          {matchWaiting?.map((matchWait) => {
+            return (
+              <MyMatch key={matchWait.matchData.reservationId}>
+                <MoreInfo>
+                  <DayTime>
+                    <div>
+                      {matchWait.matchData.date.substring(0, 4)}년{" "}
+                      {matchWait.matchData.date.substring(6, 8)}월{" "}
+                      {matchWait.matchData.date.substring(10, 12)}일
+                    </div>
+                    <div>{matchWait.matchData.matchId.substring(0, 13)}</div>
+                  </DayTime>
+                </MoreInfo>
+                <SpotInfo>
+                  <img alt="구장이미지준비중" src={matchWait.placeData.image} />
+                  <div>
+                    <button
+                      onClick={() =>
+                        navigate(`/spotsdetail/${matchWait.placeData.placesId}`)
+                      }
+                    >
+                      {matchWait.matchData.place}
+                    </button>
+                    <br />
+                    <p>{matchWait.placeData.address}</p>
+                    <span>{matchWait.placeData.price}</span>
+                    <span>p</span>
+                  </div>
+                </SpotInfo>
+                <hr />
+                <MidTitle>매칭대기</MidTitle>
+                <OneOrTwo>
+                  {matchWait.teamData.sports !== "풋살장" && (
+                    <div>
+                      {!matchWait.matchData.isDouble ? "복식" : "단식"} 매치
+                    </div>
+                  )}
+                </OneOrTwo>
+                <WaitedMatch>
+                  <MatchVS>
+                    <div>나의팀</div>
+                    <div>vs</div>
+                    <div>상대팀</div>
+                  </MatchVS>
+                  <MatchVS>
+                    <div>
+                      <img alt="팀로고" src={matchWait.teamData?.image} />
+                      <div>{matchWait.matchData.teamName}</div>
+                      <div>
+                        {matchWait.teamData?.wins}승 /{" "}
+                        {matchWait.teamData?.lose}패
+                      </div>
+                    </div>
+                    <div>
+                      {matchWait.matchData.member} :{" "}
+                      {matchWait.matchData.member}
+                    </div>
+
+                    <div>대기중</div>
+                  </MatchVS>
+                </WaitedMatch>
+                <CancleBtn
+                  onClick={() =>
+                    cancleMatchHandler(
+                      matchWait.matchData.matchId,
+                      matchWait.matchData.place,
+                      matchWait.matchData.teamName
+                    )
+                  }
+                >
+                  예약 취소
+                </CancleBtn>
+              </MyMatch>
+            );
+          })}
+        </WaitedMatch>
         <CompletedMath>
           <AboutMatch>매칭 완료</AboutMatch>
           {matchComplete?.map((matchCom) => {
@@ -186,68 +260,6 @@ const ReservPage = () => {
             );
           })}
         </CompletedMath>
-        <WaitedMatch>
-          <AboutMatch>매칭 대기</AboutMatch>
-          {matchWaiting?.map((matchWait) => {
-            return (
-              <MyMatch key={matchWait.matchData.reservationId}>
-                <MoreInfo>
-                  <DayTime>
-                    <div>
-                      {matchWait.matchData.date.substring(0, 4)}년{" "}
-                      {matchWait.matchData.date.substring(6, 8)}월{" "}
-                      {matchWait.matchData.date.substring(10, 12)}일
-                    </div>
-                    <div>{matchWait.matchData.matchId.substring(0, 13)}</div>
-                  </DayTime>
-                </MoreInfo>
-                <SpotInfo>
-                  <img alt="구장이미지준비중" src={matchWait.placeData.image} />
-                  <div>
-                    <button
-                      onClick={() =>
-                        navigate(`/spotsdetail/${matchWait.placeData.placesId}`)
-                      }
-                    >
-                      {matchWait.matchData.place}
-                    </button>
-                    <br />
-                    <p>{matchWait.placeData.address}</p>
-                    <span>{matchWait.placeData.price}</span>
-                    <span>p</span>
-                  </div>
-                </SpotInfo>
-
-                <ForMatch>
-                  <div>
-                    <div>{matchWait.matchData.teamName}</div>
-                    <div>
-                      {matchWait.matchData.member} :{" "}
-                      {matchWait.matchData.member} 경기
-                    </div>
-                    {matchWait.teamData.sports !== "풋살장" && (
-                      <div>
-                        {!matchWait.matchData.isDouble ? "복식" : "단식"}
-                      </div>
-                    )}
-                  </div>
-
-                  <button
-                    onClick={() =>
-                      cancleMatchHandler(
-                        matchWait.matchData.matchId,
-                        matchWait.matchData.place,
-                        matchWait.matchData.teamName
-                      )
-                    }
-                  >
-                    예약 취소
-                  </button>
-                </ForMatch>
-              </MyMatch>
-            );
-          })}
-        </WaitedMatch>
       </MyReserve>
       <TapBar />
     </Layout>

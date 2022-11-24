@@ -88,10 +88,10 @@ export const StTeamForm = styled.form`
   }
 `;
 export const MyMatch = styled.div`
-background-color: #f1f1f1;
-  /* margin-bottom: 10px;
-  border: 1px solid black;
-  border-radius: 10px; */
+  background-color: transparent;
+  margin-bottom: 10px;
+  border: 1px solid #1746c7;
+  border-radius: 10px;
 `;
 
 export const SpotInfo = styled.div`
@@ -124,12 +124,12 @@ export const SpotInfo = styled.div`
       padding: 2px 8px;
       text-align: center;
       border-radius: 50px;
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 700;
       background-color: black;
       position: relative;
       z-index: 2;
-      top: 3px;
+      top: 1px;
       left: 8px;
     }
   }
@@ -246,8 +246,9 @@ export const ReservedSpot = styled.div``;
 export const AboutMatch = styled.div`
   font-size: 18px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 15px;
+
   /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
@@ -261,6 +262,14 @@ export const WaitedMatch = styled.div`
   span {
     font-size: 16px;
     font-weight: 600;
+  }
+  hr {
+    border: none;
+    border-top: 1px dashed #1746c7;
+    color: #1746c7;
+    background-color: transparent;
+    height: 1px;
+    width: 100%;
   }
 `;
 
@@ -364,18 +373,34 @@ export const DayTime = styled.div`
 export const ForMatch = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-weight: bold;
-  font-size: 18px;
-  margin: 10px 15px;
-  button {
-    background-color: transparent;
-    border: none;
-    font-size: 15px;
-    color: red;
-    font-weight: 700;
+  font-size: 15px;
+  margin: 20px 15px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    border: 2px solid #1746c7;
   }
+`;
+export const CancleBtn = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  text-align: center;
+  margin: 10px 10px 10px auto;
+  font-size: 14px;
+  padding: 1px 12px;
+  height: 38px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff00b4;
+  border: none;
+  border-radius: 20px;
 `;
 
 export const ProfilePhotoInput = styled.input`
@@ -489,3 +514,36 @@ export const Btn = styled.button`
   font-weight: 700;
   font-size: 16px;
 `;
+export const WaitForMatch = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 20px 15px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    border: 2px solid #1746c7;
+  }
+`;
+export const MatchVS = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  div {
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      object-fit: cover;
+      border: 2px solid #1746c7;
+    }
+  }
+`;
+export const MidTitle = styled.div``;
+export const OneOrTwo = styled.div``;
