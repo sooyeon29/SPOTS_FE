@@ -190,4 +190,6 @@ const Btn = styled.button`
   line-height: 52px;
   text-align: center;
   border: none;
+  position: fixed;
+  bottom: 120px;
 `;
