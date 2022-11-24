@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserpageAPI } from "../../tools/instance";
+import Swal from "sweetalert2";
 
 const initialState = {
   user: [],
@@ -14,7 +15,6 @@ export const __getMyInfo = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await UserpageAPI.getMypage();
-      // console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -72,20 +72,25 @@ const userSlice = createSlice({
     [__getMyteamList.rejected]: (state, action) => {
       state.error = action.payload.response.data;
       if (action.payload.response.status === 401) {
-        alert("예약은 로그인 후 이용 가능합니다.");
+        Swal.fire({
+          text: "예약은 로그인 후 이용 가능합니다.",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
       }
-      // console.log(state.error.status);
-      // if (state.error.status === 404) {
-      //   alert("팀 등록을 먼저 해주세요");
-      // }
-      // console.log("요기에러------------", action.payload);
-      if (action.payload.response.status === 401) {
-        alert("예약은 로그인 후 이용 가능합니다.");
-      }
-      // if (action.payload.response.status === 404) {
-      //   alert("등록한 팀이 없습니다. 예약은 팀등록 이후 가능합니다.");
-      // }
-      // else alert(state.error);
+      if (action.payload.response.status === 404) {
+        Swal.fire({
+          text: "등록한 팀이 없습니다. 예약은 팀등록 이후 가능합니다.",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      } else alert(state.error);
     },
     [__getMyteamDetail.pending]: (state, action) => {
       state.isLoading = true;
