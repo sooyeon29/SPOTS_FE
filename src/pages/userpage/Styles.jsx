@@ -92,6 +92,7 @@ export const MyMatch = styled.div`
   display: flex;
   width: 100%;
   margin: auto;
+  /* margin-top: 0px; */
   margin-bottom: 20px;
   justify-content: space-between;
   background: #ffffff;

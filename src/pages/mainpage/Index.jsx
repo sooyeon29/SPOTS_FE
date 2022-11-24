@@ -79,9 +79,11 @@ const MainMaps = () => {
       <Layout>
         <Header />
         <MainBanner src="spotsMobile.jpeg" />
-        <MapBlock>Map</MapBlock>
+        <MapBlock>
+          <img src="mainMap.png"/>
+        </MapBlock>
         <SpotContainer>
-          <Section>최신 등록 스팟</Section>
+          <Section>최신 등록! MD 추천 스팟</Section>
           <BannerSlider {...settings}>
             {newSpot?.map((place, idx) => (
               <New key={idx}>
