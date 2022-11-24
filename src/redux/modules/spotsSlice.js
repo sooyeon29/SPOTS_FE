@@ -142,12 +142,12 @@ const privateSlice = createSlice({
         (privSpot) => action.payload !== privSpot.placesId
       );
       Swal.fire({
-        text: '나의 스팟이 삭제되었습니다',
-        width: '300px',
-        confirmButtonText: '확인',
-        confirmButtonColor: '#40d295',
-        showClass: { popup: 'animated fadeInDown faster' },
-        hideClass: { popup: 'animated fadeOutUp faster' },
+        text: "나의 스팟이 삭제되었습니다",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
       });
     },
     [__deletePrivateSpot.rejected]: (state, action) => {
