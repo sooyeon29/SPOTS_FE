@@ -124,7 +124,7 @@ export const New = styled.div`
 `;
 
 export const Section = styled.div`
-  margin: 30px 0px 10px 10px;
+  margin: 20px 0px 10px 10px;
   font-weight: 600;
 `;
 
@@ -168,11 +168,15 @@ export const SpotName = styled.div`
 `;
 
 export const MapBlock = styled.div`
-  width: 400px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   background-color: #f1f1f1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;

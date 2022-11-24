@@ -88,10 +88,103 @@ export const StTeamForm = styled.form`
   }
 `;
 export const MyMatch = styled.div`
-background-color: #f1f1f1;
-  /* margin-bottom: 10px;
-  border: 1px solid black;
-  border-radius: 10px; */
+  background-color: #f1f1f1;
+  display: flex;
+  width: 100%;
+  margin: auto;
+  /* margin-top: 0px; */
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background: #ffffff;
+  box-shadow: -1px 3px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+`;
+export const MyMatch2 = styled.div`
+  background-color: transparent;
+  margin-bottom: 10px;
+  border: 1px solid #1746c7;
+  border-radius: 10px;
+`;
+
+export const ResisterBtn = styled.div`
+  background-color: #f1f1f1;
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  margin: auto;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background: #ffffff;
+  box-shadow: -1px 3px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+
+  div:first-child {
+    width: 120px;
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    display: flex;
+    margin-right: 10px;
+    img {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+    }
+  }
+
+  div:last-child {
+    width: 300px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: auto;
+  }
+`;
+
+export const SpotImage = styled.div`
+  margin-right: 10px;
+  img {
+    width: 100px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+`;
+export const SpotInfos = styled.div`
+  width: 300px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+
+  div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const SpotIcons = styled.div`
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  img {
+    width: 30px;
+  }
+
+  div:last-child {
+    cursor: pointer;
+    img {
+      width: 5px;
+      display: flex;
+      float: right;
+      margin-bottom: 10px;
+    }
+  }
+  background-color: transparent;
+  margin-bottom: 10px;
+  /* border: 1px solid #1746c7; */
+  border-radius: 10px;
 `;
 
 export const SpotInfo = styled.div`
@@ -100,7 +193,7 @@ export const SpotInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 350px;
-
+  margin-bottom: 20px;
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;
@@ -111,7 +204,7 @@ export const SpotInfo = styled.div`
     button {
       margin-top: 10px;
       margin-right: 25px;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       background-color: transparent;
       border: none;
@@ -124,12 +217,12 @@ export const SpotInfo = styled.div`
       padding: 2px 8px;
       text-align: center;
       border-radius: 50px;
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 700;
       background-color: black;
       position: relative;
       z-index: 2;
-      top: 3px;
+      top: 1px;
       left: 8px;
     }
   }
@@ -246,8 +339,9 @@ export const ReservedSpot = styled.div``;
 export const AboutMatch = styled.div`
   font-size: 18px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 15px;
+
   /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
@@ -258,9 +352,18 @@ export const CompletedMath = styled.div`
 `;
 
 export const WaitedMatch = styled.div`
+  margin-top: 20px;
   span {
     font-size: 16px;
     font-weight: 600;
+  }
+  hr {
+    border: none;
+    border-top: 1px dashed #1746c7;
+    color: #1746c7;
+    background-color: transparent;
+    height: 1px;
+    width: 100%;
   }
 `;
 
@@ -364,18 +467,34 @@ export const DayTime = styled.div`
 export const ForMatch = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-weight: bold;
-  font-size: 18px;
-  margin: 10px 15px;
-  button {
-    background-color: transparent;
-    border: none;
-    font-size: 15px;
-    color: red;
-    font-weight: 700;
+  font-size: 15px;
+  margin: 20px 15px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    border: 2px solid #1746c7;
   }
+`;
+export const CancleBtn = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  text-align: center;
+  margin: 0px 15px 15px auto;
+  font-size: 14px;
+  padding: 1px 12px;
+  height: 38px;
+  font-weight: bold;
+  color: white;
+  background-color: #ff00b4;
+  border: none;
+  border-radius: 20px;
 `;
 
 export const ProfilePhotoInput = styled.input`
@@ -488,4 +607,65 @@ export const Btn = styled.button`
   border: none;
   font-weight: 700;
   font-size: 16px;
+`;
+export const WaitForMatch = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 20px 15px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+    border: 2px solid #1746c7;
+  }
+`;
+export const MatchVS = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 5px auto 15px auto;
+  div {
+    width: 33%;
+    text-align: center;
+    font-weight: bold;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      object-fit: cover;
+      border: 2px solid #1746c7;
+    }
+  }
+  div:first-child {
+    div {
+      width: 100%;
+      margin-top: 10px;
+    }
+    span {
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+`;
+export const VS = styled(MatchVS)`
+  font-size: 30px;
+`;
+export const MidTitle = styled.div`
+  margin: 20px auto 0px 20px;
+  font-weight: bold;
+  span {
+    font-weight: normal;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+`;
+export const OneOrTwo = styled.div`
+  margin: 5px auto 10px 20px;
 `;

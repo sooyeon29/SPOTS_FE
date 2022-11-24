@@ -39,7 +39,7 @@ const ChatRoom = ({ chatOpen, chatOpenRef }) => {
                 <p>
                   안녕하세요 <strong>SPOTS</strong>입니다 😀
                 </p>
-                <p>오늘도 SPOTS을 이용해주셔서 감사해요.</p>
+                <p>오늘도 SPOTS를 이용해주셔서 감사해요.</p>
               </div>
             </StChatContent>
             <Button onClick={() => setOnChat(!onChat)}>

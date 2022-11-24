@@ -22,6 +22,7 @@ import {
 } from '../../redux/modules/spotsSlice';
 import TapBar from '../../components/TapBar';
 import FlexibleHeader from '../../components/FlexibleHeader';
+import Loading from '../../components/Loading';
 
 const Reservation = () => {
   const [keywords, setKeywords] = useState('');
@@ -30,8 +31,7 @@ const Reservation = () => {
   const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
-  const title = '스팟 검색';
-
+  const title = 'Search';
 
   useEffect(() => {
     if (!params.keywords) {
@@ -49,7 +49,7 @@ const Reservation = () => {
   // console.log("---전체---", allSpot);
 
   if (isLoading) {
-    return <div>로딩 중....</div>;
+    return <Loading />;
   }
 
   if (error) {
