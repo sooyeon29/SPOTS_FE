@@ -17,6 +17,7 @@ import {
 } from "./Styles";
 import { useState } from "react";
 import { ContentWrap, NextBtn } from "../signUp/Styles";
+import Swal from "sweetalert2";
 
 const FindId = () => {
   const navigate = useNavigate();
@@ -27,21 +28,63 @@ const FindId = () => {
   const sendPhoneForCode = () => {
     setIsCode(true);
     LoginAPI.postforFindIdPw(phoneNum)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) =>
+        Swal.fire({
+          text: "인증번호가 전송되었습니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        })
+      )
+      .catch((err) =>
+        Swal.fire({
+          text: "예상하지 못한 오류가 발생하였습니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        })
+      );
   };
 
   const findIdHandler = () => {
     LoginAPI.findId({ phone: phoneNum, code: veriCode })
       .then((res) => {
         if (res.status === 200) {
-          alert(res.data.ID);
+          Swal.fire({
+            text: "아이디 : " + res.data.ID,
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
           navigate(`/login`);
         }
       })
       .catch((err) => {
         if (err.status === 401) {
-          alert("인증번호를 확인해주세요");
+          Swal.fire({
+            text: "인증번호를 확인해주세요",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        }
+        if (err.status === 412) {
+          Swal.fire({
+            text: "회원가입 되지 않은 번호입니다.",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         }
       });
   };
