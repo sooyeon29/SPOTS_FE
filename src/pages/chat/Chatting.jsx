@@ -182,6 +182,7 @@ const StAdminMsg = styled.div`
   color: #545454;
   border: none;
   border-radius: 15px;
+  word-break: break-all;
 `;
 
 const StUserMsg = styled.div`
@@ -197,6 +198,7 @@ const StUserMsg = styled.div`
   display: flex;
   margin: 0 0 0 auto;
   margin-bottom: 10px;
+  word-break: break-all;
 `;
 
 const StNickname = styled.div`
