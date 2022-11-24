@@ -1,26 +1,18 @@
 import { useState } from "react";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {
-  HostCard,
-  Photo,
-  Preview,
-  StWrap,
-  Upload,
-  UploadInput,
-} from "./Styles";
+import { HostCard, PageDesc, Image, ProfilePhotoInput } from "./Styles";
 import FlexibleHeader from "../../components/FlexibleHeader";
+import styled, { css } from "styled-components";
+import TapBar from "../../components/TapBar";
 
 const { kakao } = window;
 
 const Hosting = () => {
   const title = "Host Page";
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [spot, setSpot] = useState({});
   const [checkedList, setCheckedList] = useState([]);
@@ -142,21 +134,44 @@ const Hosting = () => {
   return (
     <Layout>
       <FlexibleHeader title={title} />
-
       <StWrap>
+        <PageDesc>나의 구장 등록</PageDesc>
+        <ImageUpload>
+          <HostingPhotoUpload>
+            <label htmlFor="upload-input">
+              <div>
+                <p>+</p>
+              </div>
+            </label>
+            <ProfilePhotoInput
+              id="upload-input"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                handleImagePreview(e);
+              }}
+              multiple="multiple"
+            />
+          </HostingPhotoUpload>
+          <Image>
+            <img
+              key={1}
+              src={preview}
+              alt=""
+              onerror="this.style.display='none';"
+            />
+          </Image>
+        </ImageUpload>
         <HostCard enctype="multipart/form-data">
-          <form
+          <HostForm
             onSubmit={(e) => {
               e.preventDefault();
               onRegisterHandler(spot);
             }}
           >
-            <button type="button" onClick={() => navigate(`/hostlist`)}>
-              내 구장 목록 보기
-            </button>
-            <div>
-              스팟 종류
-              <select
+            <InputLayout>
+              <div> 스팟 종류</div>
+              <SelectBox
                 required
                 onChange={(e) => {
                   setSports(e.target.value);
@@ -166,50 +181,21 @@ const Hosting = () => {
                 <option>풋살장</option>
                 <option>테니스장</option>
                 <option>배드민턴장</option>
-              </select>
-            </div>
-            <div>
-              스팟 이름
-              <input
+              </SelectBox>
+            </InputLayout>
+            <InputLayout>
+              <div>스팟 이름</div>
+              <InputText
                 required
                 type="text"
                 onChange={(e) => {
                   setSpotName(e.target.value);
                 }}
               />
-            </div>
-            <Photo>
-              <Preview>
-                {preview.length > 0 ? (
-                  <img
-                    key={1}
-                    src={preview}
-                    alt="미리보기"
-                    style={{
-                      width: `100%`,
-                      height: `100%`,
-                    }}
-                  />
-                ) : (
-                  <div>사진을 추가해 주세요</div>
-                )}
-              </Preview>
-              <Upload>
-                <UploadInput
-                  id="upload-input"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    handleImagePreview(e);
-                  }}
-                  multiple="multiple"
-                ></UploadInput>
-              </Upload>
-            </Photo>
-
-            <div>
-              실내/외
-              <select
+            </InputLayout>
+            <InputLayout>
+              <div>장소</div>
+              <SelectBox
                 onChange={(e) => {
                   setSpotKind(e.target.value);
                 }}
@@ -217,100 +203,98 @@ const Hosting = () => {
                 <option>선택하세요</option>
                 <option>실내 스팟</option>
                 <option>실외 스팟</option>
-              </select>
-            </div>
-            <div>
-              <span>주소</span>
-              <button type="button" onClick={handleClick}>
-                주소 검색
-              </button>
-            </div>
-            {fullAddress ? (
+              </SelectBox>
+            </InputLayout>
+            <InputLayout>
               <div>
-                <span>상세주소</span>
-                <div>
-                  <div>{fullAddress}</div>
-                  <input
-                    required
-                    type="text"
-                    placeholder="상세 주소를 입력해주세요"
-                    onChange={(e) => {
-                      const { value } = e.target;
-                      setSpot({
-                        ...spot,
-                        address: value,
-                      });
-                    }}
-                  />
-                </div>
+                <span>주소</span>
+                <SearchBtn type="button" onClick={handleClick}>
+                  주소 검색
+                </SearchBtn>
               </div>
-            ) : null}
-            <div>
-              <input
-                type="checkbox"
-                name="comforts"
-                value="장비대여"
+              <div>{fullAddress}</div>
+            </InputLayout>
+            <InputLayout>
+              <div>상세주소</div>
+              <InputText
+                required
+                type="text"
+                placeholder="상세 주소를 입력해주세요"
                 onChange={(e) => {
-                  onCheckedElement(e.target.checked, e.target.value);
+                  const { value } = e.target;
+                  setSpot({
+                    ...spot,
+                    address: value,
+                  });
                 }}
-                checked={checkedList.includes("장비대여") ? true : false}
               />
-              장비대여
-              <input
-                type="checkbox"
-                name="comforts"
-                value="주차장"
-                onChange={(e) => {
-                  onCheckedElement(e.target.checked, e.target.value);
-                }}
-                checked={checkedList.includes("주차장") ? true : false}
-              />
-              주차장
-              <input
-                type="checkbox"
-                name="comforts"
-                value="샤워실"
-                onChange={(e) => {
-                  onCheckedElement(e.target.checked, e.target.value);
-                }}
-                checked={checkedList.includes("샤워실") ? true : false}
-              />
-              샤워실
-              <input
-                type="checkbox"
-                name="comforts"
-                value="탈의실"
-                onChange={(e) => {
-                  onCheckedElement(e.target.checked, e.target.value);
-                }}
-                checked={checkedList.includes("탈의실") ? true : false}
-              />
-              탈의실
-              <input
-                type="checkbox"
-                name="comforts"
-                value="개인락커"
-                onChange={(e) => {
-                  onCheckedElement(e.target.checked, e.target.value);
-                }}
-                checked={checkedList.includes("개인락커") ? true : false}
-              />
-              개인락커
-            </div>
-            <div>
-              1시간당
-              <input
+            </InputLayout>
+
+            <InputLayout>
+              <div>1시간당</div>
+              <InputText
                 required
                 type="text"
                 onChange={(e) => {
                   setPrice(e.target.value);
                 }}
               />
-              원
-            </div>
-            <div>
-              스팟 설명
-              <br />
+            </InputLayout>
+
+            <InputDesc>
+              <p>스팟 설명</p>
+              <div>
+                <input
+                  type="checkbox"
+                  name="comforts"
+                  value="장비대여"
+                  onChange={(e) => {
+                    onCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={checkedList.includes("장비대여") ? true : false}
+                />
+                장비대여
+                <input
+                  type="checkbox"
+                  name="comforts"
+                  value="주차장"
+                  onChange={(e) => {
+                    onCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={checkedList.includes("주차장") ? true : false}
+                />
+                주차장
+                <input
+                  type="checkbox"
+                  name="comforts"
+                  value="샤워실"
+                  onChange={(e) => {
+                    onCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={checkedList.includes("샤워실") ? true : false}
+                />
+                샤워실
+                <input
+                  type="checkbox"
+                  name="comforts"
+                  value="탈의실"
+                  onChange={(e) => {
+                    onCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={checkedList.includes("탈의실") ? true : false}
+                />
+                탈의실
+                <input
+                  type="checkbox"
+                  name="comforts"
+                  value="개인락커"
+                  onChange={(e) => {
+                    onCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={checkedList.includes("개인락커") ? true : false}
+                />
+                개인락커
+              </div>
               <textarea
                 required
                 style={{ height: "100px", width: "300px" }}
@@ -319,13 +303,162 @@ const Hosting = () => {
                   setDesc(e.target.value);
                 }}
               />
-            </div>
-            <button>등록하기</button>
-          </form>
+            </InputDesc>
+            <SaveBtn>등록하기</SaveBtn>
+          </HostForm>
         </HostCard>
       </StWrap>
+      <TapBar />
     </Layout>
   );
 };
 
 export default Hosting;
+
+const StWrap = styled.div`
+  margin: auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100px;
+`;
+
+const ImageUpload = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const HostingPhotoUpload = styled.div`
+  div:first-child {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+  }
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 38px;
+    background: #1746c7;
+    color: #ffffff;
+    font-size: 24px;
+  }
+`;
+
+const HostForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const InputLayout = styled.div`
+  display: flex;
+  width: 90%;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1px solid #cecece;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+
+  div:first-child {
+    width: 100px;
+    text-align: center;
+    border-right: 1px solid #cecece;
+    color: #545454;
+    padding: 8px 8px 8px 8px;
+  }
+
+  div:last-child {
+    margin-left: 20px;
+  }
+`;
+
+const InputDesc = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    color: #545454;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+`;
+
+const SaveBtn = styled.button`
+  width: 90%;
+  height: 52px;
+  background-color: #1746c7;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 47px;
+  line-height: 52px;
+  text-align: center;
+  border: none;
+  margin-top: 50px;
+`;
+
+const InputText = styled.input`
+  display: flex;
+  border: none;
+  width: 150px;
+  :focus {
+    outline: none;
+  }
+`;
+
+const SelectBox = styled.select`
+  border: none;
+  width: 150px;
+`;
+
+const SearchBtn = styled.button`
+  border: none;
+  background-color: #cecece;
+  height: 28px;
+  border-radius: 20px;
+`;
+
+// const Comports = styled.div`
+//   width: 70%;
+//   height: 100px;
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+
+//   div {
+//     width: 65px;
+//     height: 28px;
+//     border: none;
+//     border-radius: 19px;
+//     background-color: #d9d9d9;
+//     color: #000000;
+//     font-size: 13px;
+//     text-align: center;
+//     line-height: 28px;
+//     margin-right: 10px;
+
+//     ${({ onColor }) =>
+//       onColor &&
+//       css`
+//         background-color: #1746c7;
+//         color: #ffffff;
+//       `};
+//   }
+// `;

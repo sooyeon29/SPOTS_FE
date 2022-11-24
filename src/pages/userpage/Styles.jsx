@@ -88,7 +88,7 @@ export const StTeamForm = styled.form`
   }
 `;
 export const MyMatch = styled.div`
-background-color: #f1f1f1;
+  background-color: #f1f1f1;
   /* margin-bottom: 10px;
   border: 1px solid black;
   border-radius: 10px; */

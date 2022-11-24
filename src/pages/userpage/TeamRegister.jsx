@@ -123,9 +123,9 @@ const TeamRegister = () => {
               <div>종목</div>
               <SelectBox ref={sportsRef}>
                 <option value="">Sports</option>
-                <option value="football">FOOTBALL⚽</option>
-                <option value="tennis">TENNIS🥎</option>
-                <option value="badminton">BADMINTON🏸</option>
+                <option value="풋살장">FOOTBALL⚽</option>
+                <option value="테니스장">TENNIS🥎</option>
+                <option value="배드민턴장">BADMINTON🏸</option>
               </SelectBox>
             </TeamLayout>
           </InputBox>
@@ -140,7 +140,6 @@ const TeamRegister = () => {
 export default TeamRegister;
 
 const InputBox = styled.div`
-  //margin-top: 10px;
   margin-bottom: 40px;
 `;
 
