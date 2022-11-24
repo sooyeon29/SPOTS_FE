@@ -99,6 +99,12 @@ export const MyMatch = styled.div`
   box-shadow: -1px 3px 8px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 `;
+export const MyMatch2 = styled.div`
+  background-color: transparent;
+  margin-bottom: 10px;
+  border: 1px solid #1746c7;
+  border-radius: 10px;
+`;
 
 export const ResisterBtn = styled.div`
   background-color: #f1f1f1;
@@ -187,7 +193,7 @@ export const SpotInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 350px;
-
+  margin-bottom: 20px;
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;
@@ -198,7 +204,7 @@ export const SpotInfo = styled.div`
     button {
       margin-top: 10px;
       margin-right: 25px;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       background-color: transparent;
       border: none;
@@ -346,6 +352,7 @@ export const CompletedMath = styled.div`
 `;
 
 export const WaitedMatch = styled.div`
+  margin-top: 20px;
   span {
     font-size: 16px;
     font-weight: 600;
@@ -479,7 +486,7 @@ export const CancleBtn = styled.button`
   justify-content: right;
   align-items: center;
   text-align: center;
-  margin: 10px 10px 10px auto;
+  margin: 0px 15px 15px auto;
   font-size: 14px;
   padding: 1px 12px;
   height: 38px;
@@ -622,7 +629,12 @@ export const MatchVS = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 90%;
+  margin: 5px auto 15px auto;
   div {
+    width: 33%;
+    text-align: center;
+    font-weight: bold;
     img {
       width: 50px;
       height: 50px;
@@ -631,6 +643,29 @@ export const MatchVS = styled.div`
       border: 2px solid #1746c7;
     }
   }
+  div:first-child {
+    div {
+      width: 100%;
+      margin-top: 10px;
+    }
+    span {
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
 `;
-export const MidTitle = styled.div``;
-export const OneOrTwo = styled.div``;
+export const VS = styled(MatchVS)`
+  font-size: 30px;
+`;
+export const MidTitle = styled.div`
+  margin: 20px auto 0px 20px;
+  font-weight: bold;
+  span {
+    font-weight: normal;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+`;
+export const OneOrTwo = styled.div`
+  margin: 5px auto 10px 20px;
+`;
