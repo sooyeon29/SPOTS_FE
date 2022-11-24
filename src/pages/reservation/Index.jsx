@@ -32,7 +32,6 @@ const Reservation = () => {
   );
   const title = '스팟 검색';
 
-
   useEffect(() => {
     if (!params.keywords) {
       dispatch(__getAllSpot());

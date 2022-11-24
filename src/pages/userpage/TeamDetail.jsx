@@ -65,9 +65,9 @@ const TeamDetail = () => {
                 <TeamLayout>
                   <div>운동</div>
                   <div>
-                    {teamdetail.sports === "football" ? (
+                    {teamdetail.sports === "풋살장" ? (
                       <img alt="football" src="/mypage/football_blue.png" />
-                    ) : teamdetail.sports === "tennis" ? (
+                    ) : teamdetail.sports === "테니스장" ? (
                       <img alt="tennis" src="/mypage/tennis_blue.png" />
                     ) : (
                       <img alt="badminton" src="/mypage/badminton_blue.png" />
