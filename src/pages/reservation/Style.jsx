@@ -100,7 +100,7 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 45px;
+    width: 43px;
     height: 50px;
     margin-right: 15px;
   }
@@ -126,7 +126,7 @@ export const PublicBlock = styled.div`
     color: black;
   }
   img {
-    width: 45px;
+    width: 43px;
     height: 50px;
     margin-right: 15px;
   }
