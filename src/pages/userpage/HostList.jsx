@@ -5,15 +5,13 @@ import {
   __getMyPrivateSpot,
 } from '../../redux/modules/spotsSlice';
 import {
-  AboutMySpot,
   Btn,
-  ButWrap,
-  ImageInfo,
-  MyHostList,
   MyMatch,
-  MySpot,
-  SpotInfo,
   StWrap,
+  SpotImage,
+  SpotInfos,
+  SpotIcons,
+  ResisterBtn,
 } from './Styles';
 import Layout from '../../components/Layout';
 import { useNavigate } from 'react-router-dom';
@@ -42,24 +40,39 @@ const HostList = () => {
         {placeList?.map((place) => {
           return (
             <MyMatch key={place?.placesId}>
-              <div>
+              <SpotImage>
                 <img src={place?.image} />
-              </div>
-              <div>
+              </SpotImage>
+              <SpotInfos>
+                <div>{place?.spotName}</div>
+                <div> {place?.address?.split(' ', 3)} </div>
+                <div> {place?.spotKind} </div>
+              </SpotInfos>
+              <SpotIcons>
                 <div>
-                  <div>{place?.spotName}</div>
-                  <div>
-                    {' '}
-                    {place?.sports === '배드민턴장' ? (
-                      <>
-                        <img src='/host_badminton.png' />
-                      </>
-                    ) : null}
-                  </div>
+                  {place?.sports === '배드민턴장' ? (
+                    <>
+                      <img src='/host_badminton.png' />
+                    </>
+                  ) : null}
+                  {place?.sports === '풋살장' ? (
+                    <>
+                      <img src='/host_football.png' />
+                    </>
+                  ) : null}
+                  {place?.sports === '테니스장' ? (
+                    <>
+                      <img src='/host_tennis.png' />
+                    </>
+                  ) : null}
                 </div>
-                <div>{place?.address}</div>
-                <div>{place?.spotKind}</div>
-              </div>
+                <div
+                  onClick={() => {
+                    navigate(`/hostdetail/${place.placesId}`);
+                  }}>
+                  <img src='/more.png' />
+                </div>
+              </SpotIcons>
 
               {/* <ImageInfo>
                 <img alt="" src={place.image} />
@@ -86,7 +99,7 @@ const HostList = () => {
                 </AboutMySpot>
               </MyHostList> */}
 
-              <ButWrap>
+              {/* <ButWrap>
                 <button
                   onClick={() => {
                     navigate(`/hostdetail/${place.placesId}`);
@@ -96,12 +109,17 @@ const HostList = () => {
                 <button onClick={() => deleteHostHandler(place.placesId)}>
                   삭제하기
                 </button>
-              </ButWrap>
+              </ButWrap> */}
             </MyMatch>
           );
         })}
 
-        <Btn onClick={() => navigate(`/hosting`)}>내구장 등록하기</Btn>
+        <ResisterBtn onClick={() => navigate(`/hosting`)}>
+          <div>
+            <img src="/plus_icon.png"/>
+          </div>
+          <div>나의 스팟 등록하기</div>
+        </ResisterBtn>
         {/* </MyReserve> */}
       </StWrap>
       <TapBar />
