@@ -34,6 +34,8 @@ import {
   WaitingMatch,
   MatchList,
   WaitList,
+  WaitTennis,
+  WaitBadminton,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -600,24 +602,66 @@ const SpotsDetail = () => {
                       {waitMatchToday.map((waitMatch) => {
                         return (
                           <>
-                            <WaitingMatch key={waitMatch.reservationId}>
-                              <div>
-                                <span>
-                                  {waitMatch.matchId.substring(0, 13)}
-                                </span>
-                                <span>{waitMatch.teamName}</span>
-
-                                {spot.sports !== "풋살장" && (
+                            {spot.sports === "풋살장" && (
+                              <WaitingMatch key={waitMatch.reservationId}>
+                                <div>
                                   <span>
-                                    {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                    경기
+                                    {waitMatch.matchId.substring(0, 13)}
                                   </span>
-                                )}
-                              </div>
-                              <div>
-                                {waitMatch.member} : {waitMatch.member}
-                              </div>
-                            </WaitingMatch>
+                                  <span>{waitMatch.teamName}</span>
+
+                                  {spot.sports !== "풋살장" && (
+                                    <span>
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
+                                    </span>
+                                  )}
+                                </div>
+                                <div>
+                                  {waitMatch.member} : {waitMatch.member}
+                                </div>
+                              </WaitingMatch>
+                            )}
+                            {spot.sports === "테니스장" && (
+                              <WaitTennis key={waitMatch.reservationId}>
+                                <div>
+                                  <span>
+                                    {waitMatch.matchId.substring(0, 13)}
+                                  </span>
+                                  <span>{waitMatch.teamName}</span>
+
+                                  {spot.sports !== "풋살장" && (
+                                    <span>
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
+                                    </span>
+                                  )}
+                                </div>
+                                <div>
+                                  {waitMatch.member} : {waitMatch.member}
+                                </div>
+                              </WaitTennis>
+                            )}
+                            {spot.sports === "배드민턴장" && (
+                              <WaitBadminton key={waitMatch.reservationId}>
+                                <div>
+                                  <span>
+                                    {waitMatch.matchId.substring(0, 13)}
+                                  </span>
+                                  <span>{waitMatch.teamName}</span>
+
+                                  {spot.sports !== "풋살장" && (
+                                    <span>
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
+                                    </span>
+                                  )}
+                                </div>
+                                <div>
+                                  {waitMatch.member} : {waitMatch.member}
+                                </div>
+                              </WaitBadminton>
+                            )}
                           </>
                         );
                       })}
