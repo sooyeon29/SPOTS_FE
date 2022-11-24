@@ -53,7 +53,14 @@ const TeamRegister = () => {
       sportsRef.current.value === "" ||
       membersRef.current.value === ""
     ) {
-      return alert("모든 항목을 입력해주세요.");
+      return Swal.fire({
+        text: "모든 항목을 입력해주세요.",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
     } else {
       const formData = new FormData();
       formData.append("image", img);
@@ -83,7 +90,14 @@ const TeamRegister = () => {
         .catch((error) => {
           console.log(error);
           if (error.response.status === 403) {
-            alert("중복된 팀 이름입니다!");
+            Swal.fire({
+              text: "중복된 팀 이름입니다.",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
           }
         });
     }
