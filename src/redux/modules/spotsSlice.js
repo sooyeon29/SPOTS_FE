@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 import { PrivateApi, PublicApi, SearchApi } from "../../tools/instance";
 
 const initialState = {
@@ -47,7 +48,7 @@ export const __deletePrivateSpot = createAsyncThunk(
     }
   }
 );
-// 내가 등록학 구장 수정
+// 내가 등록한 구장 수정
 export const __editPrivateSpot = createAsyncThunk(
   "editPrivateSpot",
   async (payload, thunkAPI) => {
@@ -140,7 +141,14 @@ const privateSlice = createSlice({
       state.myPrivateSpot = state.myPrivateSpot.filter(
         (privSpot) => action.payload !== privSpot.placesId
       );
-      alert("나의 구장이 삭제되었습니다.");
+      Swal.fire({
+        text: '나의 스팟이 삭제되었습니다',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      });
     },
     [__deletePrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
@@ -153,9 +161,9 @@ const privateSlice = createSlice({
     },
     [__editPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.message = action.payload.message;
-      alert(action.payload.message);
-      console.log(action.payload.data);
+      state.message = action.payload;
+      console.log("내가 등록한 구장 수정", state.message);
+      // console.log(action.payload.data);
       state.myPrivateSpot = state.myPrivateSpot.map((spot) =>
         spot.placesId === action.payload.data.placesId
           ? {

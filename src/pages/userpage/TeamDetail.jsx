@@ -153,7 +153,6 @@ const TeamDetail = () => {
                             showClass: { popup: "animated fadeInDown faster" },
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
-                          dispatch(__getMyteamDetail(id));
                         }
                         dispatch(__getMyteamDetail(id))
                       })
