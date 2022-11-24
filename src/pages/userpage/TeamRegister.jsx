@@ -140,7 +140,6 @@ const TeamRegister = () => {
 export default TeamRegister;
 
 const InputBox = styled.div`
-  //margin-top: 10px;
   margin-bottom: 40px;
 `;
 
