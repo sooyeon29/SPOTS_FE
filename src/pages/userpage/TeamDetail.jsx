@@ -4,14 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
 import { __getMyteamDetail } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
-import {
-  StWrap,
-  TeamPhoto,
-  StTeamForm,
-  PageDesc,
-  InfoLayout,
-  Image,
-} from "./Styles";
+import { StWrap, StTeamForm, PageDesc, Image } from "./Styles";
 import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import TapBar from "../../components/TapBar";
@@ -58,7 +51,11 @@ const TeamDetail = () => {
           {!isEdit ? (
             <>
               <Image>
-                <img alt="팀 프로필" src={teamdetail.image} />
+                {teamdetail.image === null ? (
+                  <img alt="spots" src="/myprofile_logo.png" />
+                ) : (
+                  <img alt="팀 프로필" src={teamdetail.image} />
+                )}
               </Image>
               <InputBox>
                 <TeamLayout>
@@ -66,7 +63,7 @@ const TeamDetail = () => {
                   <div>{teamdetail.teamName}</div>
                 </TeamLayout>
                 <TeamLayout>
-                  <div>선호운동</div>
+                  <div>운동</div>
                   <div>
                     {teamdetail.sports === "football" ? (
                       <img alt="football" src="/mypage/football_blue.png" />
@@ -104,21 +101,26 @@ const TeamDetail = () => {
             </>
           ) : (
             <>
-              <TeamPhoto>
-                <img alt="팀 프로필" src={teamdetail.image} />
-              </TeamPhoto>
-              <p>
-                <div> teamName : {teamdetail.teamName}</div>
-              </p>
-              <p>
-                member :
-                <input
+              <Image>
+                {teamdetail.image === null ? (
+                  <img alt="spots" src="/myprofile_logo.png" />
+                ) : (
+                  <img alt="팀 프로필" src={teamdetail.image} />
+                )}
+              </Image>
+              <TeamLayout>
+                <div>팀이름</div>
+                <div>{teamdetail.teamName}</div>
+              </TeamLayout>
+              <TeamLayout>
+                <div>인원</div>
+                <InputText
                   type="number"
                   min="1"
                   defaultValue={teamdetail.member}
                   ref={memberRef}
                 />
-                <button
+                <EditBtn
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
                       teamName: teamdetail.teamName,
@@ -139,38 +141,43 @@ const TeamDetail = () => {
                     setIsEdit(false);
                   }}
                 >
-                  수정하기
-                </button>
-              </p>
-              admin:
-              <input
-                type="text"
-                defaultValue={teamdetail.admin}
-                ref={adminRef}
-              />
-              <button
-                onClick={() => {
-                  UserpageAPI.patchMyTeam({
-                    teamName: teamdetail.teamName,
-                    newAdmin: adminRef.current.value,
-                  })
-                    .then((res) => {
-                      console.log(res);
-                      if (res.status === 201) {
-                        alert("수정이 완료되었습니다.");
-                        window.location.reload();
-                      }
+                  수정
+                </EditBtn>
+              </TeamLayout>
+              <TeamLayout>
+                <div>admin</div>
+                <InputText
+                  type="text"
+                  defaultValue={teamdetail.admin}
+                  ref={adminRef}
+                />
+                <EditBtn
+                  onClick={() => {
+                    UserpageAPI.patchMyTeam({
+                      teamName: teamdetail.teamName,
+                      newAdmin: adminRef.current.value,
                     })
-                    .catch((err) => {
-                      console.log(err);
-                      if (err.response.status === 400) {
-                        alert("admin은 가입한 회원에게만 위임할 수 있습니다.");
-                      }
-                    });
-                }}
-              >
-                수정하기
-              </button>
+                      .then((res) => {
+                        console.log(res);
+                        if (res.status === 201) {
+                          alert("수정이 완료되었습니다.");
+                          window.location.reload();
+                        }
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                        if (err.response.status === 400) {
+                          alert(
+                            "admin은 가입한 회원에게만 위임할 수 있습니다."
+                          );
+                        }
+                      });
+                  }}
+                >
+                  수정
+                </EditBtn>
+              </TeamLayout>
+              <SaveBtn>저장</SaveBtn>
             </>
           )}
         </StTeamForm>
@@ -187,12 +194,23 @@ const InputBox = styled.div`
   width: 100%;
 `;
 
+const InputText = styled.input`
+  display: flex;
+  border: none;
+  font-size: 18px;
+  padding-left: 20px;
+  width: 100px;
+  height: 20px;
+  :focus {
+    outline: none;
+  }
+`;
+
 const TeamLayout = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 10px 10px 10px;
   border-bottom: 1px solid #cecece;
-  font-size: 14px;
   font-weight: 600;
   width: 94%;
 
@@ -225,4 +243,28 @@ const Btn = styled.button`
   margin-bottom: 15px;
   font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
+`;
+
+const EditBtn = styled.button`
+  border: none;
+  background-color: #cecece;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
+const SaveBtn = styled.button`
+  width: 90%;
+  height: 52px;
+  background-color: #1746c7;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 47px;
+  line-height: 52px;
+  text-align: center;
+  border: none;
+  position: fixed;
+  bottom: 120px;
 `;
