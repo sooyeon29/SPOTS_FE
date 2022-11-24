@@ -35,7 +35,8 @@ const KakaoAdd = () => {
   const [phoneCode, setPhoneCode, phoneCodeHandler] = useToggle();
   const [codeSent, setCodeSent] = useToggle();
   const [addSport, setAddSport, addSportHandler] = useToggle();
-
+  const [nnConfirm, setNnConfirm] = useToggle();
+  const [code, setCode] = useState("");
   const {
     register,
     handleSubmit,
@@ -87,42 +88,39 @@ const KakaoAdd = () => {
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
         console.log(res);
-        // if (res.status === 200) {
-
-        Swal.fire({
-          text: "사용 가능한 닉네임입니다",
-          width: "300px",
-          confirmButtonText: "확인",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        });
-        // }
+        if (res.status === 200) {
+          Swal.fire({
+            text: "사용 가능한 닉네임입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          setNnConfirm(true);
+        }
       })
       .catch((error) => {
         console.log(error.response.status);
-        // if (error.response.status === 412) {
-
-        Swal.fire({
-          text: "이미 사용 중인 닉네임입니다",
-          width: "300px",
-          confirmButtonText: "확인",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        });
-        // }
+        if (error.response.status === 412) {
+          Swal.fire({
+            text: "이미 사용 중인 닉네임입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        }
       });
   };
   // 핸드폰 인증코드 받기
 
   const sendPhoneForCode = () => {
-    setIsCode(true);
     const phone = getValues("phone");
     LoginAPI.postforVCode({ phone })
       .then((res) => {
         console.log(res);
-
         Swal.fire({
           text: "인증번호가 전송되었습니다",
           width: "300px",
@@ -131,40 +129,54 @@ const KakaoAdd = () => {
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
         });
+        setIsCode(true);
       })
       .catch((err) => {
         console.log(err);
-
-        Swal.fire({
-          text: "유효하지 않은 번호입니다",
-          width: "300px",
-          confirmButtonText: "확인",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        });
+        if (err.response.status === 412) {
+          Swal.fire({
+            text: "이미 가입된 휴대폰 번호입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          return;
+        } else {
+          Swal.fire({
+            text: "유효하지 않은 휴대폰 번호입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          return;
+        }
       });
   };
   const checkVCode = () => {
-    const code = getValues("code");
-    LoginAPI.postforCheckVCode(code)
+    const phone = getValues("phone");
+    LoginAPI.postforCheckVCode({ code, phone })
       .then((res) => {
         console.log(res);
-
-        Swal.fire({
-          text: "인증이 완료되었습니다",
-          width: "300px",
-          confirmButtonText: "확인",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        });
+        if (res.status === 200) {
+          Swal.fire({
+            text: "인증이 완료되었습니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        }
+        setIsCode(true);
       })
       .catch((err) => {
         console.log(err);
-
         Swal.fire({
-          text: "인증번호를 재확인 해주세요",
+          text: "인증 번호를 다시 확인주세요",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",
@@ -260,7 +272,30 @@ const KakaoAdd = () => {
                     )}
                   </div>
                   <NextBtn
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (!nickname) {
+                        Swal.fire({
+                          text: "닉네임을 입력해주세요",
+                          width: "300px",
+                          confirmButtonText: "확인",
+                          confirmButtonColor: "#40d295",
+                          showClass: { popup: "animated fadeInDown faster" },
+                          hideClass: { popup: "animated fadeOutUp faster" },
+                        });
+                        return;
+                      }
+                      if (!nnConfirm) {
+                        Swal.fire({
+                          text: "닉네임을 중복확인을 해주세요",
+                          width: "300px",
+                          confirmButtonText: "확인",
+                          confirmButtonColor: "#40d295",
+                          showClass: { popup: "animated fadeInDown faster" },
+                          hideClass: { popup: "animated fadeOutUp faster" },
+                        });
+                        return;
+                      }
                       nicknameHandler();
                       setPhoneCode(true);
                     }}
@@ -335,6 +370,7 @@ const KakaoAdd = () => {
                           required
                           name="code"
                           autoComplete="off"
+                          onChange={(e) => setCode(e.target.value)}
                         />
                         <button type="button" onClick={checkVCode}>
                           확인
@@ -343,7 +379,28 @@ const KakaoAdd = () => {
                     )}
                   </div>
                   <NextBtn
-                    onClick={() => {
+                    onClick={(e) => {
+                      if (!isCode) {
+                        Swal.fire({
+                          text: "휴대폰 인증을 해주세요",
+                          width: "300px",
+                          confirmButtonText: "확인",
+                          confirmButtonColor: "#40d295",
+                          showClass: { popup: "animated fadeInDown faster" },
+                          hideClass: { popup: "animated fadeOutUp faster" },
+                        });
+                        return;
+                      }
+                      if (code === "") {
+                        Swal.fire({
+                          text: "인증번호를 입력 해주세요",
+                          width: "300px",
+                          confirmButtonText: "확인",
+                          confirmButtonColor: "#40d295",
+                          showClass: { popup: "animated fadeInDown faster" },
+                          hideClass: { popup: "animated fadeOutUp faster" },
+                        });
+                      }
                       phoneCodeHandler();
                       setAddSport(true);
                     }}
@@ -422,10 +479,16 @@ const KakaoAdd = () => {
                     러닝
                     <input
                       type="checkbox"
-                      value="pingpong"
+                      value="golf"
                       {...register("favSports")}
                     />
-                    탁구
+                    골프
+                    <input
+                      type="checkbox"
+                      value="health"
+                      {...register("favSports")}
+                    />
+                    헬스
                   </FavSports>
                   <div>
                     <RecommendId
@@ -439,60 +502,6 @@ const KakaoAdd = () => {
                 </SportsBlock>
               </ForthPage>
             ) : null}
-            {/* <div>
-              나의 운동
-              <input type="checkbox" value="football" {...register("sports")} />
-              풋볼
-              <input type="checkbox" value="tennis" {...register("sports")} />
-              테니스
-              <input
-                type="checkbox"
-                value="badminton"
-                {...register("sports")}
-              />
-              배드민턴
-            </div>
-            <div>
-              관심 운동
-              <input type="checkbox" value="swim" {...register("favSports")} />
-              수영
-              <input
-                type="checkbox"
-                value="baseball"
-                {...register("favSports")}
-              />
-              야구
-              <input
-                type="checkbox"
-                value="health"
-                {...register("favSports")}
-              />
-              헬스
-              <input
-                type="checkbox"
-                value="running"
-                {...register("favSports")}
-              />
-              러닝
-              <input type="checkbox" value="judo" {...register("favSports")} />
-              유도
-              <input
-                type="checkbox"
-                value="pingpong"
-                {...register("favSports")}
-              />
-              탁구
-            </div>
-            <div>
-              추천인ID
-              <input
-                type="text"
-                {...register("recommendId", {})}
-                placeholder="추천인ID를 입력해주세요"
-                autoComplete="off"
-              />
-            </div>
-            <input type="submit" /> */}
           </form>
         </StWrap>
         <TapBar />
