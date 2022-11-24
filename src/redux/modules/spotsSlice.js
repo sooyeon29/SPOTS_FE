@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PrivateApi, PublicApi, SearchApi } from "../../tools/instance";
+import Swal from "sweetalert2";
 
 const initialState = {
   privateSpot: [],
@@ -154,8 +155,16 @@ const privateSlice = createSlice({
     [__editPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.message = action.payload.message;
-      alert(action.payload.message);
-      console.log(action.payload.data);
+      if (action.payload.message) {
+        Swal.fire({
+          text: "수정이 완료되었습니다.",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
       state.myPrivateSpot = state.myPrivateSpot.map((spot) =>
         spot.placesId === action.payload.data.placesId
           ? {
@@ -170,7 +179,16 @@ const privateSlice = createSlice({
     [__editPrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      alert(action.payload);
+      if (action.payload) {
+        Swal.fire({
+          text: "정보를 수정할 권한이 없습니다.",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
     },
 
     [__getPublicSpot.pending]: (state, action) => {
