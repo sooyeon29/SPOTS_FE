@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 import { PrivateApi, PublicApi, SearchApi } from "../../tools/instance";
-import Swal from "sweetalert2";
 
 const initialState = {
   privateSpot: [],
