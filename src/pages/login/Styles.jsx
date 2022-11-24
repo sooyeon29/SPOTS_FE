@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { lighten, darken } from "polished";
 
 export const StWraps = styled.div`
-  margin-top: 110px;
+  margin-top: 70px;
+  margin-bottom: 60px;
   /* background-color: #f1f1f1; */
   /* display: flex; */
   /* align-items: center; */
