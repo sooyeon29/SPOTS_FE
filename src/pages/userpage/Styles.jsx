@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StContainer = styled.div`
   display: flex;
@@ -89,9 +89,91 @@ export const StTeamForm = styled.form`
 `;
 export const MyMatch = styled.div`
   background-color: #f1f1f1;
-  /* margin-bottom: 10px;
-  border: 1px solid black;
-  border-radius: 10px; */
+  display: flex;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background: #ffffff;
+  box-shadow: -1px 3px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+`;
+
+export const ResisterBtn = styled.div`
+  background-color: #f1f1f1;
+  display: flex;
+  width: 100%;
+  min-height: 100px;
+  margin: auto;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background: #ffffff;
+  box-shadow: -1px 3px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+
+  div:first-child{
+    width: 120px;
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    display: flex;
+    margin-right: 10px;
+    img{
+      width: 40px;
+      height: 40px;
+      margin: auto;
+    }
+  }
+
+  div:last-child{
+    width: 300px;
+    font-size: 20px;
+    font-weight: 600;
+    margin: auto;
+  }
+`
+
+export const SpotImage = styled.div`
+  margin-right: 10px;
+  img {
+    width: 100px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+`;
+export const SpotInfos = styled.div`
+  width: 300px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+
+  div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const SpotIcons = styled.div`
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  img {
+    width: 30px;
+  }
+
+  div:last-child {
+    cursor: pointer;
+    img {
+      width: 5px;
+      display: flex;
+      float: right;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 export const SpotInfo = styled.div`

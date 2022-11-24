@@ -443,7 +443,7 @@ export const WaitingMatch = styled.div`
   /* height: 51px; */
   border-radius: 10px;
   margin: 3px;
-  background-image: url(/spotswaitlist.png);
+  background-image: url(/football.png);
   background-size: cover;
   padding: 2px;
   /* border-radius: 40px; */
@@ -457,4 +457,10 @@ export const WaitingMatch = styled.div`
       margin: 2px 15px 2px 5px;
     }
   }
+`;
+export const WaitTennis = styled(WaitingMatch)`
+  background-image: url(/tennis.png);
+`;
+export const WaitBadminton = styled(WaitingMatch)`
+  background-image: url(/badminton.png);
 `;

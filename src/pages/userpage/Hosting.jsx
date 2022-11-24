@@ -91,7 +91,7 @@ const Hosting = () => {
     let x = null;
     let y = null;
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
-    const fullyAddress = fullAddress + spot.address;
+    const fullyAddress = fullAddress + ("\u00a0") + spot.address;
     // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
 
     const geocoder = new kakao.maps.services.Geocoder();
