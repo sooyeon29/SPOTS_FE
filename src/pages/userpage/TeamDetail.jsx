@@ -21,12 +21,9 @@ const TeamDetail = () => {
   const { teamdetail } = useSelector((state) => state.user);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
 
-  const [member, setMember] = useState();
-  const [admin, setAdmin] = useState();
-
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
-  }, [dispatch, id, member]);
+  }, [dispatch, id]);
 
   const dropTeam = (teamId) => {
     console.log(teamId);
@@ -137,14 +134,13 @@ const TeamDetail = () => {
                   type="number"
                   min="1"
                   defaultValue={teamdetail.member}
-                  //ref={memberRef}
-                  onChange={(e) => setMember(e.target.value)}
+                  ref={memberRef}
                 />
                 <EditBtn
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
                       teamName: teamdetail.teamName,
-                      newMember: member,
+                      newMember: memberRef.current.value,
                     })
                       .then((res) => {
                         console.log(res);
@@ -157,7 +153,7 @@ const TeamDetail = () => {
                             showClass: { popup: "animated fadeInDown faster" },
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
-                          //window.location.reload();
+                          dispatch(__getMyteamDetail(id));
                         }
                       })
                       .catch((err) => {
@@ -184,14 +180,13 @@ const TeamDetail = () => {
                 <InputText
                   type="text"
                   defaultValue={teamdetail.admin}
-                  //ref={adminRef}
-                  onChange={(e) => setAdmin(e.target.value)}
+                  ref={adminRef}
                 />
                 <EditBtn
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
                       teamName: teamdetail.teamName,
-                      newAdmin: admin,
+                      newAdmin: adminRef.current.value,
                     })
                       .then((res) => {
                         console.log(res);
