@@ -652,7 +652,7 @@ const SpotsDetail = () => {
 
                                   {spot.sports !== "풋살장" && (
                                     <span>
-                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      {waitMatch.isDoubled ? "복식" : "단식"}{" "}
                                       경기
                                     </span>
                                   )}

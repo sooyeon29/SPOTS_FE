@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 import { SpotsMatchApi } from "../../tools/instance";
 
 // 예약하기! (디테일페이지에서 예약)
@@ -92,18 +93,110 @@ const matchSlice = createSlice({
     },
     [__postSpotsMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
-      // console.log("액션?", action.payload);
       state.matcher.push(action.payload.data);
-      // console.log("fulfilled 상태", state, action);
-      alert(action.payload.message);
+      Swal.fire({
+        text: "매치 등록 성공",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      // console.log("fulfilled 상태", state, action.payload);
+      // alert(action.payload.message);
       window.location.replace(`/reservpage`);
     },
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      console.log("에러났을때", state.error);
-      alert(state.error.response.data.error);
-      // alert("필수입력값을 모두 입력해주세요");
+      if (state.error.response.status === 500) {
+        Swal.fire({
+          text: "필수입력값을 모두 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (
+        state.error.response.data.status === 400 &&
+        state.error.response.data.code === -1
+      ) {
+        Swal.fire({
+          text: "존재하지 않는 팀입니다. 팀명을 확인해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (
+        state.error.response.data.status === 400 &&
+        state.error.response.data.code === -2
+      ) {
+        Swal.fire({
+          text: "보유 포인트가 부족합니다. 포인트를 충전해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (
+        state.error.response.data.status === 400 &&
+        state.error.response.data.code === -3
+      ) {
+        Swal.fire({
+          text: "상대팀과 단식/복식이 일치해야 합니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (
+        state.error.response.data.status === 400 &&
+        state.error.response.data.code === -4
+      ) {
+        Swal.fire({
+          text: "상대팀과 인원이 일치해야 합니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (
+        state.error.response.data.status === 403 &&
+        state.error.response.data.code === -1
+      ) {
+        Swal.fire({
+          text: "해당시간은 이미 마감되었습니다.",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (
+        state.error.response.data.status === 403 &&
+        state.error.response.data.code === -2
+      ) {
+        Swal.fire({
+          text: "매칭 신청은 팀장만 가능합니다.",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
     },
 
     // 해당구장 해당날짜 예약 가져오기 get
@@ -152,12 +245,24 @@ const matchSlice = createSlice({
     [__exitMyMatch.pending]: (state) => {
       state.isLoading = true;
     },
+
     [__exitMyMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.message = action.payload;
-      // console.log(action.payload);
-      alert(action.payload.message);
-      // window.location.reload();
+      console.log(action);
+      Swal.fire({
+        text: "예약 취소 및 포인트 반환 완료(예약 다음날 부터 취소 수수료 10%가 차감됩니다.)",
+        width: "300px",
+        confirmButtonColor: "#40d295",
+        confirmButtonText: "확인",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+      // alert(action.payload.message);
     },
     [__exitMyMatch.rejected]: (state, action) => {
       state.isLoading = false;
