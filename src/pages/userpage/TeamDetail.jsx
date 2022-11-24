@@ -32,10 +32,6 @@ const TeamDetail = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-<<<<<<< HEAD
-          alert("팀 삭제가 완료되었습니다");
-          navigate("/userpage");
-=======
           Swal.fire({
             text: "팀 삭제가 완료되었습니다.",
             width: "300px",
@@ -44,15 +40,11 @@ const TeamDetail = () => {
             showClass: { popup: "animated fadeInDown faster" },
             hideClass: { popup: "animated fadeOutUp faster" },
           });
->>>>>>> 263e39152e2f79102a2b0104849d367d95700f6c
         }
       })
       .catch((error) => {
         console.log(error);
         if (error.response.status === 404) {
-<<<<<<< HEAD
-          alert("가입되지 않은 팀입니다");
-=======
           //navigate("/teampages");
           Swal.fire({
             text: "해당 팀이 존재하지 않습니다.",
@@ -62,7 +54,6 @@ const TeamDetail = () => {
             showClass: { popup: "animated fadeInDown faster" },
             hideClass: { popup: "animated fadeOutUp faster" },
           });
->>>>>>> 263e39152e2f79102a2b0104849d367d95700f6c
         }
       });
   };
@@ -154,9 +145,6 @@ const TeamDetail = () => {
                       .then((res) => {
                         console.log(res);
                         if (res.status === 201) {
-<<<<<<< HEAD
-                          alert("수정이 완료되었습니다");
-=======
                           Swal.fire({
                             text: "수정이 완료되었습니다.",
                             width: "300px",
@@ -166,16 +154,12 @@ const TeamDetail = () => {
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
                           dispatch(__getMyteamDetail(id));
->>>>>>> 263e39152e2f79102a2b0104849d367d95700f6c
                         }
                         dispatch(__getMyteamDetail(id))
                       })
                       .catch((err) => {
                         console.log(err);
                         if (err.response.status === 403) {
-<<<<<<< HEAD
-                          alert("수정 권한이 없습니다");
-=======
                           Swal.fire({
                             text: "수정 권한이 없습니다.",
                             width: "300px",
@@ -184,7 +168,6 @@ const TeamDetail = () => {
                             showClass: { popup: "animated fadeInDown faster" },
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
->>>>>>> 263e39152e2f79102a2b0104849d367d95700f6c
                         }
                       });
                     setIsEdit(false);
