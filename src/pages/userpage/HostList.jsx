@@ -103,17 +103,17 @@ const HostList = () => {
                 </AboutMySpot>
               </MyHostList> */}
 
-              {/* <ButWrap>
+               {/* <ButWrap>
                 <button
                   onClick={() => {
                     navigate(`/hostdetail/${place.placesId}`);
                   }}>
                   수정하기
-                </button>
-                <button onClick={() => deleteHostHandler(place.placesId)}>
+                </button> */}
+                {/* <button onClick={() => deleteHostHandler(place.placesId)}>
                   삭제하기
-                </button>
-              </ButWrap> */}
+                </button> */}
+              {/* </ButWrap>  */}
             </MyMatch>
           );
         })}

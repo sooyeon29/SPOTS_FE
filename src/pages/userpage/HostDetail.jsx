@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import useToggle from "../../hooks/useToggle";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import useToggle from '../../hooks/useToggle';
 import {
+  __deletePrivateSpot,
   __editPrivateSpot,
   __getMyPrivateSpot,
-} from "../../redux/modules/spotsSlice";
-import { StTeam, StWrap } from "./Styles";
+} from '../../redux/modules/spotsSlice';
+import { StTeam, StWrap } from './Styles';
 
 const HostDetail = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,11 @@ const HostDetail = () => {
   const newNewHandler = (e) => {
     const { name, value } = e.target;
     setNewInput({ ...newInput, [name]: value });
+  };
+
+  const deleteHostHandler = (id) => {
+    dispatch(__deletePrivateSpot(id));
+    navigate("/hostlist")
   };
 
   const editInfoHandler = (e) => {
@@ -56,7 +62,7 @@ const HostDetail = () => {
                 {!isEditMode && (
                   <>
                     <h5>{pla.spotName}</h5>
-                    <img alt="" src={pla.image} width="300px" />
+                    <img alt='' src={pla.image} width='300px' />
                     <p>{pla.address}</p>
                     <p>
                       {pla.sports} - {pla.spotKind}
@@ -65,6 +71,9 @@ const HostDetail = () => {
                     <p>{pla.comforts}</p>
                     <p>{pla.price}포인트</p>
                     <button onClick={editHandler}>수정하기</button>
+                    <button onClick={() => deleteHostHandler(pla.placesId)}>
+                      삭제하기
+                    </button>
                     <button onClick={() => navigate(`/hostlist`)}>
                       목록으로돌아가기
                     </button>
@@ -74,25 +83,25 @@ const HostDetail = () => {
                   <form onSubmit={editInfoHandler}>
                     <h5>
                       <input
-                        type="text"
+                        type='text'
                         required
-                        name="newTitle"
+                        name='newTitle'
                         defaultValue={pla.spotName}
                         value={newInput.newTitle}
                         onChange={newNewHandler}
                       />
                     </h5>
-                    <img alt="" src={pla.image} width="300px" />
+                    <img alt='' src={pla.image} width='300px' />
                     <p>{pla.address}</p>
                     <p>
                       {pla.sports} - {pla.spotKind}
                     </p>
                     <p>
                       <textarea
-                        type="text"
+                        type='text'
                         required
-                        style={{ height: "80px", width: "300px" }}
-                        name="newDesc"
+                        style={{ height: '80px', width: '300px' }}
+                        name='newDesc'
                         defaultValue={pla.desc}
                         value={newInput.newDesc}
                         onChange={newNewHandler}
@@ -101,9 +110,9 @@ const HostDetail = () => {
                     <p>{pla.comforts}</p>
                     <p>
                       <input
-                        type="text"
+                        type='text'
                         required
-                        name="newPrice"
+                        name='newPrice'
                         defaultValue={pla.price}
                         value={newInput.newPrice}
                         onChange={newNewHandler}

@@ -30,14 +30,14 @@ const TeamDetail = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
-          alert("팀 삭제가 완료 되었습니다!");
+          alert("팀 삭제가 완료되었습니다");
           navigate("/userpage");
         }
       })
       .catch((error) => {
         console.log(error);
         if (error.response.status === 404) {
-          alert("가입 되지 않은 팀 입니다!");
+          alert("가입되지 않은 팀입니다");
         }
       });
   };
@@ -129,13 +129,14 @@ const TeamDetail = () => {
                       .then((res) => {
                         console.log(res);
                         if (res.status === 201) {
-                          alert("수정이 완료되었습니다.");
+                          alert("수정이 완료되었습니다");
                         }
+                        dispatch(__getMyteamDetail(id))
                       })
                       .catch((err) => {
                         console.log(err);
                         if (err.response.status === 403) {
-                          alert("수정 권한이 없습니다.");
+                          alert("수정 권한이 없습니다");
                         }
                       });
                     setIsEdit(false);
