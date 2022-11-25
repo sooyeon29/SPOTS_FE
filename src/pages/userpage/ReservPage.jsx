@@ -68,7 +68,7 @@ const ReservPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <MyReserve>
-        <ReservTitle>나의 예약리스트</ReservTitle>
+        <ReservTitle></ReservTitle>
         <ReservedSpot>
           <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.map((matchCom) => {
@@ -101,7 +101,7 @@ const ReservPage = () => {
                   </div>
                 </SpotInfo>
                 <ForMatch>
-                  <div>나의팀</div>
+                  <div>나의 팀</div>
                   <img alt="팀로고" src={matchCom.teamData?.image} />
                   <div>{matchCom.matchData?.teamName}</div>
                   <div>{matchCom.matchData?.member} 명</div>
@@ -172,9 +172,9 @@ const ReservPage = () => {
 
                 <WaitedMatch>
                   <MatchVS>
-                    <div>나의팀</div>
+                    <div>나의 팀</div>
                     <div>vs</div>
-                    <div>상대팀</div>
+                    <div>상대 팀</div>
                   </MatchVS>
                   <MatchVS>
                     <div>
