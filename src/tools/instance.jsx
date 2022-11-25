@@ -1,6 +1,7 @@
 import axios from "axios";
 const isLogin = localStorage.getItem("token");
-
+let count = 0;
+console.log("초기화");
 const instance = axios.create({
   baseURL: "https://ws-study.shop/",
   // baseURL: "https://sparta4.shop/",
@@ -10,10 +11,11 @@ const instance = axios.create({
     Authorization: `${isLogin}`,
   },
 });
-
+// 요청 인터셉터 추가
 instance.interceptors.request.use(
   (config) => {
-    //console.log("인스턴스인터셉터리스판스:", config);
+    // 요청이 전달되기 전 작업 수행
+    console.log("인터셉터리퀘스트:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
@@ -21,7 +23,26 @@ instance.interceptors.request.use(
     return config;
   },
   (error) => {
-    // console.log("인스턴스인터셉터에러", error);
+    // 요청 오류가 있는 경우 작업 수행
+    console.log("인터셉터에러", error);
+    Promise.reject(error);
+  }
+);
+// 응답 인터셉터 추가
+instance.interceptors.response.use(
+  (response) => {
+    // 응답 데이터가 있는 작업 수행
+    console.log("인터셉터리스판스+++++++++++++++++:", response);
+    if (response.data.code === 1) {
+      window.localStorage.removeItem("token");
+      // window.localStorage.setItem("token", response.data.myNewToken);
+      count += 1;
+      window.localStorage.setItem("token", "바뀜" + count);
+    }
+    return response;
+  },
+  (error) => {
+    console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
     Promise.reject(error);
   }
 );
