@@ -57,7 +57,6 @@ const userSlice = createSlice({
     },
     [__getMyInfo.fulfilled]: (state, action) => {
       state.user = action.payload.user;
-      localStorage.setItem("point", action.payload.user.point);
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;

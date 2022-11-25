@@ -307,6 +307,5 @@ const SaveBtn = styled.button`
   line-height: 52px;
   text-align: center;
   border: none;
-  position: fixed;
-  bottom: 120px;
+  margin-top: 50px;
 `;
