@@ -5,7 +5,7 @@ export const Loading = () => {
   return (
     <Background>
       <LoadingText>스팟츠가 여러분과 함께합니다!</LoadingText>
-      <img src="/spinner.gif"/>
+      <img src="/Spinner.gif"/>
     </Background>
   );
 };
