@@ -134,6 +134,14 @@ const Hosting = () => {
         })
         .catch((error) => {
           console.log(error);
+          Swal.fire({
+            text: "2MB 이하 용량의 이미지를 업로드해주세요",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
         });
     });
   };
