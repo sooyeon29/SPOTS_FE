@@ -15,7 +15,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     // 요청이 전달되기 전 작업 수행
-    console.log("인터셉터리퀘스트:", config);
+    // console.log("인터셉터리퀘스트:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
@@ -24,28 +24,28 @@ instance.interceptors.request.use(
   },
   (error) => {
     // 요청 오류가 있는 경우 작업 수행
-    console.log("인터셉터에러", error);
+    // console.log("인터셉터에러", error);
     Promise.reject(error);
   }
 );
-// 응답 인터셉터 추가
-instance.interceptors.response.use(
-  (response) => {
-    // 응답 데이터가 있는 작업 수행
-    console.log("인터셉터리스판스+++++++++++++++++:", response);
-    if (response.data.code === 1) {
-      window.localStorage.removeItem("token");
-      // window.localStorage.setItem("token", response.data.myNewToken);
-      count += 1;
-      window.localStorage.setItem("token", "바뀜" + count);
-    }
-    return response;
-  },
-  (error) => {
-    console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
-    Promise.reject(error);
-  }
-);
+// // 응답 인터셉터 추가
+// instance.interceptors.response.use(
+//   (response) => {
+//     // 응답 데이터가 있는 작업 수행
+//     console.log("인터셉터리스판스+++++++++++++++++:", response);
+//     if (response.data.code === 1) {
+//       window.localStorage.removeItem("token");
+//       // window.localStorage.setItem("token", response.data.myNewToken);
+//       count += 1;
+//       window.localStorage.setItem("token", "바뀜" + count);
+//     }
+//     return response;
+//   },
+//   (error) => {
+//     console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
+//     Promise.reject(error);
+//   }
+// );
 
 // 로그인
 export const LoginAPI = {

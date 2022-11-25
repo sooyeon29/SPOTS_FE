@@ -137,7 +137,7 @@ const StHeader = styled.div`
 
 const ChatBox = styled.div`
   height: 505px;
-  overflow: scroll;
+  overflow: auto;
   border: none;
   margin: 10px 10px 0 10px;
   ::-webkit-scrollbar {
