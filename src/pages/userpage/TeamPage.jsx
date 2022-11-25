@@ -141,6 +141,7 @@ const TeamCardFootball = styled.div`
   img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
     border-radius: 60px;
     margin-left: 35px;
   }
@@ -159,6 +160,7 @@ const TeamCardTennis = styled.div`
   img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
     border-radius: 60px;
     margin-left: 35px;
   }
@@ -177,6 +179,7 @@ const TeamCardBadminton = styled.div`
   img {
     width: 60px;
     height: 60px;
+    object-fit: cover;
     border-radius: 60px;
     margin-left: 35px;
   }
