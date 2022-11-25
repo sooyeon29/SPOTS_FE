@@ -73,8 +73,11 @@ export const __exitMyMatch = createAsyncThunk(
 const initialState = {
   // 포스트
   matcher: [],
-  message: "",
+  allmatcher: [],
   newmatcher: [],
+  mymatcher: [],
+  message: "",
+
   // 구장,날짜별
   // data: [],
   isLoading: false,
@@ -206,7 +209,7 @@ const matchSlice = createSlice({
     [__getAllMatch.fulfilled]: (state, action) => {
       // console.log("모든매치", state, "모든매치액션", action.payload);
       state.isLoading = false;
-      state.matcher = action.payload.data;
+      state.allmatcher = action.payload.data;
     },
     [__getAllMatch.rejected]: (state, action) => {
       state.isLoading = false;
@@ -234,7 +237,7 @@ const matchSlice = createSlice({
     [__getMyMatch.fulfilled]: (state, action) => {
       // console.log("스테잇", state, "액션", action.payload);
       state.isLoading = false;
-      state.matcher = action.payload;
+      state.mymatcher = action.payload;
       // console.log("마이메치", state.matcher);
     },
     [__getMyMatch.rejected]: (state, action) => {
