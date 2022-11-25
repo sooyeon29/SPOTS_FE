@@ -84,7 +84,8 @@ const TeamRegister = () => {
               showClass: { popup: "animated fadeInDown faster" },
               hideClass: { popup: "animated fadeOutUp faster" },
             });
-            navigate(`/teamdetail/${res.data.data.teamId}`);
+            navigate('/teampage')
+            // navigate(`/teamdetail/${res.data.data.teamId}`);
           }
         })
         .catch((error) => {

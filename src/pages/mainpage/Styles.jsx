@@ -152,6 +152,8 @@ export const LinkIcon = styled.div`
   align-items: center;
   min-width: 70px;
   min-height: 70px;
+  max-width: 70px;
+  max-height: 70px;
   border-radius: 50%;
   font-size: 30px;
   color: #1746c7;

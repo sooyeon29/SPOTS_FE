@@ -14,8 +14,8 @@ const ChatBtn = ({ chatHandler, chatRef }) => {
 export default ChatBtn;
 
 const Btn = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   bottom: 80px;
   right: 20px;
   display: flex;

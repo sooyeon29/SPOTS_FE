@@ -53,7 +53,7 @@ const Login = () => {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
           Swal.fire({
-            text: "SPOTS에 오신걸 환영합니다",
+            text: "SPOTS에 오신 것을 환영합니다!",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -63,7 +63,7 @@ const Login = () => {
           navigate("/");
           // window.location.reload();
         } else if (res.status === 202) {
-          if (window.confirm("휴면계정입니다. 계정을 활성화 하시겠습니까?")) {
+          if (window.confirm("휴면계정입니다. 계정을 활성화하시겠습니까?")) {
             localStorage.setItem("token", res.data.accessToken);
             navigate("/switchaccount", { state: loginInfo.id });
           }
