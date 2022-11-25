@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { SpotsMatchApi } from "../../tools/instance";
 
@@ -104,10 +105,16 @@ const matchSlice = createSlice({
         confirmButtonColor: "#40d295",
         showClass: { popup: "animated fadeInDown faster" },
         hideClass: { popup: "animated fadeOutUp faster" },
-      });
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.isConfirmed) {
+          window.location.replace(`/reservpage`);
+        }
+      })
       // console.log("fulfilled 상태", state, action.payload);
       // alert(action.payload.message);
-      window.location.replace(`/reservpage`);
+      // window.location.replace(`/reservpage`);
     },
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
@@ -254,7 +261,7 @@ const matchSlice = createSlice({
       state.message = action.payload;
       console.log(action);
       Swal.fire({
-        text: "예약 취소 및 포인트 반환 완료(예약 다음날 부터 취소 수수료 10%가 차감됩니다.)",
+        text: "예약 취소 및 포인트 반환 완료(예약 다음 날부터 취소수수료 10%가 차감됩니다)",
         width: "300px",
         confirmButtonColor: "#40d295",
         confirmButtonText: "확인",
