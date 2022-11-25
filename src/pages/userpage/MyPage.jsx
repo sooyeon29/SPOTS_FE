@@ -172,7 +172,6 @@ const MyPage = () => {
                     </>
                   ) : (
                     <>
-                      {" "}
                       <img src="/mypage/basketball_gray.png" />
                     </>
                   )}
@@ -184,7 +183,6 @@ const MyPage = () => {
                     </>
                   ) : (
                     <>
-                      {" "}
                       <img src="/mypage/swimming_gray.png" />
                     </>
                   )}
@@ -196,7 +194,6 @@ const MyPage = () => {
                     </>
                   ) : (
                     <>
-                      {" "}
                       <img src="/mypage/running_gray.png" />
                     </>
                   )}
@@ -215,12 +212,11 @@ const MyPage = () => {
                 <div>
                   {user?.favSports?.includes("health") ? (
                     <>
-                      <img src="/mypage/health_blue.png" />
+                      <img src="/mypage/health_gray_EE.jpg"/>
                     </>
                   ) : (
                     <>
-                      {" "}
-                      <img src="/mypage/health_gray.png" />
+                      <img src="/mapage/health_grayEE.jpg" />
                     </>
                   )}
                 </div>
