@@ -30,8 +30,8 @@ const ReservPage = () => {
   const title = "My Booking";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const myMatches = useSelector((state) => state.matcher?.matcher);
-  console.log("요거거", myMatches);
+  const myMatches = useSelector((state) => state.matcher?.mymatcher);
+  console.log("나의 예약리스트", myMatches);
 
   useEffect(() => {
     dispatch(__getMyMatch());
@@ -89,9 +89,7 @@ const ReservPage = () => {
                   <div>
                     <button
                       onClick={() =>
-                        window.location.replace(
-                          `/spotsdetail/${matchCom.placeData?.placesId}`
-                        )
+                        navigate(`/spotsdetail/${matchCom.placeData?.placesId}`)
                       }
                     >
                       {matchCom.matchData?.place}
@@ -166,7 +164,7 @@ const ReservPage = () => {
                   <span>
                     {matchWait.teamData?.sports !== "풋살장" && (
                       <>
-                        {!matchWait.matchData?.isDouble ? "복식" : "단식"} 경기
+                        {!matchWait.matchData?.isDouble ? "단식" : "복식"} 경기
                       </>
                     )}
                   </span>
@@ -246,7 +244,7 @@ const ReservPage = () => {
                   매칭대기
                   <span>
                     {matchCom.teamData?.sports !== "풋살장" && (
-                      <>{matchCom.matchData?.isDouble ? "복식" : "단식"} 경기</>
+                      <>{matchCom.matchData?.isDouble ? "단식" : "복식"} 경기</>
                     )}
                   </span>
                 </MidTitle>

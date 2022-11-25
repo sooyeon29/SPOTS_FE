@@ -16,13 +16,10 @@ const TapBar = () => {
         <BiHomeAlt size="29" onClick={() => navigate("/")} />
       </div>
       <div>
-        <FiSearch size="25" onClick={() => window.location.replace("/book")} />
+        <FiSearch size="25" onClick={() => navigate("/book")} />
       </div>
       <div>
-        <TbCalendarTime
-          size="28"
-          onClick={() => window.location.replace("/reservpage")}
-        />
+        <TbCalendarTime size="28" onClick={() => navigate("/reservpage")} />
       </div>
 
       <div>
