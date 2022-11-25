@@ -21,7 +21,7 @@ const Kakao = () => {
   useEffect(() => {
     LoginAPI.kakaoLogin(KAKAO_CODE)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         // localStorage.setItem("token", JSON.stringify(res.data));
         // const isMember = localStorage.getItem("token");
         // if (res.data.code === 1) {
