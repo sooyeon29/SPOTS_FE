@@ -69,9 +69,21 @@ const SignUp = () => {
       // return alert('아이디를 입력해주세요');
     }
     const pw = getValues('password');
+    const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/
     if (pw.trim() === '') {
       Swal.fire({
         text: '비밀번호를 입력해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      });
+      return;
+    }
+    if (!pwRex.test(pw)) {
+      Swal.fire({
+        text: '비밀번호를 형식에 맞게 입력해주세요',
         width: '300px',
         confirmButtonText: '확인',
         confirmButtonColor: '#40d295',
@@ -237,6 +249,17 @@ const SignUp = () => {
       });
       return {};
     }
+    if (loginId.length <= 5) {
+      Swal.fire({
+        text: '여섯 글자 이상 입력해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
+      });
+      return {};
+    }
     SignUpAPI.checkId({ loginId })
       .then((res) => {
         console.log(res);
@@ -281,7 +304,7 @@ const SignUp = () => {
           showClass: { popup: 'animated fadeInDown faster' },
           hideClass: { popup: 'animated fadeOutUp faster' },
         });
-        setCodeSent(true);
+        // setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);
@@ -324,7 +347,7 @@ const SignUp = () => {
             hideClass: { popup: 'animated fadeOutUp faster' },
           });
         }
-        // setCodeSent(true);
+        setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);

@@ -188,7 +188,6 @@ const TeamLayout = styled.div`
 
   div:first-child {
     width: 100px;
-    /* background-color: aliceblue; */
     text-align: center;
     border-right: 1px solid #cecece;
     color: #545454;
@@ -211,6 +210,4 @@ const Btn = styled.button`
   line-height: 52px;
   text-align: center;
   border: none;
-  position: fixed;
-  bottom: 120px;
 `;
