@@ -7,6 +7,7 @@ import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyInfo } from "../redux/modules/userSlice";
+import Swal from "sweetalert2";
 
 const SideBar = ({ barIsOpen, dropDownRef }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 
   const logout = () => {
     localStorage.clear();
+    Swal.fire({
+      text: "로그아웃 되었습니다.",
+      width: "300px",
+      confirmButtonText: "확인",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    });
     navigate(`/`);
   };
 

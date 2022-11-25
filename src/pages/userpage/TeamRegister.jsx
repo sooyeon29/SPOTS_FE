@@ -89,7 +89,7 @@ const TeamRegister = () => {
         })
         .catch((error) => {
           console.log(error);
-          if (error.response.status === 403) {
+          if (error.response.data.code === -2) {
             Swal.fire({
               text: "중복된 팀 이름입니다.",
               width: "300px",
