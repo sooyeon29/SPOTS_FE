@@ -43,7 +43,7 @@ function Router() {
         <Route path="/book" element={<Reservation />} />
         <Route path="/book/:keywords" element={<Reservation />} />
         <Route path="/auth/kakao/callback" element={<Kakao />} />
-        <Route path="/googlelogin" element={<Google />} />
+        <Route path="/auth/google/callback" element={<Google />} />
         <Route path="/hosting" element={<Hosting />} />
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />

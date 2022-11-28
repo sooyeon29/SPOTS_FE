@@ -32,15 +32,21 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     // 응답 데이터가 있는 작업 수행
-    // console.log("인터셉터리스판스+++++++++++++++++:", response);
+    console.log("인터셉터리스판스+++++++++++++++++:", response);
     if (response.data.code === 1) {
-      window.localStorage.removeItem("token");
-      window.localStorage.setItem("token", response.data.myNewToken);
+      return axios({
+        ...response.config,
+        headers: {
+          Authorization: `${response.data.myNewToken}`,
+        },
+      });
+      // window.localStorage.removeItem("token");
+      // window.localStorage.setItem("token", response.data.myNewToken);
     }
     return response;
   },
   (error) => {
-    // console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
+    console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
     Promise.reject(error);
   }
 );
