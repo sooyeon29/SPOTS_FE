@@ -49,7 +49,7 @@ export const __getMyMatch = createAsyncThunk(
   "spotsMatch/getMyMatch",
   async (payload, thunkApi) => {
     try {
-      const data = await SpotsMatchApi.getMyMatch();
+      const { data } = await SpotsMatchApi.getMyMatch();
       console.log("내예약", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
@@ -79,9 +79,6 @@ const initialState = {
   newmatcher: [],
   mymatcher: [],
   message: "",
-
-  // 구장,날짜별
-  // data: [],
   isLoading: false,
   error: null,
 };

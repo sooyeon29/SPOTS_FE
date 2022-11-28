@@ -29,23 +29,24 @@ instance.interceptors.request.use(
   }
 );
 // // 응답 인터셉터 추가
-// instance.interceptors.response.use(
-//   (response) => {
-//     // 응답 데이터가 있는 작업 수행
-//     // console.log("인터셉터리스판스+++++++++++++++++:", response);
-//     if (response.data.code === 1) {
-//       window.localStorage.removeItem("token");
-//       window.localStorage.setItem("token", response.data.myNewToken);
-//       // count += 1;
-//       // window.localStorage.setItem("token", "바뀜" + count);
-//     }
-//     return response;
-//   },
-//   (error) => {
-//     // console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
-//     Promise.reject(error);
-//   }
-// );
+instance.interceptors.response.use(
+  (response) => {
+    // 응답 데이터가 있는 작업 수행
+    // console.log("인터셉터리스판스+++++++++++++++++:", response);
+    if (response.data.code === 1) {
+      window.localStorage.removeItem("token");
+      window.localStorage.setItem("token", response.data.myNewToken);
+
+      // count += 1;
+      // window.localStorage.setItem("token", "바뀜" + count);
+    }
+    return response;
+  },
+  (error) => {
+    // console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
+    Promise.reject(error);
+  }
+);
 
 // 로그인
 export const LoginAPI = {

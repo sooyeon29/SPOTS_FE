@@ -445,6 +445,7 @@ export const WaitingMatch = styled.div`
   border-radius: 10px;
   margin: 3px;
   background-image: url(/football.png);
+
   background-size: cover;
   padding: 2px;
   /* border-radius: 40px; */
@@ -455,9 +456,12 @@ export const WaitingMatch = styled.div`
     padding: 3px;
     span {
       font-size: 12px;
-      margin: 2px 15px 2px 5px;
+      margin: 2px 30px 2px 5px;
     }
   }
+`;
+export const WaitingMatch2 = styled(WaitingMatch)`
+  opacity: 0.5;
 `;
 export const WaitTennis = styled(WaitingMatch)`
   background-image: url(/tennis.png);

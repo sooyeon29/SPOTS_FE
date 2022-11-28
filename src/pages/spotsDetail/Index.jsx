@@ -37,6 +37,7 @@ import {
   WaitTennis,
   WaitBadminton,
   EmailInput,
+  WaitingMatch2,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -615,31 +616,55 @@ const SpotsDetail = () => {
                         팀2
                       </Team>
                     </BookMatch>
-                    <WaitList>매칭대기중 팀 리스트</WaitList>
+                    <WaitList>매칭 대기중 팀 리스트</WaitList>
                     <MatchList>
                       {waitMatchToday.map((waitMatch) => {
                         return (
                           <>
-                            {spot.sports === "풋살장" && (
-                              <WaitingMatch key={waitMatch.reservationId}>
-                                <div>
-                                  <span>
-                                    {waitMatch.matchId.substring(0, 13)}
-                                  </span>
-                                  <span>{waitMatch.teamName}</span>
-
-                                  {spot.sports !== "풋살장" && (
+                            {spot.sports === "풋살장" &&
+                              pickedTime2 !==
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitingMatch key={waitMatch.reservationId}>
+                                  <div>
                                     <span>
-                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                      경기
+                                      {waitMatch.matchId.substring(0, 13)}
                                     </span>
-                                  )}
-                                </div>
-                                <div>
-                                  {waitMatch.member} : {waitMatch.member}
-                                </div>
-                              </WaitingMatch>
-                            )}
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitingMatch>
+                              )}
+                            {spot.sports === "풋살장" &&
+                              pickedTime2 ===
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitingMatch2 key={waitMatch.reservationId}>
+                                  <div>
+                                    <span>
+                                      {waitMatch.matchId.substring(0, 13)}
+                                    </span>
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitingMatch2>
+                              )}
                             {spot.sports === "테니스장" && (
                               <WaitTennis key={waitMatch.reservationId}>
                                 <div>
