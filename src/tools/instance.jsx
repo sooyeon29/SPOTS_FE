@@ -1,15 +1,15 @@
 import axios from "axios";
-const isLogin = localStorage.getItem("token");
-let count = 0;
+// const isLogin = localStorage.getItem("token");
+// let count = 0;
 console.log("초기화");
 const instance = axios.create({
   baseURL: "https://ws-study.shop/",
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
-  headers: {
-    Authorization: `${isLogin}`,
-  },
+  // headers: {
+  //   Authorization: `${isLogin}`,
+  // },
 });
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
@@ -32,17 +32,17 @@ instance.interceptors.request.use(
 // instance.interceptors.response.use(
 //   (response) => {
 //     // 응답 데이터가 있는 작업 수행
-//     console.log("인터셉터리스판스+++++++++++++++++:", response);
+//     // console.log("인터셉터리스판스+++++++++++++++++:", response);
 //     if (response.data.code === 1) {
 //       window.localStorage.removeItem("token");
-//       // window.localStorage.setItem("token", response.data.myNewToken);
-//       count += 1;
-//       window.localStorage.setItem("token", "바뀜" + count);
+//       window.localStorage.setItem("token", response.data.myNewToken);
+//       // count += 1;
+//       // window.localStorage.setItem("token", "바뀜" + count);
 //     }
 //     return response;
 //   },
 //   (error) => {
-//     console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
+//     // console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
 //     Promise.reject(error);
 //   }
 // );

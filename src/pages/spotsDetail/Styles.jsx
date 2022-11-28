@@ -301,6 +301,7 @@ export const Time = styled.div`
   /* width: 100%; */
 `;
 export const Team = styled.button`
+  background-color: ${(props) => props.color};
   background: #ffffff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border: #d9d9d9;
@@ -463,4 +464,13 @@ export const WaitTennis = styled(WaitingMatch)`
 `;
 export const WaitBadminton = styled(WaitingMatch)`
   background-image: url(/badminton.png);
+`;
+export const EmailInput = styled.input`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 93%;
+  height: 20px;
+  background-color: aliceblue;
+  margin: 10px auto 10px auto;
 `;

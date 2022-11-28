@@ -49,10 +49,11 @@ export const __getMyMatch = createAsyncThunk(
   "spotsMatch/getMyMatch",
   async (payload, thunkApi) => {
     try {
-      const { data } = await SpotsMatchApi.getMyMatch(payload);
-      // console.log("내예약", data);
+      const data = await SpotsMatchApi.getMyMatch();
+      console.log("내예약", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
+      console.log("내예약왜안떠", error);
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -105,13 +106,12 @@ const matchSlice = createSlice({
         confirmButtonColor: "#40d295",
         showClass: { popup: "animated fadeInDown faster" },
         hideClass: { popup: "animated fadeOutUp faster" },
-      })
-      .then((res) => {
+      }).then((res) => {
         console.log(res);
         if (res.isConfirmed) {
           window.location.replace(`/reservpage`);
         }
-      })
+      });
       // console.log("fulfilled 상태", state, action.payload);
       // alert(action.payload.message);
       // window.location.replace(`/reservpage`);
@@ -242,10 +242,10 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getMyMatch.fulfilled]: (state, action) => {
-      // console.log("스테잇", state, "액션", action.payload);
+      console.log("스테잇", state, "액션", action.payload);
       state.isLoading = false;
       state.mymatcher = action.payload;
-      // console.log("마이메치", state.matcher);
+      console.log("마이메치", state.mymatcher);
     },
     [__getMyMatch.rejected]: (state, action) => {
       state.isLoading = false;
