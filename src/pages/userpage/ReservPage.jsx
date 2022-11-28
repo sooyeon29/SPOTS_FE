@@ -20,6 +20,7 @@ import {
   MyMatch2,
   MyTeamInfo,
   VS,
+  TeamInfoDetail,
 } from "./Styles";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -30,9 +31,16 @@ const ReservPage = () => {
   const title = "My Booking";
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const myMatches = useSelector((state) => state.matcher?.mymatcher);
-  console.log("나의 예약리스트", myMatches);
 
+  const myNoneMatches = useSelector(
+    (state) => state.matcher?.mymatcher.noneMatchTotal
+  );
+  console.log("나의 매칭전 예약리스트", myNoneMatches);
+
+  const myDoneMatches = useSelector(
+    (state) => state.matcher?.mymatcher.doneMatchTotal
+  );
+  console.log("나의 매칭완료 예약리스트", myDoneMatches);
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
@@ -47,22 +55,22 @@ const ReservPage = () => {
     );
   };
 
-  const spotReserve = myMatches?.filter(
+  const spotReserve = myNoneMatches?.filter(
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "nomatch"
   );
   console.log("구장예약:", spotReserve);
 
-  const matchWaiting = myMatches?.filter(
+  const matchWaiting = myNoneMatches?.filter(
     (myMatch) =>
-      myMatch.matchData?.result === "매칭 전" &&
+      // myMatch.matchData?.result === "매칭 전" &&
       myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
   );
   console.log("매칭대기중:", matchWaiting);
 
-  const matchComplete = myMatches?.filter(
-    (myMatch) => myMatch.matchData?.result === "매칭 완료"
-  );
-  console.log("매칭성사", matchComplete);
+  // const matchComplete = myDoneMatches?.filter(
+  //   (myMatch) => myMatch.matchData?.result === "매칭 완료"
+  // );
+  // console.log("매칭성사", matchComplete);
 
   return (
     <Layout>
@@ -210,7 +218,7 @@ const ReservPage = () => {
         </WaitedMatch>
         <CompletedMath>
           <AboutMatch>매칭 완료</AboutMatch>
-          {matchComplete?.map((matchCom) => {
+          {myDoneMatches?.map((matchCom) => {
             return (
               <MyMatch2 key={matchCom.matchData?.reservationId}>
                 <MoreInfo>
@@ -256,20 +264,27 @@ const ReservPage = () => {
                     <div>상대팀</div>
                   </MatchVS>
                   <MatchVS>
-                    <div>
+                    <TeamInfoDetail>
                       <img alt="팀로고" src={matchCom.teamData?.image} />
                       <div>{matchCom.matchData?.teamName}</div>
                       <span>
                         {matchCom.teamData?.wins}승 / {matchCom.teamData?.lose}
                         패
                       </span>
-                    </div>
+                    </TeamInfoDetail>
                     <VS>
                       {matchCom.matchData?.member} :{" "}
                       {matchCom.matchData?.member}
                     </VS>
 
-                    <div>상대팀정보추가예정</div>
+                    <TeamInfoDetail>
+                      <img alt="팀로고" src={matchCom.opponent?.image} />
+                      <div>{matchCom.opponent?.teamName}</div>
+                      <span>
+                        {matchCom.opponent?.wins}승 / {matchCom.opponent?.lose}
+                        패
+                      </span>
+                    </TeamInfoDetail>
                   </MatchVS>
                 </WaitedMatch>
                 <CancleBtn
