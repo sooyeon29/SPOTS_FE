@@ -36,9 +36,6 @@ instance.interceptors.response.use(
     if (response.data.code === 1) {
       window.localStorage.removeItem("token");
       window.localStorage.setItem("token", response.data.myNewToken);
-
-      // count += 1;
-      // window.localStorage.setItem("token", "바뀜" + count);
     }
     return response;
   },
@@ -53,6 +50,7 @@ export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   // 소셜로그인(카카오)
   kakaoLogin: (payload) => instance.get(`auth/kakao/code?code=${payload}`),
+  googleLogin: (payload) => instance.get(`auth/google/code?code=${payload}`),
   kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
 
   // 인증번호
