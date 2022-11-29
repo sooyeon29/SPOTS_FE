@@ -31,7 +31,7 @@ const MainMaps = () => {
   const navigate = useNavigate();
   //chatbtn
   const [chatOpen, chatRef, chatHandler] = useDetectClose(false);
-  const chatOpenRef = useRef(null);
+  //const chatOpenRef = useRef(null);
 
   const settings = {
     dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
@@ -80,7 +80,7 @@ const MainMaps = () => {
         <Header />
         <MainBanner src="spotsMobile.jpeg" />
         <MapBlock>
-          <img src="mainMap.png"/>
+          <img src="mainMap.png" />
         </MapBlock>
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
@@ -127,7 +127,7 @@ const MainMaps = () => {
           </BannerSlider>
         </SpotContainer>
         <ChatBtn chatHandler={chatHandler} chatRef={chatRef} />
-        <ChatRoom chatOpen={chatOpen} chatOpenRef={chatOpenRef} />
+        <ChatRoom chatOpen={chatOpen} />
         <TapBar />
       </Layout>
     </>

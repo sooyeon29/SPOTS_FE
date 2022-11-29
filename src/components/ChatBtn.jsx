@@ -1,12 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ChatBtn = ({ chatHandler, chatRef }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Btn onClick={chatHandler} ref={chatRef}>
         <img alt="chatBtn" src="/private.png" />
       </Btn>
+      {/* <Btn onClick={() => window.location.replace("/chatting")}></Btn> */}
     </>
   );
 };
@@ -24,7 +27,7 @@ const Btn = styled.div`
   position: fixed;
   z-index: 9;
   border-radius: 50%;
-  border: 3px solid #00F78E;
+  border: 3px solid #00f78e;
   background-color: #fefefe;
   img {
     width: 70px;

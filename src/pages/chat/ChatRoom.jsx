@@ -4,21 +4,23 @@ import { BsXLg } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import Chatting from "./Chatting";
 import socket from "../../tools/socket";
+import { useNavigate } from "react-router-dom";
 
 const ChatRoom = ({ chatOpen, chatOpenRef }) => {
+  const navigate = useNavigate();
   const [roomName, setRoomName] = useState();
   const [onChat, setOnChat] = useState(false);
 
-  useEffect(() => {
-    socket.on("client_main", (roomName) => {
-      console.log("client_main", roomName);
-      setRoomName(roomName);
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.on("client_main", (roomName) => {
+  //     console.log("client_main", roomName);
+  //     setRoomName(roomName);
+  //   });
+  // }, []);
 
   return (
     <>
-      <StContainer isOpen={chatOpen} ref={chatOpenRef}>
+      <StContainer isOpen={chatOpen}>
         <StBox>
           <StHeader>
             <img alt="spots logo" src="/public.png" />
@@ -42,14 +44,21 @@ const ChatRoom = ({ chatOpen, chatOpenRef }) => {
                 <p>오늘도 SPOTS를 이용해주셔서 감사해요.</p>
               </div>
             </StChatContent>
-            <Button onClick={() => setOnChat(!onChat)}>
+            <Button
+              onClick={() => {
+                // setOnChat(!onChat);
+                // console.log(onChat);
+                //navigate("/chatting");
+                window.location.replace("/chatting");
+              }}
+            >
               <IoSend />
               <strong>새 문의하기</strong>
             </Button>
           </StChat>
         </StBox>
       </StContainer>
-      <Chatting socket={socket} roomName={roomName} onChat={onChat} />
+      {/* <Chatting socket={socket} roomName={roomName} onChat={onChat} /> */}
     </>
   );
 };
