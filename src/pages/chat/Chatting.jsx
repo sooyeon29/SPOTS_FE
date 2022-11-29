@@ -64,6 +64,7 @@ const Chatting = () => {
           </button>
         </StHeader>
         <ChatBox>
+          <button>1:1문의하기</button>
           {chatting?.map((chat, index) => (
             <div key={index} ref={scrollRef}>
               {chat.nickname === "admin" ? (
