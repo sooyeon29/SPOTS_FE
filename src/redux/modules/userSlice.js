@@ -58,7 +58,7 @@ const userSlice = createSlice({
     [__getMyInfo.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       localStorage.setItem("point", action.payload.user.point);
-      console.log("내정보불러오기", state.user);
+      // console.log("내정보불러오기", state.user);
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;
