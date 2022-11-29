@@ -20,7 +20,7 @@ instance.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
-      console.log("1번째 토큰!", token);
+      // console.log("1번째 토큰!", token);
     }
     return config;
   },

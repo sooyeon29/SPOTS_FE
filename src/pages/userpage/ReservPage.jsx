@@ -185,14 +185,14 @@ const ReservPage = () => {
                     <div>상대 팀</div>
                   </MatchVS>
                   <MatchVS>
-                    <div>
+                    <TeamInfoDetail>
                       <img alt="팀로고" src={matchWait.teamData?.image} />
                       <div>{matchWait.matchData?.teamName}</div>
                       <span>
                         {matchWait.teamData?.wins}승 /{" "}
                         {matchWait.teamData?.lose}패
                       </span>
-                    </div>
+                    </TeamInfoDetail>
                     <VS>
                       {matchWait.matchData?.member} :{" "}
                       {matchWait.matchData?.member}
