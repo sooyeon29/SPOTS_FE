@@ -56,6 +56,12 @@ const Reservation = () => {
     return <div>{error.message}</div>;
   }
 
+  if (params?.keywords?.includes(' ')) {
+    params.keyword = params?.keywords?.split(' ')
+    console.log(params.keyword)
+  }
+
+
   return (
     <>
       <Layout>

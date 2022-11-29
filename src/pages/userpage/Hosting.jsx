@@ -1,28 +1,29 @@
-import { useState } from "react";
-import Layout from "../../components/Layout";
-import { useDaumPostcodePopup } from "react-daum-postcode";
-import { PrivateApi } from "../../tools/instance";
-import { useNavigate } from "react-router-dom";
-import { HostCard, PageDesc, Image, ProfilePhotoInput } from "./Styles";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import styled, { css } from "styled-components";
-import TapBar from "../../components/TapBar";
-import Swal from "sweetalert2";
+import { useState } from 'react';
+import Layout from '../../components/Layout';
+import { useDaumPostcodePopup } from 'react-daum-postcode';
+import { PrivateApi } from '../../tools/instance';
+import { useNavigate } from 'react-router-dom';
+import { HostCard, PageDesc, Image, ProfilePhotoInput } from './Styles';
+import FlexibleHeader from '../../components/FlexibleHeader';
+import styled, { css } from 'styled-components';
+import TapBar from '../../components/TapBar';
+import Swal from 'sweetalert2';
+
 const { kakao } = window;
 
 const Hosting = () => {
-  const title = "Host Page";
+  const title = 'Host Page';
   const navigate = useNavigate();
 
   const [spot, setSpot] = useState({});
   const [checkedList, setCheckedList] = useState([]);
   const [preview, setPreview] = useState([]);
   const [img, setImg] = useState(null);
-  const [sports, setSports] = useState("");
-  const [spotName, setSpotName] = useState("");
-  const [spotKind, setSpotKind] = useState("");
-  const [price, setPrice] = useState("");
-  const [desc, setDesc] = useState("");
+  const [sports, setSports] = useState('');
+  const [spotName, setSpotName] = useState('');
+  const [spotKind, setSpotKind] = useState('');
+  const [price, setPrice] = useState('');
+  const [desc, setDesc] = useState('');
 
   const handleImagePreview = (file) => {
     setImg(null);
@@ -67,17 +68,17 @@ const Hosting = () => {
   const handleComplete = (data) => {
     // console.log("도대체무슨데이터???", data);
     let fullAddress = data.address;
-    let extraAddress = "";
+    let extraAddress = '';
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== "") {
+      if (data.buildingName !== '') {
         extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
     setFullAddress(fullAddress);
   };
@@ -91,7 +92,7 @@ const Hosting = () => {
     let x = null;
     let y = null;
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
-    const fullyAddress = fullAddress + "\u00a0" + spot.address;
+    const fullyAddress = fullAddress + '\u00a0' + spot.address;
     // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
 
     const geocoder = new kakao.maps.services.Geocoder();
@@ -106,41 +107,41 @@ const Hosting = () => {
       // console.log(x, y);
 
       const sendFD = new FormData();
-      sendFD.append("image", img);
-      sendFD.append("comforts", checkedList);
-      sendFD.append("address", fullyAddress);
-      sendFD.append("x", x);
-      sendFD.append("y", y);
-      sendFD.append("sports", sports);
-      sendFD.append("spotName", spotName);
-      sendFD.append("spotKind", spotKind);
-      sendFD.append("price", price);
-      sendFD.append("desc", desc);
+      sendFD.append('image', img);
+      sendFD.append('comforts', checkedList);
+      sendFD.append('address', fullyAddress);
+      sendFD.append('x', x);
+      sendFD.append('y', y);
+      sendFD.append('sports', sports);
+      sendFD.append('spotName', spotName);
+      sendFD.append('spotKind', spotKind);
+      sendFD.append('price', price);
+      sendFD.append('desc', desc);
 
       PrivateApi.registerSpot(sendFD)
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
             Swal.fire({
-              text: "스팟 등록이 완료되었습니다.",
-              width: "300px",
-              confirmButtonText: "확인",
-              confirmButtonColor: "#40d295",
-              showClass: { popup: "animated fadeInDown faster" },
-              hideClass: { popup: "animated fadeOutUp faster" },
+              text: '스팟 등록이 완료되었습니다.',
+              width: '300px',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#40d295',
+              showClass: { popup: 'animated fadeInDown faster' },
+              hideClass: { popup: 'animated fadeOutUp faster' },
             });
-            navigate("/hostlist");
+            navigate('/hostlist');
           }
         })
         .catch((error) => {
           console.log(error);
           Swal.fire({
-            text: "2MB 이하 용량의 이미지를 업로드해주세요",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
+            text: '2MB 이하 용량의 이미지를 업로드해주세요',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
           });
         });
     });
@@ -153,88 +154,133 @@ const Hosting = () => {
         <PageDesc>나의 구장 등록</PageDesc>
         <ImageUpload>
           <HostingPhotoUpload>
-            <label htmlFor="upload-input">
+            <label htmlFor='upload-input'>
               <div>
-                <p>+</p>
+                {preview.length > 0 ? (
+                  <span>
+                    <img src='/cancel_icon.png' />
+                  </span>
+                ) : (
+                  <span>
+                    <img src='/plus_icon_blue.png' />
+                  </span>
+                )}
               </div>
             </label>
             <ProfilePhotoInput
-              id="upload-input"
-              type="file"
-              accept="image/*"
+              id='upload-input'
+              type='file'
+              accept='image/*'
               onChange={(e) => {
                 handleImagePreview(e);
               }}
-              multiple="multiple"
+              multiple='multiple'
             />
           </HostingPhotoUpload>
-          <Image>
-            <img
-              key={1}
-              src={preview}
-              alt=""
-              onerror="this.style.display='none';"
-            />
-          </Image>
+          <HostPreview>
+            {preview.length > 0 ? (
+              <img
+                key={1}
+                src={preview}
+                alt=''
+                onerror="this.style.display='none';"
+              />
+            ) : (
+              <Preview></Preview>
+            )}
+          </HostPreview>
         </ImageUpload>
-        <HostCard enctype="multipart/form-data">
+        <HostCard enctype='multipart/form-data'>
           <HostForm
             onSubmit={(e) => {
               e.preventDefault();
               onRegisterHandler(spot);
-            }}
-          >
+            }}>
             <InputLayout>
-              <div> 스팟 종류</div>
-              <SelectBox
-                required
-                onChange={(e) => {
-                  setSports(e.target.value);
-                }}
-              >
-                <option>선택하세요</option>
-                <option>풋살장</option>
-                <option>테니스장</option>
-                <option>배드민턴장</option>
-              </SelectBox>
-            </InputLayout>
-            <InputLayout>
-              <div>스팟 이름</div>
+              <div>이름</div>
               <InputText
                 required
-                type="text"
+                type='text'
                 onChange={(e) => {
                   setSpotName(e.target.value);
                 }}
               />
             </InputLayout>
             <InputLayout>
+              <div>종류</div>
+              <SpotsLabel>
+                <FootballInput
+                  type='radio'
+                  value='풋살장'
+                  checked={sports === '풋살장'}
+                  onChange={(e) => {
+                    setSports(e.target.value);
+                  }}
+                />
+                <FootballDiv></FootballDiv>
+              </SpotsLabel>
+              <SpotsLabel>
+                <TennisInput
+                  type='radio'
+                  value='테니스장'
+                  checked={sports === '테니스장'}
+                  onChange={(e) => {
+                    setSports(e.target.value);
+                  }}
+                />
+                <TennisDiv></TennisDiv>
+              </SpotsLabel>
+              <SpotsLabel>
+                <BadmintonInput
+                  type='radio'
+                  value='배드민턴장'
+                  checked={sports === '배드민턴장'}
+                  onChange={(e) => {
+                    setSports(e.target.value);
+                  }}
+                />
+                <BadmintonDiv></BadmintonDiv>
+              </SpotsLabel>
+            </InputLayout>
+            <InputLayout>
               <div>장소</div>
-              <SelectBox
-                onChange={(e) => {
-                  setSpotKind(e.target.value);
-                }}
-              >
-                <option>선택하세요</option>
-                <option>실내 스팟</option>
-                <option>실외 스팟</option>
-              </SelectBox>
+              <KindLabel>
+                <IndoorInput
+                  type='radio'
+                  value='실내'
+                  checked={spotKind === '실내'}
+                  onChange={(e) => {
+                    setSpotKind(e.target.value);
+                  }}
+                />
+                <IndoorDiv>실내</IndoorDiv>
+              </KindLabel>
+              <KindLabel>
+                <OutdoorInput
+                  type='radio'
+                  value='실외'
+                  checked={spotKind === '실외'}
+                  onChange={(e) => {
+                    setSpotKind(e.target.value);
+                  }}
+                />
+                <OutdoorDiv>실외</OutdoorDiv>
+              </KindLabel>
             </InputLayout>
             <InputLayout>
               <div>
                 <span>주소</span>
-                <SearchBtn type="button" onClick={handleClick}>
-                  주소 검색
+                <SearchBtn type='button' onClick={handleClick}>
+                  검색
                 </SearchBtn>
               </div>
-              <div>{fullAddress}</div>
+              {fullAddress}
             </InputLayout>
             <InputLayout>
               <div>상세주소</div>
               <InputText
                 required
-                type="text"
-                placeholder="상세 주소를 입력해주세요"
+                type='text'
                 onChange={(e) => {
                   const { value } = e.target;
                   setSpot({
@@ -246,79 +292,96 @@ const Hosting = () => {
             </InputLayout>
 
             <InputLayout>
-              <div>1시간당</div>
+              <div>시간당</div>
               <InputText
                 required
-                type="text"
+                type='text'
+                placeholder='시간당 가격을 입력해주세요'
                 onChange={(e) => {
                   setPrice(e.target.value);
                 }}
               />
             </InputLayout>
 
-            <InputDesc>
-              <p>스팟 설명</p>
+            <InputLayout>
+              <div> 시설</div>
+              {/* <p>스팟 설명</p> */}
               <div>
-                <input
-                  type="checkbox"
-                  name="comforts"
-                  value="장비대여"
-                  onChange={(e) => {
-                    onCheckedElement(e.target.checked, e.target.value);
-                  }}
-                  checked={checkedList.includes("장비대여") ? true : false}
-                />
-                장비대여
-                <input
-                  type="checkbox"
-                  name="comforts"
-                  value="주차장"
-                  onChange={(e) => {
-                    onCheckedElement(e.target.checked, e.target.value);
-                  }}
-                  checked={checkedList.includes("주차장") ? true : false}
-                />
-                주차장
-                <input
-                  type="checkbox"
-                  name="comforts"
-                  value="샤워실"
-                  onChange={(e) => {
-                    onCheckedElement(e.target.checked, e.target.value);
-                  }}
-                  checked={checkedList.includes("샤워실") ? true : false}
-                />
-                샤워실
-                <input
-                  type="checkbox"
-                  name="comforts"
-                  value="탈의실"
-                  onChange={(e) => {
-                    onCheckedElement(e.target.checked, e.target.value);
-                  }}
-                  checked={checkedList.includes("탈의실") ? true : false}
-                />
-                탈의실
-                <input
-                  type="checkbox"
-                  name="comforts"
-                  value="개인락커"
-                  onChange={(e) => {
-                    onCheckedElement(e.target.checked, e.target.value);
-                  }}
-                  checked={checkedList.includes("개인락커") ? true : false}
-                />
-                개인락커
+              <ComfortsWrap>
+                <ComportsLabel>
+                  <LentalInput
+                    type='checkbox'
+                    name='comforts'
+                    value='장비대여'
+                    onChange={(e) => {
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                    checked={checkedList.includes('장비대여') ? true : false}
+                  />
+                  <LentalDiv>장비대여</LentalDiv>
+                </ComportsLabel>
+                <ComportsLabel>
+                  <LockerInput
+                    type='checkbox'
+                    name='comforts'
+                    value='개인락커'
+                    onChange={(e) => {
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                    checked={checkedList.includes('개인락커') ? true : false}
+                  />
+                  <LockerDiv>개인락커</LockerDiv>
+                </ComportsLabel>
+                </ComfortsWrap><ComfortsWrap>
+                <ComportsLabel>
+                  <ParkingInput
+                    type='checkbox'
+                    name='comforts'
+                    value='주차장'
+                    onChange={(e) => {
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                    checked={checkedList.includes('주차장') ? true : false}
+                  />
+                  <ParkingDiv>주차장</ParkingDiv>
+                </ComportsLabel>
+                <ComportsLabel>
+                  <ShowerInput
+                    type='checkbox'
+                    name='comforts'
+                    value='샤워실'
+                    onChange={(e) => {
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                    checked={checkedList.includes('샤워실') ? true : false}
+                  />
+
+                  <ShowerDiv>샤워실</ShowerDiv>
+                </ComportsLabel>
+                <ComportsLabel>
+                  <DressInput
+                    type='checkbox'
+                    name='comforts'
+                    value='탈의실'
+                    onChange={(e) => {
+                      onCheckedElement(e.target.checked, e.target.value);
+                    }}
+                    checked={checkedList.includes('탈의실') ? true : false}
+                  />
+                  <DressDiv>탈의실</DressDiv>
+                </ComportsLabel>
+              </ComfortsWrap>
               </div>
-              <textarea
-                required
-                style={{ height: "100px", width: "300px" }}
-                type="text"
-                onChange={(e) => {
-                  setDesc(e.target.value);
-                }}
-              />
-            </InputDesc>
+            </InputLayout>
+            <TextArea 
+              required
+              style={{ height: '100px', width: '240px' }}
+              type='text'
+              placeholder='설명을 입력해주세요'
+              onChange={(e) => {
+                setDesc(e.target.value);
+              }}
+            />
             <SaveBtn>등록하기</SaveBtn>
           </HostForm>
         </HostCard>
@@ -345,24 +408,9 @@ const ImageUpload = styled.div`
 `;
 
 const HostingPhotoUpload = styled.div`
-  div:first-child {
-    display: flex;
-    justify-content: center;
-    width: 100px;
-    height: 100px;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-  }
-  p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 38px;
-    background: #1746c7;
-    color: #ffffff;
-    font-size: 24px;
+  img {
+    width: 20px;
+    position: absolute;
   }
 `;
 
@@ -375,23 +423,22 @@ const HostForm = styled.form`
 
 const InputLayout = styled.div`
   display: flex;
-  width: 90%;
-  padding: 10px 10px 10px 10px;
+  width: 100%;
+  padding: 12px;
   border-bottom: 1px solid #cecece;
   font-size: 14px;
   font-weight: 600;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  /* text-align: center; */
 
   div:first-child {
-    width: 100px;
+    width: 60px;
     text-align: center;
-    border-right: 1px solid #cecece;
+    /* border-right: 1px solid #cecece; */
     color: #545454;
-    padding: 8px 8px 8px 8px;
-  }
-
-  div:last-child {
-    margin-left: 20px;
+    /* padding: 8px 8px 8px 8px; */
+    margin-right: 30px;
   }
 `;
 
@@ -423,7 +470,7 @@ const SaveBtn = styled.button`
   line-height: 52px;
   text-align: center;
   border: none;
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 
 const InputText = styled.input`
@@ -437,43 +484,290 @@ const InputText = styled.input`
 
 const SelectBox = styled.select`
   border: none;
-  width: 150px;
+  /* width: 150px; */
 `;
 
 const SearchBtn = styled.button`
   border: none;
-  background-color: #cecece;
-  height: 28px;
-  border-radius: 20px;
+  /* background-color: #cecece; */
+  height: 25px;
+  width: 40px;
+  border-radius: 5px;
 `;
 
-// const Comports = styled.div`
-//   width: 70%;
-//   height: 100px;
-//   display: flex;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   justify-content: center;
-//   margin-top: 20px;
-//   margin-bottom: 20px;
+const Preview = styled.div`
+  div:first-child {
+    height: 100px;
+    width: 100px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+  }
+  height: 100px;
+  width: 100px;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+`;
 
-//   div {
-//     width: 65px;
-//     height: 28px;
-//     border: none;
-//     border-radius: 19px;
-//     background-color: #d9d9d9;
-//     color: #000000;
-//     font-size: 13px;
-//     text-align: center;
-//     line-height: 28px;
-//     margin-right: 10px;
+const HostPreview = styled.div`
+  img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+`;
 
-//     ${({ onColor }) =>
-//       onColor &&
-//       css`
-//         background-color: #1746c7;
-//         color: #ffffff;
-//       `};
-//   }
-// `;
+export const SpotsLabel = styled.label`
+  margin-right: 5px;
+`;
+
+export const FootballInput = styled.input`
+  display: none;
+`;
+export const TennisInput = styled.input`
+  display: none;
+`;
+export const BadmintonInput = styled.input`
+  display: none;
+`;
+
+export const FootballDiv = styled.div`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/mypage/football_gray.png');
+  background-size: 60px;
+
+  ${FootballInput}:checked + && {
+    background-image: url('/mypage/football_blue.png');
+    background-size: 60px;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+`;
+
+export const TennisDiv = styled.div`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/mypage/tennis_gray.png');
+  background-size: 60px;
+
+  ${TennisInput}:checked + && {
+    background-image: url('/mypage/tennis_blue.png');
+    background-size: 60px;
+  }
+`;
+
+export const BadmintonDiv = styled.div`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/mypage/badminton_gray.png');
+  background-size: 60px;
+
+  ${BadmintonInput}:checked + && {
+    background-image: url('/mypage/badminton_blue.png');
+    background-size: 60px;
+  }
+`;
+
+export const KindLabel = styled.label``;
+
+export const OutdoorInput = styled.input`
+  display: none;
+`;
+
+export const IndoorInput = styled.input`
+  display: none;
+`;
+
+export const IndoorDiv = styled.div`
+  width: 95px;
+  height: 25px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  ${IndoorInput}:checked + && {
+    background-color: #1746c7;
+    color: #fff;
+  }
+`;
+
+export const OutdoorDiv = styled.div`
+  width: 95px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-size: 12px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  ${OutdoorInput}:checked + && {
+    background-color: #1746c7;
+    color: #fff;
+  }
+`;
+
+export const ComfortsWrap = styled.div`
+  display: flex;
+  width: 180px;
+  margin-bottom: 5px;
+
+`;
+
+export const ComportsLabel = styled.label`
+margin-right: 5px;
+`;
+
+export const LentalInput = styled.input`
+  display: none;
+`;
+export const LockerInput = styled.input`
+  display: none;
+`;
+export const ParkingInput = styled.input`
+  display: none;
+`;
+export const ShowerInput = styled.input`
+  display: none;
+`;
+export const DressInput = styled.input`
+  display: none;
+`;
+
+export const LentalDiv = styled.div`
+  background-color: #d9d9d9;
+  width: 60px;
+  /* height: 25px; */
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 3px;
+  color: #000;
+
+  ${LentalInput}:checked + && {
+    background-color: #1746c7;
+    width: 60px;
+    /* height: 25px; */
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 3px;
+    color: #fff;
+  }
+`;
+
+export const LockerDiv = styled.div`
+  background-color: #d9d9d9;
+  width: 60px;
+  /* height: 25px; */
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 3px;
+  color: #000;
+
+  ${LockerInput}:checked + && {
+    background-color: #1746c7;
+    width: 60px;
+    /* height: 25px; */
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 3px;
+    color: #fff;
+  }
+`;
+
+export const ParkingDiv = styled.div`
+  background-color: #d9d9d9;
+  width: 50px;
+  /* height: 25px; */
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 3px;
+
+  ${ParkingInput}:checked + && {
+    background-color: #1746c7;
+    width: 60px;
+    /* height: 25px; */
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 3px;
+    color: #fff;
+  }
+`;
+
+export const ShowerDiv = styled.div`
+  background-color: #d9d9d9;
+  width: 50px;
+  /* height: 25px; */
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 3px;
+
+  ${ShowerInput}:checked + && {
+    background-color: #1746c7;
+    width: 60px;
+    /* height: 25px; */
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 3px;
+    color: #fff;
+  }
+`;
+
+export const DressDiv = styled.div`
+  background-color: #d9d9d9;
+  width: 50px;
+  /* height: 25px; */
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 3px;
+
+  ${DressInput}:checked + && {
+    background-color: #1746c7;
+    width: 60px;
+    /* height: 25px; */
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 3px;
+    color: #fff;
+  }
+`;
+
+export const TextArea = styled.textarea`
+  margin-top: 20px;
+   resize: none;
+   padding: 10px;
+
+  :focus {
+    outline: none;
+  }
+`
