@@ -16,12 +16,12 @@ const Chatting = () => {
   console.log(scrollRef.current);
 
   //특정 div의 현재 스크롤 위치
-  const chatDiv = document.getElementById("Chatting");
-  const nowScrollY = chatDiv.scrollTop;
-  console.log(nowScrollY);
+  // const chatDiv = document.getElementById("Chatting");
+  // const nowScrollY = chatDiv.scrollTop;
+  // console.log(nowScrollY);
 
-  const scrollHeight = chatDiv.scrollHeight;
-  console.log(scrollHeight);
+  // const scrollHeight = chatDiv.scrollHeight;
+  // console.log(scrollHeight);
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {

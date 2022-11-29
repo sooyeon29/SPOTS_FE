@@ -20,7 +20,7 @@ import {
   MapBlock,
 } from "./Styles";
 import TapBar from "../../components/TapBar";
-import { LoginAPI, PrivateApi } from "../../tools/instance";
+import { LoginAPI, PrivateApi, SpotsMatchApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import ChatBtn from "../../components/ChatBtn";
 import useDetectClose from "../../hooks/useDetectClose";
@@ -28,6 +28,7 @@ import ChatRoom from "../chat/ChatRoom";
 
 const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
+  const [newMatch, setNewMatch] = useState();
   const navigate = useNavigate();
   //chatbtn
   const [chatOpen, chatRef, chatHandler] = useDetectClose(false);
@@ -67,8 +68,12 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        console.log(newSpot);
+        console.log("신규스팟", newSpot);
       })
+      .catch((err) => console.log(err));
+
+    SpotsMatchApi.getRecentMatch()
+      .then((res) => console.log("임박매치대기팀들!", res))
       .catch((err) => console.log(err));
   }, []);
 
@@ -126,6 +131,50 @@ const MainMaps = () => {
             ))}
           </BannerSlider>
         </SpotContainer>
+        {/* <SpotContainer>
+          <Section>기간 임박! 매칭 대기중인 팀!</Section>
+          <BannerSlider {...settings}>
+            {newMatch?.map((place, idx) => (
+              <New key={idx}>
+                <Image src={place.image} />
+                <div>
+                  <InfoDiv>
+                    <Info>
+                      <div>
+                        {place.sports === "테니스장" ? (
+                          <>
+                            <Icon src="/newTennis.png" />
+                          </>
+                        ) : null}
+                        {place.sports === "배드민턴장" ? (
+                          <>
+                            <Icon src="/newBadminton.png" />
+                          </>
+                        ) : null}
+                        {place.sports === "풋살장" ? (
+                          <>
+                            <Icon src="/newFutsal.png" />
+                          </>
+                        ) : null}
+                      </div>
+                      <SpotName>{place.spotName}</SpotName>
+                      <div>
+                        {place.address.split(" ")[0]}{" "}
+                        {place.address.split(" ")[1]}{" "}
+                        {place.address.split(" ")[2]}
+                      </div>
+                    </Info>
+                    <LinkIcon
+                      onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
+                    >
+                      〉
+                    </LinkIcon>
+                  </InfoDiv>
+                </div>
+              </New>
+            ))}
+          </BannerSlider>
+        </SpotContainer> */}
         <ChatBtn chatHandler={chatHandler} chatRef={chatRef} />
         <ChatRoom chatOpen={chatOpen} />
         <TapBar />

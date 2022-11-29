@@ -4,10 +4,10 @@ import Swal from "sweetalert2";
 // let count = 0;
 console.log("초기화");
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
+  // baseURL: "https://ws-study.shop/",
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
-  // baseURL: "http://13.125.53.34/",
+  baseURL: "https://developerjuri.shop/",
   // headers: {
   //   Authorization: `${isLogin}`,
   // },
@@ -84,7 +84,6 @@ instance.interceptors.response.use(
           window.location.reload();
         }
       }
-
       console.log("----------------------------------------------");
     }
     return response;
@@ -182,6 +181,7 @@ export const SpotsMatchApi = {
   getMyMatch: () => instance.get(`/reservations/me`),
   exitMyMatch: (payload) =>
     instance.put(`/reservations/register/delete`, payload),
+  getRecentMatch: () => instance.get(`reservations/register`),
 };
 
 export const PrivateApi = {
