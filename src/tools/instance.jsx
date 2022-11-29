@@ -81,8 +81,10 @@ instance.interceptors.response.use(
           firstToken = response.data.myNewToken;
           window.localStorage.setItem("token", response.data.myNewToken);
           console.log("토큰정보 업데이트!!");
+          window.location.reload();
         }
       }
+
       console.log("----------------------------------------------");
     }
     return response;
