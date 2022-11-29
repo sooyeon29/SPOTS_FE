@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
+import socket from "../../tools/socket";
+import { useNavigate } from "react-router-dom";
 
-const Chatting = ({ socket, roomName, onChat }) => {
+const Chatting = () => {
+  const navigate = useNavigate();
   const [msg, setMsg] = useState("");
+  const [roomName, setRoomName] = useState();
   const [chatting, setChatting] = useState([]);
-  const [endChat, setEndChat] = useState(false);
   const nickname = localStorage.getItem("nickname");
 
+  const scrollRef = useRef();
+  console.log(scrollRef.current);
+
+  //특정 div의 현재 스크롤 위치
+  const chatDiv = document.getElementById("Chatting");
+  const nowScrollY = chatDiv.scrollTop;
+  console.log(nowScrollY);
+
+  const scrollHeight = chatDiv.scrollHeight;
+  console.log(scrollHeight);
+
   useEffect(() => {
+    socket.on("client_main", (roomName) => {
+      console.log("client_main", roomName);
+      setRoomName(roomName);
+    });
     socket.on("new_message", (data) => {
       console.log("new_message", data);
       setChatting((chat) => [
@@ -37,27 +55,27 @@ const Chatting = ({ socket, roomName, onChat }) => {
   console.log(chatting);
 
   return (
-    <StContainer isOpen={onChat} isClose={endChat}>
+    <StContainer>
       <StWrap>
         <StHeader>
           <div>SPOTS</div>
-          <button onClick={() => setEndChat(!endChat)}>
+          <button onClick={() => navigate("/")}>
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
         <ChatBox>
           {chatting?.map((chat, index) => (
-            <div key={index}>
+            <div key={index} ref={scrollRef}>
               {chat.nickname === "admin" ? (
                 <StAdmin>
                   <img alt="기본프로필" src="/myprofile_icon.png" />
                   <StAdminMsg>{chat.message}</StAdminMsg>
                 </StAdmin>
               ) : (
-                <StAdmin>
+                <>
                   <StNickname>{chat.nickname}</StNickname>
                   <StUserMsg>{chat.message}</StUserMsg>
-                </StAdmin>
+                </>
               )}
             </div>
           ))}
@@ -82,46 +100,22 @@ const Chatting = ({ socket, roomName, onChat }) => {
 
 export default Chatting;
 
-const StContainer = styled.div`
-  bottom: 60px;
-  right: 35px;
-  position: fixed;
-  z-index: 999999;
-  left: 0px;
-  visibility: hidden;
-  opacity: 0;
-  ${({ isOpen }) =>
-    isOpen &&
-    css`
-      opacity: 1;
-      visibility: visible;
-    `}
-  ${({ isClose }) =>
-    isClose &&
-    css`
-      opacity: 0;
-      visibility: hidden;
-    `}
-`;
+const StContainer = styled.div``;
 
 const StWrap = styled.div`
-  width: 390px;
-  height: 550px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: 1px solid lightgray;
-  background-color: #f8f8f8;
 `;
 
 const StHeader = styled.div`
+  width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0000000d;
-  border-radius: 8px;
+  background-color: #efefef;
   div {
     font-size: 19px;
     font-weight: 700;
@@ -136,8 +130,8 @@ const StHeader = styled.div`
 `;
 
 const ChatBox = styled.div`
-  height: 505px;
-  overflow: auto;
+  height: 670px;
+  overflow-y: scroll;
   border: none;
   margin: 10px 10px 0 10px;
   ::-webkit-scrollbar {
@@ -158,8 +152,9 @@ const StForm = styled.form`
     margin: 0 10px 0 10px;
   }
 `;
+
 const StInput = styled.input`
-  width: 360px;
+  width: 100%;
   height: 40px;
   border-radius: 20px;
   border: 1px;
