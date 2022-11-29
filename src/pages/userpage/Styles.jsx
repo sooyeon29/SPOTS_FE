@@ -228,7 +228,8 @@ export const SpotInfo = styled.div`
   }
 `;
 
-export const HostCard = styled.div``;
+export const HostCard = styled.div`
+margin-top: 20px;`;
 export const Preview = styled.div``;
 export const Photo = styled.div`
   ${Preview} {
@@ -247,8 +248,8 @@ export const Photo = styled.div`
       /* border: 1px solid black; */
     }
     div {
-      width: 100%;
-      margin: 0 auto;
+      /* width: 100%; */
+      /* margin: 0 auto; */
     }
   }
 `;

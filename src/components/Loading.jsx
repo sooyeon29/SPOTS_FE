@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Loading = () => {
   return (
     <Background>
-      <LoadingText>스팟츠가 여러분과 함께합니다!</LoadingText>
+      <LoadingText>SPOTS가 여러분과 함께합니다!</LoadingText>
       <img src="/Spinner.gif"/>
     </Background>
   );
