@@ -10,9 +10,6 @@ import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import { Red } from "../signUp/Styles";
 
 const Kakao = () => {
-  // console.log(window.location.href);
-  // const [isLogin, setIsLogin] = useState(false);
-  const [isCode, setIsCode] = useToggle();
   const navigate = useNavigate();
   // 인가코드
   const PARAMS = new URL(document.location).searchParams;

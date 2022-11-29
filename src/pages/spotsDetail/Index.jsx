@@ -36,6 +36,8 @@ import {
   WaitList,
   WaitTennis,
   WaitBadminton,
+  EmailInput,
+  WaitingMatch2,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -64,8 +66,9 @@ const SpotsDetail = () => {
   const [toggle, setToggel, clickedToggle] = useToggle();
   const [toggleTwo, setToggleTwo, clickedToggleTwo] = useToggle();
   const [toggleThree, setToggleThree, clickedToggleThree] = useToggle();
+  const [email, setEmail] = useState("");
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
-
+  console.log("이메일", email);
   const placeList = useSelector((state) => state?.spots.privateSpot);
 
   const selectSpot = placeList?.filter((place) => {
@@ -85,6 +88,7 @@ const SpotsDetail = () => {
   const [payAPrice, setPayAPrice] = useState(0);
   const [payBPrice, setPayBPrice] = useState(0);
 
+  const [color, setColor] = useState("white");
   // ---> 호스트 페이지에 업로드하고 보여주는 것을 완료하면 이 포스트아이디값을 하나 더 받아서 아이디를 만드는데 더해준다
   //=> a팀을 선택한 경우
   const teamPick = (time, price) => {
@@ -102,7 +106,8 @@ const SpotsDetail = () => {
     console.log(myTime[time], "*********************");
     setPickedTime2(myTime[time]);
     setPayAPrice(price);
-    setToggleThree(false);
+    // color === "white" ? setColor("#1746C7") : setColor("white");
+    // setToggleThree(false);
   };
   const exitNoMatch2 = () => {
     setPickedTime2("");
@@ -153,6 +158,7 @@ const SpotsDetail = () => {
         teamName: myTeam?.myteam,
         member: count,
         price: payAPrice + payBPrice,
+        email: email,
       })
     );
   };
@@ -168,6 +174,7 @@ const SpotsDetail = () => {
         teamName: myTeam?.myteam,
         member: count,
         price: payAPrice + payBPrice,
+        email: email,
       })
     );
   };
@@ -202,7 +209,8 @@ const SpotsDetail = () => {
   // 매칭이 완료되지 않은 리스트 (구장예약건들도 들어있음)
 
   const noneMatchToday = useSelector((state) => state?.matcher.newmatcher);
-  console.log("result구분", noneMatchToday);
+  console.log("매칭전배열(구장&매칭전 모두들어있음)", noneMatchToday);
+
   const waitMatchToday = noneMatchToday.filter(
     (match) => match.matchId?.substring(13, 20) === "ismatch"
   );
@@ -432,6 +440,7 @@ const SpotsDetail = () => {
                           myTime[0] in reservedSpotTimeSlots
                         }
                         onClick={() => teamPick2(0, spot.price / 2)}
+                        // color={color}
                       >
                         팀1
                       </Team>
@@ -607,31 +616,55 @@ const SpotsDetail = () => {
                         팀2
                       </Team>
                     </BookMatch>
-                    <WaitList>매칭대기중 팀 리스트</WaitList>
+                    <WaitList>매칭 대기중 팀 리스트</WaitList>
                     <MatchList>
                       {waitMatchToday.map((waitMatch) => {
                         return (
                           <>
-                            {spot.sports === "풋살장" && (
-                              <WaitingMatch key={waitMatch.reservationId}>
-                                <div>
-                                  <span>
-                                    {waitMatch.matchId.substring(0, 13)}
-                                  </span>
-                                  <span>{waitMatch.teamName}</span>
-
-                                  {spot.sports !== "풋살장" && (
+                            {spot.sports === "풋살장" &&
+                              pickedTime2 !==
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitingMatch key={waitMatch.reservationId}>
+                                  <div>
                                     <span>
-                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                      경기
+                                      {waitMatch.matchId.substring(0, 13)}
                                     </span>
-                                  )}
-                                </div>
-                                <div>
-                                  {waitMatch.member} : {waitMatch.member}
-                                </div>
-                              </WaitingMatch>
-                            )}
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitingMatch>
+                              )}
+                            {spot.sports === "풋살장" &&
+                              pickedTime2 ===
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitingMatch2 key={waitMatch.reservationId}>
+                                  <div>
+                                    <span>
+                                      {waitMatch.matchId.substring(0, 13)}
+                                    </span>
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitingMatch2>
+                              )}
                             {spot.sports === "테니스장" && (
                               <WaitTennis key={waitMatch.reservationId}>
                                 <div>
@@ -760,14 +793,28 @@ const SpotsDetail = () => {
                 )}
               </CalTime>
               {pickedTime !== "" ? (
-                <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
-                  구장 예약하기
-                </FinalBooking>
+                <>
+                  <EmailInput
+                    type="email"
+                    placeholder="예약내역을 메일로 받고싶은경우 메일을 입력해주세요"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
+                    구장 예약하기
+                  </FinalBooking>
+                </>
               ) : null}
               {pickedTime2 !== "" ? (
-                <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
-                  매칭 예약하기
-                </FinalBooking>
+                <>
+                  <EmailInput
+                    type="email"
+                    placeholder="예약내역을 메일로 받고싶은경우 메일을 입력해주세요"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
+                    매칭 예약하기
+                  </FinalBooking>
+                </>
               ) : null}
             </WrapAll>
           );

@@ -216,7 +216,7 @@ const MyPage = () => {
                     </>
                   ) : (
                     <>
-                      <img src="/mapage/health_grayEE.jpg" />
+                      <img src="/mypage/health_grayEE.jpg" />
                     </>
                   )}
                 </div>

@@ -301,6 +301,7 @@ export const Time = styled.div`
   /* width: 100%; */
 `;
 export const Team = styled.button`
+  background-color: ${(props) => props.color};
   background: #ffffff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border: #d9d9d9;
@@ -444,6 +445,7 @@ export const WaitingMatch = styled.div`
   border-radius: 10px;
   margin: 3px;
   background-image: url(/football.png);
+
   background-size: cover;
   padding: 2px;
   /* border-radius: 40px; */
@@ -454,13 +456,25 @@ export const WaitingMatch = styled.div`
     padding: 3px;
     span {
       font-size: 12px;
-      margin: 2px 15px 2px 5px;
+      margin: 2px 30px 2px 5px;
     }
   }
+`;
+export const WaitingMatch2 = styled(WaitingMatch)`
+  opacity: 0.5;
 `;
 export const WaitTennis = styled(WaitingMatch)`
   background-image: url(/tennis.png);
 `;
 export const WaitBadminton = styled(WaitingMatch)`
   background-image: url(/badminton.png);
+`;
+export const EmailInput = styled.input`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 93%;
+  height: 20px;
+  background-color: aliceblue;
+  margin: 10px auto 10px auto;
 `;

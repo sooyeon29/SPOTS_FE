@@ -228,7 +228,8 @@ export const SpotInfo = styled.div`
   }
 `;
 
-export const HostCard = styled.div``;
+export const HostCard = styled.div`
+margin-top: 20px;`;
 export const Preview = styled.div``;
 export const Photo = styled.div`
   ${Preview} {
@@ -247,8 +248,8 @@ export const Photo = styled.div`
       /* border: 1px solid black; */
     }
     div {
-      width: 100%;
-      margin: 0 auto;
+      /* width: 100%; */
+      /* margin: 0 auto; */
     }
   }
 `;
@@ -643,15 +644,15 @@ export const MatchVS = styled.div`
       border: 2px solid #1746c7;
     }
   }
-  div:first-child {
-    div {
-      width: 100%;
-      margin-top: 10px;
-    }
-    span {
-      font-size: 12px;
-      font-weight: normal;
-    }
+`;
+export const TeamInfoDetail = styled.div`
+  div {
+    width: 100%;
+    margin-top: 10px;
+  }
+  span {
+    font-size: 12px;
+    font-weight: normal;
   }
 `;
 export const VS = styled(MatchVS)`
