@@ -176,13 +176,14 @@ const StAdminMsg = styled.div`
   margin: 0 auto 0 0;
   margin-bottom: 10px;
   padding: 15px;
-  max-width: 45%;
+  max-width: 65%;
   height: auto;
   background-color: #eaeffc;
   color: #545454;
   border: none;
   border-radius: 15px;
-  word-break: break-all;
+  word-break: keep-all;
+  white-space: pre-line;
 `;
 
 const StUserMsg = styled.div`

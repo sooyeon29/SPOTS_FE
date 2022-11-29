@@ -644,15 +644,15 @@ export const MatchVS = styled.div`
       border: 2px solid #1746c7;
     }
   }
-  div:first-child {
-    div {
-      width: 100%;
-      margin-top: 10px;
-    }
-    span {
-      font-size: 12px;
-      font-weight: normal;
-    }
+`;
+export const TeamInfoDetail = styled.div`
+  div {
+    width: 100%;
+    margin-top: 10px;
+  }
+  span {
+    font-size: 12px;
+    font-weight: normal;
   }
 `;
 export const VS = styled(MatchVS)`
