@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 // const isLogin = localStorage.getItem("token");
 // let count = 0;
 console.log("초기화");
@@ -13,12 +14,13 @@ const instance = axios.create({
 });
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
-  (config) => {
+  async (config) => {
     // 요청이 전달되기 전 작업 수행
     // console.log("인터셉터리퀘스트:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
+      console.log("1번째 토큰!", token);
     }
     return config;
   },
@@ -33,20 +35,41 @@ instance.interceptors.response.use(
   (response) => {
     // 응답 데이터가 있는 작업 수행
     console.log("인터셉터리스판스+++++++++++++++++:", response);
-    if (response.data.code === 1) {
+    if (response.status === 200 && response.data.code === 1) {
+      window.localStorage.removeItem("token");
+      window.localStorage.setItem("token", response.data.myNewToken);
+      const newAccessToken = response.data.myNewToken;
       return axios({
         ...response.config,
         headers: {
-          Authorization: `${response.data.myNewToken}`,
+          Authorization: `${newAccessToken}`,
         },
-      });
-      // window.localStorage.removeItem("token");
-      // window.localStorage.setItem("token", response.data.myNewToken);
+      }).then((res) => console.log("토큰잘 바뀐건가아아ㅏ아", res));
+      // instance.interceptors.request.use((config) => {
+      //   // 요청이 전달되기 전 작업 수행
+      //   // console.log("인터셉터리퀘스트:", config);
+      //   console.log("여기도찍히나");
+      //   const token = localStorage.getItem("token");
+      //   if (token) {
+      //     config.headers["Authorization"] = token;
+      //   }
+      //   return config;
+      // });
     }
     return response;
   },
   (error) => {
-    console.log("!!!!!!!!!!!인터셉터리스판스에러", error);
+    if (error.status === 401) {
+      Swal.fire({
+        text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      window.location.replace("/login");
+    }
     Promise.reject(error);
   }
 );
