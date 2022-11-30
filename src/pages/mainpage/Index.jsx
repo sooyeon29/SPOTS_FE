@@ -18,6 +18,10 @@ import {
   Info,
   SpotName,
   MapBlock,
+  SixMatch,
+  SpotInfoMain,
+  WaitingMatchMain,
+  Icon2,
 } from "./Styles";
 import TapBar from "../../components/TapBar";
 import { LoginAPI, PrivateApi, SpotsMatchApi } from "../../tools/instance";
@@ -25,6 +29,8 @@ import { useNavigate } from "react-router-dom";
 import ChatBtn from "../../components/ChatBtn";
 import useDetectClose from "../../hooks/useDetectClose";
 import ChatRoom from "../chat/ChatRoom";
+import { WaitingMatch } from "../spotsDetail/Styles";
+import { SpotInfo } from "../userpage/Styles";
 
 const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
@@ -73,12 +79,15 @@ const MainMaps = () => {
       .catch((err) => console.log(err));
 
     SpotsMatchApi.getRecentMatch()
-      .then((res) => console.log("임박매치대기팀들!", res))
+      .then((res) => {
+        console.log("임박매치대기팀들!", res);
+        setNewMatch(res?.data);
+      })
       .catch((err) => console.log(err));
   }, []);
 
   // console.log(newSpot);
-
+  console.log("신규매치6개! 임박건!!!", newMatch);
   return (
     <>
       <Layout>
@@ -131,50 +140,67 @@ const MainMaps = () => {
             ))}
           </BannerSlider>
         </SpotContainer>
-        {/* <SpotContainer>
+        <SpotContainer>
           <Section>기간 임박! 매칭 대기중인 팀!</Section>
-          <BannerSlider {...settings}>
-            {newMatch?.map((place, idx) => (
-              <New key={idx}>
-                <Image src={place.image} />
-                <div>
-                  <InfoDiv>
-                    <Info>
-                      <div>
-                        {place.sports === "테니스장" ? (
-                          <>
-                            <Icon src="/newTennis.png" />
-                          </>
-                        ) : null}
-                        {place.sports === "배드민턴장" ? (
-                          <>
-                            <Icon src="/newBadminton.png" />
-                          </>
-                        ) : null}
-                        {place.sports === "풋살장" ? (
-                          <>
-                            <Icon src="/newFutsal.png" />
-                          </>
-                        ) : null}
-                      </div>
-                      <SpotName>{place.spotName}</SpotName>
-                      <div>
-                        {place.address.split(" ")[0]}{" "}
-                        {place.address.split(" ")[1]}{" "}
-                        {place.address.split(" ")[2]}
-                      </div>
-                    </Info>
-                    <LinkIcon
-                      onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
+          {newMatch?.map((sixmatch) => {
+            return (
+              <SixMatch key={sixmatch.match.reservationId}>
+                <SpotInfoMain>
+                  <img alt="구장이미지" src={sixmatch.place.image} />
+                  <Info>
+                    <div>
+                      {sixmatch.place.sports === "테니스장" ? (
+                        <>
+                          <Icon2 src="/newTennis.png" />
+                        </>
+                      ) : null}
+                      {sixmatch.place.sports === "배드민턴장" ? (
+                        <>
+                          <Icon2 src="/newBadminton.png" />
+                        </>
+                      ) : null}
+                      {sixmatch.place.sports === "풋살장" ? (
+                        <>
+                          <Icon2 src="/newFutsal.png" />
+                        </>
+                      ) : null}
+                    </div>
+                    <button
+                      onClick={() =>
+                        navigate(`/spotsdetail/${sixmatch.place.placesId}`)
+                      }
                     >
-                      〉
-                    </LinkIcon>
-                  </InfoDiv>
-                </div>
-              </New>
-            ))}
-          </BannerSlider>
-        </SpotContainer> */}
+                      {sixmatch.place.spotName}
+                    </button>
+                    <div>
+                      {sixmatch.place.address.split(" ")[0]}{" "}
+                      {sixmatch.place.address.split(" ")[1]}{" "}
+                      {sixmatch.place.address.split(" ")[2]}
+                    </div>
+                  </Info>
+                </SpotInfoMain>
+
+                <WaitingMatchMain>
+                  <div>
+                    <span>{sixmatch.match.teamName}</span>
+                    <div>
+                      <img alt="" src={sixmatch.team.image} width="30px" />
+                    </div>
+                  </div>
+                  <div>{sixmatch.match.matchId.substring(0, 13)}</div>
+                  <div>
+                    {sixmatch.match.member} 명
+                    {sixmatch.place.sports !== "풋살장" && (
+                      <span>
+                        {!sixmatch.match.isDoubled ? "복식" : "단식"} 경기
+                      </span>
+                    )}
+                  </div>
+                </WaitingMatchMain>
+              </SixMatch>
+            );
+          })}
+        </SpotContainer>
         <ChatBtn chatHandler={chatHandler} chatRef={chatRef} />
         <ChatRoom chatOpen={chatOpen} />
         <TapBar />
