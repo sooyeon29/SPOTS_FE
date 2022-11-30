@@ -145,7 +145,7 @@ const MainMaps = () => {
               <SixMatch key={sixmatch.match.reservationId}>
                 <div>{sixmatch.match.date} 매칭 대기중!!</div>
                 <SpotInfoMain>
-                  <img alt="구장이미지" src={sixmatch.place.image} />
+                  <img alt="구장이미지" src={sixmatch?.place?.image} />
                   <Info>
                     <div>
                       {sixmatch.place.sports === "테니스장" ? (
@@ -182,7 +182,7 @@ const MainMaps = () => {
                   <div>
                     <span>{sixmatch.match.teamName}</span>
                     <div>
-                      <img alt="" src={sixmatch.team.image} width="30px" />
+                      <img alt="" src={sixmatch?.team?.image} width="30px" />
                     </div>
                   </div>
                   <div>{sixmatch.match.matchId.substring(0, 13)}</div>
