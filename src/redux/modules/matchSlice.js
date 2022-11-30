@@ -116,6 +116,7 @@ const matchSlice = createSlice({
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+      console.log(state.error);
       if (state.error.response.status === 500) {
         Swal.fire({
           text: "필수입력값을 모두 입력해주세요",

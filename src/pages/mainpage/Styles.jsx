@@ -1,5 +1,5 @@
-import Slider from 'react-slick';
-import styled from 'styled-components';
+import Slider from "react-slick";
+import styled from "styled-components";
 
 export const StWrap = styled.div`
   margin-top: 62px;
@@ -11,7 +11,7 @@ export const StWrap = styled.div`
 export const MainElement = styled.div`
   /* width: 390px; */
   margin: auto;
-`
+`;
 export const MainBanner = styled.img`
   width: 100%;
   margin-top: 62px;
@@ -59,7 +59,6 @@ export const Container = styled.div`
   background-color: #d5f103;
   border: solid 2px white;
 `;
-
 
 export const BtnWrap = styled.div`
   border: none;
@@ -181,4 +180,81 @@ export const MapBlock = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+export const SixMatch = styled.div`
+  width: 95%;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  padding-top: 10px;
+`;
+export const SpotInfoMain = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  margin-bottom: 20px;
+  img {
+    width: 45%;
+    margin: 15px 10px 5px 0px;
+    border-radius: 10px;
+  }
+  div {
+    padding: 5px;
+    button {
+      /* margin-top: 10px; */
+      margin-right: 25px;
+      font-size: 15px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    /* p {
+      margin: 5px;
+    } */
+    span:last-child {
+      color: #49e7a5;
+      padding: 2px 8px;
+      text-align: center;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      background-color: black;
+      position: relative;
+      z-index: 2;
+      top: 1px;
+      left: 8px;
+    }
+  }
+`;
+export const WaitingMatchMain = styled.div`
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  margin: 3px;
+  padding: 2px;
+  div {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    padding: 3px;
+    span {
+      font-size: 12px;
+      margin: 2px 30px 2px 5px;
+    }
+  }
+`;
+export const Icon2 = styled.img`
+  height: 25px;
+  margin-bottom: 5px;
 `;

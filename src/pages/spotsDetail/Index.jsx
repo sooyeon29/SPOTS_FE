@@ -106,7 +106,7 @@ const SpotsDetail = () => {
     console.log(myTime[time], "*********************");
     setPickedTime2(myTime[time]);
     setPayAPrice(price);
-    // color === "white" ? setColor("#1746C7") : setColor("white");
+    color === "white" ? setColor("#1746C7") : setColor("white");
     // setToggleThree(false);
   };
   const exitNoMatch2 = () => {
@@ -307,9 +307,9 @@ const SpotsDetail = () => {
                         setToggleThree(false);
                       }}
                     >
-                      닫기
+                      선택완료
                     </One>
-                    <One onClick={exitDate}>취소하기</One>
+                    <One onClick={exitDate}>선택취소</One>
                   </Pick>
                 </Calen>
               )}
@@ -407,8 +407,8 @@ const SpotsDetail = () => {
                     </button>
                   </Times>
                   <Pick>
-                    <One onClick={clickedToggleTwo}>닫기</One>
-                    <One onClick={exitNoMatch}>취소하기</One>
+                    <One onClick={clickedToggleTwo}>선택완료</One>
+                    <One onClick={exitNoMatch}>선택취소</One>
                   </Pick>
                 </CalTime>
               )}
@@ -711,8 +711,8 @@ const SpotsDetail = () => {
                     </MatchList>
                   </SelectTeam>
                   <Pick>
-                    <One onClick={clickedToggleThree}>닫기</One>
-                    <One onClick={exitNoMatch2}>취소하기</One>
+                    <One onClick={clickedToggleThree}>선택완료</One>
+                    <One onClick={exitNoMatch2}>선택취소</One>
                   </Pick>
                 </CalTime>
               )}
@@ -739,6 +739,7 @@ const SpotsDetail = () => {
                   required
                   value={myTeam?.teamName}
                   onChange={pickMyTeam}
+                  onClick={() => setToggleThree(false)}
                 >
                   <option>---선택하기---</option>
                   {myTeams
@@ -762,7 +763,14 @@ const SpotsDetail = () => {
                     <button onClick={() => setCount(count - 1)}>-</button>
                   )}
                   <div>{count}</div>
-                  <button onClick={() => setCount(count + 1)}>+</button>
+                  <button
+                    onClick={() => {
+                      setCount(count + 1);
+                      setToggleThree(false);
+                    }}
+                  >
+                    +
+                  </button>
                 </Counter>
               </SelectChoice>
 
@@ -796,7 +804,7 @@ const SpotsDetail = () => {
                 <>
                   <EmailInput
                     type="email"
-                    placeholder="예약내역을 메일로 받고싶은경우 메일을 입력해주세요"
+                    placeholder="예약내역을 메일로 받고싶은경우 메일을 입력해주세요."
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>

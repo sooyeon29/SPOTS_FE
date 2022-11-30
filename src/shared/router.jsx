@@ -22,9 +22,9 @@ import UserPage from "../pages/userpage/Index";
 import AdminHome from "../pages/chat/AdminHome";
 import AdminChat from "../pages/chat/AdminChat";
 import Welcome from "../components/Welcome";
-import Chatting from "../pages/chat/Chatting";
+// import Chatting from "../pages/chat/Chatting";
 import Google from "../pages/login/Google";
-
+import ChatStart from "../pages/chat/ChatStartBtn";
 
 function Router() {
   return (
@@ -54,7 +54,8 @@ function Router() {
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/chatting" element={<Chatting />} />
+        {/* <Route path="/chatting" element={<Chatting />} /> */}
+        <Route path="/chatting" element={<ChatStart />} />
       </Routes>
     </BrowserRouter>
   );
