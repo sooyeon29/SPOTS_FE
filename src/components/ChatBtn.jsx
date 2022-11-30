@@ -7,7 +7,7 @@ const ChatBtn = ({ chatHandler, chatRef }) => {
   return (
     <>
       <Btn onClick={chatHandler} ref={chatRef}>
-        <img alt="chatBtn" src="/private.png" />
+        <img alt="chatBtn" src="/spotsSymbol.png" />
       </Btn>
       {/* <Btn onClick={() => window.location.replace("/chatting")}></Btn> */}
     </>
@@ -17,8 +17,8 @@ const ChatBtn = ({ chatHandler, chatRef }) => {
 export default ChatBtn;
 
 const Btn = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   bottom: 80px;
   right: 20px;
   display: flex;
@@ -27,10 +27,11 @@ const Btn = styled.div`
   position: fixed;
   z-index: 9;
   border-radius: 50%;
-  border: 3px solid #00f78e;
+  border: 3px solid #fefefe;
   background-color: #fefefe;
   img {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
+    border-radius: 90px;
   }
 `;
