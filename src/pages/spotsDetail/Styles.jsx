@@ -301,7 +301,7 @@ export const Time = styled.div`
   /* width: 100%; */
 `;
 export const Team = styled.button`
-  background-color: ${(props) => props.color};
+  /* background-color: ${(props) => props.color}; */
   background: #ffffff;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border: #d9d9d9;
@@ -316,6 +316,12 @@ export const Team = styled.button`
   &:hover {
     background: #d9d9d9;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
+  &:disabled {
+    /* color: red; */
+  }
+  &:focus {
+    background-color: #1746c7;
   }
 `;
 
@@ -473,8 +479,11 @@ export const EmailInput = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 93%;
-  height: 20px;
-  background-color: aliceblue;
-  margin: 10px auto 10px auto;
+  width: 90%;
+  height: 30px;
+  padding-left: 10px;
+  background-color: #eaeffc;
+  margin: 15px auto 10px auto;
+  border-color: #cecece;
+  border-radius: 20px;
 `;

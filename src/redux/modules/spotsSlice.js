@@ -154,6 +154,15 @@ const privateSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
       console.log(state.error);
+
+      Swal.fire({
+        text: "해당 구장에 예약 건이 있어 삭제할 수 없습니다.",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
     },
     // 내가 등록한 구장 수정하기
     [__editPrivateSpot.pending]: (state, action) => {

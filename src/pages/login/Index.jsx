@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { LoginAPI, UserpageAPI } from "../../tools/instance";
-import { KAKAO_AUTH_URL } from "./OAuth";
+import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL } from "./OAuth";
 import {
   StWraps,
   Stinput,
@@ -70,9 +70,10 @@ const Login = () => {
         }
       })
       .catch((err) => {
+        console.log(err);
         if (err.response.status === 400) {
           Swal.fire({
-            text: "이미 로그인 상태입니다.",
+            text: "이미 로그인된 상태입니다.",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -145,6 +146,9 @@ const Login = () => {
               카카오톡으로 로그인
             </a>
           </KakaoBtn>
+          <LoginBtn>
+            <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
+          </LoginBtn>
           <FindButs>
             <button onClick={() => navigate(`/findid`)}>아이디찾기</button>
             <button onClick={() => navigate(`/findpw`)}>비밀번호찾기</button>

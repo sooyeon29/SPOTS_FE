@@ -58,7 +58,7 @@ const userSlice = createSlice({
     [__getMyInfo.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       localStorage.setItem("point", action.payload.user.point);
-      console.log("내정보불러오기", state.user);
+      // console.log("내정보불러오기", state.user);
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;
@@ -74,7 +74,7 @@ const userSlice = createSlice({
       state.error = action.payload.response.data;
       if (action.payload.response.status === 401) {
         Swal.fire({
-          text: "예약은 로그인 후 이용 가능합니다.",
+          text: "예약은 로그인 후 이용이 가능합니다.",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",
@@ -84,7 +84,7 @@ const userSlice = createSlice({
       }
       if (action.payload.response.status === 404) {
         Swal.fire({
-          text: "등록한 팀이 없습니다. 예약은 팀등록 이후 가능합니다.",
+          text: "등록한 팀이 없습니다. 팀 등록을 해주세요",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",

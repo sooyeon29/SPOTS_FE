@@ -11,7 +11,7 @@ import TapBar from "../../components/TapBar";
 import styled from "styled-components";
 
 const TeamPage = () => {
-  const title = "TeamPage";
+  const title = "My Team";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const TeamPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-        <Title>나의 팀 리스트</Title>
+        {/* <Title>나의 팀 리스트</Title> */}
 
         <TeamBox>
           {team?.map((team) => {

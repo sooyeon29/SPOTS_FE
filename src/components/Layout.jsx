@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import GlobalStyle from '../style/globalStyle';
+import React from "react";
+import styled from "styled-components";
+import GlobalStyle from "../style/globalStyle";
 
 const Layout = ({ children }) => {
   return (

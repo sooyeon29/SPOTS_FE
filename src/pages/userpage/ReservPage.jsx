@@ -105,7 +105,7 @@ const ReservPage = () => {
                     <br />
                     <p>{matchCom.placeData?.address}</p>
                     <span>{matchCom.placeData?.price}</span>
-                    <span>p</span>
+                    <span>P</span>
                   </div>
                 </SpotInfo>
                 <ForMatch>
@@ -163,7 +163,7 @@ const ReservPage = () => {
                     <br />
                     <p>{matchWait.placeData?.address}</p>
                     <span>{matchWait.placeData?.price}</span>
-                    <span>p</span>
+                    <span>P</span>
                   </div>
                 </SpotInfo>
                 <hr />
@@ -185,14 +185,14 @@ const ReservPage = () => {
                     <div>상대 팀</div>
                   </MatchVS>
                   <MatchVS>
-                    <div>
+                    <TeamInfoDetail>
                       <img alt="팀로고" src={matchWait.teamData?.image} />
                       <div>{matchWait.matchData?.teamName}</div>
                       <span>
                         {matchWait.teamData?.wins}승 /{" "}
                         {matchWait.teamData?.lose}패
                       </span>
-                    </div>
+                    </TeamInfoDetail>
                     <VS>
                       {matchWait.matchData?.member} :{" "}
                       {matchWait.matchData?.member}
@@ -244,7 +244,7 @@ const ReservPage = () => {
                     <br />
                     <p>{matchCom.placeData?.address}</p>
                     <span>{matchCom.placeData?.price}</span>
-                    <span>p</span>
+                    <span>P</span>
                   </div>
                 </SpotInfo>
                 <hr />

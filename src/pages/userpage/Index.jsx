@@ -89,6 +89,7 @@ const Profile = styled.div`
   img {
     width: 88px;
     height: 88px;
+    object-fit: cover;
     border: 4px solid #1746c7;
     border-radius: 50px;
     margin-top: -90px;

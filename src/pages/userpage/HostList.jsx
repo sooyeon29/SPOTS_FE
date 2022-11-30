@@ -27,7 +27,7 @@ const HostList = () => {
     dispatch(__getMyPrivateSpot());
   }, []);
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
-  console.log(placeList);
+  // console.log(placeList);
 
   const deleteHostHandler = (id) => {
     dispatch(__deletePrivateSpot(id));
@@ -39,7 +39,11 @@ const HostList = () => {
       <StWrap>
         {placeList?.map((place) => {
           return (
-            <MyMatch key={place?.placesId}>
+            <MyMatch
+              onClick={() => {
+                navigate(`/hostdetail/${place.placesId}`);
+              }}
+              key={place?.placesId}>
               <SpotImage>
                 <img src={place?.image} />
               </SpotImage>
@@ -71,9 +75,12 @@ const HostList = () => {
                   ) : null}
                 </div>
                 <div
-                  onClick={() => {
+                  onClick={
+                    () => {
                     navigate(`/hostdetail/${place.placesId}`);
-                  }}>
+                  }
+                }
+                  >
                   <img src='/more.png' />
                 </div>
               </SpotIcons>
@@ -103,14 +110,14 @@ const HostList = () => {
                 </AboutMySpot>
               </MyHostList> */}
 
-               {/* <ButWrap>
+              {/* <ButWrap>
                 <button
                   onClick={() => {
                     navigate(`/hostdetail/${place.placesId}`);
                   }}>
                   수정하기
                 </button> */}
-                {/* <button onClick={() => deleteHostHandler(place.placesId)}>
+              {/* <button onClick={() => deleteHostHandler(place.placesId)}>
                   삭제하기
                 </button> */}
               {/* </ButWrap>  */}
