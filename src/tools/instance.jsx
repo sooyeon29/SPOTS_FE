@@ -27,7 +27,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   async (response) => {
     // 응답 데이터가 있는 작업 수행
-    console.log("인터셉터리스판스+++++++++++++++++:", response);
+    //console.log("인터셉터리스판스+++++++++++++++++:", response);
     if (response.status === 200 && response.data.code === 1) {
       window.localStorage.removeItem("token");
       window.localStorage.setItem("token", response.data.myNewToken);
@@ -53,7 +53,7 @@ instance.interceptors.response.use(
       });
       window.location.replace("/login");
     }
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 
