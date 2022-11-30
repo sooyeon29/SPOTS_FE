@@ -8,6 +8,7 @@ const instance = axios.create({
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "http://13.125.53.34/",
+  // baseURL: "https://developerjuri.shop/",
   // headers: {
   //   Authorization: `${isLogin}`,
   // },
@@ -81,7 +82,12 @@ instance.interceptors.response.use(
           firstToken = response.data.myNewToken;
           window.localStorage.setItem("token", response.data.myNewToken);
           console.log("토큰정보 업데이트!!");
-          window.location.reload();
+          return instance({
+            ...response.config,
+            headers: {
+              Authorization: `${response.data.myNewToken}`,
+            },
+          });
         }
       }
 
