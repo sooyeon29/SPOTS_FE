@@ -190,6 +190,7 @@ export const SixMatch = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px auto;
+  padding-top: 10px;
 `;
 export const SpotInfoMain = styled.div`
   display: flex;

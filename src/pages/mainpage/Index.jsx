@@ -145,6 +145,7 @@ const MainMaps = () => {
           {newMatch?.map((sixmatch) => {
             return (
               <SixMatch key={sixmatch.match.reservationId}>
+                <div>{sixmatch.match.date} 매칭 대기중!!</div>
                 <SpotInfoMain>
                   <img alt="구장이미지" src={sixmatch.place.image} />
                   <Info>
@@ -179,7 +180,6 @@ const MainMaps = () => {
                     </div>
                   </Info>
                 </SpotInfoMain>
-
                 <WaitingMatchMain>
                   <div>
                     <span>{sixmatch.match.teamName}</span>
