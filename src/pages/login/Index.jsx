@@ -72,7 +72,7 @@ const Login = () => {
       .catch((err) => {
         if (err.response.status === 400) {
           Swal.fire({
-            text: "이미 로그인 상태입니다.",
+            text: "이미 로그인된 상태입니다.",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",

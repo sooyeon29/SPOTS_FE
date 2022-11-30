@@ -17,7 +17,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
   const logout = () => {
     localStorage.clear();
     Swal.fire({
-      text: "로그아웃 되었습니다.",
+      text: "로그아웃되었습니다.",
       width: "300px",
       confirmButtonText: "확인",
       confirmButtonColor: "#40d295",

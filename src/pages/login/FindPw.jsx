@@ -39,7 +39,7 @@ const FindPw = () => {
       .then((res) => {
         if (res.status === 200) {
           Swal.fire({
-            text: "임시비밀번호 : " + res.data.password,
+            text: "임시 비밀번호: " + res.data.password,
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -119,7 +119,7 @@ const FindPw = () => {
           {isCode && (
             <InputWrapLower>
               <Stinput
-                placeholder="인증번호 입력 (제한시간3분)"
+                placeholder="인증번호 입력(제한시간 3분)"
                 type="text"
                 required
                 name="vericode"

@@ -105,7 +105,7 @@ const ReservPage = () => {
                     <br />
                     <p>{matchCom.placeData?.address}</p>
                     <span>{matchCom.placeData?.price}</span>
-                    <span>p</span>
+                    <span>P</span>
                   </div>
                 </SpotInfo>
                 <ForMatch>
@@ -163,7 +163,7 @@ const ReservPage = () => {
                     <br />
                     <p>{matchWait.placeData?.address}</p>
                     <span>{matchWait.placeData?.price}</span>
-                    <span>p</span>
+                    <span>P</span>
                   </div>
                 </SpotInfo>
                 <hr />
@@ -244,7 +244,7 @@ const ReservPage = () => {
                     <br />
                     <p>{matchCom.placeData?.address}</p>
                     <span>{matchCom.placeData?.price}</span>
-                    <span>p</span>
+                    <span>P</span>
                   </div>
                 </SpotInfo>
                 <hr />

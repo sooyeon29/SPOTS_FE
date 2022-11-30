@@ -63,6 +63,7 @@ export const Logo = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 60px;
+  margin-top: 30px
 `;
 export const Stinput = styled.input`
   background-color: transparent;

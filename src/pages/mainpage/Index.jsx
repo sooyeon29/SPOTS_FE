@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import Banner from "../../components/Banner";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import SpotsMap from "./SpotsMap";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useRef, useState } from 'react';
+import Banner from '../../components/Banner';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import SpotsMap from './SpotsMap';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import {
   New,
   Image,
@@ -18,13 +18,13 @@ import {
   Info,
   SpotName,
   MapBlock,
-} from "./Styles";
-import TapBar from "../../components/TapBar";
-import { LoginAPI, PrivateApi } from "../../tools/instance";
-import { useNavigate } from "react-router-dom";
-import ChatBtn from "../../components/ChatBtn";
-import useDetectClose from "../../hooks/useDetectClose";
-import ChatRoom from "../chat/ChatRoom";
+} from './Styles';
+import TapBar from '../../components/TapBar';
+import { LoginAPI, PrivateApi } from '../../tools/instance';
+import { useNavigate } from 'react-router-dom';
+import ChatBtn from '../../components/ChatBtn';
+import useDetectClose from '../../hooks/useDetectClose';
+import ChatRoom from '../chat/ChatRoom';
 
 const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
@@ -48,14 +48,14 @@ const MainMaps = () => {
   };
 
   useEffect(() => {
-    const isMember = localStorage.getItem("loginId");
+    const isMember = localStorage.getItem('loginId');
     // console.log(isMember);
     LoginAPI.kakaoId(isMember)
       .then((res) => {
         // console.log("여기===========================", res);
         if (res.data.loginId === null) return;
         if (res.data.nickname) {
-          localStorage.setItem("token", res.data.accessToken);
+          localStorage.setItem('token', res.data.accessToken);
           return;
         }
         if (res.data.loginId && !res.data.nickname) {
@@ -78,48 +78,45 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
-        <MainBanner src="spotsMobile.jpeg" />
+        <MainBanner src='spotsMobile.jpeg' />
         <MapBlock>
-          <img src="mainMap.png" />
+          <img src='mainMap.png' />
         </MapBlock>
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
           <BannerSlider {...settings}>
             {newSpot?.map((place, idx) => (
-              <New key={idx}>
+              <New
+                key={idx}
+                onClick={() => navigate(`/spotsdetail/${place.placesId}`)}>
                 <Image src={place.image} />
                 <div>
                   <InfoDiv>
                     <Info>
                       <div>
-                        {place.sports === "테니스장" ? (
+                        {place.sports === '테니스장' ? (
                           <>
-                            <Icon src="/newTennis.png" />
+                            <Icon src='/newTennis.png' />
                           </>
                         ) : null}
-                        {place.sports === "배드민턴장" ? (
+                        {place.sports === '배드민턴장' ? (
                           <>
-                            <Icon src="/newBadminton.png" />
+                            <Icon src='/newBadminton.png' />
                           </>
                         ) : null}
-                        {place.sports === "풋살장" ? (
+                        {place.sports === '풋살장' ? (
                           <>
-                            <Icon src="/newFutsal.png" />
+                            <Icon src='/newFutsal.png' />
                           </>
                         ) : null}
                       </div>
                       <SpotName>{place.spotName}</SpotName>
                       <div>
-                        {place.address.split(" ")[0]}{" "}
-                        {place.address.split(" ")[1]}{" "}
-                        {place.address.split(" ")[2]}
+                        {place.address.split(' ')[0]}{' '}
+                        {place.address.split(' ')[1]}{' '}
+                        {place.address.split(' ')[2]}
                       </div>
                     </Info>
-                    <LinkIcon
-                      onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
-                    >
-                      〉
-                    </LinkIcon>
                   </InfoDiv>
                 </div>
               </New>
