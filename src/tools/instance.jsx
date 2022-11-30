@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 // let count = 0;
 console.log("초기화");
 const instance = axios.create({
-  // baseURL: "https://ws-study.shop/",
-  baseURL: "https://developerjuri.shop/",
+  baseURL: "https://ws-study.shop/",
+  //baseURL: "https://developerjuri.shop/",
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
   // baseURL: "https://developerjuri.shop/",
