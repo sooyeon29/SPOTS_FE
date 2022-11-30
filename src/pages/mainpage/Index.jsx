@@ -92,9 +92,9 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
-        <MainBanner src="spotsMobile.jpeg" />
+        <MainBanner alt="" src="spotsMobile.jpeg" />
         <MapBlock>
-          <img src="mainMap.png" />
+          <img alt="" src="mainMap.png" />
         </MapBlock>
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
@@ -104,24 +104,24 @@ const MainMaps = () => {
                 key={idx}
                 onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
               >
-                <Image src={place.image} />
+                <Image alt="" src={place.image} />
                 <div>
                   <InfoDiv>
                     <Info>
                       <div>
                         {place.sports === "테니스장" ? (
                           <>
-                            <Icon src="/newTennis.png" />
+                            <Icon alt="" src="/newTennis.png" />
                           </>
                         ) : null}
                         {place.sports === "배드민턴장" ? (
                           <>
-                            <Icon src="/newBadminton.png" />
+                            <Icon alt="" src="/newBadminton.png" />
                           </>
                         ) : null}
                         {place.sports === "풋살장" ? (
                           <>
-                            <Icon src="/newFutsal.png" />
+                            <Icon alt="" src="/newFutsal.png" />
                           </>
                         ) : null}
                       </div>
@@ -145,7 +145,7 @@ const MainMaps = () => {
               <SixMatch key={sixmatch.match.reservationId}>
                 <div>{sixmatch.match.date} 매칭 대기중!!</div>
                 <SpotInfoMain>
-                  <img alt="구장이미지" src={sixmatch.place.image} />
+                  <img alt="구장이미지" src={sixmatch.place?.image} />
                   <Info>
                     <div>
                       {sixmatch.place.sports === "테니스장" ? (
@@ -182,7 +182,7 @@ const MainMaps = () => {
                   <div>
                     <span>{sixmatch.match.teamName}</span>
                     <div>
-                      <img alt="" src={sixmatch.team.image} width="30px" />
+                      <img alt="" src={sixmatch.team?.image} width="30px" />
                     </div>
                   </div>
                   <div>{sixmatch.match.matchId.substring(0, 13)}</div>
