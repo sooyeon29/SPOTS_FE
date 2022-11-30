@@ -156,7 +156,7 @@ const privateSlice = createSlice({
       console.log(state.error);
 
       Swal.fire({
-        text: "해당 구장은 예약이 있어 삭제할 수 없습니다.",
+        text: "해당 구장에 예약 건이 있어 삭제할 수 없습니다.",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",

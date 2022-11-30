@@ -5,7 +5,7 @@ import Layout from '../../components/Layout';
 import TapBar from '../../components/TapBar';
 import useToggle from '../../hooks/useToggle';
 import { IoFootball } from 'react-icons/io5';
-import { IoMdTennisball } from 'react-icons/io';
+import { IoIosLock, IoMdTennisball } from 'react-icons/io';
 import { GiShuttlecock } from 'react-icons/gi';
 import { LoginAPI, SignUpAPI } from '../../tools/instance';
 import {
@@ -25,12 +25,31 @@ import {
   SportsBlock,
   RecommendId,
   SportLabel,
-  SportInput,
-  SportDiv,
-  Welcome,
+  Logo,
+  GrayBorder,
+  FootballInput,
+  TennisInput,
+  BadmintonInput,
+  RunningInput,
+  SwimmingInput,
+  BaseballInput,
+  BasketballInput,
+  GolfInput,
+  HealthInput,
+  FootballDiv,
+  BadmintonDiv,
+  TennisDiv,
+  SwimmingDiv,
+  BasketballDiv,
+  RunningDiv,
+  GolfDiv,
+  HealthDiv,
+  BaseballDiv,
+  RecommendTitle,
 } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { BsFillPersonFill } from 'react-icons/bs';
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
@@ -69,7 +88,7 @@ const SignUp = () => {
       // return alert('아이디를 입력해주세요');
     }
     const pw = getValues('password');
-    const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/
+    const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/;
     if (pw.trim() === '') {
       Swal.fire({
         text: '비밀번호를 입력해주세요',
@@ -304,7 +323,7 @@ const SignUp = () => {
           showClass: { popup: 'animated fadeInDown faster' },
           hideClass: { popup: 'animated fadeOutUp faster' },
         });
-        // setCodeSent(true);
+        setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);
@@ -347,7 +366,7 @@ const SignUp = () => {
             hideClass: { popup: 'animated fadeOutUp faster' },
           });
         }
-        setCodeSent(true);
+        // setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);
@@ -416,27 +435,34 @@ const SignUp = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             {idAndPwPage ? (
               <FirstPage>
-                <PageTitle>회원가입</PageTitle>
+                <Logo>
+                  <img src='/spotslogo.png' />
+                </Logo>
+                {/* <PageTitle>회원가입</PageTitle> */}
                 <ContentWrap>
-                  <IdInput
-                    type='text'
-                    {...register('loginId', {
-                      required: true,
-                      pattern: /^[A-za-z0-9]{6,12}$/,
-                    })}
-                    placeholder='아이디'
-                    autoComplete='off'
-                  />
-                  <IdConfirmBtn type='button' onClick={checkId}>
-                    중복확인
-                  </IdConfirmBtn>
+                  <GrayBorder>
+                    <BsFillPersonFill size={24} color={'#949494'} />
+                    <IdInput
+                      type='text'
+                      {...register('loginId', {
+                        required: true,
+                        pattern: /^[A-za-z0-9]{6,12}$/,
+                      })}
+                      placeholder='아이디'
+                      autoComplete='off'
+                    />
+                    <IdConfirmBtn type='button' onClick={checkId}>
+                      중복확인
+                    </IdConfirmBtn>
+                  </GrayBorder>
                   {errors.loginId && errors.loginId.type === 'required' && (
                     <p>✓ 아이디를 입력해주세요</p>
                   )}
                   {errors.loginId && errors.loginId.type === 'pattern' && (
                     <p> ✓ 6~12글자 사이의 영문 또는 숫자만 입력 가능합니다</p>
                   )}
-                  <div>
+                  <GrayBorder>
+                    <IoIosLock size={24} color={'#949494'} />
                     <PwInput
                       type='password'
                       {...register('password', {
@@ -445,14 +471,15 @@ const SignUp = () => {
                       })}
                       placeholder='비밀번호'
                     />
-                    {errors.password && errors.password.type === 'required' && (
-                      <p>✓ 비밀번호를 입력해주세요</p>
-                    )}
-                    {errors.password && errors.password.type === 'pattern' && (
-                      <p>✓ 영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
-                    )}
-                  </div>
-                  <div>
+                  </GrayBorder>
+                  {errors.password && errors.password.type === 'required' && (
+                    <p>✓ 비밀번호를 입력해주세요</p>
+                  )}
+                  {errors.password && errors.password.type === 'pattern' && (
+                    <p>✓ 영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
+                  )}
+                  <GrayBorder>
+                    <IoIosLock size={24} color={'#949494'} />
                     <PwInput
                       type='password'
                       {...register('confirmPassword', {
@@ -461,15 +488,15 @@ const SignUp = () => {
                       })}
                       placeholder='비밀번호 확인'
                     />
-                    {errors.confirmPassword &&
-                      errors.confirmPassword.type === 'required' && (
-                        <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
-                      )}
-                    {errors.confirmPassword &&
-                      errors.confirmPassword.type === 'validate' && (
-                        <p>✓ 비밀번호가 일치하지 않습니다</p>
-                      )}
-                  </div>
+                  </GrayBorder>
+                  {errors.confirmPassword &&
+                    errors.confirmPassword.type === 'required' && (
+                      <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
+                    )}
+                  {errors.confirmPassword &&
+                    errors.confirmPassword.type === 'validate' && (
+                      <p>✓ 비밀번호가 일치하지 않습니다</p>
+                    )}
                   <NextBtn onClick={onIdPwPageHandler}>다음</NextBtn>
                 </ContentWrap>
               </FirstPage>
@@ -477,9 +504,12 @@ const SignUp = () => {
 
             {phoneCertify ? (
               <SecondPage>
-                <PageTitle>휴대폰 인증</PageTitle>
+                <Logo>
+                  <img src='/spotslogo.png' />
+                </Logo>
+                {/* <PageTitle>휴대폰 인증</PageTitle> */}
                 <ContentWrap>
-                  <div>
+                  <GrayBorder>
                     <input
                       type='text'
                       {...register('phone', {
@@ -493,9 +523,7 @@ const SignUp = () => {
                     {!codeSent ? (
                       <button
                         style={{
-                          background: 'white',
                           border: 'none',
-                          height: '39.5px',
                           color: '#ff00b3',
                           fontWeight: '600',
                           cursor: 'pointer',
@@ -507,9 +535,9 @@ const SignUp = () => {
                     ) : (
                       <button
                         style={{
-                          background: 'white',
+                          // background: 'white',
                           border: 'none',
-                          height: '39.5px',
+                          // height: '39.5px',
                           color: '#ff00b3',
                           fontWeight: '600',
                           cursor: 'pointer',
@@ -519,14 +547,14 @@ const SignUp = () => {
                         다시받기
                       </button>
                     )}
-                    {errors.phone && errors.phone.type === 'required' && (
-                      <p>휴대폰 번호를 입력해주세요</p>
-                    )}
-                    {errors.phone && errors.phone.type === 'pattern' && (
-                      <p>10~11자리의 번호를 입력해주세요</p>
-                    )}
-                  </div>
-                  <div>
+                  </GrayBorder>
+                  {errors.phone && errors.phone.type === 'required' && (
+                    <p>휴대폰 번호를 입력해주세요</p>
+                  )}
+                  {errors.phone && errors.phone.type === 'pattern' && (
+                    <p>10~11자리의 번호를 입력해주세요</p>
+                  )}
+                  <GrayBorder>
                     <input
                       placeholder='인증번호를 입력하세요'
                       type='text'
@@ -537,9 +565,9 @@ const SignUp = () => {
                     />
                     <button
                       style={{
-                        background: 'white',
+                        // background: 'white',
                         border: 'none',
-                        height: '39.5px',
+                        // height: '39.5px',
                         color: '#ff00b3',
                         fontWeight: '600',
                         cursor: 'pointer',
@@ -548,7 +576,7 @@ const SignUp = () => {
                       onClick={checkVCode}>
                       인증확인
                     </button>
-                  </div>
+                  </GrayBorder>
                   <NextBtn onClick={onNumberCertifiHandler}>다음</NextBtn>
                 </ContentWrap>
               </SecondPage>
@@ -556,9 +584,12 @@ const SignUp = () => {
 
             {addInfoPage ? (
               <ThirdPage>
-                <PageTitle>추가 정보 입력</PageTitle>
+                <Logo>
+                  <img src='/spotslogo.png' />
+                </Logo>
+                {/* <PageTitle>추가 정보 입력</PageTitle> */}
                 <ContentWrap>
-                  <div>
+                  <GrayBorder>
                     <input
                       type='text'
                       {...register('nickname', {
@@ -570,9 +601,7 @@ const SignUp = () => {
                     />
                     <button
                       style={{
-                        background: 'white',
                         border: 'none',
-                        height: '39.5px',
                         color: '#ff00b3',
                         fontWeight: '600',
                       }}
@@ -580,14 +609,13 @@ const SignUp = () => {
                       onClick={checkNn}>
                       중복확인
                     </button>
-                    {errors.nickname && errors.nickname.type === 'required' && (
-                      <p>닉네임을 입력해주세요</p>
-                    )}
-                    {errors.nickname &&
-                      errors.nickname.type === 'minLegnth' && (
-                        <p>닉네임을 한 글자 이상 입력해주세요</p>
-                      )}
-                  </div>
+                  </GrayBorder>
+                  {errors.nickname && errors.nickname.type === 'required' && (
+                    <p>닉네임을 입력해주세요</p>
+                  )}
+                  {errors.nickname && errors.nickname.type === 'minLegnth' && (
+                    <p>닉네임을 한 글자 이상 입력해주세요</p>
+                  )}
                   <div>
                     <input
                       style={{
@@ -623,88 +651,93 @@ const SignUp = () => {
                 <SportsBlock>
                   <MySports>
                     <SportLabel>
-                      <SportInput
+                      <FootballInput
                         type='checkbox'
                         id='football'
                         value='football'
                         {...register('sports')}
                       />
-                      <SportDiv>
-                        <IoFootball style={{ fontSize: '30px' }} />
-                        풋살
-                      </SportDiv>
+                      <FootballDiv></FootballDiv>
                     </SportLabel>
                     <SportLabel>
-                      <SportInput
+                      <TennisInput
                         type='checkbox'
                         value='tennis'
                         {...register('sports')}
                       />
-                      <SportDiv>
-                        <IoMdTennisball style={{ fontSize: '30px' }} />
-                        테니스
-                      </SportDiv>
+                      <TennisDiv />
                     </SportLabel>
                     <SportLabel>
-                      <SportInput
+                      <BadmintonInput
                         type='checkbox'
                         value='badminton'
                         {...register('sports')}
                       />
-                      <SportDiv>
-                        <GiShuttlecock style={{ fontSize: '30px' }} />
-                        배드민턴
-                      </SportDiv>
+                      <BadmintonDiv></BadmintonDiv>
                     </SportLabel>
                   </MySports>
+                  <PageTitle>어떤 운동을 좋아하시나요?</PageTitle>
                   <FavSports>
-                    관심 스팟
-                    <hr />
-                    <input
-                      type='checkbox'
-                      value='swim'
-                      {...register('favSports')}
-                    />
-                    수영
-                    <input
-                      type='checkbox'
-                      value='baseball'
-                      {...register('favSports')}
-                    />
-                    야구
-                    <input
-                      type='checkbox'
-                      value='basketball'
-                      {...register('favSports')}
-                    />
-                    농구
-                    <input
-                      type='checkbox'
-                      value='running'
-                      {...register('favSports')}
-                    />
-                    러닝
-                    <input
-                      type='checkbox'
-                      value='golf'
-                      {...register('favSports')}
-                    />
-                    골프
-                    <input
-                      type='checkbox'
-                      value='health'
-                      {...register('favSports')}
-                    />
-                    헬스
+                    <SportLabel>
+                      <SwimmingInput
+                        type='checkbox'
+                        value='swim'
+                        {...register('favSports')}
+                      />
+                      <SwimmingDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <BaseballInput
+                        type='checkbox'
+                        value='baseball'
+                        {...register('favSports')}
+                      />
+                      <BaseballDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <BasketballInput
+                        type='checkbox'
+                        value='basketball'
+                        {...register('favSports')}
+                      />
+                      <BasketballDiv />
+                    </SportLabel>
+                  </FavSports>{' '}
+                  <FavSports>
+                    <SportLabel>
+                      <RunningInput
+                        type='checkbox'
+                        value='running'
+                        {...register('favSports')}
+                      />
+                      <RunningDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <GolfInput
+                        type='checkbox'
+                        value='golf'
+                        {...register('favSports')}
+                      />
+                      <GolfDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <HealthInput
+                        type='checkbox'
+                        value='health'
+                        {...register('favSports')}
+                      />
+                      <HealthDiv />
+                    </SportLabel>
                   </FavSports>
-                  <div>
+                  <RecommendTitle>추천인 ID를 입력해주세요</RecommendTitle>
+                  <GrayBorder>
                     <RecommendId
                       type='text'
                       {...register('recommendId', {})}
-                      placeholder='추천인ID를 입력해주세요'
+                      placeholder='5,000포인트 추가 지급'
                       autoComplete='off'
                     />
-                  </div>
+                  </GrayBorder>
                   <NextBtn type='submit'>회원가입</NextBtn>
                 </SportsBlock>
               </ForthPage>

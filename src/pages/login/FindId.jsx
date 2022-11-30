@@ -78,7 +78,7 @@ const FindId = () => {
         }
         if (err.status === 412) {
           Swal.fire({
-            text: "회원가입 되지 않은 번호입니다.",
+            text: "가입되지 않은 번호입니다.",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -111,7 +111,7 @@ const FindId = () => {
           {isCode && (
             <InputWrapLower>
               <Stinput
-                placeholder="인증번호 입력 (제한시간3분)"
+                placeholder="인증번호 입력(제한 시간 3분)"
                 type="text"
                 required
                 name="code"

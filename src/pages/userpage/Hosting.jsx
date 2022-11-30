@@ -442,23 +442,6 @@ const InputLayout = styled.div`
   }
 `;
 
-const InputDesc = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  p {
-    color: #545454;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  div {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-`;
-
 const SaveBtn = styled.button`
   width: 90%;
   height: 52px;
@@ -480,11 +463,6 @@ const InputText = styled.input`
   :focus {
     outline: none;
   }
-`;
-
-const SelectBox = styled.select`
-  border: none;
-  /* width: 150px; */
 `;
 
 const SearchBtn = styled.button`

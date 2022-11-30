@@ -68,10 +68,10 @@ export const StTag = styled.span`
 `;
 
 export const StTeam = styled.div`
-  width: 90%;
-
-  border: 1px solid lightgray;
-  border-radius: 15px;
+  width: 100%;
+  /* background-color: beige; */
+  /* border: 1px solid lightgray; */
+  /* border-radius: 15px; */
   margin: auto;
 `;
 
@@ -103,7 +103,7 @@ export const MyMatch2 = styled.div`
   background-color: transparent;
   margin-bottom: 10px;
   border: 1px solid #1746c7;
-  border-radius: 10px;
+  border-radius: 11px;
 `;
 
 export const ResisterBtn = styled.div`
@@ -214,7 +214,7 @@ export const SpotInfo = styled.div`
     }
     span:last-child {
       color: #49e7a5;
-      padding: 2px 8px;
+      padding: 2px 6px;
       text-align: center;
       border-radius: 50px;
       font-size: 14px;
