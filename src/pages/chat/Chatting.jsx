@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
 import socket from "../../tools/socket";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/Layout";
+import _ from "lodash";
 
 const Chatting = () => {
   const navigate = useNavigate();
@@ -13,15 +15,31 @@ const Chatting = () => {
   const nickname = localStorage.getItem("nickname");
 
   const scrollRef = useRef();
-  console.log(scrollRef.current);
+  const boxRef = useRef(null);
+  const [scrollState, setScrollState] = useState(true); //자동 스크롤 여부
 
-  //특정 div의 현재 스크롤 위치
-  const chatDiv = document.getElementById("Chatting");
-  const nowScrollY = chatDiv.scrollTop;
-  console.log(nowScrollY);
+  const scrollEvent = _.debounce(() => {
+    console.log("scroll");
+    const scrollTop = boxRef.current.scrollTop; // 스크롤 위치
+    const clientHeight = boxRef.current.clientHeight; // 요소의 높이
+    const scrollHeight = boxRef.current.scrollHeight; // 스크롤의 높이
 
-  const scrollHeight = chatDiv.scrollHeight;
-  console.log(scrollHeight);
+    setScrollState(
+      scrollTop + clientHeight >= scrollHeight - 100 ? true : false
+    );
+  }, 100);
+
+  const scroll = useCallback(scrollEvent, []);
+
+  useEffect(() => {
+    if (scrollState) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatting]);
+
+  useEffect(() => {
+    boxRef.current.addEventListener("scroll", scroll);
+  });
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {
@@ -55,7 +73,7 @@ const Chatting = () => {
   console.log(chatting);
 
   return (
-    <StContainer>
+    <Layout>
       <StWrap>
         <StHeader>
           <div>SPOTS</div>
@@ -63,22 +81,32 @@ const Chatting = () => {
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
-        <ChatBox>
+        <ChatBox ref={boxRef}>
+          <ChatDesc>
+            <img
+              alt="spotslogo"
+              src="/spotslogo.png"
+              style={{ width: "100px", height: "100px" }}
+            />
+            <div>구장 예약, 경기 매칭 no1 플랫폼 </div>
+            <div>상담시간 10:00-11:00</div>
+          </ChatDesc>
           {chatting?.map((chat, index) => (
-            <div key={index} ref={scrollRef}>
+            <div key={index}>
               {chat.nickname === "admin" ? (
                 <StAdmin>
                   <img alt="기본프로필" src="/myprofile_icon.png" />
-                  <StAdminMsg>{chat.message}</StAdminMsg>
+                  <StAdminMsg ref={scrollRef}>{chat.message}</StAdminMsg>
                 </StAdmin>
               ) : (
                 <>
                   <StNickname>{chat.nickname}</StNickname>
-                  <StUserMsg>{chat.message}</StUserMsg>
+                  <StUserMsg ref={scrollRef}>{chat.message}</StUserMsg>
                 </>
               )}
             </div>
           ))}
+          <div ref={scrollRef} />
         </ChatBox>
 
         <StForm onSubmit={onSendMsg}>
@@ -94,13 +122,11 @@ const Chatting = () => {
           </button>
         </StForm>
       </StWrap>
-    </StContainer>
+    </Layout>
   );
 };
 
 export default Chatting;
-
-const StContainer = styled.div``;
 
 const StWrap = styled.div`
   width: 100%;
@@ -130,7 +156,7 @@ const StHeader = styled.div`
 `;
 
 const ChatBox = styled.div`
-  height: 670px;
+  height: 690px;
   overflow-y: scroll;
   border: none;
   margin: 10px 10px 0 10px;
@@ -151,6 +177,7 @@ const StForm = styled.form`
     cursor: pointer;
     margin: 0 10px 0 10px;
   }
+  bottom: -30px;
 `;
 
 const StInput = styled.input`
@@ -202,4 +229,15 @@ const StNickname = styled.div`
   text-align: right;
   margin: 0 5px 0 auto;
   color: #545454;
+`;
+
+const ChatDesc = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  color: #cecece;
+  div {
+    margin-top: 10px;
+  }
 `;

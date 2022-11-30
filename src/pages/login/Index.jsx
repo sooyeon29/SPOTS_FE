@@ -70,6 +70,7 @@ const Login = () => {
         }
       })
       .catch((err) => {
+        console.log(err);
         if (err.response.status === 400) {
           Swal.fire({
             text: "이미 로그인된 상태입니다.",
