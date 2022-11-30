@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import store from "./redux/config/configStore";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -10,3 +11,5 @@ root.render(
     <App />
   </Provider>
 );
+
+serviceWorkerRegistration.register();
