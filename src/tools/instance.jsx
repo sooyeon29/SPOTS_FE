@@ -1,18 +1,10 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-// const isLogin = localStorage.getItem("token");
-// let count = 0;
-console.log("초기화");
+
 const instance = axios.create({
-  baseURL: "https://ws-study.shop/",
-  //baseURL: "https://developerjuri.shop/",
-  // baseURL: "https://sparta4.shop/",
-  // baseURL: "http://localhost:3000/",
-  // baseURL: "https://developerjuri.shop/",
-  // headers: {
-  //   Authorization: `${isLogin}`,
-  // },
+  baseURL: process.env.REACT_APP_SERVER,
 });
+
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
   async (config) => {
