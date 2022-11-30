@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 console.log("초기화");
 const instance = axios.create({
   // baseURL: "https://ws-study.shop/",
-  baseURL: "https://developerjuri.shop/"
+  baseURL: "https://developerjuri.shop/",
   // baseURL: "https://sparta4.shop/",
   // baseURL: "http://localhost:3000/",
-  // baseURL: "http://13.125.53.34/",
+  // baseURL: "https://developerjuri.shop/",
   // headers: {
   //   Authorization: `${isLogin}`,
   // },
@@ -32,61 +32,20 @@ instance.interceptors.request.use(
   }
 );
 // // 응답 인터셉터 추가
-// instance.interceptors.response.use(
-//   async (response) => {
-//     // 응답 데이터가 있는 작업 수행
-//     console.log("인터셉터리스판스+++++++++++++++++:", response);
-//     if (response.status === 200 && response.data.code === 1) {
-//       window.localStorage.removeItem("token");
-//       window.localStorage.setItem("token", response.data.myNewToken);
-//       const newAccessToken = response.data.myNewToken;
-//       return axios({
-//         ...response.config,
-//         headers: {
-//           Authorization: `${newAccessToken}`,
-//         },
-//       }).then((res) => console.log("토큰잘 바뀐건가아아ㅏ아", res));
-//     }
-//     return response;
-//   },
-//   (error) => {
-//     if (error.status === 401) {
-//       Swal.fire({
-//         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
-//         width: "300px",
-//         confirmButtonText: "확인",
-//         confirmButtonColor: "#40d295",
-//         showClass: { popup: "animated fadeInDown faster" },
-//         hideClass: { popup: "animated fadeOutUp faster" },
-//       });
-//       window.location.replace("/login");
-//     }
-//     Promise.reject(error);
-//   }
-// );
-
 instance.interceptors.response.use(
-  (response) => {
-    console.log("★Axios interceptors response execute★");
-    let firstToken = localStorage.getItem("token");
-
-    if (firstToken) {
-      console.log("----------------------------------------------");
-      console.log("첫토큰", firstToken);
-      response.headers["Authorization"] = response.data.myNewToken;
-
-      if (response.data.myNewToken) {
-        console.log("신규토큰", response.data.myNewToken);
-
-        if (firstToken !== response.data.myNewToken) {
-          firstToken = response.data.myNewToken;
-          window.localStorage.setItem("token", response.data.myNewToken);
-          console.log("토큰정보 업데이트!!");
-          window.location.reload();
-        }
-      }
-
-      console.log("----------------------------------------------");
+  async (response) => {
+    // 응답 데이터가 있는 작업 수행
+    console.log("인터셉터리스판스+++++++++++++++++:", response);
+    if (response.status === 200 && response.data.code === 1) {
+      window.localStorage.removeItem("token");
+      window.localStorage.setItem("token", response.data.myNewToken);
+      const newAccessToken = response.data.myNewToken;
+      return instance({
+        ...response.config,
+        headers: {
+          Authorization: `${newAccessToken}`,
+        },
+      });
     }
     return response;
   },
@@ -105,6 +64,51 @@ instance.interceptors.response.use(
     Promise.reject(error);
   }
 );
+
+// instance.interceptors.response.use(
+//   (response) => {
+//     console.log("★Axios interceptors response execute★");
+//     let firstToken = localStorage.getItem("token");
+
+//     if (firstToken) {
+//       console.log("----------------------------------------------");
+//       console.log("첫토큰", firstToken);
+//       response.headers["Authorization"] = response.data.myNewToken;
+
+//       if (response.data.myNewToken) {
+//         console.log("신규토큰", response.data.myNewToken);
+
+//         if (firstToken !== response.data.myNewToken) {
+//           firstToken = response.data.myNewToken;
+//           window.localStorage.setItem("token", response.data.myNewToken);
+//           console.log("토큰정보 업데이트!!");
+//          return instance({
+//   ...response.config,
+//   headers: {
+//     Authorization: `${newAccessToken}`,
+//   },
+// });
+//         }
+//       }
+//       console.log("----------------------------------------------");
+//     }
+//     return response;
+//   },
+//   (error) => {
+//     if (error.status === 401) {
+//       Swal.fire({
+//         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
+//         width: "300px",
+//         confirmButtonText: "확인",
+//         confirmButtonColor: "#40d295",
+//         showClass: { popup: "animated fadeInDown faster" },
+//         hideClass: { popup: "animated fadeOutUp faster" },
+//       });
+//       window.location.replace("/login");
+//     }
+//     Promise.reject(error);
+//   }
+// );
 
 // 로그인
 export const LoginAPI = {
@@ -183,6 +187,7 @@ export const SpotsMatchApi = {
   getMyMatch: () => instance.get(`/reservations/me`),
   exitMyMatch: (payload) =>
     instance.put(`/reservations/register/delete`, payload),
+  getRecentMatch: () => instance.get(`reservations/register`),
 };
 
 export const PrivateApi = {
