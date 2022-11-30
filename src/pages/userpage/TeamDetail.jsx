@@ -171,7 +171,7 @@ const TeamDetail = () => {
                     setIsEdit(false);
                   }}
                 >
-                  수정
+                  수정하기
                 </EditBtn>
               </TeamLayout>
               <TeamLayout>
@@ -216,10 +216,10 @@ const TeamDetail = () => {
                       });
                   }}
                 >
-                  수정
+                  수정하기
                 </EditBtn>
               </TeamLayout>
-              <SaveBtn>저장</SaveBtn>
+              <SaveBtn>수정 완료</SaveBtn>
             </>
           )}
         </StTeamForm>
