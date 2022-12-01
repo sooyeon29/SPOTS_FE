@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import SpotList from './HostSpotList';
-import { FaSearchLocation } from 'react-icons/fa'
+import { FaSearchLocation } from 'react-icons/fa';
 import {
   StWrap,
   MapPlace,
@@ -12,7 +12,8 @@ import {
   SearchTerm,
   StSearch,
   SearchInput,
-  ListBar
+  ListBar,
+  Lists,
 } from './Style';
 import SpotsMap from '../reservation/SpotsMap';
 import SearchBar from '../../components/SearchBar';
@@ -43,8 +44,8 @@ const Reservation = () => {
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
-    window.location.href = "/book/" + keywords;
-  }
+    window.location.href = '/book/' + keywords;
+  };
   // console.log("---검색---", searchedSpot);
   // console.log("---전체---", allSpot);
 
@@ -57,10 +58,9 @@ const Reservation = () => {
   }
 
   if (params?.keywords?.includes(' ')) {
-    params.keyword = params?.keywords?.split(' ')
-    console.log(params.keyword)
+    params.keyword = params?.keywords?.split(' ');
+    console.log(params.keyword);
   }
-
 
   return (
     <>
@@ -68,7 +68,7 @@ const Reservation = () => {
         <FlexibleHeader title={title} />
         <StWrap>
           <StSearch>
-          <FaSearchLocation />
+            <FaSearchLocation />
             <form onSubmit={onSearchHandler}>
               <SearchInput
                 type='text'
@@ -81,8 +81,7 @@ const Reservation = () => {
               />
             </form>
           </StSearch>
-          <SearchTerm>
-          </SearchTerm>
+          <SearchTerm></SearchTerm>
           <MapPlace>
             {!params.keywords ? (
               <>
@@ -96,23 +95,19 @@ const Reservation = () => {
               </>
             )}
           </MapPlace>
-          {/* <Index>
-            <img src='/public.png' />
-            <div>공공</div>
-            <img src='/private.png' />
-            <div>사설</div>
-          </Index> */}
           <PlaceList>
             <ListBar />
-            {!params.keywords ? (
-              <>
-                <SpotList spotList={allSpot} />
-              </>
-            ) : (
-              <>
-                <SpotList spotList={searchedSpot} />
-              </>
-            )}
+            <Lists>
+              {!params.keywords ? (
+                <>
+                  <SpotList spotList={allSpot} />
+                </>
+              ) : (
+                <>
+                  <SpotList spotList={searchedSpot} />
+                </>
+              )}
+            </Lists>
           </PlaceList>
         </StWrap>
         <TapBar />

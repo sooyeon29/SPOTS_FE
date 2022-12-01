@@ -12,7 +12,7 @@ export const MainElement = styled.div`
   /* width: 390px; */
   margin: auto;
 `;
-export const MainBanner = styled.img`
+export const MainSearch = styled.img`
   width: 100%;
   margin-top: 62px;
 `;
@@ -168,17 +168,17 @@ export const SpotName = styled.div`
   font-weight: 600;
 `;
 
-export const MapBlock = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #f1f1f1;
+export const MainBanner = styled.div`
+  /* width: 100%; */
+  /* height: 100%; */
+  /* background-color: #f1f1f1; */
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 97%;
+    /* height: 100%; */
   }
 `;
 export const SixMatch = styled.div`

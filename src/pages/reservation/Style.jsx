@@ -31,16 +31,17 @@ export const PlaceList = styled.div`
   display: flex;
   /* margin-top: 10px; */
   flex-direction: column;
-  height: 80vh;
-  overflow: scroll;
+  height: 44vh;
+  /* overflow: scroll; */
   background-color: #FFF;
   display: flex;
   margin-bottom: 80px;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
   border-radius: 30px;
   position: absolute;
   top: 50%;
   z-index: 3;
+  box-shadow: 0px -2px 11px rgba(0, 0, 0, 0.25);
   
 `;
 
@@ -49,11 +50,15 @@ export const ListBar = styled.div`
   margin-top: 10px;
   margin-bottom: 5px;
   width: 100px;
-  height: 10px;
+  height: 0.1px;
   border: 2px solid #C4C4C4;
   border-radius: 10px;
 `;
 
+export const Lists = styled.div`
+  overflow: scroll;
+  margin-bottom: 20px;
+`
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -97,16 +102,16 @@ export const Status = styled.span`
 `;
 
 export const PrivateBlock = styled.div`
-  display: flex;
+  /* display: flex; */
   margin: auto;
   margin-top: 10px;
   /* margin-bottom: 10px; */
   border-radius: 10px;
   padding: 15px;
   /* padding-left: 15px; */
-  width: 90%;
-  background-color: #fff;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  width: 85%;
+  background-color: #fff;  
+  filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   flex-direction: row;
   align-items: center;
@@ -115,24 +120,50 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 43px;
-    height: 50px;
-    margin-right: 15px;
+    width: 77%;
+    height: 88%;
   }
-  p {
+  p:first-child {
     margin: auto;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  p:last-child {
+    margin: auto;
+    font-size: 14px;
+    color: #545454;
+
   }
 `;
 
-export const PublicBlock = styled.div`
+export const UpperLine = styled.div`
   display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  span {
+    color: #E938AE;
+  }
+`
+
+export const LowerLine = styled.div`
+display: flex;
+justify-content: flex;
+justify-content: space-between;
+font-size: 14px;
+span {
+  color: #1746C7;
+}
+`
+export const PublicBlock = styled.div`
+  /* display: flex; */
   margin: auto;
   margin-top: 10px;
   border-radius: 10px;
   padding: 15px;
-  width: 90%;
+  width: 85%;
   background-color: #fff;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   flex-direction: row;
   align-items: center;
@@ -141,16 +172,18 @@ export const PublicBlock = styled.div`
     color: black;
   }
   img {
-    width: 43px;
-    height: 50px;
-    margin-right: 15px;
+    width: 77%;
+    height: 88%;
   }
   p {
     margin: auto;
   }
-  span {
-    display: flex;
-    justify-content: space-between;
+  span:first-child {
+    background-color: aliceblue;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 20px;
+    
   }
 `;
 

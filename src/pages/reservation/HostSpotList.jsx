@@ -1,5 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { PrivateBlock, PublicBlock, Status, PublicReserve } from './Style';
+import {
+  PrivateBlock,
+  PublicBlock,
+  Status,
+  PublicReserve,
+  UpperLine,
+  LowerLine,
+} from './Style';
 
 const SpotList = ({ spotList }) => {
   const navigate = useNavigate();
@@ -13,47 +20,70 @@ const SpotList = ({ spotList }) => {
           <PrivateBlock
             key={privSpot.placesId}
             onClick={() => navigate(`/spotsdetail/${privSpot.placesId}`)}>
-            <div>
-              {privSpot.sports === '테니스장' ? (
-                <img alt='tennis img' src='/privateTennis.png' />
-              ) : (
-                <>
-                  {privSpot.sports === '풋살장' ? (
-                    <img alt='futsal img' src='/privateFutsal.png' />
-                  ) : (
-                    <img alt='badminton img' src='/privateBadminton.png' />
-                  )}
-                </>
-              )}
-            </div>
+            <UpperLine>
+              <div>
+                {privSpot.sports === '테니스장' ? (
+                  <img alt='tennis img' src='/reservation/newTennis.png' />
+                ) : (
+                  <>
+                    {privSpot.sports === '풋살장' ? (
+                      <img alt='futsal img' src='/reservation/newFutsal.png' />
+                    ) : (
+                      <img
+                        alt='badminton img'
+                        src='/reservation/newBadminton.png'
+                      />
+                    )}
+                  </>
+                )}
+              </div>
+              <div>
+                <span>●</span> 사설
+              </div>
+            </UpperLine>
             <div>
               <p>{privSpot.spotName}</p>
-              <p>{privSpot.spotKind}</p>
-              <p>{privSpot.address.split('', 6)}</p>
+              <p>
+                {privSpot.address.split(' ')[0]}{' '}
+                {privSpot.address.split(' ')[1]}{' '}
+                {privSpot.address.split(' ')[2]}{' '}
+                {privSpot.address.split(' ')[3]}
+              </p>
             </div>
           </PrivateBlock>
         );
       })}
       {spotList?.public.map((pubSpot, idx) => {
         return (
-          <PublicReserve href={pubSpot.svcurl} target='_blank' key={pubSpot.opensId}>
+          <PublicReserve
+            href={pubSpot.svcurl}
+            target='_blank'
+            key={pubSpot.opensId}>
             <PublicBlock>
+              <LowerLine>
               <div>
                 {pubSpot.minclassnm === '테니스장' ? (
-                  <img alt='tennis img' src='/publicTennis.png' />
+                  <img alt='tennis img' src='/reservation/newTennis.png' />
                 ) : (
                   <>
                     {pubSpot.minclassnm === '풋살장' ? (
-                      <img alt='futsal img' src='/publicFutsal.png' />
+                      <img alt='futsal img' src='/reservation/newFutsal.png' />
                     ) : (
-                      <img alt='badminton img' src='/publicBadminton.png' />
+                      <img
+                        alt='badminton img'
+                        src='/reservation/newBadminton.png'
+                      />
                     )}
                   </>
                 )}
               </div>
               <div>
+                <span>●</span> 공공
+              </div>
+              </LowerLine>
+              <div>
+              <span>{pubSpot.placenm}</span>
                 <Status>{pubSpot.svcstatnm}</Status>
-                <span>{pubSpot.placenm}</span>
                 <p>{pubSpot.svcnm}</p>
                 <p>서울시 {pubSpot.areanm}</p>
               </div>
