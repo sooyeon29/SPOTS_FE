@@ -9,10 +9,10 @@ import {
   StWrap,
   MapPlace,
   PlaceList,
-  Index,
   SearchTerm,
   StSearch,
   SearchInput,
+  ListBar
 } from './Style';
 import SpotsMap from '../reservation/SpotsMap';
 import SearchBar from '../../components/SearchBar';
@@ -96,13 +96,14 @@ const Reservation = () => {
               </>
             )}
           </MapPlace>
-          <Index>
+          {/* <Index>
             <img src='/public.png' />
             <div>공공</div>
             <img src='/private.png' />
             <div>사설</div>
-          </Index>
+          </Index> */}
           <PlaceList>
+            <ListBar />
             {!params.keywords ? (
               <>
                 <SpotList spotList={allSpot} />

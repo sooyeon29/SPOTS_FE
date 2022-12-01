@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const StWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
+  height: 100vh;
   padding-bottom: 0;
   margin: auto;
   img {
@@ -18,25 +19,39 @@ export const MapPlace = styled.div`
 export const Index = styled.div`
   display: flex;
   justify-content: row;
-  margin:10px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
 
   div {
     margin-top: 7px;
   }
-
 `;
 
 export const PlaceList = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   flex-direction: column;
   height: 80vh;
   overflow: scroll;
-  background-color: #f1f1f1;
+  background-color: #FFF;
   display: flex;
   margin-bottom: 80px;
   padding-bottom: 20px;
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  
+`;
+
+export const ListBar = styled.div`
+  margin:auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  width: 100px;
+  height: 10px;
+  border: 2px solid #C4C4C4;
+  border-radius: 10px;
 `;
 
 export const BtnWrap = styled.div`
@@ -61,7 +76,7 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 11.5%;
+  top: 15%;
   right: 16%;
   position: absolute;
 `;
@@ -71,7 +86,7 @@ export const Container = styled.div`
   width: auto;
   padding: 10px;
   border-radius: 10px;
-  background-color: #49E7A5;
+  background-color: #49e7a5;
   border: solid 2px white;
 `;
 
@@ -158,22 +173,21 @@ export const SearchTerm = styled.div`
 `;
 
 export const StSearch = styled.div`
-  margin-top: 70px;
   background-color: #f1f1f1;
-  width: 350px;
+  width: 90%;
   height: 40px;
   display: flex;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 70px;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const SearchInput = styled.input`
   border: none;
-  width: 300px;
+  /* width: 100%; */
   background-color: transparent;
   :focus {
     outline: none;
@@ -183,5 +197,5 @@ export const SearchInput = styled.input`
 
 export const PublicReserve = styled.a`
   text-decoration: none;
-  color:black;
-`
+  color: black;
+`;

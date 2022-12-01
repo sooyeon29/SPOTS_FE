@@ -141,23 +141,23 @@ const MainMaps = () => {
         </SpotContainer>
         <SpotContainer>
           <Section>매칭임박 팀</Section>
-          {newMatch?.map((sixmatch) => {
+          {newMatch?.map((sixmatch, index) => {
             return (
-              <SixMatch key={sixmatch.match.reservationId}>
+              <SixMatch key={index}>
                 <WaitingMatchMain>
                   <div>
                     <img alt="" src="/date.png" width="60px" />
-                    {sixmatch.match.date.substring(6, 8)}월
-                    {sixmatch.match.date.substring(9, 12)}일
+                    {sixmatch.match?.date.substring(6, 8)}월
+                    {sixmatch.match?.date.substring(9, 12)}일
                   </div>
                   <div>
                     <img alt="" src="/time.png" width="60px" />
-                    {sixmatch.match.matchId.substring(0, 13)}
+                    {sixmatch.match?.matchId.substring(0, 13)}
                   </div>
                   <div>
                     {" "}
                     <img alt="" src="/people.png" width="70px" />
-                    {sixmatch.match.member} 명
+                    {sixmatch.match?.member} 명
                     {/* {sixmatch.place.sports !== "풋살장" && (
                       <>{!sixmatch.match.isDoubled ? "복식" : "단식"} 경기</>
                     )} */}
@@ -186,15 +186,15 @@ const MainMaps = () => {
                     </div> */}
                     <button
                       onClick={() =>
-                        navigate(`/spotsdetail/${sixmatch.place.placesId}`)
+                        navigate(`/spotsdetail/${sixmatch.place?.placesId}`)
                       }
                     >
-                      {sixmatch.place.spotName}
+                      {sixmatch.place?.spotName}
                     </button>
                     <div>
-                      {sixmatch.place.address.split(" ")[0]}{" "}
-                      {sixmatch.place.address.split(" ")[1]}{" "}
-                      {sixmatch.place.address.split(" ")[2]}
+                      {sixmatch.place?.address.split(" ")[0]}{" "}
+                      {sixmatch.place?.address.split(" ")[1]}{" "}
+                      {sixmatch.place?.address.split(" ")[2]}
                     </div>
                   </Info2>
                 </SpotInfoMain>
