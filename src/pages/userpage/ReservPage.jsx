@@ -21,6 +21,7 @@ import {
   MyTeamInfo,
   VS,
   TeamInfoDetail,
+  WaitTeam,
 } from "./Styles";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -189,7 +190,7 @@ const ReservPage = () => {
                     <div>vs</div>
                     <div>상대 팀</div>
                   </MatchVS>
-                  <MatchVS>
+                  <WaitTeam>
                     <TeamInfoDetail>
                       {matchWait.teamData?.image === null ? (
                         <img alt="spots_logo" src="/myprofile_logo.png" />
@@ -208,8 +209,10 @@ const ReservPage = () => {
                       {matchWait.matchData?.member}
                     </VS>
 
-                    <div>대기중</div>
-                  </MatchVS>
+                    <div>
+                      <img alt="" src="/waitgroup.png" />
+                    </div>
+                  </WaitTeam>
                 </WaitedMatch>
                 <CancleBtn
                   onClick={() =>
