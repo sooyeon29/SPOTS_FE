@@ -38,6 +38,8 @@ import {
   WaitBadminton,
   EmailInput,
   WaitingMatch2,
+  WaitTennis2,
+  WaitBadminton2,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -672,46 +674,94 @@ const SpotsDetail = () => {
                                   </div>
                                 </WaitingMatch2>
                               )}
-                            {spot.sports === "테니스장" && (
-                              <WaitTennis key={waitMatch.reservationId}>
-                                <div>
-                                  <span>
-                                    {waitMatch.matchId.substring(0, 13)}
-                                  </span>
-                                  <span>{waitMatch.teamName}</span>
-
-                                  {spot.sports !== "풋살장" && (
+                            {spot.sports === "테니스장" &&
+                              pickedTime2 !==
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitTennis key={waitMatch.reservationId}>
+                                  <div>
                                     <span>
-                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                      경기
+                                      {waitMatch.matchId.substring(0, 13)}
                                     </span>
-                                  )}
-                                </div>
-                                <div>
-                                  {waitMatch.member} : {waitMatch.member}
-                                </div>
-                              </WaitTennis>
-                            )}
-                            {spot.sports === "배드민턴장" && (
-                              <WaitBadminton key={waitMatch.reservationId}>
-                                <div>
-                                  <span>
-                                    {waitMatch.matchId.substring(0, 13)}
-                                  </span>
-                                  <span>{waitMatch.teamName}</span>
+                                    <span>{waitMatch.teamName}</span>
 
-                                  {spot.sports !== "풋살장" && (
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitTennis>
+                              )}
+                            {spot.sports === "테니스장" &&
+                              pickedTime2 ===
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitTennis2 key={waitMatch.reservationId}>
+                                  <div>
                                     <span>
-                                      {waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                      경기
+                                      {waitMatch.matchId.substring(0, 13)}
                                     </span>
-                                  )}
-                                </div>
-                                <div>
-                                  {waitMatch.member} : {waitMatch.member}
-                                </div>
-                              </WaitBadminton>
-                            )}
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitTennis2>
+                              )}
+                            {spot.sports === "배드민턴장" &&
+                              pickedTime2 !==
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitBadminton key={waitMatch.reservationId}>
+                                  <div>
+                                    <span>
+                                      {waitMatch.matchId.substring(0, 13)}
+                                    </span>
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitBadminton>
+                              )}
+                            {spot.sports === "배드민턴장" &&
+                              pickedTime2 ===
+                                waitMatch.matchId.substring(0, 13) && (
+                                <WaitBadminton2 key={waitMatch.reservationId}>
+                                  <div>
+                                    <span>
+                                      {waitMatch.matchId.substring(0, 13)}
+                                    </span>
+                                    <span>{waitMatch.teamName}</span>
+
+                                    {spot.sports !== "풋살장" && (
+                                      <span>
+                                        {waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                        경기
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div>
+                                    {waitMatch.member} : {waitMatch.member}
+                                  </div>
+                                </WaitBadminton2>
+                              )}
                           </>
                         );
                       })}
