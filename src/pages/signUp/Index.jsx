@@ -322,7 +322,7 @@ const SignUp = () => {
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
         });
-        setCodeSent(true);
+        // setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);

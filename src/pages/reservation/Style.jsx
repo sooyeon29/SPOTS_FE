@@ -182,8 +182,6 @@ export const PublicBlock = styled.div`
     background-color: aliceblue;
     font-size: 18px;
     font-weight: 700;
-    margin-top: 20px;
-    
   }
 `;
 
