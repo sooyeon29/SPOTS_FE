@@ -84,14 +84,14 @@ const userSlice = createSlice({
       }
       if (action.payload.response.status === 404) {
         Swal.fire({
-          text: "등록한 팀이 없습니다. 팀 등록을 해주세요",
+          text: "신규팀을 등록해주세요:)",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
         });
-      } else alert(state.error);
+      }
     },
     [__getMyteamDetail.pending]: (state, action) => {
       state.isLoading = true;

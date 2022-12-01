@@ -22,6 +22,7 @@ import {
   SpotInfoMain,
   WaitingMatchMain,
   Icon2,
+  Info2,
 } from "./Styles";
 import TapBar from "../../components/TapBar";
 import { LoginAPI, PrivateApi, SpotsMatchApi } from "../../tools/instance";
@@ -139,15 +140,34 @@ const MainMaps = () => {
           </BannerSlider>
         </SpotContainer>
         <SpotContainer>
-          <Section>기간 임박! 매칭 대기중인 팀!</Section>
+          <Section>매칭임박 팀</Section>
           {newMatch?.map((sixmatch) => {
             return (
               <SixMatch key={sixmatch.match.reservationId}>
-                <div>{sixmatch.match.date} 매칭 대기중!!</div>
+                <WaitingMatchMain>
+                  <div>
+                    <img alt="" src="/date.png" width="60px" />
+                    {sixmatch.match.date.substring(6, 8)}월
+                    {sixmatch.match.date.substring(9, 12)}일
+                  </div>
+                  <div>
+                    <img alt="" src="/time.png" width="60px" />
+                    {sixmatch.match.matchId.substring(0, 13)}
+                  </div>
+                  <div>
+                    {" "}
+                    <img alt="" src="/people.png" width="70px" />
+                    {sixmatch.match.member} 명
+                    {/* {sixmatch.place.sports !== "풋살장" && (
+                      <>{!sixmatch.match.isDoubled ? "복식" : "단식"} 경기</>
+                    )} */}
+                  </div>
+                </WaitingMatchMain>
+                <hr />
                 <SpotInfoMain>
                   <img alt="구장이미지" src={sixmatch.place?.image} />
-                  <Info>
-                    <div>
+                  <Info2>
+                    {/* <div>
                       {sixmatch.place.sports === "테니스장" ? (
                         <>
                           <Icon2 src="/newTennis.png" />
@@ -163,7 +183,7 @@ const MainMaps = () => {
                           <Icon2 src="/newFutsal.png" />
                         </>
                       ) : null}
-                    </div>
+                    </div> */}
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${sixmatch.place.placesId}`)
@@ -176,25 +196,8 @@ const MainMaps = () => {
                       {sixmatch.place.address.split(" ")[1]}{" "}
                       {sixmatch.place.address.split(" ")[2]}
                     </div>
-                  </Info>
+                  </Info2>
                 </SpotInfoMain>
-                <WaitingMatchMain>
-                  <div>
-                    <span>{sixmatch.match.teamName}</span>
-                    <div>
-                      <img alt="" src={sixmatch.team?.image} width="30px" />
-                    </div>
-                  </div>
-                  <div>{sixmatch.match.matchId.substring(0, 13)}</div>
-                  <div>
-                    {sixmatch.match.member} 명
-                    {sixmatch.place.sports !== "풋살장" && (
-                      <span>
-                        {!sixmatch.match.isDoubled ? "복식" : "단식"} 경기
-                      </span>
-                    )}
-                  </div>
-                </WaitingMatchMain>
               </SixMatch>
             );
           })}
