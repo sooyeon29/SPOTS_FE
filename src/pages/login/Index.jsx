@@ -146,9 +146,9 @@ const Login = () => {
               카카오톡으로 로그인
             </a>
           </KakaoBtn>
-          <LoginBtn>
+          {/* <LoginBtn>
             <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
-          </LoginBtn>
+          </LoginBtn> */}
           <FindButs>
             <button onClick={() => navigate(`/findid`)}>아이디찾기</button>
             <button onClick={() => navigate(`/findpw`)}>비밀번호찾기</button>
