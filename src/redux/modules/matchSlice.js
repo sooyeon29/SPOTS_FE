@@ -67,14 +67,6 @@ export const __exitMyMatch = createAsyncThunk(
       const { data } = await SpotsMatchApi.exitMyMatch(payload);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
-      Swal.fire({
-        text: "경기 당일 취소는 불가능 합니다.",
-        width: "300px",
-        confirmButtonColor: "#40d295",
-        confirmButtonText: "확인",
-        showClass: { popup: "animated fadeInDown faster" },
-        hideClass: { popup: "animated fadeOutUp faster" },
-      });
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -278,12 +270,18 @@ const matchSlice = createSlice({
           window.location.reload();
         }
       });
-      // alert(action.payload.message);
     },
     [__exitMyMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      alert(action.payload.response.data.error);
+      Swal.fire({
+        text: "경기 당일 취소는 불가능 합니다.",
+        width: "300px",
+        confirmButtonColor: "#40d295",
+        confirmButtonText: "확인",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
     },
   },
 });

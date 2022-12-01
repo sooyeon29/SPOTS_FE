@@ -46,7 +46,6 @@ const FindPw = () => {
             showClass: { popup: "animated fadeInDown faster" },
             hideClass: { popup: "animated fadeOutUp faster" },
           });
-          // alert(res.data.password);
         }
         console.log(res);
       })
@@ -54,34 +53,33 @@ const FindPw = () => {
         (err) => {
           if (err.status === 401) {
             Swal.fire({
-              text: '인증번호를 확인해주세요',
-              width: '300px',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#40d295',
-              showClass: { popup: 'animated fadeInDown faster' },
-              hideClass: { popup: 'animated fadeOutUp faster' },
+              text: "인증번호를 확인해주세요",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
             });
           }
           if (err.status === 412) {
             Swal.fire({
               text: "아이디 혹은 핸드폰 번호를 확인해주세요",
-              width: '300px',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#40d295',
-              showClass: { popup: 'animated fadeInDown faster' },
-              hideClass: { popup: 'animated fadeOutUp faster' },
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
             });
           }
           if (err.status === 400) {
             Swal.fire({
               text: "알 수 없는 오류가 발생했습니다",
-              width: '300px',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#40d295',
-              showClass: { popup: 'animated fadeInDown faster' },
-              hideClass: { popup: 'animated fadeOutUp faster' },
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
             });
-            // alert("알 수 없는 오류가 발생했습니다");
           }
         }
         // console.log(err)

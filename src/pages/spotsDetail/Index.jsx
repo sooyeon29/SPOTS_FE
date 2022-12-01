@@ -41,7 +41,7 @@ import {
 } from "./Styles";
 import {
   __getAllMatch,
-  __getMyMatch,
+  // __getMyMatch,
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
@@ -281,13 +281,20 @@ const SpotsDetail = () => {
                   <li>시설 현황</li>
                   <div>
                     <div>
-                      {spot.spotKind === "실내 스팟" && <>🪴</>}
-                      {spot.spotKind === "실외 스팟" && <>🌳</>}
+                      {spot.spotKind === "실내" && (
+                        <img alt="" src="/outside.png" width="20px" />
+                      )}
+                      {spot.spotKind === "실외" && (
+                        <img alt="" src="/outside.png" width="20px" />
+                      )}
                       {spot.spotKind}
                     </div>
-                    <div>👍 {spot.comforts}</div>
+                    <div>
+                      <img alt="" src="/check.png" width="20px" />
+                      {spot.comforts}
+                    </div>
                   </div>
-                  <div>💰이용료 {spot.price}포인트</div>
+                  <div>💰{spot.price}포인트</div>
                 </MoreInfo>
               </PlaceInfo>
               {toggle && (

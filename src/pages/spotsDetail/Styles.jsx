@@ -55,6 +55,11 @@ export const MoreInfo = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    div {
+      img {
+        margin-right: 5px;
+      }
+    }
   }
 `;
 export const Calen = styled.div`
