@@ -28,6 +28,18 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>SPOTS 스팟츠</title>
+
+    <script>
+      if ('serviceWorekr' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../src/service-worker.js')
+          .then((reg) => {
+            console.log('Service worker registered', reg);
+          });
+        });
+      }
+    </script>
+
   </head>
   <body>
     <!-- 카카오맵 오픈API사용 -->
