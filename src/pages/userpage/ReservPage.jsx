@@ -110,7 +110,12 @@ const ReservPage = () => {
                 </SpotInfo>
                 <ForMatch>
                   <div>나의 팀</div>
-                  <img alt="팀로고" src={matchCom.teamData?.image} />
+                  {matchCom.teamData?.image === null ? (
+                    <img alt="spots_logo" src="/myprofile_logo.png" />
+                  ) : (
+                    <img alt="팀로고" src={matchCom.teamData?.image} />
+                  )}
+
                   <div>{matchCom.matchData?.teamName}</div>
                   <div>{matchCom.matchData?.member} 명</div>
                 </ForMatch>
@@ -186,7 +191,12 @@ const ReservPage = () => {
                   </MatchVS>
                   <MatchVS>
                     <TeamInfoDetail>
-                      <img alt="팀로고" src={matchWait.teamData?.image} />
+                      {matchWait.teamData?.image === null ? (
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                      ) : (
+                        <img alt="팀로고" src={matchWait.teamData?.image} />
+                      )}
+
                       <div>{matchWait.matchData?.teamName}</div>
                       <span>
                         {matchWait.teamData?.wins}승 /{" "}
@@ -265,7 +275,12 @@ const ReservPage = () => {
                   </MatchVS>
                   <MatchVS>
                     <TeamInfoDetail>
-                      <img alt="팀로고" src={matchCom.teamData?.image} />
+                      {matchCom.teamData?.image === null ? (
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                      ) : (
+                        <img alt="팀로고" src={matchCom.teamData?.image} />
+                      )}
+
                       <div>{matchCom.matchData?.teamName}</div>
                       <span>
                         {matchCom.teamData?.wins}승 / {matchCom.teamData?.lose}
@@ -278,7 +293,12 @@ const ReservPage = () => {
                     </VS>
 
                     <TeamInfoDetail>
-                      <img alt="팀로고" src={matchCom.opponent?.image} />
+                      {matchCom.opponent?.image === null ? (
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                      ) : (
+                        <img alt="팀로고" src={matchCom.opponent?.image} />
+                      )}
+
                       <div>{matchCom.opponent?.teamName}</div>
                       <span>
                         {matchCom.opponent?.wins}승 / {matchCom.opponent?.lose}
