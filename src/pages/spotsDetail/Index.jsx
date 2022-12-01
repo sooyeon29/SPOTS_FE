@@ -40,6 +40,7 @@ import {
   WaitingMatch2,
   WaitTennis2,
   WaitBadminton2,
+  Email,
 } from "./Styles";
 import {
   __getAllMatch,
@@ -83,14 +84,14 @@ const SpotsDetail = () => {
 
   // const todayMatchList = useSelector((state) => state?.matcher?.matcher);
   // console.log(todayMatchList);
-  // 2. 시간과 팀을 선택한다(팀1-a, 팀2-b) => 이것으로 matchId를 만들어줄 예정이다
+  // 2. 시간과 팀을 선택한다(TEAM A-a, TEAM B-b) => 이것으로 matchId를 만들어줄 예정이다
   const [pickedTime, setPickedTime] = useState("");
   const [pickedTime2, setPickedTime2] = useState("");
   // 예약 시간,팀 선택시 해당 포인트 확인됨
   const [payAPrice, setPayAPrice] = useState(0);
   const [payBPrice, setPayBPrice] = useState(0);
 
-  const [color, setColor] = useState("white");
+  // const [color, setColor] = useState("white");
   // ---> 호스트 페이지에 업로드하고 보여주는 것을 완료하면 이 포스트아이디값을 하나 더 받아서 아이디를 만드는데 더해준다
   //=> a팀을 선택한 경우
   const teamPick = (time, price) => {
@@ -108,7 +109,7 @@ const SpotsDetail = () => {
     console.log(myTime[time], "*********************");
     setPickedTime2(myTime[time]);
     setPayAPrice(price);
-    color === "white" ? setColor("#1746C7") : setColor("white");
+    // color === "white" ? setColor("#1B2754") : setColor("white");
     // setToggleThree(false);
   };
   const exitNoMatch2 = () => {
@@ -284,7 +285,7 @@ const SpotsDetail = () => {
                   <div>
                     <div>
                       {spot.spotKind === "실내" && (
-                        <img alt="" src="/outside.png" width="20px" />
+                        <img alt="" src="house.png" width="20px" />
                       )}
                       {spot.spotKind === "실외" && (
                         <img alt="" src="/outside.png" width="20px" />
@@ -296,7 +297,10 @@ const SpotsDetail = () => {
                       {spot.comforts}
                     </div>
                   </div>
-                  <div>💰{spot.price}포인트</div>
+                  <div>
+                    <img alt="" src="/point.png" width="20px" />
+                    {spot.price}포인트
+                  </div>
                 </MoreInfo>
               </PlaceInfo>
               {toggle && (
@@ -451,7 +455,7 @@ const SpotsDetail = () => {
                         onClick={() => teamPick2(0, spot.price / 2)}
                         // color={color}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -461,7 +465,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(0, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -474,7 +478,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(1, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -484,7 +488,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(1, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -497,7 +501,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(2, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -507,7 +511,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(2, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -520,7 +524,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(3, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -530,7 +534,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(3, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -543,7 +547,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(4, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -553,7 +557,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(4, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -566,7 +570,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(5, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -576,7 +580,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(5, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -589,7 +593,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(6, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -599,7 +603,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(6, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
                     <BookMatch>
@@ -612,7 +616,7 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(7, spot.price / 2)}
                       >
-                        팀1
+                        TEAM A
                       </Team>
                       vs
                       <Team
@@ -622,146 +626,56 @@ const SpotsDetail = () => {
                         }
                         onClick={() => teamPick2(7, spot.price / 2)}
                       >
-                        팀2
+                        TEAM B
                       </Team>
                     </BookMatch>
-                    <WaitList>매칭 대기중 팀 리스트</WaitList>
+                    {/* <WaitList>매칭 대기중 팀 리스트</WaitList> */}
                     <MatchList>
                       {waitMatchToday.map((waitMatch) => {
                         return (
                           <>
-                            {spot.sports === "풋살장" &&
-                              pickedTime2 !==
-                                waitMatch.matchId.substring(0, 13) && (
-                                <WaitingMatch key={waitMatch.reservationId}>
-                                  <div>
-                                    <span>
-                                      {waitMatch.matchId.substring(0, 13)}
-                                    </span>
-                                    <span>{waitMatch.teamName}</span>
+                            {pickedTime2 !==
+                              waitMatch.matchId.substring(0, 13) && (
+                              <WaitingMatch key={waitMatch.reservationId}>
+                                <div>
+                                  <span>
+                                    {waitMatch.matchId.substring(0, 13)}
+                                  </span>
+                                  <span>Team A</span>
+                                  <img alt="" src="/graygroup.png" />
+                                  <span>{waitMatch.teamName}</span>
 
-                                    {spot.sports !== "풋살장" && (
-                                      <span>
-                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                        경기
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    {waitMatch.member} : {waitMatch.member}
-                                  </div>
-                                </WaitingMatch>
-                              )}
-                            {spot.sports === "풋살장" &&
-                              pickedTime2 ===
-                                waitMatch.matchId.substring(0, 13) && (
-                                <WaitingMatch2 key={waitMatch.reservationId}>
-                                  <div>
+                                  {spot.sports !== "풋살장" && (
                                     <span>
-                                      {waitMatch.matchId.substring(0, 13)}
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
                                     </span>
-                                    <span>{waitMatch.teamName}</span>
+                                  )}
+                                </div>
+                                <div>{waitMatch.member}명</div>
+                              </WaitingMatch>
+                            )}
+                            {pickedTime2 ===
+                              waitMatch.matchId.substring(0, 13) && (
+                              <WaitingMatch2 key={waitMatch.reservationId}>
+                                <div>
+                                  <span>
+                                    {waitMatch.matchId.substring(0, 13)}
+                                  </span>
+                                  <span>Team A</span>
+                                  <img alt="" src="/whitegroup.png" />
+                                  <span>{waitMatch.teamName}</span>
 
-                                    {spot.sports !== "풋살장" && (
-                                      <span>
-                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                        경기
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    {waitMatch.member} : {waitMatch.member}
-                                  </div>
-                                </WaitingMatch2>
-                              )}
-                            {spot.sports === "테니스장" &&
-                              pickedTime2 !==
-                                waitMatch.matchId.substring(0, 13) && (
-                                <WaitTennis key={waitMatch.reservationId}>
-                                  <div>
+                                  {spot.sports !== "풋살장" && (
                                     <span>
-                                      {waitMatch.matchId.substring(0, 13)}
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
                                     </span>
-                                    <span>{waitMatch.teamName}</span>
-
-                                    {spot.sports !== "풋살장" && (
-                                      <span>
-                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                        경기
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    {waitMatch.member} : {waitMatch.member}
-                                  </div>
-                                </WaitTennis>
-                              )}
-                            {spot.sports === "테니스장" &&
-                              pickedTime2 ===
-                                waitMatch.matchId.substring(0, 13) && (
-                                <WaitTennis2 key={waitMatch.reservationId}>
-                                  <div>
-                                    <span>
-                                      {waitMatch.matchId.substring(0, 13)}
-                                    </span>
-                                    <span>{waitMatch.teamName}</span>
-
-                                    {spot.sports !== "풋살장" && (
-                                      <span>
-                                        {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                        경기
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    {waitMatch.member} : {waitMatch.member}
-                                  </div>
-                                </WaitTennis2>
-                              )}
-                            {spot.sports === "배드민턴장" &&
-                              pickedTime2 !==
-                                waitMatch.matchId.substring(0, 13) && (
-                                <WaitBadminton key={waitMatch.reservationId}>
-                                  <div>
-                                    <span>
-                                      {waitMatch.matchId.substring(0, 13)}
-                                    </span>
-                                    <span>{waitMatch.teamName}</span>
-
-                                    {spot.sports !== "풋살장" && (
-                                      <span>
-                                        {waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                        경기
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    {waitMatch.member} : {waitMatch.member}
-                                  </div>
-                                </WaitBadminton>
-                              )}
-                            {spot.sports === "배드민턴장" &&
-                              pickedTime2 ===
-                                waitMatch.matchId.substring(0, 13) && (
-                                <WaitBadminton2 key={waitMatch.reservationId}>
-                                  <div>
-                                    <span>
-                                      {waitMatch.matchId.substring(0, 13)}
-                                    </span>
-                                    <span>{waitMatch.teamName}</span>
-
-                                    {spot.sports !== "풋살장" && (
-                                      <span>
-                                        {waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                        경기
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div>
-                                    {waitMatch.member} : {waitMatch.member}
-                                  </div>
-                                </WaitBadminton2>
-                              )}
+                                  )}
+                                </div>
+                                <div>{waitMatch.member}명</div>
+                              </WaitingMatch2>
+                            )}
                           </>
                         );
                       })}
@@ -859,6 +773,7 @@ const SpotsDetail = () => {
               </CalTime>
               {pickedTime !== "" ? (
                 <>
+                  <Email>* 이메일을 남겨주시면 예약 내용을 보내드립니다.</Email>
                   <EmailInput
                     type="email"
                     placeholder="예약내역을 메일로 받고싶은경우 메일을 입력해주세요."
@@ -871,9 +786,10 @@ const SpotsDetail = () => {
               ) : null}
               {pickedTime2 !== "" ? (
                 <>
+                  <Email>* 이메일을 남겨주시면 예약 내용을 보내드립니다.</Email>
                   <EmailInput
                     type="email"
-                    placeholder="예약내역을 메일로 받고싶은경우 메일을 입력해주세요"
+                    placeholder="spots@naver.com"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>

@@ -311,43 +311,54 @@ const SignUp = () => {
   // 핸드폰 인증코드 받기
   const sendPhoneForCode = () => {
     const phone = getValues("phone");
-    LoginAPI.postforVCode({ phone })
-      .then((res) => {
-        console.log(res);
-        Swal.fire({
-          text: "인증번호가 전송되었습니다",
-          width: "300px",
-          confirmButtonText: "확인",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        });
-        // setCodeSent(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.status === 412) {
-          Swal.fire({
-            text: "이미 가입된 휴대폰 번호입니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
-          return;
-        } else {
-          Swal.fire({
-            text: "유효하지 않은 휴대폰 번호입니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
-          return;
-        }
+    if (phone.length < 10) {
+      Swal.fire({
+        text: "10~11자리의 번호를 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
       });
+    } else {
+      LoginAPI.postforVCode({ phone })
+        .then((res) => {
+          console.log(res);
+          Swal.fire({
+            text: "인증번호가 전송되었습니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          // setCodeSent(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status === 412) {
+            Swal.fire({
+              text: "이미 가입된 휴대폰 번호입니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+            return;
+          } else {
+            Swal.fire({
+              text: "유효하지 않은 휴대폰 번호입니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+            return;
+          }
+        });
+    }
   };
 
   const checkVCode = () => {

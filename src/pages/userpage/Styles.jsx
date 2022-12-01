@@ -229,7 +229,8 @@ export const SpotInfo = styled.div`
 `;
 
 export const HostCard = styled.div`
-margin-top: 20px;`;
+  margin-top: 20px;
+`;
 export const Preview = styled.div``;
 export const Photo = styled.div`
   ${Preview} {
@@ -646,6 +647,12 @@ export const MatchVS = styled.div`
   }
 `;
 export const TeamInfoDetail = styled.div`
+  background-color: #f5f5f5;
+  width: 50px;
+  /* height: 80px; */
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   div {
     width: 100%;
     margin-top: 10px;
@@ -669,4 +676,12 @@ export const MidTitle = styled.div`
 `;
 export const OneOrTwo = styled.div`
   margin: 5px auto 10px 20px;
+`;
+export const WaitTeam = styled(MatchVS)`
+  img:last-child {
+    border: none;
+    border-radius: 10px;
+    width: 80px;
+    height: 90px;
+  }
 `;
