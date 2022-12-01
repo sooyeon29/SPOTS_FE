@@ -56,22 +56,6 @@ const MainMaps = () => {
   };
 
   useEffect(() => {
-    const isMember = localStorage.getItem("loginId");
-    // console.log(isMember);
-    LoginAPI.kakaoId(isMember)
-      .then((res) => {
-        // console.log("여기===========================", res);
-        if (res.data.loginId === null) return;
-        if (res.data.nickname) {
-          localStorage.setItem("token", res.data.accessToken);
-          return;
-        }
-        if (res.data.loginId && !res.data.nickname) {
-          navigate(`/addlogin`);
-        }
-      })
-      .catch((err) => console.log(err));
-
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);

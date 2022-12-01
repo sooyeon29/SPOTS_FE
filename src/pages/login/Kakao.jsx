@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useToggle from "../../hooks/useToggle";
@@ -19,17 +20,29 @@ const Kakao = () => {
     LoginAPI.kakaoLogin(KAKAO_CODE)
       .then((res) => {
         console.log(res);
-        // localStorage.setItem("token", JSON.stringify(res.data));
-        // const isMember = localStorage.getItem("token");
-        // if (res.data.code === 1) {
-        localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
-        if (res.status === 200) navigate(`/`);
+
+        if (res.data.code === -1) {
+          localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
+          navigate(`/addlogin`);
+        }
+        if (res.data.nickname) {
+          localStorage.setItem("token", res.data.accessToken);
+          navigate(`/`);
+        }
       })
 
       .catch((err) => console.log(err));
   }, []);
 
-  return <>...로딩중</>;
+  return (
+    <Spinner>
+      <img alt="" src="/Spinner.gif" />
+    </Spinner>
+  );
 };
 
 export default Kakao;
+
+const Spinner = styled.div`
+  margin: auto;
+`;
