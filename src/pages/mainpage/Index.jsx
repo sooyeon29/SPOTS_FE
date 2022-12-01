@@ -10,10 +10,10 @@ import {
   Image,
   BannerSlider,
   SpotContainer,
-  MainBanner,
+  MainSearch,
   Section,
   InfoDiv,
-  LinkIcon,
+  MainBanner,
   Icon,
   Info,
   SpotName,
@@ -93,10 +93,11 @@ const MainMaps = () => {
     <>
       <Layout>
         <Header />
-        <MainBanner alt="" src="spotsMobile.jpeg" />
-        <MapBlock>
-          <img alt="" src="mainMap.png" />
-        </MapBlock>
+        <MainSearch alt="" src="/mainpage/mainSearch.png"
+        onClick={() => navigate('/book')}/>
+        <MainBanner>
+          <img alt="" src="/mainpage/mainBanner.png" />
+        </MainBanner>
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
           <BannerSlider {...settings}>
@@ -112,17 +113,17 @@ const MainMaps = () => {
                       <div>
                         {place.sports === "테니스장" ? (
                           <>
-                            <Icon alt="" src="/newTennis.png" />
+                            <Icon alt="" src="/reservation/newTennis.png" />
                           </>
                         ) : null}
                         {place.sports === "배드민턴장" ? (
                           <>
-                            <Icon alt="" src="/newBadminton.png" />
+                            <Icon alt="" src="/reservation/newBadminton.png" />
                           </>
                         ) : null}
                         {place.sports === "풋살장" ? (
                           <>
-                            <Icon alt="" src="/newFutsal.png" />
+                            <Icon alt="" src="/reservation/newFutsal.png" />
                           </>
                         ) : null}
                       </div>
