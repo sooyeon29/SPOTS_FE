@@ -305,7 +305,17 @@ const MyPage = () => {
                     type="text"
                     defaultValue={user.nickname}
                     onChange={(e) => setNickName(e.target.value)}
+                    {...register("nickname", {
+                      required: true,
+                      minLegnth: 1,
+                    })}
                   />
+                  {errors.nickname && errors.nickname.type === "required" && (
+                    <p>닉네임을 입력해주세요</p>
+                  )}
+                  {errors.nickname && errors.nickname.type === "minLegnth" && (
+                    <p>닉네임을 한 글자 이상 입력해주세요</p>
+                  )}
                 </div>
                 <div>
                   <button
@@ -358,6 +368,11 @@ const MyPage = () => {
                     minLength={10}
                     placeholder="01012345678"
                     autoComplete="off"
+                    {...register("phone", {
+                      required: true,
+                      minLegnth: 10,
+                      pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
+                    })}
                   />
                   {errors.phone && errors.phone.type === "required" && (
                     <p>휴대폰 번호를 입력해주세요</p>
@@ -557,14 +572,17 @@ const MyPage = () => {
                     //onChange={(e) => setCheckPw(e.target.value)}
                     placeholder="비밀번호 확인"
                     required
-                    onInvalid={(value) => value === password.current}
+                    {...register("confirmPassword", {
+                      required: true,
+                      validate: (value) => value === password.current,
+                    })}
                   />
                   {errors.confirmPassword &&
                     errors.confirmPassword.type === "required" && (
                       <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
                     )}
                   {errors.confirmPassword &&
-                    errors.confirmPassword.type === "onInvalid" && (
+                    errors.confirmPassword.type === "validate" && (
                       <p>✓ 비밀번호가 일치하지 않습니다</p>
                     )}
                 </form>

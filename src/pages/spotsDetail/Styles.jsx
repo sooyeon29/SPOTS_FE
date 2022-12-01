@@ -55,6 +55,11 @@ export const MoreInfo = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    div {
+      img {
+        margin-right: 5px;
+      }
+    }
   }
 `;
 export const Calen = styled.div`
@@ -472,8 +477,14 @@ export const WaitingMatch2 = styled(WaitingMatch)`
 export const WaitTennis = styled(WaitingMatch)`
   background-image: url(/tennis.png);
 `;
+export const WaitTennis2 = styled(WaitTennis)`
+  opacity: 0.5;
+`;
 export const WaitBadminton = styled(WaitingMatch)`
   background-image: url(/badminton.png);
+`;
+export const WaitBadminton2 = styled(WaitBadminton)`
+  opacity: 0.5;
 `;
 export const EmailInput = styled.input`
   display: flex;

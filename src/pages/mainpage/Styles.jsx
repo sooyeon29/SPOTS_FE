@@ -191,6 +191,14 @@ export const SixMatch = styled.div`
   align-items: center;
   margin: 10px auto;
   padding-top: 10px;
+  hr {
+    border: none;
+    border-top: 1px dashed #d9d9d9;
+    color: #d9d9d9;
+    background-color: transparent;
+    height: 1px;
+    width: 100%;
+  }
 `;
 export const SpotInfoMain = styled.div`
   display: flex;
@@ -198,43 +206,32 @@ export const SpotInfoMain = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 350px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   img {
-    width: 45%;
-    margin: 15px 10px 5px 0px;
+    width: 50px;
+    height: 50px;
+    margin: 5px 10px 0px 20px;
     border-radius: 10px;
   }
-  div {
-    padding: 5px;
-    button {
-      /* margin-top: 10px; */
-      margin-right: 25px;
-      font-size: 15px;
-      font-weight: bold;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-    }
-    /* p {
-      margin: 5px;
-    } */
-    span:last-child {
-      color: #49e7a5;
-      padding: 2px 8px;
-      text-align: center;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 700;
-      background-color: black;
-      position: relative;
-      z-index: 2;
-      top: 1px;
-      left: 8px;
-    }
+`;
+
+export const Info2 = styled.div`
+  width: 100%;
+  padding: 0px 10px;
+  button {
+    /* margin-top: 10px; */
+    /* margin-right: 20px; */
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
 `;
+
 export const WaitingMatchMain = styled.div`
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -248,10 +245,13 @@ export const WaitingMatchMain = styled.div`
     flex-direction: column;
     font-size: 15px;
     padding: 3px;
-    span {
+    img {
+      margin-bottom: 10px;
+    }
+    /* span {
       font-size: 12px;
       margin: 2px 30px 2px 5px;
-    }
+    } */
   }
 `;
 export const Icon2 = styled.img`
