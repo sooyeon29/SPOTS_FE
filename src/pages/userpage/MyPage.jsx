@@ -44,6 +44,7 @@ const MyPage = () => {
   const {
     register,
     watch,
+    handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
   const password = useRef();
@@ -104,6 +105,9 @@ const MyPage = () => {
       .catch((err) => console.log(err));
   };
   // console.log("마이페이지유저", user);
+  const passwordHandler = (data) => {
+    console.log(data);
+  };
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -530,13 +534,17 @@ const MyPage = () => {
               </ModifyBlock>
               <ModifyBlock>
                 <div>비밀번호 변경</div>
-                <div>
+                <form onSubmit={handleSubmit(passwordHandler)}>
                   <input
                     type="password"
-                    onChange={(e) => setPw(e.target.value)}
+                    //onChange={(e) => setPw(e.target.value)}
                     placeholder="비밀번호"
-                    required
-                    pattern=" /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/"
+                    {...register("password", {
+                      required: true,
+                      pattern: {
+                        value: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
+                      },
+                    })}
                   />
                   {errors.password && errors.password.type === "required" && (
                     <p>✓ 비밀번호를 입력해주세요</p>
@@ -546,7 +554,7 @@ const MyPage = () => {
                   )}
                   <input
                     type="password"
-                    onChange={(e) => setCheckPw(e.target.value)}
+                    //onChange={(e) => setCheckPw(e.target.value)}
                     placeholder="비밀번호 확인"
                     required
                     onInvalid={(value) => value === password.current}
@@ -559,7 +567,7 @@ const MyPage = () => {
                     errors.confirmPassword.type === "onInvalid" && (
                       <p>✓ 비밀번호가 일치하지 않습니다</p>
                     )}
-                </div>
+                </form>
               </ModifyBlock>
             </ModifyDiv>
             <ModifyBtns>
@@ -572,9 +580,23 @@ const MyPage = () => {
                     nickname: nickName,
                     phone: phone,
                   })
-                    .then((res) => console.log("res", res))
+                    .then((res) => {
+                      console.log("res", res);
+                      Swal.fire({
+                        text: "수정이 완료되었습니다.",
+                        width: "300px",
+                        confirmButtonText: "확인",
+                        confirmButtonColor: "#40d295",
+                        showClass: {
+                          popup: "animated fadeInDown faster",
+                        },
+                        hideClass: {
+                          popup: "animated fadeOutUp faster",
+                        },
+                      });
+                    })
+                    .then(() => dispatch(__getMyInfo()))
                     .catch((err) => console.log("err", err));
-                  dispatch(__getMyInfo());
                 }}
               >
                 수정완료
