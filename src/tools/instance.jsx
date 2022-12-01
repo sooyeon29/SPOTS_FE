@@ -2,7 +2,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_SERVER,
+  // baseURL: process.env.REACT_APP_SERVER,
+  baseURL: "http://54.180.149.19:3000/",
 });
 
 // 요청 인터셉터 추가
@@ -108,7 +109,6 @@ export const LoginAPI = {
   // 소셜로그인(카카오)
   kakaoLogin: (payload) => instance.get(`auth/kakao/code?code=${payload}`),
   googleLogin: (payload) => instance.get(`auth/google/code?code=${payload}`),
-  kakaoId: (payload) => instance.post(`auth/login`, { loginId: payload }),
 
   // 인증번호
   postforFindIdPw: (payload) => instance.post(`users/sendSms`, payload), //-> 아이디비밀번호찾기시
