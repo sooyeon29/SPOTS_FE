@@ -118,7 +118,7 @@ export const SpotContainer = styled.div`
 `;
 
 export const New = styled.div`
-  border: 2px sold black;
+  /* border: 2px solid black; */
   width: 80%;
 `;
 

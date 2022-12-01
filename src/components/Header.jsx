@@ -26,7 +26,7 @@ const Header = () => {
             <Img src="/logo.png" alt="logo" />
           </StLogo>
           <StButtons>
-            {!toggle ? (
+            {/* {!toggle ? (
               <StSearch>
                 <FaSearchLocation
                   color="white"
@@ -36,7 +36,7 @@ const Header = () => {
               </StSearch>
             ) : (
               <SearchBar />
-            )}
+            )} */}
             <Container>
               <HamburgButton onClick={barHandler} ref={barRef}>
                 <GiHamburgerMenu size="25" />

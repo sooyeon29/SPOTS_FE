@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
 import { __getMyteamDetail } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
-import { StWrap, StTeamForm, PageDesc, Image } from "./Styles";
+import { StWrap, StTeamForm, Image } from "./Styles";
 import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import TapBar from "../../components/TapBar";
@@ -153,8 +153,8 @@ const TeamDetail = () => {
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
                         }
-                        dispatch(__getMyteamDetail(id));
                       })
+                      .then(() => dispatch(__getMyteamDetail(id)))
                       .catch((err) => {
                         console.log(err);
                         if (err.response.status === 403) {
@@ -171,7 +171,7 @@ const TeamDetail = () => {
                     setIsEdit(false);
                   }}
                 >
-                  수정하기
+                  저장
                 </EditBtn>
               </TeamLayout>
               <TeamLayout>
@@ -199,8 +199,8 @@ const TeamDetail = () => {
                             hideClass: { popup: "animated fadeOutUp faster" },
                           });
                         }
-                        dispatch(__getMyteamDetail(id));
                       })
+                      .then(() => dispatch(__getMyteamDetail(id)))
                       .catch((err) => {
                         console.log(err);
                         if (err.response.status === 400) {
@@ -216,7 +216,7 @@ const TeamDetail = () => {
                       });
                   }}
                 >
-                  수정하기
+                  저장
                 </EditBtn>
               </TeamLayout>
               <SaveBtn>수정 완료</SaveBtn>
@@ -238,11 +238,13 @@ const InputBox = styled.div`
 
 const InputText = styled.input`
   display: flex;
-  border: none;
+  border-radius: 8px;
   font-size: 18px;
-  padding-left: 20px;
-  width: 100px;
-  height: 20px;
+  padding-left: 10px;
+  width: 170px;
+  height: 30px;
+  margin-right: 20px;
+  border: 1px solid #cecece;
   :focus {
     outline: none;
   }

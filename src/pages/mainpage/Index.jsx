@@ -13,7 +13,6 @@ import {
   MainBanner,
   Section,
   InfoDiv,
-  LinkIcon,
   Icon,
   Info,
   SpotName,
@@ -29,8 +28,6 @@ import { useNavigate } from "react-router-dom";
 import ChatBtn from "../../components/ChatBtn";
 import useDetectClose from "../../hooks/useDetectClose";
 import ChatRoom from "../chat/ChatRoom";
-import { WaitingMatch } from "../spotsDetail/Styles";
-import { SpotInfo } from "../userpage/Styles";
 
 const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
@@ -139,26 +136,26 @@ const MainMaps = () => {
           </BannerSlider>
         </SpotContainer>
         <SpotContainer>
-          <Section>기간 임박! 매칭 대기중인 팀!</Section>
-          {newMatch?.map((sixmatch) => {
+          <Section>기간 임박! 매칭 대기 중인 팀!</Section>
+          {newMatch?.map((sixmatch, index) => {
             return (
-              <SixMatch key={sixmatch.match.reservationId}>
-                <div>{sixmatch.match.date} 매칭 대기중!!</div>
+              <SixMatch key={index}>
+                <div>{sixmatch?.match?.date} 매칭 대기중!!</div>
                 <SpotInfoMain>
-                  <img alt="구장이미지" src={sixmatch.place?.image} />
+                  <img alt="구장이미지" src={sixmatch?.place?.image} />
                   <Info>
                     <div>
-                      {sixmatch.place.sports === "테니스장" ? (
+                      {sixmatch?.place?.sports === "테니스장" ? (
                         <>
                           <Icon2 src="/newTennis.png" />
                         </>
                       ) : null}
-                      {sixmatch.place.sports === "배드민턴장" ? (
+                      {sixmatch?.place?.sports === "배드민턴장" ? (
                         <>
                           <Icon2 src="/newBadminton.png" />
                         </>
                       ) : null}
-                      {sixmatch.place.sports === "풋살장" ? (
+                      {sixmatch?.place?.sports === "풋살장" ? (
                         <>
                           <Icon2 src="/newFutsal.png" />
                         </>
@@ -166,31 +163,31 @@ const MainMaps = () => {
                     </div>
                     <button
                       onClick={() =>
-                        navigate(`/spotsdetail/${sixmatch.place.placesId}`)
+                        navigate(`/spotsdetail/${sixmatch?.place?.placesId}`)
                       }
                     >
-                      {sixmatch.place.spotName}
+                      {sixmatch?.place?.spotName}
                     </button>
                     <div>
-                      {sixmatch.place.address.split(" ")[0]}{" "}
-                      {sixmatch.place.address.split(" ")[1]}{" "}
-                      {sixmatch.place.address.split(" ")[2]}
+                      {sixmatch?.place?.address.split(" ")[0]}{" "}
+                      {sixmatch?.place?.address.split(" ")[1]}{" "}
+                      {sixmatch?.place?.address.split(" ")[2]}
                     </div>
                   </Info>
                 </SpotInfoMain>
                 <WaitingMatchMain>
                   <div>
-                    <span>{sixmatch.match.teamName}</span>
+                    <span>{sixmatch?.match?.teamName}</span>
                     <div>
-                      <img alt="" src={sixmatch.team?.image} width="30px" />
+                      <img alt="" src={sixmatch?.team?.image} width="30px" />
                     </div>
                   </div>
-                  <div>{sixmatch.match.matchId.substring(0, 13)}</div>
+                  <div>{sixmatch?.match?.matchId?.substring(0, 13)}</div>
                   <div>
-                    {sixmatch.match.member} 명
-                    {sixmatch.place.sports !== "풋살장" && (
+                    {sixmatch?.match?.member} 명
+                    {sixmatch?.place?.sports !== "풋살장" && (
                       <span>
-                        {!sixmatch.match.isDoubled ? "복식" : "단식"} 경기
+                        {!sixmatch?.match?.isDoubled ? "복식" : "단식"} 경기
                       </span>
                     )}
                   </div>

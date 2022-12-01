@@ -44,6 +44,7 @@ const MyPage = () => {
   const {
     register,
     watch,
+    handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
   const password = useRef();
@@ -104,6 +105,9 @@ const MyPage = () => {
       .catch((err) => console.log(err));
   };
   // console.log("마이페이지유저", user);
+  const passwordHandler = (data) => {
+    console.log(data);
+  };
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -136,33 +140,45 @@ const MyPage = () => {
                 <div>
                   {user?.sports?.includes("football") ? (
                     <>
-                      <img src="/mypage/football_blue.png" />
+                      <img
+                        alt="football_blue"
+                        src="/mypage/football_blue.png"
+                      />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/football_gray.png" />
+                      <img
+                        alt="football_gray"
+                        src="/mypage/football_gray.png"
+                      />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.sports?.includes("tennis") ? (
                     <>
-                      <img src="/mypage/tennis_blue.png" />
+                      <img alt="tennis_blue" src="/mypage/tennis_blue.png" />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/tennis_gray.png" />
+                      <img alt="tennis_gray" src="/mypage/tennis_gray.png" />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.sports?.includes("badminton") ? (
                     <>
-                      <img src="/mypage/badminton_blue.png" />
+                      <img
+                        alt="badminton_blue"
+                        src="/mypage/badminton_blue.png"
+                      />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/badminton_gray.png" />
+                      <img
+                        alt="badminton_gray"
+                        src="/mypage/badminton_gray.png"
+                      />
                     </>
                   )}
                 </div>
@@ -174,66 +190,84 @@ const MyPage = () => {
                 <div>
                   {user?.favSports?.includes("baseball") ? (
                     <>
-                      <img src="/mypage/baseball_blue.png" />
+                      <img
+                        alt="baseball_blue"
+                        src="/mypage/baseball_blue.png"
+                      />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/baseball_gray.png" />
+                      <img
+                        alt="baseball_gray"
+                        src="/mypage/baseball_gray.png"
+                      />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.favSports?.includes("basketball") ? (
                     <>
-                      <img src="/mypage/basketball_blue.png" />
+                      <img
+                        alt="basketball_blue"
+                        src="/mypage/basketball_blue.png"
+                      />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/basketball_gray.png" />
+                      <img
+                        alt="basketball_gray"
+                        src="/mypage/basketball_gray.png"
+                      />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.favSports?.includes("swim") ? (
                     <>
-                      <img src="/mypage/swimming_blue.png" />
+                      <img
+                        alt="swimming_blue"
+                        src="/mypage/swimming_blue.png"
+                      />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/swimming_gray.png" />
+                      <img
+                        alt="swimming_gray"
+                        src="/mypage/swimming_gray.png"
+                      />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.favSports?.includes("running") ? (
                     <>
-                      <img src="/mypage/running_blue.png" />
+                      <img alt="running_blue" src="/mypage/running_blue.png" />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/running_gray.png" />
+                      <img alt="running_gray" src="/mypage/running_gray.png" />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.favSports?.includes("golf") ? (
                     <>
-                      <img src="/mypage/golf_blue.png" />
+                      <img alt="golf_blue" src="/mypage/golf_blue.png" />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/golf_gray.png" />
+                      <img alt="golf_gray" src="/mypage/golf_gray.png" />
                     </>
                   )}
                 </div>
                 <div>
                   {user?.favSports?.includes("health") ? (
                     <>
-                      <img src="/mypage/health_blue.jpg" />
+                      <img alt="health_blue" src="/mypage/health_blue.jpg" />
                     </>
                   ) : (
                     <>
-                      <img src="/mypage/health_gray.jpg" />
+                      <img alt="health_gray" src="/mypage/health_gray.jpg" />
                     </>
                   )}
                 </div>
@@ -499,15 +533,17 @@ const MyPage = () => {
                 </div>
               </ModifyBlock>
               <ModifyBlock>
-                <div>비밀전호 변경</div>
-                <div>
+                <div>비밀번호 변경</div>
+                <form onSubmit={handleSubmit(passwordHandler)}>
                   <input
                     type="password"
-                    onChange={(e) => setPw(e.target.value)}
+                    //onChange={(e) => setPw(e.target.value)}
                     placeholder="비밀번호"
                     {...register("password", {
                       required: true,
-                      pattern: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
+                      pattern: {
+                        value: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
+                      },
                     })}
                   />
                   {errors.password && errors.password.type === "required" && (
@@ -518,23 +554,20 @@ const MyPage = () => {
                   )}
                   <input
                     type="password"
-                    onChange={(e) => setCheckPw(e.target.value)}
+                    //onChange={(e) => setCheckPw(e.target.value)}
                     placeholder="비밀번호 확인"
                     required
-                    {...register("confirmPassword", {
-                      required: true,
-                      validate: (value) => value === password.current,
-                    })}
+                    onInvalid={(value) => value === password.current}
                   />
                   {errors.confirmPassword &&
                     errors.confirmPassword.type === "required" && (
                       <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
                     )}
                   {errors.confirmPassword &&
-                    errors.confirmPassword.type === "validate" && (
+                    errors.confirmPassword.type === "onInvalid" && (
                       <p>✓ 비밀번호가 일치하지 않습니다</p>
                     )}
-                </div>
+                </form>
               </ModifyBlock>
             </ModifyDiv>
             <ModifyBtns>
@@ -543,10 +576,27 @@ const MyPage = () => {
                   clickEditMode();
                   UserpageAPI.patchMyInfo({
                     password: pw,
-                    confirmPass: checkPw,
+                    confirmPassword: checkPw,
                     nickname: nickName,
                     phone: phone,
-                  });
+                  })
+                    .then((res) => {
+                      console.log("res", res);
+                      Swal.fire({
+                        text: "수정이 완료되었습니다.",
+                        width: "300px",
+                        confirmButtonText: "확인",
+                        confirmButtonColor: "#40d295",
+                        showClass: {
+                          popup: "animated fadeInDown faster",
+                        },
+                        hideClass: {
+                          popup: "animated fadeOutUp faster",
+                        },
+                      });
+                    })
+                    .then(() => dispatch(__getMyInfo()))
+                    .catch((err) => console.log("err", err));
                 }}
               >
                 수정완료
