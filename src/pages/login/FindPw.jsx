@@ -31,11 +31,40 @@ const FindPw = () => {
   const sendPhoneForCode = () => {
     setIsCode(true);
     setCodeSent(true);
-    LoginAPI.postforFindIdPw(phoneNum)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+    if (phoneNum < 10) {
+      Swal.fire({
+        text: "10~11자리의 번호를 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+    } else {
+      LoginAPI.postforFindIdPw(phoneNum)
+        .then((res) => {
+          console.log("인증번호알럿이...", res);
+          Swal.fire({
+            text: "인증번호가 전송되었습니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          Swal.fire({
+            text: "예상하지 못한 오류가 발생하였습니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        });
+    }
   };
 
   const findPwHandler = () => {
