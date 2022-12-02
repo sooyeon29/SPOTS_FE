@@ -125,7 +125,7 @@ export const KakaoBtn = styled.button`
   height: 50px;
   /* padding: 11px 0px 10px; */
   background: #fed600;
-  width: 45%;
+  width: 47%;
   border: none;
   border-radius: 47px;
   cursor: pointer;
@@ -151,6 +151,12 @@ export const GoogleBtn = styled(KakaoBtn)`
   &:hover {
     background-color: ${darken(0.2, "white")};
   }
+`;
+export const SocialLogin = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const PwInput = styled.div`
