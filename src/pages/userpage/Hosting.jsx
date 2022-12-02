@@ -202,7 +202,7 @@ const Hosting = () => {
           }
         })
         .catch((error) => {
-          if (error.response.status === 401) {
+          if (error.response.data.code === -2) {
             Swal.fire({
               text: '사진을 등록해주세요',
               width: '300px',
@@ -222,8 +222,8 @@ const Hosting = () => {
           //     hideClass: { popup: 'animated fadeOutUp faster' },
           //   });
           // }
-          // console.log(error);
-          // console.log(error.response.status)
+          console.log(error);
+          console.log(error.response.status)
           // Swal.fire({
           //   text: '사진은 2MB 이하로 선택해주세요',
           //   width: '300px',
@@ -397,7 +397,7 @@ const Hosting = () => {
               {/* <p>스팟 설명</p> */}
               <div>
                 <ComfortsWrap>
-                  <ComportsLabel>
+                  <ComfortsLabel>
                     <LentalInput
                       type='checkbox'
                       name='comforts'
@@ -408,8 +408,8 @@ const Hosting = () => {
                       checked={checkedList.includes('장비대여') ? true : false}
                     />
                     <LentalDiv>장비대여</LentalDiv>
-                  </ComportsLabel>
-                  <ComportsLabel>
+                  </ComfortsLabel>
+                  <ComfortsLabel>
                     <LockerInput
                       type='checkbox'
                       name='comforts'
@@ -420,10 +420,10 @@ const Hosting = () => {
                       checked={checkedList.includes('개인락커') ? true : false}
                     />
                     <LockerDiv>개인락커</LockerDiv>
-                  </ComportsLabel>
+                  </ComfortsLabel>
                 </ComfortsWrap>
                 <ComfortsWrap>
-                  <ComportsLabel>
+                  <ComfortsLabel>
                     <ParkingInput
                       type='checkbox'
                       name='comforts'
@@ -434,8 +434,8 @@ const Hosting = () => {
                       checked={checkedList.includes('주차장') ? true : false}
                     />
                     <ParkingDiv>주차장</ParkingDiv>
-                  </ComportsLabel>
-                  <ComportsLabel>
+                  </ComfortsLabel>
+                  <ComfortsLabel>
                     <ShowerInput
                       type='checkbox'
                       name='comforts'
@@ -447,8 +447,8 @@ const Hosting = () => {
                     />
 
                     <ShowerDiv>샤워실</ShowerDiv>
-                  </ComportsLabel>
-                  <ComportsLabel>
+                  </ComfortsLabel>
+                  <ComfortsLabel>
                     <DressInput
                       type='checkbox'
                       name='comforts'
@@ -459,7 +459,7 @@ const Hosting = () => {
                       checked={checkedList.includes('탈의실') ? true : false}
                     />
                     <DressDiv>탈의실</DressDiv>
-                  </ComportsLabel>
+                  </ComfortsLabel>
                 </ComfortsWrap>
               </div>
             </InputLayout>
@@ -700,9 +700,11 @@ export const ComfortsWrap = styled.div`
   display: flex;
   width: 180px;
   margin-bottom: 5px;
+  margin-top:5px;
+
 `;
 
-export const ComportsLabel = styled.label`
+export const ComfortsLabel = styled.label`
   margin-right: 5px;
 `;
 

@@ -399,7 +399,7 @@ export const GrayBorder = styled.div`
   align-items: center;
   background-color: #f4f4f4;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   /* padding-top: 7px; */
   padding: 3px 0px 3px 18px;
   width: 310px;
