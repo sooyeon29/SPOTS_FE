@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
-import SpoqaHanSansNeoRegular from './fonts/SpoqaHanSansNeoRegular.woff';
-import SpoqaHanSansNeoBold from './fonts/SpoqaHanSansNeoBold.woff';
-import SpoqaHanSansNeoThin from './fonts/SpoqaHanSansNeoThin.woff';
+import { createGlobalStyle } from "styled-components";
+import SpoqaHanSansNeoRegular from "./fonts/SpoqaHanSansNeoRegular.woff";
+import SpoqaHanSansNeoBold from "./fonts/SpoqaHanSansNeoBold.woff";
+import SpoqaHanSansNeoThin from "./fonts/SpoqaHanSansNeoThin.woff";
 
 const GlobalStyle = createGlobalStyle`
 
