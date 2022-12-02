@@ -712,7 +712,7 @@ const SpotsDetail = () => {
                   onChange={pickMyTeam}
                   onClick={() => setToggleThree(false)}
                 >
-                  <option>---선택하기---</option>
+                  <option> - 예약할 나의 팀 선택 - </option>
                   {myTeams
                     ?.filter(
                       (thisSpotTeam) => thisSpotTeam.sports === spot.sports
@@ -726,6 +726,12 @@ const SpotsDetail = () => {
                     })}
                 </TeamSelect>
                 <Counter>
+                  <span>
+                    경기
+                    <br />
+                    인원
+                  </span>
+                  <span> : </span>
                   {count === 0 ? (
                     <button disabled onClick={() => setCount(count - 1)}>
                       -
