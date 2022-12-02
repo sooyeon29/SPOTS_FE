@@ -106,8 +106,8 @@ instance.interceptors.response.use(
 export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   // 소셜로그인(카카오)
-  kakaoLogin: (payload) => instance.get(`auth/kakao/code?code=${payload}`),
-  googleLogin: (payload) => instance.get(`auth/google/code?code=${payload}`),
+  kakaoLogin: (payload) => instance.get(`kakao/code?code=${payload}`),
+  googleLogin: (payload) => instance.get(`google/code?code=${payload}`),
 
   // 인증번호
   postforFindIdPw: (payload) => instance.post(`users/sendSms`, payload), //-> 아이디비밀번호찾기시
@@ -125,7 +125,7 @@ export const LoginAPI = {
     instance.post(`users/findPw`, {
       loginId: payload.loginId.id,
       phone: payload.phone.phone,
-      code: payload.code.vericode,
+      code: payload.code.code,
     }),
 };
 
@@ -135,7 +135,8 @@ export const SignUpAPI = {
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  kakaoSingUp: (payload) => instance.post(`auth/signup`, payload),
+  kakaoSingUp: (payload) => instance.post(`kakao/signup`, payload),
+  // GoogleSingUp: (payload) => instance.post(`google/signup`, payload),
 };
 
 // userpage
