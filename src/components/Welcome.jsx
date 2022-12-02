@@ -11,7 +11,7 @@ const Welcome = () => {
       <Header />
       <Wrap>
         <Img src='/welcome_image.jpeg' />{' '}
-      <Button onClick={()=>navigate('/login')}>로그인하러 가기</Button>
+      <Button onClick={()=>navigate('/login')}>SPOTS 시작하기</Button>
       </Wrap>
       <TapBar />
     </Layout>

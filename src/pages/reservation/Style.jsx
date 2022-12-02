@@ -80,7 +80,7 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 15%;
+  top: 14%;
   right: 16%;
   position: absolute;
 `;
@@ -218,7 +218,7 @@ export const StSearch = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 `;
 
 export const SearchInput = styled.input`

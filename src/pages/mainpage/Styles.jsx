@@ -136,7 +136,7 @@ export const Section = styled.div`
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 260px;
+  width: 16.3rem;
   border-radius: 10px;
   position: absolute;
   top: 60%;
