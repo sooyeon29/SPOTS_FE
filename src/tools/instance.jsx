@@ -136,7 +136,6 @@ export const SignUpAPI = {
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
   kakaoSingUp: (payload) => instance.post(`kakao/signup`, payload),
-  // GoogleSingUp: (payload) => instance.post(`google/signup`, payload),
 };
 
 // userpage

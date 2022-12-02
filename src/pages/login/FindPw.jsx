@@ -29,9 +29,7 @@ const FindPw = () => {
   const [codeSent, setCodeSent] = useToggle();
 
   const sendPhoneForCode = () => {
-    setIsCode(true);
-    setCodeSent(true);
-    if (phoneNum < 10) {
+    if (phoneNum.phone.length < 10) {
       Swal.fire({
         text: "10~11자리의 번호를 입력해주세요",
         width: "300px",
@@ -41,6 +39,8 @@ const FindPw = () => {
         hideClass: { popup: "animated fadeOutUp faster" },
       });
     } else {
+      setIsCode(true);
+      setCodeSent(true);
       LoginAPI.postforFindIdPw(phoneNum)
         .then((res) => {
           console.log("인증번호알럿이...", res);
@@ -66,27 +66,35 @@ const FindPw = () => {
         });
     }
   };
-
+  console.log(id);
+  console.log(phoneNum);
+  console.log(veriCode);
   const findPwHandler = () => {
-    LoginAPI.findPw({ loginId: id, phone: phoneNum, code: veriCode })
-      .then((res) => {
-        if (res.status === 200) {
-          Swal.fire({
-            text: "임시 비밀번호: " + res.data.password,
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
-        }
-        console.log(res);
-      })
-      .catch(
-        (err) => {
-          if (err.status === 401) {
+    if (id.id.length < 1) {
+      Swal.fire({
+        text: "아이디를 확인해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+    }
+    if (phoneNum.phone.length < 10 || veriCode.code.length < 6) {
+      Swal.fire({
+        text: "전화번호와 인증번호 형식을 확인해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+    } else {
+      LoginAPI.findPw({ loginId: id, phone: phoneNum, code: veriCode })
+        .then((res) => {
+          if (res.status === 200) {
             Swal.fire({
-              text: "인증번호를 확인해주세요",
+              text: "임시 비밀번호: " + res.data.password,
               width: "300px",
               confirmButtonText: "확인",
               confirmButtonColor: "#40d295",
@@ -94,29 +102,44 @@ const FindPw = () => {
               hideClass: { popup: "animated fadeOutUp faster" },
             });
           }
-          if (err.status === 412) {
-            Swal.fire({
-              text: "아이디 혹은 핸드폰 번호를 확인해주세요",
-              width: "300px",
-              confirmButtonText: "확인",
-              confirmButtonColor: "#40d295",
-              showClass: { popup: "animated fadeInDown faster" },
-              hideClass: { popup: "animated fadeOutUp faster" },
-            });
+          console.log(res);
+        })
+        .catch(
+          (err) => {
+            if (err.status === 401) {
+              Swal.fire({
+                text: "인증번호를 확인해주세요",
+                width: "300px",
+                confirmButtonText: "확인",
+                confirmButtonColor: "#40d295",
+                showClass: { popup: "animated fadeInDown faster" },
+                hideClass: { popup: "animated fadeOutUp faster" },
+              });
+            }
+            if (err.status === 412) {
+              Swal.fire({
+                text: "아이디 혹은 핸드폰 번호를 확인해주세요",
+                width: "300px",
+                confirmButtonText: "확인",
+                confirmButtonColor: "#40d295",
+                showClass: { popup: "animated fadeInDown faster" },
+                hideClass: { popup: "animated fadeOutUp faster" },
+              });
+            }
+            if (err.status === 400) {
+              Swal.fire({
+                text: "알 수 없는 오류가 발생했습니다",
+                width: "300px",
+                confirmButtonText: "확인",
+                confirmButtonColor: "#40d295",
+                showClass: { popup: "animated fadeInDown faster" },
+                hideClass: { popup: "animated fadeOutUp faster" },
+              });
+            }
           }
-          if (err.status === 400) {
-            Swal.fire({
-              text: "알 수 없는 오류가 발생했습니다",
-              width: "300px",
-              confirmButtonText: "확인",
-              confirmButtonColor: "#40d295",
-              showClass: { popup: "animated fadeInDown faster" },
-              hideClass: { popup: "animated fadeOutUp faster" },
-            });
-          }
-        }
-        // console.log(err)
-      );
+          // console.log(err)
+        );
+    }
   };
   return (
     <Layout>
@@ -143,6 +166,7 @@ const FindPw = () => {
               type="text"
               required
               name="phone"
+              maxLength={11}
               onChange={enterPhoneNum}
             />
             {!codeSent ? (
