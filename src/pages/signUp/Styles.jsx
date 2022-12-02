@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Red = styled.span`
   color: red;
@@ -92,7 +92,7 @@ export const NextBtn = styled.button`
   border: none;
   height: 50px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   background: #1746c7;
   color: white;
   border-radius: 47px;
@@ -222,11 +222,11 @@ export const FootballDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/football_gray.png');
+  background-image: url("/mypage/football_gray.png");
   background-size: 90px;
 
   ${FootballInput}:checked + && {
-    background-image: url('/mypage/football_blue.png');
+    background-image: url("/mypage/football_blue.png");
     background-size: 90px;
   }
 `;
@@ -238,11 +238,11 @@ export const TennisDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/tennis_gray.png');
+  background-image: url("/mypage/tennis_gray.png");
   background-size: 90px;
 
   ${TennisInput}:checked + && {
-    background-image: url('/mypage/tennis_blue.png');
+    background-image: url("/mypage/tennis_blue.png");
     background-size: 90px;
   }
 `;
@@ -254,11 +254,11 @@ export const BadmintonDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/badminton_gray.png');
+  background-image: url("/mypage/badminton_gray.png");
   background-size: 90px;
 
   ${BadmintonInput}:checked + && {
-    background-image: url('/mypage/badminton_blue.png');
+    background-image: url("/mypage/badminton_blue.png");
     background-size: 90px;
   }
 `;
@@ -270,15 +270,14 @@ export const SwimmingDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/swimming_gray.png');
+  background-image: url("/mypage/swimming_gray.png");
   background-size: 90px;
 
   ${SwimmingInput}:checked + && {
-    background-image: url('/mypage/swimming_blue.png');
+    background-image: url("/mypage/swimming_blue.png");
     background-size: 90px;
   }
 `;
-
 
 export const BaseballDiv = styled.div`
   width: 90px;
@@ -287,11 +286,11 @@ export const BaseballDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/baseball_gray.png');
+  background-image: url("/mypage/baseball_gray.png");
   background-size: 90px;
 
   ${BaseballInput}:checked + && {
-    background-image: url('/mypage/baseball_blue.png');
+    background-image: url("/mypage/baseball_blue.png");
     background-size: 90px;
   }
 `;
@@ -303,11 +302,11 @@ export const BasketballDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/basketball_gray.png');
+  background-image: url("/mypage/basketball_gray.png");
   background-size: 90px;
 
   ${BasketballInput}:checked + && {
-    background-image: url('/mypage/basketball_blue.png');
+    background-image: url("/mypage/basketball_blue.png");
     background-size: 90px;
   }
 `;
@@ -319,11 +318,11 @@ export const RunningDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/running_gray.png');
+  background-image: url("/mypage/running_gray.png");
   background-size: 90px;
 
   ${RunningInput}:checked + && {
-    background-image: url('/mypage/running_blue.png');
+    background-image: url("/mypage/running_blue.png");
     background-size: 90px;
   }
 `;
@@ -335,11 +334,11 @@ export const GolfDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/golf_gray.png');
+  background-image: url("/mypage/golf_gray.png");
   background-size: 90px;
 
   ${GolfInput}:checked + && {
-    background-image: url('/mypage/golf_blue.png');
+    background-image: url("/mypage/golf_blue.png");
     background-size: 90px;
   }
 `;
@@ -351,11 +350,11 @@ export const HealthDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/health_gray.jpg');
+  background-image: url("/mypage/health_gray.jpg");
   background-size: 90px;
 
   ${HealthInput}:checked + && {
-    background-image: url('/mypage/health_blue.jpg');
+    background-image: url("/mypage/health_blue.jpg");
     background-size: 90px;
   }
 `;
@@ -368,7 +367,6 @@ export const FavSports = styled.div`
   margin-left: 10px;
   margin-bottom: 10px;
 `;
-
 
 export const SportsBlock = styled.div`
   align-items: center;

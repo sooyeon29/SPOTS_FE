@@ -7,12 +7,21 @@ const AdminHome = () => {
   const navigate = useNavigate();
   const [roomList, setRoomList] = useState();
   const [roomName, setRoomName] = useState();
+  const [chatList, setChatList] = useState();
 
   useEffect(() => {
     socket.on("admin_roomlist", (roomList) => {
       console.log("admin_roomlist", roomList);
       setRoomList(roomList);
     });
+    // socket.on("chat_list", (list) => {
+    //   console.log("chat_list", list);
+    //   setChatList(list);
+    // });
+    // socket.on("admin_roomlist", (roomList) => {
+    //   console.log("admin_roomlist", roomList);
+    //   setChatList(roomList);
+    // });
   }, []);
 
   const enterRoomHandler = () => {
@@ -31,6 +40,11 @@ const AdminHome = () => {
             <li key={index}>{list}</li>
           ))}
         </ul>
+        {/* <ul style={{ color: "blue" }}>
+          {chatList?.map((list, index) => (
+            <li key={index}>{list}</li>
+          ))}
+        </ul> */}
         <RoomForm onSubmit={enterRoomHandler}>
           <RoomInput
             name="roomName"

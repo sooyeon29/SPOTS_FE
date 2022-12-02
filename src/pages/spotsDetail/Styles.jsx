@@ -61,6 +61,13 @@ export const MoreInfo = styled.div`
       }
     }
   }
+  div:last-child {
+    img {
+      margin-right: 5px;
+      width: 15px;
+    }
+    justify-content: flex-start;
+  }
 `;
 export const Calen = styled.div`
   margin: 5px auto 0px auto;
@@ -296,13 +303,15 @@ export const SelectTeam = styled.div`
 `;
 export const BookMatch = styled.div`
   display: flex;
-  width: 100%;
+  width: 96%;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
 `;
 export const Time = styled.div`
   margin-top: 12px;
-  margin-left: 20px;
+  margin: auto;
+  font-size: 15px;
   /* width: 100%; */
 `;
 export const Team = styled.button`
@@ -311,9 +320,8 @@ export const Team = styled.button`
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   border: #d9d9d9;
   border-radius: 8px;
-  margin-left: 10px;
-  margin-bottom: 6px;
-  width: 100px;
+  margin: 0px 10px 10px 5px;
+  width: 90px;
   height: 44px;
   font-weight: 400;
   font-size: 15px;
@@ -323,10 +331,12 @@ export const Team = styled.button`
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   }
   &:disabled {
-    /* color: red; */
+    color: #c4c4c4;
+    background-color: #f7f8f8;
   }
   &:focus {
-    background-color: #1746c7;
+    background-color: #1b2754;
+    color: white;
   }
 `;
 
@@ -404,10 +414,12 @@ export const FinalBooking = styled.button`
   justify-content: center;
   align-items: center;
   /* z-index: 1; */
+  color: white;
+
   width: 95%;
-  background-color: #bcbcbc;
+  background-color: #1746c7;
   border: 1px solid #f1f3f7;
-  border-radius: 8px;
+  border-radius: 40px;
   margin: 10px auto 20px auto;
   cursor: pointer;
 `;
@@ -436,28 +448,29 @@ export const WaitList = styled.div`
 `;
 
 export const MatchList = styled(BookMatch)`
-  margin: 5px 2px 10px 1px;
+  margin: 5px auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+  width: 95%;
   /* display: flex;
   flex-direction: column; */
 `;
 export const WaitingMatch = styled.div`
   font-size: 12px;
-  color: white;
+  /* color: white; */
   display: flex;
-  flex-direction: row;
-  /* justify-content: start; */
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 47%;
+  width: 30%;
   /* height: 51px; */
   border-radius: 10px;
-  margin: 3px;
-  background-image: url(/football.png);
-
-  background-size: cover;
+  margin: 5px 3px;
+  /* background-image: url(/football.png); */
+  background-color: #f5f5f5;
+  /* background-size: cover; */
   padding: 2px;
   /* border-radius: 40px; */
   div {
@@ -467,34 +480,41 @@ export const WaitingMatch = styled.div`
     padding: 3px;
     span {
       font-size: 12px;
-      margin: 2px 30px 2px 5px;
+      margin: 5px auto 3px auto;
+    }
+    span:last-child {
+      font-size: 15px;
+    }
+    img {
+      margin: 5px auto 5px auto;
+      width: 60px;
     }
   }
 `;
 export const WaitingMatch2 = styled(WaitingMatch)`
-  opacity: 0.5;
+  background-color: #1b2754;
+  color: white;
 `;
-export const WaitTennis = styled(WaitingMatch)`
-  background-image: url(/tennis.png);
-`;
-export const WaitTennis2 = styled(WaitTennis)`
-  opacity: 0.5;
-`;
-export const WaitBadminton = styled(WaitingMatch)`
-  background-image: url(/badminton.png);
-`;
-export const WaitBadminton2 = styled(WaitBadminton)`
-  opacity: 0.5;
-`;
+
 export const EmailInput = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90%;
-  height: 30px;
-  padding-left: 10px;
-  background-color: #eaeffc;
-  margin: 15px auto 10px auto;
-  border-color: #cecece;
-  border-radius: 20px;
+  height: 40px;
+  padding-left: 15px;
+  background-color: #f4f4f4;
+  margin: 5px auto 10px auto;
+  /* border-color: #f4f4f4; */
+  border: none;
+  border-radius: 8px;
+  ::placeholder {
+    color: #c2c2c2;
+    font-size: 18px;
+  }
+`;
+export const Email = styled.div`
+  margin-left: 15px;
+  margin-top: 7px;
+  font-size: 12px;
 `;

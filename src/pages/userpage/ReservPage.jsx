@@ -21,6 +21,7 @@ import {
   MyTeamInfo,
   VS,
   TeamInfoDetail,
+  WaitTeam,
 } from "./Styles";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -110,7 +111,12 @@ const ReservPage = () => {
                 </SpotInfo>
                 <ForMatch>
                   <div>나의 팀</div>
-                  <img alt="팀로고" src={matchCom.teamData?.image} />
+                  {matchCom.teamData?.image === null ? (
+                    <img alt="spots_logo" src="/myprofile_logo.png" />
+                  ) : (
+                    <img alt="팀로고" src={matchCom.teamData?.image} />
+                  )}
+
                   <div>{matchCom.matchData?.teamName}</div>
                   <div>{matchCom.matchData?.member} 명</div>
                 </ForMatch>
@@ -184,9 +190,14 @@ const ReservPage = () => {
                     <div>vs</div>
                     <div>상대 팀</div>
                   </MatchVS>
-                  <MatchVS>
+                  <WaitTeam>
                     <TeamInfoDetail>
-                      <img alt="팀로고" src={matchWait.teamData?.image} />
+                      {matchWait.teamData?.image === null ? (
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                      ) : (
+                        <img alt="팀로고" src={matchWait.teamData?.image} />
+                      )}
+
                       <div>{matchWait.matchData?.teamName}</div>
                       <span>
                         {matchWait.teamData?.wins}승 /{" "}
@@ -198,8 +209,10 @@ const ReservPage = () => {
                       {matchWait.matchData?.member}
                     </VS>
 
-                    <div>대기중</div>
-                  </MatchVS>
+                    <div>
+                      <img alt="" src="/waitgroup.png" />
+                    </div>
+                  </WaitTeam>
                 </WaitedMatch>
                 <CancleBtn
                   onClick={() =>
@@ -265,7 +278,12 @@ const ReservPage = () => {
                   </MatchVS>
                   <MatchVS>
                     <TeamInfoDetail>
-                      <img alt="팀로고" src={matchCom.teamData?.image} />
+                      {matchCom.teamData?.image === null ? (
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                      ) : (
+                        <img alt="팀로고" src={matchCom.teamData?.image} />
+                      )}
+
                       <div>{matchCom.matchData?.teamName}</div>
                       <span>
                         {matchCom.teamData?.wins}승 / {matchCom.teamData?.lose}
@@ -278,7 +296,12 @@ const ReservPage = () => {
                     </VS>
 
                     <TeamInfoDetail>
-                      <img alt="팀로고" src={matchCom.opponent?.image} />
+                      {matchCom.opponent?.image === null ? (
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                      ) : (
+                        <img alt="팀로고" src={matchCom.opponent?.image} />
+                      )}
+
                       <div>{matchCom.opponent?.teamName}</div>
                       <span>
                         {matchCom.opponent?.wins}승 / {matchCom.opponent?.lose}

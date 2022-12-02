@@ -53,6 +53,13 @@ const Chatting = () => {
         { nickname: data.nickname, message: data.message },
       ]);
     });
+    socket.on("start_chat", (data) => {
+      console.log("start_chat", data);
+      setChatting((chat) => [
+        ...chat,
+        { nickname: data.nickname, message: data.message },
+      ]);
+    });
     socket.on("left_notice", (message) => {
       console.log("left_notice", message);
       setChatting((chat) => [...chat, message]);
@@ -71,6 +78,16 @@ const Chatting = () => {
     setMsg("");
   };
   console.log(chatting);
+
+  const onChat = () => {
+    console.log("버튼딸깍");
+    const obj = {
+      roomName: roomName,
+      nickname: nickname,
+    };
+    socket.emit("on_chat", JSON.stringify(obj));
+    console.log(obj);
+  };
 
   return (
     <Layout>
@@ -91,6 +108,7 @@ const Chatting = () => {
             <div>구장 예약, 경기 매칭 no1 플랫폼 </div>
             <div>상담시간 10:00-11:00</div>
           </ChatDesc>
+          <button onClick={onChat}>1:1문의하기</button>
           {chatting?.map((chat, index) => (
             <div key={index}>
               {chat.nickname === "admin" ? (

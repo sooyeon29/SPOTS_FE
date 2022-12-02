@@ -2,8 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const instance = axios.create({
-  // baseURL: process.env.REACT_APP_SERVER,
-  baseURL: "http://54.180.149.19:3000/",
+  baseURL: process.env.REACT_APP_SERVER,
 });
 
 // 요청 인터셉터 추가
