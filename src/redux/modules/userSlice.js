@@ -84,7 +84,7 @@ const userSlice = createSlice({
       }
       if (action.payload.response.status === 404) {
         Swal.fire({
-          text: "신규팀을 등록해주세요:)",
+          text: "예약을 위해서는 나의팀을 등록해주세요:)",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",

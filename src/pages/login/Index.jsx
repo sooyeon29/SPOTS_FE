@@ -18,6 +18,7 @@ import {
   StinputPw,
   InputWrapLower,
   GoogleBtn,
+  SocialLogin,
 } from "./Styles";
 // import { BsEye } from 'react-icons/bs';
 import TapBar from "../../components/TapBar";
@@ -135,13 +136,16 @@ const Login = () => {
             <LoginBtn>로그인</LoginBtn>
           </form>
           {/* 소셜로그인 - 카카오로그인 */}
-          <KakaoBtn>
-            <img alt="" src="/kakao.png" width={25} />
-            <a href={KAKAO_AUTH_URL}>카카오 로그인</a>
-          </KakaoBtn>
-          <GoogleBtn>
-            <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
-          </GoogleBtn>
+          <SocialLogin>
+            <KakaoBtn>
+              <img alt="" src="/kakao.png" width={25} />
+              <a href={KAKAO_AUTH_URL}>카카오 로그인</a>
+            </KakaoBtn>
+            <GoogleBtn>
+              <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
+            </GoogleBtn>
+          </SocialLogin>
+
           <FindButs>
             <button onClick={() => navigate(`/findid`)}>아이디찾기</button>
             <button onClick={() => navigate(`/findpw`)}>비밀번호찾기</button>
