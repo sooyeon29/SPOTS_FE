@@ -114,21 +114,21 @@ export const SelectDone = styled.div`
 export const SelectDone2 = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-  width: 85%;
-  height: 40px;
+  width: 50%;
+  height: 70px;
   font-weight: bold;
   max-width: 800px;
-  padding: 10px 20px;
+  padding: 10px 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 10px auto 0px auto;
+  margin: 10px 5px 0px 5px;
   background-color: #eaeffc;
   button {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
     background-color: transparent;
@@ -138,6 +138,14 @@ export const SelectDone2 = styled.div`
     font-size: 15px;
     cursor: pointer;
   }
+`;
+export const MatchOrNot = styled.div`
+  width: 97%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
 `;
 export const ExitBut = styled.button`
   cursor: pointer;
