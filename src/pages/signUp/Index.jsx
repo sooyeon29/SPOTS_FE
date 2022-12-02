@@ -311,6 +311,9 @@ const SignUp = () => {
   // 핸드폰 인증코드 받기
   const sendPhoneForCode = () => {
     const phone = getValues("phone");
+    if (phone > 10 ) {
+      return
+    }
     LoginAPI.postforVCode({ phone })
       .then((res) => {
         console.log(res);

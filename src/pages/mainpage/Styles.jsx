@@ -114,8 +114,12 @@ export const SpotContainer = styled.div`
   /* width: 50%; */
   /* height: 300px; */
   /* background-color: ghostwhite; */
-  margin-bottom: 60px;
+  margin-top: 20px;
 `;
+
+export const TeamContainer = styled.div`
+  margin-bottom: 65px;
+`
 
 export const New = styled.div`
   /* border: 2px solid black; */
@@ -123,8 +127,10 @@ export const New = styled.div`
 `;
 
 export const Section = styled.div`
-  margin: 20px 0px 10px 10px;
-  font-weight: 600;
+  margin: 10px 0px 10px 10px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: SpoqaHanSansNeoBold;
 `;
 
 export const InfoDiv = styled.div`
@@ -171,12 +177,13 @@ export const SpotName = styled.div`
 export const MainBanner = styled.div`
   /* width: 100%; */
   /* height: 100%; */
+  margin: 5px; 
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    width: 97%;
+    width: 98%;
     /* height: 100%; */
   }
 `;
