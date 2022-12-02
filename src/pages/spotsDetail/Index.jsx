@@ -286,10 +286,10 @@ const SpotsDetail = () => {
                   <div>
                     <div>
                       {spot.spotKind === "실내" && (
-                        <img alt="" src="house.png" width="20px" />
+                        <img alt="" src="house.png" width="16px" />
                       )}
                       {spot.spotKind === "실외" && (
-                        <img alt="" src="/outside.png" width="20px" />
+                        <img alt="" src="/outside.png" width="16px" />
                       )}
                       {spot.spotKind}
                     </div>
