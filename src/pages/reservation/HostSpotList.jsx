@@ -6,6 +6,7 @@ import {
   PublicReserve,
   UpperLine,
   LowerLine,
+  PublicInfo,
 } from './Style';
 
 const SpotList = ({ spotList }) => {
@@ -61,32 +62,35 @@ const SpotList = ({ spotList }) => {
             key={pubSpot.opensId}>
             <PublicBlock>
               <LowerLine>
-              <div>
-                {pubSpot.minclassnm === '테니스장' ? (
-                  <img alt='tennis img' src='/reservation/newTennis.png' />
-                ) : (
-                  <>
-                    {pubSpot.minclassnm === '풋살장' ? (
-                      <img alt='futsal img' src='/reservation/newFutsal.png' />
-                    ) : (
-                      <img
-                        alt='badminton img'
-                        src='/reservation/newBadminton.png'
-                      />
-                    )}
-                  </>
-                )}
-              </div>
-              <div>
-                <span>●</span> 공공
-              </div>
+                <div>
+                  {pubSpot.minclassnm === '테니스장' ? (
+                    <img alt='tennis img' src='/reservation/newTennis.png' />
+                  ) : (
+                    <>
+                      {pubSpot.minclassnm === '풋살장' ? (
+                        <img
+                          alt='futsal img'
+                          src='/reservation/newFutsal.png'
+                        />
+                      ) : (
+                        <img
+                          alt='badminton img'
+                          src='/reservation/newBadminton.png'
+                        />
+                      )}
+                    </>
+                  )}
+                </div>
+                <div>
+                  <span>●</span> 공공
+                </div>
               </LowerLine>
-              <div>
-              <span>{pubSpot.placenm}</span>
+              <PublicInfo>
+                <span>{pubSpot.placenm}</span>
                 <Status>{pubSpot.svcstatnm}</Status>
                 <p>{pubSpot.svcnm}</p>
                 <p>서울시 {pubSpot.areanm}</p>
-              </div>
+              </PublicInfo>
             </PublicBlock>
           </PublicReserve>
         );

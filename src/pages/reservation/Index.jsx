@@ -9,14 +9,12 @@ import {
   StWrap,
   MapPlace,
   PlaceList,
-  SearchTerm,
   StSearch,
   SearchInput,
   ListBar,
   Lists,
 } from './Style';
 import SpotsMap from '../reservation/SpotsMap';
-import SearchBar from '../../components/SearchBar';
 import {
   __getAllSpot,
   __getSearchedSpot,
@@ -81,7 +79,6 @@ const Reservation = () => {
               />
             </form>
           </StSearch>
-          <SearchTerm></SearchTerm>
           <MapPlace>
             {!params.keywords ? (
               <>
