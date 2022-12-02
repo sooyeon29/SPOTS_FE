@@ -14,6 +14,7 @@ import {
   CodeBtn,
   Logo,
   InputWrapLower,
+  GrayBorder,
 } from "./Styles";
 import { useState } from "react";
 import { ContentWrap, NextBtn } from "../signUp/Styles";
@@ -24,11 +25,14 @@ const FindId = () => {
   const [isCode, setIsCode] = useToggle();
   const [phoneNum, setPhoneNum, enterPhoneNum] = useInput();
   const [veriCode, setVeriCode, enterVeriCode] = useInput();
+  const [codeSent, setCodeSent] = useToggle();
 
   const sendPhoneForCode = () => {
     setIsCode(true);
+    setCodeSent(true);
     LoginAPI.postforFindIdPw(phoneNum)
-      .then((res) =>
+      .then((res) => {
+        console.log("인증번호알럿이...", res);
         Swal.fire({
           text: "인증번호가 전송되었습니다",
           width: "300px",
@@ -36,9 +40,10 @@ const FindId = () => {
           confirmButtonColor: "#40d295",
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
-        })
-      )
-      .catch((err) =>
+        });
+      })
+      .catch((err) => {
+        console.log(err);
         Swal.fire({
           text: "예상하지 못한 오류가 발생하였습니다",
           width: "300px",
@@ -46,8 +51,8 @@ const FindId = () => {
           confirmButtonColor: "#40d295",
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
-        })
-      );
+        });
+      });
   };
 
   const findIdHandler = () => {
@@ -97,35 +102,72 @@ const FindId = () => {
             <img alt="" src="/spotslogo.png" />
           </Logo>
 
-          <InputWrapLower>
-            + 82 |
-            <Stinput
+          <GrayBorder>
+            +82 |
+            <input
               placeholder="01012345678"
               type="text"
               required
               name="phone"
               onChange={enterPhoneNum}
             />
-          </InputWrapLower>
+            {!codeSent ? (
+              <button
+                style={{
+                  border: "none",
+                  color: "#ff00b3",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+                type="button"
+                onClick={sendPhoneForCode}
+              >
+                인증하기
+              </button>
+            ) : (
+              <button
+                style={{
+                  border: "none",
+                  color: "#ff00b3",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+                type="button"
+                onClick={sendPhoneForCode}
+              >
+                다시받기
+              </button>
+            )}
+          </GrayBorder>
 
           {isCode && (
-            <InputWrapLower>
-              <Stinput
-                placeholder="인증번호 입력(제한 시간 3분)"
+            <GrayBorder>
+              <input
+                placeholder="인증번호를 입력하세요(제한 시간 3분)"
                 type="text"
                 required
                 name="code"
                 onChange={enterVeriCode}
               />
-            </InputWrapLower>
+              {/* <button
+                style={{
+                  border: "none",
+                  color: "#ff00b3",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  marginLeft: "30px",
+                }}
+                type="button"
+                onClick={sendPhoneForCode}
+              >
+                인증확인
+              </button> */}
+            </GrayBorder>
           )}
-          <CodeBtn type="button" onClick={sendPhoneForCode}>
-            인증번호받기
-          </CodeBtn>
         </ContentWrap>
-        <LoginBtn onClick={findIdHandler}>아이디 찾기</LoginBtn>
+        <LoginBtn onClick={findIdHandler}>인증확인</LoginBtn>
 
-        <LoginBtn onClick={() => navigate(`/findpw`)}>비밀번호 찾기</LoginBtn>
+        {/* <LoginBtn onClick={() => navigate(`/findpw`)}>비밀번호 찾기</LoginBtn> */}
       </StWraps>
       <TapBar />
     </Layout>
