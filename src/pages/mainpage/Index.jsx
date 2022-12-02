@@ -17,11 +17,10 @@ import {
   Icon,
   Info,
   SpotName,
-  MapBlock,
   SixMatch,
   SpotInfoMain,
   WaitingMatchMain,
-  Icon2,
+  TeamContainer,
   Info2,
 } from './Styles';
 import TapBar from '../../components/TapBar';
@@ -56,22 +55,6 @@ const MainMaps = () => {
   };
 
   useEffect(() => {
-    // const isMember = localStorage.getItem('loginId');
-    // // console.log(isMember);
-    // LoginAPI.kakaoId(isMember)
-    //   .then((res) => {
-    //     // console.log("여기===========================", res);
-    //     if (res.data.loginId === null) return;
-    //     if (res.data.nickname) {
-    //       localStorage.setItem('token', res.data.accessToken);
-    //       return;
-    //     }
-    //     if (res.data.loginId && !res.data.nickname) {
-    //       navigate(`/addlogin`);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
-
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
@@ -142,8 +125,8 @@ const MainMaps = () => {
             ))}
           </BannerSlider>
         </SpotContainer>
-        <SpotContainer>
-          <Section>매칭임박 팀</Section>
+        <TeamContainer>
+          <Section>매칭 대기 중! 경기 임박 팀</Section>
           {newMatch?.map((sixmatch, index) => {
             return (
               <SixMatch key={index}>
@@ -160,7 +143,7 @@ const MainMaps = () => {
                   <div>
                     {' '}
                     <img alt='' src='/people.png' width='70px' />
-                    {sixmatch.match?.member} 명
+                    {sixmatch.match?.member}명
                     {/* {sixmatch.place.sports !== "풋살장" && (
                       <>{!sixmatch.match.isDoubled ? "복식" : "단식"} 경기</>
                     )} */}
@@ -203,7 +186,7 @@ const MainMaps = () => {
               </SixMatch>
             );
           })}
-        </SpotContainer>
+        </TeamContainer>
         <ChatBtn chatHandler={chatHandler} chatRef={chatRef} />
         <ChatRoom chatOpen={chatOpen} />
         <TapBar />

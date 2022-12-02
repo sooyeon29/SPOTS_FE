@@ -28,7 +28,7 @@ const Hosting = () => {
   const handleImagePreview = (file) => {
     setImg(null);
     setPreview([]);
-    console.log(file.target.files);
+    // console.log(file.target.files);
     // setImg(file.target.files);
     // file.target.files.length < 4
     //   ? setImg(file.target.files)
@@ -66,7 +66,6 @@ const Hosting = () => {
   const [fullAddress, setFullAddress] = useState();
 
   const handleComplete = (data) => {
-    // console.log("도대체무슨데이터???", data);
     let fullAddress = data.address;
     let extraAddress = '';
 
@@ -87,6 +86,8 @@ const Hosting = () => {
   const handleClick = () => {
     open({ onComplete: handleComplete });
   };
+
+  // console.log(spotName);
 
   const onRegisterHandler = (spot) => {
     let x = null;
@@ -118,6 +119,73 @@ const Hosting = () => {
       sendFD.append('price', price);
       sendFD.append('desc', desc);
 
+      if (!spotName) {
+        Swal.fire({
+          text: '이름을 입력해주세요',
+          width: '300px',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#40d295',
+          showClass: { popup: 'animated fadeInDown faster' },
+          hideClass: { popup: 'animated fadeOutUp faster' },
+        });
+        return;
+      }
+      if (!sports) {
+        Swal.fire({
+          text: '종류를 선택해주세요',
+          width: '300px',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#40d295',
+          showClass: { popup: 'animated fadeInDown faster' },
+          hideClass: { popup: 'animated fadeOutUp faster' },
+        });
+        return;
+      }
+      if (!spotKind) {
+        Swal.fire({
+          text: '실내/외를 선택해주세요',
+          width: '300px',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#40d295',
+          showClass: { popup: 'animated fadeInDown faster' },
+          hideClass: { popup: 'animated fadeOutUp faster' },
+        });
+        return;
+      }
+      if (!fullAddress) {
+        Swal.fire({
+          text: '주소를 입력해주세요',
+          width: '300px',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#40d295',
+          showClass: { popup: 'animated fadeInDown faster' },
+          hideClass: { popup: 'animated fadeOutUp faster' },
+        });
+        return;
+      }
+      if (!price) {
+        Swal.fire({
+          text: '가격을 입력해주세요',
+          width: '300px',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#40d295',
+          showClass: { popup: 'animated fadeInDown faster' },
+          hideClass: { popup: 'animated fadeOutUp faster' },
+        });
+        return;
+      }
+      if (!desc) {
+        Swal.fire({
+          text: '설명을 입력해주세요',
+          width: '300px',
+          confirmButtonText: '확인',
+          confirmButtonColor: '#40d295',
+          showClass: { popup: 'animated fadeInDown faster' },
+          hideClass: { popup: 'animated fadeOutUp faster' },
+        });
+        return;
+      }
+
       PrivateApi.registerSpot(sendFD)
         .then((res) => {
           console.log(res);
@@ -134,15 +202,36 @@ const Hosting = () => {
           }
         })
         .catch((error) => {
-          console.log(error);
-          Swal.fire({
-            text: '2MB 이하 용량의 이미지를 업로드해주세요',
-            width: '300px',
-            confirmButtonText: '확인',
-            confirmButtonColor: '#40d295',
-            showClass: { popup: 'animated fadeInDown faster' },
-            hideClass: { popup: 'animated fadeOutUp faster' },
-          });
+          if (error.response.status === 401) {
+            Swal.fire({
+              text: '사진을 등록해주세요',
+              width: '300px',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#40d295',
+              showClass: { popup: 'animated fadeInDown faster' },
+              hideClass: { popup: 'animated fadeOutUp faster' },
+            });
+          } 
+          // else {
+          //   Swal.fire({
+          //     text: '사진은 2MB 이하로 선택해주세요',
+          //     width: '300px',
+          //     confirmButtonText: '확인',
+          //     confirmButtonColor: '#40d295',
+          //     showClass: { popup: 'animated fadeInDown faster' },
+          //     hideClass: { popup: 'animated fadeOutUp faster' },
+          //   });
+          // }
+          // console.log(error);
+          // console.log(error.response.status)
+          // Swal.fire({
+          //   text: '사진은 2MB 이하로 선택해주세요',
+          //   width: '300px',
+          //   confirmButtonText: '확인',
+          //   confirmButtonColor: '#40d295',
+          //   showClass: { popup: 'animated fadeInDown faster' },
+          //   hideClass: { popup: 'animated fadeOutUp faster' },
+          // });
         });
     });
   };
@@ -199,7 +288,7 @@ const Hosting = () => {
             <InputLayout>
               <div>이름</div>
               <InputText
-                required
+                // required
                 type='text'
                 onChange={(e) => {
                   setSpotName(e.target.value);
@@ -279,7 +368,7 @@ const Hosting = () => {
             <InputLayout>
               <div>상세주소</div>
               <InputText
-                required
+                // required
                 type='text'
                 onChange={(e) => {
                   const { value } = e.target;
@@ -294,7 +383,7 @@ const Hosting = () => {
             <InputLayout>
               <div>시간당</div>
               <InputText
-                required
+                // required
                 type='text'
                 placeholder='시간당 가격을 입력해주세요'
                 onChange={(e) => {
@@ -307,74 +396,75 @@ const Hosting = () => {
               <div> 시설</div>
               {/* <p>스팟 설명</p> */}
               <div>
-              <ComfortsWrap>
-                <ComportsLabel>
-                  <LentalInput
-                    type='checkbox'
-                    name='comforts'
-                    value='장비대여'
-                    onChange={(e) => {
-                      onCheckedElement(e.target.checked, e.target.value);
-                    }}
-                    checked={checkedList.includes('장비대여') ? true : false}
-                  />
-                  <LentalDiv>장비대여</LentalDiv>
-                </ComportsLabel>
-                <ComportsLabel>
-                  <LockerInput
-                    type='checkbox'
-                    name='comforts'
-                    value='개인락커'
-                    onChange={(e) => {
-                      onCheckedElement(e.target.checked, e.target.value);
-                    }}
-                    checked={checkedList.includes('개인락커') ? true : false}
-                  />
-                  <LockerDiv>개인락커</LockerDiv>
-                </ComportsLabel>
-                </ComfortsWrap><ComfortsWrap>
-                <ComportsLabel>
-                  <ParkingInput
-                    type='checkbox'
-                    name='comforts'
-                    value='주차장'
-                    onChange={(e) => {
-                      onCheckedElement(e.target.checked, e.target.value);
-                    }}
-                    checked={checkedList.includes('주차장') ? true : false}
-                  />
-                  <ParkingDiv>주차장</ParkingDiv>
-                </ComportsLabel>
-                <ComportsLabel>
-                  <ShowerInput
-                    type='checkbox'
-                    name='comforts'
-                    value='샤워실'
-                    onChange={(e) => {
-                      onCheckedElement(e.target.checked, e.target.value);
-                    }}
-                    checked={checkedList.includes('샤워실') ? true : false}
-                  />
+                <ComfortsWrap>
+                  <ComportsLabel>
+                    <LentalInput
+                      type='checkbox'
+                      name='comforts'
+                      value='장비대여'
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkedList.includes('장비대여') ? true : false}
+                    />
+                    <LentalDiv>장비대여</LentalDiv>
+                  </ComportsLabel>
+                  <ComportsLabel>
+                    <LockerInput
+                      type='checkbox'
+                      name='comforts'
+                      value='개인락커'
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkedList.includes('개인락커') ? true : false}
+                    />
+                    <LockerDiv>개인락커</LockerDiv>
+                  </ComportsLabel>
+                </ComfortsWrap>
+                <ComfortsWrap>
+                  <ComportsLabel>
+                    <ParkingInput
+                      type='checkbox'
+                      name='comforts'
+                      value='주차장'
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkedList.includes('주차장') ? true : false}
+                    />
+                    <ParkingDiv>주차장</ParkingDiv>
+                  </ComportsLabel>
+                  <ComportsLabel>
+                    <ShowerInput
+                      type='checkbox'
+                      name='comforts'
+                      value='샤워실'
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkedList.includes('샤워실') ? true : false}
+                    />
 
-                  <ShowerDiv>샤워실</ShowerDiv>
-                </ComportsLabel>
-                <ComportsLabel>
-                  <DressInput
-                    type='checkbox'
-                    name='comforts'
-                    value='탈의실'
-                    onChange={(e) => {
-                      onCheckedElement(e.target.checked, e.target.value);
-                    }}
-                    checked={checkedList.includes('탈의실') ? true : false}
-                  />
-                  <DressDiv>탈의실</DressDiv>
-                </ComportsLabel>
-              </ComfortsWrap>
+                    <ShowerDiv>샤워실</ShowerDiv>
+                  </ComportsLabel>
+                  <ComportsLabel>
+                    <DressInput
+                      type='checkbox'
+                      name='comforts'
+                      value='탈의실'
+                      onChange={(e) => {
+                        onCheckedElement(e.target.checked, e.target.value);
+                      }}
+                      checked={checkedList.includes('탈의실') ? true : false}
+                    />
+                    <DressDiv>탈의실</DressDiv>
+                  </ComportsLabel>
+                </ComfortsWrap>
               </div>
             </InputLayout>
-            <TextArea 
-              required
+            <TextArea
+              // required
               style={{ height: '100px', width: '240px' }}
               type='text'
               placeholder='설명을 입력해주세요'
@@ -382,7 +472,7 @@ const Hosting = () => {
                 setDesc(e.target.value);
               }}
             />
-            <SaveBtn>등록하기</SaveBtn>
+            <SaveBtn onClick={onRegisterHandler}>등록하기</SaveBtn>
           </HostForm>
         </HostCard>
       </StWrap>
@@ -610,11 +700,10 @@ export const ComfortsWrap = styled.div`
   display: flex;
   width: 180px;
   margin-bottom: 5px;
-
 `;
 
 export const ComportsLabel = styled.label`
-margin-right: 5px;
+  margin-right: 5px;
 `;
 
 export const LentalInput = styled.input`
@@ -742,10 +831,10 @@ export const DressDiv = styled.div`
 
 export const TextArea = styled.textarea`
   margin-top: 20px;
-   resize: none;
-   padding: 10px;
+  resize: none;
+  padding: 10px;
 
   :focus {
     outline: none;
   }
-`
+`;

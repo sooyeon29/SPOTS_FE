@@ -1,15 +1,31 @@
-import { createGlobalStyle } from "styled-components";
-import SpoqaHanSansNeoRegular from "./fonts/SpoqaHanSansNeoRegular.woff";
+import { createGlobalStyle } from 'styled-components';
+import SpoqaHanSansNeoRegular from './fonts/SpoqaHanSansNeoRegular.woff';
+import SpoqaHanSansNeoBold from './fonts/SpoqaHanSansNeoBold.woff';
+import SpoqaHanSansNeoThin from './fonts/SpoqaHanSansNeoThin.woff';
 
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
-  font-family: 'SpoqaHanSansNeoRegular';
-        src: local('SpoqaHanSansNeoRegular'), local('GmarketSansTTFBold');
+  font-family: 'SpoqaRegular';
+        src: local('SpoqaHanSansNeoRegular'), local('SpoqaHanSansNeoRegular');
         font-style: normal;
         src: url(${SpoqaHanSansNeoRegular}) format('truetype');
-
 }
+
+@font-face {
+  font-family: 'SpoqaBold';
+        src: local('SpoqaHanSansNeoBold'), local('SpoqaHanSansNeoBold');
+        font-style: normal;
+        src: url(${SpoqaHanSansNeoBold}) format('truetype');
+}
+
+@font-face {
+  font-family: 'SpoqaThin';
+        src: local('SpoqaHanSansNeoThin'), local('SpoqaHanSansNeoThin');
+        font-style: normal;
+        src: url(${SpoqaHanSansNeoThin}) format('truetype');
+}
+
 
   *, *::before, *::after {
     /* font-family: 'SpoqaHanSansNeo-Regular'; */
@@ -18,11 +34,11 @@ const GlobalStyle = createGlobalStyle`
 
   body {
   font-family: 'SpoqaHanSansNeoRegular';
-    font-weight: normal;
+    /* font-weight: normal; */
     /* font-size: 16px; */
     /* line-height: 24px; */
     /* color: var(--gray-900); */
-        /* display: block; */
+    /* display: block; */
 
   }
   :root {
