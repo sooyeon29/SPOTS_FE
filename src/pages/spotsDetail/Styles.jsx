@@ -96,7 +96,8 @@ export const SelectDone = styled.div`
   justify-content: center;
   align-items: center;
   margin: 10px auto 0px auto;
-  background-color: #1646c7;
+  color: white;
+  background-color: #3747bf;
   button {
     display: flex;
     flex-direction: row;
@@ -111,32 +112,31 @@ export const SelectDone = styled.div`
     cursor: pointer;
   }
 `;
-export const SelectDone2 = styled.div`
+export const SelectDone2 = styled.button`
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 50%;
-  height: 70px;
+  height: 180px;
   font-weight: bold;
   max-width: 800px;
   padding: 10px 0px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin: 10px 5px 0px 5px;
-  background-color: #eaeffc;
-  button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    font-weight: bold;
-    color: #1646c7;
-    font-size: 15px;
-    cursor: pointer;
+  background-image: url("/matching/blue_myteam.png");
+  background-size: cover;
+  &:disabled {
+    /* background-color: #f7f8f8; */
+    background-image: url("/matching/white_myteam.png");
+    background-size: cover;
+  }
+`;
+export const SelectDone3 = styled(SelectDone2)`
+  background-image: url("/matching/blue_withteam.png");
+  &:disabled {
+    background-image: url("/matching/white_withteam.png");
   }
 `;
 export const MatchOrNot = styled.div`
@@ -152,11 +152,11 @@ export const ExitBut = styled.button`
   width: 10%;
 `;
 export const CalTime = styled.div`
-  border: 1px solid #d9d9d9;
+  border: 1px solid #cecece;
   border-radius: 10px;
   width: 95%;
   max-width: 800px;
-  padding: 10px 0px;
+  padding: 10px 0px 0px 0px;
   margin: 10px auto;
   p {
     margin-left: 20px;
@@ -172,21 +172,32 @@ export const Times = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  :first-child {
+    flex-direction: row;
+    font-weight: bold;
+    margin: 3px 10px 10px 0px;
+
+    img {
+      margin-right: 10px;
+    }
+  }
   button {
-    /* color: ${(props) => (props.butColor ? "auto" : "red")}; */
     cursor: pointer;
     background: #ffffff;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    border: #d9d9d9;
-    border-radius: 8px;
-    margin-bottom: 6px;
+    /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+    border: 1px solid #cecece;
+    /* border-radius: 8px; */
+    /* margin-bottom: 6px; */
     width: 100%;
     height: 44px;
     font-weight: 400;
     font-size: 15px;
     &:hover {
       background: #d9d9d9;
-      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+      /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+    }
+    &:disabled {
+      background-color: #d9d9d9;
     }
   }
 `;
@@ -201,50 +212,63 @@ export const SelectChoice = styled.div`
 export const TeamSelect = styled.select`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
-  width: 48%;
+  width: 95%;
   height: 50px;
   max-width: 800px;
   padding: 10px 10px;
   font-size: 15px;
-  margin-left: 10px;
-`;
-
-export const Counter = styled.div`
-  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* margin-left: 10px; */
-  margin: auto;
-  button {
-    border: none;
-    width: 28px;
-    height: 28px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 50px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  button:first-child {
-    background-color: #d9d9d9;
-  }
-  button:last-child {
-    background-color: #1746c7;
-    color: white;
-  }
-  div {
-    width: 50px;
-    height: 28px;
+  margin: 7px auto;
+  option {
     text-align: center;
-    /* margin: 0px 20px; */
-    font-size: 20px;
-    background-color: #f5f5f5;
   }
-  span {
-    font-size: 13px;
-    font-weight: bold;
-    margin: 0px 5px;
+`;
+
+export const Counter = styled.div`
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 10px;
+  margin: auto;
+  font-size: 15px;
+  font-weight: bold;
+  div:last-child {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    button {
+      border: none;
+      width: 40px;
+      height: 40px;
+      font-size: 25px;
+      background-color: transparent;
+      border: 1px solid #d9d9d9;
+      cursor: pointer;
+    }
+    div {
+      width: 40px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #d9d9d9;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    button:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    button:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
   }
 `;
 
@@ -316,24 +340,33 @@ export const SelectTeam = styled.div`
 `;
 export const BookMatch = styled.div`
   display: flex;
-  width: 96%;
+  width: 100%;
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  border: 1px solid #cecece;
+  :first-child {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 3px 10px 10px 0px;
+    border: none;
+    img {
+      margin: 0px 10px;
+    }
+  }
 `;
 export const Time = styled.div`
   margin-top: 12px;
   margin: auto;
-  font-size: 15px;
-  /* width: 100%; */
+  font-size: 17px;
 `;
 export const Team = styled.button`
   /* background-color: ${(props) => props.color}; */
   background: #ffffff;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-  border: #d9d9d9;
-  border-radius: 8px;
-  margin: 0px 10px 10px 5px;
+  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+  border: 1px solid #000000;
+  border-radius: 10px;
+  margin: 10px 10px 10px 5px;
   width: 90px;
   height: 44px;
   font-weight: 400;
@@ -344,11 +377,12 @@ export const Team = styled.button`
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   }
   &:disabled {
-    color: #c4c4c4;
-    background-color: #f7f8f8;
+    /* color: #c4c4c4; */
+    background-color: #d9d9d9;
+    border: none;
   }
   &:focus {
-    background-color: #1b2754;
+    background-color: #1746c7;
     color: white;
   }
 `;
@@ -394,7 +428,7 @@ export const Pick = styled.div`
   background-color: #f8f9fd;
   border: 1px solid #f1f3f7;
   border-radius: 8px;
-  margin: 10px auto 20px auto;
+  margin: 10px auto 10px auto;
 `;
 export const One = styled.button`
   z-index: 2;
@@ -427,12 +461,12 @@ export const FinalBooking = styled.button`
   justify-content: center;
   align-items: center;
   /* z-index: 1; */
-  color: white;
-
+  /* color: white; */
+  border: none;
   width: 95%;
-  background-color: #1746c7;
-  border: 1px solid #f1f3f7;
-  border-radius: 40px;
+  background-color: #cecece;
+  /* border: 1px solid #f1f3f7; */
+  border-radius: 10px;
   margin: 10px auto 20px auto;
   cursor: pointer;
 `;
@@ -480,7 +514,7 @@ export const WaitingMatch = styled.div`
   width: 30%;
   /* height: 51px; */
   border-radius: 10px;
-  margin: 5px 3px;
+  margin: 10px 10px;
   /* background-image: url(/football.png); */
   background-color: #f5f5f5;
   /* background-size: cover; */
@@ -505,7 +539,7 @@ export const WaitingMatch = styled.div`
   }
 `;
 export const WaitingMatch2 = styled(WaitingMatch)`
-  background-color: #1b2754;
+  background-color: #1746c7;
   color: white;
 `;
 
@@ -514,7 +548,7 @@ export const EmailInput = styled.input`
   justify-content: center;
   align-items: center;
   width: 90%;
-  height: 40px;
+  height: 38px;
   padding-left: 15px;
   background-color: #f4f4f4;
   margin: 5px auto 10px auto;
@@ -523,11 +557,15 @@ export const EmailInput = styled.input`
   border-radius: 8px;
   ::placeholder {
     color: #c2c2c2;
-    font-size: 18px;
+    font-size: 15px;
   }
 `;
 export const Email = styled.div`
   margin-left: 15px;
-  margin-top: 7px;
+  margin-top: 10px;
   font-size: 12px;
+  font-weight: bold;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: aliceblue;
 `;
