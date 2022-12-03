@@ -142,7 +142,7 @@ export const KakaoBtn = styled.button`
     background-color: ${lighten(0.2, "#ffcd2a")};
   }
   img {
-    margin: auto 3px;
+    margin-right: 10px;
   }
 `;
 export const GoogleBtn = styled(KakaoBtn)`
