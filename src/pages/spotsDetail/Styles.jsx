@@ -16,7 +16,6 @@ export const SpotPhoto = styled.div`
   padding: 0px;
   overflow: hidden;
   margin: auto;
-  /* background-color: lightcyan; */
   border-radius: 10px;
   img {
     width: 100%;
