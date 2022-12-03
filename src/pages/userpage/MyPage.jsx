@@ -36,14 +36,15 @@ const MyPage = () => {
   const [img, setImg] = useState(null);
   const [nickName, setNickName] = useInput();
   const [phone, setPhone] = useInput();
-  const [pw, setPw] = useInput();
-  const [checkPw, setCheckPw] = useInput();
+  const [pw, setPw] = useInput("");
+  const [checkPw, setCheckPw] = useInput("");
   const [code, setCode] = useInput();
   const [codeSent, setCodeSent, codeSentHandler] = useToggle();
 
   const {
     register,
     watch,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
@@ -55,12 +56,8 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
-  // console.log(user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
-
-  // const nickRef = useRef();
-  // const phoneRef = useRef();
 
   const handleImagePreview = (file) => {
     setImg(null);
@@ -101,13 +98,46 @@ const MyPage = () => {
         }
         dispatch(__getMyInfo());
       })
-
       .catch((err) => console.log(err));
   };
-  // console.log("마이페이지유저", user);
-  const passwordHandler = (data) => {
-    console.log(data);
-  };
+
+  // const pW = getValues("password");
+  // const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/;
+  // console.log(pw);
+  // if (pW.trim() === "") {
+  //   Swal.fire({
+  //     text: "비밀번호를 입력해주세요",
+  //     width: "300px",
+  //     confirmButtonText: "확인",
+  //     confirmButtonColor: "#40d295",
+  //     showClass: { popup: "animated fadeInDown faster" },
+  //     hideClass: { popup: "animated fadeOutUp faster" },
+  //   });
+  //   return;
+  // }
+  // if (!pwRex?.test(pw)) {
+  //   Swal.fire({
+  //     text: "비밀번호를 형식에 맞게 입력해주세요",
+  //     width: "300px",
+  //     confirmButtonText: "확인",
+  //     confirmButtonColor: "#40d295",
+  //     showClass: { popup: "animated fadeInDown faster" },
+  //     hideClass: { popup: "animated fadeOutUp faster" },
+  //   });
+  //   return;
+  // }
+
+  // if (checkPw?.trim() === "") {
+  //   Swal.fire({
+  //     text: "비밀번호를 다시 한번 확인해주세요",
+  //     width: "300px",
+  //     confirmButtonText: "확인",
+  //     confirmButtonColor: "#40d295",
+  //     showClass: { popup: "animated fadeInDown faster" },
+  //     hideClass: { popup: "animated fadeOutUp faster" },
+  //   });
+  //   return;
+  // }
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -549,43 +579,39 @@ const MyPage = () => {
               </ModifyBlock>
               <ModifyBlock>
                 <div>비밀번호 변경</div>
-                <form onSubmit={handleSubmit(passwordHandler)}>
-                  <input
-                    type="password"
-                    //onChange={(e) => setPw(e.target.value)}
-                    placeholder="비밀번호"
-                    {...register("password", {
-                      required: true,
-                      pattern: {
-                        value: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
-                      },
-                    })}
-                  />
-                  {errors.password && errors.password.type === "required" && (
-                    <p>✓ 비밀번호를 입력해주세요</p>
+
+                <input
+                  type="password"
+                  onChange={(e) => setPw(e.target.value)}
+                  placeholder="비밀번호"
+                  {...register("password", {
+                    required: true,
+                    pattern: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
+                  })}
+                />
+                {errors.password && errors.password.type === "required" && (
+                  <p>✓ 비밀번호를 입력해주세요</p>
+                )}
+                {errors.password && errors.password.type === "pattern" && (
+                  <p>✓ 영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
+                )}
+                <input
+                  type="password"
+                  onChange={(e) => setCheckPw(e.target.value)}
+                  placeholder="비밀번호 확인"
+                  {...register("confirmPassword", {
+                    required: true,
+                    validate: (value) => value === password.current,
+                  })}
+                />
+                {errors.confirmPassword &&
+                  errors.confirmPassword.type === "required" && (
+                    <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
                   )}
-                  {errors.password && errors.password.type === "pattern" && (
-                    <p>✓ 영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
+                {errors.confirmPassword &&
+                  errors.confirmPassword.type === "validate" && (
+                    <p>✓ 비밀번호가 일치하지 않습니다</p>
                   )}
-                  <input
-                    type="password"
-                    //onChange={(e) => setCheckPw(e.target.value)}
-                    placeholder="비밀번호 확인"
-                    required
-                    {...register("confirmPassword", {
-                      required: true,
-                      validate: (value) => value === password.current,
-                    })}
-                  />
-                  {errors.confirmPassword &&
-                    errors.confirmPassword.type === "required" && (
-                      <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
-                    )}
-                  {errors.confirmPassword &&
-                    errors.confirmPassword.type === "validate" && (
-                      <p>✓ 비밀번호가 일치하지 않습니다</p>
-                    )}
-                </form>
               </ModifyBlock>
             </ModifyDiv>
             <ModifyBtns>

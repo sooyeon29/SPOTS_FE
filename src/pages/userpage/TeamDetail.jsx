@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
@@ -20,6 +20,7 @@ const TeamDetail = () => {
   const adminRef = useRef();
   const { teamdetail } = useSelector((state) => state.user);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
+  const [count, setCount] = useState(`${teamdetail.member}`);
 
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
@@ -93,12 +94,7 @@ const TeamDetail = () => {
                   <div>인원</div>
                   <div>{teamdetail.member}명</div>
                 </TeamLayout>
-                <TeamLayout>
-                  <div>성적</div>
-                  <div>
-                    {teamdetail.wins}승 / {teamdetail.lose}패
-                  </div>
-                </TeamLayout>
+
                 <TeamLayout>
                   <div>admin</div>
                   <div>{teamdetail.admin}</div>
@@ -129,12 +125,27 @@ const TeamDetail = () => {
               </TeamLayout>
               <TeamLayout>
                 <div>인원</div>
-                <InputText
+                {/* <InputText
                   type="number"
                   min="1"
                   defaultValue={teamdetail.member}
                   ref={memberRef}
-                />
+                /> */}
+                <MinusBtn
+                  onClick={() => {
+                    setCount(count - 1);
+                  }}
+                >
+                  -
+                </MinusBtn>
+                <CountBox>{count}</CountBox>
+                <PlusBtn
+                  onClick={() => {
+                    setCount(count + 1);
+                  }}
+                >
+                  +
+                </PlusBtn>
                 <EditBtn
                   onClick={() => {
                     UserpageAPI.patchMyTeam({
@@ -310,4 +321,46 @@ const SaveBtn = styled.button`
   text-align: center;
   border: none;
   margin-top: 50px;
+`;
+
+const PlusBtn = styled.div`
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #1746c7;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+`;
+
+const MinusBtn = styled.div`
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  color: #231f20;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+`;
+
+const CountBox = styled.div`
+  width: 80px;
+  height: 30px;
+  background-color: #f5f5f5;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -10px;
+  margin-right: -10px;
+  //margin-right: -30px;
+  z-index: 1;
 `;

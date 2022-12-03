@@ -229,7 +229,8 @@ export const SpotInfo = styled.div`
 `;
 
 export const HostCard = styled.div`
-margin-top: 20px;`;
+  margin-top: 20px;
+`;
 export const Preview = styled.div``;
 export const Photo = styled.div`
   ${Preview} {

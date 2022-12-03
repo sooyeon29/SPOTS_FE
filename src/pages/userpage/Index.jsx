@@ -105,7 +105,7 @@ const Profile = styled.div`
     text-align: right;
   }
   p:last-child {
-    font-size: 40px;
+    font-size: 32px;
     margin-top: -5px;
     margin-left: -35px;
     span {
