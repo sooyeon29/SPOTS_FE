@@ -212,9 +212,14 @@ export const SpotInfo = styled.div`
     p {
       margin: 5px;
     }
+    span {
+      margin-left: 6px;
+    }
+
     span:last-child {
+      margin-left: 0px;
       color: #49e7a5;
-      padding: 2px 6px;
+      padding: 1px 6px;
       text-align: center;
       border-radius: 50px;
       font-size: 14px;
