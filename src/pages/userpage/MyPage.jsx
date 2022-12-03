@@ -356,17 +356,13 @@ const MyPage = () => {
                       }
                     }}
                   >
-                    중복
-                    <br />
-                    확인
+                    중복확인
                   </button>
                 </div>
               </ModifyBlock>
               <ModifyBlock>
                 <div>
-                  휴대폰
-                  <br />
-                  번호
+                  휴대폰번호
                 </div>
                 <div>
                   <input
@@ -445,9 +441,7 @@ const MyPage = () => {
                           });
                       }}
                     >
-                      인증
-                      <br />
-                      하기
+                      인증하기
                     </button>
                   ) : (
                     <button

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { PageDesc, ProfilePhotoUpload, ProfilePhotoInput } from "./Styles";
+import { PageDesc, ProfilePhotoInput } from "./Styles";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
@@ -12,12 +12,10 @@ const TeamRegister = () => {
   const title = "나의 팀";
   const navigate = useNavigate();
 
-  const [preview, setPreview] = useState("/myprofile_logo.png");
+  const [preview, setPreview] = useState([]);
   const [img, setImg] = useState(null);
 
   const nameRef = useRef();
-  const membersRef = useRef();
-  //const sportsRef = useRef();
   const [sports, setSports] = useState("");
   const [count, setCount] = useState(0);
 
@@ -76,7 +74,6 @@ const TeamRegister = () => {
               hideClass: { popup: "animated fadeOutUp faster" },
             });
             navigate("/teampage");
-            // navigate(`/teamdetail/${res.data.data.teamId}`);
           }
         })
         .catch((error) => {
@@ -101,23 +98,44 @@ const TeamRegister = () => {
       <StWrap>
         <PageDesc>팀 등록</PageDesc>
         <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
-          <Image>
-            <img alt="미리보기" src={preview} />
-          </Image>
-          <ProfilePhotoUpload>
-            <label htmlFor="upload-input">
-              <div>+</div>
-            </label>
-            <ProfilePhotoInput
-              id="upload-input"
-              type="file"
-              placeholder=""
-              onChange={(e) => {
-                handleImagePreview(e);
-              }}
-              accept="image/*"
-            />
-          </ProfilePhotoUpload>
+          <ImageUpload>
+            <HostingPhotoUpload>
+              <label htmlFor="upload-input">
+                <div>
+                  {preview.length > 0 ? (
+                    <span>
+                      <img alt="cancel_icon" src="/cancel_icon.png" />
+                    </span>
+                  ) : (
+                    <span>
+                      <img alt="plus_icon" src="/plus_icon_blue.png" />
+                    </span>
+                  )}
+                </div>
+              </label>
+              <ProfilePhotoInput
+                id="upload-input"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  handleImagePreview(e);
+                }}
+                multiple="multiple"
+              />
+            </HostingPhotoUpload>
+            <HostPreview>
+              {preview.length > 0 ? (
+                <img
+                  key={1}
+                  src={preview}
+                  alt=""
+                  onerror="this.style.display='none';"
+                />
+              ) : (
+                <Preview></Preview>
+              )}
+            </HostPreview>
+          </ImageUpload>
           <InputBox>
             <TeamLayout>
               <div>팀이름</div>
@@ -161,13 +179,11 @@ const TeamRegister = () => {
             </SportsLayout>
             <TeamLayout>
               <div>인원</div>
-              <MinusBtn
-                onClick={() => {
-                  setCount(count - 1);
-                }}
-              >
-                -
-              </MinusBtn>
+              {count === 0 ? (
+                <MinusBtn disabled>-</MinusBtn>
+              ) : (
+                <MinusBtn onClick={() => setCount(count - 1)}>-</MinusBtn>
+              )}
               <CountBox>{count}</CountBox>
               <PlusBtn
                 onClick={() => {
@@ -189,26 +205,21 @@ const TeamRegister = () => {
 export default TeamRegister;
 
 const StWrap = styled.div`
-  //margin: auto;
-  //width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //background-color: green;
 `;
 
 const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
-  //align-items: center;
   justify-content: center;
-
-  //width: 100%;
+  align-items: center;
 `;
 
 const InputBox = styled.div`
-  margin-bottom: 40px;
+  margin: auto;
 `;
 
 const InputText = styled.input`
@@ -235,13 +246,8 @@ const TeamLayout = styled.div`
   div:first-child {
     width: 100px;
     text-align: center;
-    //border-right: 1px solid #cecece;
     color: #545454;
     padding: 8px 8px 8px 8px;
-  }
-
-  div:last-child {
-    //margin-left: 20px;
   }
 `;
 
@@ -257,7 +263,6 @@ const SportsLayout = styled.div`
   div:first-child {
     width: 100px;
     text-align: center;
-    //border-right: 1px solid #cecece;
     color: #545454;
     padding: 8px 8px 8px 8px;
   }
@@ -278,12 +283,10 @@ const Btn = styled.button`
   line-height: 52px;
   text-align: center;
   border: none;
-  margin: auto;
+  margin-top: 50px;
 `;
 
-const SpotsLabel = styled.label`
-  //margin-right: 5px;
-`;
+const SpotsLabel = styled.label``;
 
 const FootballInput = styled.input`
   display: none;
@@ -388,20 +391,41 @@ const CountBox = styled.div`
   justify-content: center;
   margin-left: -10px;
   margin-right: -10px;
-  //margin-right: -30px;
   z-index: 1;
 `;
 
-const Image = styled.div`
+const ImageUpload = styled.div`
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
 
+const HostingPhotoUpload = styled.div`
   img {
-    /* transform: translate(50, 50); */
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 20px;
+    position: absolute;
   }
+`;
+
+const HostPreview = styled.div`
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+`;
+
+const Preview = styled.div`
+  div:first-child {
+    height: 100px;
+    width: 100px;
+    background-color: #d9d9d9;
+    border-radius: 100px;
+  }
+  height: 100px;
+  width: 100px;
+  background-color: #d9d9d9;
+  border-radius: 100px;
 `;

@@ -78,6 +78,7 @@ export const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   img {
     width: 100px;
@@ -506,13 +507,14 @@ export const CancleBtn = styled.button`
 `;
 
 export const ProfilePhotoInput = styled.input`
-  width: 0;
+  /* width: 0;
   height: 0;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
+  border: 0; */
+  display: none;
 `;
 
 export const ProfilePhotoUpload = styled.div`
