@@ -77,7 +77,6 @@ export const LoginAPI = {
       code: payload.code.code,
     }),
   findPw: (payload) =>
-    // console.log(payload),
     instance.post(`users/findPw`, {
       loginId: payload.loginId.id,
       phone: payload.phone.phone,
@@ -106,7 +105,8 @@ export const UserpageAPI = {
       },
     }),
   deleteTeam: (payload) => instance.delete(`teams/${payload}`),
-  patchMyInfo: (payload) => instance.patch(`users/me`, payload),
+  patchMyInfo: (payload) => console.log(payload),
+  // instance.patch(`users/me`, payload),
   patchMyPhoto: (payload) => instance.patch(`users/profileImg`, payload),
   patchMyTeam: (payload) => instance.patch(`teams`, payload),
   dropOutMe: (payload) => instance.patch(`users/drop`, payload),
