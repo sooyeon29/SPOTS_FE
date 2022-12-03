@@ -18,9 +18,9 @@ const Wrap = styled.div`
   box-sizing: border-box;
   width: 100%;
   max-width: 600px;
-  justify-content: center;
-  position: absolute;
+  margin: auto;
+  /* position: absolute;
   left: 0px;
-  top: 0px;
+  top: 0px; */
   overflow-x: hidden;
 `;
