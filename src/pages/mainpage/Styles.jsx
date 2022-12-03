@@ -134,7 +134,7 @@ export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
   /* width: 16.3rem; */
-  width: 6.71%;
+  width: 6.41%;
   border-radius: 10px;
   position: absolute;
   top: 60%;
