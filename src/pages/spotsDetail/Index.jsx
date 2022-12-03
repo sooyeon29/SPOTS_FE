@@ -813,12 +813,12 @@ const SpotsDetail = () => {
                   </p>
                 )}
               </CalTime>
-              {pickedTime !== "" ? (
+              {pickedTime !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
                   구장 예약하기
                 </FinalBooking>
               ) : null}
-              {pickedTime2 !== "" ? (
+              {pickedTime2 !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
                   매칭 예약하기
                 </FinalBooking>
