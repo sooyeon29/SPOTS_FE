@@ -361,7 +361,9 @@ const MyPage = () => {
                 </div>
               </ModifyBlock>
               <ModifyBlock>
-                <div>휴대폰 번호</div>
+                <div>
+                  휴대폰번호
+                </div>
                 <div>
                   <input
                     type="text"

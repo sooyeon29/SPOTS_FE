@@ -9,7 +9,7 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 
 const TeamRegister = () => {
-  const title = "TeamPage";
+  const title = "나의 팀";
   const navigate = useNavigate();
 
   const [preview, setPreview] = useState([]);

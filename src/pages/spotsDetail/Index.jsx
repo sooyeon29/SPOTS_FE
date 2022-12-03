@@ -144,7 +144,7 @@ const SpotsDetail = () => {
   // @@++나의 포인트를 가져와 주었다 이것으로 계산할꺼다 ++@@
   // 아래 예약하기 핸들러를 눌러 patch도 위의 post들과 함께 보내줄꺼다
   const { user } = useSelector((state) => state.user);
-  const myPoint = user.point;
+  let myPoint = user.point;
 
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // const bookDate = JSON.stringify(startDate).substring(1, 11);
@@ -261,6 +261,7 @@ const SpotsDetail = () => {
   console.log("done", completeTimeSlots);
   console.log("not done", inCompleteTimeSlots);
   console.log("all", reservedSpotTimeSlots);
+  console.log("로그인안했을때포인트", myPoint);
 
   return (
     <>
@@ -789,36 +790,43 @@ const SpotsDetail = () => {
                     placeholder="spots@naver.com"
                     onChange={(e) => setEmail(e.target.value)}
                   />
+                  <CalTime>
+                    <p>
+                      잔여 포인트 :{" "}
+                      {myPoint === undefined
+                        ? "로그인 후 확인해주세요"
+                        : myPoint}
+                      <img alt="" src="/point.png" width="20px" />
+                    </p>
+                    <span>
+                      예약 포인트: {payAPrice + payBPrice}{" "}
+                      <img alt="" src="/point.png" width="20px" />
+                    </span>
+
+                    {myPoint > payAPrice + payBPrice ? (
+                      <p>
+                        결제후포인트: {myPoint - payAPrice + payBPrice}{" "}
+                        <img alt="" src="/point.png" width="20px" />
+                      </p>
+                    ) : (
+                      <p>
+                        충전이 필요한 포인트:{" "}
+                        {myPoint === undefined
+                          ? "로그인 후 확인해주세요"
+                          : payAPrice + payBPrice - myPoint}
+                        <img alt="" src="/point.png" width="20px" />
+                      </p>
+                    )}
+                  </CalTime>
                 </>
               )}
-              <CalTime>
-                <p>
-                  잔여포인트 : {myPoint}{" "}
-                  <img alt="" src="/point.png" width="20px" />
-                </p>
-                <span>
-                  예약포인트: {payAPrice + payBPrice}{" "}
-                  <img alt="" src="/point.png" width="20px" />
-                </span>
 
-                {myPoint > payAPrice + payBPrice ? (
-                  <p>
-                    결제후포인트: {myPoint - payAPrice + payBPrice}{" "}
-                    <img alt="" src="/point.png" width="20px" />
-                  </p>
-                ) : (
-                  <p>
-                    충전이 필요한 포인트: {payAPrice + payBPrice - myPoint}
-                    point
-                  </p>
-                )}
-              </CalTime>
-              {pickedTime !== "" ? (
+              {pickedTime !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
                   구장 예약하기
                 </FinalBooking>
               ) : null}
-              {pickedTime2 !== "" ? (
+              {pickedTime2 !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
                   매칭 예약하기
                 </FinalBooking>

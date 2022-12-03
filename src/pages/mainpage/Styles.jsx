@@ -169,7 +169,8 @@ export const Info = styled.div`
 `;
 
 export const SpotName = styled.div`
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 export const MainBanner = styled.div`
@@ -210,9 +211,10 @@ export const SpotInfoMain = styled.div`
   width: 350px;
   margin-bottom: 10px;
   img {
-    width: 50px;
+    width: 70px;
     height: 50px;
-    margin: 5px 10px 0px 20px;
+    object-fit: cover;
+    margin: 0px 25px 0px 25px;
     border-radius: 10px;
   }
 `;
@@ -221,11 +223,16 @@ export const Info2 = styled.div`
   width: 100%;
   padding: 0px 10px;
   button {
+    /* margin-top: 7px; */
     font-size: 18px;
     font-weight: bold;
     background-color: transparent;
     border: none;
     cursor: pointer;
+  }
+
+  div{
+    margin-left: 6px;
   }
 `;
 
