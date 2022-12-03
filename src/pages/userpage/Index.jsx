@@ -9,7 +9,7 @@ import { __getMyInfo } from "../../redux/modules/userSlice";
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const title = "My Page";
+  const title = "내 계정";
   const navigate = useNavigate();
 
   useEffect(() => {

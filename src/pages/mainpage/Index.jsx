@@ -57,20 +57,20 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        console.log("신규스팟", newSpot);
+        // console.log('신규스팟', newSpot);
       })
       .catch((err) => console.log(err));
 
     SpotsMatchApi.getRecentMatch()
       .then((res) => {
-        console.log("임박매치대기팀들!", res);
+        // console.log('임박매치대기팀들!', res);
         setNewMatch(res?.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   // console.log(newSpot);
-  console.log("신규매치6개! 임박건!!!", newMatch);
+  // console.log('신규매치6개! 임박건!!!', newMatch);
   return (
     <>
       <Layout>

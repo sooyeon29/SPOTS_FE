@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 const { kakao } = window;
 
 const Hosting = () => {
-  const title = 'Host Page';
+  const title = '스팟 등록';
   const navigate = useNavigate();
 
   const [spot, setSpot] = useState({});
@@ -240,7 +240,7 @@ const Hosting = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>나의 구장 등록</PageDesc>
+        {/* <PageDesc>나의 구장 등록</PageDesc> */}
         <ImageUpload>
           <HostingPhotoUpload>
             <label htmlFor='upload-input'>
@@ -495,6 +495,7 @@ const StWrap = styled.div`
 const ImageUpload = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 80px;
 `;
 
 const HostingPhotoUpload = styled.div`

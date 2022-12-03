@@ -19,7 +19,7 @@ import FlexibleHeader from '../../components/FlexibleHeader';
 import TapBar from '../../components/TapBar';
 
 const HostList = () => {
-  const title = 'My Spots';
+  const title = '나의 스팟';
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
