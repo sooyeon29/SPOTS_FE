@@ -128,6 +128,16 @@ const matchSlice = createSlice({
           hideClass: { popup: "animated fadeOutUp faster" },
         });
       }
+      if (state.error.response.status === 401) {
+        Swal.fire({
+          text: "예약은 로그인 후 이용이 가능합니다",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
       if (
         state.error.response.data.status === 400 &&
         state.error.response.data.code === -1
