@@ -191,8 +191,9 @@ export const SpotInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  /* width: 350px; */
   margin-bottom: 20px;
+  margin-right: 10px;
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;
