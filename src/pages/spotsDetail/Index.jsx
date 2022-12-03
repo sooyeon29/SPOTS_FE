@@ -148,7 +148,7 @@ const SpotsDetail = () => {
 
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // const bookDate = JSON.stringify(startDate).substring(1, 11);
-  const bookDate = startDate?.toLocaleDateString().substring(0, 11);
+  const bookDate = startDate?.toLocaleDateString().substring(0, 12);
   console.log(pickedTime);
   const navigate = useNavigate();
   // 매칭없이 예약하기
@@ -625,57 +625,58 @@ const SpotsDetail = () => {
                         TEAM B
                       </Team>
                     </BookMatch>
-                    {/* <WaitList>매칭 대기중 팀 리스트</WaitList> */}
-                    {/* <MatchList> */}
-                    {waitMatchToday.map((waitMatch) => {
-                      return (
-                        <>
-                          {pickedTime2 !==
-                            waitMatch.matchId.substring(0, 13) && (
-                            <WaitingMatch key={waitMatch.reservationId}>
-                              <div>
-                                <span>
-                                  {waitMatch.matchId.substring(0, 13)}
-                                </span>
-                                <span>Team A</span>
-                                <img alt="" src="/graygroup.png" />
-                                <span>{waitMatch.teamName}</span>
-
-                                {spot.sports !== "풋살장" && (
+                    <MatchList>
+                      {waitMatchToday.map((waitMatch) => {
+                        return (
+                          <>
+                            {pickedTime2 !==
+                              waitMatch.matchId.substring(0, 13) && (
+                              <WaitingMatch key={waitMatch.reservationId}>
+                                <div>
                                   <span>
-                                    {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                    경기
+                                    {waitMatch.matchId.substring(0, 13)}
                                   </span>
-                                )}
-                              </div>
-                              <div>{waitMatch.member}명</div>
-                            </WaitingMatch>
-                          )}
-                          {pickedTime2 ===
-                            waitMatch.matchId.substring(0, 13) && (
-                            <WaitingMatch2 key={waitMatch.reservationId}>
-                              <div>
-                                <span>
-                                  {waitMatch.matchId.substring(0, 13)}
-                                </span>
-                                <span>Team A</span>
-                                <img alt="" src="/whitegroup.png" />
-                                <span>{waitMatch.teamName}</span>
-
-                                {spot.sports !== "풋살장" && (
+                                  <span>Team A</span>
+                                  <img alt="" src="/graygroup.png" />
                                   <span>
-                                    {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
-                                    경기
+                                    {waitMatch.teamName.substring(0, 6)}
                                   </span>
-                                )}
-                              </div>
-                              <div>{waitMatch.member}명</div>
-                            </WaitingMatch2>
-                          )}
-                        </>
-                      );
-                    })}
-                    {/* </MatchList> */}
+
+                                  {spot.sports !== "풋살장" && (
+                                    <span>
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
+                                    </span>
+                                  )}
+                                </div>
+                                <div>{waitMatch.member}명</div>
+                              </WaitingMatch>
+                            )}
+                            {pickedTime2 ===
+                              waitMatch.matchId.substring(0, 13) && (
+                              <WaitingMatch2 key={waitMatch.reservationId}>
+                                <div>
+                                  <span>
+                                    {waitMatch.matchId.substring(0, 13)}
+                                  </span>
+                                  <span>Team A</span>
+                                  <img alt="" src="/whitegroup.png" />
+                                  <span>{waitMatch.teamName}</span>
+
+                                  {spot.sports !== "풋살장" && (
+                                    <span>
+                                      {!waitMatch.isDoubled ? "복식" : "단식"}{" "}
+                                      경기
+                                    </span>
+                                  )}
+                                </div>
+                                <div>{waitMatch.member}명</div>
+                              </WaitingMatch2>
+                            )}
+                          </>
+                        );
+                      })}
+                    </MatchList>
                   </SelectTeam>
                   <Pick>
                     <One onClick={clickedToggleThree}>선택완료</One>

@@ -100,7 +100,6 @@ const Login = () => {
       <Layout>
         <Header />
         <StWraps>
-          {/* <PageTitle>로그인</PageTitle> */}
           <form onSubmit={loginHandler}>
             <InputWrap>
               <Logo>
@@ -135,7 +134,7 @@ const Login = () => {
             </InputWrap>
             <LoginBtn>로그인</LoginBtn>
           </form>
-          {/* 소셜로그인 - 카카오로그인 */}
+
           <SocialLogin>
             <KakaoBtn>
               <img alt="" src="/kakao.png" width={25} />
