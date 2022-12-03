@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   (error) => {
     // 요청 오류가 있는 경우 작업 수행
     // console.log("인터셉터에러", error);
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 // // 응답 인터셉터 추가
@@ -51,6 +51,7 @@ instance.interceptors.response.use(
         showClass: { popup: "animated fadeInDown faster" },
         hideClass: { popup: "animated fadeOutUp faster" },
       });
+      window.localStorage.clear();
       window.location.replace("/login");
     }
     return Promise.reject(error);
@@ -98,7 +99,7 @@ instance.interceptors.response.use(
 //       });
 //       window.location.replace("/login");
 //     }
-//     Promise.reject(error);
+//     return Promise.reject(error);
 //   }
 // );
 
