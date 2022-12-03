@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StWrap = styled.div`
   display: flex;
@@ -27,6 +27,7 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
+  max-width: 600px;
   width: 100%;
   display: flex;
   /* margin-top: 10px; */
@@ -175,7 +176,7 @@ export const PublicBlock = styled.div`
 `;
 
 export const PublicInfo = styled.div`
-margin-top: 10px;
+  margin-top: 10px;
   p {
     margin: auto;
     font-size: 14px;
@@ -187,7 +188,6 @@ margin-top: 10px;
     font-weight: 700;
     margin-right: 5px;
   }
-
 `;
 
 export const MylocationBtn = styled.button`

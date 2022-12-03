@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
   font-family: 'SpoqaHanSansNeoRegular';
+  margin: 0px;
     /* font-weight: normal; */
     /* font-size: 16px; */
     /* line-height: 24px; */

@@ -409,7 +409,8 @@ export const NickName = styled.div`
 
 export const SportsLayout = styled.div`
   padding: 10px;
-
+  max-width: 400px;
+  margin: auto;
   div:first-child {
     font-size: 14px;
     font-weight: 600;
@@ -541,7 +542,7 @@ export const SaveImage = styled.button`
 `;
 
 export const ModifyDiv = styled.div`
-  margin:auto;
+  margin: auto;
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
@@ -590,7 +591,7 @@ export const ModifyBtns = styled.div`
   margin-top: 40px;
 
   button {
-    background-color: #1746C7;
+    background-color: #1746c7;
     width: 160px;
     height: 40px;
     border-radius: 20px;
