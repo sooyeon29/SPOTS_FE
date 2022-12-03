@@ -14,7 +14,7 @@ export const MainElement = styled.div`
 `;
 export const MainSearch = styled.img`
   width: 100%;
-  margin-top: 62px;
+  margin-top: 60px;
 `;
 export const UpperLine = styled.div`
   width: 80%;
@@ -111,15 +111,12 @@ export const Image = styled.img`
 
 export const SpotContainer = styled.div`
   overflow: hidden;
-  /* width: 50%; */
-  /* height: 300px; */
-  /* background-color: ghostwhite; */
   margin-top: 20px;
 `;
 
 export const TeamContainer = styled.div`
   margin-bottom: 65px;
-`
+`;
 
 export const New = styled.div`
   /* border: 2px solid black; */
@@ -136,7 +133,8 @@ export const Section = styled.div`
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 16.3rem;
+  /* width: 16.3rem; */
+  width: 6.41%;
   border-radius: 10px;
   position: absolute;
   top: 60%;
@@ -171,13 +169,14 @@ export const Info = styled.div`
 `;
 
 export const SpotName = styled.div`
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 export const MainBanner = styled.div`
   /* width: 100%; */
   /* height: 100%; */
-  margin: 5px; 
+  margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,8 +192,6 @@ export const SixMatch = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 10px auto;
   padding-top: 10px;
   hr {
@@ -209,14 +206,15 @@ export const SixMatch = styled.div`
 export const SpotInfoMain = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 350px;
   margin-bottom: 10px;
   img {
-    width: 50px;
+    width: 70px;
     height: 50px;
-    margin: 5px 10px 0px 20px;
+    object-fit: cover;
+    margin: 0px 25px 0px 25px;
     border-radius: 10px;
   }
 `;
@@ -225,13 +223,16 @@ export const Info2 = styled.div`
   width: 100%;
   padding: 0px 10px;
   button {
-    /* margin-top: 10px; */
-    /* margin-right: 20px; */
+    /* margin-top: 7px; */
     font-size: 18px;
     font-weight: bold;
     background-color: transparent;
     border: none;
     cursor: pointer;
+  }
+
+  div{
+    margin-left: 6px;
   }
 `;
 

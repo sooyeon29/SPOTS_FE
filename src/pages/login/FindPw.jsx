@@ -150,15 +150,15 @@ const FindPw = () => {
             <img alt="" src="/spotslogo.png" />
           </Logo>
 
-          <InputWrapLower>
-            <Stinput
+          <GrayBorder>
+            <input
               placeholder="아이디를 입력해주세요"
               type="text"
               required
               name="id"
               onChange={enterId}
             />
-          </InputWrapLower>
+          </GrayBorder>
           <GrayBorder>
             +82 |
             <input
@@ -176,6 +176,7 @@ const FindPw = () => {
                   color: "#ff00b3",
                   fontWeight: "600",
                   cursor: "pointer",
+                  background: "transparent",
                 }}
                 type="button"
                 onClick={sendPhoneForCode}
@@ -189,6 +190,7 @@ const FindPw = () => {
                   color: "#ff00b3",
                   fontWeight: "600",
                   cursor: "pointer",
+                  background: "transparent",
                 }}
                 type="button"
                 onClick={sendPhoneForCode}
@@ -207,51 +209,10 @@ const FindPw = () => {
                 name="code"
                 onChange={enterVeriCode}
               />
-              {/* <button
-                style={{
-                  border: "none",
-                  color: "#ff00b3",
-                  fontWeight: "600",
-                  cursor: "pointer",
-                  marginLeft: "30px",
-                }}
-                type="button"
-                onClick={sendPhoneForCode}
-              >
-                인증확인
-              </button> */}
             </GrayBorder>
           )}
-
-          {/* <InputWrapLower>
-            + 82 |
-            <Stinput
-              placeholder="01012345678"
-              type="text"
-              required
-              name="phone"
-              onChange={enterPhoneNum}
-            />
-          </InputWrapLower>
-
-          {isCode && (
-            <InputWrapLower>
-              <Stinput
-                placeholder="인증번호 입력(제한시간 3분)"
-                type="text"
-                required
-                name="vericode"
-                onChange={enterVeriCode}
-              />
-            </InputWrapLower>
-          )} */}
-          {/* <CodeBtn type="button" onClick={sendPhoneForCode}>
-            인증번호받기
-          </CodeBtn> */}
         </ContentWrap>
         <LoginBtn onClick={findPwHandler}>인증확인</LoginBtn>
-
-        {/* <LoginBtn onClick={() => navigate(`/findid`)}>아이디 찾기</LoginBtn> */}
       </StWraps>
       <TapBar />
     </Layout>

@@ -26,7 +26,7 @@ const TeamPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-        {/* <Title>나의 팀 리스트</Title> */}
+        <Title>팀 관리</Title>
 
         <TeamBox>
           {team?.map((team) => {
@@ -114,10 +114,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #000000;
+  height: 1000px;
 `;
 
 const Title = styled.div`
   font-weight: 800;
+  color: #ffffff;
 `;
 
 const TeamBox = styled.div`

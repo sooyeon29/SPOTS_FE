@@ -78,6 +78,7 @@ export const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   img {
     width: 100px;
@@ -191,8 +192,9 @@ export const SpotInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  /* width: 350px; */
   margin-bottom: 20px;
+  margin-right: 10px;
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;
@@ -211,9 +213,14 @@ export const SpotInfo = styled.div`
     p {
       margin: 5px;
     }
+    span {
+      margin-left: 6px;
+    }
+
     span:last-child {
+      margin-left: 0px;
       color: #49e7a5;
-      padding: 2px 6px;
+      padding: 1px 6px;
       text-align: center;
       border-radius: 50px;
       font-size: 14px;
@@ -409,7 +416,8 @@ export const NickName = styled.div`
 
 export const SportsLayout = styled.div`
   padding: 10px;
-
+  max-width: 400px;
+  margin: auto;
   div:first-child {
     font-size: 14px;
     font-weight: 600;
@@ -499,13 +507,14 @@ export const CancleBtn = styled.button`
 `;
 
 export const ProfilePhotoInput = styled.input`
-  width: 0;
+  /* width: 0;
   height: 0;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
+  border: 0; */
+  display: none;
 `;
 
 export const ProfilePhotoUpload = styled.div`
@@ -541,7 +550,7 @@ export const SaveImage = styled.button`
 `;
 
 export const ModifyDiv = styled.div`
-  margin:auto;
+  margin: auto;
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
@@ -590,7 +599,7 @@ export const ModifyBtns = styled.div`
   margin-top: 40px;
 
   button {
-    background-color: #1746C7;
+    background-color: #1746c7;
     width: 160px;
     height: 40px;
     border-radius: 20px;

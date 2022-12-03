@@ -110,7 +110,7 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
-                    <span>{matchCom.placeData?.price}</span>
+                    <span>{Number(matchCom.placeData?.price).toLocaleString('ko-KR')}</span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -171,7 +171,7 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchWait.placeData?.address}</p>
-                    <span>{matchWait.placeData?.price}</span>
+                    <span>{Number(matchWait.placeData?.price).toLocaleString('ko-KR')}</span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -202,10 +202,6 @@ const ReservPage = () => {
                       )}
 
                       <div>{matchWait.matchData?.teamName}</div>
-                      <span>
-                        {matchWait.teamData?.wins}승 /{' '}
-                        {matchWait.teamData?.lose}패
-                      </span>
                     </TeamInfoDetail>
                     <VS>
                       {matchWait.matchData?.member} :{' '}
@@ -257,7 +253,7 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
-                    <span>{matchCom.placeData?.price}</span>
+                    <span>{Number(matchCom.placeData?.price).toLocaleString('ko-KR')}</span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -284,12 +280,7 @@ const ReservPage = () => {
                       ) : (
                         <img alt='팀로고' src={matchCom.teamData?.image} />
                       )}
-
                       <div>{matchCom.matchData?.teamName}</div>
-                      <span>
-                        {matchCom.teamData?.wins}승 / {matchCom.teamData?.lose}
-                        패
-                      </span>
                     </TeamInfoDetail>
                     <VS>
                       {matchCom.matchData?.member} :{' '}

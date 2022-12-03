@@ -153,6 +153,7 @@ const FindId = () => {
                   color: "#ff00b3",
                   fontWeight: "600",
                   cursor: "pointer",
+                  background: "transparent",
                 }}
                 type="button"
                 onClick={sendPhoneForCode}
@@ -166,6 +167,7 @@ const FindId = () => {
                   color: "#ff00b3",
                   fontWeight: "600",
                   cursor: "pointer",
+                  background: "transparent",
                 }}
                 type="button"
                 onClick={sendPhoneForCode}

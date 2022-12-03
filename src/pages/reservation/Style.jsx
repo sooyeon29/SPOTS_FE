@@ -27,6 +27,7 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
+  max-width: 600px;
   width: 100%;
   display: flex;
   /* margin-top: 10px; */
@@ -80,9 +81,12 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 14%;
-  right: 16%;
+  top: 120px;
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 `;
 
 export const Container = styled.div`
@@ -175,7 +179,7 @@ export const PublicBlock = styled.div`
 `;
 
 export const PublicInfo = styled.div`
-margin-top: 10px;
+  margin-top: 10px;
   p {
     margin: auto;
     font-size: 14px;
@@ -187,7 +191,6 @@ margin-top: 10px;
     font-weight: 700;
     margin-right: 5px;
   }
-
 `;
 
 export const MylocationBtn = styled.button`
