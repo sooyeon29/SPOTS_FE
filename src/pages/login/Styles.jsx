@@ -62,7 +62,8 @@ export const Stinput = styled.input`
   background-color: transparent;
   border: none;
   padding: 10px;
-  width: 200px;
+  max-width: 330px;
+  width: 90%;
   margin: 0px;
   font-family: "MonoplexKR-Regular";
   :focus {
@@ -79,9 +80,7 @@ export const InputWrapLower = styled.div`
   background-color: #f4f4f4;
   border: none;
   border-radius: 10px;
-  /* padding-top: 7px; */
   padding: 3px 0px 3px 18px;
-  width: 300px;
   margin: auto;
   margin-bottom: 10px;
   button {
@@ -172,6 +171,7 @@ export const GrayBorder = styled.div`
   border-radius: 10px;
   /* padding-top: 7px; */
   padding: 3px 0px 3px 15px;
+  max-width: 330px;
   width: 90%;
   height: 40px;
 
@@ -187,6 +187,7 @@ export const GrayBorder = styled.div`
     height: 70%;
     :focus {
       outline: none;
+      background-color: #f4f4f4;
     }
     ::placeholder {
       color: #c2c2c2;
