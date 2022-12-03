@@ -19,7 +19,7 @@ const HostDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const title = 'My Spots';
+  const title = '나의 스팟';
 
   useEffect(() => {
     dispatch(__getMyPrivateSpot());
@@ -311,6 +311,7 @@ export const SpotsBtns = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 30px;
+    margin-bottom: 70px;
     font-size: 16px;
     font-weight: 700;
   }

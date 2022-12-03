@@ -29,7 +29,7 @@ import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 
 const MyPage = () => {
-  const title = 'My Profile';
+  const title = '내 정보';
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preview, setPreview] = useState([]);

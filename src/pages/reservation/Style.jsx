@@ -215,7 +215,6 @@ export const StSearch = styled.div`
   display: flex;
   margin: auto;
   margin-top: 70px;
-  justify-content: center;
   align-items: center;
   border-radius: 20px;
   margin-bottom: 8px;
@@ -225,6 +224,10 @@ export const SearchInput = styled.input`
   border: none;
   /* width: 100%; */
   background-color: transparent;
+
+  ::placeholder {
+    padding-left: 5px;
+  }
   :focus {
     outline: none;
   }

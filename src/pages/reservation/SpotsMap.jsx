@@ -15,7 +15,7 @@ const SpotsMap = ({ spotMarkers }) => {
   const [filter, setFilter] = useState(false);
   const [state, setState] = useState({
     center: {
-      lat: 37.5666805,
+      lat: 37.5466805,
       lng: 126.9784147,
     },
     errMsg: null,
@@ -140,7 +140,7 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src: 'private.png',
+                    src: '/private.png',
                       // (privSpot.sports === '풋살장' && '/privateFutsal.png') ||
                       // (privSpot.sports === '배드민턴장' &&
                       //   '/privateBadminton.png') ||
@@ -213,7 +213,7 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: 'public.png',
+                    src: '/public.png',
                       // (pubSpot.minclassnm === '풋살장' &&
                       //   '/publicFutsal.png') || // 마커이미지의 주소입니다
                       // (pubSpot.minclassnm === '배드민턴장' &&

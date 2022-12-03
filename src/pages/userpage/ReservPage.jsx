@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { __exitMyMatch, __getMyMatch } from "../../redux/modules/matchSlice";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { __exitMyMatch, __getMyMatch } from '../../redux/modules/matchSlice';
 import {
   WaitedMatch,
   CompletedMath,
@@ -22,26 +22,28 @@ import {
   VS,
   TeamInfoDetail,
   WaitTeam,
-} from "./Styles";
-import Layout from "../../components/Layout";
-import TapBar from "../../components/TapBar";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import { useNavigate } from "react-router-dom";
+} from './Styles';
+import Layout from '../../components/Layout';
+import TapBar from '../../components/TapBar';
+import FlexibleHeader from '../../components/FlexibleHeader';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ReservPage = () => {
-  const title = "My Booking";
+  const title = '나의 예약';
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   const myNoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.noneMatchTotal
   );
-  console.log("나의 매칭전 예약리스트", myNoneMatches);
+  // console.log("나의 매칭전 예약리스트", myNoneMatches);
 
   const myDoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.doneMatchTotal
   );
-  console.log("나의 매칭완료 예약리스트", myDoneMatches);
+  // console.log("나의 매칭완료 예약리스트", myDoneMatches);
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
@@ -57,21 +59,25 @@ const ReservPage = () => {
   };
 
   const spotReserve = myNoneMatches?.filter(
-    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "nomatch"
+    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === 'nomatch'
   );
-  console.log("구장예약:", spotReserve);
+  // console.log("구장예약:", spotReserve);
 
   const matchWaiting = myNoneMatches?.filter(
-    (myMatch) =>
-      // myMatch.matchData?.result === "매칭 전" &&
-      myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
+    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === 'ismatch'
   );
-  console.log("매칭대기중:", matchWaiting);
+  // console.log("매칭대기중:", matchWaiting);
 
-  // const matchComplete = myDoneMatches?.filter(
-  //   (myMatch) => myMatch.matchData?.result === "매칭 완료"
-  // );
-  // console.log("매칭성사", matchComplete);
+  if (!token) {
+    Swal.fire({
+      text: '로그인 후 이용해주세요',
+      width: '300px',
+      confirmButtonText: '확인',
+      confirmButtonColor: '#40d295',
+      showClass: { popup: 'animated fadeInDown faster' },
+      hideClass: { popup: 'animated fadeOutUp faster' },
+    });
+  }
 
   return (
     <Layout>
@@ -86,21 +92,20 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchCom.matchData?.date.substring(0, 4)}년{" "}
-                      {matchCom.matchData?.date.substring(6, 8)}월{" "}
+                      {matchCom.matchData?.date.substring(0, 4)}년{' '}
+                      {matchCom.matchData?.date.substring(6, 8)}월{' '}
                       {matchCom.matchData?.date.substring(10, 12)}일
                     </div>
                     <div>{matchCom.matchData?.matchId.substring(0, 13)}</div>
                   </DayTime>
                 </MoreInfo>
                 <SpotInfo>
-                  <img alt="구장이미지준비중" src={matchCom.placeData?.image} />
+                  <img alt='구장이미지준비중' src={matchCom.placeData?.image} />
                   <div>
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${matchCom.placeData?.placesId}`)
-                      }
-                    >
+                      }>
                       {matchCom.matchData?.place}
                     </button>
                     <br />
@@ -112,9 +117,9 @@ const ReservPage = () => {
                 <ForMatch>
                   <div>나의 팀</div>
                   {matchCom.teamData?.image === null ? (
-                    <img alt="spots_logo" src="/myprofile_logo.png" />
+                    <img alt='spots_logo' src='/myprofile_logo.png' />
                   ) : (
-                    <img alt="팀로고" src={matchCom.teamData?.image} />
+                    <img alt='팀로고' src={matchCom.teamData?.image} />
                   )}
 
                   <div>{matchCom.matchData?.teamName}</div>
@@ -127,8 +132,7 @@ const ReservPage = () => {
                       matchCom.matchData?.place,
                       matchCom.matchData?.teamName
                     )
-                  }
-                >
+                  }>
                   예약 취소
                 </CancleBtn>
               </MyMatch2>
@@ -144,8 +148,8 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchWait.matchData?.date.substring(0, 4)}년{" "}
-                      {matchWait.matchData?.date.substring(6, 8)}월{" "}
+                      {matchWait.matchData?.date.substring(0, 4)}년{' '}
+                      {matchWait.matchData?.date.substring(6, 8)}월{' '}
                       {matchWait.matchData?.date.substring(10, 12)}일
                     </div>
                     <div>{matchWait.matchData?.matchId.substring(0, 13)}</div>
@@ -153,7 +157,7 @@ const ReservPage = () => {
                 </MoreInfo>
                 <SpotInfo>
                   <img
-                    alt="구장이미지준비중"
+                    alt='구장이미지준비중'
                     src={matchWait.placeData?.image}
                   />
                   <div>
@@ -162,8 +166,7 @@ const ReservPage = () => {
                         navigate(
                           `/spotsdetail/${matchWait.placeData?.placesId}`
                         )
-                      }
-                    >
+                      }>
                       {matchWait.matchData?.place}
                     </button>
                     <br />
@@ -176,9 +179,9 @@ const ReservPage = () => {
                 <MidTitle>
                   매칭대기
                   <span>
-                    {matchWait.teamData?.sports !== "풋살장" && (
+                    {matchWait.teamData?.sports !== '풋살장' && (
                       <>
-                        {!matchWait.matchData?.isDouble ? "단식" : "복식"} 경기
+                        {!matchWait.matchData?.isDouble ? '단식' : '복식'} 경기
                       </>
                     )}
                   </span>
@@ -193,24 +196,24 @@ const ReservPage = () => {
                   <WaitTeam>
                     <TeamInfoDetail>
                       {matchWait.teamData?.image === null ? (
-                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                        <img alt='spots_logo' src='/myprofile_logo.png' />
                       ) : (
-                        <img alt="팀로고" src={matchWait.teamData?.image} />
+                        <img alt='팀로고' src={matchWait.teamData?.image} />
                       )}
 
                       <div>{matchWait.matchData?.teamName}</div>
                       <span>
-                        {matchWait.teamData?.wins}승 /{" "}
+                        {matchWait.teamData?.wins}승 /{' '}
                         {matchWait.teamData?.lose}패
                       </span>
                     </TeamInfoDetail>
                     <VS>
-                      {matchWait.matchData?.member} :{" "}
+                      {matchWait.matchData?.member} :{' '}
                       {matchWait.matchData?.member}
                     </VS>
 
                     <div>
-                      <img alt="" src="/waitgroup.png" />
+                      <img alt='' src='/waitgroup.png' />
                     </div>
                   </WaitTeam>
                 </WaitedMatch>
@@ -221,8 +224,7 @@ const ReservPage = () => {
                       matchWait.matchData?.place,
                       matchWait.matchData?.teamName
                     )
-                  }
-                >
+                  }>
                   예약 취소
                 </CancleBtn>
               </MyMatch2>
@@ -237,21 +239,20 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchCom.matchData?.date.substring(0, 4)}년{" "}
-                      {matchCom.matchData?.date.substring(6, 8)}월{" "}
+                      {matchCom.matchData?.date.substring(0, 4)}년{' '}
+                      {matchCom.matchData?.date.substring(6, 8)}월{' '}
                       {matchCom.matchData?.date.substring(10, 12)}일
                     </div>
                     <div>{matchCom.matchData?.matchId.substring(0, 13)}</div>
                   </DayTime>
                 </MoreInfo>
                 <SpotInfo>
-                  <img alt="구장이미지준비중" src={matchCom.placeData?.image} />
+                  <img alt='구장이미지준비중' src={matchCom.placeData?.image} />
                   <div>
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${matchCom.placeData?.placesId}`)
-                      }
-                    >
+                      }>
                       {matchCom.matchData?.place}
                     </button>
                     <br />
@@ -264,8 +265,8 @@ const ReservPage = () => {
                 <MidTitle>
                   매칭대기
                   <span>
-                    {matchCom.teamData?.sports !== "풋살장" && (
-                      <>{matchCom.matchData?.isDouble ? "단식" : "복식"} 경기</>
+                    {matchCom.teamData?.sports !== '풋살장' && (
+                      <>{matchCom.matchData?.isDouble ? '단식' : '복식'} 경기</>
                     )}
                   </span>
                 </MidTitle>
@@ -279,9 +280,9 @@ const ReservPage = () => {
                   <MatchVS>
                     <TeamInfoDetail>
                       {matchCom.teamData?.image === null ? (
-                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                        <img alt='spots_logo' src='/myprofile_logo.png' />
                       ) : (
-                        <img alt="팀로고" src={matchCom.teamData?.image} />
+                        <img alt='팀로고' src={matchCom.teamData?.image} />
                       )}
 
                       <div>{matchCom.matchData?.teamName}</div>
@@ -291,15 +292,15 @@ const ReservPage = () => {
                       </span>
                     </TeamInfoDetail>
                     <VS>
-                      {matchCom.matchData?.member} :{" "}
+                      {matchCom.matchData?.member} :{' '}
                       {matchCom.matchData?.member}
                     </VS>
 
                     <TeamInfoDetail>
                       {matchCom.opponent?.image === null ? (
-                        <img alt="spots_logo" src="/myprofile_logo.png" />
+                        <img alt='spots_logo' src='/myprofile_logo.png' />
                       ) : (
-                        <img alt="팀로고" src={matchCom.opponent?.image} />
+                        <img alt='팀로고' src={matchCom.opponent?.image} />
                       )}
 
                       <div>{matchCom.opponent?.teamName}</div>
@@ -317,8 +318,7 @@ const ReservPage = () => {
                       matchCom.matchData?.place,
                       matchCom.matchData?.teamName
                     )
-                  }
-                >
+                  }>
                   예약 취소
                 </CancleBtn>
               </MyMatch2>
