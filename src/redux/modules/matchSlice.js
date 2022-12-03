@@ -24,6 +24,7 @@ export const __getAllMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getAllMatch(payload);
+      console.log("이제안줘???", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -120,6 +121,16 @@ const matchSlice = createSlice({
       if (state.error.response.status === 500) {
         Swal.fire({
           text: "필수입력값을 모두 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+      }
+      if (state.error.response.status === 401) {
+        Swal.fire({
+          text: "예약은 로그인 후 이용이 가능합니다",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",

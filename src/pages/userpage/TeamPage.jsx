@@ -11,7 +11,7 @@ import TapBar from "../../components/TapBar";
 import styled from "styled-components";
 
 const TeamPage = () => {
-  const title = "My Team";
+  const title = "나의 팀";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

@@ -17,6 +17,8 @@ import {
   StinputId,
   StinputPw,
   InputWrapLower,
+  GoogleBtn,
+  SocialLogin,
 } from "./Styles";
 // import { BsEye } from 'react-icons/bs';
 import TapBar from "../../components/TapBar";
@@ -98,7 +100,6 @@ const Login = () => {
       <Layout>
         <Header />
         <StWraps>
-          {/* <PageTitle>로그인</PageTitle> */}
           <form onSubmit={loginHandler}>
             <InputWrap>
               <Logo>
@@ -133,22 +134,18 @@ const Login = () => {
             </InputWrap>
             <LoginBtn>로그인</LoginBtn>
           </form>
-          {/* 소셜로그인 - 카카오로그인 */}
-          <KakaoBtn>
-            {/* // href="https://ws-study.shop/auth/kakao"> */}
-            <img alt="" src="/kakao.png" width={30} />
-            <a
-              href={
-                // "/auth/kakao/callback"
-                KAKAO_AUTH_URL
-              }
-            >
-              카카오톡으로 로그인
-            </a>
-          </KakaoBtn>
-          <LoginBtn>
-            <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
-          </LoginBtn>
+
+          <SocialLogin>
+            <KakaoBtn>
+              <img alt="" src="/kakao.png" width={25} />
+              <a href={KAKAO_AUTH_URL}>카카오 로그인</a>
+            </KakaoBtn>
+            <GoogleBtn>
+              <img alt="" src="/google.png" width={27} />
+              <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
+            </GoogleBtn>
+          </SocialLogin>
+
           <FindButs>
             <button onClick={() => navigate(`/findid`)}>아이디찾기</button>
             <button onClick={() => navigate(`/findpw`)}>비밀번호찾기</button>

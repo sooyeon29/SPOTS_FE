@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import Banner from '../../components/Banner';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import SpotsMap from './SpotsMap';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useEffect, useRef, useState } from "react";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import SpotsMap from "./SpotsMap";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {
   New,
   Image,
@@ -17,21 +16,20 @@ import {
   Icon,
   Info,
   SpotName,
-  MapBlock,
   SixMatch,
   SpotInfoMain,
   WaitingMatchMain,
-  Icon2,
+  TeamContainer,
   Info2,
-} from './Styles';
-import TapBar from '../../components/TapBar';
-import { LoginAPI, PrivateApi, SpotsMatchApi } from '../../tools/instance';
-import { useNavigate } from 'react-router-dom';
-import ChatBtn from '../../components/ChatBtn';
-import useDetectClose from '../../hooks/useDetectClose';
-import ChatRoom from '../chat/ChatRoom';
-import { WaitingMatch } from '../spotsDetail/Styles';
-import { SpotInfo } from '../userpage/Styles';
+} from "./Styles";
+import TapBar from "../../components/TapBar";
+import { LoginAPI, PrivateApi, SpotsMatchApi } from "../../tools/instance";
+import { useNavigate } from "react-router-dom";
+import ChatBtn from "../../components/ChatBtn";
+import useDetectClose from "../../hooks/useDetectClose";
+import ChatRoom from "../chat/ChatRoom";
+import { WaitingMatch } from "../spotsDetail/Styles";
+import { SpotInfo } from "../userpage/Styles";
 
 const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
@@ -56,50 +54,34 @@ const MainMaps = () => {
   };
 
   useEffect(() => {
-    // const isMember = localStorage.getItem('loginId');
-    // // console.log(isMember);
-    // LoginAPI.kakaoId(isMember)
-    //   .then((res) => {
-    //     // console.log("여기===========================", res);
-    //     if (res.data.loginId === null) return;
-    //     if (res.data.nickname) {
-    //       localStorage.setItem('token', res.data.accessToken);
-    //       return;
-    //     }
-    //     if (res.data.loginId && !res.data.nickname) {
-    //       navigate(`/addlogin`);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
-
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        console.log('신규스팟', newSpot);
+        // console.log('신규스팟', newSpot);
       })
       .catch((err) => console.log(err));
 
     SpotsMatchApi.getRecentMatch()
       .then((res) => {
-        console.log('임박매치대기팀들!', res);
+        // console.log('임박매치대기팀들!', res);
         setNewMatch(res?.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   // console.log(newSpot);
-  console.log('신규매치6개! 임박건!!!', newMatch);
+  // console.log('신규매치6개! 임박건!!!', newMatch);
   return (
     <>
       <Layout>
         <Header />
         <MainSearch
-          alt=''
-          src='/mainpage/mainSearch.png'
-          onClick={() => navigate('/book')}
+          alt=""
+          src="/mainpage/mainSearch.png"
+          onClick={() => navigate("/book")}
         />
         <MainBanner>
-          <img alt='' src='/mainpage/mainBanner.png' />
+          <img alt="" src="/mainpage/mainBanner.png" />
         </MainBanner>
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
@@ -107,33 +89,34 @@ const MainMaps = () => {
             {newSpot?.map((place, idx) => (
               <New
                 key={idx}
-                onClick={() => navigate(`/spotsdetail/${place.placesId}`)}>
-                <Image alt='' src={place.image} />
+                onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
+              >
+                <Image alt="" src={place.image} />
                 <div>
                   <InfoDiv>
                     <Info>
                       <div>
-                        {place.sports === '테니스장' ? (
+                        {place.sports === "테니스장" ? (
                           <>
-                            <Icon alt='' src='/reservation/newTennis.png' />
+                            <Icon alt="" src="/reservation/newTennis.png" />
                           </>
                         ) : null}
-                        {place.sports === '배드민턴장' ? (
+                        {place.sports === "배드민턴장" ? (
                           <>
-                            <Icon alt='' src='/reservation/newBadminton.png' />
+                            <Icon alt="" src="/reservation/newBadminton.png" />
                           </>
                         ) : null}
-                        {place.sports === '풋살장' ? (
+                        {place.sports === "풋살장" ? (
                           <>
-                            <Icon alt='' src='/reservation/newFutsal.png' />
+                            <Icon alt="" src="/reservation/newFutsal.png" />
                           </>
                         ) : null}
                       </div>
                       <SpotName>{place.spotName}</SpotName>
                       <div>
-                        {place.address.split(' ')[0]}{' '}
-                        {place.address.split(' ')[1]}{' '}
-                        {place.address.split(' ')[2]}
+                        {place.address.split(" ")[0]}{" "}
+                        {place.address.split(" ")[1]}{" "}
+                        {place.address.split(" ")[2]}
                       </div>
                     </Info>
                   </InfoDiv>
@@ -142,25 +125,25 @@ const MainMaps = () => {
             ))}
           </BannerSlider>
         </SpotContainer>
-        <SpotContainer>
-          <Section>매칭임박 팀</Section>
+        <TeamContainer>
+          <Section>매칭 대기 중! 경기 임박 팀</Section>
           {newMatch?.map((sixmatch, index) => {
             return (
               <SixMatch key={index}>
                 <WaitingMatchMain>
                   <div>
-                    <img alt='' src='/date.png' width='60px' />
+                    <img alt="" src="/date.png" width="60px" />
                     {sixmatch.match?.date.substring(6, 8)}월
                     {sixmatch.match?.date.substring(9, 12)}일
                   </div>
                   <div>
-                    <img alt='' src='/time.png' width='60px' />
+                    <img alt="" src="/time.png" width="60px" />
                     {sixmatch.match?.matchId.substring(0, 13)}
                   </div>
                   <div>
-                    {' '}
-                    <img alt='' src='/people.png' width='70px' />
-                    {sixmatch.match?.member} 명
+                    {" "}
+                    <img alt="" src="/people.png" width="70px" />
+                    {sixmatch.match?.member}명
                     {/* {sixmatch.place.sports !== "풋살장" && (
                       <>{!sixmatch.match.isDoubled ? "복식" : "단식"} 경기</>
                     )} */}
@@ -168,42 +151,26 @@ const MainMaps = () => {
                 </WaitingMatchMain>
                 <hr />
                 <SpotInfoMain>
-                  <img alt='구장이미지' src={sixmatch.place?.image} />
+                  <img alt="구장이미지" src={sixmatch.place?.image} />
                   <Info2>
-                    {/* <div>
-                      {sixmatch.place.sports === "테니스장" ? (
-                        <>
-                          <Icon2 src="/newTennis.png" />
-                        </>
-                      ) : null}
-                      {sixmatch.place.sports === "배드민턴장" ? (
-                        <>
-                          <Icon2 src="/newBadminton.png" />
-                        </>
-                      ) : null}
-                      {sixmatch.place.sports === "풋살장" ? (
-                        <>
-                          <Icon2 src="/newFutsal.png" />
-                        </>
-                      ) : null}
-                    </div> */}
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${sixmatch.place?.placesId}`)
-                      }>
+                      }
+                    >
                       {sixmatch.place?.spotName}
                     </button>
                     <div>
-                      {sixmatch.place?.address.split(' ')[0]}{' '}
-                      {sixmatch.place?.address.split(' ')[1]}{' '}
-                      {sixmatch.place?.address.split(' ')[2]}
+                      {sixmatch.place?.address.split(" ")[0]}{" "}
+                      {sixmatch.place?.address.split(" ")[1]}{" "}
+                      {sixmatch.place?.address.split(" ")[2]}
                     </div>
                   </Info2>
                 </SpotInfoMain>
               </SixMatch>
             );
           })}
-        </SpotContainer>
+        </TeamContainer>
         <ChatBtn chatHandler={chatHandler} chatRef={chatRef} />
         <ChatRoom chatOpen={chatOpen} />
         <TapBar />

@@ -4,14 +4,7 @@ import { lighten, darken } from "polished";
 export const StWraps = styled.div`
   margin-top: 70px;
   margin-bottom: 60px;
-  /* background-color: #f1f1f1; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* flex-direction: column; */
   padding: 30px;
-  /* height: 320px; */
-  /* text-align: center; */
 `;
 
 export const PageTitle = styled.div`
@@ -63,7 +56,7 @@ export const Logo = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 60px;
-  margin-top: 30px
+  margin-top: 30px;
 `;
 export const Stinput = styled.input`
   background-color: transparent;
@@ -75,6 +68,9 @@ export const Stinput = styled.input`
   :focus {
     outline: none;
   }
+  ::placeholder {
+    color: #c2c2c2;
+  }
 `;
 export const InputWrapLower = styled.div`
   display: flex;
@@ -82,7 +78,7 @@ export const InputWrapLower = styled.div`
   align-items: center;
   background-color: #f4f4f4;
   border: none;
-  border-radius: 26px;
+  border-radius: 10px;
   /* padding-top: 7px; */
   padding: 3px 0px 3px 18px;
   width: 300px;
@@ -122,12 +118,12 @@ export const KakaoBtn = styled.button`
   height: 50px;
   /* padding: 11px 0px 10px; */
   background: #fed600;
-  width: 330px;
+  width: 47%;
   border: none;
   border-radius: 47px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   margin-top: 10px;
 
@@ -136,11 +132,26 @@ export const KakaoBtn = styled.button`
     color: #3a1d1d;
   }
   &:hover {
-    /* background-color: ${lighten(0.1, "#ffcd2a")}; */
+    background-color: ${lighten(0.2, "#ffcd2a")};
   }
   img {
-    margin: auto 2px;
+    margin-right: 10px;
   }
+`;
+export const GoogleBtn = styled(KakaoBtn)`
+  background-color: white;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: ${darken(0.2, "white")};
+  }
+`;
+export const SocialLogin = styled.div`
+  width: 340px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const PwInput = styled.div`
@@ -150,5 +161,35 @@ export const PwInput = styled.div`
     height: 40px;
     margin-top: 1px;
     cursor: pointer;
+  }
+`;
+export const GrayBorder = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 10px;
+  /* padding-top: 7px; */
+  padding: 3px 0px 3px 15px;
+  width: 90%;
+  height: 40px;
+
+  margin: auto;
+  margin-bottom: 10px;
+  font-size: 14px;
+
+  input {
+    background-color: transparent;
+    border: none;
+    margin: 0px 5px 0px 10px;
+    width: 60%;
+    height: 70%;
+    :focus {
+      outline: none;
+    }
+    ::placeholder {
+      color: #c2c2c2;
+    }
   }
 `;

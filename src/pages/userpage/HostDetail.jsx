@@ -19,7 +19,7 @@ const HostDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const title = 'My Spots';
+  const title = '나의 스팟';
 
   useEffect(() => {
     dispatch(__getMyPrivateSpot());
@@ -120,8 +120,10 @@ const HostDetail = () => {
                         {Number(pla.price).toLocaleString('ko-KR')}포인트
                       </div>
                     </SpotsLayout>
-                    <SpotsLayout>
-                      <div>시설</div>
+                    <ComfortsLayout>
+                      <p>시설</p>
+                      {/* <ComfortsWrap> */}
+                      <div>
                       {pla.comforts.includes('주차장') ? (
                         <SpotsComforts>주차장</SpotsComforts>
                       ) : null}
@@ -131,13 +133,16 @@ const HostDetail = () => {
                       {pla.comforts.includes('탈의실') ? (
                         <SpotsComforts>탈의실</SpotsComforts>
                       ) : null}
+                      {/* </ComfortsWrap><ComfortsWrap> */}
                       {pla.comforts.includes('샤워실') ? (
                         <SpotsComforts>샤워실</SpotsComforts>
                       ) : null}
                       {pla.comforts.includes('개인락커') ? (
                         <SpotsComforts>개인락커</SpotsComforts>
                       ) : null}
-                    </SpotsLayout>
+                      </div>
+                      {/* </ComfortsWrap> */}
+                    </ComfortsLayout>
                     <SpotsLayout>
                       <div>설명</div>
                       <div>{pla.desc}</div>
@@ -259,6 +264,18 @@ export const SpotsLayout = styled.div`
     /* background-color: aliceblue; */
     /* width: 260px; */
   }
+
+  input {
+    border-radius: 5px;
+    height: 20px;
+    border: 1px solid gray;
+    margin-right: 5px;
+  }
+
+  textarea {
+    border-radius: 10px;
+    padding: 5px;
+  }
 `;
 
 export const SpotKind = styled.span`
@@ -268,13 +285,15 @@ export const SpotKind = styled.span`
   border-radius: 10px;
 `;
 
-export const SpotsComforts = styled.div`
+export const SpotsComforts = styled.span`
   background-color: #1746c7;
-  /* width: 0px; */
   color: #fff;
   padding: 3px 5px 3px 5px;
   border-radius: 10px;
   margin-right: 5px;
+  word-break: keep-all;
+  /* position: relative; */
+  /* bottom: 5px; */
 `;
 
 export const SpotsBtns = styled.div`
@@ -292,7 +311,38 @@ export const SpotsBtns = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 30px;
+    margin-bottom: 70px;
     font-size: 16px;
     font-weight: 700;
   }
 `;
+
+export const ComfortsLayout = styled.div`
+  /* display: flex; */
+  /* padding: 12px; */
+  border-bottom: 1px solid #cecece;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+  div {
+    width: 230px;
+    /* background-color: blue; */
+    /* height: 200px; */
+  }
+
+  p:first-child {
+    margin-left: 12px;
+    width: 40px;
+    text-align: center;
+    color: #545454;
+    margin-right: 30px;
+  }
+`
+  
+
+export const ComfortsWrap = styled.div`
+/* display: flex; */
+/* width: 240px; */
+`

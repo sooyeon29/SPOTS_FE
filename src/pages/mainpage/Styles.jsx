@@ -14,7 +14,7 @@ export const MainElement = styled.div`
 `;
 export const MainSearch = styled.img`
   width: 100%;
-  margin-top: 62px;
+  margin-top: 60px;
 `;
 export const UpperLine = styled.div`
   width: 80%;
@@ -111,10 +111,11 @@ export const Image = styled.img`
 
 export const SpotContainer = styled.div`
   overflow: hidden;
-  /* width: 50%; */
-  /* height: 300px; */
-  /* background-color: ghostwhite; */
-  margin-bottom: 60px;
+  margin-top: 20px;
+`;
+
+export const TeamContainer = styled.div`
+  margin-bottom: 65px;
 `;
 
 export const New = styled.div`
@@ -123,14 +124,17 @@ export const New = styled.div`
 `;
 
 export const Section = styled.div`
-  margin: 20px 0px 10px 10px;
-  font-weight: 600;
+  margin: 10px 0px 10px 10px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: SpoqaHanSansNeoBold;
 `;
 
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 260px;
+  /* width: 16.3rem; */
+  width: 6.41%;
   border-radius: 10px;
   position: absolute;
   top: 60%;
@@ -171,12 +175,13 @@ export const SpotName = styled.div`
 export const MainBanner = styled.div`
   /* width: 100%; */
   /* height: 100%; */
+  margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    width: 97%;
+    width: 98%;
     /* height: 100%; */
   }
 `;
@@ -186,8 +191,6 @@ export const SixMatch = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 10px auto;
   padding-top: 10px;
   hr {
@@ -202,7 +205,7 @@ export const SixMatch = styled.div`
 export const SpotInfoMain = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 350px;
   margin-bottom: 10px;
@@ -218,8 +221,6 @@ export const Info2 = styled.div`
   width: 100%;
   padding: 0px 10px;
   button {
-    /* margin-top: 10px; */
-    /* margin-right: 20px; */
     font-size: 18px;
     font-weight: bold;
     background-color: transparent;

@@ -15,7 +15,7 @@ const SpotsMap = ({ spotMarkers }) => {
   const [filter, setFilter] = useState(false);
   const [state, setState] = useState({
     center: {
-      lat: 37.5666805,
+      lat: 37.5466805,
       lng: 126.9784147,
     },
     errMsg: null,
@@ -140,14 +140,14 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src:
-                      (privSpot.sports === '풋살장' && '/privateFutsal.png') ||
-                      (privSpot.sports === '배드민턴장' &&
-                        '/privateBadminton.png') ||
-                      (privSpot.sports === '테니스장' && '/privateTennis.png'),
+                    src: '/private.png',
+                      // (privSpot.sports === '풋살장' && '/privateFutsal.png') ||
+                      // (privSpot.sports === '배드민턴장' &&
+                      //   '/privateBadminton.png') ||
+                      // (privSpot.sports === '테니스장' && '/privateTennis.png'),
                     size: {
-                      width: 23.4,
-                      height: 27.2,
+                      width: 30,
+                      height: 30,
                     },
                   }}
                 />
@@ -213,16 +213,16 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src:
-                      (pubSpot.minclassnm === '풋살장' &&
-                        '/publicFutsal.png') || // 마커이미지의 주소입니다
-                      (pubSpot.minclassnm === '배드민턴장' &&
-                        '/publicBadminton.png') ||
-                      (pubSpot.minclassnm === '테니스장' &&
-                        '/publicTennis.png'),
+                    src: '/public.png',
+                      // (pubSpot.minclassnm === '풋살장' &&
+                      //   '/publicFutsal.png') || // 마커이미지의 주소입니다
+                      // (pubSpot.minclassnm === '배드민턴장' &&
+                      //   '/publicBadminton.png') ||
+                      // (pubSpot.minclassnm === '테니스장' &&
+                      //   '/publicTennis.png'),
                     size: {
-                      width: 23.4,
-                      height: 27.2,
+                      width: 30,
+                      height: 30,
                     },
                   }}
                 />

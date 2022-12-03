@@ -27,13 +27,14 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
+  max-width: 600px;
   width: 100%;
   display: flex;
   /* margin-top: 10px; */
   flex-direction: column;
   height: 44vh;
   /* overflow: scroll; */
-  background-color: #FFF;
+  background-color: #fff;
   display: flex;
   margin-bottom: 80px;
   padding-bottom: 50px;
@@ -42,23 +43,22 @@ export const PlaceList = styled.div`
   top: 50%;
   z-index: 3;
   box-shadow: 0px -2px 11px rgba(0, 0, 0, 0.25);
-  
 `;
 
 export const ListBar = styled.div`
-  margin:auto;
+  margin: auto;
   margin-top: 10px;
   margin-bottom: 5px;
   width: 100px;
   height: 0.1px;
-  border: 2px solid #C4C4C4;
+  border: 2px solid #c4c4c4;
   border-radius: 10px;
 `;
 
 export const Lists = styled.div`
   overflow: scroll;
   margin-bottom: 20px;
-`
+`;
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -81,9 +81,14 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 15%;
-  right: 16%;
+  top: 120px;
+  /* left: center; */
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  /* text-align: center; */
 `;
 
 export const Container = styled.div`
@@ -98,7 +103,6 @@ export const Container = styled.div`
 export const Status = styled.span`
   font-weight: 600;
   color: #2b2bff;
-  margin-bottom: 5px;
 `;
 
 export const PrivateBlock = styled.div`
@@ -110,7 +114,7 @@ export const PrivateBlock = styled.div`
   padding: 15px;
   /* padding-left: 15px; */
   width: 85%;
-  background-color: #fff;  
+  background-color: #fff;
   filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
   cursor: pointer;
   flex-direction: row;
@@ -133,7 +137,6 @@ export const PrivateBlock = styled.div`
     margin: auto;
     font-size: 14px;
     color: #545454;
-
   }
 `;
 
@@ -142,19 +145,19 @@ export const UpperLine = styled.div`
   justify-content: space-between;
   font-size: 14px;
   span {
-    color: #E938AE;
+    color: #e938ae;
   }
-`
+`;
 
 export const LowerLine = styled.div`
-display: flex;
-justify-content: flex;
-justify-content: space-between;
-font-size: 14px;
-span {
-  color: #1746C7;
-}
-`
+  display: flex;
+  justify-content: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  span {
+    color: #1746c7;
+  }
+`;
 export const PublicBlock = styled.div`
   /* display: flex; */
   margin: auto;
@@ -175,13 +178,20 @@ export const PublicBlock = styled.div`
     width: 77%;
     height: 88%;
   }
+`;
+
+export const PublicInfo = styled.div`
+  margin-top: 10px;
   p {
     margin: auto;
+    font-size: 14px;
+    color: #545454;
   }
   span:first-child {
-    background-color: aliceblue;
+    /* background-color: blue; */
     font-size: 18px;
     font-weight: 700;
+    margin-right: 5px;
   }
 `;
 
@@ -210,16 +220,19 @@ export const StSearch = styled.div`
   display: flex;
   margin: auto;
   margin-top: 70px;
-  justify-content: center;
   align-items: center;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 `;
 
 export const SearchInput = styled.input`
   border: none;
   /* width: 100%; */
   background-color: transparent;
+
+  ::placeholder {
+    padding-left: 5px;
+  }
   :focus {
     outline: none;
   }

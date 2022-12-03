@@ -9,14 +9,12 @@ import {
   StWrap,
   MapPlace,
   PlaceList,
-  SearchTerm,
   StSearch,
   SearchInput,
   ListBar,
   Lists,
 } from './Style';
 import SpotsMap from '../reservation/SpotsMap';
-import SearchBar from '../../components/SearchBar';
 import {
   __getAllSpot,
   __getSearchedSpot,
@@ -32,7 +30,7 @@ const Reservation = () => {
   const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
-  const title = 'Search';
+  const title = '검색';
 
   useEffect(() => {
     if (!params.keywords) {
@@ -59,7 +57,7 @@ const Reservation = () => {
 
   if (params?.keywords?.includes(' ')) {
     params.keyword = params?.keywords?.split(' ');
-    console.log(params.keyword);
+    // console.log(params.keyword);
   }
 
   return (
@@ -68,7 +66,7 @@ const Reservation = () => {
         <FlexibleHeader title={title} />
         <StWrap>
           <StSearch>
-            <FaSearchLocation />
+            <FaSearchLocation style={{paddingLeft: '20px'}}/>
             <form onSubmit={onSearchHandler}>
               <SearchInput
                 type='text'
@@ -81,7 +79,6 @@ const Reservation = () => {
               />
             </form>
           </StSearch>
-          <SearchTerm></SearchTerm>
           <MapPlace>
             {!params.keywords ? (
               <>

@@ -26,7 +26,29 @@ import {
   SportsBlock,
   StWrap,
   ThirdPage,
+  GrayBorder,
+  Logo,
+  FootballInput,
+  FootballDiv,
+  TennisInput,
+  TennisDiv,
+  BadmintonInput,
+  BadmintonDiv,
+  SwimmingInput,
+  SwimmingDiv,
+  BaseballInput,
+  BaseballDiv,
+  BasketballInput,
+  BasketballDiv,
+  RunningInput,
+  RunningDiv,
+  GolfInput,
+  GolfDiv,
+  HealthInput,
+  HealthDiv,
+  RecommendTitle,
 } from "../signUp/Styles";
+import { LoginBtn } from "./Styles";
 
 const KakaoAdd = () => {
   const [isCode, setIsCode] = useToggle();
@@ -38,13 +60,14 @@ const KakaoAdd = () => {
   const [nnConfirm, setNnConfirm] = useToggle();
   const [code, setCode] = useState("");
   const {
-    register,
     handleSubmit,
+    register,
     getValues,
     formState: { errors },
-  } = useForm();
-
+  } = useForm({ mode: "all" });
+  // window.localStorage.setItem("loginId", 2526933634);
   const navigate = useNavigate();
+
   const isMember = localStorage.getItem("loginId");
   console.log(isMember);
 
@@ -118,43 +141,54 @@ const KakaoAdd = () => {
 
   const sendPhoneForCode = () => {
     const phone = getValues("phone");
-    LoginAPI.postforVCode({ phone })
-      .then((res) => {
-        console.log(res);
-        Swal.fire({
-          text: "인증번호가 전송되었습니다",
-          width: "300px",
-          confirmButtonText: "확인",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        });
-        setIsCode(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.status === 412) {
-          Swal.fire({
-            text: "이미 가입된 휴대폰 번호입니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
-          return;
-        } else {
-          Swal.fire({
-            text: "유효하지 않은 휴대폰 번호입니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
-          return;
-        }
+    if (phone.length < 10) {
+      Swal.fire({
+        text: "10~11자리의 번호를 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
       });
+    } else {
+      LoginAPI.postforVCode({ phone })
+        .then((res) => {
+          console.log(res);
+          Swal.fire({
+            text: "인증번호가 전송되었습니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+          setIsCode(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status === 412) {
+            Swal.fire({
+              text: "이미 가입된 휴대폰 번호입니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+            return;
+          } else {
+            Swal.fire({
+              text: "유효하지 않은 휴대폰 번호입니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+            return;
+          }
+        });
+    }
   };
   const checkVCode = () => {
     const phone = getValues("phone");
@@ -171,7 +205,7 @@ const KakaoAdd = () => {
             hideClass: { popup: "animated fadeOutUp faster" },
           });
         }
-        setIsCode(true);
+        setCodeSent(true);
       })
       .catch((err) => {
         console.log(err);
@@ -210,13 +244,23 @@ const KakaoAdd = () => {
                 >
                   계속하기
                 </NextBtn>
+                <LoginBtn
+                  onClick={() => {
+                    navigate(`/`);
+                    window.localStorage.removeItem("loginId");
+                  }}
+                >
+                  다음에 가입하기
+                </LoginBtn>
               </ContentWrap>
             ) : null}
             {nickname ? (
               <ThirdPage>
-                <PageTitle>닉네임 입력하기</PageTitle>
+                <Logo>
+                  <img alt="" src="/spotslogo.png" />
+                </Logo>
                 <ContentWrap>
-                  <div>
+                  <GrayBorder>
                     <input
                       type="text"
                       {...register("nickname", {
@@ -228,9 +272,7 @@ const KakaoAdd = () => {
                     />
                     <button
                       style={{
-                        background: "white",
                         border: "none",
-                        height: "39.5px",
                         color: "#ff00b3",
                         fontWeight: "600",
                       }}
@@ -239,14 +281,14 @@ const KakaoAdd = () => {
                     >
                       중복확인
                     </button>
-                    {errors.nickname && errors.nickname.type === "required" && (
-                      <p>닉네임을 입력해주세요</p>
-                    )}
-                    {errors.nickname &&
-                      errors.nickname.type === "minLegnth" && (
-                        <p>닉네임을 한 글자 이상 입력해주세요</p>
-                      )}
-                  </div>
+                  </GrayBorder>
+                  {errors.nickname && errors.nickname.type === "required" && (
+                    <p>닉네임을 입력해주세요</p>
+                  )}
+                  {errors.nickname && errors.nickname.type === "minLegnth" && (
+                    <p>닉네임을 한 글자 이상 입력해주세요</p>
+                  )}
+
                   <div>
                     <input
                       style={{
@@ -300,38 +342,33 @@ const KakaoAdd = () => {
                       setPhoneCode(true);
                     }}
                   >
-                    계속하기
+                    다음
                   </NextBtn>
                 </ContentWrap>
               </ThirdPage>
             ) : null}
             {phoneCode ? (
               <SecondPage>
-                <PageTitle>휴대폰 인증</PageTitle>
+                <Logo>
+                  <img alt="" src="/spotslogo.png" />
+                </Logo>
                 <ContentWrap>
-                  <div>
+                  <GrayBorder>
                     <input
                       type="text"
                       {...register("phone", {
                         required: true,
-                        maxLegnth: 10,
+                        minLegnth: 10,
                         pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
                       })}
-                      placeholder="휴대폰 번호를 입력해주세요"
+                      placeholder="01012345678"
                       autoComplete="off"
                     />
-                    {errors.phone && errors.phone.type === "required" && (
-                      <p>휴대폰 번호를 입력해주세요</p>
-                    )}
-                    {errors.phone && errors.phone.type === "pattern" && (
-                      <p>올바른 번호 형식이 아닙니다.</p>
-                    )}
+
                     {!codeSent ? (
                       <button
                         style={{
-                          background: "white",
                           border: "none",
-                          height: "39.5px",
                           color: "#ff00b3",
                           fontWeight: "600",
                           cursor: "pointer",
@@ -344,9 +381,7 @@ const KakaoAdd = () => {
                     ) : (
                       <button
                         style={{
-                          background: "white",
                           border: "none",
-                          height: "39.5px",
                           color: "#ff00b3",
                           fontWeight: "600",
                           cursor: "pointer",
@@ -357,27 +392,38 @@ const KakaoAdd = () => {
                         다시받기
                       </button>
                     )}
+                  </GrayBorder>
+                  {errors.phone && errors.phone.type === "required" && (
+                    <p>휴대폰 번호를 입력해주세요</p>
+                  )}
+                  {errors.phone && errors.phone.type === "pattern" && (
+                    <p>10~11자리의 번호를 입력해주세요</p>
+                  )}
+                  {isCode && (
+                    <GrayBorder>
+                      <input
+                        placeholder="인증번호를 입력하세요"
+                        type="text"
+                        required
+                        name="code"
+                        autoComplete="off"
+                        onChange={(e) => setCode(e.target.value)}
+                      />
+                      <button
+                        style={{
+                          border: "none",
+                          color: "#ff00b3",
+                          fontWeight: "600",
+                          cursor: "pointer",
+                        }}
+                        type="button"
+                        onClick={checkVCode}
+                      >
+                        인증확인
+                      </button>
+                    </GrayBorder>
+                  )}
 
-                    {isCode && (
-                      <div>
-                        <div>
-                          인증번호
-                          <Red>*</Red>
-                        </div>
-                        <input
-                          placeholder="인증번호를 입력하세요"
-                          type="text"
-                          required
-                          name="code"
-                          autoComplete="off"
-                          onChange={(e) => setCode(e.target.value)}
-                        />
-                        <button type="button" onClick={checkVCode}>
-                          확인
-                        </button>
-                      </div>
-                    )}
-                  </div>
                   <NextBtn
                     onClick={(e) => {
                       if (!isCode) {
@@ -400,12 +446,13 @@ const KakaoAdd = () => {
                           showClass: { popup: "animated fadeInDown faster" },
                           hideClass: { popup: "animated fadeOutUp faster" },
                         });
+                        return;
                       }
                       phoneCodeHandler();
                       setAddSport(true);
                     }}
                   >
-                    계속하기
+                    다음
                   </NextBtn>
                 </ContentWrap>
               </SecondPage>
@@ -416,89 +463,94 @@ const KakaoAdd = () => {
                 <SportsBlock>
                   <MySports>
                     <SportLabel>
-                      <SportInput
+                      <FootballInput
                         type="checkbox"
                         id="football"
                         value="football"
                         {...register("sports")}
                       />
-                      <SportDiv>
-                        <IoFootball style={{ fontSize: "30px" }} />
-                        풋살
-                      </SportDiv>
+                      <FootballDiv></FootballDiv>
                     </SportLabel>
                     <SportLabel>
-                      <SportInput
+                      <TennisInput
                         type="checkbox"
                         value="tennis"
                         {...register("sports")}
                       />
-                      <SportDiv>
-                        <IoMdTennisball style={{ fontSize: "30px" }} />
-                        테니스
-                      </SportDiv>
+                      <TennisDiv />
                     </SportLabel>
                     <SportLabel>
-                      <SportInput
+                      <BadmintonInput
                         type="checkbox"
                         value="badminton"
                         {...register("sports")}
                       />
-                      <SportDiv>
-                        <GiShuttlecock style={{ fontSize: "30px" }} />
-                        배드민턴
-                      </SportDiv>
+                      <BadmintonDiv></BadmintonDiv>
                     </SportLabel>
                   </MySports>
+                  <PageTitle>어떤 운동을 좋아하시나요?</PageTitle>
                   <FavSports>
-                    관심 스팟
-                    <hr />
-                    <input
-                      type="checkbox"
-                      value="swim"
-                      {...register("favSports")}
-                    />
-                    수영
-                    <input
-                      type="checkbox"
-                      value="baseball"
-                      {...register("favSports")}
-                    />
-                    야구
-                    <input
-                      type="checkbox"
-                      value="basketball"
-                      {...register("favSports")}
-                    />
-                    농구
-                    <input
-                      type="checkbox"
-                      value="running"
-                      {...register("favSports")}
-                    />
-                    러닝
-                    <input
-                      type="checkbox"
-                      value="golf"
-                      {...register("favSports")}
-                    />
-                    골프
-                    <input
-                      type="checkbox"
-                      value="health"
-                      {...register("favSports")}
-                    />
-                    헬스
+                    <SportLabel>
+                      <SwimmingInput
+                        type="checkbox"
+                        value="swim"
+                        {...register("favSports")}
+                      />
+                      <SwimmingDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <BaseballInput
+                        type="checkbox"
+                        value="baseball"
+                        {...register("favSports")}
+                      />
+                      <BaseballDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <BasketballInput
+                        type="checkbox"
+                        value="basketball"
+                        {...register("favSports")}
+                      />
+                      <BasketballDiv />
+                    </SportLabel>
+                  </FavSports>{" "}
+                  <FavSports>
+                    <SportLabel>
+                      <RunningInput
+                        type="checkbox"
+                        value="running"
+                        {...register("favSports")}
+                      />
+                      <RunningDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <GolfInput
+                        type="checkbox"
+                        value="golf"
+                        {...register("favSports")}
+                      />
+                      <GolfDiv />
+                    </SportLabel>
+                    <SportLabel>
+                      <HealthInput
+                        type="checkbox"
+                        value="health"
+                        {...register("favSports")}
+                      />
+                      <HealthDiv />
+                    </SportLabel>
                   </FavSports>
-                  <div>
+                  <RecommendTitle>추천인 ID를 입력해주세요</RecommendTitle>
+                  <GrayBorder>
                     <RecommendId
                       type="text"
                       {...register("recommendId", {})}
-                      placeholder="추천인ID를 입력해주세요"
+                      placeholder="5,000포인트 추가 지급"
                       autoComplete="off"
                     />
-                  </div>
-                  <NextBtn type="submit">SPOTS 시작하기</NextBtn>
+                  </GrayBorder>
+                  <NextBtn type="submit">회원가입</NextBtn>
                 </SportsBlock>
               </ForthPage>
             ) : null}
