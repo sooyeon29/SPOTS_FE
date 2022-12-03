@@ -114,7 +114,7 @@ export const SelectDone = styled.div`
 `;
 export const SelectDone2 = styled.button`
   border: 1px solid #d9d9d9;
-  border-radius: 15px;
+  border-radius: 20px;
   width: 50%;
   height: 180px;
   font-weight: bold;
@@ -501,6 +501,7 @@ export const MatchList = styled(BookMatch)`
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 95%;
+  border: none;
   /* display: flex;
   flex-direction: column; */
 `;
@@ -514,7 +515,7 @@ export const WaitingMatch = styled.div`
   width: 30%;
   /* height: 51px; */
   border-radius: 10px;
-  margin: 10px 10px;
+  margin: 10px 3px 0px 10px;
   /* background-image: url(/football.png); */
   background-color: #f5f5f5;
   /* background-size: cover; */

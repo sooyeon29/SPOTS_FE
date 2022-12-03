@@ -153,23 +153,6 @@ const MainMaps = () => {
                 <SpotInfoMain>
                   <img alt="구장이미지" src={sixmatch.place?.image} />
                   <Info2>
-                    {/* <div>
-                      {sixmatch.place.sports === "테니스장" ? (
-                        <>
-                          <Icon2 src="/newTennis.png" />
-                        </>
-                      ) : null}
-                      {sixmatch.place.sports === "배드민턴장" ? (
-                        <>
-                          <Icon2 src="/newBadminton.png" />
-                        </>
-                      ) : null}
-                      {sixmatch.place.sports === "풋살장" ? (
-                        <>
-                          <Icon2 src="/newFutsal.png" />
-                        </>
-                      ) : null}
-                    </div> */}
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${sixmatch.place?.placesId}`)

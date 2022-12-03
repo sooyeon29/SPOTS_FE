@@ -4,14 +4,7 @@ import { lighten, darken } from "polished";
 export const StWraps = styled.div`
   margin-top: 70px;
   margin-bottom: 60px;
-  /* background-color: #f1f1f1; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* flex-direction: column; */
   padding: 30px;
-  /* height: 320px; */
-  /* text-align: center; */
 `;
 
 export const PageTitle = styled.div`
@@ -153,6 +146,8 @@ export const GoogleBtn = styled(KakaoBtn)`
   }
 `;
 export const SocialLogin = styled.div`
+  width: 340px;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -190,6 +185,9 @@ export const GrayBorder = styled.div`
     margin: 0px 5px 0px 10px;
     width: 60%;
     height: 70%;
+    :focus {
+      outline: none;
+    }
     ::placeholder {
       color: #c2c2c2;
     }
