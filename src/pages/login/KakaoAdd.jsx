@@ -205,7 +205,8 @@ const KakaoAdd = () => {
             hideClass: { popup: "animated fadeOutUp faster" },
           });
         }
-        setCodeSent(true);
+        setAddSport(true);
+        setPhoneCode(false);
       })
       .catch((err) => {
         console.log(err);
@@ -409,23 +410,13 @@ const KakaoAdd = () => {
                         autoComplete="off"
                         onChange={(e) => setCode(e.target.value)}
                       />
-                      <button
-                        style={{
-                          border: "none",
-                          color: "#ff00b3",
-                          fontWeight: "600",
-                          cursor: "pointer",
-                        }}
-                        type="button"
-                        onClick={checkVCode}
-                      >
-                        인증확인
-                      </button>
                     </GrayBorder>
                   )}
 
                   <NextBtn
-                    onClick={(e) => {
+                    type="button"
+                    onClick={() => {
+                      checkVCode();
                       if (!isCode) {
                         Swal.fire({
                           text: "휴대폰 인증을 해주세요",
@@ -437,19 +428,6 @@ const KakaoAdd = () => {
                         });
                         return;
                       }
-                      if (code === "") {
-                        Swal.fire({
-                          text: "인증번호를 입력 해주세요",
-                          width: "300px",
-                          confirmButtonText: "확인",
-                          confirmButtonColor: "#40d295",
-                          showClass: { popup: "animated fadeInDown faster" },
-                          hideClass: { popup: "animated fadeOutUp faster" },
-                        });
-                        return;
-                      }
-                      phoneCodeHandler();
-                      setAddSport(true);
                     }}
                   >
                     다음
