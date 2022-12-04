@@ -244,7 +244,8 @@ export default TeamDetail;
 
 const InputBox = styled.div`
   margin-bottom: 40px;
-  width: 100%;
+  width: 80%;
+  /* margin: auto; */
 `;
 
 const InputText = styled.input`

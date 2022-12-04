@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import Loading from "../../components/Loading";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import { Red } from "../signUp/Styles";
@@ -35,9 +36,9 @@ const Kakao = () => {
   }, []);
 
   return (
-    <Spinner>
-      <img alt="" src="/Spinner.gif" />
-    </Spinner>
+    <>
+      <Loading />
+    </>
   );
 };
 
