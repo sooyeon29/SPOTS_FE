@@ -205,6 +205,7 @@ const Bottom = styled.div`
   width: 270px;
   height: 65px;
   border-top: 1px solid #cecece;
+  cursor: pointer;
   .icon {
     font-size: 30px;
     color: #cecece;
