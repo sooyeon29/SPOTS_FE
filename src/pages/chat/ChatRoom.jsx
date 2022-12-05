@@ -31,7 +31,7 @@ const ChatRoom = ({ chatOpen, chatOpenRef }) => {
           </StHeader>
           <StContent>
             슬기로운 운동 생활 No.1 플랫폼, SPOTS ⚽️🎾🏸
-            <p>궁금한 점은 언제든지 문의해주세요.</p>
+            <p>문의하기 기능은 곧 오픈될 예정입니다!</p>
           </StContent>
           <StChat>
             <StChatContent>
