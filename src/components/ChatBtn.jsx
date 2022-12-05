@@ -17,8 +17,8 @@ const ChatBtn = ({ chatHandler, chatRef }) => {
 export default ChatBtn;
 
 const Btn = styled.div`
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   border: 3px solid #fefefe;
   background-color: #fefefe;
   border-radius: 50%;
@@ -30,8 +30,8 @@ const Btn = styled.div`
   position: fixed;
 
   img {
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     border-radius: 90px;
   }
 `;

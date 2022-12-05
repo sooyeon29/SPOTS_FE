@@ -164,6 +164,9 @@ export const CalTime = styled.div`
     margin-left: 20px;
     font-weight: bold;
   }
+  img {
+    width: 15px;
+  }
 `;
 export const Times = styled.div`
   display: flex;

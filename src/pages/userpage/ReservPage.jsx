@@ -100,7 +100,7 @@ const ReservPage = () => {
                   </DayTime>
                 </MoreInfo>
                 <SpotInfo>
-                  <img alt='구장이미지준비중' src={matchCom.placeData?.image} />
+                  <img alt="구장이미지준비중" src={matchCom.placeData?.image} />
                   <div>
                     <button
                       onClick={() =>
@@ -110,16 +110,20 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
-                    <span>{Number(matchCom.placeData?.price).toLocaleString('ko-KR')}</span>
+                    <span>
+                      {Number(matchCom.placeData?.price).toLocaleString(
+                        'ko-KR'
+                      )}
+                    </span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
                 <ForMatch>
                   <div>나의 팀</div>
                   {matchCom.teamData?.image === null ? (
-                    <img alt='spots_logo' src='/myprofile_logo.png' />
+                    <img alt="spots_logo" src="/myprofile_logo.png" />
                   ) : (
-                    <img alt='팀로고' src={matchCom.teamData?.image} />
+                    <img alt="팀로고" src={matchCom.teamData?.image} />
                   )}
 
                   <div>{matchCom.matchData?.teamName}</div>
@@ -157,7 +161,7 @@ const ReservPage = () => {
                 </MoreInfo>
                 <SpotInfo>
                   <img
-                    alt='구장이미지준비중'
+                    alt="구장이미지준비중"
                     src={matchWait.placeData?.image}
                   />
                   <div>
@@ -171,7 +175,11 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchWait.placeData?.address}</p>
-                    <span>{Number(matchWait.placeData?.price).toLocaleString('ko-KR')}</span>
+                    <span>
+                      {Number(matchWait.placeData?.price).toLocaleString(
+                        'ko-KR'
+                      )}
+                    </span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -196,9 +204,9 @@ const ReservPage = () => {
                   <WaitTeam>
                     <TeamInfoDetail>
                       {matchWait.teamData?.image === null ? (
-                        <img alt='spots_logo' src='/myprofile_logo.png' />
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
                       ) : (
-                        <img alt='팀로고' src={matchWait.teamData?.image} />
+                        <img alt="팀로고" src={matchWait.teamData?.image} />
                       )}
 
                       <div>{matchWait.matchData?.teamName}</div>
@@ -209,7 +217,7 @@ const ReservPage = () => {
                     </VS>
 
                     <div>
-                      <img alt='' src='/waitgroup.png' />
+                      <img alt="" src="/waitgroup.png" />
                     </div>
                   </WaitTeam>
                 </WaitedMatch>
@@ -243,7 +251,7 @@ const ReservPage = () => {
                   </DayTime>
                 </MoreInfo>
                 <SpotInfo>
-                  <img alt='구장이미지준비중' src={matchCom.placeData?.image} />
+                  <img alt="구장이미지준비중" src={matchCom.placeData?.image} />
                   <div>
                     <button
                       onClick={() =>
@@ -253,7 +261,11 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
-                    <span>{Number(matchCom.placeData?.price).toLocaleString('ko-KR')}</span>
+                    <span>
+                      {Number(matchCom.placeData?.price).toLocaleString(
+                        'ko-KR'
+                      )}
+                    </span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -276,9 +288,9 @@ const ReservPage = () => {
                   <MatchVS>
                     <TeamInfoDetail>
                       {matchCom.teamData?.image === null ? (
-                        <img alt='spots_logo' src='/myprofile_logo.png' />
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
                       ) : (
-                        <img alt='팀로고' src={matchCom.teamData?.image} />
+                        <img alt="팀로고" src={matchCom.teamData?.image} />
                       )}
                       <div>{matchCom.matchData?.teamName}</div>
                     </TeamInfoDetail>
@@ -289,16 +301,12 @@ const ReservPage = () => {
 
                     <TeamInfoDetail>
                       {matchCom.opponent?.image === null ? (
-                        <img alt='spots_logo' src='/myprofile_logo.png' />
+                        <img alt="spots_logo" src="/myprofile_logo.png" />
                       ) : (
-                        <img alt='팀로고' src={matchCom.opponent?.image} />
+                        <img alt="팀로고" src={matchCom.opponent?.image} />
                       )}
 
                       <div>{matchCom.opponent?.teamName}</div>
-                      <span>
-                        {matchCom.opponent?.wins}승 / {matchCom.opponent?.lose}
-                        패
-                      </span>
                     </TeamInfoDetail>
                   </MatchVS>
                 </WaitedMatch>

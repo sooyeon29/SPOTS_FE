@@ -57,7 +57,7 @@ import FlexibleHeader from "../../components/FlexibleHeader";
 import { subDays } from "date-fns";
 
 const SpotsDetail = () => {
-  const title = "Booking";
+  const title = "예약";
   const myTime = [
     "06:00 - 08:00",
     "08:00 - 10:00",
@@ -303,7 +303,7 @@ const SpotsDetail = () => {
                   </div>
                   <div>
                     <img alt="" src="/point.png" width="20px" />
-                    {spot.price}포인트
+                    {Number(spot.price).toLocaleString('ko-KR')} 포인트
                   </div>
                 </MoreInfo>
               </PlaceInfo>
@@ -339,7 +339,7 @@ const SpotsDetail = () => {
               {!toggle && (
                 <SelectDone>
                   <button onClick={clickedToggle}>
-                    <div>날짜를 선택해 주세요</div>
+                    <div>날짜를 선택해주세요</div>
                     <div>[ 선택 날짜 {bookDate} ]</div>
                   </button>
                 </SelectDone>
@@ -795,17 +795,17 @@ const SpotsDetail = () => {
                       잔여 포인트 :{" "}
                       {myPoint === undefined
                         ? "로그인 후 확인해주세요"
-                        : myPoint}
+                        : Number(myPoint).toLocaleString('ko-KR')}
                       <img alt="" src="/point.png" width="20px" />
                     </p>
                     <span>
-                      예약 포인트: {payAPrice + payBPrice}{" "}
+                      예약 포인트: {Number(payAPrice + payBPrice).toLocaleString('ko-KR')}
                       <img alt="" src="/point.png" width="20px" />
                     </span>
 
                     {myPoint > payAPrice + payBPrice ? (
                       <p>
-                        결제후포인트: {myPoint - payAPrice + payBPrice}{" "}
+                        결제 후 포인트: {Number(myPoint - payAPrice + payBPrice).toLocaleString('ko-KR')}
                         <img alt="" src="/point.png" width="20px" />
                       </p>
                     ) : (
