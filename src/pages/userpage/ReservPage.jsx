@@ -78,7 +78,7 @@ const ReservPage = () => {
       hideClass: { popup: "animated fadeOutUp faster" },
     });
   }
-
+  console.log("보여줘....", spotReserve);
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -92,9 +92,9 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchCom.matchData?.date.substring(0, 4)}년{" "}
-                      {matchCom.matchData?.date.substring(6, 8)}월{" "}
-                      {matchCom.matchData?.date.substring(10, 12)}일
+                      {matchCom.matchData?.date.substring(8, 10)}년{" "}
+                      {matchCom.matchData?.date.substring(0, 2)}월{" "}
+                      {matchCom.matchData?.date.substring(3, 5)}일
                     </div>
                     <div>{matchCom.matchData?.matchId.substring(0, 13)}</div>
                   </DayTime>
