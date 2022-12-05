@@ -85,6 +85,16 @@ const KakaoAdd = () => {
             hideClass: { popup: "animated fadeOutUp faster" },
           });
         }
+        if (error.status === 400) {
+          Swal.fire({
+            text: "선택사항을 모두 골라주세요",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        }
       });
   };
 
