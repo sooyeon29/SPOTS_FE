@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { GiShuttlecock } from "react-icons/gi";
-import { IoMdTennisball } from "react-icons/io";
-import { IoFootball } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "../../components/Header";
@@ -18,10 +15,7 @@ import {
   NextBtn,
   PageTitle,
   RecommendId,
-  Red,
   SecondPage,
-  SportDiv,
-  SportInput,
   SportLabel,
   SportsBlock,
   StWrap,
@@ -54,9 +48,9 @@ const KakaoAdd = () => {
   const [isCode, setIsCode] = useToggle();
   const [welcome, setwelcome, welcomeHandler] = useToggle();
   const [nickname, setNickname, nicknameHandler] = useToggle();
-  const [phoneCode, setPhoneCode, phoneCodeHandler] = useToggle();
+  const [phoneCode, setPhoneCode] = useToggle();
   const [codeSent, setCodeSent] = useToggle();
-  const [addSport, setAddSport, addSportHandler] = useToggle();
+  const [addSport, setAddSport] = useToggle();
   const [nnConfirm, setNnConfirm] = useToggle();
   const [code, setCode] = useState("");
   const {
@@ -65,7 +59,7 @@ const KakaoAdd = () => {
     getValues,
     formState: { errors },
   } = useForm({ mode: "all" });
-  // window.localStorage.setItem("loginId", 2526933634);
+
   const navigate = useNavigate();
 
   const isMember = localStorage.getItem("loginId");
