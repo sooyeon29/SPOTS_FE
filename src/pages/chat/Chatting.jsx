@@ -111,7 +111,7 @@ const Chatting = () => {
             <div>구장 예약, 경기 매칭 no1 플랫폼 </div>
             <div>상담시간 10:00-11:00</div>
           </ChatDesc>
-          <button onClick={onChat}>1:1문의하기</button>
+//           <button onClick={onChat}>1:1문의하기</button>
           {chatting?.map((chat, index) => (
             <div key={index}>
               {chat.nickname === "admin" ? (
