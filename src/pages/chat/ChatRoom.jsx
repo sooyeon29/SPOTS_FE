@@ -137,7 +137,7 @@ const StChat = styled.div`
     margin: -10px auto 0 auto;
   }
   margin: 0;
-  width: 390px;
+  width: 100%;
   height: 300px;
   display: flex;
   flex-direction: column;
