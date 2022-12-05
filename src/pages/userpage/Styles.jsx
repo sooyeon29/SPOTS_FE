@@ -446,6 +446,7 @@ export const ModifyBtn = styled.button`
   border: none;
   margin-left: 60px;
   font-weight: 600;
+  color: #000;
 `;
 export const ReservTitle = styled.div`
   padding-top: 15px;

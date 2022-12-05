@@ -349,7 +349,7 @@ const SpotsDetail = () => {
                 <CalTime>
                   <Times>
                     <img alt="" src="/matching/blackgroup.png" />
-                    우리팀끼리 사용하기
+                    우리 팀끼리 사용하기
                   </Times>
                   <Times>
                     <button

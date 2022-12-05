@@ -74,6 +74,7 @@ export const BtnWrap = styled.div`
     margin: auto;
     border: none;
     cursor: pointer;
+    color: #000;
     border-radius: 23px;
     :focus {
       background-color: #2b2bff;
