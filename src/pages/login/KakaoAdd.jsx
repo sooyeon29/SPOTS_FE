@@ -75,7 +75,7 @@ const KakaoAdd = () => {
       })
       .catch((error) => {
         console.log(error);
-        if (error.status === 412 && error.response.data.code === -4) {
+        if (error.response.status === 412 && error.response.data.code === -4) {
           Swal.fire({
             text: "잘못된 추천인아이디입니다",
             width: "300px",
@@ -85,7 +85,7 @@ const KakaoAdd = () => {
             hideClass: { popup: "animated fadeOutUp faster" },
           });
         }
-        if (error.status === 400) {
+        if (error.response.status === 400) {
           Swal.fire({
             text: "선택사항을 모두 골라주세요",
             width: "300px",
