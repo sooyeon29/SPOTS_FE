@@ -2,28 +2,28 @@ import { createGlobalStyle } from "styled-components";
 import SpoqaHanSansNeoRegular from "./fonts/SpoqaHanSansNeoRegular.woff";
 import SpoqaHanSansNeoBold from "./fonts/SpoqaHanSansNeoBold.woff";
 import SpoqaHanSansNeoThin from "./fonts/SpoqaHanSansNeoThin.woff";
+import NotoSansKRThin from "./fonts/NotoSansKRThin.otf";
+import NotoSansKRRegular from "./fonts/NotoSansKRRegular.otf";
+import NotoSansKRBold from "./fonts/NotoSansKRBold.otf";
 
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
   font-family: 'SpoqaRegular';
-        src: local('SpoqaHanSansNeoRegular'), local('SpoqaHanSansNeoRegular');
-        font-style: normal;
-        src: url(${SpoqaHanSansNeoRegular}) format('truetype');
+  font-style: normal;
+  src: url(${SpoqaHanSansNeoRegular}), url(${NotoSansKRRegular}) format('truetype');
 }
 
 @font-face {
   font-family: 'SpoqaBold';
-        src: local('SpoqaHanSansNeoBold'), local('SpoqaHanSansNeoBold');
-        font-style: normal;
-        src: url(${SpoqaHanSansNeoBold}) format('truetype');
+  font-style: normal;
+  src: url(${SpoqaHanSansNeoBold}), url(${NotoSansKRBold}) format('truetype');
 }
 
 @font-face {
   font-family: 'SpoqaThin';
-        src: local('SpoqaHanSansNeoThin'), local('SpoqaHanSansNeoThin');
-        font-style: normal;
-        src: url(${SpoqaHanSansNeoThin}) format('truetype');
+  font-style: normal;
+  src: url(${SpoqaHanSansNeoThin}), url(${NotoSansKRThin}) format('truetype');
 }
 
 

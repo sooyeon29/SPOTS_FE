@@ -229,6 +229,7 @@ export const Info2 = styled.div`
     background-color: transparent;
     border: none;
     cursor: pointer;
+    color: #000;
   }
 
   div{
