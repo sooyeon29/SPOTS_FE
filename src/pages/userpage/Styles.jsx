@@ -195,6 +195,9 @@ export const SpotInfo = styled.div`
   /* width: 350px; */
   margin-bottom: 20px;
   margin-right: 10px;
+  button {
+    color: #000;
+  }
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;

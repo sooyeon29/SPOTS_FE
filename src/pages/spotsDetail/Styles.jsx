@@ -19,7 +19,7 @@ export const SpotPhoto = styled.div`
   border-radius: 10px;
   img {
     width: 100%;
-    height: 350px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
     margin: auto;
@@ -126,10 +126,12 @@ export const SelectDone2 = styled.button`
   margin: 10px 5px 0px 5px;
   background-image: url("/matching/blue_myteam.png");
   background-size: cover;
+  background-position: center;
   &:disabled {
     /* background-color: #f7f8f8; */
     background-image: url("/matching/white_myteam.png");
     background-size: cover;
+    background-position: center;
   }
 `;
 export const SelectDone3 = styled(SelectDone2)`

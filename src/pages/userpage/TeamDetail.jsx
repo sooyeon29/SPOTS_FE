@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
-import { __getMyteamDetail } from "../../redux/modules/userSlice";
+import {
+  __getMyteamDetail,
+  __getMyteamList,
+} from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
 import { StTeamForm, Image } from "./Styles";
 import Layout from "../../components/Layout";
@@ -18,6 +21,7 @@ const TeamDetail = () => {
   const navigate = useNavigate();
   const adminRef = useRef();
   const { teamdetail } = useSelector((state) => state.user);
+  console.log(teamdetail.member);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const [count, setCount] = useState(Number(teamdetail.member));
 
@@ -42,11 +46,21 @@ const TeamDetail = () => {
           });
         }
       })
+      .then(() => dispatch(__getMyteamList()))
       .catch((error) => {
         console.log(error);
         if (error.response.status === 404) {
           Swal.fire({
             text: "해당 팀이 존재하지 않습니다.",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        } else if (error.response.status === 403) {
+          Swal.fire({
+            text: "예약 내역이 있을경우, 팀 삭제를 할 수 없습니다.",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
