@@ -119,7 +119,7 @@ const Hosting = () => {
       sendFD.append("price", price);
       sendFD.append("desc", desc);
 
-      if (!spotName) {
+      if (!spotName || spotName.trim() === "") {
         Swal.fire({
           text: "이름을 입력해주세요",
           width: "300px",
