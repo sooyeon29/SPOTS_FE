@@ -30,7 +30,7 @@ const ChatRoom = ({ chatOpen, chatOpenRef }) => {
             </button>
           </StHeader>
           <StContent>
-            성장기회의 평등🌱
+            슬기로운 운동 생활 No.1 플랫폼, SPOTS ⚽️🎾🏸
             <p>궁금한 점은 언제든지 문의해주세요.</p>
           </StContent>
           <StChat>
@@ -67,10 +67,8 @@ export default ChatRoom;
 
 const StContainer = styled.div`
   bottom: 60px;
-  right: 35px;
   position: fixed;
   z-index: 9999;
-  left: 0px;
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
@@ -83,7 +81,11 @@ const StContainer = styled.div`
 `;
 
 const StBox = styled.div`
-  width: 390px;
+  @media screen and (min-width: 600px) {
+    width: 600px;
+    height: 500px;
+  }
+  width: 100%;
   height: 550px;
   display: flex;
   flex-direction: column;
@@ -108,6 +110,9 @@ const StHeader = styled.div`
     font-weight: 500;
   }
   button {
+    @media screen and (min-width: 600px) {
+      margin-left: 400px;
+    }
     border: none;
     background-color: transparent;
     margin: 3px 0 0 190px;
@@ -127,6 +132,10 @@ const StContent = styled.div`
 `;
 
 const StChat = styled.div`
+  @media screen and (min-width: 600px) {
+    margin: -10px auto 0 auto;
+  }
+  margin: 0;
   width: 390px;
   height: 300px;
   display: flex;
@@ -134,7 +143,6 @@ const StChat = styled.div`
   border-radius: 35px;
   border: 1px solid lightgray;
   box-shadow: 15px 10px 30px #efeff0;
-  margin: -10px auto 0 auto;
 `;
 
 const StChatContent = styled.div`
