@@ -23,11 +23,11 @@ const Btn = styled.div`
   background-color: #fefefe;
   border-radius: 50%;
   z-index: 9;
+  right: 5%;
   bottom: 80px;
   display: flex;
   justify-content: space-between;
   position: fixed;
-
   img {
     width: 90px;
     height: 90px;
