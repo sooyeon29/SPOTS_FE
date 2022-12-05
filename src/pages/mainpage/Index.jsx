@@ -68,7 +68,7 @@ const MainMaps = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  console.log("왜 날짜 형식이 달라진거지", newMatch);
   // console.log(newSpot);
   // console.log('신규매치6개! 임박건!!!', newMatch);
   return (
@@ -133,8 +133,8 @@ const MainMaps = () => {
                 <WaitingMatchMain>
                   <div>
                     <img alt="" src="/date.png" width="60px" />
-                    {sixmatch.match?.date.substring(6, 8)}월
-                    {sixmatch.match?.date.substring(9, 12)}일
+                    {sixmatch.match?.date.substring(0, 2)}월
+                    {sixmatch.match?.date.substring(3, 5)}일
                   </div>
                   <div>
                     <img alt="" src="/time.png" width="60px" />
