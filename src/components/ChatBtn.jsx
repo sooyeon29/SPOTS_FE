@@ -19,16 +19,15 @@ export default ChatBtn;
 const Btn = styled.div`
   width: 90px;
   height: 90px;
-  bottom: 80px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  z-index: 9;
-  border-radius: 50%;
   border: 3px solid #fefefe;
   background-color: #fefefe;
+  border-radius: 50%;
+  z-index: 9;
+  bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+
   img {
     width: 90px;
     height: 90px;
