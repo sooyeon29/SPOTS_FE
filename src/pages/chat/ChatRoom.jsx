@@ -72,6 +72,7 @@ const StContainer = styled.div`
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
+  width: 100%;
   ${({ isOpen }) =>
     isOpen &&
     css`
