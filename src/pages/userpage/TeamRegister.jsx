@@ -41,9 +41,18 @@ const TeamRegister = () => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    if (nameRef.current.value === "" || sports === "" || count === "") {
+    if (nameRef.current.value.trim() === "" || sports === "" || count === "") {
       return Swal.fire({
         text: "모든 항목을 입력해주세요.",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+    } else if (count === 0 || count === 1) {
+      Swal.fire({
+        text: "팀 등록은 2명부터 가능합니다.",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -139,7 +148,12 @@ const TeamRegister = () => {
           <InputBox>
             <TeamLayout>
               <div>팀이름</div>
-              <InputText type="text" placeholder="team name" ref={nameRef} />
+              <InputText
+                type="text"
+                maxLength="10"
+                placeholder="team name"
+                ref={nameRef}
+              />
             </TeamLayout>
             <SportsLayout>
               <div>선호운동</div>
@@ -365,6 +379,7 @@ const PlusBtn = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  cursor: pointer;
 `;
 
 const MinusBtn = styled.div`
@@ -372,13 +387,14 @@ const MinusBtn = styled.div`
   height: 30px;
   border: none;
   background-color: #d9d9d9;
-  border-radius: 20px;
+  border-radius: 30px;
   color: #231f20;
-  font-size: 24px;
+  font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
+  cursor: pointer;
 `;
 
 const CountBox = styled.div`

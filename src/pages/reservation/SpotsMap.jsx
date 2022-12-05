@@ -110,8 +110,8 @@ const SpotsMap = ({ spotMarkers }) => {
                   image={{
                     src: "/private.png", // 마커이미지의 주소입니다
                     size: {
-                      width: 55,
-                      height: 55,
+                      width: 30,
+                      height: 30,
                     },
                   }} // 마커이미지의 크기입니다
                 />
@@ -148,8 +148,8 @@ const SpotsMap = ({ spotMarkers }) => {
                     //   '/privateBadminton.png') ||
                     // (privSpot.sports === '테니스장' && '/privateTennis.png'),
                     size: {
-                      width: 55,
-                      height: 55,
+                      width: 30,
+                      height: 30,
                     },
                   }}
                 />
@@ -186,8 +186,8 @@ const SpotsMap = ({ spotMarkers }) => {
                   image={{
                     src: "/public.png", // 마커이미지의 주소입니다
                     size: {
-                      width: 55,
-                      height: 55,
+                      width: 30,
+                      height: 30,
                     },
                   }} // 마커이미지의 크기입니다
                 />
@@ -225,8 +225,8 @@ const SpotsMap = ({ spotMarkers }) => {
                     // (pubSpot.minclassnm === '테니스장' &&
                     //   '/publicTennis.png'),
                     size: {
-                      width: 55,
-                      height: 55,
+                      width: 30,
+                      height: 30,
                     },
                   }}
                 />
