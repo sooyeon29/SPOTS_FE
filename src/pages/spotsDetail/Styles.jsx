@@ -191,6 +191,7 @@ export const Times = styled.div`
     height: 44px;
     font-weight: 400;
     font-size: 15px;
+    color: #000;
     &:hover {
       background: #d9d9d9;
       /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
@@ -223,6 +224,7 @@ export const TeamSelect = styled.select`
   margin: 7px auto;
   option {
     text-align: center;
+    color: #000;
   }
 `;
 
@@ -249,6 +251,7 @@ export const Counter = styled.div`
       background-color: transparent;
       border: 1px solid #d9d9d9;
       cursor: pointer;
+      color: #000;
     }
     div {
       width: 40px;
@@ -370,6 +373,7 @@ export const Team = styled.button`
   height: 44px;
   font-weight: 400;
   font-size: 15px;
+  color: #000;
   cursor: pointer;
   &:hover {
     background: #d9d9d9;
@@ -437,6 +441,7 @@ export const One = styled.button`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #e9ebec;
   border-radius: 7px;
   border: 0px;
+  color: #000;
   /* margin-right: 3%; */
   cursor: pointer;
   &:hover {
