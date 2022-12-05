@@ -28,7 +28,6 @@ const Btn = styled.div`
   display: flex;
   justify-content: space-between;
   position: fixed;
-
   img {
     width: 90px;
     height: 90px;
