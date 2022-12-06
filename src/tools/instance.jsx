@@ -4,15 +4,17 @@ import Swal from "sweetalert2";
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
 });
-
+let count = 0;
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
-  async (config) => {
+  (config) => {
     // 요청이 전달되기 전 작업 수행
-    // console.log("인터셉터리퀘스트:", config);
+    console.log("인터셉터리퀘스트:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
+      // config.headers["count"] = count++;
+      // config.headers
       // console.log("1번째 토큰!", token);
     }
     return config;
@@ -23,83 +25,86 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+// .then(() => {
+//   console.log("음하ㅏ하하");
+// });
 
 // // 응답 인터셉터 추가
-// instance.interceptors.response.use(
-//   (response) => {
-//     // 응답 데이터가 있는 작업 수행
-//     console.log("인터셉터리스판스+++++++++++++++++:", response);
-//     if (response.status === 200 && response.data.code === 1) {
-//       window.localStorage.removeItem("token");
-//       window.localStorage.setItem("token", response.data.myNewToken);
-//       let newAccessToken = response.data.myNewToken;
-//       return instance({
-//         ...response.config,
-//         headers: {
-//           Authorization: `${newAccessToken}`,
-//         },
-//       });
-//     }
-//     return response;
-//   },
-//   (error) => {
-//     console.log("나 인터셉터에러", error);
-//     if (error.status === 401 || error.response.status === 412) {
-//       Swal.fire({
-//         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
-//         width: "300px",
-//         confirmButtonText: "확인",
-//         confirmButtonColor: "#40d295",
-//         showClass: { popup: "animated fadeInDown faster" },
-//         hideClass: { popup: "animated fadeOutUp faster" },
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//           window.localStorage.clear();
-//           window.location.replace("/login");
-//         }
-//       });
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
 instance.interceptors.response.use(
-  (res) => {
-    console.log("★ Axios.interceptors.response executed.");
-    console.log("처음응답", res);
-    let token = localStorage.getItem("token");
-    if (token) {
-      console.log(
-        "-----------------------------------------------------------------------------"
-      );
-      let lastAccessToken = token;
-      console.log("★ currentAccessToken ★ : ", lastAccessToken);
-      console.log("중간응답", res);
-      let newAccessToken = res.data.myNewToken;
-
-      if (newAccessToken) {
-        console.log("♥ newAccessToken ♥ : ", newAccessToken);
-
-        if (lastAccessToken !== newAccessToken) {
-          lastAccessToken = newAccessToken;
-          localStorage.setItem("token", newAccessToken);
-          console.log("마지막응답", res);
-          return instance({
-            ...res.config,
-            headers: {
-              Authorization: `${newAccessToken}`,
-            },
-          });
-        }
-      }
-      console.log(
-        "-----------------------------------------------------------------------------"
-      );
+  (response) => {
+    // 응답 데이터가 있는 작업 수행
+    console.log("!!!!!!!!!!!!!!!인터셉터리스판스", response);
+    if (response.status === 200 && response.data.code === 1) {
+      window.localStorage.removeItem("token");
+      window.localStorage.setItem("token", response.data.myNewToken);
+      let newAccessToken = response.data.myNewToken;
+      return instance({
+        ...response.config,
+        headers: {
+          Authorization: `${newAccessToken}`,
+        },
+      });
     }
-    return res;
+    return response;
   },
-  (err) => console.log(err)
+  (error) => {
+    console.log("나 인터셉터에러", error);
+    if (error.status === 401 || error.response.status === 412) {
+      Swal.fire({
+        text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.localStorage.clear();
+          window.location.replace("/login");
+        }
+      });
+    }
+    return Promise.reject(error);
+  }
 );
+
+// instance.interceptors.response.use(
+//   (res) => {
+//     console.log("★ Axios.interceptors.response executed.");
+//     console.log("처음응답", res);
+//     let token = localStorage.getItem("token");
+//     if (token) {
+//       console.log(
+//         "-----------------------------------------------------------------------------"
+//       );
+//       let lastAccessToken = token;
+//       console.log("★ currentAccessToken ★ : ", lastAccessToken);
+//       // console.log("중간응답", res);
+//       let newAccessToken = res.data.myNewToken;
+
+//       if (newAccessToken) {
+//         console.log("♥ newAccessToken ♥ : ", newAccessToken);
+
+//         if (lastAccessToken !== newAccessToken) {
+//           lastAccessToken = newAccessToken;
+//           localStorage.setItem("token", newAccessToken);
+//           // console.log("마지막응답", res);
+//           return instance({
+//             ...res.config,
+//             headers: {
+//               Authorization: `${newAccessToken}`,
+//             },
+//           });
+//         }
+//       }
+//       console.log(
+//         "-----------------------------------------------------------------------------"
+//       );
+//     }
+//     return res;
+//   },
+//   (err) => console.log(err)
+// );
 
 // 로그인
 export const LoginAPI = {
