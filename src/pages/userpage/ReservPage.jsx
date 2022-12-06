@@ -78,24 +78,24 @@ const ReservPage = () => {
       hideClass: { popup: "animated fadeOutUp faster" },
     });
   }
-  if (
-    spotReserve?.length === 0 &&
-    matchWaiting?.length === 0 &&
-    myDoneMatches?.length === 0
-  ) {
-    Swal.fire({
-      text: "아직 예약한 곳이 없습니다. 예약하러 가보세요",
-      width: "300px",
-      confirmButtonText: "예약하러 가기",
-      confirmButtonColor: "#40d295",
-      showClass: { popup: "animated fadeInDown faster" },
-      hideClass: { popup: "animated fadeOutUp faster" },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate(`/book`);
-      }
-    });
-  }
+  // if (
+  //   spotReserve?.length === 0 &&
+  //   matchWaiting?.length === 0 &&
+  //   myDoneMatches?.length === 0
+  // ) {
+  //   Swal.fire({
+  //     text: "아직 예약한 곳이 없습니다. 예약하러 가보세요",
+  //     width: "300px",
+  //     confirmButtonText: "예약하러 가기",
+  //     confirmButtonColor: "#40d295",
+  //     showClass: { popup: "animated fadeInDown faster" },
+  //     hideClass: { popup: "animated fadeOutUp faster" },
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       navigate(`/book`);
+  //     }
+  //   });
+  // }
   console.log("구장예약리스트", spotReserve);
   console.log("매칭대기중리스트", matchWaiting);
   console.log("매칭완료된리스트", myDoneMatches);
@@ -105,6 +105,7 @@ const ReservPage = () => {
       <MyReserve>
         <ReservedSpot>
           <AboutMatch>구장 예약</AboutMatch>
+          {spotReserve?.length === 0 && <div>예약한 구장이 없습니다</div>}
           {spotReserve?.map((matchCom) => {
             return (
               <MyMatch2 key={matchCom.matchData?.reservationId}>
@@ -167,6 +168,9 @@ const ReservPage = () => {
 
         <WaitedMatch>
           <AboutMatch>매칭 대기/팀매칭 대기</AboutMatch>
+          {matchWaiting?.length === 0 && (
+            <div>매칭 대기중인 나의팀이 없습니다</div>
+          )}
           {matchWaiting?.map((matchWait) => {
             return (
               <MyMatch2 key={matchWait.matchData?.reservationId}>
@@ -260,6 +264,9 @@ const ReservPage = () => {
         </WaitedMatch>
         <CompletedMath>
           <AboutMatch>매칭 완료</AboutMatch>
+          {myDoneMatches?.length === 0 && (
+            <div>매칭이 성사된 예약이 없습니다</div>
+          )}
           {myDoneMatches?.map((matchCom) => {
             return (
               <MyMatch2 key={matchCom.matchData?.reservationId}>
