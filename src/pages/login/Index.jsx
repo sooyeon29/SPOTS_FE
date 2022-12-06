@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import { LoginAPI, UserpageAPI } from "../../tools/instance";
+import { LoginAPI } from "../../tools/instance";
 import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL } from "./OAuth";
 import {
   StWraps,
@@ -22,6 +22,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { IoIosLock } from "react-icons/io";
 import Swal from "sweetalert2";
+import { IoIosLock } from "react-icons/io";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({

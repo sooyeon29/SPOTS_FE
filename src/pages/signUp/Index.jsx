@@ -73,7 +73,7 @@ const SignUp = () => {
   const onIdPwPageHandler = (e) => {
     e.preventDefault();
     const loginId = getValues("loginId");
-    const idRex = /^[a-zA-z0-9]{6,20}$/ 
+    const idRex = /^[a-zA-z0-9]{6,20}$/;
     if (loginId.trim() === "") {
       Swal.fire({
         text: "아이디를 입력해주세요",
@@ -97,7 +97,7 @@ const SignUp = () => {
       return;
     }
     const pw = getValues("password");
-    const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/
+    const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/;
     if (pw.trim() === "") {
       Swal.fire({
         text: "비밀번호를 입력해주세요",
@@ -200,11 +200,14 @@ const SignUp = () => {
   };
 
   const onSubmit = async (data) => {
+    const loginId = getValues("loginId");
     SignUpAPI.signUp(data)
       .then((res) => {
         // console.log(res);
         if (res.status === 201) {
-          navigate("/welcome");
+          navigate("/welcome", {
+            state: { loginId: loginId, password: password },
+          });
         }
       })
       .catch((error) => {
@@ -266,7 +269,7 @@ const SignUp = () => {
   // ID 중복 확인
   const checkId = () => {
     const loginId = getValues("loginId");
-    const idRex = /^[a-zA-z0-9]{6,20}$/ 
+    const idRex = /^[a-zA-z0-9]{6,20}$/;
     if (loginId.trim() === "") {
       Swal.fire({
         text: "아이디를 입력해주세요",
@@ -499,7 +502,8 @@ const SignUp = () => {
                       type="password"
                       {...register("password", {
                         required: true,
-                        pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/
+                        pattern:
+                          /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/,
                       })}
                       placeholder="비밀번호"
                     />
@@ -508,7 +512,9 @@ const SignUp = () => {
                     <p>✓ 비밀번호를 입력해주세요</p>
                   )}
                   {errors.password && errors.password.type === "pattern" && (
-                    <p>✓ 영문과 숫자, 특수문자를 조합하여 6글자 이상 입력해주세요</p>
+                    <p>
+                      ✓ 영문과 숫자, 특수문자를 조합하여 6글자 이상 입력해주세요
+                    </p>
                   )}
                   <GrayBorder>
                     <IoIosLock size={24} color={"#949494"} />

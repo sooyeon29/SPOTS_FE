@@ -44,7 +44,7 @@ import {
 } from "../signUp/Styles";
 import { LoginBtn } from "./Styles";
 
-const KakaoAdd = () => {
+const SocialSignUp = () => {
   const [isCode, setIsCode] = useToggle();
   const [welcome, setwelcome, welcomeHandler] = useToggle();
   const [nickname, setNickname, nicknameHandler] = useToggle();
@@ -66,7 +66,7 @@ const KakaoAdd = () => {
   console.log(isMember);
 
   const onSubmit = async (data) => {
-    SignUpAPI.kakaoSingUp({ ...data, loginId: isMember })
+    SignUpAPI.socialSignUp({ ...data, loginId: isMember })
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
@@ -544,4 +544,4 @@ const KakaoAdd = () => {
   );
 };
 
-export default KakaoAdd;
+export default SocialSignUp;
