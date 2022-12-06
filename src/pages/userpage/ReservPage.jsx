@@ -79,9 +79,9 @@ const ReservPage = () => {
     });
   }
   if (
-    spotReserve.length === 0 &&
-    matchWaiting.length === 0 &&
-    myDoneMatches.length === 0
+    spotReserve?.length === 0 &&
+    matchWaiting?.length === 0 &&
+    myDoneMatches?.length === 0
   ) {
     Swal.fire({
       text: "아직 예약한 곳이 없습니다. 예약하러 가보세요",
