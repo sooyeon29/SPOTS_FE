@@ -109,7 +109,7 @@ const TeamDetail = () => {
                 </TeamLayout>
 
                 <TeamLayout>
-                  <div>admin</div>
+                  <div>관리자</div>
                   <div>{teamdetail.admin}</div>
                 </TeamLayout>
               </InputBox>
@@ -134,7 +134,7 @@ const TeamDetail = () => {
               </Image>
               <InputBox>
                 <TeamLayout>
-                  <div>팀이름</div>
+                  <div>팀 이름</div>
                   <div>{teamdetail.teamName}</div>
                 </TeamLayout>
                 <TeamLayout>
@@ -154,7 +154,7 @@ const TeamDetail = () => {
                   </PlusBtn>
                 </TeamLayout>
                 <TeamLayout>
-                  <div>admin</div>
+                  <div>관리자</div>
                   <InputText
                     type="text"
                     defaultValue={teamdetail.admin}
@@ -196,7 +196,7 @@ const TeamDetail = () => {
                         });
                       } else if (err.response.status === 400) {
                         Swal.fire({
-                          text: "admin은 가입한 회원에게만 위임할 수 있습니다.",
+                          text: "관리자 위임은 가입한 회원에게만 가능합니다.",
                           width: "300px",
                           confirmButtonText: "확인",
                           confirmButtonColor: "#40d295",

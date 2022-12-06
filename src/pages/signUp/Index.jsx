@@ -151,7 +151,7 @@ const SignUp = () => {
 
   const onNumberCertifiHandler = (e) => {
     e.preventDefault();
-    if (!setCodeConfirm) {
+    if (!codeConfirm) {
       Swal.fire({
         text: "휴대폰 인증을 해주세요",
         width: "300px",
@@ -333,7 +333,7 @@ const SignUp = () => {
   // 핸드폰 인증코드 받기
   const sendPhoneForCode = () => {
     const phone = getValues("phone");
-    if (phone.length < 10) {
+    if (phone.length < 10 || phone.length > 11) {
       Swal.fire({
         text: "10~11자리의 번호를 입력해주세요",
         width: "300px",
