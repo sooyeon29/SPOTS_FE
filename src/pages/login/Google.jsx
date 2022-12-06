@@ -7,8 +7,8 @@ const Google = () => {
   const navigate = useNavigate();
   const PARAMS = new URL(document.location).searchParams;
   const GOOGLE_CODE = PARAMS.get("code");
-  window.localStorage.setItem("googlecode", GOOGLE_CODE);
-  console.log(GOOGLE_CODE);
+  window.localStorage.setItem("GOOGLE_CODE", GOOGLE_CODE);
+  // console.log(GOOGLE_CODE);
   useEffect(() => {
     LoginAPI.googleLogin(GOOGLE_CODE)
       .then((res) => {

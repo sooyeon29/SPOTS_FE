@@ -205,7 +205,9 @@ const SignUp = () => {
       .then((res) => {
         // console.log(res);
         if (res.status === 201) {
-          navigate("/welcome", { loginId: loginId, password: password });
+          navigate("/welcome", {
+            state: { loginId: loginId, password: password },
+          });
         }
       })
       .catch((error) => {

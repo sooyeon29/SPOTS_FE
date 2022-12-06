@@ -16,7 +16,7 @@ const Kakao = () => {
   // 인가코드
   const PARAMS = new URL(document.location).searchParams;
   const KAKAO_CODE = PARAMS.get("code");
-  window.localStorage.setItem("kakaocode", KAKAO_CODE);
+  window.localStorage.setItem("KAKAO_CODE", KAKAO_CODE);
   // console.log(KAKAO_CODE);
   useEffect(() => {
     LoginAPI.kakaoLogin(KAKAO_CODE)

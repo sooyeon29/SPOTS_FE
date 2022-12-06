@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL } from "../pages/login/OAuth";
 import { LoginAPI } from "../tools/instance";
 import Header from "./Header";
 import Layout from "./Layout";
@@ -8,18 +9,23 @@ import TapBar from "./TapBar";
 const Welcome = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const loginId = location.loginId;
-  const password = location.password;
+  const loginId = location.state?.loginId;
+  const password = location.state?.password.current;
+  const kakao = localStorage.getItem("KAKAO_CODE");
+  const google = localStorage.getItem("GOOGLE_CODE");
 
-  const kakaocode = localStorage.getItem("kakaocode");
-  const googlecode = localStorage.getItem("googlecode");
   const kakaoHandler = () => {
-    if (kakaocode) {
-      LoginAPI.kakaoLogin(kakaocode)
+    if (kakao) {
+      window.location.replace(`${KAKAO_AUTH_URL}`);
+      const PARAMS = new URL(document.location).searchParams;
+      const KAKAO_CODE = PARAMS.get("code");
+
+      LoginAPI.kakaoLogin(KAKAO_CODE)
         .then((res) => {
-          console.log(res);
+          console.log("카카오", res);
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
+            localStorage.removeItem("KAKAO_CODE");
             navigate(`/`);
           }
         })
@@ -27,13 +33,18 @@ const Welcome = () => {
     }
     return;
   };
+
   const googleHandler = () => {
-    if (googlecode) {
-      LoginAPI.kakaoLogin(googlecode)
+    if (google) {
+      window.location.replace(`${GOOGLE_AUTH_URL}`);
+      const PARAMS = new URL(document.location).searchParams;
+      const GOOGLE_CODE = PARAMS.get("code");
+      LoginAPI.kakaoLogin(GOOGLE_CODE)
         .then((res) => {
-          console.log(res);
+          console.log("구글", res);
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
+            localStorage.removeItem("GOOGLE_CODE");
             navigate(`/`);
           }
         })
@@ -41,6 +52,7 @@ const Welcome = () => {
     }
     return;
   };
+  console.log(loginId);
   const loginHandler = () => {
     if (loginId && password) {
       LoginAPI.login({ loginId: loginId, password: password }).then((res) => {
