@@ -9,26 +9,18 @@ import {
   Stinput,
   KakaoBtn,
   FindButs,
-  PageTitle,
-  PwInput,
   LoginBtn,
   InputWrap,
   Logo,
-  StinputId,
-  StinputPw,
   InputWrapLower,
   GoogleBtn,
   SocialLogin,
 } from "./Styles";
-// import { BsEye } from 'react-icons/bs';
 import TapBar from "../../components/TapBar";
 import useToggle from "../../hooks/useToggle";
-import { AiFillEye } from "react-icons/ai";
-import { BsEye, BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
-import { BiLock } from "react-icons/bi";
 import { IoIosLock } from "react-icons/io";
-import { IdInput } from "../signUp/Styles";
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -50,20 +42,11 @@ const Login = () => {
     e.preventDefault();
     LoginAPI.login({ loginId: loginInfo.id, password: loginInfo.password })
       .then((res) => {
-        console.log("로그인성공 response", res);
+        // console.log("로그인성공 response", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
-          // Swal.fire({
-          //   text: "SPOTS에 오신 것을 환영합니다!",
-          //   width: "300px",
-          //   confirmButtonText: "확인",
-          //   confirmButtonColor: "#40d295",
-          //   showClass: { popup: "animated fadeInDown faster" },
-          //   hideClass: { popup: "animated fadeOutUp faster" },
-          // });
           navigate("/");
-          // window.location.reload();
         } else if (res.status === 202) {
           if (window.confirm("휴면계정입니다. 계정을 활성화하시겠습니까?")) {
             localStorage.setItem("token", res.data.accessToken);

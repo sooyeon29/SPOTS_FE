@@ -35,8 +35,6 @@ const SpotsMap = ({ sportsKind }) => {
   const { isLoading, error, privateSpot, publicSpot } = useSelector(
     (state) => state?.spots
   );
-  // console.log("---------사설시설-----------", privateSpot);
-  // console.log("---------공공시설-----------", publicSpot);
 
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
@@ -119,12 +117,6 @@ const SpotsMap = ({ sportsKind }) => {
                       width: 30,
                       height: 30,
                     }, // 마커이미지의 크기입니다
-                    // options: {
-                    //   offset: {
-                    //     x: 27,
-                    //     y: 69,
-                    //   }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-                    // },
                   }}
                 />
 

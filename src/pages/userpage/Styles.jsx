@@ -352,8 +352,6 @@ export const AboutMatch = styled.div`
   font-weight: bold;
   margin-top: 15px;
   margin-bottom: 15px;
-
-  /* text-shadow: 2px 2px 6px gray; */
 `;
 export const CompletedMath = styled.div`
   span {

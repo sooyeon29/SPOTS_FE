@@ -1,25 +1,25 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { BsXLg } from "react-icons/bs";
-import { FiSend } from "react-icons/fi";
-import socket from "../../tools/socket";
-import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout";
-import _ from "lodash";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { BsXLg } from 'react-icons/bs';
+import { FiSend } from 'react-icons/fi';
+import socket from '../../tools/socket';
+import { useNavigate } from 'react-router-dom';
+import Layout from '../../components/Layout';
+import _ from 'lodash';
 
 const Chatting = () => {
   const navigate = useNavigate();
-  const [msg, setMsg] = useState("");
+  const [msg, setMsg] = useState('');
   const [roomName, setRoomName] = useState();
   const [chatting, setChatting] = useState([]);
-  const nickname = localStorage.getItem("nickname");
+  const nickname = localStorage.getItem('nickname');
 
   const scrollRef = useRef();
   const boxRef = useRef(null);
   const [scrollState, setScrollState] = useState(true); //자동 스크롤 여부
 
   const scrollEvent = _.debounce(() => {
-    console.log("scroll");
+    console.log('scroll');
     const scrollTop = boxRef.current.scrollTop; // 스크롤 위치
     const clientHeight = boxRef.current.clientHeight; // 요소의 높이
     const scrollHeight = boxRef.current.scrollHeight; // 스크롤의 높이
@@ -33,39 +33,39 @@ const Chatting = () => {
 
   useEffect(() => {
     if (scrollState) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [chatting]);
 
   useEffect(() => {
-    boxRef.current.addEventListener("scroll", scroll);
+    boxRef.current.addEventListener('scroll', scroll);
   });
 
   useEffect(() => {
-    socket.on("client_main", (roomName) => {
-      console.log("client_main", roomName);
+    socket.on('client_main', (roomName) => {
+      console.log('client_main', roomName);
       setRoomName(roomName);
     });
-    socket.on("new_message", (data) => {
-      console.log("new_message", data);
+    socket.on('new_message', (data) => {
+      console.log('new_message', data);
       setChatting((chat) => [
         ...chat,
         { nickname: data.nickname, message: data.message },
       ]);
     });
-    socket.on("start_chat", (data) => {
-      console.log("start_chat", data);
+    socket.on('start_chat', (data) => {
+      console.log('start_chat', data);
       setChatting((chat) => [
         ...chat,
         { nickname: data.nickname, message: data.message },
       ]);
     });
-    socket.on("left_notice", (message) => {
-      console.log("left_notice", message);
+    socket.on('left_notice', (message) => {
+      console.log('left_notice', message);
       setChatting((chat) => [...chat, message]);
     });
-    socket.on("admin_roomlist", (roomList) => {
-      console.log("admin_roomlist", roomList);
+    socket.on('admin_roomlist', (roomList) => {
+      console.log('admin_roomlist', roomList);
     });
   }, []);
 
@@ -76,19 +76,19 @@ const Chatting = () => {
       nickname: nickname,
       value: msg,
     };
-    socket.emit("chatting", JSON.stringify(obj));
+    socket.emit('chatting', JSON.stringify(obj));
     console.log(obj);
-    setMsg("");
+    setMsg('');
   };
   console.log(chatting);
 
   const onChat = () => {
-    console.log("버튼딸깍");
+    // console.log("버튼딸깍");
     const obj = {
       roomName: roomName,
       nickname: nickname,
     };
-    socket.emit("on_chat", JSON.stringify(obj));
+    socket.emit('on_chat', JSON.stringify(obj));
     console.log(obj);
   };
 
@@ -97,7 +97,7 @@ const Chatting = () => {
       <StWrap>
         <StHeader>
           <div>SPOTS</div>
-          <button onClick={() => navigate("/")}>
+          <button onClick={() => navigate('/')}>
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </StHeader>
@@ -106,15 +106,15 @@ const Chatting = () => {
             <img
               alt="spotslogo"
               src="/spotslogo.png"
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: '100px', height: '100px' }}
             />
-            <div>구장 예약, 경기 매칭 no1 플랫폼 </div>
+            <div>구장 예약, 경기 매칭 No.1 플랫폼 </div>
             <div>상담시간 10:00-11:00</div>
           </ChatDesc>
-//           <button onClick={onChat}>1:1문의하기</button>
+          {/* <button onClick={onChat}>1:1문의하기</button> */}
           {chatting?.map((chat, index) => (
             <div key={index}>
-              {chat.nickname === "admin" ? (
+              {chat.nickname === 'admin' ? (
                 <StAdmin>
                   <img alt="기본프로필" src="/myprofile_icon.png" />
                   <StAdminMsg ref={scrollRef}>{chat.message}</StAdminMsg>
@@ -206,6 +206,7 @@ const StInput = styled.input`
   height: 40px;
   border-radius: 20px;
   border: 1px;
+  padding-left: 10px;
 `;
 
 const StAdmin = styled.div`

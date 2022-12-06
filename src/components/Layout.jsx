@@ -19,8 +19,5 @@ const Wrap = styled.div`
   width: 100%;
   max-width: 600px;
   margin: auto;
-  /* position: absolute;
-  left: 0px;
-  top: 0px; */
   overflow-x: hidden;
 `;

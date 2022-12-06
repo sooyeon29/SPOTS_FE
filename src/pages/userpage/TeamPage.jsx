@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import Layout from "../../components/Layout";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import FlexibleHeader from '../../components/FlexibleHeader';
+import Layout from '../../components/Layout';
 import {
   __getMyteamDetail,
   __getMyteamList,
-} from "../../redux/modules/userSlice";
-import TapBar from "../../components/TapBar";
-import styled from "styled-components";
+} from '../../redux/modules/userSlice';
+import TapBar from '../../components/TapBar';
+import styled from 'styled-components';
 
 const TeamPage = () => {
-  const title = "나의 팀";
+  const title = '나의 팀';
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,15 +30,14 @@ const TeamPage = () => {
 
         <TeamBox>
           {team?.map((team) => {
-            if (team.sports === "풋살장") {
+            if (team.sports === '풋살장') {
               return (
                 <TeamCardFootball
                   key={team.teamId}
                   onClick={() => {
                     dispatch(__getMyteamDetail(team.teamId));
                     navigate(`/teamdetail/${team.teamId}`);
-                  }}
-                >
+                  }}>
                   {team.image === null ? (
                     <img alt="spots" src="/myprofile_logo.png" />
                   ) : (
@@ -52,15 +51,14 @@ const TeamPage = () => {
                   </TeamMember>
                 </TeamCardFootball>
               );
-            } else if (team.sports === "테니스장") {
+            } else if (team.sports === '테니스장') {
               return (
                 <TeamCardTennis
                   key={team.teamId}
                   onClick={() => {
                     dispatch(__getMyteamDetail(team.teamId));
                     navigate(`/teamdetail/${team.teamId}`);
-                  }}
-                >
+                  }}>
                   {team.image === null ? (
                     <img alt="spots" src="/myprofile_logo.png" />
                   ) : (
@@ -81,8 +79,7 @@ const TeamPage = () => {
                   onClick={() => {
                     dispatch(__getMyteamDetail(team.teamId));
                     navigate(`/teamdetail/${team.teamId}`);
-                  }}
-                >
+                  }}>
                   {team.image === null ? (
                     <img alt="spots" src="/myprofile_logo.png" />
                   ) : (
@@ -99,7 +96,7 @@ const TeamPage = () => {
             }
           })}
         </TeamBox>
-        <Btn onClick={() => navigate("/teamregister")}> 팀 등록하기</Btn>
+        <Btn onClick={() => navigate('/teamregister')}> 팀 등록하기</Btn>
       </Container>
       <TapBar />
     </Layout>
@@ -109,8 +106,8 @@ const TeamPage = () => {
 export default TeamPage;
 
 const Container = styled.div`
-margin-top: 70px;
-margin-bottom: 70px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
