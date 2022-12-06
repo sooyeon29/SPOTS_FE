@@ -22,7 +22,6 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { IoIosLock } from "react-icons/io";
 import Swal from "sweetalert2";
-import { IoIosLock } from "react-icons/io";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
