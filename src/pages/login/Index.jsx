@@ -2,34 +2,26 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import { LoginAPI, UserpageAPI } from "../../tools/instance";
+import { LoginAPI } from "../../tools/instance";
 import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL } from "./OAuth";
 import {
   StWraps,
   Stinput,
   KakaoBtn,
   FindButs,
-  PageTitle,
-  PwInput,
   LoginBtn,
   InputWrap,
   Logo,
-  StinputId,
-  StinputPw,
   InputWrapLower,
   GoogleBtn,
   SocialLogin,
 } from "./Styles";
-// import { BsEye } from 'react-icons/bs';
 import TapBar from "../../components/TapBar";
 import useToggle from "../../hooks/useToggle";
-import { AiFillEye } from "react-icons/ai";
-import { BsEye, BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonFill } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
-import { BiLock } from "react-icons/bi";
-import { IoIosLock } from "react-icons/io";
-import { IdInput } from "../signUp/Styles";
 import Swal from "sweetalert2";
+import { IoIosLock } from "react-icons/io";
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
