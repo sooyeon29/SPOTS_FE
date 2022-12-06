@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   (error) => {
     // 요청 오류가 있는 경우 작업 수행
     // console.log("인터셉터에러", error);
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 // // 응답 인터셉터 추가
@@ -42,7 +42,8 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.status === 401) {
+    console.log("나 인터셉터에러", error);
+    if (error.status === 401 || error.response.status === 412) {
       Swal.fire({
         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
         width: "300px",
@@ -50,64 +51,23 @@ instance.interceptors.response.use(
         confirmButtonColor: "#40d295",
         showClass: { popup: "animated fadeInDown faster" },
         hideClass: { popup: "animated fadeOutUp faster" },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.localStorage.clear();
+          window.location.replace("/login");
+        }
       });
-      window.location.replace("/login");
     }
     return Promise.reject(error);
   }
 );
 
-// instance.interceptors.response.use(
-//   (response) => {
-//     console.log("★Axios interceptors response execute★");
-//     let firstToken = localStorage.getItem("token");
-
-//     if (firstToken) {
-//       console.log("----------------------------------------------");
-//       console.log("첫토큰", firstToken);
-//       response.headers["Authorization"] = response.data.myNewToken;
-
-//       if (response.data.myNewToken) {
-//         console.log("신규토큰", response.data.myNewToken);
-
-//         if (firstToken !== response.data.myNewToken) {
-//           firstToken = response.data.myNewToken;
-//           window.localStorage.setItem("token", response.data.myNewToken);
-//           console.log("토큰정보 업데이트!!");
-//          return instance({
-//   ...response.config,
-//   headers: {
-//     Authorization: `${newAccessToken}`,
-//   },
-// });
-//         }
-//       }
-//       console.log("----------------------------------------------");
-//     }
-//     return response;
-//   },
-//   (error) => {
-//     if (error.status === 401) {
-//       Swal.fire({
-//         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
-//         width: "300px",
-//         confirmButtonText: "확인",
-//         confirmButtonColor: "#40d295",
-//         showClass: { popup: "animated fadeInDown faster" },
-//         hideClass: { popup: "animated fadeOutUp faster" },
-//       });
-//       window.location.replace("/login");
-//     }
-//     Promise.reject(error);
-//   }
-// );
-
 // 로그인
 export const LoginAPI = {
   login: (payload) => instance.post(`users/login`, payload),
   // 소셜로그인(카카오)
-  kakaoLogin: (payload) => instance.get(`kakao/code?code=${payload}`),
-  googleLogin: (payload) => instance.get(`google/code?code=${payload}`),
+  kakaoLogin: (payload) => instance.get(`auth/kakao?code=${payload}`),
+  googleLogin: (payload) => instance.get(`auth/google?code=${payload}`),
 
   // 인증번호
   postforFindIdPw: (payload) => instance.post(`users/sendSms`, payload), //-> 아이디비밀번호찾기시
@@ -121,7 +81,6 @@ export const LoginAPI = {
       code: payload.code.code,
     }),
   findPw: (payload) =>
-    // console.log(payload),
     instance.post(`users/findPw`, {
       loginId: payload.loginId.id,
       phone: payload.phone.phone,
@@ -132,11 +91,13 @@ export const LoginAPI = {
 // 회원가입
 export const SignUpAPI = {
   signUp: (payload) => instance.post(`users/signup`, payload),
+  // console.log(payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  kakaoSingUp: (payload) => instance.post(`kakao/signup`, payload),
-  // GoogleSingUp: (payload) => instance.post(`google/signup`, payload),
+  kakaoSingUp: (payload) =>
+    // console.log(payload),
+    instance.post(`auth/signup`, payload),
 };
 
 // userpage

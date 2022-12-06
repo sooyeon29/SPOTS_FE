@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 import { LoginAPI } from "../../tools/instance";
 
 const Google = () => {
@@ -23,6 +24,10 @@ const Google = () => {
       .catch((err) => console.log(err));
   });
 
-  return <>...로딩중</>;
+  return (
+    <>
+      <Loading />
+    </>
+  );
 };
 export default Google;

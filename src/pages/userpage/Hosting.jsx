@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import Layout from '../../components/Layout';
-import { useDaumPostcodePopup } from 'react-daum-postcode';
-import { PrivateApi } from '../../tools/instance';
-import { useNavigate } from 'react-router-dom';
-import { HostCard, PageDesc, Image, ProfilePhotoInput } from './Styles';
-import FlexibleHeader from '../../components/FlexibleHeader';
-import styled, { css } from 'styled-components';
-import TapBar from '../../components/TapBar';
-import Swal from 'sweetalert2';
+import { useState } from "react";
+import Layout from "../../components/Layout";
+import { useDaumPostcodePopup } from "react-daum-postcode";
+import { PrivateApi } from "../../tools/instance";
+import { useNavigate } from "react-router-dom";
+import { HostCard, PageDesc, Image, ProfilePhotoInput } from "./Styles";
+import FlexibleHeader from "../../components/FlexibleHeader";
+import styled, { css } from "styled-components";
+import TapBar from "../../components/TapBar";
+import Swal from "sweetalert2";
 
 const { kakao } = window;
 
 const Hosting = () => {
-  const title = 'Host Page';
+  const title = "스팟 등록";
   const navigate = useNavigate();
 
   const [spot, setSpot] = useState({});
   const [checkedList, setCheckedList] = useState([]);
   const [preview, setPreview] = useState([]);
   const [img, setImg] = useState(null);
-  const [sports, setSports] = useState('');
-  const [spotName, setSpotName] = useState('');
-  const [spotKind, setSpotKind] = useState('');
-  const [price, setPrice] = useState('');
-  const [desc, setDesc] = useState('');
+  const [sports, setSports] = useState("");
+  const [spotName, setSpotName] = useState("");
+  const [spotKind, setSpotKind] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDesc] = useState("");
 
   const handleImagePreview = (file) => {
     setImg(null);
@@ -67,17 +67,17 @@ const Hosting = () => {
 
   const handleComplete = (data) => {
     let fullAddress = data.address;
-    let extraAddress = '';
+    let extraAddress = "";
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== '') {
+      if (data.buildingName !== "") {
         extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
     setFullAddress(fullAddress);
   };
@@ -90,10 +90,11 @@ const Hosting = () => {
   // console.log(spotName);
 
   const onRegisterHandler = (spot) => {
+    // e.preventDefault();
     let x = null;
     let y = null;
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
-    const fullyAddress = fullAddress + '\u00a0' + spot.address;
+    const fullyAddress = fullAddress + "\u00a0" + spot.address;
     // geocoder = 주소를 좌표(x, y)로 변환시켜주는 메서드
 
     const geocoder = new kakao.maps.services.Geocoder();
@@ -108,130 +109,110 @@ const Hosting = () => {
       // console.log(x, y);
 
       const sendFD = new FormData();
-      sendFD.append('image', img);
-      sendFD.append('comforts', checkedList);
-      sendFD.append('address', fullyAddress);
-      sendFD.append('x', x);
-      sendFD.append('y', y);
-      sendFD.append('sports', sports);
-      sendFD.append('spotName', spotName);
-      sendFD.append('spotKind', spotKind);
-      sendFD.append('price', price);
-      sendFD.append('desc', desc);
+      sendFD.append("image", img);
+      sendFD.append("comforts", checkedList);
+      sendFD.append("address", fullyAddress);
+      sendFD.append("x", x);
+      sendFD.append("y", y);
+      sendFD.append("sports", sports);
+      sendFD.append("spotName", spotName);
+      sendFD.append("spotKind", spotKind);
+      sendFD.append("price", price);
+      sendFD.append("desc", desc);
 
-      if (!spotName) {
+      if (!spotName || spotName.trim() === "") {
         Swal.fire({
-          text: '이름을 입력해주세요',
-          width: '300px',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#40d295',
-          showClass: { popup: 'animated fadeInDown faster' },
-          hideClass: { popup: 'animated fadeOutUp faster' },
+          text: "이름을 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
         });
         return;
       }
       if (!sports) {
         Swal.fire({
-          text: '종류를 선택해주세요',
-          width: '300px',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#40d295',
-          showClass: { popup: 'animated fadeInDown faster' },
-          hideClass: { popup: 'animated fadeOutUp faster' },
+          text: "종류를 선택해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
         });
         return;
       }
       if (!spotKind) {
         Swal.fire({
-          text: '실내/외를 선택해주세요',
-          width: '300px',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#40d295',
-          showClass: { popup: 'animated fadeInDown faster' },
-          hideClass: { popup: 'animated fadeOutUp faster' },
+          text: "실내/외를 선택해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
         });
         return;
       }
       if (!fullAddress) {
         Swal.fire({
-          text: '주소를 입력해주세요',
-          width: '300px',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#40d295',
-          showClass: { popup: 'animated fadeInDown faster' },
-          hideClass: { popup: 'animated fadeOutUp faster' },
+          text: "주소를 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
         });
         return;
       }
       if (!price) {
         Swal.fire({
-          text: '가격을 입력해주세요',
-          width: '300px',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#40d295',
-          showClass: { popup: 'animated fadeInDown faster' },
-          hideClass: { popup: 'animated fadeOutUp faster' },
+          text: "가격을 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
         });
         return;
       }
       if (!desc) {
         Swal.fire({
-          text: '설명을 입력해주세요',
-          width: '300px',
-          confirmButtonText: '확인',
-          confirmButtonColor: '#40d295',
-          showClass: { popup: 'animated fadeInDown faster' },
-          hideClass: { popup: 'animated fadeOutUp faster' },
+          text: "설명을 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
         });
         return;
       }
-
       PrivateApi.registerSpot(sendFD)
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
             Swal.fire({
-              text: '스팟 등록이 완료되었습니다.',
-              width: '300px',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#40d295',
-              showClass: { popup: 'animated fadeInDown faster' },
-              hideClass: { popup: 'animated fadeOutUp faster' },
+              text: "스팟 등록이 완료되었습니다.",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
             });
-            navigate('/hostlist');
+            navigate("/hostlist");
           }
         })
         .catch((error) => {
-          if (error.response.status === 401) {
+          console.log(error);
+          if (error.response.data.code === -2) {
             Swal.fire({
-              text: '사진을 등록해주세요',
-              width: '300px',
-              confirmButtonText: '확인',
-              confirmButtonColor: '#40d295',
-              showClass: { popup: 'animated fadeInDown faster' },
-              hideClass: { popup: 'animated fadeOutUp faster' },
+              text: "사진을 등록해주세요",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
             });
           } 
-          // else {
-          //   Swal.fire({
-          //     text: '사진은 2MB 이하로 선택해주세요',
-          //     width: '300px',
-          //     confirmButtonText: '확인',
-          //     confirmButtonColor: '#40d295',
-          //     showClass: { popup: 'animated fadeInDown faster' },
-          //     hideClass: { popup: 'animated fadeOutUp faster' },
-          //   });
-          // }
-          // console.log(error);
-          // console.log(error.response.status)
-          // Swal.fire({
-          //   text: '사진은 2MB 이하로 선택해주세요',
-          //   width: '300px',
-          //   confirmButtonText: '확인',
-          //   confirmButtonColor: '#40d295',
-          //   showClass: { popup: 'animated fadeInDown faster' },
-          //   hideClass: { popup: 'animated fadeOutUp faster' },
-          // });
         });
     });
   };
@@ -240,30 +221,30 @@ const Hosting = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>나의 구장 등록</PageDesc>
+        {/* <PageDesc>나의 구장 등록</PageDesc> */}
         <ImageUpload>
           <HostingPhotoUpload>
-            <label htmlFor='upload-input'>
+            <label htmlFor="upload-input">
               <div>
                 {preview.length > 0 ? (
                   <span>
-                    <img src='/cancel_icon.png' />
+                    <img src="/cancel_icon.png" />
                   </span>
                 ) : (
                   <span>
-                    <img src='/plus_icon_blue.png' />
+                    <img src="/plus_icon_blue.png" />
                   </span>
                 )}
               </div>
             </label>
             <ProfilePhotoInput
-              id='upload-input'
-              type='file'
-              accept='image/*'
+              id="upload-input"
+              type="file"
+              accept="image/*"
               onChange={(e) => {
                 handleImagePreview(e);
               }}
-              multiple='multiple'
+              multiple="multiple"
             />
           </HostingPhotoUpload>
           <HostPreview>
@@ -271,7 +252,7 @@ const Hosting = () => {
               <img
                 key={1}
                 src={preview}
-                alt=''
+                alt=""
                 onerror="this.style.display='none';"
               />
             ) : (
@@ -279,17 +260,18 @@ const Hosting = () => {
             )}
           </HostPreview>
         </ImageUpload>
-        <HostCard enctype='multipart/form-data'>
+        <HostCard enctype="multipart/form-data">
           <HostForm
             onSubmit={(e) => {
               e.preventDefault();
               onRegisterHandler(spot);
-            }}>
+            }}
+          >
             <InputLayout>
               <div>이름</div>
               <InputText
                 // required
-                type='text'
+                type="text"
                 onChange={(e) => {
                   setSpotName(e.target.value);
                 }}
@@ -299,9 +281,9 @@ const Hosting = () => {
               <div>종류</div>
               <SpotsLabel>
                 <FootballInput
-                  type='radio'
-                  value='풋살장'
-                  checked={sports === '풋살장'}
+                  type="radio"
+                  value="풋살장"
+                  checked={sports === "풋살장"}
                   onChange={(e) => {
                     setSports(e.target.value);
                   }}
@@ -310,9 +292,9 @@ const Hosting = () => {
               </SpotsLabel>
               <SpotsLabel>
                 <TennisInput
-                  type='radio'
-                  value='테니스장'
-                  checked={sports === '테니스장'}
+                  type="radio"
+                  value="테니스장"
+                  checked={sports === "테니스장"}
                   onChange={(e) => {
                     setSports(e.target.value);
                   }}
@@ -321,9 +303,9 @@ const Hosting = () => {
               </SpotsLabel>
               <SpotsLabel>
                 <BadmintonInput
-                  type='radio'
-                  value='배드민턴장'
-                  checked={sports === '배드민턴장'}
+                  type="radio"
+                  value="배드민턴장"
+                  checked={sports === "배드민턴장"}
                   onChange={(e) => {
                     setSports(e.target.value);
                   }}
@@ -335,9 +317,9 @@ const Hosting = () => {
               <div>장소</div>
               <KindLabel>
                 <IndoorInput
-                  type='radio'
-                  value='실내'
-                  checked={spotKind === '실내'}
+                  type="radio"
+                  value="실내"
+                  checked={spotKind === "실내"}
                   onChange={(e) => {
                     setSpotKind(e.target.value);
                   }}
@@ -346,9 +328,9 @@ const Hosting = () => {
               </KindLabel>
               <KindLabel>
                 <OutdoorInput
-                  type='radio'
-                  value='실외'
-                  checked={spotKind === '실외'}
+                  type="radio"
+                  value="실외"
+                  checked={spotKind === "실외"}
                   onChange={(e) => {
                     setSpotKind(e.target.value);
                   }}
@@ -359,7 +341,7 @@ const Hosting = () => {
             <InputLayout>
               <div>
                 <span>주소</span>
-                <SearchBtn type='button' onClick={handleClick}>
+                <SearchBtn type="button" onClick={handleClick}>
                   검색
                 </SearchBtn>
               </div>
@@ -369,7 +351,7 @@ const Hosting = () => {
               <div>상세주소</div>
               <InputText
                 // required
-                type='text'
+                type="text"
                 onChange={(e) => {
                   const { value } = e.target;
                   setSpot({
@@ -384,8 +366,8 @@ const Hosting = () => {
               <div>시간당</div>
               <InputText
                 // required
-                type='text'
-                placeholder='시간당 가격을 입력해주세요'
+                type="text"
+                placeholder="시간당 가격을 입력해주세요"
                 onChange={(e) => {
                   setPrice(e.target.value);
                 }}
@@ -397,82 +379,82 @@ const Hosting = () => {
               {/* <p>스팟 설명</p> */}
               <div>
                 <ComfortsWrap>
-                  <ComportsLabel>
+                  <ComfortsLabel>
                     <LentalInput
-                      type='checkbox'
-                      name='comforts'
-                      value='장비대여'
+                      type="checkbox"
+                      name="comforts"
+                      value="장비대여"
                       onChange={(e) => {
                         onCheckedElement(e.target.checked, e.target.value);
                       }}
-                      checked={checkedList.includes('장비대여') ? true : false}
+                      checked={checkedList.includes("장비대여") ? true : false}
                     />
                     <LentalDiv>장비대여</LentalDiv>
-                  </ComportsLabel>
-                  <ComportsLabel>
+                  </ComfortsLabel>
+                  <ComfortsLabel>
                     <LockerInput
-                      type='checkbox'
-                      name='comforts'
-                      value='개인락커'
+                      type="checkbox"
+                      name="comforts"
+                      value="개인락커"
                       onChange={(e) => {
                         onCheckedElement(e.target.checked, e.target.value);
                       }}
-                      checked={checkedList.includes('개인락커') ? true : false}
+                      checked={checkedList.includes("개인락커") ? true : false}
                     />
                     <LockerDiv>개인락커</LockerDiv>
-                  </ComportsLabel>
+                  </ComfortsLabel>
                 </ComfortsWrap>
                 <ComfortsWrap>
-                  <ComportsLabel>
+                  <ComfortsLabel>
                     <ParkingInput
-                      type='checkbox'
-                      name='comforts'
-                      value='주차장'
+                      type="checkbox"
+                      name="comforts"
+                      value="주차장"
                       onChange={(e) => {
                         onCheckedElement(e.target.checked, e.target.value);
                       }}
-                      checked={checkedList.includes('주차장') ? true : false}
+                      checked={checkedList.includes("주차장") ? true : false}
                     />
                     <ParkingDiv>주차장</ParkingDiv>
-                  </ComportsLabel>
-                  <ComportsLabel>
+                  </ComfortsLabel>
+                  <ComfortsLabel>
                     <ShowerInput
-                      type='checkbox'
-                      name='comforts'
-                      value='샤워실'
+                      type="checkbox"
+                      name="comforts"
+                      value="샤워실"
                       onChange={(e) => {
                         onCheckedElement(e.target.checked, e.target.value);
                       }}
-                      checked={checkedList.includes('샤워실') ? true : false}
+                      checked={checkedList.includes("샤워실") ? true : false}
                     />
 
                     <ShowerDiv>샤워실</ShowerDiv>
-                  </ComportsLabel>
-                  <ComportsLabel>
+                  </ComfortsLabel>
+                  <ComfortsLabel>
                     <DressInput
-                      type='checkbox'
-                      name='comforts'
-                      value='탈의실'
+                      type="checkbox"
+                      name="comforts"
+                      value="탈의실"
                       onChange={(e) => {
                         onCheckedElement(e.target.checked, e.target.value);
                       }}
-                      checked={checkedList.includes('탈의실') ? true : false}
+                      checked={checkedList.includes("탈의실") ? true : false}
                     />
                     <DressDiv>탈의실</DressDiv>
-                  </ComportsLabel>
+                  </ComfortsLabel>
                 </ComfortsWrap>
               </div>
             </InputLayout>
             <TextArea
               // required
-              style={{ height: '100px', width: '240px' }}
-              type='text'
-              placeholder='설명을 입력해주세요'
+              style={{ height: "100px", width: "240px" }}
+              type="text"
+              placeholder="설명을 입력해주세요"
               onChange={(e) => {
                 setDesc(e.target.value);
               }}
             />
-            <SaveBtn onClick={onRegisterHandler}>등록하기</SaveBtn>
+            <SaveBtn>등록하기</SaveBtn>
           </HostForm>
         </HostCard>
       </StWrap>
@@ -495,6 +477,7 @@ const StWrap = styled.div`
 const ImageUpload = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 80px;
 `;
 
 const HostingPhotoUpload = styled.div`
@@ -557,10 +540,10 @@ const InputText = styled.input`
 
 const SearchBtn = styled.button`
   border: none;
-  /* background-color: #cecece; */
   height: 25px;
   width: 40px;
   border-radius: 5px;
+  color: #000;
 `;
 
 const Preview = styled.div`
@@ -606,11 +589,11 @@ export const FootballDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/football_gray.png');
+  background-image: url("/mypage/football_gray.png");
   background-size: 60px;
 
   ${FootballInput}:checked + && {
-    background-image: url('/mypage/football_blue.png');
+    background-image: url("/mypage/football_blue.png");
     background-size: 60px;
   }
 
@@ -627,11 +610,11 @@ export const TennisDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/tennis_gray.png');
+  background-image: url("/mypage/tennis_gray.png");
   background-size: 60px;
 
   ${TennisInput}:checked + && {
-    background-image: url('/mypage/tennis_blue.png');
+    background-image: url("/mypage/tennis_blue.png");
     background-size: 60px;
   }
 `;
@@ -643,11 +626,11 @@ export const BadmintonDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('/mypage/badminton_gray.png');
+  background-image: url("/mypage/badminton_gray.png");
   background-size: 60px;
 
   ${BadmintonInput}:checked + && {
-    background-image: url('/mypage/badminton_blue.png');
+    background-image: url("/mypage/badminton_blue.png");
     background-size: 60px;
   }
 `;
@@ -700,9 +683,10 @@ export const ComfortsWrap = styled.div`
   display: flex;
   width: 180px;
   margin-bottom: 5px;
+  margin-top: 5px;
 `;
 
-export const ComportsLabel = styled.label`
+export const ComfortsLabel = styled.label`
   margin-right: 5px;
 `;
 

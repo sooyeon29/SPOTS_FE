@@ -3,10 +3,7 @@ import { useForm } from "react-hook-form";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
-import useToggle from "../../hooks/useToggle";
-import { IoFootball } from "react-icons/io5";
-import { IoIosLock, IoMdTennisball } from "react-icons/io";
-import { GiShuttlecock } from "react-icons/gi";
+import { IoIosLock } from "react-icons/io";
 import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import {
   StWrap,
@@ -57,6 +54,7 @@ const SignUp = () => {
   const [addInfoPage, setAddInfoPage] = useState(false);
   const [addSportsPage, setAddSportsPage] = useState(false);
   const [codeSent, setCodeSent] = useState(false);
+  const [codeConfirm, setCodeConfirm] = useState(false);
   const [idConfirm, setIdConfirm] = useState(false);
   const [nnConfirm, setNnConfirm] = useState(false);
   const [code, setCode] = useState("");
@@ -75,6 +73,7 @@ const SignUp = () => {
   const onIdPwPageHandler = (e) => {
     e.preventDefault();
     const loginId = getValues("loginId");
+    const idRex = /^[a-zA-z0-9]{6,20}$/ 
     if (loginId.trim() === "") {
       Swal.fire({
         text: "아이디를 입력해주세요",
@@ -86,8 +85,19 @@ const SignUp = () => {
       });
       return;
     }
+    if (!idRex.test(loginId)) {
+      Swal.fire({
+        text: "아이디를 형식에 맞게 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+    }
     const pw = getValues("password");
-    const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/;
+    const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/
     if (pw.trim() === "") {
       Swal.fire({
         text: "비밀번호를 입력해주세요",
@@ -141,7 +151,7 @@ const SignUp = () => {
 
   const onNumberCertifiHandler = (e) => {
     e.preventDefault();
-    if (!codeSent) {
+    if (!setCodeConfirm) {
       Swal.fire({
         text: "휴대폰 인증을 해주세요",
         width: "300px",
@@ -256,6 +266,7 @@ const SignUp = () => {
   // ID 중복 확인
   const checkId = () => {
     const loginId = getValues("loginId");
+    const idRex = /^[a-zA-z0-9]{6,20}$/ 
     if (loginId.trim() === "") {
       Swal.fire({
         text: "아이디를 입력해주세요",
@@ -267,9 +278,20 @@ const SignUp = () => {
       });
       return {};
     }
+    if (!idRex.test(loginId)) {
+      Swal.fire({
+        text: "아이디를 형식에 맞게 입력해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+    }
     if (loginId.length <= 5) {
       Swal.fire({
-        text: "여섯 글자 이상 입력해주세요",
+        text: "아이디는 여섯 글자 이상 입력해주세요",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -280,7 +302,7 @@ const SignUp = () => {
     }
     SignUpAPI.checkId({ loginId })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "사용 가능한 아이디입니다",
@@ -332,7 +354,7 @@ const SignUp = () => {
             showClass: { popup: "animated fadeInDown faster" },
             hideClass: { popup: "animated fadeOutUp faster" },
           });
-          // setCodeSent(true);
+          setCodeSent(true);
         })
         .catch((err) => {
           console.log(err);
@@ -376,7 +398,7 @@ const SignUp = () => {
             hideClass: { popup: "animated fadeOutUp faster" },
           });
         }
-        // setCodeSent(true);
+        setCodeConfirm(true);
       })
       .catch((err) => {
         console.log(err);
@@ -456,7 +478,7 @@ const SignUp = () => {
                       type="text"
                       {...register("loginId", {
                         required: true,
-                        pattern: /^[A-za-z0-9]{6,12}$/,
+                        pattern: /^[A-za-z0-9]{6,20}$/,
                       })}
                       placeholder="아이디"
                       autoComplete="off"
@@ -469,7 +491,7 @@ const SignUp = () => {
                     <p>✓ 아이디를 입력해주세요</p>
                   )}
                   {errors.loginId && errors.loginId.type === "pattern" && (
-                    <p> ✓ 6~12글자 사이의 영문 또는 숫자만 입력 가능합니다</p>
+                    <p> ✓ 6~20글자 사이의 영문 또는 숫자만 입력 가능합니다</p>
                   )}
                   <GrayBorder>
                     <IoIosLock size={24} color={"#949494"} />
@@ -477,7 +499,7 @@ const SignUp = () => {
                       type="password"
                       {...register("password", {
                         required: true,
-                        pattern: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
+                        pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/
                       })}
                       placeholder="비밀번호"
                     />
@@ -486,7 +508,7 @@ const SignUp = () => {
                     <p>✓ 비밀번호를 입력해주세요</p>
                   )}
                   {errors.password && errors.password.type === "pattern" && (
-                    <p>✓ 영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
+                    <p>✓ 영문과 숫자, 특수문자를 조합하여 6글자 이상 입력해주세요</p>
                   )}
                   <GrayBorder>
                     <IoIosLock size={24} color={"#949494"} />

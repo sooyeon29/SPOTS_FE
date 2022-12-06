@@ -13,7 +13,6 @@ export const StWrap = styled.div`
   width: 90%;
   /* background-color: #f1f1f1; */
   border-radius: 15px;
-  /* margin-top: 50px; */
   margin-bottom: 50px;
   align-items: center;
   margin: 71px auto;
@@ -79,6 +78,7 @@ export const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
   img {
     width: 100px;
@@ -192,8 +192,12 @@ export const SpotInfo = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  /* width: 350px; */
   margin-bottom: 20px;
+  margin-right: 10px;
+  button {
+    color: #000;
+  }
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;
@@ -212,9 +216,14 @@ export const SpotInfo = styled.div`
     p {
       margin: 5px;
     }
+    span {
+      margin-left: 6px;
+    }
+
     span:last-child {
+      margin-left: 0px;
       color: #49e7a5;
-      padding: 2px 6px;
+      padding: 1px 6px;
       text-align: center;
       border-radius: 50px;
       font-size: 14px;
@@ -410,7 +419,8 @@ export const NickName = styled.div`
 
 export const SportsLayout = styled.div`
   padding: 10px;
-
+  max-width: 400px;
+  margin: auto;
   div:first-child {
     font-size: 14px;
     font-weight: 600;
@@ -439,6 +449,7 @@ export const ModifyBtn = styled.button`
   border: none;
   margin-left: 60px;
   font-weight: 600;
+  color: #000;
 `;
 export const ReservTitle = styled.div`
   padding-top: 15px;
@@ -500,13 +511,14 @@ export const CancleBtn = styled.button`
 `;
 
 export const ProfilePhotoInput = styled.input`
-  width: 0;
+  /* width: 0;
   height: 0;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0;
+  border: 0; */
+  display: none;
 `;
 
 export const ProfilePhotoUpload = styled.div`
@@ -521,7 +533,7 @@ export const ProfilePhotoUpload = styled.div`
     justify-content: center;
     border-radius: 50%;
     position: absolute;
-    top: 35%;
+    top: 190px;
     left: 55%;
   }
 `;
@@ -542,6 +554,7 @@ export const SaveImage = styled.button`
 `;
 
 export const ModifyDiv = styled.div`
+  margin: auto;
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
@@ -549,12 +562,13 @@ export const ModifyDiv = styled.div`
 
 export const ModifyBlock = styled.div`
   display: flex;
-  padding: 10px 0px 5px 10px;
+  padding: 10px 0px 10px 10px;
   border-bottom: 1px solid #cecece;
 
   div:first-child {
-    width: 100px;
-    /* background-color: aliceblue; */
+    margin-top: 5px;
+    width: 70px;
+    padding-right: 10px;
     text-align: center;
     border-right: 1px solid #cecece;
     color: #545454;
@@ -563,39 +577,39 @@ export const ModifyBlock = styled.div`
   input {
     margin-left: 20px;
     background-color: #fff;
-    border-radius: 20px;
-    padding: 0px 0px 0px 10px;
-    width: 100px;
-
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    width: 150px;
+    margin-bottom: 5px;
     :focus {
       outline: none;
     }
   }
 
   button {
-    margin-left: 20px;
+    margin-top: 5px;
     border: none;
     background-color: #fff;
     color: black;
     font-weight: 600;
+    width: 60px;
   }
 `;
 
 export const ModifyBtns = styled.div`
   display: flex;
-  /* justify-content: center;
-  align-items: center;
-  text-align: center; */
+  margin: auto;
   margin-top: 40px;
 
   button {
-    background-color: #f1f1f1;
-    width: 300px;
+    background-color: #1746c7;
+    width: 160px;
     height: 40px;
     border-radius: 20px;
     border: none;
     margin: auto;
-    color: black;
+    color: #fff;
     font-weight: 600;
     margin-left: 10px;
   }

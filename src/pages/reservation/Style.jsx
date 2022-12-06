@@ -27,6 +27,7 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
+  max-width: 600px;
   width: 100%;
   display: flex;
   /* margin-top: 10px; */
@@ -73,6 +74,7 @@ export const BtnWrap = styled.div`
     margin: auto;
     border: none;
     cursor: pointer;
+    color: #000;
     border-radius: 23px;
     :focus {
       background-color: #2b2bff;
@@ -80,9 +82,12 @@ export const BtnWrap = styled.div`
     }
   }
   z-index: 2;
-  top: 15%;
-  right: 16%;
+  top: 120px;
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 `;
 
 export const Container = styled.div`
@@ -103,7 +108,7 @@ export const PrivateBlock = styled.div`
   /* display: flex; */
   margin: auto;
   margin-top: 10px;
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
   /* padding-left: 15px; */
@@ -156,6 +161,7 @@ export const PublicBlock = styled.div`
   /* display: flex; */
   margin: auto;
   margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
   width: 85%;
@@ -175,7 +181,7 @@ export const PublicBlock = styled.div`
 `;
 
 export const PublicInfo = styled.div`
-margin-top: 10px;
+  margin-top: 10px;
   p {
     margin: auto;
     font-size: 14px;
@@ -187,7 +193,6 @@ margin-top: 10px;
     font-weight: 700;
     margin-right: 5px;
   }
-
 `;
 
 export const MylocationBtn = styled.button`
@@ -215,16 +220,19 @@ export const StSearch = styled.div`
   display: flex;
   margin: auto;
   margin-top: 70px;
-  justify-content: center;
   align-items: center;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 `;
 
 export const SearchInput = styled.input`
   border: none;
-  /* width: 100%; */
+  width: 300px;
   background-color: transparent;
+
+  ::placeholder {
+    padding-left: 5px;
+  }
   :focus {
     outline: none;
   }
@@ -235,3 +243,17 @@ export const PublicReserve = styled.a`
   text-decoration: none;
   color: black;
 `;
+
+export const NoResult = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 100px;
+font-size: 15px;
+color: #1746c7;
+font-weight: 600;
+p {
+  margin: 0px;
+}
+`

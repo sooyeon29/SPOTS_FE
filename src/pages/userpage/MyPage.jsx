@@ -29,7 +29,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 
 const MyPage = () => {
-  const title = "My Profile";
+  const title = "내 정보";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preview, setPreview] = useState([]);
@@ -40,6 +40,7 @@ const MyPage = () => {
   const [checkPw, setCheckPw] = useInput();
   const [code, setCode] = useInput();
   const [codeSent, setCodeSent, codeSentHandler] = useToggle();
+  const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/;
 
   const {
     register,
@@ -58,10 +59,6 @@ const MyPage = () => {
   // console.log(user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
-
-  // const nickRef = useRef();
-  // const phoneRef = useRef();
-
   const handleImagePreview = (file) => {
     setImg(null);
     setPreview([]);
@@ -305,117 +302,32 @@ const MyPage = () => {
                     type="text"
                     defaultValue={user.nickname}
                     onChange={(e) => setNickName(e.target.value)}
-                    {...register("nickname", {
-                      required: true,
-                      minLegnth: 1,
-                    })}
                   />
-                  {errors.nickname && errors.nickname.type === "required" && (
-                    <p>닉네임을 입력해주세요</p>
-                  )}
-                  {errors.nickname && errors.nickname.type === "minLegnth" && (
-                    <p>닉네임을 한 글자 이상 입력해주세요</p>
-                  )}
                 </div>
                 <div>
                   <button
                     onClick={() => {
-                      SignUpAPI.checkNickname({ nickname: nickName })
-                        .then((res) => {
-                          console.log(res);
-                          if (res.status === 200) {
-                            Swal.fire({
-                              text: "사용 가능한 닉네임입니다.",
-                              width: "300px",
-                              confirmButtonText: "확인",
-                              confirmButtonColor: "#40d295",
-                              showClass: {
-                                popup: "animated fadeInDown faster",
-                              },
-                              hideClass: { popup: "animated fadeOutUp faster" },
-                            });
-                          }
-                        })
-                        .catch((err) => {
-                          console.log(err);
-
-                          Swal.fire({
-                            text: "중복된 닉네임입니다",
-                            width: "300px",
-                            confirmButtonText: "확인",
-                            confirmButtonColor: "#40d295",
-                            showClass: {
-                              popup: "animated fadeInDown faster",
-                            },
-                            hideClass: { popup: "animated fadeOutUp faster" },
-                          });
+                      if (nickName?.trim() === "") {
+                        Swal.fire({
+                          text: "한 글자 이상 입력해주세요",
+                          width: "300px",
+                          confirmButtonText: "확인",
+                          confirmButtonColor: "#40d295",
+                          showClass: {
+                            popup: "animated fadeInDown faster",
+                          },
+                          hideClass: {
+                            popup: "animated fadeOutUp faster",
+                          },
                         });
-                    }}
-                  >
-                    중복확인
-                  </button>
-                </div>
-              </ModifyBlock>
-              <ModifyBlock>
-                <div>휴대폰 번호</div>
-                <div>
-                  <input
-                    type="text"
-                    defaultValue={user.phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    name="phone"
-                    required
-                    minLength={10}
-                    placeholder="01012345678"
-                    autoComplete="off"
-                    {...register("phone", {
-                      required: true,
-                      minLegnth: 10,
-                      pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
-                    })}
-                  />
-                  {errors.phone && errors.phone.type === "required" && (
-                    <p>휴대폰 번호를 입력해주세요</p>
-                  )}
-                  {errors.phone && errors.phone.type === "pattern" && (
-                    <p>10~11자리의 번호를 입력해주세요</p>
-                  )}
-                  {codeSent && (
-                    <div>
-                      <input
-                        placeholder="인증번호를 입력하세요"
-                        type="text"
-                        required
-                        name="code"
-                        autoComplete="off"
-                        onChange={(e) => setCode(e.target.value)}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          LoginAPI.postforCheckVCode({ code, phone })
-                            .then((res) => {
-                              console.log(res);
-                              if (res.status === 200) {
-                                Swal.fire({
-                                  text: "인증이 완료되었습니다",
-                                  width: "300px",
-                                  confirmButtonText: "확인",
-                                  confirmButtonColor: "#40d295",
-                                  showClass: {
-                                    popup: "animated fadeInDown faster",
-                                  },
-                                  hideClass: {
-                                    popup: "animated fadeOutUp faster",
-                                  },
-                                });
-                              }
-                            })
-                            .catch((err) => {
-                              console.log(err);
-                              // if(err.response.data === 401)
+                        return;
+                      } else {
+                        SignUpAPI.checkNickname({ nickname: nickName })
+                          .then((res) => {
+                            console.log(res);
+                            if (res.status === 200) {
                               Swal.fire({
-                                text: "인증 번호를 다시 확인해주세요",
+                                text: "사용 가능한 닉네임입니다",
                                 width: "300px",
                                 confirmButtonText: "확인",
                                 confirmButtonColor: "#40d295",
@@ -426,19 +338,60 @@ const MyPage = () => {
                                   popup: "animated fadeOutUp faster",
                                 },
                               });
+                            }
+                          })
+                          .catch((err) => {
+                            console.log(err);
+                            Swal.fire({
+                              text: "중복된 닉네임입니다",
+                              width: "300px",
+                              confirmButtonText: "확인",
+                              confirmButtonColor: "#40d295",
+                              showClass: {
+                                popup: "animated fadeInDown faster",
+                              },
+                              hideClass: { popup: "animated fadeOutUp faster" },
                             });
-                        }}
-                      >
-                        인증확인
-                      </button>
-                    </div>
-                  )}
+                          });
+                      }
+                    }}
+                  >
+                    중복확인
+                  </button>
+                </div>
+              </ModifyBlock>
+              <ModifyBlock>
+                <div>
+                  휴대폰번호
                 </div>
                 <div>
+                  <input
+                    type="text"
+                    defaultValue={user.phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    name="phone"
+                    required
+                    minLength={10}
+                    placeholder="01012345678"
+                    autoComplete="off"
+                  />
                   {!codeSent ? (
                     <button
                       type="button"
                       onClick={() => {
+                        if (phone?.length < 11) {
+                          Swal.fire({
+                            text: "10자리 이상의 번호를 입력해주세요",
+                            width: "300px",
+                            confirmButtonText: "확인",
+                            confirmButtonColor: "#40d295",
+                            showClass: {
+                              popup: "animated fadeInDown faster",
+                            },
+                            hideClass: { popup: "animated fadeOutUp faster" },
+                          });
+                          return;
+                        }
                         codeSentHandler();
                         LoginAPI.postforVCode({ phone: phone })
                           .then((res) => {
@@ -496,6 +449,21 @@ const MyPage = () => {
                       onClick={() =>
                         LoginAPI.postforVCode({ phone: phone })
                           .then((res) => {
+                            if (phone?.length < 10) {
+                              Swal.fire({
+                                text: "10자리 이상의 번호를 입력해주세요",
+                                width: "300px",
+                                confirmButtonText: "확인",
+                                confirmButtonColor: "#40d295",
+                                showClass: {
+                                  popup: "animated fadeInDown faster",
+                                },
+                                hideClass: {
+                                  popup: "animated fadeOutUp faster",
+                                },
+                              });
+                              return;
+                            }
                             console.log(res);
                             Swal.fire({
                               text: "인증번호가 전송되었습니다",
@@ -545,52 +513,93 @@ const MyPage = () => {
                       다시받기
                     </button>
                   )}
+                  {codeSent && (
+                    <div>
+                      <input
+                        placeholder="인증번호를 입력하세요"
+                        type="text"
+                        required
+                        name="code"
+                        autoComplete="off"
+                        onChange={(e) => setCode(e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          LoginAPI.postforCheckVCode({ code, phone })
+                            .then((res) => {
+                              console.log(res);
+                              if (res.status === 200) {
+                                Swal.fire({
+                                  text: "인증이 완료되었습니다",
+                                  width: "300px",
+                                  confirmButtonText: "확인",
+                                  confirmButtonColor: "#40d295",
+                                  showClass: {
+                                    popup: "animated fadeInDown faster",
+                                  },
+                                  hideClass: {
+                                    popup: "animated fadeOutUp faster",
+                                  },
+                                });
+                              }
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                              // if(err.response.data === 401)
+                              Swal.fire({
+                                text: "인증 번호를 다시 확인해주세요",
+                                width: "300px",
+                                confirmButtonText: "확인",
+                                confirmButtonColor: "#40d295",
+                                showClass: {
+                                  popup: "animated fadeInDown faster",
+                                },
+                                hideClass: {
+                                  popup: "animated fadeOutUp faster",
+                                },
+                              });
+                            });
+                        }}
+                      >
+                        인증확인
+                      </button>
+                    </div>
+                  )}
                 </div>
               </ModifyBlock>
               <ModifyBlock>
-                <div>비밀번호 변경</div>
+                <div>비밀번호</div>
                 <form onSubmit={handleSubmit(passwordHandler)}>
-                  <input
-                    type="password"
-                    //onChange={(e) => setPw(e.target.value)}
-                    placeholder="비밀번호"
-                    {...register("password", {
-                      required: true,
-                      pattern: {
-                        value: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/,
-                      },
-                    })}
-                  />
-                  {errors.password && errors.password.type === "required" && (
-                    <p>✓ 비밀번호를 입력해주세요</p>
-                  )}
-                  {errors.password && errors.password.type === "pattern" && (
-                    <p>✓ 영문과 숫자 조합으로 6글자 이상을 입력해주세요</p>
-                  )}
-                  <input
-                    type="password"
-                    //onChange={(e) => setCheckPw(e.target.value)}
-                    placeholder="비밀번호 확인"
-                    required
-                    {...register("confirmPassword", {
-                      required: true,
-                      validate: (value) => value === password.current,
-                    })}
-                  />
-                  {errors.confirmPassword &&
-                    errors.confirmPassword.type === "required" && (
-                      <p>✓ 다시 한번 비밀번호를 입력해주세요</p>
-                    )}
-                  {errors.confirmPassword &&
-                    errors.confirmPassword.type === "validate" && (
-                      <p>✓ 비밀번호가 일치하지 않습니다</p>
-                    )}
+                  <div>
+                    <input
+                      type="password"
+                      onChange={(e) => setPw(e.target.value)}
+                      placeholder="비밀번호"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="password"
+                      onChange={(e) => setCheckPw(e.target.value)}
+                      placeholder="비밀번호 확인"
+                      required
+                    />
+                  </div>
                 </form>
               </ModifyBlock>
             </ModifyDiv>
             <ModifyBtns>
               <button
                 onClick={() => {
+                  if (pw !== checkPw) {
+                    return alert("비밀번호가 일치하지 않습니다");
+                  }
+                  if (!pwRex.test(pw)) {
+                    return alert(
+                      "비밀번호는 숫자와 영문을 혼합하여 6자리 이상 입력해주세요"
+                    );
+                  }
                   clickEditMode();
                   UserpageAPI.patchMyInfo({
                     password: pw,
@@ -599,7 +608,7 @@ const MyPage = () => {
                     phone: phone,
                   })
                     .then((res) => {
-                      console.log("res", res);
+                      console.log("응답", res);
                       Swal.fire({
                         text: "수정이 완료되었습니다.",
                         width: "300px",

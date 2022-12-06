@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { GiShuttlecock } from "react-icons/gi";
-import { IoMdTennisball } from "react-icons/io";
-import { IoFootball } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "../../components/Header";
@@ -18,10 +15,7 @@ import {
   NextBtn,
   PageTitle,
   RecommendId,
-  Red,
   SecondPage,
-  SportDiv,
-  SportInput,
   SportLabel,
   SportsBlock,
   StWrap,
@@ -54,9 +48,9 @@ const KakaoAdd = () => {
   const [isCode, setIsCode] = useToggle();
   const [welcome, setwelcome, welcomeHandler] = useToggle();
   const [nickname, setNickname, nicknameHandler] = useToggle();
-  const [phoneCode, setPhoneCode, phoneCodeHandler] = useToggle();
+  const [phoneCode, setPhoneCode] = useToggle();
   const [codeSent, setCodeSent] = useToggle();
-  const [addSport, setAddSport, addSportHandler] = useToggle();
+  const [addSport, setAddSport] = useToggle();
   const [nnConfirm, setNnConfirm] = useToggle();
   const [code, setCode] = useState("");
   const {
@@ -65,7 +59,7 @@ const KakaoAdd = () => {
     getValues,
     formState: { errors },
   } = useForm({ mode: "all" });
-  // window.localStorage.setItem("loginId", 2526933634);
+
   const navigate = useNavigate();
 
   const isMember = localStorage.getItem("loginId");
@@ -81,9 +75,19 @@ const KakaoAdd = () => {
       })
       .catch((error) => {
         console.log(error);
-        if (error.status === 412 && error.response.data.code === -4) {
+        if (error.response.status === 412 && error.response.data.code === -4) {
           Swal.fire({
             text: "잘못된 추천인아이디입니다",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        }
+        if (error.response.status === 400) {
+          Swal.fire({
+            text: "선택사항을 모두 골라주세요",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -97,7 +101,7 @@ const KakaoAdd = () => {
   // 닉네임 중복 확인
   const checkNn = () => {
     const nickname = getValues("nickname");
-    if (!nickname) {
+    if (!nickname || nickname.trim() === "") {
       Swal.fire({
         text: "닉네임을 입력해주세요",
         width: "300px",
@@ -205,7 +209,8 @@ const KakaoAdd = () => {
             hideClass: { popup: "animated fadeOutUp faster" },
           });
         }
-        setCodeSent(true);
+        setAddSport(true);
+        setPhoneCode(false);
       })
       .catch((err) => {
         console.log(err);
@@ -409,23 +414,13 @@ const KakaoAdd = () => {
                         autoComplete="off"
                         onChange={(e) => setCode(e.target.value)}
                       />
-                      <button
-                        style={{
-                          border: "none",
-                          color: "#ff00b3",
-                          fontWeight: "600",
-                          cursor: "pointer",
-                        }}
-                        type="button"
-                        onClick={checkVCode}
-                      >
-                        인증확인
-                      </button>
                     </GrayBorder>
                   )}
 
                   <NextBtn
-                    onClick={(e) => {
+                    type="button"
+                    onClick={() => {
+                      checkVCode();
                       if (!isCode) {
                         Swal.fire({
                           text: "휴대폰 인증을 해주세요",
@@ -437,19 +432,6 @@ const KakaoAdd = () => {
                         });
                         return;
                       }
-                      if (code === "") {
-                        Swal.fire({
-                          text: "인증번호를 입력 해주세요",
-                          width: "300px",
-                          confirmButtonText: "확인",
-                          confirmButtonColor: "#40d295",
-                          showClass: { popup: "animated fadeInDown faster" },
-                          hideClass: { popup: "animated fadeOutUp faster" },
-                        });
-                        return;
-                      }
-                      phoneCodeHandler();
-                      setAddSport(true);
                     }}
                   >
                     다음

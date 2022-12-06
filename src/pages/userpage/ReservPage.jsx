@@ -27,21 +27,23 @@ import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ReservPage = () => {
-  const title = "My Booking";
+  const title = "나의 예약";
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const myNoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.noneMatchTotal
   );
-  console.log("나의 매칭전 예약리스트", myNoneMatches);
+  // console.log("나의 매칭전 예약리스트", myNoneMatches);
 
   const myDoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.doneMatchTotal
   );
-  console.log("나의 매칭완료 예약리스트", myDoneMatches);
+  // console.log("나의 매칭완료 예약리스트", myDoneMatches);
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
@@ -59,25 +61,48 @@ const ReservPage = () => {
   const spotReserve = myNoneMatches?.filter(
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "nomatch"
   );
-  console.log("구장예약:", spotReserve);
+  // console.log("구장예약:", spotReserve);
 
   const matchWaiting = myNoneMatches?.filter(
-    (myMatch) =>
-      // myMatch.matchData?.result === "매칭 전" &&
-      myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
+    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
   );
-  console.log("매칭대기중:", matchWaiting);
+  // console.log("매칭대기중:", matchWaiting);
 
-  // const matchComplete = myDoneMatches?.filter(
-  //   (myMatch) => myMatch.matchData?.result === "매칭 완료"
-  // );
-  // console.log("매칭성사", matchComplete);
-
+  if (!token) {
+    Swal.fire({
+      text: "로그인 후 이용해주세요",
+      width: "300px",
+      confirmButtonText: "확인",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    });
+  }
+  if (
+    spotReserve?.length === 0 &&
+    matchWaiting?.length === 0 &&
+    myDoneMatches?.length === 0
+  ) {
+    Swal.fire({
+      text: "아직 예약한 곳이 없습니다. 예약하러 가보세요",
+      width: "300px",
+      confirmButtonText: "예약하러 가기",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/book`);
+      }
+    });
+  }
+  console.log("구장예약리스트", spotReserve);
+  console.log("매칭대기중리스트", matchWaiting);
+  console.log("매칭완료된리스트", myDoneMatches);
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <MyReserve>
-        <ReservTitle></ReservTitle>
         <ReservedSpot>
           <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.map((matchCom) => {
@@ -105,7 +130,11 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
-                    <span>{matchCom.placeData?.price}</span>
+                    <span>
+                      {Number(matchCom.placeData?.price).toLocaleString(
+                        "ko-KR"
+                      )}
+                    </span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -168,7 +197,11 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchWait.placeData?.address}</p>
-                    <span>{matchWait.placeData?.price}</span>
+                    <span>
+                      {Number(matchWait.placeData?.price).toLocaleString(
+                        "ko-KR"
+                      )}
+                    </span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -199,10 +232,6 @@ const ReservPage = () => {
                       )}
 
                       <div>{matchWait.matchData?.teamName}</div>
-                      <span>
-                        {matchWait.teamData?.wins}승 /{" "}
-                        {matchWait.teamData?.lose}패
-                      </span>
                     </TeamInfoDetail>
                     <VS>
                       {matchWait.matchData?.member} :{" "}
@@ -256,7 +285,11 @@ const ReservPage = () => {
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
-                    <span>{matchCom.placeData?.price}</span>
+                    <span>
+                      {Number(matchCom.placeData?.price).toLocaleString(
+                        "ko-KR"
+                      )}
+                    </span>
                     <span>P</span>
                   </div>
                 </SpotInfo>
@@ -283,12 +316,7 @@ const ReservPage = () => {
                       ) : (
                         <img alt="팀로고" src={matchCom.teamData?.image} />
                       )}
-
                       <div>{matchCom.matchData?.teamName}</div>
-                      <span>
-                        {matchCom.teamData?.wins}승 / {matchCom.teamData?.lose}
-                        패
-                      </span>
                     </TeamInfoDetail>
                     <VS>
                       {matchCom.matchData?.member} :{" "}
@@ -303,10 +331,6 @@ const ReservPage = () => {
                       )}
 
                       <div>{matchCom.opponent?.teamName}</div>
-                      <span>
-                        {matchCom.opponent?.wins}승 / {matchCom.opponent?.lose}
-                        패
-                      </span>
                     </TeamInfoDetail>
                   </MatchVS>
                 </WaitedMatch>

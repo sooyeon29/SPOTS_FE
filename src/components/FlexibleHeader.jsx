@@ -15,7 +15,7 @@ const FlexibleHeader = (props) => {
       <StHeader>
         <StWrap>
           <IoIosArrowBack
-            style={{ fontSize: "26", color: "#AEB4BF" }}
+            style={{ fontSize: "26", color: "#AEB4BF", cursor: "pointer" }}
             onClick={() => navigate(-1)}
           />
           <PageTitle>{props.title}</PageTitle>
@@ -34,6 +34,7 @@ const FlexibleHeader = (props) => {
 export default FlexibleHeader;
 
 const StHeader = styled.div`
+  max-width: 600px;
   width: 100%;
   height: 62px;
   background-color: #000000;

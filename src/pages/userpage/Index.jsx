@@ -9,7 +9,7 @@ import { __getMyInfo } from "../../redux/modules/userSlice";
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const title = "My Page";
+  const title = "내 계정";
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const Profile = styled.div`
     text-align: right;
   }
   p:last-child {
-    font-size: 40px;
+    font-size: 32px;
     margin-top: -5px;
     margin-left: -35px;
     span {
