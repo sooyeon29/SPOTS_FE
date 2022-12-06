@@ -61,7 +61,7 @@ const Hosting = () => {
       setCheckedList(checkedList.filter((el) => el !== item));
     }
   };
-
+  
   const open = useDaumPostcodePopup();
   const [fullAddress, setFullAddress] = useState();
 
@@ -156,6 +156,17 @@ const Hosting = () => {
       if (!fullAddress) {
         Swal.fire({
           text: "주소를 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+        return;
+      }
+      if (!spot.address) {
+        Swal.fire({
+          text: "상세주소를 입력해주세요",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",

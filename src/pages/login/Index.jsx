@@ -54,14 +54,14 @@ const Login = () => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
-          Swal.fire({
-            text: "SPOTS에 오신 것을 환영합니다!",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
+          // Swal.fire({
+          //   text: "SPOTS에 오신 것을 환영합니다!",
+          //   width: "300px",
+          //   confirmButtonText: "확인",
+          //   confirmButtonColor: "#40d295",
+          //   showClass: { popup: "animated fadeInDown faster" },
+          //   hideClass: { popup: "animated fadeOutUp faster" },
+          // });
           navigate("/");
           // window.location.reload();
         } else if (res.status === 202) {
