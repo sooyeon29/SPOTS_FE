@@ -114,10 +114,9 @@ export const SelectDone = styled.div`
 export const SelectDone2 = styled.button`
   border: 1px solid #d9d9d9;
   border-radius: 20px;
-  width: 50%;
+  width: 48%;
   height: 180px;
   font-weight: bold;
-  max-width: 800px;
   padding: 10px 0px;
   display: flex;
   flex-direction: column;
@@ -126,12 +125,12 @@ export const SelectDone2 = styled.button`
   margin: 10px 5px 0px 5px;
   background-image: url("/matching/blue_myteam.png");
   background-size: cover;
-  background-position: center;
+  background-position-x: center;
   &:disabled {
     /* background-color: #f7f8f8; */
     background-image: url("/matching/white_myteam.png");
     background-size: cover;
-    background-position: center;
+    background-position-x: center;
   }
 `;
 export const SelectDone3 = styled(SelectDone2)`
@@ -258,12 +257,10 @@ export const Counter = styled.div`
       cursor: pointer;
       color: #000;
     }
-    div {
+    input {
       width: 40px;
-      height: 38px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 36px;
+      text-align: center;
       border: 1px solid #d9d9d9;
       font-size: 15px;
       font-weight: bold;

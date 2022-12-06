@@ -101,7 +101,7 @@ const KakaoAdd = () => {
   // 닉네임 중복 확인
   const checkNn = () => {
     const nickname = getValues("nickname");
-    if (!nickname) {
+    if (!nickname || nickname.trim() === "") {
       Swal.fire({
         text: "닉네임을 입력해주세요",
         width: "300px",

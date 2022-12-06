@@ -303,7 +303,7 @@ const SpotsDetail = () => {
                   </div>
                   <div>
                     <img alt="" src="/point.png" width="20px" />
-                    {Number(spot.price).toLocaleString('ko-KR')} 포인트
+                    {Number(spot.price).toLocaleString("ko-KR")} 포인트
                   </div>
                 </MoreInfo>
               </PlaceInfo>
@@ -771,7 +771,11 @@ const SpotsDetail = () => {
                   ) : (
                     <button onClick={() => setCount(count - 1)}>-</button>
                   )}
-                  <div>{count}</div>
+                  <input
+                    type="text"
+                    value={count}
+                    onChange={(e) => setCount(e.target.value)}
+                  />
                   <button
                     onClick={() => {
                       setCount(count + 1);
@@ -795,17 +799,21 @@ const SpotsDetail = () => {
                       잔여 포인트 :{" "}
                       {myPoint === undefined
                         ? "로그인 후 확인해주세요"
-                        : Number(myPoint).toLocaleString('ko-KR')}
+                        : Number(myPoint).toLocaleString("ko-KR")}
                       <img alt="" src="/point.png" width="20px" />
                     </p>
                     <span>
-                      예약 포인트: {Number(payAPrice + payBPrice).toLocaleString('ko-KR')}
+                      예약 포인트:{" "}
+                      {Number(payAPrice + payBPrice).toLocaleString("ko-KR")}
                       <img alt="" src="/point.png" width="20px" />
                     </span>
 
                     {myPoint > payAPrice + payBPrice ? (
                       <p>
-                        결제 후 포인트: {Number(myPoint - payAPrice + payBPrice).toLocaleString('ko-KR')}
+                        결제 후 포인트:{" "}
+                        {Number(myPoint - payAPrice + payBPrice).toLocaleString(
+                          "ko-KR"
+                        )}
                         <img alt="" src="/point.png" width="20px" />
                       </p>
                     ) : (

@@ -51,7 +51,6 @@ export const __getMyMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getMyMatch();
-      console.log("내예약", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       console.log("내예약왜안떠", error);
@@ -251,10 +250,8 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getMyMatch.fulfilled]: (state, action) => {
-      console.log("스테잇", state, "액션", action.payload);
       state.isLoading = false;
       state.mymatcher = action.payload;
-      console.log("마이메치", state.mymatcher);
     },
     [__getMyMatch.rejected]: (state, action) => {
       state.isLoading = false;

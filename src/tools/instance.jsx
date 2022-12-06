@@ -42,7 +42,8 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.status === 401) {
+    console.log("나 인터셉터에러", error);
+    if (error.status === 401 || error.response.status === 412) {
       Swal.fire({
         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
         width: "300px",
@@ -50,9 +51,12 @@ instance.interceptors.response.use(
         confirmButtonColor: "#40d295",
         showClass: { popup: "animated fadeInDown faster" },
         hideClass: { popup: "animated fadeOutUp faster" },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.localStorage.clear();
+          window.location.replace("/login");
+        }
       });
-      window.localStorage.clear();
-      window.location.replace("/login");
     }
     return Promise.reject(error);
   }
@@ -86,8 +90,7 @@ export const LoginAPI = {
 
 // 회원가입
 export const SignUpAPI = {
-  signUp: (payload) => 
-  instance.post(`users/signup`, payload),
+  signUp: (payload) => instance.post(`users/signup`, payload),
   // console.log(payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
