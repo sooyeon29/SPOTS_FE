@@ -6,18 +6,12 @@ import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
 import {
-  Stinput,
   StWraps,
-  PageTitle,
-  InputWrap,
   LoginBtn,
-  CodeBtn,
   Logo,
-  InputWrapLower,
   GrayBorder,
 } from "./Styles";
-import { useState } from "react";
-import { ContentWrap, NextBtn } from "../signUp/Styles";
+import { ContentWrap } from "../signUp/Styles";
 import Swal from "sweetalert2";
 
 const FindId = () => {

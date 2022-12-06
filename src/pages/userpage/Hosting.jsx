@@ -131,9 +131,20 @@ const Hosting = () => {
         });
         return;
       }
-      if (!sports) {
+      if (!spotName || spotName.trim() === "") {
         Swal.fire({
-          text: "종류를 선택해주세요",
+          text: "이름을 입력해주세요",
+          width: "300px",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#40d295",
+          showClass: { popup: "animated fadeInDown faster" },
+          hideClass: { popup: "animated fadeOutUp faster" },
+        });
+        return;
+      }
+      if (spotName.length > 30) {
+        Swal.fire({
+          text: "30자 이내의 이름을 입력해주세요",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",

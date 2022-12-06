@@ -15,7 +15,7 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 
 const TeamDetail = () => {
-  const title = "My Team";
+  const title = "나의 팀";
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ const TeamDetail = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>팀 상세페이지</PageDesc>
+        {/* <PageDesc>팀 상세페이지</PageDesc> */}
         <StTeamForm>
           {!isEdit ? (
             <>

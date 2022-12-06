@@ -75,6 +75,7 @@ export const StTeam = styled.div`
 `;
 
 export const StTeamForm = styled.form`
+margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -531,7 +532,7 @@ export const ProfilePhotoUpload = styled.div`
     justify-content: center;
     border-radius: 50%;
     position: absolute;
-    top: 190px;
+    top: 170px;
     left: 55%;
   }
 `;

@@ -23,79 +23,43 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
 // // 응답 인터셉터 추가
-// instance.interceptors.response.use(
-//    (response) => {
-//     // 응답 데이터가 있는 작업 수행
-//     //console.log("인터셉터리스판스+++++++++++++++++:", response);
-//     if (response.status === 200 && response.data.code === 1) {
-//       window.localStorage.removeItem("token");
-//       window.localStorage.setItem("token", response.data.myNewToken);
-//       const newAccessToken = response.data.myNewToken;
-//       return instance({
-//         ...response.config,
-//         headers: {
-//           Authorization: `${newAccessToken}`,
-//         },
-//       });
-//     }
-//     return response;
-//   },
-//   (error) => {
-//     console.log("나 인터셉터에러", error);
-//     if (error.status === 401 || error.response.status === 412) {
-//       Swal.fire({
-//         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
-//         width: "300px",
-//         confirmButtonText: "확인",
-//         confirmButtonColor: "#40d295",
-//         showClass: { popup: "animated fadeInDown faster" },
-//         hideClass: { popup: "animated fadeOutUp faster" },
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//           window.localStorage.clear();
-//           window.location.replace("/login");
-//         }
-//       });
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
 instance.interceptors.response.use(
-  (res) => {
-    // console.log("★ Axios.interceptors.response executed.");
-    let token = localStorage.getItem("token");
-    if (token) {
-      // console.log(
-      //   "-----------------------------------------------------------------------------"
-      // );
-      let lastAccessToken = token;
-      // console.log("★ currentAccessToken ★ : ", lastAccessToken);
-      let newAccessToken = res.data.myNewToken;
-
-      if (newAccessToken) {
-        // console.log("♥ newAccessToken ♥ : ", newAccessToken);
-
-        if (newAccessToken !== lastAccessToken) {
-          lastAccessToken = newAccessToken;
-          localStorage.setItem("token", newAccessToken);
-          return instance({
-            ...res.config,
-            headers: {
-              Authorization: `${newAccessToken}`,
-            },
-          });
-        }
-      }
-      // console.log(
-      //   "-----------------------------------------------------------------------------"
-      // );
+  async (response) => {
+    // 응답 데이터가 있는 작업 수행
+    //console.log("인터셉터리스판스+++++++++++++++++:", response);
+    if (response.status === 200 && response.data.code === 1) {
+      window.localStorage.removeItem("token");
+      window.localStorage.setItem("token", response.data.myNewToken);
+      const newAccessToken = response.data.myNewToken;
+      return instance({
+        ...response.config,
+        headers: {
+          Authorization: `${newAccessToken}`,
+        },
+      });
     }
-    return res;
+    return response;
   },
-  (err) => console.log(err)
+  (error) => {
+    console.log("나 인터셉터에러", error);
+    if (error.status === 401 || error.response.status === 412) {
+      Swal.fire({
+        text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.localStorage.clear();
+          window.location.replace("/login");
+        }
+      });
+    }
+    return Promise.reject(error);
+  }
 );
 
 // 로그인
@@ -131,7 +95,9 @@ export const SignUpAPI = {
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  socialSignUp: (payload) => instance.post(`auth/signup`, payload),
+  kakaoSingUp: (payload) =>
+    // console.log(payload),
+    instance.post(`auth/signup`, payload),
 };
 
 // userpage

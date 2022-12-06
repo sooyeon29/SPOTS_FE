@@ -83,6 +83,20 @@ const MyPage = () => {
     const sendFD = new FormData();
     sendFD.append("image", img);
 
+    // for (let a of sendFD.entries()) {
+    //   console.log("formData출력", a);
+    // }
+
+    // if (sendFD[1] === null) {
+    //   Swal.fire({
+    //     text: "사진을 등록해주세요.",
+    //     width: "300px",
+    //     confirmButtonText: "확인",
+    //     confirmButtonColor: "#40d295",
+    //     showClass: { popup: "animated fadeInDown faster" },
+    //     hideClass: { popup: "animated fadeOutUp faster" },
+    //   });
+    // }
     UserpageAPI.patchMyPhoto(sendFD)
       .then((res) => {
         console.log(res);
@@ -109,7 +123,7 @@ const MyPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>내 정보</PageDesc>
+        <PageDesc></PageDesc>
         {!isEdit ? (
           <div>
             <Image>
@@ -361,9 +375,7 @@ const MyPage = () => {
                 </div>
               </ModifyBlock>
               <ModifyBlock>
-                <div>
-                  휴대폰번호
-                </div>
+                <div>휴대폰번호</div>
                 <div>
                   <input
                     type="text"
@@ -592,14 +604,14 @@ const MyPage = () => {
             <ModifyBtns>
               <button
                 onClick={() => {
-                  if (pw !== checkPw) {
-                    return alert("비밀번호가 일치하지 않습니다");
-                  }
-                  if (!pwRex.test(pw)) {
-                    return alert(
-                      "비밀번호는 숫자와 영문을 혼합하여 6자리 이상 입력해주세요"
-                    );
-                  }
+                  // if (pw !== checkPw) {
+                  //   return alert("비밀번호가 일치하지 않습니다");
+                  // }
+                  // if (!pwRex.test(pw)) {
+                  //   return alert(
+                  //     "비밀번호는 숫자와 영문을 혼합하여 6자리 이상 입력해주세요"
+                  //   );
+                  // }
                   clickEditMode();
                   UserpageAPI.patchMyInfo({
                     password: pw,
