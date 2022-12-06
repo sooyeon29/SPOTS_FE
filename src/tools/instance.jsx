@@ -86,7 +86,9 @@ export const LoginAPI = {
 
 // 회원가입
 export const SignUpAPI = {
-  signUp: (payload) => instance.post(`users/signup`, payload),
+  signUp: (payload) => 
+  instance.post(`users/signup`, payload),
+  // console.log(payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),

@@ -108,7 +108,7 @@ export const PrivateBlock = styled.div`
   /* display: flex; */
   margin: auto;
   margin-top: 10px;
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
   /* padding-left: 15px; */
@@ -161,6 +161,7 @@ export const PublicBlock = styled.div`
   /* display: flex; */
   margin: auto;
   margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
   width: 85%;
@@ -226,7 +227,7 @@ export const StSearch = styled.div`
 
 export const SearchInput = styled.input`
   border: none;
-  /* width: 100%; */
+  width: 300px;
   background-color: transparent;
 
   ::placeholder {
@@ -242,3 +243,17 @@ export const PublicReserve = styled.a`
   text-decoration: none;
   color: black;
 `;
+
+export const NoResult = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 100px;
+font-size: 15px;
+color: #1746c7;
+font-weight: 600;
+p {
+  margin: 0px;
+}
+`

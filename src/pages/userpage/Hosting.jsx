@@ -90,6 +90,7 @@ const Hosting = () => {
   // console.log(spotName);
 
   const onRegisterHandler = (spot) => {
+    // e.preventDefault();
     let x = null;
     let y = null;
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
@@ -185,7 +186,6 @@ const Hosting = () => {
         });
         return;
       }
-
       PrivateApi.registerSpot(sendFD)
         .then((res) => {
           console.log(res);
@@ -202,6 +202,7 @@ const Hosting = () => {
           }
         })
         .catch((error) => {
+          console.log(error);
           if (error.response.data.code === -2) {
             Swal.fire({
               text: "사진을 등록해주세요",
@@ -211,27 +212,7 @@ const Hosting = () => {
               showClass: { popup: "animated fadeInDown faster" },
               hideClass: { popup: "animated fadeOutUp faster" },
             });
-          }
-          // else {
-          //   Swal.fire({
-          //     text: '사진은 2MB 이하로 선택해주세요',
-          //     width: '300px',
-          //     confirmButtonText: '확인',
-          //     confirmButtonColor: '#40d295',
-          //     showClass: { popup: 'animated fadeInDown faster' },
-          //     hideClass: { popup: 'animated fadeOutUp faster' },
-          //   });
-          // }
-          console.log(error);
-          console.log(error.response.status);
-          // Swal.fire({
-          //   text: '사진은 2MB 이하로 선택해주세요',
-          //   width: '300px',
-          //   confirmButtonText: '확인',
-          //   confirmButtonColor: '#40d295',
-          //   showClass: { popup: 'animated fadeInDown faster' },
-          //   hideClass: { popup: 'animated fadeOutUp faster' },
-          // });
+          } 
         });
     });
   };
@@ -473,7 +454,7 @@ const Hosting = () => {
                 setDesc(e.target.value);
               }}
             />
-            <SaveBtn onClick={onRegisterHandler}>등록하기</SaveBtn>
+            <SaveBtn>등록하기</SaveBtn>
           </HostForm>
         </HostCard>
       </StWrap>

@@ -115,7 +115,7 @@ const ReservPage = () => {
                     <p>{matchCom.placeData?.address}</p>
                     <span>
                       {Number(matchCom.placeData?.price).toLocaleString(
-                        "ko-KR"
+                        'ko-KR'
                       )}
                     </span>
                     <span>P</span>
@@ -182,7 +182,7 @@ const ReservPage = () => {
                     <p>{matchWait.placeData?.address}</p>
                     <span>
                       {Number(matchWait.placeData?.price).toLocaleString(
-                        "ko-KR"
+                        'ko-KR'
                       )}
                     </span>
                     <span>P</span>
@@ -270,7 +270,7 @@ const ReservPage = () => {
                     <p>{matchCom.placeData?.address}</p>
                     <span>
                       {Number(matchCom.placeData?.price).toLocaleString(
-                        "ko-KR"
+                        'ko-KR'
                       )}
                     </span>
                     <span>P</span>
@@ -314,10 +314,6 @@ const ReservPage = () => {
                       )}
 
                       <div>{matchCom.opponent?.teamName}</div>
-                      <span>
-                        {matchCom.opponent?.wins}승 / {matchCom.opponent?.lose}
-                        패
-                      </span>
                     </TeamInfoDetail>
                   </MatchVS>
                 </WaitedMatch>
