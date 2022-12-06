@@ -78,14 +78,31 @@ const ReservPage = () => {
       hideClass: { popup: "animated fadeOutUp faster" },
     });
   }
-  console.log("보여줘....", spotReserve);
-
-  console.log("요게서로다름", matchWaiting);
+  if (
+    spotReserve.length === 0 &&
+    matchWaiting.length === 0 &&
+    myDoneMatches.length === 0
+  ) {
+    Swal.fire({
+      text: "아직 예약한 곳이 없습니다. 예약하러 가보세요",
+      width: "300px",
+      confirmButtonText: "예약하러 가기",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/book`);
+      }
+    });
+  }
+  console.log("구장예약리스트", spotReserve);
+  console.log("매칭대기중리스트", matchWaiting);
+  console.log("매칭완료된리스트", myDoneMatches);
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <MyReserve>
-        <ReservTitle></ReservTitle>
         <ReservedSpot>
           <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.map((matchCom) => {
@@ -115,7 +132,7 @@ const ReservPage = () => {
                     <p>{matchCom.placeData?.address}</p>
                     <span>
                       {Number(matchCom.placeData?.price).toLocaleString(
-                        'ko-KR'
+                        "ko-KR"
                       )}
                     </span>
                     <span>P</span>
@@ -182,7 +199,7 @@ const ReservPage = () => {
                     <p>{matchWait.placeData?.address}</p>
                     <span>
                       {Number(matchWait.placeData?.price).toLocaleString(
-                        'ko-KR'
+                        "ko-KR"
                       )}
                     </span>
                     <span>P</span>
@@ -270,7 +287,7 @@ const ReservPage = () => {
                     <p>{matchCom.placeData?.address}</p>
                     <span>
                       {Number(matchCom.placeData?.price).toLocaleString(
-                        'ko-KR'
+                        "ko-KR"
                       )}
                     </span>
                     <span>P</span>
