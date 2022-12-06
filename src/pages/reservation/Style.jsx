@@ -91,12 +91,27 @@ export const BtnWrap = styled.div`
 `;
 
 export const Container = styled.div`
-  background-color: #fff;
   width: auto;
-  padding: 10px;
+  padding: 7px;
   border-radius: 10px;
-  background-color: #49e7a5;
-  border: solid 2px white;
+  background-color: #fff;
+  border: solid 2px transparent;
+  filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
+
+  div:first-child{
+    font-weight: 600;
+  }
+  div:last-child{
+    font-size: 14px;
+    cursor: pointer;
+    color: gray;
+  }
+  a {
+    color:gray;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;
 
 export const Status = styled.span`

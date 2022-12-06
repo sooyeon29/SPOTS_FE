@@ -68,7 +68,7 @@ const MainMaps = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log("왜 날짜 형식이 달라진거지", newMatch);
+  // console.log("왜 날짜 형식이 달라진거지", newMatch);
   // console.log(newSpot);
   // console.log('신규매치6개! 임박건!!!', newMatch);
   return (

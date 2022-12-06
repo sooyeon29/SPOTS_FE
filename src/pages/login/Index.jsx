@@ -20,6 +20,7 @@ import TapBar from "../../components/TapBar";
 import useToggle from "../../hooks/useToggle";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
+import { IoIosLock } from "react-icons/io";
 import Swal from "sweetalert2";
 import { IoIosLock } from "react-icons/io";
 
@@ -42,20 +43,11 @@ const Login = () => {
     e.preventDefault();
     LoginAPI.login({ loginId: loginInfo.id, password: loginInfo.password })
       .then((res) => {
-        console.log("로그인성공 response", res);
+        // console.log("로그인성공 response", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
-          // Swal.fire({
-          //   text: "SPOTS에 오신 것을 환영합니다!",
-          //   width: "300px",
-          //   confirmButtonText: "확인",
-          //   confirmButtonColor: "#40d295",
-          //   showClass: { popup: "animated fadeInDown faster" },
-          //   hideClass: { popup: "animated fadeOutUp faster" },
-          // });
           navigate("/");
-          // window.location.reload();
         } else if (res.status === 202) {
           if (window.confirm("휴면계정입니다. 계정을 활성화하시겠습니까?")) {
             localStorage.setItem("token", res.data.accessToken);
