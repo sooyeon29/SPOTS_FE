@@ -8,18 +8,12 @@ export const StContainer = styled.div`
 `;
 
 export const StWrap = styled.div`
-  //margin: auto;
-  //margin-top: 72px;
-  //width: 90%;
-  /* background-color: #f1f1f1; */
-  //border-radius: 15px;
-  margin-bottom: 50px;
-  //align-items: center;
-  //margin: 71px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 100px;
 `;
 
 export const TeamPhoto = styled.div`

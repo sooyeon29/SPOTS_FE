@@ -27,6 +27,7 @@ import TapBar from "../../components/TapBar";
 import useInput from "../../hooks/useInput";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 const MyPage = () => {
   const title = "내 정보";
@@ -89,20 +90,6 @@ const MyPage = () => {
     const sendFD = new FormData();
     sendFD.append("image", img);
 
-    // for (let a of sendFD.entries()) {
-    //   console.log("formData출력", a);
-    // }
-
-    // if (sendFD[1] === null) {
-    //   Swal.fire({
-    //     text: "사진을 등록해주세요.",
-    //     width: "300px",
-    //     confirmButtonText: "확인",
-    //     confirmButtonColor: "#40d295",
-    //     showClass: { popup: "animated fadeInDown faster" },
-    //     hideClass: { popup: "animated fadeOutUp faster" },
-    //   });
-    // }
     UserpageAPI.patchMyPhoto(sendFD)
       .then((res) => {
         console.log(res);
@@ -121,9 +108,22 @@ const MyPage = () => {
 
       .catch((err) => console.log(err));
   };
-  // console.log("마이페이지유저", user);
+
   const passwordHandler = (data) => {
     console.log(data);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    Swal.fire({
+      text: "로그아웃되었습니다.",
+      width: "300px",
+      confirmButtonText: "확인",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    });
+    navigate(`/`);
   };
 
   const google = localStorage.getItem("GOOGLE_CODE");
@@ -134,7 +134,7 @@ const MyPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc></PageDesc>
+        {/* <PageDesc></PageDesc> */}
         {!isEdit ? (
           <div>
             <Image>
@@ -293,6 +293,9 @@ const MyPage = () => {
                     </>
                   )}
                 </div>
+              </SportBlock>
+              <SportBlock>
+                <Btn onClick={logout}>로그아웃</Btn>
               </SportBlock>
             </SportsLayout>
           </div>
@@ -730,3 +733,25 @@ const MyPage = () => {
 };
 
 export default MyPage;
+
+const Btn = styled.button`
+  width: 90%;
+  height: 52px;
+  background-color: #ff00b4;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 47px;
+  line-height: 52px;
+  text-align: center;
+  border: none;
+  margin-top: 50px;
+  cursor: pointer;
+`;
+
+const StBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+`;
