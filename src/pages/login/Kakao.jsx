@@ -25,6 +25,7 @@ const Kakao = () => {
 
         if (res.data.code === -1) {
           localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
+          localStorage.setItem("profile", res.data.profileImg);
           navigate(`/addlogin`);
         }
         if (res.data.nickname) {

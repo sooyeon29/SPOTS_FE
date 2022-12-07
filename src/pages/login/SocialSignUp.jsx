@@ -63,10 +63,11 @@ const SocialSignUp = () => {
   const navigate = useNavigate();
 
   const isMember = localStorage.getItem("loginId");
+  const myImg = localStorage.getItem("profile");
   console.log(isMember);
 
   const onSubmit = async (data) => {
-    SignUpAPI.socialSignUp({ ...data, loginId: isMember })
+    SignUpAPI.socialSignUp({ ...data, loginId: isMember, profileImg: myImg })
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
