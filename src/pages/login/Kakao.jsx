@@ -1,15 +1,7 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
-import useToggle from "../../hooks/useToggle";
-import { LoginAPI, SignUpAPI } from "../../tools/instance";
-import { Red } from "../signUp/Styles";
+import { LoginAPI } from "../../tools/instance";
 
 const Kakao = () => {
   const navigate = useNavigate();
@@ -45,7 +37,3 @@ const Kakao = () => {
 };
 
 export default Kakao;
-
-const Spinner = styled.div`
-  margin: auto;
-`;

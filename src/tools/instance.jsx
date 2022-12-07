@@ -4,82 +4,30 @@ import Swal from "sweetalert2";
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
 });
-// let count = 0;
+
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
   (config) => {
     // 요청이 전달되기 전 작업 수행
-    console.log("인터셉터리퀘스트:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
-      // config.headers["count"] = count++;
-      // config.headers
-      // console.log("1번째 토큰!", token);
     }
     return config;
   },
   (error) => {
-    // 요청 오류가 있는 경우 작업 수행
-    // console.log("인터셉터에러", error);
     return Promise.reject(error);
   }
 );
-// .then(() => {
-//   console.log("음하ㅏ하하");
-// });
-
-// // 응답 인터셉터 추가
-// instance.interceptors.response.use(
-//   (response) => {
-//     // 응답 데이터가 있는 작업 수행
-//     console.log("!!!!!!!!!!!!!!!인터셉터리스판스", response.data);
-//     if (response.status === 200 && response.data.code === 1) {
-//       window.localStorage.removeItem("token");
-//       window.localStorage.setItem("token", response.data.myNewToken);
-//       let newAccessToken = response.data.myNewToken;
-//       return instance({
-//         ...response.config,
-//         headers: {
-//           Authorization: `${newAccessToken}`,
-//         },
-//       });
-//     }
-//     // window.location.reload();
-//     return response;
-//   },
-//   (error) => {
-//     console.log("나 인터셉터에러", error);
-//     if (error.status === 401 || error.response.status === 412) {
-//       // Swal.fire({
-//       //   text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
-//       //   width: "300px",
-//       //   confirmButtonText: "확인",
-//       //   confirmButtonColor: "#40d295",
-//       //   showClass: { popup: "animated fadeInDown faster" },
-//       //   hideClass: { popup: "animated fadeOutUp faster" },
-//       // }).then((result) => {
-//       //   if (result.isConfirmed) {
-//       //     window.localStorage.clear();
-//       //     window.location.replace("/login");
-//       //   }
-//       // });
-//     }
-//     return Promise.reject(error);
-//   }
-// );
 
 instance.interceptors.response.use(
   async (response) => {
     // 응답 데이터가 있는 작업 수행
-    console.log("!!!!!!!!!!!!!!!인터셉터리스판스", response);
     const { config, data } = response;
     const prevRequest = config;
-    console.log(config);
-    console.log(data);
+
     if (response.status === 200 && response.data.code === 1) {
       try {
-        console.log("요기 200에 code 1로 신규 토큰 들어온다아!!");
         window.localStorage.removeItem("token");
         window.localStorage.setItem("token", data.myNewToken);
         instance(
@@ -131,7 +79,6 @@ export const LoginAPI = {
   postforCheckVCode: (payload) => instance.post(`users/checkSms`, payload),
   // 아이디 찾기
   findId: (payload) =>
-    // console.log(payload),
     instance.post(`users/findId`, {
       phone: payload.phone.phone,
       code: payload.code.code,
@@ -147,13 +94,9 @@ export const LoginAPI = {
 // 회원가입
 export const SignUpAPI = {
   signUp: (payload) => instance.post(`users/signup`, payload),
-  // console.log(payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
-  // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  socialSignUp: (payload) =>
-    // console.log(payload),
-    instance.post(`auth/signup`, payload),
+  socialSignUp: (payload) => instance.post(`auth/signup`, payload),
 };
 
 // userpage
@@ -178,7 +121,6 @@ export const UserpageAPI = {
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
-
   getAllMatch: (payload) =>
     instance.get(`reservations/register/${payload.place}/${payload.date}`, {
       place: payload.place,
@@ -192,13 +134,13 @@ export const SpotsMatchApi = {
         date: payload.date,
       }
     ),
-
   getMyMatch: () => instance.get(`/reservations/me`),
   exitMyMatch: (payload) =>
     instance.put(`/reservations/register/delete`, payload),
   getRecentMatch: () => instance.get(`reservations/register`),
 };
 
+// 사설구장
 export const PrivateApi = {
   registerSpot: (payload) => instance.post(`places`, payload),
   // 등록한 사설 구장들 리스트
@@ -209,7 +151,6 @@ export const PrivateApi = {
   deletePrivateSpot: (payload) => instance.delete(`places/${payload}`),
   // 내가 등록한 구장 수정
   editPrivateSpot: (payload) =>
-    // console.log(payload),
     instance.patch(`/places/${payload.placesId}`, {
       spotName: payload.spotName,
       desc: payload.desc,
