@@ -119,14 +119,18 @@ const Login = () => {
           </form>
 
           <SocialLogin>
-            <KakaoBtn>
-              <img alt="" src="/kakao.png" width={25} />
-              <a href={KAKAO_AUTH_URL}>카카오 로그인</a>
-            </KakaoBtn>
-            <GoogleBtn>
-              <img alt="" src="/google.png" width={27} />
-              <a href={GOOGLE_AUTH_URL}>구글 로그인</a>
-            </GoogleBtn>
+            <a href={KAKAO_AUTH_URL}>
+              <KakaoBtn>
+                <img alt="" src="/kakao.png" width={25} />
+                카카오 로그인
+              </KakaoBtn>
+            </a>
+            <a href={GOOGLE_AUTH_URL}>
+              <GoogleBtn>
+                <img alt="" src="/google.png" width={27} />
+                구글 로그인
+              </GoogleBtn>
+            </a>
           </SocialLogin>
 
           <FindButs>

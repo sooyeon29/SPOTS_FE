@@ -345,12 +345,22 @@ export const MyReserve = styled.div`
 `;
 
 export const ReservedSpot = styled.div``;
-
+export const NoBookNow = styled.img`
+  width: 90%;
+  border-radius: 15px;
+`;
+export const MyMatchList = styled.div`
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 10px;
+`;
 export const AboutMatch = styled.div`
   font-size: 18px;
   font-weight: bold;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 export const CompletedMath = styled.div`
   span {
