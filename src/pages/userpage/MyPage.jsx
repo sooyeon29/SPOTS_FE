@@ -128,7 +128,7 @@ const MyPage = () => {
 
   const google = localStorage.getItem("GOOGLE_CODE");
   const kakao = localStorage.getItem("KAKAO_CODE");
-  console.log(google, kakao);
+  // console.log(google, kakao);
 
   return (
     <Layout>
