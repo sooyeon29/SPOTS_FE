@@ -141,7 +141,7 @@ export const SignUpAPI = {
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
   // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  kakaoSingUp: (payload) =>
+  socialSignUp: (payload) =>
     // console.log(payload),
     instance.post(`auth/signup`, payload),
 };

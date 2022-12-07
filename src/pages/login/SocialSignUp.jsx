@@ -71,8 +71,8 @@ const SocialSignUp = () => {
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
+          window.localStorage.removeItem("profile", "loginId");
           navigate(`/welcome`);
-          localStorage.removeItem("profile", "loginId");
         }
       })
       .catch((error) => {

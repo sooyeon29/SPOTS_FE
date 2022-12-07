@@ -26,7 +26,7 @@ const Welcome = () => {
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
             navigate(`/`);
-            localStorage.removeItem("KAKAO_CODE");
+            window.localStorage.removeItem("KAKAO_CODE");
           }
         })
         .catch((err) => console.log(err));
@@ -44,8 +44,8 @@ const Welcome = () => {
           console.log("구글", res);
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.removeItem("GOOGLE_CODE");
             navigate(`/`);
-            localStorage.removeItem("GOOGLE_CODE");
           }
         })
         .catch((err) => console.log(err));
