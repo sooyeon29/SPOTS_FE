@@ -9,7 +9,7 @@ export const StContainer = styled.div`
 
 export const StWrap = styled.div`
   //margin: auto;
-  //margin-top: 72px;
+  margin-top: 72px;
   //width: 90%;
   /* background-color: #f1f1f1; */
   //border-radius: 15px;

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import SpotsMap from "./SpotsMap";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {
@@ -23,13 +22,11 @@ import {
   Info2,
 } from "./Styles";
 import TapBar from "../../components/TapBar";
-import { LoginAPI, PrivateApi, SpotsMatchApi } from "../../tools/instance";
+import { PrivateApi, SpotsMatchApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import ChatBtn from "../../components/ChatBtn";
 import useDetectClose from "../../hooks/useDetectClose";
 import ChatRoom from "../chat/ChatRoom";
-import { WaitingMatch } from "../spotsDetail/Styles";
-import { SpotInfo } from "../userpage/Styles";
 
 const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
