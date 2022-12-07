@@ -38,6 +38,7 @@ instance.interceptors.response.use(
       window.localStorage.removeItem("token");
       window.localStorage.setItem("token", response.data.myNewToken);
       let newAccessToken = response.data.myNewToken;
+      window.location.reload();
       return instance({
         ...response.config,
         headers: {
@@ -45,7 +46,7 @@ instance.interceptors.response.use(
         },
       });
     }
-    // window.location.reload();
+
     return response;
   },
   (error) => {

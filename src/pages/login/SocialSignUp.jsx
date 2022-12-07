@@ -72,6 +72,7 @@ const SocialSignUp = () => {
         console.log(res);
         if (res.status === 201) {
           navigate(`/welcome`);
+          localStorage.removeItem("profile", "loginId");
         }
       })
       .catch((error) => {
@@ -364,9 +365,10 @@ const SocialSignUp = () => {
                       type="text"
                       {...register("phone", {
                         required: true,
-                        minLegnth: 10,
+                        maxLegnth: 11,
                         pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
                       })}
+                      maxLength={11}
                       placeholder="01012345678"
                       autoComplete="off"
                     />

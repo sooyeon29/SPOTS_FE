@@ -737,6 +737,7 @@ const SpotsDetail = () => {
                 onClick={() => setToggleThree(false)}
               >
                 <option> 예약할 나의 팀 선택 </option>
+                {/* <option><a href="${/teamregister}"</option> */}
                 {myTeams
                   ?.filter(
                     (thisSpotTeam) => thisSpotTeam.sports === spot.sports
