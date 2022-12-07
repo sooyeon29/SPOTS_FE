@@ -22,6 +22,7 @@ import {
   VS,
   TeamInfoDetail,
   WaitTeam,
+  MyMatchList,
 } from "./Styles";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -85,9 +86,14 @@ const ReservPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <MyReserve>
+        <MyMatchList>나의 예약 리스트</MyMatchList>
         <ReservedSpot>
-          <AboutMatch>구장 예약</AboutMatch>
-          {spotReserve?.length === 0 && <div>예약한 구장이 없습니다</div>}
+          <AboutMatch>구장예약</AboutMatch>
+          {spotReserve?.length === 0 && (
+            <div>
+              <img alt="" src="/nobooknow.png" />
+            </div>
+          )}
           {spotReserve?.map((matchCom) => {
             return (
               <MyMatch2 key={matchCom.matchData?.reservationId}>
@@ -147,11 +153,12 @@ const ReservPage = () => {
             );
           })}
         </ReservedSpot>
-
         <WaitedMatch>
-          <AboutMatch>매칭 대기/팀매칭 대기</AboutMatch>
+          <AboutMatch>구장예약 / 팀 매칭 대기</AboutMatch>
           {matchWaiting?.length === 0 && (
-            <div>매칭 대기중인 나의팀이 없습니다</div>
+            <div>
+              <img alt="" src="/nobooknow.png" />
+            </div>
           )}
           {matchWaiting?.map((matchWait) => {
             return (
@@ -247,7 +254,9 @@ const ReservPage = () => {
         <CompletedMath>
           <AboutMatch>매칭 완료</AboutMatch>
           {myDoneMatches?.length === 0 && (
-            <div>매칭이 성사된 예약이 없습니다</div>
+            <div>
+              <img alt="" src="/nobooknow.png" />
+            </div>
           )}
           {myDoneMatches?.map((matchCom) => {
             return (
