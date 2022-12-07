@@ -8,14 +8,18 @@ export const StContainer = styled.div`
 `;
 
 export const StWrap = styled.div`
-  margin: auto;
-  margin-top: 72px;
-  width: 90%;
+  //margin: auto;
+  //margin-top: 72px;
+  //width: 90%;
   /* background-color: #f1f1f1; */
-  border-radius: 15px;
+  //border-radius: 15px;
   margin-bottom: 50px;
+  //align-items: center;
+  //margin: 71px auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 71px auto;
+  justify-content: center;
 `;
 
 export const TeamPhoto = styled.div`
@@ -450,6 +454,7 @@ export const ModifyBtn = styled.button`
   margin-left: 60px;
   font-weight: 600;
   color: #000;
+  cursor: pointer;
 `;
 export const ReservTitle = styled.div`
   padding-top: 15px;
@@ -551,6 +556,7 @@ export const SaveImage = styled.button`
   align-items: center;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const ModifyDiv = styled.div`
@@ -612,6 +618,7 @@ export const ModifyBtns = styled.div`
     color: #fff;
     font-weight: 600;
     margin-left: 10px;
+    cursor: pointer;
   }
 `;
 export const Btn = styled.button`

@@ -109,8 +109,8 @@ const TeamPage = () => {
 export default TeamPage;
 
 const Container = styled.div`
-margin-top: 70px;
-margin-bottom: 70px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,6 +141,7 @@ const TeamCardFootball = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -160,6 +161,7 @@ const TeamCardTennis = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -179,6 +181,7 @@ const TeamCardBadminton = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -220,4 +223,5 @@ const Btn = styled.button`
   border: none;
   font-weight: 700;
   font-size: 16px;
+  cursor: pointer;
 `;

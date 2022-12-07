@@ -108,6 +108,7 @@ const Profile = styled.div`
     font-size: 32px;
     margin-top: -5px;
     margin-left: -35px;
+    text-align: right;
     span {
       font-size: 20px;
       margin-left: 10px;

@@ -83,6 +83,20 @@ const MyPage = () => {
     const sendFD = new FormData();
     sendFD.append("image", img);
 
+    // for (let a of sendFD.entries()) {
+    //   console.log("formData출력", a);
+    // }
+
+    // if (sendFD[1] === null) {
+    //   Swal.fire({
+    //     text: "사진을 등록해주세요.",
+    //     width: "300px",
+    //     confirmButtonText: "확인",
+    //     confirmButtonColor: "#40d295",
+    //     showClass: { popup: "animated fadeInDown faster" },
+    //     hideClass: { popup: "animated fadeOutUp faster" },
+    //   });
+    // }
     UserpageAPI.patchMyPhoto(sendFD)
       .then((res) => {
         console.log(res);
@@ -361,9 +375,7 @@ const MyPage = () => {
                 </div>
               </ModifyBlock>
               <ModifyBlock>
-                <div>
-                  휴대폰번호
-                </div>
+                <div>휴대폰번호</div>
                 <div>
                   <input
                     type="text"
