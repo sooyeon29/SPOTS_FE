@@ -97,6 +97,7 @@ export const BannerSlider = styled(Slider)`
   .slick-dots {
     color: red;
   }
+  cursor: pointer;
 `;
 
 export const Image = styled.img`
@@ -232,7 +233,7 @@ export const Info2 = styled.div`
     color: #000;
   }
 
-  div{
+  div {
     margin-left: 6px;
   }
 `;

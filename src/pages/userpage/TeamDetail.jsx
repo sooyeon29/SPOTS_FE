@@ -23,7 +23,7 @@ const TeamDetail = () => {
   const { teamdetail } = useSelector((state) => state.user);
   console.log(teamdetail.member);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
-  const [count, setCount] = useState(Number(teamdetail.member));
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
@@ -310,6 +310,7 @@ const SaveBtn = styled.button`
   text-align: center;
   border: none;
   margin-top: 50px;
+  cursor: pointer;
 `;
 
 const PlusBtn = styled.div`
@@ -324,6 +325,7 @@ const PlusBtn = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  cursor: pointer;
 `;
 
 const MinusBtn = styled.div`
@@ -338,6 +340,7 @@ const MinusBtn = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  cursor: pointer;
 `;
 
 const CountBox = styled.div`

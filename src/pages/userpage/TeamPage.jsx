@@ -138,6 +138,7 @@ const TeamCardFootball = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -157,6 +158,7 @@ const TeamCardTennis = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -176,6 +178,7 @@ const TeamCardBadminton = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -217,4 +220,5 @@ const Btn = styled.button`
   border: none;
   font-weight: 700;
   font-size: 16px;
+  cursor: pointer;
 `;
