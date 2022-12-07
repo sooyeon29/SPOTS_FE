@@ -145,7 +145,7 @@ export const MatchOrNot = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin: auto;
+  margin: 0px auto 10px auto;
 `;
 export const ExitBut = styled.button`
   cursor: pointer;

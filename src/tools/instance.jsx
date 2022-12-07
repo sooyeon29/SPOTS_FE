@@ -31,40 +31,50 @@ instance.interceptors.request.use(
 
 // // 응답 인터셉터 추가
 instance.interceptors.response.use(
-  (response) => {
+  async (response) => {
     // 응답 데이터가 있는 작업 수행
     console.log("!!!!!!!!!!!!!!!인터셉터리스판스", response);
+    const { config, data } = response;
+    const prevRequest = config;
+    console.log(config);
+    console.log(data);
     if (response.status === 200 && response.data.code === 1) {
-      window.localStorage.removeItem("token");
-      window.localStorage.setItem("token", response.data.myNewToken);
-      let newAccessToken = response.data.myNewToken;
-      return instance({
-        ...response.config,
-        headers: {
-          Authorization: `${newAccessToken}`,
-        },
-      });
+      try {
+        console.log("요기 200에 code 1로 신규 토큰 들어온다아!!");
+        window.localStorage.removeItem("token");
+        window.localStorage.setItem("token", data.myNewToken);
+        instance(
+          (prevRequest.headers = {
+            "Content-Type": "application/json",
+            Authorization: `${data.myNewToken}`,
+          })
+        );
+        window.location.reload();
+        return await instance(prevRequest);
+      } catch (err) {
+        console.log(err);
+      }
     }
-    // window.location.reload();
+
     return response;
   },
   (error) => {
     console.log("나 인터셉터에러", error);
-    if (error.status === 401 || error.response.status === 412) {
-      Swal.fire({
-        text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
-        width: "300px",
-        confirmButtonText: "확인",
-        confirmButtonColor: "#40d295",
-        showClass: { popup: "animated fadeInDown faster" },
-        hideClass: { popup: "animated fadeOutUp faster" },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.localStorage.clear();
-          window.location.replace("/login");
-        }
-      });
-    }
+    // if (error.status === 401 || error.response.status === 412) {
+    //   Swal.fire({
+    //     text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",
+    //     width: "300px",
+    //     confirmButtonText: "확인",
+    //     confirmButtonColor: "#40d295",
+    //     showClass: { popup: "animated fadeInDown faster" },
+    //     hideClass: { popup: "animated fadeOutUp faster" },
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       window.localStorage.clear();
+    //       window.location.replace("/login");
+    //     }
+    //   });
+    // }
     return Promise.reject(error);
   }
 );

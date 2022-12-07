@@ -79,7 +79,7 @@ export const StTeam = styled.div`
 `;
 
 export const StTeamForm = styled.form`
-margin-top: 70px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -350,18 +350,37 @@ export const MyReserve = styled.div`
   /* background-color: aliceblue; */
 `;
 
-export const ReservedSpot = styled.div``;
-
+export const ReservedSpot = styled.div`
+  div {
+    img {
+      width: 90%;
+      border-radius: 15px;
+    }
+  }
+`;
+export const MyMatchList = styled.div`
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 10px;
+`;
 export const AboutMatch = styled.div`
   font-size: 18px;
   font-weight: bold;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 export const CompletedMath = styled.div`
   span {
     font-size: 16px;
     font-weight: 600;
+  }
+  div {
+    img {
+      width: 90%;
+      border-radius: 15px;
+    }
   }
 `;
 
@@ -378,6 +397,12 @@ export const WaitedMatch = styled.div`
     background-color: transparent;
     height: 1px;
     width: 100%;
+  }
+  div {
+    img {
+      width: 90%;
+      border-radius: 15px;
+    }
   }
 `;
 
