@@ -86,20 +86,20 @@ const userSlice = createSlice({
           }
         });
       }
-      if (action.payload.response.status === 404) {
-        Swal.fire({
-          text: "예약을 위해서는 나의팀을 등록해주세요:)",
-          width: "300px",
-          confirmButtonText: "나의팀 등록하러 가기",
-          confirmButtonColor: "#40d295",
-          showClass: { popup: "animated fadeInDown faster" },
-          hideClass: { popup: "animated fadeOutUp faster" },
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.replace(`/teamregister`);
-          }
-        });
-      }
+      // if (action.payload.response.status === 404) {
+      //   Swal.fire({
+      //     text: "예약을 위해서는 나의팀을 등록해주세요:)",
+      //     width: "300px",
+      //     confirmButtonText: "나의팀 등록하러 가기",
+      //     confirmButtonColor: "#40d295",
+      //     showClass: { popup: "animated fadeInDown faster" },
+      //     hideClass: { popup: "animated fadeOutUp faster" },
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       window.location.replace(`/teamregister`);
+      //     }
+      //   });
+      // }
     },
     [__getMyteamDetail.pending]: (state, action) => {
       state.isLoading = true;

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
 });
-let count = 0;
+// let count = 0;
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
   (config) => {
@@ -45,6 +45,7 @@ instance.interceptors.response.use(
         },
       });
     }
+    // window.location.reload();
     return response;
   },
   (error) => {
