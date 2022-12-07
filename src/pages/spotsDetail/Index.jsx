@@ -50,7 +50,7 @@ import {
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
@@ -729,6 +729,23 @@ const SpotsDetail = () => {
                   </Email>
                 </>
               )}
+              <Link
+                to="/teamregister"
+                style={{
+                  color: "black",
+                  textDecoration: "none",
+                  marginLeft: "20px",
+                }}
+              >
+                아직 나의
+                {spot.sports === "풋살장" && <>⚽</>}
+                {spot.sports === "테니스장" && <>🥎</>}
+                {spot.sports === "배드민턴장" && <>🏸</>}
+                팀이 없다면!
+                {spot.sports === "풋살장" && <>⚽</>}
+                {spot.sports === "테니스장" && <>🥎</>}
+                {spot.sports === "배드민턴장" && <>🏸</>}팀 만들러 가기👉
+              </Link>
               <TeamSelect
                 name="myteam"
                 required
@@ -737,7 +754,7 @@ const SpotsDetail = () => {
                 onClick={() => setToggleThree(false)}
               >
                 <option> 예약할 나의 팀 선택 </option>
-                {/* <option><a href="${/teamregister}"</option> */}
+
                 {myTeams
                   ?.filter(
                     (thisSpotTeam) => thisSpotTeam.sports === spot.sports
