@@ -7,7 +7,6 @@ import {
   __getMyteamList,
 } from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
-import { StTeamForm, Image } from "./Styles";
 import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import TapBar from "../../components/TapBar";
@@ -21,7 +20,6 @@ const TeamDetail = () => {
   const navigate = useNavigate();
   const adminRef = useRef();
   const { teamdetail } = useSelector((state) => state.user);
-  console.log(teamdetail.member);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const [count, setCount] = useState(0);
 
@@ -354,4 +352,33 @@ const CountBox = styled.div`
   margin-left: -10px;
   margin-right: -10px;
   z-index: 1;
+`;
+
+const StTeamForm = styled.form`
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-top: 15px;
+  }
+`;
+
+const Image = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    /* transform: translate(50, 50); */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 `;

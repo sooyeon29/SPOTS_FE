@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { PageDesc, ProfilePhotoInput } from "./Styles";
 import { UserpageAPI } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
@@ -225,6 +224,13 @@ const StWrap = styled.div`
   justify-content: center;
 `;
 
+const PageDesc = styled.div`
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  margin: 80px 0px 20px 0px;
+`;
+
 const StTeamForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -298,6 +304,7 @@ const Btn = styled.button`
   text-align: center;
   border: none;
   margin-top: 50px;
+  cursor: pointer;
 `;
 
 const SpotsLabel = styled.label``;
@@ -444,4 +451,15 @@ const Preview = styled.div`
   width: 100px;
   background-color: #d9d9d9;
   border-radius: 100px;
+`;
+
+const ProfilePhotoInput = styled.input`
+  /* width: 0;
+  height: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0; */
+  display: none;
 `;

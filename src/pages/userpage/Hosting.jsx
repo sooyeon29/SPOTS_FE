@@ -5,7 +5,7 @@ import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import { HostCard, PageDesc, Image, ProfilePhotoInput } from "./Styles";
 import FlexibleHeader from "../../components/FlexibleHeader";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import TapBar from "../../components/TapBar";
 import Swal from "sweetalert2";
 
@@ -61,7 +61,7 @@ const Hosting = () => {
       setCheckedList(checkedList.filter((el) => el !== item));
     }
   };
-  
+
   const open = useDaumPostcodePopup();
   const [fullAddress, setFullAddress] = useState();
 
@@ -234,7 +234,7 @@ const Hosting = () => {
               showClass: { popup: "animated fadeInDown faster" },
               hideClass: { popup: "animated fadeOutUp faster" },
             });
-          } 
+          }
         });
     });
   };
