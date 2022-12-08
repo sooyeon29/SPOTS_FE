@@ -22,6 +22,7 @@ import {
   Calen,
   CalTime,
   Counter,
+  DatePicker,
   Email,
   EmailInput,
   FinalBooking,
@@ -297,19 +298,21 @@ const SpotsDetail = () => {
               </PlaceInfo>
               {toggle && (
                 <Calen>
-                  <ReactDatePicker
-                    locale={ko}
-                    selected={startDate}
-                    onChange={(date) => pickDateHandler(date, spot.spotName)}
-                    excludeDateIntervals={[
-                      {
-                        start: subDays(new Date(), 100),
-                        end: subDays(new Date(), 1),
-                      },
-                    ]}
-                    inline
-                    required
-                  />
+                  <DatePicker>
+                    <ReactDatePicker
+                      locale={ko}
+                      selected={startDate}
+                      onChange={(date) => pickDateHandler(date, spot.spotName)}
+                      excludeDateIntervals={[
+                        {
+                          start: subDays(new Date(), 100),
+                          end: subDays(new Date(), 1),
+                        },
+                      ]}
+                      inline
+                      required
+                    />
+                  </DatePicker>
                   <Pick>
                     <One
                       onClick={() => {
