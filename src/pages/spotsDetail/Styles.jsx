@@ -78,7 +78,7 @@ export const DatePicker = styled.div`
     background-color: white;
   }
   div {
-    padding: 6px;
+    padding: 5px;
     font-size: 17px;
     button {
       cursor: pointer;
@@ -313,6 +313,7 @@ export const SelectDone2 = styled.button`
   background-image: url("/matching/blue_myteam.png");
   background-size: cover;
   background-position-x: center;
+  cursor: pointer;
   &:disabled {
     background-image: url("/matching/white_myteam.png");
     background-size: cover;
@@ -356,6 +357,7 @@ export const TeamSelect = styled.select`
   justify-content: center;
   align-items: center;
   margin: 7px auto;
+  cursor: pointer;
   option {
     text-align: center;
     color: #000;

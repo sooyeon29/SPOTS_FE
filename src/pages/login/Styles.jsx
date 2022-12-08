@@ -160,5 +160,6 @@ export const FindButs = styled.div`
     background-color: transparent;
     border: none;
     font-size: 14px;
+    cursor: pointer;
   }
 `;
