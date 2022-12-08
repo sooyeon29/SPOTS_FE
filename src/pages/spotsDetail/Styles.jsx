@@ -70,22 +70,23 @@ export const MoreInfo = styled.div`
 `;
 export const Calen = styled.div`
   margin: 5px auto 0px auto;
-  div {
+`;
+export const DatePicker = styled.div`
+  display: flex;
+  justify-content: center;
+  div:first-child {
     background-color: white;
-    color: black;
-    padding: 6px;
-    border-radius: 10px;
+  }
+  div {
+    padding: 5px;
     font-size: 17px;
     button {
-      margin-top: 18px;
       cursor: pointer;
     }
   }
 `;
 export const Pick = styled.div`
-  display: flex;
   height: 38px;
-  justify-content: center;
   z-index: 1;
   width: 90%;
   background-color: #f8f9fd;
@@ -96,6 +97,8 @@ export const Pick = styled.div`
 export const One = styled.button`
   z-index: 2;
   width: 50%;
+  /* margin-top: 0px; */
+
   height: 100%;
   background-color: white;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #e9ebec;
@@ -310,6 +313,7 @@ export const SelectDone2 = styled.button`
   background-image: url("/matching/blue_myteam.png");
   background-size: cover;
   background-position-x: center;
+  cursor: pointer;
   &:disabled {
     background-image: url("/matching/white_myteam.png");
     background-size: cover;
@@ -353,6 +357,7 @@ export const TeamSelect = styled.select`
   justify-content: center;
   align-items: center;
   margin: 7px auto;
+  cursor: pointer;
   option {
     text-align: center;
     color: #000;
