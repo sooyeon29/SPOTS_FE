@@ -3,50 +3,12 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { useDispatch, useSelector } from "react-redux";
-
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { __getMyInfo, __getMyteamList } from "../../redux/modules/userSlice";
 import {
-  BookMatch,
-  CalTime,
-  Team,
-  Title,
-  Times,
-  Time,
-  SelectTeam,
-  Pick,
-  One,
-  Two,
-  SpotPhoto,
-  MoreInfo,
-  Sports,
-  PlaceInfo,
-  Calen,
-  TeamSelect,
-  SelectDone,
-  Counter,
-  SelectChoice,
-  FinalBooking,
-  WrapAll,
-  SelectDone2,
-  WaitingMatch,
-  MatchList,
-  WaitList,
-  WaitTennis,
-  WaitBadminton,
-  EmailInput,
-  WaitingMatch2,
-  WaitTennis2,
-  WaitBadminton2,
-  Email,
-  MatchOrNot,
-  SelectDone3,
-} from "./Styles";
-import {
   __getAllMatch,
-  // __getMyMatch,
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
@@ -55,6 +17,37 @@ import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import { subDays } from "date-fns";
+import {
+  BookMatch,
+  Calen,
+  CalTime,
+  Counter,
+  Email,
+  EmailInput,
+  FinalBooking,
+  MakeTeam,
+  MatchList,
+  MatchOrNot,
+  MoreInfo,
+  One,
+  Pick,
+  PlaceInfo,
+  SelectDone,
+  SelectDone2,
+  SelectDone3,
+  SelectTeam,
+  Sports,
+  SpotPhoto,
+  Team,
+  TeamSelect,
+  Time,
+  Times,
+  Title,
+  Two,
+  WaitingMatch,
+  WaitingMatch2,
+  WrapAll,
+} from "./Styles";
 
 const SpotsDetail = () => {
   const title = "예약";
@@ -147,14 +140,11 @@ const SpotsDetail = () => {
   let myPoint = user.point;
 
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
-  // const bookDate = JSON.stringify(startDate).substring(1, 11);
   const bookDate = startDate?.toLocaleDateString().substring(0, 12);
   console.log(pickedTime);
   const navigate = useNavigate();
   // 매칭없이 예약하기
   const bookWithNoMatch = (name) => {
-    // console.log('고른시간', pickedTime + 'nomatch' + startDate + name);
-    // return;
     dispatch(
       __postSpotsMatch({
         place: name,
@@ -187,7 +177,6 @@ const SpotsDetail = () => {
 
   const pickDateHandler = (date, name) => {
     setStartDate(date);
-    // const bookDate = JSON.stringify(date).substring(1, 11);
     const bookDate = date?.toLocaleDateString().substring(0, 12);
     dispatch(
       __getAllMatch({
@@ -283,7 +272,6 @@ const SpotsDetail = () => {
                 <Title>{spot.spotName}</Title>
                 <div>{spot.address}</div>
                 <div>{spot.desc}</div>
-
                 <MoreInfo>
                   <li>시설 현황</li>
                   <div>
@@ -344,7 +332,6 @@ const SpotsDetail = () => {
                   </button>
                 </SelectDone>
               )}
-
               {toggleTwo && (
                 <CalTime>
                   <Times>
@@ -439,7 +426,6 @@ const SpotsDetail = () => {
                   </Pick>
                 </CalTime>
               )}
-
               {toggleThree && (
                 <CalTime>
                   <SelectTeam>
@@ -729,23 +715,27 @@ const SpotsDetail = () => {
                   </Email>
                 </>
               )}
-              <Link
-                to="/teamregister"
-                style={{
-                  color: "black",
-                  textDecoration: "none",
-                  marginLeft: "20px",
-                }}
-              >
+              <MakeTeam>
                 아직 나의
-                {spot.sports === "풋살장" && <>⚽</>}
-                {spot.sports === "테니스장" && <>🥎</>}
-                {spot.sports === "배드민턴장" && <>🏸</>}
-                팀이 없다면!
-                {spot.sports === "풋살장" && <>⚽</>}
-                {spot.sports === "테니스장" && <>🥎</>}
-                {spot.sports === "배드민턴장" && <>🏸</>}팀 만들러 가기👉
-              </Link>
+                <span>
+                  {spot.sports === "풋살장" && <>풋살</>}
+                  {spot.sports === "테니스장" && <>테니스</>}
+                  {spot.sports === "배드민턴장" && <>배드민턴</>}팀
+                </span>
+                이 없다면!
+                <Link
+                  to="/teamregister"
+                  style={{
+                    color: "black",
+                    fontWeight: "700",
+                    // textDecoration: "none",
+                    marginLeft: "10px",
+                  }}
+                >
+                  만들러 가기
+                </Link>
+                👉
+              </MakeTeam>
               <TeamSelect
                 name="myteam"
                 required
@@ -846,7 +836,6 @@ const SpotsDetail = () => {
                   </CalTime>
                 </>
               )}
-
               {pickedTime !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
                   구장 예약하기
