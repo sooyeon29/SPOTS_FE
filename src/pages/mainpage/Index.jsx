@@ -1,31 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {
-  New,
-  Image,
-  BannerSlider,
-  SpotContainer,
-  MainSearch,
-  Section,
-  InfoDiv,
-  MainBanner,
-  Icon,
-  Info,
-  SpotName,
-  SixMatch,
-  SpotInfoMain,
-  WaitingMatchMain,
-  TeamContainer,
-  Info2,
-} from "./Styles";
-import TapBar from "../../components/TapBar";
+import { useEffect, useState } from "react";
 import { PrivateApi, SpotsMatchApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
-import ChatBtn from "../../components/ChatBtn";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import TapBar from "../../components/TapBar";
 import useDetectClose from "../../hooks/useDetectClose";
+import styled from "styled-components";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ChatBtn from "../../components/ChatBtn";
 import ChatRoom from "../chat/ChatRoom";
 
 const MainMaps = () => {
@@ -54,20 +38,16 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        // console.log('신규스팟', newSpot);
       })
       .catch((err) => console.log(err));
 
     SpotsMatchApi.getRecentMatch()
       .then((res) => {
-        // console.log('임박매치대기팀들!', res);
         setNewMatch(res?.data);
       })
       .catch((err) => console.log(err));
   }, []);
-  // console.log("왜 날짜 형식이 달라진거지", newMatch);
-  // console.log(newSpot);
-  // console.log('신규매치6개! 임박건!!!', newMatch);
+
   return (
     <>
       <Layout>
@@ -177,3 +157,158 @@ const MainMaps = () => {
 };
 
 export default MainMaps;
+
+const MainSearch = styled.img`
+  width: 100%;
+  margin-top: 60px;
+`;
+
+const MainBanner = styled.div`
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 98%;
+  }
+`;
+
+const SpotContainer = styled.div`
+  overflow: hidden;
+  margin-top: 20px;
+`;
+
+const Section = styled.div`
+  margin: 10px 0px 10px 10px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: SpoqaHanSansNeoBold;
+`;
+
+const BannerSlider = styled(Slider)`
+  .slick-slide div {
+    /* border-radius: 10px; */
+    margin: 0px 10px 0px 0px;
+  }
+  .slick-dots {
+    color: red;
+  }
+  cursor: pointer;
+`;
+
+const New = styled.div`
+  width: 80%;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 80px;
+`;
+
+const InfoDiv = styled.div`
+  background-color: #fff;
+  padding: 10px;
+  width: 6.41%;
+  border-radius: 10px;
+  position: absolute;
+  top: 60%;
+  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+`;
+
+const Info = styled.div`
+  width: 200px;
+`;
+
+const Icon = styled.img`
+  height: 25px;
+  margin-bottom: 5px;
+`;
+
+const SpotName = styled.div`
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+const TeamContainer = styled.div`
+  margin-bottom: 65px;
+`;
+
+export const SixMatch = styled.div`
+  width: 95%;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  padding-top: 10px;
+  hr {
+    border: none;
+    border-top: 1px dashed #d9d9d9;
+    color: #d9d9d9;
+    background-color: transparent;
+    height: 1px;
+    width: 100%;
+  }
+`;
+
+const WaitingMatchMain = styled.div`
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  margin: 3px;
+  padding: 2px;
+  div {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    padding: 3px;
+    img {
+      margin-bottom: 10px;
+    }
+  }
+`;
+
+const SpotInfoMain = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 350px;
+  margin-bottom: 10px;
+  img {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    margin: 0px 25px 0px 25px;
+    border-radius: 10px;
+  }
+`;
+
+const Info2 = styled.div`
+  width: 100%;
+  padding: 0px 10px;
+  button {
+    /* margin-top: 7px; */
+    font-size: 18px;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000;
+  }
+
+  div {
+    margin-left: 6px;
+  }
+`;
