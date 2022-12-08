@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BtnWrap, Container } from "./Style";
+import { BtnWrap, Container } from "./Styles";
 import {
   Map,
   ZoomControl,
