@@ -4,39 +4,37 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import { LoginAPI } from "../../tools/instance";
 import { GOOGLE_AUTH_URL, KAKAO_AUTH_URL } from "./OAuth";
-import {
-  StWraps,
-  Stinput,
-  KakaoBtn,
-  FindButs,
-  LoginBtn,
-  InputWrap,
-  Logo,
-  InputWrapLower,
-  GoogleBtn,
-  SocialLogin,
-} from "./Styles";
 import TapBar from "../../components/TapBar";
 import useToggle from "../../hooks/useToggle";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsEyeSlash } from "react-icons/bs";
 import { IoIosLock } from "react-icons/io";
 import Swal from "sweetalert2";
+import {
+  FindButs,
+  GoogleBtn,
+  InputWrap,
+  InputWrapLower,
+  KakaoBtn,
+  LoginBtn,
+  Logo,
+  SocialLogin,
+  Stinput,
+  StWraps,
+} from "./Styles";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState({
     id: "",
     password: "",
   });
   const [showPw, setShowPw, showPwHandler] = useToggle();
 
-  const navigate = useNavigate();
-
   const idAndPassword = (e) => {
     const { name, value } = e.target;
     setLoginInfo({ ...loginInfo, [name]: value });
   };
-  // console.log("인풋창 잘 들어오나", loginInfo);
 
   const loginHandler = (e) => {
     e.preventDefault();

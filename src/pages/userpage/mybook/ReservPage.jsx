@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __exitMyMatch, __getMyMatch } from "../../redux/modules/matchSlice";
+import { useNavigate } from "react-router-dom";
+import { __exitMyMatch, __getMyMatch } from "../../../redux/modules/matchSlice";
+import Layout from "../../../components/Layout";
+import TapBar from "../../../components/TapBar";
+import FlexibleHeader from "../../../components/FlexibleHeader";
+import Swal from "sweetalert2";
 import {
   WaitedMatch,
   CompletedMath,
   ReservedSpot,
-  MyMatch,
   MyReserve,
-  ReservTitle,
   AboutMatch,
   MoreInfo,
   DayTime,
@@ -16,20 +19,12 @@ import {
   CancleBtn,
   MatchVS,
   MidTitle,
-  OneOrTwo,
   MyMatch2,
-  MyTeamInfo,
   VS,
   TeamInfoDetail,
   WaitTeam,
-  MyMatchList,
   NoBookNow,
 } from "./Styles";
-import Layout from "../../components/Layout";
-import TapBar from "../../components/TapBar";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const ReservPage = () => {
   const title = "나의 예약";
@@ -40,12 +35,11 @@ const ReservPage = () => {
   const myNoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.noneMatchTotal
   );
-  // console.log("나의 매칭전 예약리스트", myNoneMatches);
 
   const myDoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.doneMatchTotal
   );
-  // console.log("나의 매칭완료 예약리스트", myDoneMatches);
+
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
@@ -63,31 +57,30 @@ const ReservPage = () => {
   const spotReserve = myNoneMatches?.filter(
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "nomatch"
   );
-  // console.log("구장예약:", spotReserve);
 
   const matchWaiting = myNoneMatches?.filter(
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
   );
-  // console.log("매칭대기중:", matchWaiting);
 
   if (!token) {
     Swal.fire({
-      text: "로그인 후 이용해주세요",
+      text: "나의 예약 리스트는 로그인 후 확인 가능합니다.",
       width: "300px",
-      confirmButtonText: "확인",
+      confirmButtonText: "로그인하러 가기",
       confirmButtonColor: "#40d295",
       showClass: { popup: "animated fadeInDown faster" },
       hideClass: { popup: "animated fadeOutUp faster" },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.replace(`/login`);
+      }
     });
   }
-  console.log("구장예약리스트", spotReserve);
-  console.log("매칭대기중리스트", matchWaiting);
-  console.log("매칭완료된리스트", myDoneMatches);
+
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <MyReserve>
-        <MyMatchList>나의 예약 리스트</MyMatchList>
         <ReservedSpot>
           <AboutMatch>구장예약</AboutMatch>
           {spotReserve?.length === 0 && (
@@ -253,7 +246,7 @@ const ReservPage = () => {
           })}
         </WaitedMatch>
         <CompletedMath>
-          <AboutMatch>매칭 완료</AboutMatch>
+          <AboutMatch>구장예약 / 팀 매칭완료</AboutMatch>
           {myDoneMatches?.length === 0 && (
             <div>
               <NoBookNow alt="" src="/nobooknow.png" />

@@ -5,14 +5,8 @@ import TapBar from "../../components/TapBar";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
-import {
-  StWraps,
-  LoginBtn,
-  Logo,
-  GrayBorder,
-} from "./Styles";
-import { ContentWrap } from "../signUp/Styles";
 import Swal from "sweetalert2";
+import { ContentWrap, GrayBorder, LoginBtn, Logo, StWraps } from "./Styles";
 
 const FindId = () => {
   const navigate = useNavigate();
@@ -36,7 +30,6 @@ const FindId = () => {
       setCodeSent(true);
       LoginAPI.postforFindIdPw(phoneNum)
         .then((res) => {
-          console.log("인증번호알럿이...", res);
           Swal.fire({
             text: "인증번호가 전송되었습니다",
             width: "300px",
@@ -47,7 +40,6 @@ const FindId = () => {
           });
         })
         .catch((err) => {
-          console.log(err);
           Swal.fire({
             text: "예상하지 못한 오류가 발생하였습니다",
             width: "300px",
@@ -59,7 +51,6 @@ const FindId = () => {
         });
     }
   };
-
   const findIdHandler = () => {
     if (phoneNum.phone.length < 10 || veriCode.code.length < 6) {
       Swal.fire({
@@ -121,6 +112,7 @@ const FindId = () => {
         });
     }
   };
+
   return (
     <Layout>
       <Header />
@@ -129,7 +121,6 @@ const FindId = () => {
           <Logo>
             <img alt="" src="/spotslogo.png" />
           </Logo>
-
           <GrayBorder>
             +82 |
             <input
@@ -170,11 +161,10 @@ const FindId = () => {
               </button>
             )}
           </GrayBorder>
-
           {isCode && (
             <GrayBorder>
               <input
-                placeholder="인증번호를 입력하세요(제한 시간 3분)"
+                placeholder="인증번호를 입력하세요"
                 type="text"
                 required
                 name="code"

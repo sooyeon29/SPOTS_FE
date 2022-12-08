@@ -1,7 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
+import useToggle from "../../../hooks/useToggle";
+import { useDispatch, useSelector } from "react-redux";
+import { __getMyInfo } from "../../../redux/modules/userSlice";
+import { LoginAPI, SignUpAPI, UserpageAPI } from "../../../tools/instance";
+import Layout from "../../../components/Layout";
+import { useNavigate } from "react-router-dom";
+import FlexibleHeader from "../../../components/FlexibleHeader";
+import TapBar from "../../../components/TapBar";
+import useInput from "../../../hooks/useInput";
+import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 import {
   StWrap,
-  PageDesc,
+  Btn,
   Image,
   InfoLayout,
   SportsLayout,
@@ -10,24 +21,12 @@ import {
   ModifyBtn,
   NickName,
   ProfilePhotoInput,
-  ProfilePhotoUpload,
   ModifyDiv,
   SaveImage,
   ModifyBlock,
+  ProfilePhotoUpload,
   ModifyBtns,
 } from "./Styles";
-import useToggle from "../../hooks/useToggle";
-import { useDispatch, useSelector } from "react-redux";
-import { __getMyInfo } from "../../redux/modules/userSlice";
-import { LoginAPI, SignUpAPI, UserpageAPI } from "../../tools/instance";
-import Layout from "../../components/Layout";
-import { useNavigate } from "react-router-dom";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import TapBar from "../../components/TapBar";
-import useInput from "../../hooks/useInput";
-import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
-import styled from "styled-components";
 
 const MyPage = () => {
   const title = "내 정보";
@@ -44,10 +43,6 @@ const MyPage = () => {
   const [codeConfirm, setCodeConfirm] = useState(false);
   const [nicknameConfirm, setNicknameConfirm] = useState(false);
   const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/;
-  // console.log(nickName);
-  // console.log(phone);
-  console.log(pw);
-  console.log(checkPw);
 
   const {
     register,
@@ -63,7 +58,6 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
-  // console.log(user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const handleImagePreview = (file) => {
@@ -128,13 +122,11 @@ const MyPage = () => {
 
   const google = localStorage.getItem("GOOGLE_CODE");
   const kakao = localStorage.getItem("KAKAO_CODE");
-  // console.log(google, kakao);
 
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        {/* <PageDesc></PageDesc> */}
         {!isEdit ? (
           <div>
             <Image>
@@ -574,7 +566,6 @@ const MyPage = () => {
                             })
                             .catch((err) => {
                               console.log(err);
-                              // if(err.response.data === 401)
                               Swal.fire({
                                 text: "인증 번호를 다시 확인해주세요",
                                 width: "300px",
@@ -619,7 +610,6 @@ const MyPage = () => {
                 </ModifyBlock>
               )}
             </ModifyDiv>
-
             <ModifyBtns>
               <button
                 onClick={() => {
@@ -733,25 +723,3 @@ const MyPage = () => {
 };
 
 export default MyPage;
-
-const Btn = styled.button`
-  width: 90%;
-  height: 52px;
-  background-color: #ff00b4;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 47px;
-  line-height: 52px;
-  text-align: center;
-  border: none;
-  margin-top: 50px;
-  cursor: pointer;
-`;
-
-const StBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  //justify-content: center;
-`;

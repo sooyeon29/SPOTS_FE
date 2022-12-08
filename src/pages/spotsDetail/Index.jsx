@@ -3,7 +3,6 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { useDispatch, useSelector } from "react-redux";
-
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
@@ -27,26 +26,19 @@ import {
   TeamSelect,
   SelectDone,
   Counter,
-  SelectChoice,
   FinalBooking,
   WrapAll,
   SelectDone2,
   WaitingMatch,
   MatchList,
-  WaitList,
-  WaitTennis,
-  WaitBadminton,
   EmailInput,
   WaitingMatch2,
-  WaitTennis2,
-  WaitBadminton2,
   Email,
   MatchOrNot,
   SelectDone3,
 } from "./Styles";
 import {
   __getAllMatch,
-  // __getMyMatch,
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";

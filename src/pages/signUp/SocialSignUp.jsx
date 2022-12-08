@@ -41,8 +41,8 @@ import {
   HealthInput,
   HealthDiv,
   RecommendTitle,
-} from "../signUp/Styles";
-import { LoginBtn } from "./Styles";
+} from "./Styles";
+import { LoginBtn } from "../login/Styles";
 
 const SocialSignUp = () => {
   const [isCode, setIsCode] = useToggle();

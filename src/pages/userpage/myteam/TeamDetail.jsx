@@ -1,17 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import useToggle from "../../hooks/useToggle";
+import useToggle from "../../../hooks/useToggle";
 import {
   __getMyteamDetail,
   __getMyteamList,
-} from "../../redux/modules/userSlice";
-import { UserpageAPI } from "../../tools/instance";
-import Layout from "../../components/Layout";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import TapBar from "../../components/TapBar";
-import styled from "styled-components";
+} from "../../../redux/modules/userSlice";
+import { UserpageAPI } from "../../../tools/instance";
+import Layout from "../../../components/Layout";
+import FlexibleHeader from "../../../components/FlexibleHeader";
+import TapBar from "../../../components/TapBar";
 import Swal from "sweetalert2";
+import {
+  StWrap,
+  InputBox,
+  InputText,
+  TeamLayout,
+  Btn,
+  SaveBtn,
+  PlusBtn,
+  MinusBtn,
+  CountBox,
+  StTeamForm,
+  Image,
+} from "./Styles";
 
 const TeamDetail = () => {
   const title = "나의 팀";
@@ -218,167 +230,3 @@ const TeamDetail = () => {
 };
 
 export default TeamDetail;
-
-const StWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 80px;
-`;
-
-const PageDesc = styled.div`
-  display: flex;
-  justify-content: center;
-  font-weight: 700;
-  margin: 80px 0px 20px 0px;
-`;
-
-const InputBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
-  width: 80%;
-`;
-
-const InputText = styled.input`
-  display: flex;
-  border-radius: 10px;
-  font-size: 18px;
-  padding-left: 10px;
-  width: 130px;
-  height: 30px;
-  margin-right: 20px;
-  border: 1px solid #cecece;
-  :focus {
-    outline: none;
-  }
-`;
-
-const TeamLayout = styled.div`
-  display: flex;
-  padding: 20px 10px 20px 10px;
-  border-bottom: 1px solid #cecece;
-  font-size: 14px;
-  font-weight: 600;
-  align-items: center;
-  width: 90%;
-  margin: auto;
-  div:first-child {
-    width: 100px;
-    text-align: center;
-    color: #545454;
-    padding: 8px 8px 8px 8px;
-  }
-
-  div:last-child {
-    font-size: 14px;
-    img {
-      width: 53px;
-      height: 53px;
-      border-radius: 10px;
-      margin: 0;
-    }
-  }
-`;
-
-const Btn = styled.button`
-  width: 80%;
-  height: 52px;
-  background-color: #cecece;
-  border: none;
-  border-radius: 47px;
-  margin-top: 15px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-`;
-
-const SaveBtn = styled.button`
-  width: 80%;
-  height: 52px;
-  background-color: #1746c7;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 47px;
-  line-height: 52px;
-  text-align: center;
-  border: none;
-  margin-top: 50px;
-  cursor: pointer;
-`;
-
-const PlusBtn = styled.div`
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: #1746c7;
-  border-radius: 20px;
-  color: #ffffff;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  cursor: pointer;
-`;
-
-const MinusBtn = styled.div`
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: #d9d9d9;
-  border-radius: 20px;
-  color: #231f20;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  cursor: pointer;
-`;
-
-const CountBox = styled.div`
-  width: 80px;
-  height: 30px;
-  background-color: #f5f5f5;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -10px;
-  margin-right: -10px;
-  z-index: 1;
-`;
-
-const StTeamForm = styled.form`
-  margin-top: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  img {
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    margin-top: 15px;
-  }
-`;
-
-const Image = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-
-  img {
-    /* transform: translate(50, 50); */
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-`;

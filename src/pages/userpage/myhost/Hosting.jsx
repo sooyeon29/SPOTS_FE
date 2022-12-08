@@ -1,14 +1,50 @@
 import { useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import { useDaumPostcodePopup } from "react-daum-postcode";
-import { PrivateApi } from "../../tools/instance";
+import { PrivateApi } from "../../../tools/instance";
 import { useNavigate } from "react-router-dom";
-import { HostCard, PageDesc, Image, ProfilePhotoInput } from "./Styles";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import styled from "styled-components";
-import TapBar from "../../components/TapBar";
+import FlexibleHeader from "../../../components/FlexibleHeader";
+import TapBar from "../../../components/TapBar";
 import Swal from "sweetalert2";
-
+import {
+  StWrap,
+  ImageUpload,
+  HostingPhotoUpload,
+  HostForm,
+  InputLayout,
+  SaveBtn,
+  InputText,
+  SearchBtn,
+  Preview,
+  HostPreview,
+  SpotsLabel,
+  FootballInput,
+  TennisInput,
+  BadmintonInput,
+  FootballDiv,
+  TennisDiv,
+  BadmintonDiv,
+  KindLabel,
+  OutdoorInput,
+  IndoorInput,
+  IndoorDiv,
+  OutdoorDiv,
+  ComfortsWrap,
+  ComfortsLabel,
+  LentalInput,
+  LockerInput,
+  ParkingInput,
+  ShowerInput,
+  DressInput,
+  LentalDiv,
+  LockerDiv,
+  ParkingDiv,
+  ShowerDiv,
+  DressDiv,
+  TextArea,
+  HostCard,
+  ProfilePhotoInput,
+} from "./Styles";
 const { kakao } = window;
 
 const Hosting = () => {
@@ -28,7 +64,6 @@ const Hosting = () => {
   const handleImagePreview = (file) => {
     setImg(null);
     setPreview([]);
-    // console.log(file.target.files);
     // setImg(file.target.files);
     // file.target.files.length < 4
     //   ? setImg(file.target.files)
@@ -87,8 +122,6 @@ const Hosting = () => {
     open({ onComplete: handleComplete });
   };
 
-  // console.log(spotName);
-
   const onRegisterHandler = (spot) => {
     // e.preventDefault();
     let x = null;
@@ -106,7 +139,6 @@ const Hosting = () => {
         x = result[0].x;
         y = result[0].y;
       }
-      // console.log(x, y);
 
       const sendFD = new FormData();
       sendFD.append("image", img);
@@ -250,11 +282,11 @@ const Hosting = () => {
               <div>
                 {preview.length > 0 ? (
                   <span>
-                    <img src="/cancel_icon.png" />
+                    <img alt="cancel_icon" src="/cancel_icon.png" />
                   </span>
                 ) : (
                   <span>
-                    <img src="/plus_icon_blue.png" />
+                    <img alt="plus_icon" src="/plus_icon_blue.png" />
                   </span>
                 )}
               </div>
@@ -486,361 +518,3 @@ const Hosting = () => {
 };
 
 export default Hosting;
-
-const StWrap = styled.div`
-  margin: auto;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 100px;
-`;
-
-const ImageUpload = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 80px;
-`;
-
-const HostingPhotoUpload = styled.div`
-  img {
-    width: 20px;
-    position: absolute;
-  }
-`;
-
-const HostForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-const InputLayout = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 12px;
-  border-bottom: 1px solid #cecece;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  /* text-align: center; */
-
-  div:first-child {
-    width: 60px;
-    text-align: center;
-    /* border-right: 1px solid #cecece; */
-    color: #545454;
-    /* padding: 8px 8px 8px 8px; */
-    margin-right: 30px;
-  }
-`;
-
-const SaveBtn = styled.button`
-  width: 90%;
-  height: 52px;
-  background-color: #1746c7;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 47px;
-  line-height: 52px;
-  text-align: center;
-  border: none;
-  margin-top: 30px;
-`;
-
-const InputText = styled.input`
-  display: flex;
-  border: none;
-  width: 150px;
-  :focus {
-    outline: none;
-  }
-`;
-
-const SearchBtn = styled.button`
-  border: none;
-  height: 25px;
-  width: 40px;
-  border-radius: 5px;
-  color: #000;
-`;
-
-const Preview = styled.div`
-  div:first-child {
-    height: 100px;
-    width: 100px;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-  }
-  height: 100px;
-  width: 100px;
-  background-color: #d9d9d9;
-  border-radius: 10px;
-`;
-
-const HostPreview = styled.div`
-  img {
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-`;
-
-export const SpotsLabel = styled.label`
-  margin-right: 5px;
-`;
-
-export const FootballInput = styled.input`
-  display: none;
-`;
-export const TennisInput = styled.input`
-  display: none;
-`;
-export const BadmintonInput = styled.input`
-  display: none;
-`;
-
-export const FootballDiv = styled.div`
-  width: 60px;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url("/mypage/football_gray.png");
-  background-size: 60px;
-
-  ${FootballInput}:checked + && {
-    background-image: url("/mypage/football_blue.png");
-    background-size: 60px;
-  }
-
-  img {
-    width: 60px;
-    height: 60px;
-  }
-`;
-
-export const TennisDiv = styled.div`
-  width: 60px;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url("/mypage/tennis_gray.png");
-  background-size: 60px;
-
-  ${TennisInput}:checked + && {
-    background-image: url("/mypage/tennis_blue.png");
-    background-size: 60px;
-  }
-`;
-
-export const BadmintonDiv = styled.div`
-  width: 60px;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url("/mypage/badminton_gray.png");
-  background-size: 60px;
-
-  ${BadmintonInput}:checked + && {
-    background-image: url("/mypage/badminton_blue.png");
-    background-size: 60px;
-  }
-`;
-
-export const KindLabel = styled.label``;
-
-export const OutdoorInput = styled.input`
-  display: none;
-`;
-
-export const IndoorInput = styled.input`
-  display: none;
-`;
-
-export const IndoorDiv = styled.div`
-  width: 95px;
-  height: 25px;
-  background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-
-  ${IndoorInput}:checked + && {
-    background-color: #1746c7;
-    color: #fff;
-  }
-`;
-
-export const OutdoorDiv = styled.div`
-  width: 95px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5f5f5;
-  font-size: 12px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-
-  ${OutdoorInput}:checked + && {
-    background-color: #1746c7;
-    color: #fff;
-  }
-`;
-
-export const ComfortsWrap = styled.div`
-  display: flex;
-  width: 180px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-`;
-
-export const ComfortsLabel = styled.label`
-  margin-right: 5px;
-`;
-
-export const LentalInput = styled.input`
-  display: none;
-`;
-export const LockerInput = styled.input`
-  display: none;
-`;
-export const ParkingInput = styled.input`
-  display: none;
-`;
-export const ShowerInput = styled.input`
-  display: none;
-`;
-export const DressInput = styled.input`
-  display: none;
-`;
-
-export const LentalDiv = styled.div`
-  background-color: #d9d9d9;
-  width: 60px;
-  /* height: 25px; */
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 3px;
-  color: #000;
-
-  ${LentalInput}:checked + && {
-    background-color: #1746c7;
-    width: 60px;
-    /* height: 25px; */
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 3px;
-    color: #fff;
-  }
-`;
-
-export const LockerDiv = styled.div`
-  background-color: #d9d9d9;
-  width: 60px;
-  /* height: 25px; */
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 3px;
-  color: #000;
-
-  ${LockerInput}:checked + && {
-    background-color: #1746c7;
-    width: 60px;
-    /* height: 25px; */
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 3px;
-    color: #fff;
-  }
-`;
-
-export const ParkingDiv = styled.div`
-  background-color: #d9d9d9;
-  width: 50px;
-  /* height: 25px; */
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 3px;
-
-  ${ParkingInput}:checked + && {
-    background-color: #1746c7;
-    width: 60px;
-    /* height: 25px; */
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 3px;
-    color: #fff;
-  }
-`;
-
-export const ShowerDiv = styled.div`
-  background-color: #d9d9d9;
-  width: 50px;
-  /* height: 25px; */
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 3px;
-
-  ${ShowerInput}:checked + && {
-    background-color: #1746c7;
-    width: 60px;
-    /* height: 25px; */
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 3px;
-    color: #fff;
-  }
-`;
-
-export const DressDiv = styled.div`
-  background-color: #d9d9d9;
-  width: 50px;
-  /* height: 25px; */
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 3px;
-
-  ${DressInput}:checked + && {
-    background-color: #1746c7;
-    width: 60px;
-    /* height: 25px; */
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 3px;
-    color: #fff;
-  }
-`;
-
-export const TextArea = styled.textarea`
-  margin-top: 20px;
-  resize: none;
-  padding: 10px;
-
-  :focus {
-    outline: none;
-  }
-`;
