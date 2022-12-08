@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StWrap = styled.div`
   display: flex;
@@ -56,7 +56,8 @@ export const ListBar = styled.div`
 export const Lists = styled.div`
   overflow: scroll;
   margin-bottom: 20px;
-// `;
+  //
+`;
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -96,16 +97,16 @@ export const Container = styled.div`
   border: solid 2px transparent;
   filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
 
-  div:first-child{
+  div:first-child {
     font-weight: 600;
   }
-  div:last-child{
+  div:last-child {
     font-size: 14px;
     cursor: pointer;
     color: gray;
   }
   a {
-    color:gray;
+    color: gray;
     font-size: 14px;
     text-decoration: none;
     cursor: pointer;
@@ -259,15 +260,15 @@ export const PublicReserve = styled.a`
 `;
 
 export const NoResult = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top: 100px;
-font-size: 15px;
-color: #1746c7;
-font-weight: 600;
-p {
-  margin: 0px;
-}
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  font-size: 15px;
+  color: #1746c7;
+  font-weight: 600;
+  p {
+    margin: 0px;
+  }
+`;
