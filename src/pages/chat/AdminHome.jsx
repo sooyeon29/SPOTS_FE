@@ -10,17 +10,17 @@ const AdminHome = () => {
   const [chatList, setChatList] = useState();
 
   useEffect(() => {
+    console.log("socket", socket);
     socket.on("admin_roomlist", (roomList) => {
       console.log("admin_roomlist", roomList);
       setRoomList(roomList);
     });
+    socket.on("on_chat", (list) => {
+      console.log("on_chat", list);
+    });
     // socket.on("chat_list", (list) => {
     //   console.log("chat_list", list);
     //   setChatList(list);
-    // });
-    // socket.on("admin_roomlist", (roomList) => {
-    //   console.log("admin_roomlist", roomList);
-    //   setChatList(roomList);
     // });
   }, []);
 

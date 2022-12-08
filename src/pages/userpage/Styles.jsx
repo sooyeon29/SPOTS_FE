@@ -354,8 +354,8 @@ export const MyReserve = styled.div`
 
 export const ReservedSpot = styled.div``;
 export const NoBookNow = styled.img`
-  width: 90%;
-  border-radius: 15px;
+  width: 100%;
+  border-radius: 18px;
 `;
 export const MyMatchList = styled.div`
   text-align: center;

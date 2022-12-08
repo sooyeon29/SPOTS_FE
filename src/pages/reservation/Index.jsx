@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import SpotList from './HostSpotList';
-import { FaSearchLocation } from 'react-icons/fa';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import SpotList from "./HostSpotList";
+import { FaSearchLocation } from "react-icons/fa";
 import {
   StWrap,
   MapPlace,
@@ -13,24 +13,24 @@ import {
   SearchInput,
   ListBar,
   Lists,
-} from './Style';
-import SpotsMap from '../reservation/SpotsMap';
+} from "./Style";
+import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,
   __getSearchedSpot,
-} from '../../redux/modules/spotsSlice';
-import TapBar from '../../components/TapBar';
-import FlexibleHeader from '../../components/FlexibleHeader';
-import Loading from '../../components/Loading';
+} from "../../redux/modules/spotsSlice";
+import TapBar from "../../components/TapBar";
+import FlexibleHeader from "../../components/FlexibleHeader";
+import Loading from "../../components/Loading";
 
 const Reservation = () => {
-  const [keywords, setKeywords] = useState('');
+  const [keywords, setKeywords] = useState("");
   const dispatch = useDispatch();
   const params = useParams();
   const { isLoading, error, searchedSpot, allSpot } = useSelector(
     (state) => state?.spots
   );
-  const title = '검색';
+  const title = "검색";
 
   useEffect(() => {
     if (!params.keywords) {
@@ -42,10 +42,8 @@ const Reservation = () => {
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
-    window.location.href = '/book/' + keywords;
+    window.location.href = "/book/" + keywords;
   };
-  // console.log("---검색---", searchedSpot);
-  // console.log("---전체---", allSpot);
 
   if (isLoading) {
     return <Loading />;
@@ -55,9 +53,8 @@ const Reservation = () => {
     return <div>{error.message}</div>;
   }
 
-  if (params?.keywords?.includes(' ')) {
-    params.keyword = params?.keywords?.split(' ');
-    // console.log(params.keyword);
+  if (params?.keywords?.includes(" ")) {
+    params.keyword = params?.keywords?.split(" ");
   }
 
   return (
@@ -66,13 +63,13 @@ const Reservation = () => {
         <FlexibleHeader title={title} />
         <StWrap>
           <StSearch>
-            <FaSearchLocation style={{paddingLeft: '20px'}}/>
+            <FaSearchLocation style={{ paddingLeft: "20px" }} />
             <form onSubmit={onSearchHandler}>
               <SearchInput
-                type='text'
+                type="text"
                 // value={keywords}
                 defaultValue={keywords}
-                placeholder='지역, 스팟 이름으로 찾기'
+                placeholder="지역, 스팟 이름으로 찾기"
                 onChange={(e) => {
                   setKeywords(e.target.value);
                 }}
