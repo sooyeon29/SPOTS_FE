@@ -24,7 +24,7 @@ import Welcome from "../components/Welcome";
 import Chatting from "../pages/chat/Chatting";
 import Google from "../pages/login/Google";
 import ScrollToTop from "../components/ScrollTop";
-import SocialSignUp from "../pages/login/SocialSignUp";
+import SocialSignUp from "../pages/signUp/SocialSignUp";
 //import ChatStart from "../pages/chat/ChatStartBtn";
 
 function Router() {

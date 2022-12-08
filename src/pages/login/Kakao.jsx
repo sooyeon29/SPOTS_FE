@@ -9,7 +9,6 @@ const Kakao = () => {
   const PARAMS = new URL(document.location).searchParams;
   const KAKAO_CODE = PARAMS.get("code");
   window.localStorage.setItem("KAKAO_CODE", KAKAO_CODE);
-  // console.log(KAKAO_CODE);
   useEffect(() => {
     LoginAPI.kakaoLogin(KAKAO_CODE)
       .then((res) => {

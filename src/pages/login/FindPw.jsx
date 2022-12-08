@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
@@ -6,11 +5,9 @@ import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
 import Swal from "sweetalert2";
 import TapBar from "../../components/TapBar";
-import styled from "styled-components";
-import { lighten } from "polished";
+import { ContentWrap, GrayBorder, LoginBtn, Logo, StWraps } from "./Styles";
 
 const FindPw = () => {
-  // const navigate = useNavigate();
   const [isCode, setIsCode] = useToggle();
   const [id, setId, enterId] = useInput();
   const [phoneNum, setPhoneNum, enterPhoneNum] = useInput();
@@ -206,73 +203,3 @@ const FindPw = () => {
   );
 };
 export default FindPw;
-
-const StWraps = styled.div`
-  margin-top: 70px;
-  margin-bottom: 60px;
-  padding: 30px;
-`;
-const ContentWrap = styled.div`
-  text-align: center;
-  p {
-    margin-top: 0;
-    font-size: 13px;
-    text-align: left;
-    text-align: center;
-    color: #ff00b3;
-  }
-`;
-const Logo = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 60px;
-  margin-top: 30px;
-`;
-const GrayBorder = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #f4f4f4;
-  border: none;
-  border-radius: 10px;
-  padding: 3px 5px 3px 15px;
-  max-width: 330px;
-  width: 90%;
-  height: 40px;
-  margin: auto;
-  margin-bottom: 10px;
-  font-size: 14px;
-  input {
-    background-color: transparent;
-    border: none;
-    margin: 0px 5px 0px 10px;
-    width: 60%;
-    height: 70%;
-    :focus {
-      outline: none;
-      background-color: #f4f4f4;
-    }
-    ::placeholder {
-      color: #c2c2c2;
-    }
-  }
-`;
-const LoginBtn = styled.button`
-  height: 50px;
-  background: #1746c7;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 330px;
-  border: none;
-  border-radius: 47px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
-  margin: 5px auto 10px auto;
-  cursor: pointer;
-  &:hover {
-    background-color: ${lighten(0.1, "#1746c7")};
-  }
-`;
