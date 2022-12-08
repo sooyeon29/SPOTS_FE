@@ -26,7 +26,6 @@ const Welcome = () => {
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
             navigate(`/`);
-            window.localStorage.removeItem("KAKAO_CODE");
           }
         })
         .catch((err) => console.log(err));
@@ -39,12 +38,11 @@ const Welcome = () => {
       window.location.replace(`${GOOGLE_AUTH_URL}`);
       const PARAMS = new URL(document.location).searchParams;
       const GOOGLE_CODE = PARAMS.get("code");
-      LoginAPI.kakaoLogin(GOOGLE_CODE)
+      LoginAPI.googleLogin(GOOGLE_CODE)
         .then((res) => {
           console.log("구글", res);
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
-            window.localStorage.removeItem("GOOGLE_CODE");
             navigate(`/`);
           }
         })

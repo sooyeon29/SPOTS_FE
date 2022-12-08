@@ -20,6 +20,8 @@ export const StWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 100px;
 `;
 
 export const TeamPhoto = styled.div`
@@ -350,13 +352,10 @@ export const MyReserve = styled.div`
   /* background-color: aliceblue; */
 `;
 
-export const ReservedSpot = styled.div`
-  div {
-    img {
-      width: 90%;
-      border-radius: 15px;
-    }
-  }
+export const ReservedSpot = styled.div``;
+export const NoBookNow = styled.img`
+  width: 90%;
+  border-radius: 15px;
 `;
 export const MyMatchList = styled.div`
   text-align: center;
@@ -376,12 +375,6 @@ export const CompletedMath = styled.div`
     font-size: 16px;
     font-weight: 600;
   }
-  div {
-    img {
-      width: 90%;
-      border-radius: 15px;
-    }
-  }
 `;
 
 export const WaitedMatch = styled.div`
@@ -397,12 +390,6 @@ export const WaitedMatch = styled.div`
     background-color: transparent;
     height: 1px;
     width: 100%;
-  }
-  div {
-    img {
-      width: 90%;
-      border-radius: 15px;
-    }
   }
 `;
 

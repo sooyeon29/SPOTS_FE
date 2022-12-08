@@ -23,6 +23,7 @@ import {
   TeamInfoDetail,
   WaitTeam,
   MyMatchList,
+  NoBookNow,
 } from "./Styles";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -91,7 +92,7 @@ const ReservPage = () => {
           <AboutMatch>구장예약</AboutMatch>
           {spotReserve?.length === 0 && (
             <div>
-              <img alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/nobooknow.png" />
             </div>
           )}
           {spotReserve?.map((matchCom) => {
@@ -157,7 +158,7 @@ const ReservPage = () => {
           <AboutMatch>구장예약 / 팀 매칭 대기</AboutMatch>
           {matchWaiting?.length === 0 && (
             <div>
-              <img alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/nobooknow.png" />
             </div>
           )}
           {matchWaiting?.map((matchWait) => {
@@ -255,7 +256,7 @@ const ReservPage = () => {
           <AboutMatch>매칭 완료</AboutMatch>
           {myDoneMatches?.length === 0 && (
             <div>
-              <img alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/nobooknow.png" />
             </div>
           )}
           {myDoneMatches?.map((matchCom) => {
