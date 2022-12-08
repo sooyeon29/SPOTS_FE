@@ -17,7 +17,6 @@ export const phonNum = styled.div`
 
 export const StWrap = styled.div`
   margin-top: 90px;
-  /* background-color: #f1f1f1; */
   padding: 30px;
 `;
 
@@ -54,12 +53,8 @@ export const PwInput = styled.input`
 `;
 
 export const ContentWrap = styled.div`
-  /* justify-content: center;
-align-items: center; */
   text-align: center;
-  /* margin: auto; */
   p {
-    /* background-color: aliceblue; */
     margin-top: 0;
     font-size: 13px;
     text-align: left;
@@ -75,8 +70,6 @@ export const FirstPage = styled.div`
   }
 `;
 export const IdConfirmBtn = styled.button`
-  /* margin-right: -68px; */
-  /* margin-left: 10px; */
   width: auto;
   cursor: pointer;
   color: #ff00b3;
@@ -85,7 +78,6 @@ export const IdConfirmBtn = styled.button`
   width: 80px;
   height: 39px;
   border: none;
-  /* border-bottom: 2px solid #ff00b3; */
 `;
 
 export const NextBtn = styled.button`
@@ -106,7 +98,6 @@ export const SecondPage = styled.div`
   input {
     border: none;
     width: 220px;
-    /* padding: 12px 15px; */
     margin: 10px 0px 10px 10px;
     background-color: transparent;
     :focus {
@@ -114,7 +105,6 @@ export const SecondPage = styled.div`
     }
   }
   p {
-    /* background-color: aliceblue; */
     margin-top: 0;
     font-size: 13px;
     text-align: left;
@@ -135,7 +125,6 @@ export const ThirdPage = styled.div`
     }
   }
   p {
-    /* background-color: aliceblue; */
     margin-top: 0;
     font-size: 13px;
     text-align: left;
@@ -145,19 +134,15 @@ export const ThirdPage = styled.div`
 `;
 
 export const GenderSelect = styled.div`
-  /* display: flex; */
-  /* background-color: black; */
 `;
 
 export const ForthPage = styled.div`
   margin: auto;
-  /* display: flex; */
 `;
 export const MySports = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  /* background-color: aliceblue; */
 `;
 
 export const SportInput = styled.input`

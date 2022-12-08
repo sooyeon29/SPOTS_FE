@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import styled from "styled-components";
 
 export const StWrap = styled.div`
@@ -8,14 +7,6 @@ export const StWrap = styled.div`
   background-color: #f1f1f1;
 `;
 
-export const MainElement = styled.div`
-  /* width: 390px; */
-  margin: auto;
-`;
-// export const MainSearch = styled.img`
-//   width: 100%;
-//   margin-top: 60px;
-// `;
 export const UpperLine = styled.div`
   width: 80%;
   display: flex;

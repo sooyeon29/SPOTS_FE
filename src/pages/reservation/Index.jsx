@@ -44,7 +44,6 @@ const Reservation = () => {
     e.preventDefault();
     window.location.href = "/book/" + keywords;
   };
-
   if (isLoading) {
     return <Loading />;
   }
@@ -79,12 +78,10 @@ const Reservation = () => {
           <MapPlace>
             {!params.keywords ? (
               <>
-                {/* {console.log("-----No Params-----", allSpot)} */}
                 <SpotsMap spotMarkers={allSpot} />
               </>
             ) : (
               <>
-                {/* {console.log("-----Yes Params-----", searchedSpot)} */}
                 <SpotsMap spotMarkers={searchedSpot} />
               </>
             )}
