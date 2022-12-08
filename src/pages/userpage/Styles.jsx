@@ -8,14 +8,8 @@ export const StContainer = styled.div`
 `;
 
 export const StWrap = styled.div`
-  //margin: auto;
   margin-top: 72px;
-  //width: 90%;
-  /* background-color: #f1f1f1; */
-  //border-radius: 15px;
   margin-bottom: 50px;
-  //align-items: center;
-  //margin: 71px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,12 +23,9 @@ export const TeamPhoto = styled.div`
   max-width: 800px;
   padding: 0px;
   overflow: hidden;
-  /* margin: auto; */
-  /* background-color: lightcyan; */
   border-radius: 10px;
   img {
     width: 100%;
-    /* height: 350px; */
     object-fit: cover;
     border-radius: 10px;
     margin: auto;

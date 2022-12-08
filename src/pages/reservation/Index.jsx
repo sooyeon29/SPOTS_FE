@@ -44,9 +44,7 @@ const Reservation = () => {
     e.preventDefault();
     window.location.href = '/book/' + keywords;
   };
-  // console.log("---검색---", searchedSpot);
-  // console.log("---전체---", allSpot);
-
+  
   if (isLoading) {
     return <Loading />;
   }
@@ -57,7 +55,6 @@ const Reservation = () => {
 
   if (params?.keywords?.includes(' ')) {
     params.keyword = params?.keywords?.split(' ');
-    // console.log(params.keyword);
   }
 
   return (
@@ -82,12 +79,10 @@ const Reservation = () => {
           <MapPlace>
             {!params.keywords ? (
               <>
-                {/* {console.log("-----No Params-----", allSpot)} */}
                 <SpotsMap spotMarkers={allSpot} />
               </>
             ) : (
               <>
-                {/* {console.log("-----Yes Params-----", searchedSpot)} */}
                 <SpotsMap spotMarkers={searchedSpot} />
               </>
             )}

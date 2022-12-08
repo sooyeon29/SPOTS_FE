@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { BtnWrap, Container } from './Style';
 import {
   Map,
   ZoomControl,
   MapMarker,
   CustomOverlayMap,
 } from 'react-kakao-maps-sdk';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { BtnWrap, MylocationBtn, Container } from './Style';
 
 const SpotsMap = ({ spotMarkers }) => {
   const navigate = useNavigate();
@@ -26,8 +25,6 @@ const SpotsMap = ({ spotMarkers }) => {
 
   const privateSpots = spotMarkers?.private;
   const publicSpots = spotMarkers?.public;
-  // console.log(privateSpots)
-  // console.log(publicSpots)
 
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);

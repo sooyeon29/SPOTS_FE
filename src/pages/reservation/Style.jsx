@@ -30,10 +30,8 @@ export const PlaceList = styled.div`
   max-width: 600px;
   width: 100%;
   display: flex;
-  /* margin-top: 10px; */
   flex-direction: column;
   height: 44vh;
-  /* overflow: scroll; */
   background-color: #fff;
   display: flex;
   margin-bottom: 80px;
@@ -58,7 +56,7 @@ export const ListBar = styled.div`
 export const Lists = styled.div`
   overflow: scroll;
   margin-bottom: 20px;
-`;
+// `;
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -138,8 +136,9 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 77%;
-    height: 88%;
+    width: 60%;
+    height: 90%;
+    /* height: 88%; */
   }
   p:first-child {
     margin: auto;
@@ -225,7 +224,7 @@ export const MylocationBtn = styled.button`
 `;
 
 export const SearchTerm = styled.div`
-  /* margin: auto; */
+  margin: auto;
 `;
 
 export const StSearch = styled.div`
