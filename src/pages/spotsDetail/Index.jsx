@@ -50,14 +50,14 @@ import {
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import { subDays } from "date-fns";
 
 const SpotsDetail = () => {
-  const title = "Booking";
+  const title = "예약";
   const myTime = [
     "06:00 - 08:00",
     "08:00 - 10:00",
@@ -303,7 +303,7 @@ const SpotsDetail = () => {
                   </div>
                   <div>
                     <img alt="" src="/point.png" width="20px" />
-                    {spot.price}포인트
+                    {Number(spot.price).toLocaleString("ko-KR")} 포인트
                   </div>
                 </MoreInfo>
               </PlaceInfo>
@@ -339,7 +339,7 @@ const SpotsDetail = () => {
               {!toggle && (
                 <SelectDone>
                   <button onClick={clickedToggle}>
-                    <div>날짜를 선택해 주세요</div>
+                    <div>날짜를 선택해주세요</div>
                     <div>[ 선택 날짜 {bookDate} ]</div>
                   </button>
                 </SelectDone>
@@ -349,7 +349,7 @@ const SpotsDetail = () => {
                 <CalTime>
                   <Times>
                     <img alt="" src="/matching/blackgroup.png" />
-                    우리팀끼리 사용하기
+                    우리 팀끼리 사용하기
                   </Times>
                   <Times>
                     <button
@@ -729,6 +729,23 @@ const SpotsDetail = () => {
                   </Email>
                 </>
               )}
+              <Link
+                to="/teamregister"
+                style={{
+                  color: "black",
+                  textDecoration: "none",
+                  marginLeft: "20px",
+                }}
+              >
+                아직 나의
+                {spot.sports === "풋살장" && <>⚽</>}
+                {spot.sports === "테니스장" && <>🥎</>}
+                {spot.sports === "배드민턴장" && <>🏸</>}
+                팀이 없다면!
+                {spot.sports === "풋살장" && <>⚽</>}
+                {spot.sports === "테니스장" && <>🥎</>}
+                {spot.sports === "배드민턴장" && <>🏸</>}팀 만들러 가기👉
+              </Link>
               <TeamSelect
                 name="myteam"
                 required
@@ -737,6 +754,7 @@ const SpotsDetail = () => {
                 onClick={() => setToggleThree(false)}
               >
                 <option> 예약할 나의 팀 선택 </option>
+
                 {myTeams
                   ?.filter(
                     (thisSpotTeam) => thisSpotTeam.sports === spot.sports
@@ -771,7 +789,11 @@ const SpotsDetail = () => {
                   ) : (
                     <button onClick={() => setCount(count - 1)}>-</button>
                   )}
-                  <div>{count}</div>
+                  <input
+                    type="text"
+                    value={count}
+                    onChange={(e) => setCount(e.target.value)}
+                  />
                   <button
                     onClick={() => {
                       setCount(count + 1);
@@ -795,17 +817,21 @@ const SpotsDetail = () => {
                       잔여 포인트 :{" "}
                       {myPoint === undefined
                         ? "로그인 후 확인해주세요"
-                        : myPoint}
+                        : Number(myPoint).toLocaleString("ko-KR")}
                       <img alt="" src="/point.png" width="20px" />
                     </p>
                     <span>
-                      예약 포인트: {payAPrice + payBPrice}{" "}
+                      예약 포인트:{" "}
+                      {Number(payAPrice + payBPrice).toLocaleString("ko-KR")}
                       <img alt="" src="/point.png" width="20px" />
                     </span>
 
                     {myPoint > payAPrice + payBPrice ? (
                       <p>
-                        결제후포인트: {myPoint - payAPrice + payBPrice}{" "}
+                        결제 후 포인트:{" "}
+                        {Number(myPoint - payAPrice + payBPrice).toLocaleString(
+                          "ko-KR"
+                        )}
                         <img alt="" src="/point.png" width="20px" />
                       </p>
                     ) : (

@@ -108,7 +108,7 @@ export const FindButs = styled.div`
   }
 `;
 
-export const KakaoBtn = styled.button`
+export const KakaoBtn = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
@@ -117,19 +117,15 @@ export const KakaoBtn = styled.button`
   height: 50px;
   /* padding: 11px 0px 10px; */
   background: #fed600;
-  width: 47%;
+  width: 90%;
   border: none;
   border-radius: 47px;
-  cursor: pointer;
+
   font-weight: bold;
   font-size: 14px;
   line-height: 24px;
   margin-top: 10px;
 
-  a {
-    text-decoration: none;
-    color: #3a1d1d;
-  }
   &:hover {
     background-color: ${lighten(0.2, "#ffcd2a")};
   }
@@ -145,12 +141,18 @@ export const GoogleBtn = styled(KakaoBtn)`
   }
 `;
 export const SocialLogin = styled.div`
-  width: 340px;
+  max-width: 350px;
   margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #3a1d1d;
+    width: 100%;
+  }
 `;
 
 export const PwInput = styled.div`

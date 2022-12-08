@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import FlexibleHeader from '../../components/FlexibleHeader';
-import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import TapBar from '../../components/TapBar';
 import useToggle from '../../hooks/useToggle';
@@ -39,7 +38,6 @@ const HostDetail = () => {
 
   const deleteHostHandler = (id) => {
     Swal.fire({
-      // title: '삭제하시겠습니까?',
       text: '삭제하시겠습니까?',
       width: '350px',
       showCancelButton: true,
@@ -292,8 +290,6 @@ export const SpotsComforts = styled.span`
   border-radius: 10px;
   margin-right: 5px;
   word-break: keep-all;
-  /* position: relative; */
-  /* bottom: 5px; */
 `;
 
 export const SpotsBtns = styled.div`

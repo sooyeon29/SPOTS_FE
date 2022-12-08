@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import styled from "styled-components";
 
 export const StWrap = styled.div`
@@ -8,14 +7,6 @@ export const StWrap = styled.div`
   background-color: #f1f1f1;
 `;
 
-export const MainElement = styled.div`
-  /* width: 390px; */
-  margin: auto;
-`;
-export const MainSearch = styled.img`
-  width: 100%;
-  margin-top: 60px;
-`;
 export const UpperLine = styled.div`
   width: 80%;
   display: flex;
@@ -89,64 +80,65 @@ export const BtnWrap = styled.div`
   position: absolute;
 `;
 
-export const BannerSlider = styled(Slider)`
-  .slick-slide div {
-    /* border-radius: 10px; */
-    margin: 0px 10px 0px 0px;
-  }
-  .slick-dots {
-    color: red;
-  }
-`;
+// export const BannerSlider = styled(Slider)`
+//   .slick-slide div {
+//     /* border-radius: 10px; */
+//     margin: 0px 10px 0px 0px;
+//   }
+//   .slick-dots {
+//     color: red;
+//   }
+//   cursor: pointer;
+// `;
 
-export const Image = styled.img`
-  width: 100%;
-  height: 200px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
-  /* border: 2px solid #49E7A5; */
-  margin-bottom: 80px;
-`;
+// export const Image = styled.img`
+//   width: 100%;
+//   height: 200px;
+//   border-top-left-radius: 10px;
+//   border-top-right-radius: 10px;
+//   box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
+//   /* border: 2px solid #49E7A5; */
+//   margin-bottom: 80px;
+// `;
 
-export const SpotContainer = styled.div`
-  overflow: hidden;
-  margin-top: 20px;
-`;
+// export const SpotContainer = styled.div`
+//   overflow: hidden;
+//   margin-top: 20px;
+// `;
 
-export const TeamContainer = styled.div`
-  margin-bottom: 65px;
-`;
+// export const TeamContainer = styled.div`
+//   margin-bottom: 65px;
+// `;
 
 export const New = styled.div`
   /* border: 2px solid black; */
   width: 80%;
 `;
 
-export const Section = styled.div`
-  margin: 10px 0px 10px 10px;
-  font-size: 16px;
-  font-weight: 800;
-  font-family: SpoqaHanSansNeoBold;
-`;
+// export const Section = styled.div`
+//   margin: 10px 0px 10px 10px;
+//   font-size: 16px;
+//   font-weight: 800;
+//   font-family: SpoqaHanSansNeoBold;
+// `;
 
-export const InfoDiv = styled.div`
-  background-color: #fff;
-  padding: 10px;
-  /* width: 16.3rem; */
-  width: 6.41%;
-  border-radius: 10px;
-  position: absolute;
-  top: 60%;
-  box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  /* border: 2px solid #49E7A5; */
-`;
+// export const InfoDiv = styled.div`
+//   background-color: #fff;
+//   padding: 10px;
+//   /* width: 16.3rem; */
+//   width: 6.41%;
+//   border-radius: 10px;
+//   position: absolute;
+//   top: 60%;
+//   box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.1);
+//   display: flex;
+//   /* border: 2px solid #49E7A5; */
+// `;
 
-export const Icon = styled.img`
-  height: 25px;
-  margin-bottom: 5px;
-`;
+// export const Icon = styled.img`
+//   height: 25px;
+//   margin-bottom: 5px;
+// `;
 
 export const LinkIcon = styled.div`
   background-color: #eaeffc;
@@ -164,103 +156,104 @@ export const LinkIcon = styled.div`
   cursor: pointer;
 `;
 
-export const Info = styled.div`
-  width: 200px;
-`;
+// export const Info = styled.div`
+//   width: 200px;
+// `;
 
-export const SpotName = styled.div`
-  font-weight: bold;
-  font-size: 18px;
-`;
+// export const SpotName = styled.div`
+//   font-weight: bold;
+//   font-size: 18px;
+// `;
 
-export const MainBanner = styled.div`
-  /* width: 100%; */
-  /* height: 100%; */
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// export const MainBanner = styled.div`
+//   /* width: 100%; */
+//   /* height: 100%; */
+//   margin: 5px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 
-  img {
-    width: 98%;
-    /* height: 100%; */
-  }
-`;
-export const SixMatch = styled.div`
-  width: 95%;
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  margin: 10px auto;
-  padding-top: 10px;
-  hr {
-    border: none;
-    border-top: 1px dashed #d9d9d9;
-    color: #d9d9d9;
-    background-color: transparent;
-    height: 1px;
-    width: 100%;
-  }
-`;
-export const SpotInfoMain = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 350px;
-  margin-bottom: 10px;
-  img {
-    width: 70px;
-    height: 50px;
-    object-fit: cover;
-    margin: 0px 25px 0px 25px;
-    border-radius: 10px;
-  }
-`;
+//   img {
+//     width: 98%;
+//     /* height: 100%; */
+//   }
+// // `;
+// export const SixMatch = styled.div`
+//   width: 95%;
+//   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+//   border-radius: 10px;
+//   display: flex;
+//   flex-direction: column;
+//   margin: 10px auto;
+//   padding-top: 10px;
+//   hr {
+//     border: none;
+//     border-top: 1px dashed #d9d9d9;
+//     color: #d9d9d9;
+//     background-color: transparent;
+//     height: 1px;
+//     width: 100%;
+//   }
+// // `;
+// export const SpotInfoMain = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: flex-start;
+//   align-items: center;
+//   width: 350px;
+//   margin-bottom: 10px;
+//   img {
+//     width: 70px;
+//     height: 50px;
+//     object-fit: cover;
+//     margin: 0px 25px 0px 25px;
+//     border-radius: 10px;
+//   }
+// `;
 
-export const Info2 = styled.div`
-  width: 100%;
-  padding: 0px 10px;
-  button {
-    /* margin-top: 7px; */
-    font-size: 18px;
-    font-weight: bold;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
+// export const Info2 = styled.div`
+//   width: 100%;
+//   padding: 0px 10px;
+//   button {
+//     /* margin-top: 7px; */
+//     font-size: 18px;
+//     font-weight: bold;
+//     background-color: transparent;
+//     border: none;
+//     cursor: pointer;
+//     color: #000;
+//   }
 
-  div{
-    margin-left: 6px;
-  }
-`;
+//   div {
+//     margin-left: 6px;
+//   }
+// `;
 
-export const WaitingMatchMain = styled.div`
-  font-size: 15px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  border-radius: 10px;
-  margin: 3px;
-  padding: 2px;
-  div {
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    padding: 3px;
-    img {
-      margin-bottom: 10px;
-    }
-    /* span {
-      font-size: 12px;
-      margin: 2px 30px 2px 5px;
-    } */
-  }
-`;
+// export const WaitingMatchMain = styled.div`
+//   font-size: 15px;
+//   font-weight: bold;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   align-items: center;
+//   width: 100%;
+//   border-radius: 10px;
+//   margin: 3px;
+//   padding: 2px;
+//   div {
+//     display: flex;
+//     flex-direction: column;
+//     font-size: 15px;
+//     padding: 3px;
+//     img {
+//       margin-bottom: 10px;
+//     }
+//     /* span {
+//       font-size: 12px;
+//       margin: 2px 30px 2px 5px;
+//     } */
+//   }
+// `;
 export const Icon2 = styled.img`
   height: 25px;
   margin-bottom: 5px;

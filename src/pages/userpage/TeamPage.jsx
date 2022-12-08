@@ -26,7 +26,7 @@ const TeamPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-        <Title>팀 관리</Title>
+        {/* <Title>팀 관리</Title> */}
 
         <TeamBox>
           {team?.map((team) => {
@@ -109,18 +109,11 @@ const TeamPage = () => {
 export default TeamPage;
 
 const Container = styled.div`
-  padding: 80px;
-
+  margin-top: 70px;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #000000;
-  height: 1000px;
-`;
-
-const Title = styled.div`
-  font-weight: 800;
-  color: #ffffff;
 `;
 
 const TeamBox = styled.div`
@@ -141,6 +134,7 @@ const TeamCardFootball = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -160,6 +154,7 @@ const TeamCardTennis = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -179,6 +174,7 @@ const TeamCardBadminton = styled.div`
   color: #fefefe;
   display: flex;
   align-items: center;
+  cursor: pointer;
   img {
     width: 60px;
     height: 60px;
@@ -220,4 +216,5 @@ const Btn = styled.button`
   border: none;
   font-weight: 700;
   font-size: 16px;
+  cursor: pointer;
 `;

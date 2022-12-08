@@ -1,18 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 import { LoginAPI } from "../../tools/instance";
 
 const Google = () => {
   const navigate = useNavigate();
   const PARAMS = new URL(document.location).searchParams;
   const GOOGLE_CODE = PARAMS.get("code");
-  console.log(GOOGLE_CODE);
+  window.localStorage.setItem("GOOGLE_CODE", GOOGLE_CODE);
+  // console.log(GOOGLE_CODE);
   useEffect(() => {
     LoginAPI.googleLogin(GOOGLE_CODE)
       .then((res) => {
         console.log(res);
         if (res.data.code === -1) {
           localStorage.setItem("loginId", res.data.loginId);
+          localStorage.setItem("profile", res.data.profileImg);
           navigate(`/addlogin`);
         }
         if (res.data.nickname) {
@@ -23,6 +26,10 @@ const Google = () => {
       .catch((err) => console.log(err));
   });
 
-  return <>...로딩중</>;
+  return (
+    <>
+      <Loading />
+    </>
+  );
 };
 export default Google;

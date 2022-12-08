@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useToggle from "../../hooks/useToggle";
-import { __getMyteamDetail } from "../../redux/modules/userSlice";
+import {
+  __getMyteamDetail,
+  __getMyteamList,
+} from "../../redux/modules/userSlice";
 import { UserpageAPI } from "../../tools/instance";
-import { StTeamForm, Image } from "./Styles";
 import Layout from "../../components/Layout";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import TapBar from "../../components/TapBar";
@@ -12,14 +14,14 @@ import styled from "styled-components";
 import Swal from "sweetalert2";
 
 const TeamDetail = () => {
-  const title = "My Team";
+  const title = "나의 팀";
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const adminRef = useRef();
   const { teamdetail } = useSelector((state) => state.user);
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
-  const [count, setCount] = useState(Number(teamdetail.member));
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     dispatch(__getMyteamDetail(id));
@@ -42,11 +44,21 @@ const TeamDetail = () => {
           });
         }
       })
+      .then(() => dispatch(__getMyteamList()))
       .catch((error) => {
         console.log(error);
         if (error.response.status === 404) {
           Swal.fire({
             text: "해당 팀이 존재하지 않습니다.",
+            width: "300px",
+            confirmButtonText: "확인",
+            confirmButtonColor: "#40d295",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          });
+        } else if (error.response.status === 403) {
+          Swal.fire({
+            text: "예약 내역이 있을경우, 팀 삭제를 할 수 없습니다.",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -61,7 +73,7 @@ const TeamDetail = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>팀 상세페이지</PageDesc>
+        {/* <PageDesc>팀 상세페이지</PageDesc> */}
         <StTeamForm>
           {!isEdit ? (
             <>
@@ -95,7 +107,7 @@ const TeamDetail = () => {
                 </TeamLayout>
 
                 <TeamLayout>
-                  <div>admin</div>
+                  <div>관리자</div>
                   <div>{teamdetail.admin}</div>
                 </TeamLayout>
               </InputBox>
@@ -120,7 +132,7 @@ const TeamDetail = () => {
               </Image>
               <InputBox>
                 <TeamLayout>
-                  <div>팀이름</div>
+                  <div>팀 이름</div>
                   <div>{teamdetail.teamName}</div>
                 </TeamLayout>
                 <TeamLayout>
@@ -140,7 +152,7 @@ const TeamDetail = () => {
                   </PlusBtn>
                 </TeamLayout>
                 <TeamLayout>
-                  <div>admin</div>
+                  <div>관리자</div>
                   <InputText
                     type="text"
                     defaultValue={teamdetail.admin}
@@ -182,7 +194,7 @@ const TeamDetail = () => {
                         });
                       } else if (err.response.status === 400) {
                         Swal.fire({
-                          text: "admin은 가입한 회원에게만 위임할 수 있습니다.",
+                          text: "관리자 위임은 가입한 회원에게만 가능합니다.",
                           width: "300px",
                           confirmButtonText: "확인",
                           confirmButtonColor: "#40d295",
@@ -296,6 +308,7 @@ const SaveBtn = styled.button`
   text-align: center;
   border: none;
   margin-top: 50px;
+  cursor: pointer;
 `;
 
 const PlusBtn = styled.div`
@@ -310,6 +323,7 @@ const PlusBtn = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  cursor: pointer;
 `;
 
 const MinusBtn = styled.div`
@@ -324,6 +338,7 @@ const MinusBtn = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  cursor: pointer;
 `;
 
 const CountBox = styled.div`
@@ -337,4 +352,33 @@ const CountBox = styled.div`
   margin-left: -10px;
   margin-right: -10px;
   z-index: 1;
+`;
+
+const StTeamForm = styled.form`
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-top: 15px;
+  }
+`;
+
+const Image = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    /* transform: translate(50, 50); */
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 `;

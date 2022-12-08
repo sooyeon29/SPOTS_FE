@@ -19,7 +19,7 @@ export const SpotPhoto = styled.div`
   border-radius: 10px;
   img {
     width: 100%;
-    height: 350px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
     margin: auto;
@@ -114,10 +114,9 @@ export const SelectDone = styled.div`
 export const SelectDone2 = styled.button`
   border: 1px solid #d9d9d9;
   border-radius: 20px;
-  width: 50%;
+  width: 48%;
   height: 180px;
   font-weight: bold;
-  max-width: 800px;
   padding: 10px 0px;
   display: flex;
   flex-direction: column;
@@ -126,10 +125,12 @@ export const SelectDone2 = styled.button`
   margin: 10px 5px 0px 5px;
   background-image: url("/matching/blue_myteam.png");
   background-size: cover;
+  background-position-x: center;
   &:disabled {
     /* background-color: #f7f8f8; */
     background-image: url("/matching/white_myteam.png");
     background-size: cover;
+    background-position-x: center;
   }
 `;
 export const SelectDone3 = styled(SelectDone2)`
@@ -144,7 +145,7 @@ export const MatchOrNot = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin: auto;
+  margin: 0px auto 10px auto;
 `;
 export const ExitBut = styled.button`
   cursor: pointer;
@@ -163,6 +164,9 @@ export const CalTime = styled.div`
   span {
     margin-left: 20px;
     font-weight: bold;
+  }
+  img {
+    width: 15px;
   }
 `;
 export const Times = styled.div`
@@ -191,6 +195,7 @@ export const Times = styled.div`
     height: 44px;
     font-weight: 400;
     font-size: 15px;
+    color: #000;
     &:hover {
       background: #d9d9d9;
       /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
@@ -223,6 +228,7 @@ export const TeamSelect = styled.select`
   margin: 7px auto;
   option {
     text-align: center;
+    color: #000;
   }
 `;
 
@@ -249,13 +255,12 @@ export const Counter = styled.div`
       background-color: transparent;
       border: 1px solid #d9d9d9;
       cursor: pointer;
+      color: #000;
     }
-    div {
+    input {
       width: 40px;
-      height: 38px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 36px;
+      text-align: center;
       border: 1px solid #d9d9d9;
       font-size: 15px;
       font-weight: bold;
@@ -370,6 +375,7 @@ export const Team = styled.button`
   height: 44px;
   font-weight: 400;
   font-size: 15px;
+  color: #000;
   cursor: pointer;
   &:hover {
     background: #d9d9d9;
@@ -437,6 +443,7 @@ export const One = styled.button`
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #e9ebec;
   border-radius: 7px;
   border: 0px;
+  color: #000;
   /* margin-right: 3%; */
   cursor: pointer;
   &:hover {

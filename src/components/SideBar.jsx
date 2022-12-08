@@ -17,7 +17,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
   const logout = () => {
     localStorage.clear();
     Swal.fire({
-      text: "로그아웃되었습니다.",
+      text: "로그아웃되었습니다",
       width: "300px",
       confirmButtonText: "확인",
       confirmButtonColor: "#40d295",
@@ -34,7 +34,6 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
-  // console.log("탭바", user);
 
   return (
     <SideMenu>
@@ -126,9 +125,13 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 
 export default SideBar;
 
-const SideMenu = styled.div``;
+const SideMenu = styled.div`
+position: relative;
+background-color: #fff;
+`;
+
 const Section = styled.div`
-  background-color: #ffffff;
+  background-color: #fff;
   color: #545454;
   width: 280px;
   padding-top: 30px;
@@ -150,6 +153,7 @@ const Section = styled.div`
       right: 0;
     `};
 `;
+
 const Profile = styled.div`
   height: 130px;
   display: flex;
@@ -157,6 +161,7 @@ const Profile = styled.div`
   font-weight: 900;
   margin-left: 10px;
   border-bottom: 1px solid #eaeffc;
+  background-color: #fff;
 
   img {
     /* transform: translate(50, 50); */
@@ -169,6 +174,7 @@ const Profile = styled.div`
 `;
 const Ul = styled.ul`
   padding-left: 10px;
+  background-color: #fff;
 `;
 const Li = styled.li`
   margin: 13px 0;
@@ -180,6 +186,7 @@ const Li = styled.li`
   border-bottom: 1px solid #eaeffc;
   cursor: pointer;
   font-weight: 600;
+  background-color: #fff;
 
   img {
     margin-right: 20px;
@@ -189,6 +196,7 @@ const Li = styled.li`
   div {
     display: flex;
     align-items: center;
+    background-color: #fff;
   }
   .arrow {
     color: #1746c7;
@@ -205,6 +213,8 @@ const Bottom = styled.div`
   width: 270px;
   height: 65px;
   border-top: 1px solid #cecece;
+  background-color: #fff;
+  cursor: pointer;
   .icon {
     font-size: 30px;
     color: #cecece;

@@ -17,18 +17,20 @@ import HostList from "../pages/userpage/HostList";
 import HostDetail from "../pages/userpage/HostDetail";
 import FindPw from "../pages/login/FindPw";
 import FindId from "../pages/login/FindId";
-import KakaoAdd from "../pages/login/KakaoAdd";
 import UserPage from "../pages/userpage/Index";
 import AdminHome from "../pages/chat/AdminHome";
 import AdminChat from "../pages/chat/AdminChat";
 import Welcome from "../components/Welcome";
 import Chatting from "../pages/chat/Chatting";
 import Google from "../pages/login/Google";
+import ScrollToTop from "../components/ScrollTop";
+import SocialSignUp from "../pages/login/SocialSignUp";
 //import ChatStart from "../pages/chat/ChatStartBtn";
 
 function Router() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainMaps />} />
         <Route path="/signup" element={<SignUp />} />
@@ -50,7 +52,7 @@ function Router() {
         <Route path="/switchaccount" element={<SwitchAccount />} />
         <Route path="/hostlist" element={<HostList />} />
         <Route path="/hostdetail/:id" element={<HostDetail />} />
-        <Route path="/addlogin" element={<KakaoAdd />} />
+        <Route path="/addlogin" element={<SocialSignUp />} />
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
         <Route path="/welcome" element={<Welcome />} />

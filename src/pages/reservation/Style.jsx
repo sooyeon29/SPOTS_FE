@@ -30,10 +30,8 @@ export const PlaceList = styled.div`
   max-width: 600px;
   width: 100%;
   display: flex;
-  /* margin-top: 10px; */
   flex-direction: column;
   height: 44vh;
-  /* overflow: scroll; */
   background-color: #fff;
   display: flex;
   margin-bottom: 80px;
@@ -58,7 +56,7 @@ export const ListBar = styled.div`
 export const Lists = styled.div`
   overflow: scroll;
   margin-bottom: 20px;
-`;
+// `;
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -74,6 +72,7 @@ export const BtnWrap = styled.div`
     margin: auto;
     border: none;
     cursor: pointer;
+    color: #000;
     border-radius: 23px;
     :focus {
       background-color: #2b2bff;
@@ -90,12 +89,27 @@ export const BtnWrap = styled.div`
 `;
 
 export const Container = styled.div`
-  background-color: #fff;
   width: auto;
-  padding: 10px;
+  padding: 7px;
   border-radius: 10px;
-  background-color: #49e7a5;
-  border: solid 2px white;
+  background-color: #fff;
+  border: solid 2px transparent;
+  filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
+
+  div:first-child{
+    font-weight: 600;
+  }
+  div:last-child{
+    font-size: 14px;
+    cursor: pointer;
+    color: gray;
+  }
+  a {
+    color:gray;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;
 
 export const Status = styled.span`
@@ -107,7 +121,7 @@ export const PrivateBlock = styled.div`
   /* display: flex; */
   margin: auto;
   margin-top: 10px;
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
   /* padding-left: 15px; */
@@ -122,8 +136,9 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 77%;
-    height: 88%;
+    width: 60%;
+    height: 90%;
+    /* height: 88%; */
   }
   p:first-child {
     margin: auto;
@@ -160,6 +175,7 @@ export const PublicBlock = styled.div`
   /* display: flex; */
   margin: auto;
   margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
   width: 85%;
@@ -208,7 +224,7 @@ export const MylocationBtn = styled.button`
 `;
 
 export const SearchTerm = styled.div`
-  /* margin: auto; */
+  margin: auto;
 `;
 
 export const StSearch = styled.div`
@@ -225,7 +241,7 @@ export const StSearch = styled.div`
 
 export const SearchInput = styled.input`
   border: none;
-  /* width: 100%; */
+  width: 300px;
   background-color: transparent;
 
   ::placeholder {
@@ -241,3 +257,17 @@ export const PublicReserve = styled.a`
   text-decoration: none;
   color: black;
 `;
+
+export const NoResult = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 100px;
+font-size: 15px;
+color: #1746c7;
+font-weight: 600;
+p {
+  margin: 0px;
+}
+`

@@ -27,6 +27,7 @@ import TapBar from "../../components/TapBar";
 import useInput from "../../hooks/useInput";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 const MyPage = () => {
   const title = "내 정보";
@@ -40,7 +41,13 @@ const MyPage = () => {
   const [checkPw, setCheckPw] = useInput();
   const [code, setCode] = useInput();
   const [codeSent, setCodeSent, codeSentHandler] = useToggle();
-  const pwRex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/;
+  const [codeConfirm, setCodeConfirm] = useState(false);
+  const [nicknameConfirm, setNicknameConfirm] = useState(false);
+  const pwRex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/;
+  // console.log(nickName);
+  // console.log(phone);
+  console.log(pw);
+  console.log(checkPw);
 
   const {
     register,
@@ -101,15 +108,33 @@ const MyPage = () => {
 
       .catch((err) => console.log(err));
   };
-  // console.log("마이페이지유저", user);
+
   const passwordHandler = (data) => {
     console.log(data);
   };
+
+  const logout = () => {
+    localStorage.clear();
+    Swal.fire({
+      text: "로그아웃되었습니다.",
+      width: "300px",
+      confirmButtonText: "확인",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    });
+    navigate(`/`);
+  };
+
+  const google = localStorage.getItem("GOOGLE_CODE");
+  const kakao = localStorage.getItem("KAKAO_CODE");
+  // console.log(google, kakao);
+
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        <PageDesc>내 정보</PageDesc>
+        {/* <PageDesc></PageDesc> */}
         {!isEdit ? (
           <div>
             <Image>
@@ -269,6 +294,9 @@ const MyPage = () => {
                   )}
                 </div>
               </SportBlock>
+              <SportBlock>
+                <Btn onClick={logout}>로그아웃</Btn>
+              </SportBlock>
             </SportsLayout>
           </div>
         ) : (
@@ -293,7 +321,7 @@ const MyPage = () => {
                 accept="image/*"
               />
             </ProfilePhotoUpload>
-            <SaveImage onClick={savePhoto}>프로필 이미지 저장</SaveImage>
+            <SaveImage onClick={savePhoto}>프로필 사진 변경</SaveImage>
             <ModifyDiv>
               <ModifyBlock>
                 <div>닉네임</div>
@@ -338,6 +366,7 @@ const MyPage = () => {
                                   popup: "animated fadeOutUp faster",
                                 },
                               });
+                              setNicknameConfirm(true);
                             }
                           })
                           .catch((err) => {
@@ -361,9 +390,7 @@ const MyPage = () => {
                 </div>
               </ModifyBlock>
               <ModifyBlock>
-                <div>
-                  휴대폰번호
-                </div>
+                <div>휴대폰번호</div>
                 <div>
                   <input
                     type="text"
@@ -392,7 +419,6 @@ const MyPage = () => {
                           });
                           return;
                         }
-                        codeSentHandler();
                         LoginAPI.postforVCode({ phone: phone })
                           .then((res) => {
                             console.log(res);
@@ -406,6 +432,7 @@ const MyPage = () => {
                               },
                               hideClass: { popup: "animated fadeOutUp faster" },
                             });
+                            codeSentHandler();
                           })
                           .catch((err) => {
                             console.log(err);
@@ -542,6 +569,7 @@ const MyPage = () => {
                                     popup: "animated fadeOutUp faster",
                                   },
                                 });
+                                setCodeConfirm(true);
                               }
                             })
                             .catch((err) => {
@@ -568,37 +596,62 @@ const MyPage = () => {
                   )}
                 </div>
               </ModifyBlock>
-              <ModifyBlock>
-                <div>비밀번호</div>
-                <form onSubmit={handleSubmit(passwordHandler)}>
-                  <div>
-                    <input
-                      type="password"
-                      onChange={(e) => setPw(e.target.value)}
-                      placeholder="비밀번호"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="password"
-                      onChange={(e) => setCheckPw(e.target.value)}
-                      placeholder="비밀번호 확인"
-                      required
-                    />
-                  </div>
-                </form>
-              </ModifyBlock>
+              {google === null && kakao === null && (
+                <ModifyBlock>
+                  <div>비밀번호</div>
+                  <form onSubmit={handleSubmit(passwordHandler)}>
+                    <div>
+                      <input
+                        type="password"
+                        onChange={(e) => setPw(e.target.value)}
+                        placeholder="비밀번호"
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="password"
+                        onChange={(e) => setCheckPw(e.target.value)}
+                        placeholder="비밀번호 확인"
+                        required
+                      />
+                    </div>
+                  </form>
+                </ModifyBlock>
+              )}
             </ModifyDiv>
+
             <ModifyBtns>
               <button
                 onClick={() => {
-                  if (pw !== checkPw) {
-                    return alert("비밀번호가 일치하지 않습니다");
+                  if (phone?.length < 10 || phone?.length > 11) {
+                    if (!codeConfirm) {
+                      return alert("10-11자리의 번호를 입력해주세요");
+                    }
                   }
-                  if (!pwRex.test(pw)) {
-                    return alert(
-                      "비밀번호는 숫자와 영문을 혼합하여 6자리 이상 입력해주세요"
-                    );
+                  if (phone?.length >= 10) {
+                    if (!codeConfirm) {
+                      return alert("휴대번호 인증을 해주세요");
+                    }
+                  }
+                  if (nickName?.length <= 1) {
+                    return alert("한 글자 이상의 닉네임을 입력해주세요");
+                  }
+                  if (nickName?.length >= 2) {
+                    if (!nicknameConfirm) {
+                      return alert("닉네임 중복확인을 해주세요");
+                    }
+                  }
+                  if (pw === undefined) {
+                    // return alert("언디파인")
+                  } else {
+                    if (pw !== checkPw) {
+                      return alert("비밀번호가 일치하지 않습니다");
+                    }
+                    if (!pwRex.test(pw)) {
+                      return alert(
+                        "비밀번호는 숫자와 영문, 특수문자를 혼합하여 6자리 이상 입력해주세요"
+                      );
+                    }
                   }
                   clickEditMode();
                   UserpageAPI.patchMyInfo({
@@ -610,7 +663,7 @@ const MyPage = () => {
                     .then((res) => {
                       console.log("응답", res);
                       Swal.fire({
-                        text: "수정이 완료되었습니다.",
+                        text: "수정이 완료되었습니다",
                         width: "300px",
                         confirmButtonText: "확인",
                         confirmButtonColor: "#40d295",
@@ -680,3 +733,25 @@ const MyPage = () => {
 };
 
 export default MyPage;
+
+const Btn = styled.button`
+  width: 90%;
+  height: 52px;
+  background-color: #ff00b4;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 47px;
+  line-height: 52px;
+  text-align: center;
+  border: none;
+  margin-top: 50px;
+  cursor: pointer;
+`;
+
+const StBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+`;

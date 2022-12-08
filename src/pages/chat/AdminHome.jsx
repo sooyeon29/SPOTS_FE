@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import socket from "../../tools/socket.js";
-
+import { StContainer, StWrap, RoomForm, RoomInput, RoomBtn } from "./Styles.jsx";
 const AdminHome = () => {
   const navigate = useNavigate();
   const [roomList, setRoomList] = useState();
@@ -60,35 +60,35 @@ const AdminHome = () => {
 
 export default AdminHome;
 
-const StContainer = styled.div`
-  display: flex;
-`;
+// const StContainer = styled.div`
+//   display: flex;
+// `;
 
-const StWrap = styled.div``;
+// const StWrap = styled.div``;
 
-const RoomForm = styled.form`
-  width: 350px;
-  height: 130px;
-  border: 1px solid lightgray;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
+// const RoomForm = styled.form`
+//   width: 350px;
+//   height: 130px;
+//   border: 1px solid lightgray;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+// `;
 
-const RoomInput = styled.input`
-  width: 330px;
-  height: 20px;
-  margin: -20px auto 0 auto;
-  border: 1px solid lightgray;
-`;
+// const RoomInput = styled.input`
+//   width: 330px;
+//   height: 20px;
+//   margin: -20px auto 0 auto;
+//   border: 1px solid lightgray;
+// `;
 
-const RoomBtn = styled.button`
-  width: 80px;
-  height: 40px;
-  color: white;
-  background-color: #3a6dfa;
-  border: none;
-  border-radius: 6px;
-  margin: 10px 0 0 8px;
-  cursor: pointer;
-`;
+// const RoomBtn = styled.button`
+//   width: 80px;
+//   height: 40px;
+//   color: white;
+//   background-color: #3a6dfa;
+//   border: none;
+//   border-radius: 6px;
+//   margin: 10px 0 0 8px;
+//   cursor: pointer;
+// `;

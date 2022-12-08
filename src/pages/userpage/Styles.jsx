@@ -8,14 +8,14 @@ export const StContainer = styled.div`
 `;
 
 export const StWrap = styled.div`
-  margin: auto;
   margin-top: 72px;
-  width: 90%;
-  /* background-color: #f1f1f1; */
-  border-radius: 15px;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin: 71px auto;
+  justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 100px;
 `;
 
 export const TeamPhoto = styled.div`
@@ -23,12 +23,9 @@ export const TeamPhoto = styled.div`
   max-width: 800px;
   padding: 0px;
   overflow: hidden;
-  /* margin: auto; */
-  /* background-color: lightcyan; */
   border-radius: 10px;
   img {
     width: 100%;
-    /* height: 350px; */
     object-fit: cover;
     border-radius: 10px;
     margin: auto;
@@ -75,6 +72,7 @@ export const StTeam = styled.div`
 `;
 
 export const StTeamForm = styled.form`
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,6 +193,9 @@ export const SpotInfo = styled.div`
   /* width: 350px; */
   margin-bottom: 20px;
   margin-right: 10px;
+  button {
+    color: #000;
+  }
   img {
     width: 100px;
     margin: 15px 10px 5px 15px;
@@ -343,14 +344,22 @@ export const MyReserve = styled.div`
 `;
 
 export const ReservedSpot = styled.div``;
-
+export const NoBookNow = styled.img`
+  width: 90%;
+  border-radius: 15px;
+`;
+export const MyMatchList = styled.div`
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 10px;
+`;
 export const AboutMatch = styled.div`
   font-size: 18px;
   font-weight: bold;
   margin-top: 15px;
-  margin-bottom: 15px;
-
-  /* text-shadow: 2px 2px 6px gray; */
+  margin-bottom: 10px;
 `;
 export const CompletedMath = styled.div`
   span {
@@ -446,6 +455,8 @@ export const ModifyBtn = styled.button`
   border: none;
   margin-left: 60px;
   font-weight: 600;
+  color: #000;
+  cursor: pointer;
 `;
 export const ReservTitle = styled.div`
   padding-top: 15px;
@@ -529,7 +540,7 @@ export const ProfilePhotoUpload = styled.div`
     justify-content: center;
     border-radius: 50%;
     position: absolute;
-    top: 190px;
+    top: 170px;
     left: 55%;
   }
 `;
@@ -547,6 +558,7 @@ export const SaveImage = styled.button`
   align-items: center;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const ModifyDiv = styled.div`
@@ -608,6 +620,7 @@ export const ModifyBtns = styled.div`
     color: #fff;
     font-weight: 600;
     margin-left: 10px;
+    cursor: pointer;
   }
 `;
 export const Btn = styled.button`
