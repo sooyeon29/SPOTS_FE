@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { PrivateApi, SpotsMatchApi } from "../../tools/instance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
@@ -107,43 +107,42 @@ const MainMaps = () => {
           {newMatch?.map((sixmatch, index) => {
             return (
               <SixMatch key={index}>
-                <WaitingMatchMain>
-                  <div>
-                    <img alt="" src="/date.png" width="60px" />
-                    {sixmatch.match?.date.substring(6, 8)}월
-                    {sixmatch.match?.date.substring(10, 13)}일
-                  </div>
-                  <div>
-                    <img alt="" src="/time.png" width="60px" />
-                    {sixmatch.match?.matchId.substring(0, 13)}
-                  </div>
-                  <div>
-                    {" "}
-                    <img alt="" src="/people.png" width="70px" />
-                    {sixmatch.match?.member}명
-                    {/* {sixmatch.place.sports !== "풋살장" && (
-                      <>{!sixmatch.match.isDoubled ? "복식" : "단식"} 경기</>
-                    )} */}
-                  </div>
-                </WaitingMatchMain>
-                <hr />
-                <SpotInfoMain>
-                  <img alt="구장이미지" src={sixmatch.place?.image} />
-                  <Info2>
-                    <button
-                      onClick={() =>
-                        navigate(`/spotsdetail/${sixmatch.place?.placesId}`)
-                      }
-                    >
-                      {sixmatch.place?.spotName}
-                    </button>
+                <Link
+                  to={`/spotsdetail/${sixmatch.place?.placesId}`}
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  <WaitingMatchMain>
                     <div>
-                      {sixmatch.place?.address.split(" ")[0]}{" "}
-                      {sixmatch.place?.address.split(" ")[1]}{" "}
-                      {sixmatch.place?.address.split(" ")[2]}
+                      <img alt="" src="/mainpage/date.png" width="25px" />
+                      <span>
+                        {sixmatch.match?.date.substring(6, 8)}월
+                        {sixmatch.match?.date.substring(10, 13)}일
+                      </span>
                     </div>
-                  </Info2>
-                </SpotInfoMain>
+                    <LastTime>마감임박</LastTime>
+                  </WaitingMatchMain>
+                  <WaitingMatchMain2>
+                    <div>
+                      <img alt="" src="/mainpage/time.png" width="25px" />
+                      <span>{sixmatch.match?.matchId.substring(0, 13)}</span>
+                    </div>
+                    <div>
+                      <img alt="" src="/mainpage/people.png" width="25px" />
+                      <span>{sixmatch.match?.member}명</span>
+                    </div>
+                  </WaitingMatchMain2>
+                  <SpotInfoMain>
+                    <img alt="구장이미지" src={sixmatch.place?.image} />
+                    <Info2>
+                      <button>{sixmatch.place?.spotName}</button>
+                      <div>
+                        {sixmatch.place?.address.split(" ")[0]}{" "}
+                        {sixmatch.place?.address.split(" ")[1]}{" "}
+                        {sixmatch.place?.address.split(" ")[2]}
+                      </div>
+                    </Info2>
+                  </SpotInfoMain>
+                </Link>
               </SixMatch>
             );
           })}
@@ -168,7 +167,6 @@ const MainBanner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   img {
     width: 98%;
   }
@@ -180,9 +178,9 @@ const SpotContainer = styled.div`
 `;
 
 const Section = styled.div`
-  margin: 10px 0px 10px 10px;
-  font-size: 16px;
-  font-weight: 800;
+  margin: 15px 0px 8px 15px;
+  font-size: 18px;
+  font-weight: 900;
   font-family: SpoqaHanSansNeoBold;
 `;
 
@@ -240,57 +238,68 @@ const TeamContainer = styled.div`
 `;
 
 export const SixMatch = styled.div`
+  background-color: #f7f8f8;
   width: 95%;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin: 10px auto;
+  margin: 15px auto;
   padding-top: 10px;
-  hr {
-    border: none;
-    border-top: 1px dashed #d9d9d9;
-    color: #d9d9d9;
-    background-color: transparent;
-    height: 1px;
-    width: 100%;
-  }
+  padding-left: 25px;
 `;
 
 const WaitingMatchMain = styled.div`
-  font-size: 15px;
   font-weight: bold;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 95%;
   border-radius: 10px;
   margin: 3px;
   padding: 2px;
+  font-size: 15px;
   div {
     display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    padding: 3px;
+    align-items: center;
     img {
-      margin-bottom: 10px;
+      margin: 0px 10px 10px 0px;
     }
+    span {
+      margin: 0px 10px 10px 0px;
+    }
+  }
+`;
+const LastTime = styled.div`
+  background-color: #ff00b4;
+  color: white;
+  border-radius: 10px;
+  padding: 5px 7px;
+  font-size: 13px;
+  margin-right: 10px;
+`;
+const WaitingMatchMain2 = styled(WaitingMatchMain)`
+  div {
+    width: 50%;
   }
 `;
 
 const SpotInfoMain = styled.div`
+  background-color: white;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 350px;
+  width: 95%;
   margin-bottom: 10px;
+
   img {
     width: 70px;
     height: 50px;
     object-fit: cover;
-    margin: 0px 25px 0px 25px;
+    margin: 0px 10px 0px 0px;
     border-radius: 10px;
   }
 `;
@@ -299,7 +308,6 @@ const Info2 = styled.div`
   width: 100%;
   padding: 0px 10px;
   button {
-    /* margin-top: 7px; */
     font-size: 18px;
     font-weight: bold;
     background-color: transparent;
@@ -307,7 +315,6 @@ const Info2 = styled.div`
     cursor: pointer;
     color: #000;
   }
-
   div {
     margin-left: 6px;
   }
