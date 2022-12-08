@@ -1,27 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
-import {
-  Stinput,
-  PageTitle,
-  StWraps,
-  InputWrap,
-  LoginBtn,
-  CodeBtn,
-  Logo,
-  InputWrapLower,
-  GrayBorder,
-} from "./Styles";
-
 import Swal from "sweetalert2";
-import { ContentWrap } from "../signUp/Styles";
 import TapBar from "../../components/TapBar";
+import { ContentWrap, GrayBorder, LoginBtn, Logo, StWraps } from "./Styles";
 
 const FindPw = () => {
-  const navigate = useNavigate();
   const [isCode, setIsCode] = useToggle();
   const [id, setId, enterId] = useInput();
   const [phoneNum, setPhoneNum, enterPhoneNum] = useInput();
@@ -66,9 +52,7 @@ const FindPw = () => {
         });
     }
   };
-  console.log(id);
-  console.log(phoneNum);
-  console.log(veriCode);
+
   const findPwHandler = () => {
     if (id.id.length < 1) {
       Swal.fire({
@@ -141,6 +125,7 @@ const FindPw = () => {
         );
     }
   };
+
   return (
     <Layout>
       <Header />
@@ -149,7 +134,6 @@ const FindPw = () => {
           <Logo>
             <img alt="" src="/spotslogo.png" />
           </Logo>
-
           <GrayBorder>
             <input
               placeholder="아이디를 입력해주세요"
@@ -203,7 +187,7 @@ const FindPw = () => {
           {isCode && (
             <GrayBorder>
               <input
-                placeholder="인증번호를 입력하세요(제한 시간 3분)"
+                placeholder="인증번호를 입력하세요"
                 type="text"
                 required
                 name="code"
