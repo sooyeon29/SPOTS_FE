@@ -227,13 +227,6 @@ const StWrap = styled.div`
   margin-bottom: 80px;
 `;
 
-const PageDesc = styled.div`
-  display: flex;
-  justify-content: center;
-  font-weight: 700;
-  margin: 80px 0px 20px 0px;
-`;
-
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;

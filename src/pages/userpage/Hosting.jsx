@@ -3,7 +3,6 @@ import Layout from "../../components/Layout";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../tools/instance";
 import { useNavigate } from "react-router-dom";
-import { HostCard, PageDesc, Image, ProfilePhotoInput } from "./Styles";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import styled from "styled-components";
 import TapBar from "../../components/TapBar";
@@ -28,7 +27,6 @@ const Hosting = () => {
   const handleImagePreview = (file) => {
     setImg(null);
     setPreview([]);
-    // console.log(file.target.files);
     // setImg(file.target.files);
     // file.target.files.length < 4
     //   ? setImg(file.target.files)
@@ -87,8 +85,6 @@ const Hosting = () => {
     open({ onComplete: handleComplete });
   };
 
-  // console.log(spotName);
-
   const onRegisterHandler = (spot) => {
     // e.preventDefault();
     let x = null;
@@ -106,7 +102,6 @@ const Hosting = () => {
         x = result[0].x;
         y = result[0].y;
       }
-      // console.log(x, y);
 
       const sendFD = new FormData();
       sendFD.append("image", img);
@@ -250,11 +245,11 @@ const Hosting = () => {
               <div>
                 {preview.length > 0 ? (
                   <span>
-                    <img src="/cancel_icon.png" />
+                    <img alt="cancel_icon" src="/cancel_icon.png" />
                   </span>
                 ) : (
                   <span>
-                    <img src="/plus_icon_blue.png" />
+                    <img alt="plus_icon" src="/plus_icon_blue.png" />
                   </span>
                 )}
               </div>
@@ -525,14 +520,11 @@ const InputLayout = styled.div`
   font-weight: 600;
   display: flex;
   align-items: center;
-  /* text-align: center; */
 
   div:first-child {
     width: 60px;
     text-align: center;
-    /* border-right: 1px solid #cecece; */
     color: #545454;
-    /* padding: 8px 8px 8px 8px; */
     margin-right: 30px;
   }
 `;
@@ -590,21 +582,23 @@ const HostPreview = styled.div`
   }
 `;
 
-export const SpotsLabel = styled.label`
+const SpotsLabel = styled.label`
   margin-right: 5px;
 `;
 
-export const FootballInput = styled.input`
-  display: none;
-`;
-export const TennisInput = styled.input`
-  display: none;
-`;
-export const BadmintonInput = styled.input`
+const FootballInput = styled.input`
   display: none;
 `;
 
-export const FootballDiv = styled.div`
+const TennisInput = styled.input`
+  display: none;
+`;
+
+const BadmintonInput = styled.input`
+  display: none;
+`;
+
+const FootballDiv = styled.div`
   width: 60px;
   height: 60px;
   display: flex;
@@ -625,7 +619,7 @@ export const FootballDiv = styled.div`
   }
 `;
 
-export const TennisDiv = styled.div`
+const TennisDiv = styled.div`
   width: 60px;
   height: 60px;
   display: flex;
@@ -641,7 +635,7 @@ export const TennisDiv = styled.div`
   }
 `;
 
-export const BadmintonDiv = styled.div`
+const BadmintonDiv = styled.div`
   width: 60px;
   height: 60px;
   display: flex;
@@ -657,17 +651,17 @@ export const BadmintonDiv = styled.div`
   }
 `;
 
-export const KindLabel = styled.label``;
+const KindLabel = styled.label``;
 
-export const OutdoorInput = styled.input`
+const OutdoorInput = styled.input`
   display: none;
 `;
 
-export const IndoorInput = styled.input`
+const IndoorInput = styled.input`
   display: none;
 `;
 
-export const IndoorDiv = styled.div`
+const IndoorDiv = styled.div`
   width: 95px;
   height: 25px;
   background-color: #f5f5f5;
@@ -684,7 +678,7 @@ export const IndoorDiv = styled.div`
   }
 `;
 
-export const OutdoorDiv = styled.div`
+const OutdoorDiv = styled.div`
   width: 95px;
   height: 25px;
   display: flex;
@@ -701,37 +695,36 @@ export const OutdoorDiv = styled.div`
   }
 `;
 
-export const ComfortsWrap = styled.div`
+const ComfortsWrap = styled.div`
   display: flex;
   width: 180px;
   margin-bottom: 5px;
   margin-top: 5px;
 `;
 
-export const ComfortsLabel = styled.label`
+const ComfortsLabel = styled.label`
   margin-right: 5px;
 `;
 
-export const LentalInput = styled.input`
+const LentalInput = styled.input`
   display: none;
 `;
-export const LockerInput = styled.input`
+const LockerInput = styled.input`
   display: none;
 `;
-export const ParkingInput = styled.input`
+const ParkingInput = styled.input`
   display: none;
 `;
-export const ShowerInput = styled.input`
+const ShowerInput = styled.input`
   display: none;
 `;
-export const DressInput = styled.input`
+const DressInput = styled.input`
   display: none;
 `;
 
-export const LentalDiv = styled.div`
+const LentalDiv = styled.div`
   background-color: #d9d9d9;
   width: 60px;
-  /* height: 25px; */
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -741,7 +734,6 @@ export const LentalDiv = styled.div`
   ${LentalInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
-    /* height: 25px; */
     display: flex;
     justify-content: center;
     border-radius: 10px;
@@ -750,10 +742,9 @@ export const LentalDiv = styled.div`
   }
 `;
 
-export const LockerDiv = styled.div`
+const LockerDiv = styled.div`
   background-color: #d9d9d9;
   width: 60px;
-  /* height: 25px; */
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -763,7 +754,6 @@ export const LockerDiv = styled.div`
   ${LockerInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
-    /* height: 25px; */
     display: flex;
     justify-content: center;
     border-radius: 10px;
@@ -772,10 +762,9 @@ export const LockerDiv = styled.div`
   }
 `;
 
-export const ParkingDiv = styled.div`
+const ParkingDiv = styled.div`
   background-color: #d9d9d9;
   width: 50px;
-  /* height: 25px; */
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -784,7 +773,6 @@ export const ParkingDiv = styled.div`
   ${ParkingInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
-    /* height: 25px; */
     display: flex;
     justify-content: center;
     border-radius: 10px;
@@ -792,11 +780,9 @@ export const ParkingDiv = styled.div`
     color: #fff;
   }
 `;
-
-export const ShowerDiv = styled.div`
+const ShowerDiv = styled.div`
   background-color: #d9d9d9;
   width: 50px;
-  /* height: 25px; */
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -805,7 +791,6 @@ export const ShowerDiv = styled.div`
   ${ShowerInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
-    /* height: 25px; */
     display: flex;
     justify-content: center;
     border-radius: 10px;
@@ -814,10 +799,9 @@ export const ShowerDiv = styled.div`
   }
 `;
 
-export const DressDiv = styled.div`
+const DressDiv = styled.div`
   background-color: #d9d9d9;
   width: 50px;
-  /* height: 25px; */
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -826,7 +810,6 @@ export const DressDiv = styled.div`
   ${DressInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
-    /* height: 25px; */
     display: flex;
     justify-content: center;
     border-radius: 10px;
@@ -835,7 +818,7 @@ export const DressDiv = styled.div`
   }
 `;
 
-export const TextArea = styled.textarea`
+const TextArea = styled.textarea`
   margin-top: 20px;
   resize: none;
   padding: 10px;
@@ -843,4 +826,12 @@ export const TextArea = styled.textarea`
   :focus {
     outline: none;
   }
+`;
+
+const HostCard = styled.div`
+  margin-top: 20px;
+`;
+
+const ProfilePhotoInput = styled.input`
+  display: none;
 `;
