@@ -13,7 +13,7 @@ import {
   SearchInput,
   ListBar,
   Lists,
-} from "./Style";
+} from "./Styles";
 import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,

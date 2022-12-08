@@ -3,15 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import Layout from "../../components/Layout";
-import TapBar from "../../components/TapBar";
-import useToggle from "../../hooks/useToggle";
+import FlexibleHeader from "../../../components/FlexibleHeader";
+import Layout from "../../../components/Layout";
+import TapBar from "../../../components/TapBar";
+import useToggle from "../../../hooks/useToggle";
 import {
   __deletePrivateSpot,
   __editPrivateSpot,
   __getMyPrivateSpot,
-} from "../../redux/modules/spotsSlice";
+} from "../../../redux/modules/spotsSlice";
+import {
+  SpotsWrap,
+  SpotImg,
+  SpotIcon,
+  SpotsLayout,
+  SpotKind,
+  SpotsComforts,
+  SpotsBtns,
+  ComfortsLayout,
+  StTeam,
+} from "./Styles";
 
 const HostDetail = () => {
   const dispatch = useDispatch();
@@ -217,111 +228,3 @@ const HostDetail = () => {
 };
 
 export default HostDetail;
-
-const SpotsWrap = styled.div`
-  width: 330px;
-  margin: auto;
-  margin-top: 70px;
-`;
-
-const SpotImg = styled.img`
-  width: 100%;
-  border-radius: 10px;
-`;
-
-const SpotIcon = styled.div`
-  img {
-    width: 40px;
-  }
-`;
-
-const SpotsLayout = styled.div`
-  display: flex;
-  padding: 12px;
-  border-bottom: 1px solid #cecece;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-
-  div:first-child {
-    width: 40px;
-    text-align: center;
-    color: #545454;
-    margin-right: 30px;
-  }
-
-  input {
-    border-radius: 5px;
-    height: 20px;
-    border: 1px solid gray;
-    margin-right: 5px;
-  }
-
-  textarea {
-    border-radius: 10px;
-    padding: 5px;
-  }
-`;
-
-const SpotKind = styled.span`
-  background-color: #1746c7;
-  color: #fff;
-  padding: 3px 8px 3px 8px;
-  border-radius: 10px;
-`;
-
-const SpotsComforts = styled.span`
-  background-color: #1746c7;
-  color: #fff;
-  padding: 3px 5px 3px 5px;
-  border-radius: 10px;
-  margin-right: 5px;
-  word-break: keep-all;
-`;
-
-const SpotsBtns = styled.div`
-  display: flex;
-
-  button {
-    display: flex;
-    width: 45%;
-    height: 40px;
-    border: none;
-    background-color: #1746c7;
-    border-radius: 20px;
-    color: #fff;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 70px;
-    font-size: 16px;
-    font-weight: 700;
-  }
-`;
-
-const ComfortsLayout = styled.div`
-  border-bottom: 1px solid #cecece;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-
-  div {
-    width: 230px;
-  }
-
-  p:first-child {
-    margin-left: 12px;
-    width: 40px;
-    text-align: center;
-    color: #545454;
-    margin-right: 30px;
-  }
-`;
-
-const StTeam = styled.div`
-  width: 100%;
-  margin: auto;
-`;
