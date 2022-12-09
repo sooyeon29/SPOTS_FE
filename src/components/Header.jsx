@@ -26,17 +26,6 @@ const Header = () => {
             <Img src="/logo.png" alt="logo" />
           </StLogo>
           <StButtons>
-            {/* {!toggle ? (
-              <StSearch>
-                <FaSearchLocation
-                  color="white"
-                  size="20"
-                  onClick={ClickToggle}
-                />
-              </StSearch>
-            ) : (
-              <SearchBar />
-            )} */}
             <Container>
               <HamburgButton onClick={barHandler} ref={barRef}>
                 <GiHamburgerMenu size="25" />
