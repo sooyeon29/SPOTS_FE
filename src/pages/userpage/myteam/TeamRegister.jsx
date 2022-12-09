@@ -39,6 +39,7 @@ const TeamRegister = () => {
   const nameRef = useRef();
   const [sports, setSports] = useState("");
   const [count, setCount] = useState(0);
+  const token = localStorage.getItem("token");
 
   const handleImagePreview = (file) => {
     setImg(null);
@@ -60,11 +61,26 @@ const TeamRegister = () => {
     }
   };
 
+  if (!token) {
+    Swal.fire({
+      text: "팀 등록은 로그인 후에 가능합니다",
+      width: "300px",
+      confirmButtonText: "확인",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    }).then((result) =>{
+      if (result.isConfirmed) {
+        navigate('/login');
+      }
+    })
+  }
+
   const registerHandler = async (e) => {
     e.preventDefault();
     if (nameRef.current.value.trim() === "" || sports === "" || count === "") {
       return Swal.fire({
-        text: "모든 항목을 입력해주세요.",
+        text: "모든 항목을 입력해주세요",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -73,7 +89,7 @@ const TeamRegister = () => {
       });
     } else if (count === 0 || count === 1) {
       Swal.fire({
-        text: "팀 등록은 2명부터 가능합니다.",
+        text: "팀 등록은 2명부터 가능합니다",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -96,7 +112,7 @@ const TeamRegister = () => {
           console.log(res);
           if (res.status === 201) {
             Swal.fire({
-              text: "팀 등록이 완료되었습니다.",
+              text: "팀 등록이 완료되었습니다",
               width: "300px",
               confirmButtonText: "확인",
               confirmButtonColor: "#40d295",
@@ -110,7 +126,7 @@ const TeamRegister = () => {
           console.log(error);
           if (error.response.data.code === -2) {
             Swal.fire({
-              text: "중복된 팀 이름입니다.",
+              text: "중복된 팀 이름입니다",
               width: "300px",
               confirmButtonText: "확인",
               confirmButtonColor: "#40d295",
