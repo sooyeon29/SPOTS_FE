@@ -106,6 +106,9 @@ export const ModifyDiv = styled.div`
   margin-top: 20px;
   font-size: 14px;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const SaveImage = styled.button`
@@ -122,6 +125,7 @@ export const SaveImage = styled.button`
   color: white;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 export const ModifyBlock = styled.div`
@@ -144,8 +148,9 @@ export const ModifyBlock = styled.div`
     border-radius: 5px;
     border: 1px solid gray;
     padding: 5px;
-    width: 150px;
+    width: 120px;
     margin-bottom: 5px;
+    margin-right: 10px;
     :focus {
       outline: none;
     }
@@ -157,24 +162,25 @@ export const ModifyBlock = styled.div`
     background-color: #fff;
     color: black;
     font-weight: 600;
-    width: 60px;
+    width: 68px;
   }
 `;
 
 export const ProfilePhotoUpload = styled.div`
   div {
-    background-color: #fff;
-    border: 2px solid #00f78e;
+    background-color: #1746c7;
+    border: none;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 700;
     width: 30px;
     height: 30px;
     display: flex;
     justify-content: center;
     border-radius: 50%;
-    position: absolute;
+    position: fixed;
     top: 22%;
     left: 53%;
+    color: #fff;
   }
 `;
 
@@ -195,4 +201,40 @@ export const ModifyBtns = styled.div`
     margin-left: 10px;
     cursor: pointer;
   }
+`;
+
+export const ImageUpload = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const HostingPhotoUpload = styled.div`
+  img {
+    width: 20px;
+    position: absolute;
+  }
+`;
+
+export const HostPreview = styled.div`
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+`;
+
+export const Preview = styled.div`
+  div:first-child {
+    height: 100px;
+    width: 100px;
+    background-color: #d9d9d9;
+    border-radius: 100px;
+  }
+  height: 100px;
+  width: 100px;
+  background-color: #d9d9d9;
+  border-radius: 100px;
 `;

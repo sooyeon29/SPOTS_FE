@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
 import Swal from "sweetalert2";
 import FlexibleHeader from "../../../components/FlexibleHeader";
 import Layout from "../../../components/Layout";

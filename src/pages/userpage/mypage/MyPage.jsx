@@ -24,8 +24,11 @@ import {
   ModifyDiv,
   SaveImage,
   ModifyBlock,
-  ProfilePhotoUpload,
   ModifyBtns,
+  ImageUpload,
+  HostingPhotoUpload,
+  Preview,
+  HostPreview,
 } from "./Styles";
 
 const MyPage = () => {
@@ -292,27 +295,51 @@ const MyPage = () => {
             </SportsLayout>
           </div>
         ) : (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <Image>
-              {preview.length > 0 ? (
-                <img key={1} src={preview} alt="미리보기" />
-              ) : (
-                <img alt="기본프로필사진" src={user.profileImg} />
-              )}
-            </Image>
-            <ProfilePhotoUpload>
-              <label htmlFor="upload-input">
-                <div>+</div>
-              </label>
-              <ProfilePhotoInput
-                id="upload-input"
-                type="file"
-                onChange={(e) => {
-                  handleImagePreview(e);
-                }}
-                accept="image/*"
-              />
-            </ProfilePhotoUpload>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <ImageUpload>
+              <HostingPhotoUpload>
+                <label htmlFor="upload-input">
+                  <div>
+                    {preview.length > 0 ? (
+                      <span>
+                        <img alt="cancel_icon" src="/cancel_icon.png" />
+                      </span>
+                    ) : (
+                      <span>
+                        <img alt="plus_icon" src="/plus_icon_blue.png" />
+                      </span>
+                    )}
+                  </div>
+                </label>
+                <ProfilePhotoInput
+                  id="upload-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    handleImagePreview(e);
+                  }}
+                  multiple="multiple"
+                />
+              </HostingPhotoUpload>
+              <HostPreview>
+                {preview.length > 0 ? (
+                  <img
+                    key={1}
+                    src={preview}
+                    alt=""
+                    onerror="this.style.display='none';"
+                  />
+                ) : (
+                  <Preview></Preview>
+                )}
+              </HostPreview>
+            </ImageUpload>
             <SaveImage onClick={savePhoto}>프로필 사진 변경</SaveImage>
             <ModifyDiv>
               <ModifyBlock>

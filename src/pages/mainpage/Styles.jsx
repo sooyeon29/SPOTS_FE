@@ -16,6 +16,7 @@ export const MainBanner = styled.div`
 `;
 export const SpotContainer = styled.div`
   overflow: hidden;
+  margin-top: 20px;
 `;
 export const Section = styled.div`
   margin: 15px 0px 8px 15px;
@@ -66,9 +67,10 @@ export const SpotName = styled.div`
 `;
 export const TeamContainer = styled.div`
   margin-bottom: 65px;
+  margin-top: 30px;
 `;
 export const SixMatch = styled.div`
-  background-color: #f7f8f8;
+  background-color: #f4f4f4;
   width: 95%;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

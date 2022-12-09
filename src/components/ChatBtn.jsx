@@ -7,7 +7,7 @@ const ChatBtn = ({ chatHandler, chatRef }) => {
   return (
     <>
       <Btn onClick={chatHandler} ref={chatRef}>
-        <img alt="chatBtn" src="/spotsSymbol.png" />
+        <img alt="chatBtn" src="/mainpage/chatLogo.png" />
       </Btn>
       {/* <Btn onClick={() => window.location.replace("/chatting")}></Btn> */}
     </>
@@ -19,8 +19,8 @@ export default ChatBtn;
 const Btn = styled.div`
   width: 60px;
   height: 60px;
-  border: 3px solid #fefefe;
-  background-color: #fefefe;
+  /* border: 3px solid #fefefe; */
+  /* background-color: #fefefe; */
   border-radius: 50%;
   z-index: 9;
   right: 5%;
