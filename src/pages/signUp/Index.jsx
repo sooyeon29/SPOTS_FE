@@ -203,7 +203,6 @@ const SignUp = () => {
     const loginId = getValues("loginId");
     SignUpAPI.signUp(data)
       .then((res) => {
-        // console.log(res);
         if (res.status === 201) {
           navigate("/welcome", {
             state: { loginId: loginId, password: password },

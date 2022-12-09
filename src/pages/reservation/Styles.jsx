@@ -30,10 +30,8 @@ export const PlaceList = styled.div`
   max-width: 600px;
   width: 100%;
   display: flex;
-  /* margin-top: 10px; */
   flex-direction: column;
   height: 44vh;
-  /* overflow: scroll; */
   background-color: #fff;
   display: flex;
   margin-bottom: 80px;
@@ -58,7 +56,7 @@ export const ListBar = styled.div`
 export const Lists = styled.div`
   overflow: scroll;
   margin-bottom: 20px;
-`;
+// `;
 export const BtnWrap = styled.div`
   border: none;
   border-radius: 30px;
@@ -120,13 +118,11 @@ export const Status = styled.span`
 `;
 
 export const PrivateBlock = styled.div`
-  /* display: flex; */
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px;
-  /* padding-left: 15px; */
   width: 85%;
   background-color: #fff;
   filter: drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.25));
@@ -138,12 +134,12 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 77%;
-    height: 88%;
+    height: 28px;
+    width: 85%;
   }
   p:first-child {
     margin: auto;
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 18px;
     font-weight: 700;
   }
@@ -190,13 +186,12 @@ export const PublicBlock = styled.div`
     color: black;
   }
   img {
-    width: 77%;
-    height: 88%;
+    width: 100%;
   }
 `;
 
 export const PublicInfo = styled.div`
-  margin-top: 10px;
+  margin-top: 5px;
   p {
     margin: auto;
     font-size: 14px;
@@ -225,7 +220,7 @@ export const MylocationBtn = styled.button`
 `;
 
 export const SearchTerm = styled.div`
-  /* margin: auto; */
+  margin: auto;
 `;
 
 export const StSearch = styled.div`

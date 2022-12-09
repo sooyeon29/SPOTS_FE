@@ -81,10 +81,8 @@ export const __getSearchedSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await SearchApi.getSearchedSpot(payload);
-      // console.log("----데이터----", data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
-      // console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }

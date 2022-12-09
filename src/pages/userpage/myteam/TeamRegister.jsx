@@ -1,12 +1,34 @@
 import React, { useRef, useState } from "react";
-import { UserpageAPI } from "../../tools/instance";
+import { UserpageAPI } from "../../../tools/instance";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import TapBar from "../../components/TapBar";
-import styled from "styled-components";
+import Layout from "../../../components/Layout";
+import FlexibleHeader from "../../../components/FlexibleHeader";
+import TapBar from "../../../components/TapBar";
 import Swal from "sweetalert2";
-
+import {
+  StWrapTR,
+  StTeamFormTR,
+  InputBoxTR,
+  InputTextTR,
+  TeamLayoutTR,
+  SportsLayout,
+  BtnTR,
+  SpotsLabel,
+  FootballInput,
+  TennisInput,
+  BadmintonInput,
+  FootballDiv,
+  TennisDiv,
+  BadmintonDiv,
+  PlusBtnTR,
+  MinusBtnTR,
+  CountBoxTR,
+  ImageUpload,
+  HostingPhotoUpload,
+  HostPreview,
+  Preview,
+  ProfilePhotoInput,
+} from "./Styles";
 const TeamRegister = () => {
   const title = "나의 팀";
   const navigate = useNavigate();
@@ -17,6 +39,7 @@ const TeamRegister = () => {
   const nameRef = useRef();
   const [sports, setSports] = useState("");
   const [count, setCount] = useState(0);
+  const token = localStorage.getItem("token");
 
   const handleImagePreview = (file) => {
     setImg(null);
@@ -38,11 +61,26 @@ const TeamRegister = () => {
     }
   };
 
+  if (!token) {
+    Swal.fire({
+      text: "팀 등록은 로그인 후에 가능합니다",
+      width: "300px",
+      confirmButtonText: "확인",
+      confirmButtonColor: "#40d295",
+      showClass: { popup: "animated fadeInDown faster" },
+      hideClass: { popup: "animated fadeOutUp faster" },
+    }).then((result) =>{
+      if (result.isConfirmed) {
+        navigate('/login');
+      }
+    })
+  }
+
   const registerHandler = async (e) => {
     e.preventDefault();
     if (nameRef.current.value.trim() === "" || sports === "" || count === "") {
       return Swal.fire({
-        text: "모든 항목을 입력해주세요.",
+        text: "모든 항목을 입력해주세요",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -51,7 +89,7 @@ const TeamRegister = () => {
       });
     } else if (count === 0 || count === 1) {
       Swal.fire({
-        text: "팀 등록은 2명부터 가능합니다.",
+        text: "팀 등록은 2명부터 가능합니다",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -74,7 +112,7 @@ const TeamRegister = () => {
           console.log(res);
           if (res.status === 201) {
             Swal.fire({
-              text: "팀 등록이 완료되었습니다.",
+              text: "팀 등록이 완료되었습니다",
               width: "300px",
               confirmButtonText: "확인",
               confirmButtonColor: "#40d295",
@@ -88,7 +126,7 @@ const TeamRegister = () => {
           console.log(error);
           if (error.response.data.code === -2) {
             Swal.fire({
-              text: "중복된 팀 이름입니다.",
+              text: "중복된 팀 이름입니다",
               width: "300px",
               confirmButtonText: "확인",
               confirmButtonColor: "#40d295",
@@ -103,9 +141,8 @@ const TeamRegister = () => {
   return (
     <Layout>
       <FlexibleHeader title={title} />
-      <StWrap>
-        <PageDesc>팀 등록</PageDesc>
-        <StTeamForm onSubmit={registerHandler} enctype="multipart/form-data">
+      <StWrapTR>
+        <StTeamFormTR onSubmit={registerHandler} enctype="multipart/form-data">
           <ImageUpload>
             <HostingPhotoUpload>
               <label htmlFor="upload-input">
@@ -144,16 +181,16 @@ const TeamRegister = () => {
               )}
             </HostPreview>
           </ImageUpload>
-          <InputBox>
-            <TeamLayout>
+          <InputBoxTR>
+            <TeamLayoutTR>
               <div>팀이름</div>
-              <InputText
+              <InputTextTR
                 type="text"
                 maxLength="10"
                 placeholder="team name"
                 ref={nameRef}
               />
-            </TeamLayout>
+            </TeamLayoutTR>
             <SportsLayout>
               <div>선호운동</div>
               <SpotsLabel>
@@ -190,276 +227,29 @@ const TeamRegister = () => {
                 <BadmintonDiv></BadmintonDiv>
               </SpotsLabel>
             </SportsLayout>
-            <TeamLayout>
+            <TeamLayoutTR>
               <div>인원</div>
               {count === 0 ? (
-                <MinusBtn disabled>-</MinusBtn>
+                <MinusBtnTR disabled>-</MinusBtnTR>
               ) : (
-                <MinusBtn onClick={() => setCount(count - 1)}>-</MinusBtn>
+                <MinusBtnTR onClick={() => setCount(count - 1)}>-</MinusBtnTR>
               )}
-              <CountBox>{count}</CountBox>
-              <PlusBtn
+              <CountBoxTR>{count}</CountBoxTR>
+              <PlusBtnTR
                 onClick={() => {
                   setCount(count + 1);
                 }}
               >
                 +
-              </PlusBtn>
-            </TeamLayout>
-          </InputBox>
-          <Btn>등록하기</Btn>
-        </StTeamForm>
-      </StWrap>
+              </PlusBtnTR>
+            </TeamLayoutTR>
+          </InputBoxTR>
+          <BtnTR>등록하기</BtnTR>
+        </StTeamFormTR>
+      </StWrapTR>
       <TapBar />
     </Layout>
   );
 };
 
 export default TeamRegister;
-
-const StWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const PageDesc = styled.div`
-  display: flex;
-  justify-content: center;
-  font-weight: 700;
-  margin: 80px 0px 20px 0px;
-`;
-
-const StTeamForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const InputBox = styled.div`
-  margin: auto;
-`;
-
-const InputText = styled.input`
-  display: flex;
-  border: 1px solid #cecece;
-  border-radius: 10px;
-  width: 200px;
-  padding-left: 10px;
-  height: 30px;
-  :focus {
-    outline: none;
-  }
-`;
-
-const TeamLayout = styled.div`
-  display: flex;
-  padding: 20px 10px 20px 10px;
-  border-bottom: 1px solid #cecece;
-  font-size: 14px;
-  font-weight: 600;
-  align-items: center;
-  width: 90%;
-  margin: auto;
-  div:first-child {
-    width: 100px;
-    text-align: center;
-    color: #545454;
-    padding: 8px 8px 8px 8px;
-  }
-`;
-
-const SportsLayout = styled.div`
-  display: flex;
-  padding: 10px 10px 10px 10px;
-  border-bottom: 1px solid #cecece;
-  font-size: 14px;
-  font-weight: 600;
-  align-items: center;
-  width: 90%;
-  margin: auto;
-  div:first-child {
-    width: 100px;
-    text-align: center;
-    color: #545454;
-    padding: 8px 8px 8px 8px;
-  }
-
-  div:last-child {
-    margin-left: 20px;
-  }
-`;
-
-const Btn = styled.button`
-  width: 90%;
-  height: 52px;
-  background-color: #1746c7;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 47px;
-  line-height: 52px;
-  text-align: center;
-  border: none;
-  margin-top: 50px;
-  cursor: pointer;
-`;
-
-const SpotsLabel = styled.label``;
-
-const FootballInput = styled.input`
-  display: none;
-`;
-
-const TennisInput = styled.input`
-  display: none;
-`;
-
-const BadmintonInput = styled.input`
-  display: none;
-`;
-
-const FootballDiv = styled.div`
-  width: 55px;
-  height: 55px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url("/mypage/football_gray.png");
-  background-size: 55px;
-
-  ${FootballInput}:checked + && {
-    background-image: url("/mypage/football_blue.png");
-    background-size: 55px;
-  }
-
-  img {
-    width: 60px;
-    height: 60px;
-  }
-`;
-
-const TennisDiv = styled.div`
-  width: 55px;
-  height: 55px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url("/mypage/tennis_gray.png");
-  background-size: 55px;
-
-  ${TennisInput}:checked + && {
-    background-image: url("/mypage/tennis_blue.png");
-    background-size: 55px;
-  }
-`;
-
-const BadmintonDiv = styled.div`
-  width: 55px;
-  height: 55px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url("/mypage/badminton_gray.png");
-  background-size: 55px;
-
-  ${BadmintonInput}:checked + && {
-    background-image: url("/mypage/badminton_blue.png");
-    background-size: 55px;
-  }
-`;
-
-const PlusBtn = styled.div`
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: #1746c7;
-  border-radius: 20px;
-  color: #ffffff;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  cursor: pointer;
-`;
-
-const MinusBtn = styled.div`
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: #d9d9d9;
-  border-radius: 30px;
-  color: #231f20;
-  font-size: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  cursor: pointer;
-`;
-
-const CountBox = styled.div`
-  width: 80px;
-  height: 30px;
-  background-color: #f5f5f5;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -10px;
-  margin-right: -10px;
-  z-index: 1;
-`;
-
-const ImageUpload = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-`;
-
-const HostingPhotoUpload = styled.div`
-  img {
-    width: 20px;
-    position: absolute;
-  }
-`;
-
-const HostPreview = styled.div`
-  img {
-    height: 100px;
-    width: 100px;
-    border-radius: 100px;
-    object-fit: cover;
-  }
-`;
-
-const Preview = styled.div`
-  div:first-child {
-    height: 100px;
-    width: 100px;
-    background-color: #d9d9d9;
-    border-radius: 100px;
-  }
-  height: 100px;
-  width: 100px;
-  background-color: #d9d9d9;
-  border-radius: 100px;
-`;
-
-const ProfilePhotoInput = styled.input`
-  /* width: 0;
-  height: 0;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0; */
-  display: none;
-`;

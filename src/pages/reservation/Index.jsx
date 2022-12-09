@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import SpotList from "./HostSpotList";
 import { FaSearchLocation } from "react-icons/fa";
@@ -13,7 +12,7 @@ import {
   SearchInput,
   ListBar,
   Lists,
-} from "./Style";
+} from "./Styles";
 import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,
@@ -44,7 +43,6 @@ const Reservation = () => {
     e.preventDefault();
     window.location.href = "/book/" + keywords;
   };
-
   if (isLoading) {
     return <Loading />;
   }
@@ -67,7 +65,6 @@ const Reservation = () => {
             <form onSubmit={onSearchHandler}>
               <SearchInput
                 type="text"
-                // value={keywords}
                 defaultValue={keywords}
                 placeholder="지역, 스팟 이름으로 찾기"
                 onChange={(e) => {
@@ -79,12 +76,10 @@ const Reservation = () => {
           <MapPlace>
             {!params.keywords ? (
               <>
-                {/* {console.log("-----No Params-----", allSpot)} */}
                 <SpotsMap spotMarkers={allSpot} />
               </>
             ) : (
               <>
-                {/* {console.log("-----Yes Params-----", searchedSpot)} */}
                 <SpotsMap spotMarkers={searchedSpot} />
               </>
             )}
