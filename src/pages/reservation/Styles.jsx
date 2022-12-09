@@ -8,7 +8,7 @@ export const StWrap = styled.div`
   padding-bottom: 0;
   margin: auto;
   img {
-    width: 30px;
+    /* width: 30px; */
     height: 30px;
   }
 `;
@@ -134,8 +134,8 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    width: 100%;
-    /* height: 60%; */
+    /* width: 60px;
+    height: 23px; */
   }
   p:first-child {
     margin: auto;
@@ -186,7 +186,7 @@ export const PublicBlock = styled.div`
     color: black;
   }
   img {
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 
