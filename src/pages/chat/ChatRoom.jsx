@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { BsXLg } from 'react-icons/bs';
-import { IoSend } from 'react-icons/io5';
-import Chatting from './Chatting';
-import socket from '../../tools/socket';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { BsXLg } from "react-icons/bs";
+import { IoSend } from "react-icons/io5";
+import Chatting from "./Chatting";
+import { useNavigate } from "react-router-dom";
 import {
   RoomStContainer,
   StBox,
@@ -12,7 +11,7 @@ import {
   StChat,
   StChatContent,
   Button,
-} from './Styles';
+} from "./Styles";
 
 const ChatRoom = ({ chatOpen, chatOpenRef }) => {
   const navigate = useNavigate();
@@ -57,8 +56,9 @@ const ChatRoom = ({ chatOpen, chatOpenRef }) => {
                 // setOnChat(!onChat);
                 // console.log(onChat);
                 //navigate("/chatting");
-                window.location.replace('/chatting');
-              }}>
+                window.location.replace("/chatting");
+              }}
+            >
               <IoSend />
               <strong>새 문의하기</strong>
             </Button>

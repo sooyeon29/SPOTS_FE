@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
-import socket from "../../tools/socket";
+//import socket from "../../tools/socket";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
 import _ from "lodash";
@@ -17,6 +17,15 @@ import {
   StForm,
   StInput,
 } from "./Styles";
+import { io } from "socket.io-client";
+
+const socket = io.connect(process.env.REACT_APP_SOCKET, {
+  path: "/socket.io",
+  cors: {
+    origin: "http://localhost:3000",
+  },
+  transports: ["websocket", "polling"],
+});
 
 const Chatting = () => {
   const navigate = useNavigate();
@@ -142,7 +151,6 @@ const Chatting = () => {
           ))}
           <div ref={scrollRef} />
         </ChattingChatBox>
-
         <StForm onSubmit={onSendMsg}>
           <StInput
             value={msg}
