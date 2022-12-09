@@ -134,8 +134,8 @@ export const PrivateBlock = styled.div`
     color: black;
   }
   img {
-    height: 28px;
-    width: 85%;
+    width: 100%;
+    /* height: 60%; */
   }
   p:first-child {
     margin: auto;
