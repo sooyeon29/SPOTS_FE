@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import SpotList from "./HostSpotList";
 import { FaSearchLocation } from "react-icons/fa";
@@ -66,7 +65,6 @@ const Reservation = () => {
             <form onSubmit={onSearchHandler}>
               <SearchInput
                 type="text"
-                // value={keywords}
                 defaultValue={keywords}
                 placeholder="지역, 스팟 이름으로 찾기"
                 onChange={(e) => {

@@ -42,7 +42,7 @@ const FindPw = () => {
         .catch((err) => {
           console.log(err);
           Swal.fire({
-            text: "예상하지 못한 오류가 발생하였습니다",
+            text: "예상하지 못한 오류가 발생했습니다",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
