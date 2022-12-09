@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { PrivateApi, SpotsMatchApi } from '../../tools/instance';
-import { Link, useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import TapBar from '../../components/TapBar';
-import useDetectClose from '../../hooks/useDetectClose';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import ChatBtn from '../../components/ChatBtn';
-import ChatRoom from '../chat/ChatRoom';
+import { useEffect, useState } from "react";
+import { PrivateApi, SpotsMatchApi } from "../../tools/instance";
+import { Link, useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import TapBar from "../../components/TapBar";
+import useDetectClose from "../../hooks/useDetectClose";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ChatBtn from "../../components/ChatBtn";
+import ChatRoom from "../chat/ChatRoom";
 import {
   BannerSlider,
   Icon,
@@ -28,12 +28,12 @@ import {
   TeamContainer,
   WaitingMatchMain,
   WaitingMatchMain2,
-} from './Styles';
-import Tutorial from '../../components/Tutorial';
+} from "./Styles";
+import Tutorial from "../../components/Tutorial";
 
 const MainMaps = () => {
   const [showTutorial, setShowTutorial] = useState(false);
-  const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
+  const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
   const [newSpot, setNewSpot] = useState();
   const [newMatch, setNewMatch] = useState();
   const navigate = useNavigate();
@@ -78,7 +78,7 @@ const MainMaps = () => {
         setShowTutorial(true);
         let expires = new Date();
         expires = expires.setMonth(expires.getMonth() + 12);
-        localStorage.setItem('hasVisitedBefore', expires);
+        localStorage.setItem("hasVisitedBefore", expires);
       }
     };
     window.setTimeout(handleShowTutorial);
@@ -88,13 +88,12 @@ const MainMaps = () => {
   return (
     <>
       <Layout>
-      {showTutorial && <Tutorial onClose={handleClose}/>}
-
+        {showTutorial && <Tutorial handleClose={handleClose} />}
         <Header />
         <MainSearch
           alt=""
           src="/mainpage/mainSearch.png"
-          onClick={() => navigate('/book')}
+          onClick={() => navigate("/book")}
         />
         <MainBanner>
           <img alt="" src="/mainpage/mainBanner.png" />
@@ -105,23 +104,24 @@ const MainMaps = () => {
             {newSpot?.map((place, idx) => (
               <New
                 key={idx}
-                onClick={() => navigate(`/spotsdetail/${place.placesId}`)}>
+                onClick={() => navigate(`/spotsdetail/${place.placesId}`)}
+              >
                 <Image alt="" src={place.image} />
                 <div>
                   <InfoDiv>
                     <Info>
                       <div>
-                        {place.sports === '테니스장' ? (
+                        {place.sports === "테니스장" ? (
                           <>
                             <Icon alt="" src="/reservation/newTennis.png" />
                           </>
                         ) : null}
-                        {place.sports === '배드민턴장' ? (
+                        {place.sports === "배드민턴장" ? (
                           <>
                             <Icon alt="" src="/reservation/newBadminton.png" />
                           </>
                         ) : null}
-                        {place.sports === '풋살장' ? (
+                        {place.sports === "풋살장" ? (
                           <>
                             <Icon alt="" src="/reservation/newFutsal.png" />
                           </>
@@ -129,9 +129,9 @@ const MainMaps = () => {
                       </div>
                       <SpotName>{place.spotName}</SpotName>
                       <div>
-                        {place.address.split(' ')[0]}{' '}
-                        {place.address.split(' ')[1]}{' '}
-                        {place.address.split(' ')[2]}
+                        {place.address.split(" ")[0]}{" "}
+                        {place.address.split(" ")[1]}{" "}
+                        {place.address.split(" ")[2]}
                       </div>
                     </Info>
                   </InfoDiv>
@@ -147,7 +147,8 @@ const MainMaps = () => {
               <SixMatch key={index}>
                 <Link
                   to={`/spotsdetail/${sixmatch.place?.placesId}`}
-                  style={{ color: 'black', textDecoration: 'none' }}>
+                  style={{ color: "black", textDecoration: "none" }}
+                >
                   <WaitingMatchMain>
                     <div>
                       <img alt="" src="/mainpage/date.png" width="25px" />
@@ -173,9 +174,9 @@ const MainMaps = () => {
                     <Info2>
                       <button>{sixmatch.place?.spotName}</button>
                       <div>
-                        {sixmatch.place?.address.split(' ')[0]}{' '}
-                        {sixmatch.place?.address.split(' ')[1]}{' '}
-                        {sixmatch.place?.address.split(' ')[2]}
+                        {sixmatch.place?.address.split(" ")[0]}{" "}
+                        {sixmatch.place?.address.split(" ")[1]}{" "}
+                        {sixmatch.place?.address.split(" ")[2]}
                       </div>
                     </Info2>
                   </SpotInfoMain>
