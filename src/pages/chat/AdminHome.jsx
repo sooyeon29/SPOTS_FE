@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import socket from "../../tools/socket.js";
-import { StContainer, StWrap, RoomForm, RoomInput, RoomBtn } from "./Styles.jsx";
+//import socket from "../../tools/socket.js";
+import {
+  StContainer,
+  StWrap,
+  RoomForm,
+  RoomInput,
+  RoomBtn,
+} from "./Styles.jsx";
+import { io } from "socket.io-client";
+
+const socket = io.connect(process.env.REACT_APP_SOCKET, {
+  path: "/socket.io",
+  cors: {
+    origin: "http://localhost:3000",
+  },
+  transports: ["websocket", "polling"],
+});
+
 const AdminHome = () => {
   const navigate = useNavigate();
   const [roomList, setRoomList] = useState();

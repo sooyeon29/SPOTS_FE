@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import socket from "../../tools/socket";
-import { StContainer, StWrap, ChatBox, RoomForm, RoomInput, RoomBtn } from "./Styles";
+//import socket from "../../tools/socket";
+import {
+  StContainer,
+  StWrap,
+  ChatBox,
+  RoomForm,
+  RoomInput,
+  RoomBtn,
+} from "./Styles";
+import { io } from "socket.io-client";
+
+const socket = io.connect(process.env.REACT_APP_SOCKET, {
+  path: "/socket.io",
+  cors: {
+    origin: "http://localhost:3000",
+  },
+  transports: ["websocket", "polling"],
+});
 
 const AdminChat = () => {
   const location = useLocation();
