@@ -25,7 +25,6 @@ import Chatting from "../pages/chat/Chatting";
 import Google from "../pages/login/Google";
 import ScrollToTop from "../components/ScrollTop";
 import SocialSignUp from "../pages/signUp/SocialSignUp";
-import Tutorial from "../components/Tutorial";
 //import ChatStart from "../pages/chat/ChatStartBtn";
 
 function Router() {
@@ -57,7 +56,6 @@ function Router() {
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
         <Route path="/welcome" element={<Welcome />} />
-        <Route path="/tutorial" element={<Tutorial />} />
         {<Route path="/chatting" element={<Chatting />} />}
         {/*<Route path="/chatting" element={<ChatStart />} />*/}
       </Routes>
