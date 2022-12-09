@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useDetectClose from "../hooks/useDetectClose";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaSearchLocation } from "react-icons/fa";
-import SearchBar from "./SearchBar";
 import useToggle from "../hooks/useToggle";
 import SideBar from "./SideBar";
 
