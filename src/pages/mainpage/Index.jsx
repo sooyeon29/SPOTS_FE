@@ -69,20 +69,20 @@ const MainMaps = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   const handleShowTutorial = () => {
-  //     if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
-  //       return;
-  //     }
-  //     if (!HAS_VISITED_BEFORE) {
-  //       setShowTutorial(true);
-  //       // let expires = new Date();
-  //       // expires = expires.setMonth(expires.getMonth() + 12);
-  //       // localStorage.setItem('hasVisitedBefore', expires);
-  //     }
-  //   };
-  //   window.setTimeout(handleShowTutorial, 2000);
-  // }, [HAS_VISITED_BEFORE]);
+  useEffect(() => {
+    const handleShowTutorial = () => {
+      if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
+        return;
+      }
+      if (!HAS_VISITED_BEFORE) {
+        setShowTutorial(true);
+        let expires = new Date();
+        expires = expires.setMonth(expires.getMonth() + 12);
+        localStorage.setItem('hasVisitedBefore', expires);
+      }
+    };
+    window.setTimeout(handleShowTutorial, 2000);
+  }, [HAS_VISITED_BEFORE]);
   const handleClose = () => setShowTutorial(false);
 
   return (
