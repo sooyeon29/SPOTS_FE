@@ -680,12 +680,12 @@ const SpotsDetail = () => {
                 )}
               </MatchOrNot>
               {pickedTime !== "" && bookDate !== undefined && (
-                <SelectDone ref={scrollTeam}>
+                <SelectDone>
                   <div>[ 선택 시간 {pickedTime} ]</div>
                 </SelectDone>
               )}
               {pickedTime2 !== "" && bookDate !== undefined && (
-                <SelectDone ref={scrollTeam}>
+                <SelectDone>
                   <div>[ 선택 시간 {pickedTime2} ]</div>
                 </SelectDone>
               )}
@@ -753,7 +753,7 @@ const SpotsDetail = () => {
                   * 상대팀과 경기 참가 인원 같아야 매칭 예약이 가능합니다.
                 </Email>
               )}
-              <Counter>
+              <Counter ref={scrollTeam}>
                 <div>경기 참가 인원</div>
                 <div>
                   {count === 0 ? (
