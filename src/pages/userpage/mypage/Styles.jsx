@@ -162,7 +162,7 @@ export const ModifyBlock = styled.div`
     background-color: #fff;
     color: black;
     font-weight: 600;
-    width: 60px;
+    width: 68px;
   }
 `;
 

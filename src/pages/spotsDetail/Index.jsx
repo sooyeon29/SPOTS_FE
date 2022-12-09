@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
@@ -8,46 +8,47 @@ import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { __getMyInfo, __getMyteamList } from "../../redux/modules/userSlice";
 import {
-  BookMatch,
-  CalTime,
-  Team,
-  Title,
-  Times,
-  Time,
-  SelectTeam,
-  Pick,
-  One,
-  Two,
-  SpotPhoto,
-  MoreInfo,
-  Sports,
-  PlaceInfo,
-  Calen,
-  TeamSelect,
-  SelectDone,
-  Counter,
-  FinalBooking,
-  WrapAll,
-  SelectDone2,
-  WaitingMatch,
-  MatchList,
-  EmailInput,
-  WaitingMatch2,
-  Email,
-  MatchOrNot,
-  SelectDone3,
-} from "./Styles";
-import {
   __getAllMatch,
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
 import { subDays } from "date-fns";
-
+import {
+  BookMatch,
+  Calen,
+  CalTime,
+  Counter,
+  DatePicker,
+  Email,
+  EmailInput,
+  FinalBooking,
+  MakeTeam,
+  MatchList,
+  MatchOrNot,
+  MoreInfo,
+  One,
+  Pick,
+  PlaceInfo,
+  SelectDone,
+  SelectDone2,
+  SelectDone3,
+  SelectTeam,
+  Sports,
+  SpotPhoto,
+  Team,
+  TeamSelect,
+  Time,
+  Times,
+  Title,
+  Two,
+  WaitingMatch,
+  WaitingMatch2,
+  WrapAll,
+} from "./Styles";
 const SpotsDetail = () => {
   const title = "예약";
   const myTime = [
@@ -65,29 +66,25 @@ const SpotsDetail = () => {
   const [toggleTwo, setToggleTwo, clickedToggleTwo] = useToggle();
   const [toggleThree, setToggleThree, clickedToggleThree] = useToggle();
   const [email, setEmail] = useState("");
+  const [startDate, setStartDate] = useState(null); // 1. 예약을 원하는 날짜를 선택한다--> 달력에 선택하는 날짜가 선택됨
+  const [pickedTime, setPickedTime] = useState(""); // 2. 시간과 팀을 선택한다(TEAM A-a, TEAM B-b) => 이것으로 matchId를 만들어줄 예정이다
+  const [pickedTime2, setPickedTime2] = useState("");
+  const [payAPrice, setPayAPrice] = useState(0); // 예약 시간,팀 선택시 해당 포인트 확인됨
+  const [isTwo, setIsTwo, pickTwoHandler] = useToggle(); // 3.단식경기를할지 복식경기를 할지 선택하기
+  // 4. 나의 팀중에서 하나를 선택한다 ( 나의 정보에서 가져온다)
+  // 내 포인트도 가져와주었다(결제를 위해 밑에서 사용할예정이다 -> patch이용할것)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(__getMyteamList());
+    dispatch(__getMyInfo());
+    dispatch(__getPrivateSpot());
+  }, []);
+  const [myTeam, setMyTeam, pickMyTeam] = useInput();
   // 리스트 중에서 선택한 place를 가져온다 파람값으로 비교해 필터해준다
-  console.log("이메일", email);
   const placeList = useSelector((state) => state?.spots.privateSpot);
-
   const selectSpot = placeList?.filter((place) => {
     return place.placesId === parseInt(id);
   });
-  console.log("이구장정보", selectSpot);
-  // 1. 예약을 원하는 날짜를 선택한다
-  // --> 달력에 선택하는 날짜가 선택됨
-  const [startDate, setStartDate] = useState(null);
-
-  // const todayMatchList = useSelector((state) => state?.matcher?.matcher);
-  // console.log(todayMatchList);
-  // 2. 시간과 팀을 선택한다(TEAM A-a, TEAM B-b) => 이것으로 matchId를 만들어줄 예정이다
-  const [pickedTime, setPickedTime] = useState("");
-  const [pickedTime2, setPickedTime2] = useState("");
-  // 예약 시간,팀 선택시 해당 포인트 확인됨
-  const [payAPrice, setPayAPrice] = useState(0);
-  const [payBPrice, setPayBPrice] = useState(0);
-
-  // const [color, setColor] = useState("white");
-  // ---> 호스트 페이지에 업로드하고 보여주는 것을 완료하면 이 포스트아이디값을 하나 더 받아서 아이디를 만드는데 더해준다
   //=> a팀을 선택한 경우
   const teamPick = (time, price) => {
     console.log(myTime[time], "*********************");
@@ -99,54 +96,33 @@ const SpotsDetail = () => {
     setPickedTime("");
     setToggleTwo(false);
   };
-
+  //=> b팀을 선택한 경우
   const teamPick2 = (time, price) => {
     console.log(myTime[time], "*********************");
     setPickedTime2(myTime[time]);
     setPayAPrice(price);
-    // color === "white" ? setColor("#1B2754") : setColor("white");
-    // setToggleThree(false);
   };
   const exitNoMatch2 = () => {
     setPickedTime2("");
     setToggleThree(false);
   };
-
-  // 3.단식경기를할지 복식경기를 할지 선택하기
-  const [isTwo, setIsTwo, pickTwoHandler] = useToggle();
-  // 단식 복식 선택하여 세션스토리지에 저장
-
-  // 4. 나의 팀중에서 하나를 선택한다 ( 나의 정보에서 가져온다)
-  // 내 포인트도 가져와주었다(결제를 위해 밑에서 사용할예정이다 -> patch이용할것)
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(__getMyteamList());
-    dispatch(__getMyInfo());
-    dispatch(__getPrivateSpot());
-  }, []);
-
-  const [myTeam, setMyTeam, pickMyTeam] = useInput();
-  // 팀이 없더라도 오류가 나지 않도록 옵셔널 체이닝을 사용한다. 세션스토리지에 저장해준다
+  // 팀이 없더라도 오류가 나지 않도록 옵셔널 체이닝을 사용한다.
   const myTeams = useSelector((state) => state?.user.team);
   console.log("내팀들", myTeams);
 
-  // 5. 경기에 참가할 인원수를 작성해준다.
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // 5. 경기에 참가할 인원수를 작성해준다.
 
   // @@++나의 포인트를 가져와 주었다 이것으로 계산할꺼다 ++@@
   // 아래 예약하기 핸들러를 눌러 patch도 위의 post들과 함께 보내줄꺼다
   const { user } = useSelector((state) => state.user);
   let myPoint = user.point;
-
-  // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
-  // const bookDate = JSON.stringify(startDate).substring(1, 11);
+  // 선택한 날짜를 알맞은 모양으로 보내기 위해 가공한다
   const bookDate = startDate?.toLocaleDateString().substring(0, 12);
   console.log(pickedTime);
-  const navigate = useNavigate();
-  // 매칭없이 예약하기
+  // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
+
+  // 매칭없이 예약하기(구장만예약)
   const bookWithNoMatch = (name) => {
-    // console.log('고른시간', pickedTime + 'nomatch' + startDate + name);
-    // return;
     dispatch(
       __postSpotsMatch({
         place: name,
@@ -155,13 +131,12 @@ const SpotsDetail = () => {
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
-        price: payAPrice + payBPrice,
+        price: payAPrice,
         email: email,
       })
     );
   };
-
-  // 팀 매칭
+  // 매칭을 신청하기(구장+매칭예약)
   const bookMyMatch = (name) => {
     dispatch(
       __postSpotsMatch({
@@ -171,7 +146,7 @@ const SpotsDetail = () => {
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
-        price: payAPrice + payBPrice,
+        price: payAPrice,
         email: email,
       })
     );
@@ -179,36 +154,22 @@ const SpotsDetail = () => {
 
   const pickDateHandler = (date, name) => {
     setStartDate(date);
-    // const bookDate = JSON.stringify(date).substring(1, 11);
     const bookDate = date?.toLocaleDateString().substring(0, 12);
-    dispatch(
-      __getAllMatch({
-        place: name,
-        date: bookDate,
-      })
-    );
-    dispatch(
-      __getOkMatch({
-        place: name,
-        date: bookDate,
-      })
-    );
-
+    dispatch(__getAllMatch({ place: name, date: bookDate }));
+    dispatch(__getOkMatch({ place: name, date: bookDate }));
     setToggel(false);
   };
-
   const exitDate = () => {
     setStartDate(null);
     setToggel(false);
   };
+
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.allmatcher);
   console.log("allMatch", allMatchToday);
   // 매칭이 완료되지 않은 리스트 (구장예약건들도 들어있음)
-
   const noneMatchToday = useSelector((state) => state?.matcher.newmatcher);
   console.log("매칭전배열(구장&매칭전 모두들어있음)", noneMatchToday);
-
   const waitMatchToday = noneMatchToday.filter(
     (match) => match.matchId?.substring(13, 20) === "ismatch"
   );
@@ -255,6 +216,19 @@ const SpotsDetail = () => {
   console.log("all", reservedSpotTimeSlots);
   console.log("로그인안했을때포인트", myPoint);
 
+  const scrollPoint = useRef();
+  const scrollDate = useRef();
+  const scrollTeam = useRef();
+  const goMatch = () => {
+    scrollPoint.current.scrollIntoView({ behavior: "smooth" });
+  };
+  const goDate = () => {
+    scrollDate.current.scrollIntoView({ behavior: "smooth" });
+  };
+  const goTeam = () => {
+    scrollTeam.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <Layout>
@@ -275,7 +249,6 @@ const SpotsDetail = () => {
                 <Title>{spot.spotName}</Title>
                 <div>{spot.address}</div>
                 <div>{spot.desc}</div>
-
                 <MoreInfo>
                   <li>시설 현황</li>
                   <div>
@@ -301,19 +274,21 @@ const SpotsDetail = () => {
               </PlaceInfo>
               {toggle && (
                 <Calen>
-                  <ReactDatePicker
-                    locale={ko}
-                    selected={startDate}
-                    onChange={(date) => pickDateHandler(date, spot.spotName)}
-                    excludeDateIntervals={[
-                      {
-                        start: subDays(new Date(), 100),
-                        end: subDays(new Date(), 1),
-                      },
-                    ]}
-                    inline
-                    required
-                  />
+                  <DatePicker>
+                    <ReactDatePicker
+                      locale={ko}
+                      selected={startDate}
+                      onChange={(date) => pickDateHandler(date, spot.spotName)}
+                      excludeDateIntervals={[
+                        {
+                          start: subDays(new Date(), 100),
+                          end: subDays(new Date(), 1),
+                        },
+                      ]}
+                      inline
+                      required
+                    />
+                  </DatePicker>
                   <Pick>
                     <One
                       onClick={() => {
@@ -330,13 +305,17 @@ const SpotsDetail = () => {
               )}
               {!toggle && (
                 <SelectDone>
-                  <button onClick={clickedToggle}>
+                  <button
+                    onClick={() => {
+                      clickedToggle();
+                      goDate();
+                    }}
+                  >
                     <div>날짜를 선택해주세요</div>
                     <div>[ 선택 날짜 {bookDate} ]</div>
                   </button>
                 </SelectDone>
               )}
-
               {toggleTwo && (
                 <CalTime>
                   <Times>
@@ -431,7 +410,6 @@ const SpotsDetail = () => {
                   </Pick>
                 </CalTime>
               )}
-
               {toggleThree && (
                 <CalTime>
                   <SelectTeam>
@@ -685,59 +663,53 @@ const SpotsDetail = () => {
                       clickedToggleTwo();
                       setToggel(false);
                       setToggleThree(false);
+                      goTeam();
                     }}
                   ></SelectDone2>
                 )}
                 {!toggleThree && (
                   <SelectDone3
-                    // >
-                    // <button
                     disabled={bookDate === undefined || pickedTime !== ""}
                     onClick={() => {
                       clickedToggleThree();
                       setToggleTwo(false);
                       setToggel(false);
+                      goTeam();
                     }}
                   ></SelectDone3>
                 )}
               </MatchOrNot>
               {pickedTime !== "" && bookDate !== undefined && (
-                <>
-                  <SelectDone>
-                    <div>[ 선택 시간 {pickedTime} ]</div>
-                  </SelectDone>
-                  <Email>
-                    * 구장을 이용하고자 하는 나의 팀과 인원수를 선택해주세요
-                  </Email>
-                </>
+                <SelectDone ref={scrollTeam}>
+                  <div>[ 선택 시간 {pickedTime} ]</div>
+                </SelectDone>
               )}
               {pickedTime2 !== "" && bookDate !== undefined && (
-                <>
-                  <SelectDone>
-                    <div>[ 선택 시간 {pickedTime2} ]</div>
-                  </SelectDone>
-                  <Email>
-                    * 상대팀과 경기 참가 인원 같아야 매칭 예약이 가능합니다.
-                  </Email>
-                </>
+                <SelectDone ref={scrollTeam}>
+                  <div>[ 선택 시간 {pickedTime2} ]</div>
+                </SelectDone>
               )}
-              <Link
-                to="/teamregister"
-                style={{
-                  color: "black",
-                  textDecoration: "none",
-                  marginLeft: "20px",
-                }}
-              >
+              <MakeTeam ref={scrollDate}>
                 아직 나의
-                {spot.sports === "풋살장" && <>⚽</>}
-                {spot.sports === "테니스장" && <>🥎</>}
-                {spot.sports === "배드민턴장" && <>🏸</>}
-                팀이 없다면!
-                {spot.sports === "풋살장" && <>⚽</>}
-                {spot.sports === "테니스장" && <>🥎</>}
-                {spot.sports === "배드민턴장" && <>🏸</>}팀 만들러 가기👉
-              </Link>
+                <span>
+                  {spot.sports === "풋살장" && <>풋살</>}
+                  {spot.sports === "테니스장" && <>테니스</>}
+                  {spot.sports === "배드민턴장" && <>배드민턴</>}팀
+                </span>
+                이 없다면!
+                <Link
+                  to="/teamregister"
+                  style={{
+                    color: "black",
+                    fontWeight: "700",
+                    marginLeft: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  만들러 가기
+                </Link>
+                👉
+              </MakeTeam>
               <TeamSelect
                 name="myteam"
                 required
@@ -771,6 +743,16 @@ const SpotsDetail = () => {
                   <One onClick={pickTwoHandler}>복식</One>
                 </Pick>
               )}
+              {pickedTime !== "" && bookDate !== undefined && (
+                <Email>
+                  * 구장을 이용하고자 하는 나의 팀과 인원수를 선택해주세요
+                </Email>
+              )}
+              {pickedTime2 !== "" && bookDate !== undefined && (
+                <Email>
+                  * 상대팀과 경기 참가 인원 같아야 매칭 예약이 가능합니다.
+                </Email>
+              )}
               <Counter>
                 <div>경기 참가 인원</div>
                 <div>
@@ -790,6 +772,7 @@ const SpotsDetail = () => {
                     onClick={() => {
                       setCount(count + 1);
                       setToggleThree(false);
+                      goMatch();
                     }}
                   >
                     +
@@ -804,7 +787,7 @@ const SpotsDetail = () => {
                     placeholder="spots@naver.com"
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <CalTime>
+                  <CalTime ref={scrollPoint}>
                     <p>
                       잔여 포인트 :{" "}
                       {myPoint === undefined
@@ -813,17 +796,14 @@ const SpotsDetail = () => {
                       <img alt="" src="/point.png" width="20px" />
                     </p>
                     <span>
-                      예약 포인트:{" "}
-                      {Number(payAPrice + payBPrice).toLocaleString("ko-KR")}
+                      예약 포인트: {Number(payAPrice).toLocaleString("ko-KR")}
                       <img alt="" src="/point.png" width="20px" />
                     </span>
 
-                    {myPoint > payAPrice + payBPrice ? (
+                    {myPoint > payAPrice ? (
                       <p>
                         결제 후 포인트:{" "}
-                        {Number(myPoint - payAPrice + payBPrice).toLocaleString(
-                          "ko-KR"
-                        )}
+                        {Number(myPoint - payAPrice).toLocaleString("ko-KR")}
                         <img alt="" src="/point.png" width="20px" />
                       </p>
                     ) : (
@@ -831,14 +811,13 @@ const SpotsDetail = () => {
                         충전이 필요한 포인트:{" "}
                         {myPoint === undefined
                           ? "로그인 후 확인해주세요"
-                          : payAPrice + payBPrice - myPoint}
+                          : payAPrice - myPoint}
                         <img alt="" src="/point.png" width="20px" />
                       </p>
                     )}
                   </CalTime>
                 </>
               )}
-
               {pickedTime !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
                   구장 예약하기
