@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useDetectClose from "../hooks/useDetectClose";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaSearchLocation } from "react-icons/fa";
-import SearchBar from "./SearchBar";
 import useToggle from "../hooks/useToggle";
 import SideBar from "./SideBar";
 
@@ -26,17 +24,6 @@ const Header = () => {
             <Img src="/logo.png" alt="logo" />
           </StLogo>
           <StButtons>
-            {/* {!toggle ? (
-              <StSearch>
-                <FaSearchLocation
-                  color="white"
-                  size="20"
-                  onClick={ClickToggle}
-                />
-              </StSearch>
-            ) : (
-              <SearchBar />
-            )} */}
             <Container>
               <HamburgButton onClick={barHandler} ref={barRef}>
                 <GiHamburgerMenu size="25" />

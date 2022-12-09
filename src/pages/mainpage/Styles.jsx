@@ -28,14 +28,13 @@ export const BannerSlider = styled(Slider)`
   .slick-slide div {
     margin: 0px 10px 0px 0px;
   }
-  .slick-dots {
-    color: red;
-  }
   cursor: pointer;
 `;
+
 export const New = styled.div`
   width: 80%;
 `;
+
 export const Image = styled.img`
   width: 100%;
   height: 200px;
