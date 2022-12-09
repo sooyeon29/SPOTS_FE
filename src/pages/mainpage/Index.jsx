@@ -32,7 +32,7 @@ import {
 import Tutorial from '../../components/Tutorial';
 
 const MainMaps = () => {
-  const [showTutorial, setShowTutorial] = useState(true);
+  const [showTutorial, setShowTutorial] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
   const [newSpot, setNewSpot] = useState();
   const [newMatch, setNewMatch] = useState();
@@ -81,14 +81,14 @@ const MainMaps = () => {
         localStorage.setItem('hasVisitedBefore', expires);
       }
     };
-    window.setTimeout(handleShowTutorial, 2000);
+    window.setTimeout(handleShowTutorial);
   }, [HAS_VISITED_BEFORE]);
   const handleClose = () => setShowTutorial(false);
 
   return (
     <>
       <Layout>
-      {showTutorial && <Tutorial onClose={handleClose} />}
+      {showTutorial && <Tutorial onClose={handleClose}/>}
 
         <Header />
         <MainSearch
