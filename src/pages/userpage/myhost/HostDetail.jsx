@@ -49,7 +49,7 @@ const HostDetail = () => {
       width: "350px",
       showCancelButton: true,
       confirmButtonColor: "#40d295",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#FF00B4",
       confirmButtonText: "삭제",
       cancelButtonText: "취소",
       showClass: { popup: "animated fadeInDown faster" },

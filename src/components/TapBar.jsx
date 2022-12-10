@@ -5,6 +5,7 @@ import { TbCalendarTime } from "react-icons/tb";
 import { FiSearch } from "react-icons/fi";
 import { IoPersonOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const TapBar = () => {
   const navigate = useNavigate();
@@ -19,7 +20,28 @@ const TapBar = () => {
         <FiSearch size="25" onClick={() => navigate("/book")} />
       </div>
       <div>
-        <TbCalendarTime size="28" onClick={() => navigate("/reservpage")} />
+        <TbCalendarTime
+          size="28"
+          onClick={() => {
+            if (!token) {
+              Swal.fire({
+                text: "나의 예약 리스트는 로그인 후 확인 가능합니다.",
+                width: "300px",
+                showCancelButton: true,
+                confirmButtonText: "로그인하러 가기",
+                confirmButtonColor: "#40d295",
+                cancelButtonColor: "#FF00B4",
+                cancelButtonText: "취소",
+                showClass: { popup: "animated fadeInDown faster" },
+                hideClass: { popup: "animated fadeOutUp faster" },
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate("/login");
+                }
+              });
+            } else navigate("/reservpage");
+          }}
+        />
       </div>
 
       <div>

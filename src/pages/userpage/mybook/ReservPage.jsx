@@ -78,20 +78,20 @@ const ReservPage = () => {
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === 'ismatch'
   );
 
-  if (!token) {
-    Swal.fire({
-      text: '나의 예약 리스트는 로그인 후 확인 가능합니다.',
-      width: '300px',
-      confirmButtonText: '로그인하러 가기',
-      confirmButtonColor: '#40d295',
-      showClass: { popup: 'animated fadeInDown faster' },
-      hideClass: { popup: 'animated fadeOutUp faster' },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.replace(`/login`);
-      }
-    });
-  }
+  // if (!token) {
+  //   Swal.fire({
+  //     text: "나의 예약 리스트는 로그인 후 확인 가능합니다.",
+  //     width: "300px",
+  //     confirmButtonText: "로그인하러 가기",
+  //     confirmButtonColor: "#40d295",
+  //     showClass: { popup: "animated fadeInDown faster" },
+  //     hideClass: { popup: "animated fadeOutUp faster" },
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       window.location.replace(`/login`);
+  //     }
+  //   });
+  // }
 
   return (
     <Layout>

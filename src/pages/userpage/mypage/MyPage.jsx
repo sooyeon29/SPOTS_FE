@@ -61,6 +61,7 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
+  console.log("================유저정보=============", user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const handleImagePreview = (file) => {
@@ -699,12 +700,12 @@ const MyPage = () => {
                     text: '30일간 휴면 후 개인정보가 삭제됩니다',
                     width: '350px',
                     showCancelButton: true,
-                    confirmButtonColor: '#40d295',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: '회원탈퇴',
-                    cancelButtonText: '취소',
-                    showClass: { popup: 'animated fadeInDown faster' },
-                    hideClass: { popup: 'animated fadeOutUp faster' },
+                    confirmButtonColor: "#40d295",
+                    cancelButtonColor: "#FF00B4",
+                    confirmButtonText: "회원탈퇴",
+                    cancelButtonText: "취소",
+                    showClass: { popup: "animated fadeInDown faster" },
+                    hideClass: { popup: "animated fadeOutUp faster" },
                   }).then((result) => {
                     if (result.isConfirmed) {
                       UserpageAPI.dropOutMe({ loginId: user.ID })
