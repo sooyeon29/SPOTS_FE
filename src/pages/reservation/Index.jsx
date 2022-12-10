@@ -30,6 +30,7 @@ const Reservation = () => {
     (state) => state?.spots
   );
   const title = "검색";
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!params.keywords) {
@@ -84,7 +85,7 @@ const Reservation = () => {
               </>
             )}
           </MapPlace>
-          <PlaceList>
+          <PlaceList open={open} onClick={() => setOpen(!open)}>
             <ListBar />
             <Lists>
               {!params.keywords ? (
