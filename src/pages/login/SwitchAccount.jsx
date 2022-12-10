@@ -43,7 +43,7 @@ const SwitchAccount = () => {
                         showClass: { popup: "animated fadeInDown faster" },
                         hideClass: { popup: "animated fadeOutUp faster" },
                       });
-                      localStorage.clear();
+                      // localStorage.clear();
                       navigate("/login");
                     }
                   })
@@ -56,7 +56,7 @@ const SwitchAccount = () => {
             </button>
             <button
               onClick={() => {
-                localStorage.clear();
+                // localStorage.clear();
                 navigate("/login");
               }}
             >

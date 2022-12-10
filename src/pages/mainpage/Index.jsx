@@ -79,7 +79,7 @@ const MainMaps = () => {
 
         let expires = new Date();
         expires = expires.setMonth(expires.getMonth() + 12);
-        // localStorage.setItem("hasVisitedBefore", expires);
+        localStorage.setItem("hasVisitedBefore", expires);
       }
     };
     window.setTimeout(handleShowTutorial);
