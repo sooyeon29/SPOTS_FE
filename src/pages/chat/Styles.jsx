@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const StContainer = styled.div`
   display: flex;
@@ -76,14 +76,14 @@ export const StHeader = styled.div`
   align-items: center;
   margin: 20px 0 0 23px;
   img {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 55px;
     border-radius: 45px;
   }
   div {
     font-size: 24px;
-    margin: 7px 0 0 9px;
-    font-weight: 500;
+    margin: 7px 0 0 20px;
+    font-weight: 700;
   }
   button {
     @media screen and (min-width: 600px) {

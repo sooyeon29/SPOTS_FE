@@ -14,6 +14,7 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const Wrap = styled.div`
+  position: relative;
   -webkit-box-align: center;
   box-sizing: border-box;
   width: 100%;

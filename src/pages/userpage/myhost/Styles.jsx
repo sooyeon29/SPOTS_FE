@@ -81,6 +81,7 @@ export const SpotsBtns = styled.div`
     margin-bottom: 70px;
     font-size: 16px;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 
@@ -491,6 +492,7 @@ export const StWrapHostList = styled.div`
   justify-content: center;
   margin-top: 80px;
   margin-bottom: 100px;
+  cursor: pointer;
 `;
 
 export const SpotImage = styled.div`

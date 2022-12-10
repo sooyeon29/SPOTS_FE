@@ -17,7 +17,7 @@ const ChatRoom = ({ chatOpen }) => {
       <RoomStContainer isOpen={chatOpen}>
         <StBox>
           <StHeader>
-            <img alt="spots logo" src="/public.png" />
+            <img alt="spots logo" src="/chat/s_logo.png" />
             <div>SPOTS</div>
             <button>
               <BsXLg size="20" color="#FF00B3" />
@@ -29,7 +29,7 @@ const ChatRoom = ({ chatOpen }) => {
           </StContent>
           <StChat>
             <StChatContent>
-              <img alt="인프런 로고 화이트" src="/public.png" />
+              <img alt="인프런 로고 화이트" src="/myprofile_logo.png" />
               <div>
                 SPOTS
                 <p>
