@@ -6,16 +6,20 @@ export const MainSearch = styled.img`
   width: 100%;
   margin-top: 40px;
 `;
-export const MainBanner = styled.div`
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 390px;
+export const MainBanner = styled(Slider)`
+  .slick-slide div {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 390px;
+  }
+
   img {
     width: 98%;
   }
 `;
+
 export const SpotContainer = styled.div`
   overflow: hidden;
   margin-top: 10px;
