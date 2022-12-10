@@ -15,7 +15,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
   const token = localStorage.getItem("token");
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     Swal.fire({
       text: "로그아웃되었습니다",
       width: "300px",

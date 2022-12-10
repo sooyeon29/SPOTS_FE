@@ -18,7 +18,7 @@ const FindId = () => {
   const sendPhoneForCode = () => {
     if (phoneNum.phone.length < 10) {
       Swal.fire({
-        text: "10~11자리의 번호를 입력해주세요",
+        text: "10-11자리의 번호를 입력해주세요",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",

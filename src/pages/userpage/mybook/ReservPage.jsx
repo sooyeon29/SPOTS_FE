@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { __exitMyMatch, __getMyMatch } from "../../../redux/modules/matchSlice";
-import Layout from "../../../components/Layout";
-import TapBar from "../../../components/TapBar";
-import FlexibleHeader from "../../../components/FlexibleHeader";
-import Swal from "sweetalert2";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { __exitMyMatch, __getMyMatch } from '../../../redux/modules/matchSlice';
+import Layout from '../../../components/Layout';
+import TapBar from '../../../components/TapBar';
+import FlexibleHeader from '../../../components/FlexibleHeader';
+import Swal from 'sweetalert2';
 import {
   WaitedMatch,
   CompletedMath,
@@ -24,13 +24,13 @@ import {
   TeamInfoDetail,
   WaitTeam,
   NoBookNow,
-} from "./Styles";
+} from './Styles';
 
 const ReservPage = () => {
-  const title = "나의 예약";
+  const title = '나의 예약';
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const myNoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.noneMatchTotal
@@ -45,31 +45,47 @@ const ReservPage = () => {
   }, [dispatch]);
 
   const cancleMatchHandler = (id, place, team) => {
-    dispatch(
-      __exitMyMatch({
-        matchId: id,
-        place: place,
-        teamName: team,
-      })
-    );
+    Swal.fire({
+      title: '예약을 취소하시겠습니까?',
+      text: '취소수수료 10%가 차감됩니다',
+      width: '380px',
+      showCancelButton: true,
+      confirmButtonColor: '#40d295',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '예약취소',
+      cancelButtonText: '돌아가기',
+      showClass: { popup: 'animated fadeInDown faster' },
+      hideClass: { popup: 'animated fadeOutUp faster' },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(result);
+        dispatch(
+          __exitMyMatch({
+            matchId: id,
+            place: place,
+            teamName: team,
+          })
+        );
+      }
+    });
   };
 
   const spotReserve = myNoneMatches?.filter(
-    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "nomatch"
+    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === 'nomatch'
   );
 
   const matchWaiting = myNoneMatches?.filter(
-    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
+    (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === 'ismatch'
   );
 
   if (!token) {
     Swal.fire({
-      text: "나의 예약 리스트는 로그인 후 확인 가능합니다.",
-      width: "300px",
-      confirmButtonText: "로그인하러 가기",
-      confirmButtonColor: "#40d295",
-      showClass: { popup: "animated fadeInDown faster" },
-      hideClass: { popup: "animated fadeOutUp faster" },
+      text: '나의 예약 리스트는 로그인 후 확인 가능합니다.',
+      width: '300px',
+      confirmButtonText: '로그인하러 가기',
+      confirmButtonColor: '#40d295',
+      showClass: { popup: 'animated fadeInDown faster' },
+      hideClass: { popup: 'animated fadeOutUp faster' },
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.replace(`/login`);
@@ -82,7 +98,7 @@ const ReservPage = () => {
       <FlexibleHeader title={title} />
       <MyReserve>
         <ReservedSpot>
-          <AboutMatch>구장예약</AboutMatch>
+          <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.length === 0 && (
             <div>
               <NoBookNow alt="" src="/nobooknow.png" />
@@ -94,8 +110,8 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchCom.matchData?.date.substring(0, 4)}년{" "}
-                      {matchCom.matchData?.date.substring(6, 8)}월{" "}
+                      {matchCom.matchData?.date.substring(0, 4)}년{' '}
+                      {matchCom.matchData?.date.substring(6, 8)}월{' '}
                       {matchCom.matchData?.date.substring(10, 12)}일
                     </div>
                     <div>{matchCom.matchData?.matchId.substring(0, 13)}</div>
@@ -107,15 +123,14 @@ const ReservPage = () => {
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${matchCom.placeData?.placesId}`)
-                      }
-                    >
+                      }>
                       {matchCom.matchData?.place}
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
                     <span>
                       {Number(matchCom.placeData?.price).toLocaleString(
-                        "ko-KR"
+                        'ko-KR'
                       )}
                     </span>
                     <span>P</span>
@@ -139,8 +154,7 @@ const ReservPage = () => {
                       matchCom.matchData?.place,
                       matchCom.matchData?.teamName
                     )
-                  }
-                >
+                  }>
                   예약 취소
                 </CancleBtn>
               </MyMatch2>
@@ -148,7 +162,7 @@ const ReservPage = () => {
           })}
         </ReservedSpot>
         <WaitedMatch>
-          <AboutMatch>구장예약 / 팀 매칭 대기</AboutMatch>
+          <AboutMatch>구장 예약 / 팀 매칭 대기</AboutMatch>
           {matchWaiting?.length === 0 && (
             <div>
               <NoBookNow alt="" src="/nobooknow.png" />
@@ -160,8 +174,8 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchWait.matchData?.date.substring(0, 4)}년{" "}
-                      {matchWait.matchData?.date.substring(6, 8)}월{" "}
+                      {matchWait.matchData?.date.substring(0, 4)}년{' '}
+                      {matchWait.matchData?.date.substring(6, 8)}월{' '}
                       {matchWait.matchData?.date.substring(10, 12)}일
                     </div>
                     <div>{matchWait.matchData?.matchId.substring(0, 13)}</div>
@@ -178,15 +192,14 @@ const ReservPage = () => {
                         navigate(
                           `/spotsdetail/${matchWait.placeData?.placesId}`
                         )
-                      }
-                    >
+                      }>
                       {matchWait.matchData?.place}
                     </button>
                     <br />
                     <p>{matchWait.placeData?.address}</p>
                     <span>
                       {Number(matchWait.placeData?.price).toLocaleString(
-                        "ko-KR"
+                        'ko-KR'
                       )}
                     </span>
                     <span>P</span>
@@ -194,11 +207,11 @@ const ReservPage = () => {
                 </SpotInfo>
                 <hr />
                 <MidTitle>
-                  매칭대기
+                  매칭 대기
                   <span>
-                    {matchWait.teamData?.sports !== "풋살장" && (
+                    {matchWait.teamData?.sports !== '풋살장' && (
                       <>
-                        {!matchWait.matchData?.isDouble ? "단식" : "복식"} 경기
+                        {!matchWait.matchData?.isDouble ? '단식' : '복식'} 경기
                       </>
                     )}
                   </span>
@@ -221,7 +234,7 @@ const ReservPage = () => {
                       <div>{matchWait.matchData?.teamName}</div>
                     </TeamInfoDetail>
                     <VS>
-                      {matchWait.matchData?.member} :{" "}
+                      {matchWait.matchData?.member} :{' '}
                       {matchWait.matchData?.member}
                     </VS>
 
@@ -237,8 +250,7 @@ const ReservPage = () => {
                       matchWait.matchData?.place,
                       matchWait.matchData?.teamName
                     )
-                  }
-                >
+                  }>
                   예약 취소
                 </CancleBtn>
               </MyMatch2>
@@ -246,7 +258,7 @@ const ReservPage = () => {
           })}
         </WaitedMatch>
         <CompletedMath>
-          <AboutMatch>구장예약 / 팀 매칭완료</AboutMatch>
+          <AboutMatch>구장 예약 / 팀 매칭 완료</AboutMatch>
           {myDoneMatches?.length === 0 && (
             <div>
               <NoBookNow alt="" src="/nobooknow.png" />
@@ -258,8 +270,8 @@ const ReservPage = () => {
                 <MoreInfo>
                   <DayTime>
                     <div>
-                      {matchCom.matchData?.date.substring(0, 4)}년{" "}
-                      {matchCom.matchData?.date.substring(6, 8)}월{" "}
+                      {matchCom.matchData?.date.substring(0, 4)}년{' '}
+                      {matchCom.matchData?.date.substring(6, 8)}월{' '}
                       {matchCom.matchData?.date.substring(10, 12)}일
                     </div>
                     <div>{matchCom.matchData?.matchId.substring(0, 13)}</div>
@@ -271,15 +283,14 @@ const ReservPage = () => {
                     <button
                       onClick={() =>
                         navigate(`/spotsdetail/${matchCom.placeData?.placesId}`)
-                      }
-                    >
+                      }>
                       {matchCom.matchData?.place}
                     </button>
                     <br />
                     <p>{matchCom.placeData?.address}</p>
                     <span>
                       {Number(matchCom.placeData?.price).toLocaleString(
-                        "ko-KR"
+                        'ko-KR'
                       )}
                     </span>
                     <span>P</span>
@@ -287,19 +298,19 @@ const ReservPage = () => {
                 </SpotInfo>
                 <hr />
                 <MidTitle>
-                  매칭대기
+                  매칭 대기
                   <span>
-                    {matchCom.teamData?.sports !== "풋살장" && (
-                      <>{matchCom.matchData?.isDouble ? "단식" : "복식"} 경기</>
+                    {matchCom.teamData?.sports !== '풋살장' && (
+                      <>{matchCom.matchData?.isDouble ? '단식' : '복식'} 경기</>
                     )}
                   </span>
                 </MidTitle>
 
                 <WaitedMatch>
                   <MatchVS>
-                    <div>나의팀</div>
+                    <div>나의 팀</div>
                     <div>vs</div>
-                    <div>상대팀</div>
+                    <div>상대 팀</div>
                   </MatchVS>
                   <MatchVS>
                     <TeamInfoDetail>
@@ -311,7 +322,7 @@ const ReservPage = () => {
                       <div>{matchCom.matchData?.teamName}</div>
                     </TeamInfoDetail>
                     <VS>
-                      {matchCom.matchData?.member} :{" "}
+                      {matchCom.matchData?.member} :{' '}
                       {matchCom.matchData?.member}
                     </VS>
 
@@ -333,8 +344,7 @@ const ReservPage = () => {
                       matchCom.matchData?.place,
                       matchCom.matchData?.teamName
                     )
-                  }
-                >
+                  }>
                   예약 취소
                 </CancleBtn>
               </MyMatch2>

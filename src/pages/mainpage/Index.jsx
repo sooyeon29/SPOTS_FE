@@ -76,6 +76,7 @@ const MainMaps = () => {
       }
       if (!HAS_VISITED_BEFORE) {
         setShowTutorial(true);
+
         let expires = new Date();
         expires = expires.setMonth(expires.getMonth() + 12);
         localStorage.setItem("hasVisitedBefore", expires);

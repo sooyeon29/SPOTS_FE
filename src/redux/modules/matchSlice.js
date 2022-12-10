@@ -24,7 +24,7 @@ export const __getAllMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getAllMatch(payload);
-      console.log("이제안줘???", data);
+      // console.log("이제안줘???", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -53,7 +53,7 @@ export const __getMyMatch = createAsyncThunk(
       const { data } = await SpotsMatchApi.getMyMatch();
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
-      console.log("내예약왜안떠", error);
+      // console.log("내예약왜안떠", error);
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -194,7 +194,7 @@ const matchSlice = createSlice({
         state.error.response.data.code === -1
       ) {
         Swal.fire({
-          text: "해당시간은 이미 마감되었습니다.",
+          text: "해당시간은 이미 마감되었습니다",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",
@@ -207,7 +207,7 @@ const matchSlice = createSlice({
         state.error.response.data.code === -2
       ) {
         Swal.fire({
-          text: "매칭 신청은 팀장만 가능합니다.",
+          text: "매칭 신청은 팀장만 가능합니다",
           width: "300px",
           confirmButtonText: "확인",
           confirmButtonColor: "#40d295",
@@ -265,25 +265,25 @@ const matchSlice = createSlice({
     [__exitMyMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.message = action.payload;
-      console.log(action);
-      Swal.fire({
-        text: "예약 취소 및 포인트 반환 완료(예약 다음 날부터 취소수수료 10%가 차감됩니다)",
-        width: "300px",
-        confirmButtonColor: "#40d295",
-        confirmButtonText: "확인",
-        showClass: { popup: "animated fadeInDown faster" },
-        hideClass: { popup: "animated fadeOutUp faster" },
-      }).then((result) => {
-        if (result.isConfirmed) {
+      // console.log(action);
+      // Swal.fire({
+      //   text: "예약 취소 및 포인트 반환 완료(예약 다음 날부터 취소수수료 10%가 차감됩니다)",
+      //   width: "300px",
+      //   confirmButtonColor: "#40d295",
+      //   confirmButtonText: "확인",
+      //   showClass: { popup: "animated fadeInDown faster" },
+      //   hideClass: { popup: "animated fadeOutUp faster" },
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
           window.location.reload();
-        }
-      });
+      //   }
+      // });
     },
     [__exitMyMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
       Swal.fire({
-        text: "경기 당일 취소는 불가능 합니다.",
+        text: "경기 당일 취소는 불가능합니다",
         width: "300px",
         confirmButtonColor: "#40d295",
         confirmButtonText: "확인",
