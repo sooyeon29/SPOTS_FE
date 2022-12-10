@@ -483,6 +483,8 @@ export const MyMatch = styled.div`
 `;
 
 export const StWrapHostList = styled.div`
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
