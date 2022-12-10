@@ -70,7 +70,7 @@ export const TeamContainer = styled.div`
 `;
 export const SixMatch = styled.div`
   background-color: #f4f4f4;
-  width: 95%;
+  width: 85%;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: flex;

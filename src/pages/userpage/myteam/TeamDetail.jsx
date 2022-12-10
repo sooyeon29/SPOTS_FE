@@ -47,7 +47,7 @@ const TeamDetail = () => {
         console.log(res);
         if (res.status === 201) {
           Swal.fire({
-            text: "팀 삭제가 완료되었습니다.",
+            text: "팀 삭제가 완료되었습니다",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -61,7 +61,7 @@ const TeamDetail = () => {
         console.log(error);
         if (error.response.status === 404) {
           Swal.fire({
-            text: "해당 팀이 존재하지 않습니다.",
+            text: "해당 팀이 존재하지 않습니다",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
@@ -70,7 +70,7 @@ const TeamDetail = () => {
           });
         } else if (error.response.status === 403) {
           Swal.fire({
-            text: "예약 내역이 있을경우, 팀 삭제를 할 수 없습니다.",
+            text: "예약 내역이 있을 경우 팀 삭제를 할 수 없습니다",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",
