@@ -19,21 +19,25 @@ import {
 } from "./Styles";
 import { io } from "socket.io-client";
 
-const socket = io.connect(process.env.REACT_APP_SOCKET, {
-  path: "/socket.io",
-  cors: {
-    origin: "http://localhost:3000",
-  },
-  transports: ["websocket", "polling"],
-});
+console.log("1");
+let socket;
 
 const Chatting = () => {
+  console.log("Chatting");
+  socket = io.connect(process.env.REACT_APP_SOCKET, {
+    path: "/socket.io",
+    cors: {
+      origin: "http://localhost:3000",
+    },
+    transports: ["websocket", "polling"],
+  });
+  console.log("2");
+
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
   const [roomName, setRoomName] = useState();
   const [chatting, setChatting] = useState([]);
   const nickname = localStorage.getItem("nickname");
-  const [roomList, setRoomList] = useState([]);
 
   const scrollRef = useRef();
   const boxRef = useRef(null);
@@ -74,20 +78,9 @@ const Chatting = () => {
         { nickname: data.nickname, message: data.message },
       ]);
     });
-    socket.on("start_chat", (data) => {
-      console.log("start_chat", data);
-      setChatting((chat) => [
-        ...chat,
-        { nickname: data.nickname, message: data.message },
-      ]);
-    });
     socket.on("left_notice", (message) => {
       console.log("left_notice", message);
       setChatting((chat) => [...chat, message]);
-    });
-    socket.on("admin_roomlist", (roomList) => {
-      console.log("admin_roomlist", roomList);
-      setRoomList(roomList);
     });
   }, []);
 
@@ -104,14 +97,9 @@ const Chatting = () => {
   };
   console.log(chatting);
 
-  const onChat = () => {
-    // console.log("버튼딸깍");
-    const obj = {
-      roomName: roomName,
-      nickname: nickname,
-    };
-    socket.emit("on_chat", JSON.stringify(obj));
-    console.log(obj);
+  const exitChat = () => {
+    console.log("exit");
+    socket.disconnect();
   };
 
   return (
@@ -119,7 +107,12 @@ const Chatting = () => {
       <ChattingStWrap>
         <ChattingStHeader>
           <div>SPOTS</div>
-          <button onClick={() => navigate("/")}>
+          <button
+            onClick={() => {
+              exitChat();
+              navigate("/");
+            }}
+          >
             <BsXLg size="18" color="#FF00B3" />
           </button>
         </ChattingStHeader>
@@ -133,7 +126,7 @@ const Chatting = () => {
             <div>구장 예약, 경기 매칭 No.1 플랫폼 </div>
             <div>상담시간 10:00-11:00</div>
           </ChatDesc>
-          <button onClick={onChat}>1:1문의하기</button>
+          {/* <button onClick={onChat}>1:1문의하기</button> */}
           {chatting?.map((chat, index) => (
             <div key={index}>
               {chat.nickname === "admin" ? (
