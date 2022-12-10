@@ -718,6 +718,16 @@ const MyPage = () => {
                         .then((res) => {
                           console.log(res);
                           if (res.status === 200) {
+                            Swal.fire({
+                              text: "계정이 휴면 처리되었습니다",
+                              width: "300px",
+                              confirmButtonText: "확인",
+                              confirmButtonColor: "#40d295",
+                              showClass: {
+                                popup: "animated fadeInDown faster",
+                              },
+                              hideClass: { popup: "animated fadeOutUp faster" },
+                            });
                             localStorage.clear();
                             navigate("/");
                           }
@@ -727,18 +737,6 @@ const MyPage = () => {
                           if (err.status === 400) {
                           }
                         });
-                      Swal.fire({
-                        text: "계정이 휴면 처리되었습니다",
-                        width: "300px",
-                        confirmButtonText: "확인",
-                        confirmButtonColor: "#40d295",
-                        showClass: { popup: "animated fadeInDown faster" },
-                        hideClass: { popup: "animated fadeOutUp faster" },
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          navigate("/login");
-                        }
-                      });
                     }
                   });
                 }}
