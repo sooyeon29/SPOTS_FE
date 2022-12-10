@@ -56,7 +56,7 @@ function Router() {
         <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/adminchat" element={<AdminChat />} />
         <Route path="/welcome" element={<Welcome />} />
-        {<Route path="/chatting" element={<Chatting />} />}
+        <Route path="/chatting" element={<Chatting />} />
         {/*<Route path="/chatting" element={<ChatStart />} />*/}
       </Routes>
     </BrowserRouter>

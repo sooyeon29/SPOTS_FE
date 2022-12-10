@@ -49,6 +49,7 @@ import {
   WaitingMatch2,
   WrapAll,
 } from "./Styles";
+import Swal from "sweetalert2";
 const SpotsDetail = () => {
   const title = "예약";
   const myTime = [
@@ -108,7 +109,7 @@ const SpotsDetail = () => {
   };
   // 팀이 없더라도 오류가 나지 않도록 옵셔널 체이닝을 사용한다.
   const myTeams = useSelector((state) => state?.user.team);
-  console.log("내팀들", myTeams);
+  // console.log("내팀들", myTeams);
 
   const [count, setCount] = useState(0); // 5. 경기에 참가할 인원수를 작성해준다.
 
@@ -118,7 +119,7 @@ const SpotsDetail = () => {
   let myPoint = user.point;
   // 선택한 날짜를 알맞은 모양으로 보내기 위해 가공한다
   const bookDate = startDate?.toLocaleDateString().substring(0, 12);
-  console.log(pickedTime);
+  // console.log(pickedTime);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
 
   // 매칭없이 예약하기(구장만예약)
@@ -153,6 +154,17 @@ const SpotsDetail = () => {
   };
 
   const pickDateHandler = (date, name) => {
+    const today = new Date();
+    if (date.toLocaleDateString() === today.toLocaleDateString()) {
+      Swal.fire({
+        text: "※주의※ 당일예약은 취소 불가합니다",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+    }
     setStartDate(date);
     const bookDate = date?.toLocaleDateString().substring(0, 12);
     dispatch(__getAllMatch({ place: name, date: bookDate }));
@@ -166,14 +178,14 @@ const SpotsDetail = () => {
 
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.allmatcher);
-  console.log("allMatch", allMatchToday);
+  // console.log("allMatch", allMatchToday);
   // 매칭이 완료되지 않은 리스트 (구장예약건들도 들어있음)
   const noneMatchToday = useSelector((state) => state?.matcher.newmatcher);
-  console.log("매칭전배열(구장&매칭전 모두들어있음)", noneMatchToday);
+  // console.log("매칭전배열(구장&매칭전 모두들어있음)", noneMatchToday);
   const waitMatchToday = noneMatchToday.filter(
     (match) => match.matchId?.substring(13, 20) === "ismatch"
   );
-  console.log("매칭대기팀들:", waitMatchToday);
+  // console.log("매칭대기팀들:", waitMatchToday);
 
   // 구장 예약이 된경우
   const reservedSpotTimeSlots = allMatchToday
@@ -201,7 +213,7 @@ const SpotsDetail = () => {
       }
     }, {});
 
-  console.log("------", allMatchingSlots);
+  // console.log("------", allMatchingSlots);
 
   for (let [key, value] of Object.entries(allMatchingSlots)) {
     if (value === 1) {
@@ -211,10 +223,10 @@ const SpotsDetail = () => {
     }
   }
 
-  console.log("done", completeTimeSlots);
-  console.log("not done", inCompleteTimeSlots);
-  console.log("all", reservedSpotTimeSlots);
-  console.log("로그인안했을때포인트", myPoint);
+  // console.log("done", completeTimeSlots);
+  // console.log("not done", inCompleteTimeSlots);
+  // console.log("all", reservedSpotTimeSlots);
+  // console.log("로그인안했을때포인트", myPoint);
 
   const scrollPoint = useRef();
   const scrollDate = useRef();
@@ -254,20 +266,24 @@ const SpotsDetail = () => {
                   <div>
                     <div>
                       {spot.spotKind === "실내" && (
-                        <img alt="" src="house.png" width="16px" />
+                        <img alt="" src="/spotsdetail/house.png" width="16px" />
                       )}
                       {spot.spotKind === "실외" && (
-                        <img alt="" src="/outside.png" width="16px" />
+                        <img
+                          alt=""
+                          src="/spotsdetail/outside.png"
+                          width="16px"
+                        />
                       )}
                       {spot.spotKind}
                     </div>
                     <div>
-                      <img alt="" src="/check.png" width="20px" />
+                      <img alt="" src="/spotsdetail/check.png" width="20px" />
                       {spot.comforts}
                     </div>
                   </div>
                   <div>
-                    <img alt="" src="/point.png" width="20px" />
+                    <img alt="" src="/spotsdetail/point.png" width="20px" />
                     {Number(spot.price).toLocaleString("ko-KR")} 포인트
                   </div>
                 </MoreInfo>
@@ -680,12 +696,12 @@ const SpotsDetail = () => {
                 )}
               </MatchOrNot>
               {pickedTime !== "" && bookDate !== undefined && (
-                <SelectDone ref={scrollTeam}>
+                <SelectDone>
                   <div>[ 선택 시간 {pickedTime} ]</div>
                 </SelectDone>
               )}
               {pickedTime2 !== "" && bookDate !== undefined && (
-                <SelectDone ref={scrollTeam}>
+                <SelectDone>
                   <div>[ 선택 시간 {pickedTime2} ]</div>
                 </SelectDone>
               )}
@@ -696,7 +712,7 @@ const SpotsDetail = () => {
                   {spot.sports === "테니스장" && <>테니스</>}
                   {spot.sports === "배드민턴장" && <>배드민턴</>}팀
                 </span>
-                이 없다면!
+                이 없다면?
                 <Link
                   to="/teamregister"
                   style={{
@@ -753,7 +769,7 @@ const SpotsDetail = () => {
                   * 상대팀과 경기 참가 인원 같아야 매칭 예약이 가능합니다.
                 </Email>
               )}
-              <Counter>
+              <Counter ref={scrollTeam}>
                 <div>경기 참가 인원</div>
                 <div>
                   {count === 0 ? (
@@ -779,7 +795,7 @@ const SpotsDetail = () => {
                   </button>
                 </div>
               </Counter>
-              {count >= 1 && (
+              {(pickedTime !== "" || pickedTime2 !== "") && (
                 <>
                   <Email>* 이메일을 남겨주시면 예약 내용을 보내드립니다.</Email>
                   <EmailInput
@@ -793,18 +809,18 @@ const SpotsDetail = () => {
                       {myPoint === undefined
                         ? "로그인 후 확인해주세요"
                         : Number(myPoint).toLocaleString("ko-KR")}
-                      <img alt="" src="/point.png" width="20px" />
+                      <img alt="" src="/spotsdetail/point.png" width="20px" />
                     </p>
                     <span>
                       예약 포인트: {Number(payAPrice).toLocaleString("ko-KR")}
-                      <img alt="" src="/point.png" width="20px" />
+                      <img alt="" src="/spotsdetail/point.png" width="20px" />
                     </span>
 
                     {myPoint > payAPrice ? (
                       <p>
                         결제 후 포인트:{" "}
                         {Number(myPoint - payAPrice).toLocaleString("ko-KR")}
-                        <img alt="" src="/point.png" width="20px" />
+                        <img alt="" src="/spotsdetail/point.png" width="20px" />
                       </p>
                     ) : (
                       <p>
@@ -818,12 +834,12 @@ const SpotsDetail = () => {
                   </CalTime>
                 </>
               )}
-              {pickedTime !== "" && count > 0 ? (
+              {myTeam !== undefined && pickedTime !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
                   구장 예약하기
                 </FinalBooking>
               ) : null}
-              {pickedTime2 !== "" && count > 0 ? (
+              {myTeam !== undefined && pickedTime2 !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
                   매칭 예약하기
                 </FinalBooking>

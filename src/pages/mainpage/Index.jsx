@@ -29,8 +29,11 @@ import {
   WaitingMatchMain,
   WaitingMatchMain2,
 } from "./Styles";
+import Tutorial from "../../components/Tutorial";
 
 const MainMaps = () => {
+  const [showTutorial, setShowTutorial] = useState(false);
+  const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
   const [newSpot, setNewSpot] = useState();
   const [newMatch, setNewMatch] = useState();
   const navigate = useNavigate();
@@ -66,9 +69,27 @@ const MainMaps = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    const handleShowTutorial = () => {
+      if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
+        return;
+      }
+      if (!HAS_VISITED_BEFORE) {
+        setShowTutorial(true);
+
+        let expires = new Date();
+        expires = expires.setMonth(expires.getMonth() + 12);
+        localStorage.setItem("hasVisitedBefore", expires);
+      }
+    };
+    window.setTimeout(handleShowTutorial);
+  }, [HAS_VISITED_BEFORE]);
+  const handleClose = () => setShowTutorial(false);
+
   return (
     <>
       <Layout>
+        {showTutorial && <Tutorial handleClose={handleClose} />}
         <Header />
         <MainSearch
           alt=""

@@ -74,10 +74,13 @@ const userSlice = createSlice({
       state.error = action.payload.response.data;
       if (action.payload.response.status === 401) {
         Swal.fire({
-          text: "예약은 로그인 후 이용이 가능합니다.",
+          text: "나의 예약 리스트는 로그인 후 확인 가능합니다.",
           width: "300px",
+          showCancelButton: true,
           confirmButtonText: "로그인하러 가기",
           confirmButtonColor: "#40d295",
+          cancelButtonColor: "#FF00B4",
+          cancelButtonText: "취소",
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
         }).then((result) => {

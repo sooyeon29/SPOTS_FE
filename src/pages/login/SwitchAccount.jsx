@@ -25,9 +25,8 @@ const SwitchAccount = () => {
             </h2>
           </First>
           <Second>
-            고객님은 1년 이상 로그인을 하지 않아,
-            <p>현재 휴면 상태입니다. 아래의 버튼을 선택하셔서</p>
-            휴면 상태를 해제해 주세요.
+            고객님의 아이디는 현재 휴면 상태입니다.
+            <p>아래의 버튼을 클릭하셔서 휴면을 해제해주세요.</p>
           </Second>
           <Btns>
             <button
@@ -37,14 +36,14 @@ const SwitchAccount = () => {
                     console.log(res);
                     if (res.status === 200) {
                       Swal.fire({
-                        text: "계정이 활성화되었습니다. 로그인 페이지로 이동합니다.",
+                        text: "계정이 활성화되었습니다.",
                         width: "300px",
                         confirmButtonText: "확인",
                         confirmButtonColor: "#40d295",
                         showClass: { popup: "animated fadeInDown faster" },
                         hideClass: { popup: "animated fadeOutUp faster" },
                       });
-                      localStorage.clear();
+                      // localStorage.clear();
                       navigate("/login");
                     }
                   })
@@ -57,7 +56,7 @@ const SwitchAccount = () => {
             </button>
             <button
               onClick={() => {
-                localStorage.clear();
+                // localStorage.clear();
                 navigate("/login");
               }}
             >

@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import useToggle from "../../../hooks/useToggle";
-import { useDispatch, useSelector } from "react-redux";
-import { __getMyInfo } from "../../../redux/modules/userSlice";
-import { LoginAPI, SignUpAPI, UserpageAPI } from "../../../tools/instance";
-import Layout from "../../../components/Layout";
-import { useNavigate } from "react-router-dom";
-import FlexibleHeader from "../../../components/FlexibleHeader";
-import TapBar from "../../../components/TapBar";
-import useInput from "../../../hooks/useInput";
-import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useRef, useState } from 'react';
+import useToggle from '../../../hooks/useToggle';
+import { useDispatch, useSelector } from 'react-redux';
+import { __getMyInfo } from '../../../redux/modules/userSlice';
+import { LoginAPI, SignUpAPI, UserpageAPI } from '../../../tools/instance';
+import Layout from '../../../components/Layout';
+import { useNavigate } from 'react-router-dom';
+import FlexibleHeader from '../../../components/FlexibleHeader';
+import TapBar from '../../../components/TapBar';
+import useInput from '../../../hooks/useInput';
+import Swal from 'sweetalert2';
+import { useForm } from 'react-hook-form';
 import {
   StWrap,
   Btn,
@@ -29,10 +29,10 @@ import {
   HostingPhotoUpload,
   Preview,
   HostPreview,
-} from "./Styles";
+} from './Styles';
 
 const MyPage = () => {
-  const title = "내 정보";
+  const title = '내 정보';
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [preview, setPreview] = useState([]);
@@ -52,15 +52,16 @@ const MyPage = () => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "all" });
+  } = useForm({ mode: 'all' });
   const password = useRef();
-  password.current = watch("password");
+  password.current = watch('password');
 
   useEffect(() => {
     dispatch(__getMyInfo());
   }, []);
 
   const { user } = useSelector((state) => state?.user);
+  console.log("================유저정보=============", user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const handleImagePreview = (file) => {
@@ -85,19 +86,19 @@ const MyPage = () => {
 
   const savePhoto = () => {
     const sendFD = new FormData();
-    sendFD.append("image", img);
+    sendFD.append('image', img);
 
     UserpageAPI.patchMyPhoto(sendFD)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
           Swal.fire({
-            text: "프로필 사진이 수정되었습니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
+            text: '프로필 사진이 수정되었습니다',
+            width: '300px',
+            confirmButtonText: '확인',
+            confirmButtonColor: '#40d295',
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' },
           });
         }
         dispatch(__getMyInfo());
@@ -111,20 +112,20 @@ const MyPage = () => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     Swal.fire({
-      text: "로그아웃되었습니다.",
-      width: "300px",
-      confirmButtonText: "확인",
-      confirmButtonColor: "#40d295",
-      showClass: { popup: "animated fadeInDown faster" },
-      hideClass: { popup: "animated fadeOutUp faster" },
+      text: '로그아웃되었습니다.',
+      width: '300px',
+      confirmButtonText: '확인',
+      confirmButtonColor: '#40d295',
+      showClass: { popup: 'animated fadeInDown faster' },
+      hideClass: { popup: 'animated fadeOutUp faster' },
     });
     navigate(`/`);
   };
 
-  const google = localStorage.getItem("GOOGLE_CODE");
-  const kakao = localStorage.getItem("KAKAO_CODE");
+  const google = localStorage.getItem('GOOGLE_CODE');
+  const kakao = localStorage.getItem('KAKAO_CODE');
 
   return (
     <Layout>
@@ -147,7 +148,7 @@ const MyPage = () => {
             <InfoLayout>
               <div>휴대폰 번호</div>
               <div>
-                {user?.phone?.substr(0, 3)} - {user?.phone?.substr(3, 4)} -{" "}
+                {user?.phone?.substr(0, 3)} - {user?.phone?.substr(3, 4)} -{' '}
                 {user?.phone?.substr(7)}
               </div>
             </InfoLayout>
@@ -155,7 +156,7 @@ const MyPage = () => {
               <SportTitle>나의 운동</SportTitle>
               <SportBlock>
                 <div>
-                  {user?.sports?.includes("football") ? (
+                  {user?.sports?.includes('football') ? (
                     <>
                       <img
                         alt="football_blue"
@@ -172,7 +173,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.sports?.includes("tennis") ? (
+                  {user?.sports?.includes('tennis') ? (
                     <>
                       <img alt="tennis_blue" src="/mypage/tennis_blue.png" />
                     </>
@@ -183,7 +184,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.sports?.includes("badminton") ? (
+                  {user?.sports?.includes('badminton') ? (
                     <>
                       <img
                         alt="badminton_blue"
@@ -205,7 +206,7 @@ const MyPage = () => {
               <SportTitle>관심 운동</SportTitle>
               <SportBlock>
                 <div>
-                  {user?.favSports?.includes("baseball") ? (
+                  {user?.favSports?.includes('baseball') ? (
                     <>
                       <img
                         alt="baseball_blue"
@@ -222,7 +223,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.favSports?.includes("basketball") ? (
+                  {user?.favSports?.includes('basketball') ? (
                     <>
                       <img
                         alt="basketball_blue"
@@ -239,7 +240,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.favSports?.includes("swim") ? (
+                  {user?.favSports?.includes('swim') ? (
                     <>
                       <img
                         alt="swimming_blue"
@@ -256,7 +257,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.favSports?.includes("running") ? (
+                  {user?.favSports?.includes('running') ? (
                     <>
                       <img alt="running_blue" src="/mypage/running_blue.png" />
                     </>
@@ -267,7 +268,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.favSports?.includes("golf") ? (
+                  {user?.favSports?.includes('golf') ? (
                     <>
                       <img alt="golf_blue" src="/mypage/golf_blue.png" />
                     </>
@@ -278,7 +279,7 @@ const MyPage = () => {
                   )}
                 </div>
                 <div>
-                  {user?.favSports?.includes("health") ? (
+                  {user?.favSports?.includes('health') ? (
                     <>
                       <img alt="health_blue" src="/mypage/health_blue.jpg" />
                     </>
@@ -297,11 +298,10 @@ const MyPage = () => {
         ) : (
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
             <ImageUpload>
               <HostingPhotoUpload>
                 <label htmlFor="upload-input">
@@ -354,17 +354,17 @@ const MyPage = () => {
                 <div>
                   <button
                     onClick={() => {
-                      if (nickName?.trim() === "") {
+                      if (nickName?.trim() === '') {
                         Swal.fire({
-                          text: "한 글자 이상 입력해주세요",
-                          width: "300px",
-                          confirmButtonText: "확인",
-                          confirmButtonColor: "#40d295",
+                          text: '한 글자 이상 입력해주세요',
+                          width: '300px',
+                          confirmButtonText: '확인',
+                          confirmButtonColor: '#40d295',
                           showClass: {
-                            popup: "animated fadeInDown faster",
+                            popup: 'animated fadeInDown faster',
                           },
                           hideClass: {
-                            popup: "animated fadeOutUp faster",
+                            popup: 'animated fadeOutUp faster',
                           },
                         });
                         return;
@@ -374,15 +374,15 @@ const MyPage = () => {
                             console.log(res);
                             if (res.status === 200) {
                               Swal.fire({
-                                text: "사용 가능한 닉네임입니다",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '사용 가능한 닉네임입니다',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                               setNicknameConfirm(true);
@@ -391,19 +391,18 @@ const MyPage = () => {
                           .catch((err) => {
                             console.log(err);
                             Swal.fire({
-                              text: "중복된 닉네임입니다",
-                              width: "300px",
-                              confirmButtonText: "확인",
-                              confirmButtonColor: "#40d295",
+                              text: '중복된 닉네임입니다',
+                              width: '300px',
+                              confirmButtonText: '확인',
+                              confirmButtonColor: '#40d295',
                               showClass: {
-                                popup: "animated fadeInDown faster",
+                                popup: 'animated fadeInDown faster',
                               },
-                              hideClass: { popup: "animated fadeOutUp faster" },
+                              hideClass: { popup: 'animated fadeOutUp faster' },
                             });
                           });
                       }
-                    }}
-                  >
+                    }}>
                     중복확인
                   </button>
                 </div>
@@ -427,14 +426,14 @@ const MyPage = () => {
                       onClick={() => {
                         if (phone?.length < 11) {
                           Swal.fire({
-                            text: "10자리 이상의 번호를 입력해주세요",
-                            width: "300px",
-                            confirmButtonText: "확인",
-                            confirmButtonColor: "#40d295",
+                            text: '10자리 이상의 번호를 입력해주세요',
+                            width: '300px',
+                            confirmButtonText: '확인',
+                            confirmButtonColor: '#40d295',
                             showClass: {
-                              popup: "animated fadeInDown faster",
+                              popup: 'animated fadeInDown faster',
                             },
-                            hideClass: { popup: "animated fadeOutUp faster" },
+                            hideClass: { popup: 'animated fadeOutUp faster' },
                           });
                           return;
                         }
@@ -442,14 +441,14 @@ const MyPage = () => {
                           .then((res) => {
                             console.log(res);
                             Swal.fire({
-                              text: "인증번호가 전송되었습니다",
-                              width: "300px",
-                              confirmButtonText: "확인",
-                              confirmButtonColor: "#40d295",
+                              text: '인증번호가 전송되었습니다',
+                              width: '300px',
+                              confirmButtonText: '확인',
+                              confirmButtonColor: '#40d295',
                               showClass: {
-                                popup: "animated fadeInDown faster",
+                                popup: 'animated fadeInDown faster',
                               },
-                              hideClass: { popup: "animated fadeOutUp faster" },
+                              hideClass: { popup: 'animated fadeOutUp faster' },
                             });
                             codeSentHandler();
                           })
@@ -457,36 +456,35 @@ const MyPage = () => {
                             console.log(err);
                             if (err.response.status === 412) {
                               Swal.fire({
-                                text: "이미 가입된 휴대폰 번호입니다",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '이미 가입된 휴대폰 번호입니다',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                               return;
                             } else {
                               Swal.fire({
-                                text: "유효하지 않은 휴대폰 번호입니다",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '유효하지 않은 휴대폰 번호입니다',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                               return;
                             }
                           });
-                      }}
-                    >
+                      }}>
                       인증하기
                     </button>
                   ) : (
@@ -497,65 +495,64 @@ const MyPage = () => {
                           .then((res) => {
                             if (phone?.length < 10) {
                               Swal.fire({
-                                text: "10자리 이상의 번호를 입력해주세요",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '10자리 이상의 번호를 입력해주세요',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                               return;
                             }
                             console.log(res);
                             Swal.fire({
-                              text: "인증번호가 전송되었습니다",
-                              width: "300px",
-                              confirmButtonText: "확인",
-                              confirmButtonColor: "#40d295",
+                              text: '인증번호가 전송되었습니다',
+                              width: '300px',
+                              confirmButtonText: '확인',
+                              confirmButtonColor: '#40d295',
                               showClass: {
-                                popup: "animated fadeInDown faster",
+                                popup: 'animated fadeInDown faster',
                               },
-                              hideClass: { popup: "animated fadeOutUp faster" },
+                              hideClass: { popup: 'animated fadeOutUp faster' },
                             });
                           })
                           .catch((err) => {
                             console.log(err);
                             if (err.response.status === 412) {
                               Swal.fire({
-                                text: "이미 가입된 휴대폰 번호입니다",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '이미 가입된 휴대폰 번호입니다',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                               return;
                             } else {
                               Swal.fire({
-                                text: "유효하지 않은 휴대폰 번호입니다",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '유효하지 않은 휴대폰 번호입니다',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                               return;
                             }
                           })
-                      }
-                    >
+                      }>
                       다시받기
                     </button>
                   )}
@@ -577,15 +574,15 @@ const MyPage = () => {
                               console.log(res);
                               if (res.status === 200) {
                                 Swal.fire({
-                                  text: "인증이 완료되었습니다",
-                                  width: "300px",
-                                  confirmButtonText: "확인",
-                                  confirmButtonColor: "#40d295",
+                                  text: '인증이 완료되었습니다',
+                                  width: '300px',
+                                  confirmButtonText: '확인',
+                                  confirmButtonColor: '#40d295',
                                   showClass: {
-                                    popup: "animated fadeInDown faster",
+                                    popup: 'animated fadeInDown faster',
                                   },
                                   hideClass: {
-                                    popup: "animated fadeOutUp faster",
+                                    popup: 'animated fadeOutUp faster',
                                   },
                                 });
                                 setCodeConfirm(true);
@@ -594,20 +591,19 @@ const MyPage = () => {
                             .catch((err) => {
                               console.log(err);
                               Swal.fire({
-                                text: "인증 번호를 다시 확인해주세요",
-                                width: "300px",
-                                confirmButtonText: "확인",
-                                confirmButtonColor: "#40d295",
+                                text: '인증 번호를 다시 확인해주세요',
+                                width: '300px',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#40d295',
                                 showClass: {
-                                  popup: "animated fadeInDown faster",
+                                  popup: 'animated fadeInDown faster',
                                 },
                                 hideClass: {
-                                  popup: "animated fadeOutUp faster",
+                                  popup: 'animated fadeOutUp faster',
                                 },
                               });
                             });
-                        }}
-                      >
+                        }}>
                         인증확인
                       </button>
                     </div>
@@ -642,31 +638,31 @@ const MyPage = () => {
                 onClick={() => {
                   if (phone?.length < 10 || phone?.length > 11) {
                     if (!codeConfirm) {
-                      return alert("10-11자리의 번호를 입력해주세요");
+                      return alert('10-11자리의 번호를 입력해주세요');
                     }
                   }
                   if (phone?.length >= 10) {
                     if (!codeConfirm) {
-                      return alert("휴대번호 인증을 해주세요");
+                      return alert('휴대번호 인증을 해주세요');
                     }
                   }
                   if (nickName?.length <= 1) {
-                    return alert("한 글자 이상의 닉네임을 입력해주세요");
+                    return alert('한 글자 이상의 닉네임을 입력해주세요');
                   }
                   if (nickName?.length >= 2) {
                     if (!nicknameConfirm) {
-                      return alert("닉네임 중복확인을 해주세요");
+                      return alert('닉네임 중복확인을 해주세요');
                     }
                   }
                   if (pw === undefined) {
                     // return alert("언디파인")
                   } else {
                     if (pw !== checkPw) {
-                      return alert("비밀번호가 일치하지 않습니다");
+                      return alert('비밀번호가 일치하지 않습니다');
                     }
                     if (!pwRex.test(pw)) {
                       return alert(
-                        "비밀번호는 숫자와 영문, 특수문자를 혼합하여 6자리 이상 입력해주세요"
+                        '비밀번호는 숫자와 영문, 특수문자를 혼합하여 6자리 이상 입력해주세요'
                       );
                     }
                   }
@@ -678,35 +674,34 @@ const MyPage = () => {
                     phone: phone,
                   })
                     .then((res) => {
-                      console.log("응답", res);
+                      console.log('응답', res);
                       Swal.fire({
-                        text: "수정이 완료되었습니다",
-                        width: "300px",
-                        confirmButtonText: "확인",
-                        confirmButtonColor: "#40d295",
+                        text: '수정이 완료되었습니다',
+                        width: '300px',
+                        confirmButtonText: '확인',
+                        confirmButtonColor: '#40d295',
                         showClass: {
-                          popup: "animated fadeInDown faster",
+                          popup: 'animated fadeInDown faster',
                         },
                         hideClass: {
-                          popup: "animated fadeOutUp faster",
+                          popup: 'animated fadeOutUp faster',
                         },
                       });
                     })
                     .then(() => dispatch(__getMyInfo()))
-                    .catch((err) => console.log("err", err));
-                }}
-              >
+                    .catch((err) => console.log('err', err));
+                }}>
                 수정완료
               </button>
               <button
                 onClick={() => {
                   Swal.fire({
-                    title: "탈퇴하시겠습니까?",
-                    text: "30일간 휴면 후 개인정보가 삭제됩니다",
-                    width: "350px",
+                    title: '탈퇴하시겠습니까?',
+                    text: '30일간 휴면 후 개인정보가 삭제됩니다',
+                    width: '350px',
                     showCancelButton: true,
                     confirmButtonColor: "#40d295",
-                    cancelButtonColor: "#d33",
+                    cancelButtonColor: "#FF00B4",
                     confirmButtonText: "회원탈퇴",
                     cancelButtonText: "취소",
                     showClass: { popup: "animated fadeInDown faster" },
@@ -717,27 +712,38 @@ const MyPage = () => {
                         .then((res) => {
                           console.log(res);
                           if (res.status === 200) {
-                            localStorage.clear();
-                            navigate("/");
+                            Swal.fire({
+                              text: '계정이 휴면 처리되었습니다',
+                              width: '300px',
+                              confirmButtonText: '확인',
+                              confirmButtonColor: '#40d295',
+                              showClass: {
+                                popup: 'animated fadeInDown faster',
+                              },
+                              hideClass: { popup: 'animated fadeOutUp faster' },
+                            });
+                            localStorage.removeItem("token");
+                            navigate('/');
                           }
                         })
                         .catch((err) => {
-                          console.log(err);
-                          if (err.status === 400) {
+                          console.log(err.response.status);
+                          if (err.response.status === 406) {
+                            Swal.fire({
+                              text: '탈퇴를 위해 예약을 취소해주세요',
+                              width: '300px',
+                              confirmButtonText: '확인',
+                              confirmButtonColor: '#40d295',
+                              showClass: {
+                                popup: 'animated fadeInDown faster',
+                              },
+                              hideClass: { popup: 'animated fadeOutUp faster' },
+                            });
                           }
                         });
-                      Swal.fire({
-                        text: "계정이 휴면 처리되었습니다",
-                        width: "300px",
-                        confirmButtonText: "확인",
-                        confirmButtonColor: "#40d295",
-                        showClass: { popup: "animated fadeInDown faster" },
-                        hideClass: { popup: "animated fadeOutUp faster" },
-                      });
                     }
                   });
-                }}
-              >
+                }}>
                 회원탈퇴
               </button>
             </ModifyBtns>

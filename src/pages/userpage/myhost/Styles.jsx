@@ -81,6 +81,7 @@ export const SpotsBtns = styled.div`
     margin-bottom: 70px;
     font-size: 16px;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 
@@ -483,12 +484,15 @@ export const MyMatch = styled.div`
 `;
 
 export const StWrapHostList = styled.div`
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 80px;
   margin-bottom: 100px;
+  cursor: pointer;
 `;
 
 export const SpotImage = styled.div`

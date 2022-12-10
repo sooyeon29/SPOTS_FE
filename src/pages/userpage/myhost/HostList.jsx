@@ -12,6 +12,7 @@ import {
   SpotInfos,
   SpotIcons,
   ResisterBtn,
+  StWrap,
 } from "./Styles";
 
 const HostList = () => {
@@ -52,17 +53,20 @@ const HostList = () => {
                 <div>
                   {place?.sports === "배드민턴장" ? (
                     <>
-                      <img alt="badminton_img" src="/host_badminton.png" />
+                      <img
+                        alt="badminton_img"
+                        src="/myspots/host_badminton.png"
+                      />
                     </>
                   ) : null}
                   {place?.sports === "풋살장" ? (
                     <>
-                      <img alt="soccer_img" src="/host_football.png" />
+                      <img alt="soccer_img" src="/myspots/host_football.png" />
                     </>
                   ) : null}
                   {place?.sports === "테니스장" ? (
                     <>
-                      <img alt="tennis_img" src="/host_tennis.png" />
+                      <img alt="tennis_img" src="/myspots/host_tennis.png" />
                     </>
                   ) : null}
                 </div>
@@ -71,7 +75,7 @@ const HostList = () => {
                     navigate(`/hostdetail/${place.placesId}`);
                   }}
                 >
-                  <img alt="상세보기" src="/more.png" />
+                  <img alt="상세보기" src="/myspots/more.png" />
                 </div>
               </SpotIcons>
             </MyMatch>

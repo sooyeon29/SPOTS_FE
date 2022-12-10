@@ -67,7 +67,7 @@ export const ForMatch = styled.div`
   align-items: center;
   font-weight: bold;
   font-size: 15px;
-  margin: 20px 15px;
+  margin: 10px 15px;
   img {
     width: 50px;
     height: 50px;
