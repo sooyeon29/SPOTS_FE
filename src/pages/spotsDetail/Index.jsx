@@ -143,7 +143,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime2 + "ismatch" + bookDate + name,
+        matchId: pickedTime2 + "ismatch" + startDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
