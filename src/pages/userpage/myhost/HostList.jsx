@@ -12,6 +12,7 @@ import {
   SpotInfos,
   SpotIcons,
   ResisterBtn,
+  StWrap,
 } from "./Styles";
 
 const HostList = () => {
