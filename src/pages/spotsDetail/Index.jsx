@@ -143,7 +143,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime2 + "ismatch" + startDate + name,
+        matchId: pickedTime2 + "ismatch" + bookDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
@@ -212,9 +212,7 @@ const SpotsDetail = () => {
         return newObj;
       }
     }, {});
-
   // console.log("------", allMatchingSlots);
-
   for (let [key, value] of Object.entries(allMatchingSlots)) {
     if (value === 1) {
       inCompleteTimeSlots.push(key);
@@ -222,11 +220,10 @@ const SpotsDetail = () => {
       completeTimeSlots.push(key);
     }
   }
-
-  // console.log("done", completeTimeSlots);
-  // console.log("not done", inCompleteTimeSlots);
-  // console.log("all", reservedSpotTimeSlots);
-  // console.log("로그인안했을때포인트", myPoint);
+  console.log("done", completeTimeSlots);
+  console.log("not done", inCompleteTimeSlots);
+  console.log("all", reservedSpotTimeSlots);
+  console.log("로그인안했을때포인트", myPoint);
 
   const scrollPoint = useRef();
   const scrollDate = useRef();
@@ -240,6 +237,8 @@ const SpotsDetail = () => {
   const goTeam = () => {
     scrollTeam.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -298,7 +297,7 @@ const SpotsDetail = () => {
                       excludeDateIntervals={[
                         {
                           start: subDays(new Date(), 100),
-                          end: subDays(new Date(), 1),
+                          end: subDays(new Date(), 0),
                         },
                       ]}
                       inline

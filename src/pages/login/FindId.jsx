@@ -30,6 +30,7 @@ const FindId = () => {
       setCodeSent(true);
       LoginAPI.postforFindIdPw(phoneNum)
         .then((res) => {
+          console.log(res);
           Swal.fire({
             text: "인증번호가 전송되었습니다",
             width: "300px",
@@ -40,14 +41,25 @@ const FindId = () => {
           });
         })
         .catch((err) => {
-          Swal.fire({
-            text: "예상하지 못한 오류가 발생하였습니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
+          if (err.response.status === 406) {
+            Swal.fire({
+              text: "해당 번호로 가입된 아이디가 없습니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+          } else {
+            Swal.fire({
+              text: "예상하지 못한 오류가 발생하였습니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+          }
         });
     }
   };
