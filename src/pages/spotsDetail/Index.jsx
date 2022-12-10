@@ -795,7 +795,7 @@ const SpotsDetail = () => {
                   </button>
                 </div>
               </Counter>
-              {count >= 1 && (
+              {(pickedTime !== "" || pickedTime2 !== "") && (
                 <>
                   <Email>* 이메일을 남겨주시면 예약 내용을 보내드립니다.</Email>
                   <EmailInput
@@ -809,18 +809,18 @@ const SpotsDetail = () => {
                       {myPoint === undefined
                         ? "로그인 후 확인해주세요"
                         : Number(myPoint).toLocaleString("ko-KR")}
-                      <img alt="" src="/point.png" width="20px" />
+                      <img alt="" src="/spotsdetail/point.png" width="20px" />
                     </p>
                     <span>
                       예약 포인트: {Number(payAPrice).toLocaleString("ko-KR")}
-                      <img alt="" src="/point.png" width="20px" />
+                      <img alt="" src="/spotsdetail/point.png" width="20px" />
                     </span>
 
                     {myPoint > payAPrice ? (
                       <p>
                         결제 후 포인트:{" "}
                         {Number(myPoint - payAPrice).toLocaleString("ko-KR")}
-                        <img alt="" src="/point.png" width="20px" />
+                        <img alt="" src="/spotsdetail/point.png" width="20px" />
                       </p>
                     ) : (
                       <p>
@@ -834,12 +834,12 @@ const SpotsDetail = () => {
                   </CalTime>
                 </>
               )}
-              {pickedTime !== "" && count > 0 ? (
+              {myTeam !== undefined && pickedTime !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookWithNoMatch(spot.spotName)}>
                   구장 예약하기
                 </FinalBooking>
               ) : null}
-              {pickedTime2 !== "" && count > 0 ? (
+              {myTeam !== undefined && pickedTime2 !== "" && count > 0 ? (
                 <FinalBooking onClick={() => bookMyMatch(spot.spotName)}>
                   매칭 예약하기
                 </FinalBooking>
