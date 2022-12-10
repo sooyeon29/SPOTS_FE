@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const WrapAll = styled.div`
   margin: 71px auto;
@@ -310,7 +310,7 @@ export const SelectDone2 = styled.button`
   justify-content: space-between;
   align-items: center;
   margin: 10px 5px 0px 5px;
-  background-image: url('/matching/blue_myteam.png');
+  background-image: url("/matching/blue_myteam.png");
   background-color: #3747bf;
   background-size: contain;
   background-position: center;
@@ -318,20 +318,20 @@ export const SelectDone2 = styled.button`
   cursor: pointer;
   &:disabled {
     background-color: #f7f8f8;
-    background-image: url('/matching/white_myteam.png');
+    background-image: url("/matching/white_myteam.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
   }
 `;
 export const SelectDone3 = styled(SelectDone2)`
-  background-image: url('/matching/blue_withteam.png');
+  background-image: url("/matching/blue_withteam.png");
   background-color: #3747bf;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   &:disabled {
-    background-image: url('/matching/white_withteam.png');
+    background-image: url("/matching/white_withteam.png");
   }
 `;
 export const Email = styled.div`
@@ -354,12 +354,13 @@ export const MakeTeam = styled.div`
 `;
 export const TeamSelect = styled.select`
   border: 1px solid #d9d9d9;
+  background-color: #d8dff7;
   border-radius: 10px;
   width: 95%;
   height: 50px;
   max-width: 800px;
   padding: 10px 10px;
-  font-size: 15px;
+  font-size: 17px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -439,7 +440,8 @@ export const FinalBooking = styled.button`
   align-items: center;
   border: none;
   width: 95%;
-  background-color: #cecece;
+  background-color: #3747bf;
+  color: white;
   border-radius: 10px;
   margin: 10px auto 20px auto;
   cursor: pointer;

@@ -65,15 +65,16 @@ const TeamRegister = () => {
     Swal.fire({
       text: "팀 등록은 로그인 후에 가능합니다",
       width: "300px",
+      allowOutsideClick: false,
       confirmButtonText: "확인",
       confirmButtonColor: "#40d295",
       showClass: { popup: "animated fadeInDown faster" },
       hideClass: { popup: "animated fadeOutUp faster" },
-    }).then((result) =>{
+    }).then((result) => {
       if (result.isConfirmed) {
-        navigate('/login');
+        navigate("/login");
       }
-    })
+    });
   }
 
   const registerHandler = async (e) => {

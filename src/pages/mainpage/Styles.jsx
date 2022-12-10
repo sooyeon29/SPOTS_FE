@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import styled from "styled-components";
 
 export const MainSearch = styled.img`
+  max-width: 600px;
   width: 100%;
   margin-top: 60px;
 `;
@@ -10,6 +11,7 @@ export const MainBanner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 600px;
   img {
     width: 98%;
   }
