@@ -280,11 +280,11 @@ const MyPage = () => {
                 <div>
                   {user?.favSports?.includes("health") ? (
                     <>
-                      <img alt="health_blue" src="/mypage/health_blue.jpg" />
+                      <img alt="health_blue" src="/mypage/health_blue.png" />
                     </>
                   ) : (
                     <>
-                      <img alt="health_gray" src="/mypage/health_gray.jpg" />
+                      <img alt="health_gray" src="/mypage/health_gray.png" />
                     </>
                   )}
                 </div>
