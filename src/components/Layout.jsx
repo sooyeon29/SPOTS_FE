@@ -17,7 +17,7 @@ const Wrap = styled.div`
   -webkit-box-align: center;
   box-sizing: border-box;
   width: 100%;
-  max-width: 600px;
+  max-width: 390px;
   margin: auto;
   overflow-x: hidden;
 `;

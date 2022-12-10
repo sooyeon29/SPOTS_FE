@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import styled from "styled-components";
 
 export const MainSearch = styled.img`
-  max-width: 600px;
+  max-width: 390px;
   width: 100%;
   margin-top: 60px;
 `;
@@ -11,14 +11,14 @@ export const MainBanner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 600px;
+  max-width: 390px;
   img {
     width: 98%;
   }
 `;
 export const SpotContainer = styled.div`
   overflow: hidden;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 export const Section = styled.div`
   margin: 15px 0px 8px 15px;
