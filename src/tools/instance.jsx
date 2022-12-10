@@ -57,7 +57,7 @@ instance.interceptors.response.use(
         hideClass: { popup: "animated fadeOutUp faster" },
       }).then((result) => {
         if (result.isConfirmed) {
-          window.localStorage.clear();
+          window.localStorage.removeItem("token");
           window.location.replace("/login");
         }
       });

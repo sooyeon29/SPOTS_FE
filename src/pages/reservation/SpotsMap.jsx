@@ -72,7 +72,7 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src: "/private.png", // 마커이미지의 주소입니다
+                    src: "/reservation/private.png", // 마커이미지의 주소입니다
                     size:
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
@@ -111,7 +111,7 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src: "/private.png", // 마커이미지의 주소입니다
+                    src: "/reservation/private.png", // 마커이미지의 주소입니다
                     size:
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
@@ -149,7 +149,7 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/public.png", // 마커이미지의 주소입니다
+                    src: "/reservation/public.png", // 마커이미지의 주소입니다
                     size:
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
@@ -185,7 +185,7 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/public.png", // 마커이미지의 주소입니다
+                    src: "/reservation/public.png", // 마커이미지의 주소입니다
                     size:
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
