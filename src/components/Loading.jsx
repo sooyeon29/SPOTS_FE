@@ -4,8 +4,7 @@ import styled from 'styled-components';
 export const Loading = () => {
   return (
     <Background>
-      <LoadingText>SPOTS가 여러분과 함께합니다!</LoadingText>
-      <img src="/Spinner.gif"/>
+      <img src="/reservation/Spinner.gif"/>
     </Background>
   );
 };
@@ -24,9 +23,4 @@ export const Background = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-export const LoadingText = styled.div`
-  font: 1rem 'Noto Sans KR';
-  text-align: center;
 `;

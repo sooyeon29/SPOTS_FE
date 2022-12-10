@@ -369,7 +369,8 @@ export const TeamSelect = styled.select`
   cursor: pointer;
   option {
     text-align: center;
-    color: #000;
+    color: #fff;
+    padding-left: 20px;
   }
 `;
 export const Counter = styled.div`
@@ -445,3 +446,12 @@ export const FinalBooking = styled.button`
   margin: 10px auto 20px auto;
   cursor: pointer;
 `;
+
+export const UpperLine = styled.div`
+  display: flex;
+  img {
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+`
