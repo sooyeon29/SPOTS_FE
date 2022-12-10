@@ -34,7 +34,7 @@ const FlexibleHeader = (props) => {
 export default FlexibleHeader;
 
 const StHeader = styled.div`
-  max-width: 600px;
+  max-width: 390px;
   width: 100%;
   height: 62px;
   background-color: #000000;

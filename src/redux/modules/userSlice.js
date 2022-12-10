@@ -74,13 +74,13 @@ const userSlice = createSlice({
       state.error = action.payload.response.data;
       if (action.payload.response.status === 401) {
         Swal.fire({
-          text: "나의 예약 리스트는 로그인 후 확인 가능합니다.",
-          width: "300px",
+          text: "예약은 로그인 후 사용 가능합니다",
+          width: "340px",
           showCancelButton: true,
-          confirmButtonText: "로그인하러 가기",
+          confirmButtonText: "로그인",
           confirmButtonColor: "#40d295",
           cancelButtonColor: "#FF00B4",
-          cancelButtonText: "취소",
+          cancelButtonText: "둘러보기",
           showClass: { popup: "animated fadeInDown faster" },
           hideClass: { popup: "animated fadeOutUp faster" },
         }).then((result) => {
@@ -89,12 +89,18 @@ const userSlice = createSlice({
           }
         });
       }
-      // if (action.payload.response.status === 404) {
+      // if (
+      //   action.payload.response.status === 404 &&
+      //   action.payload.response.status !== 401
+      // ) {
       //   Swal.fire({
-      //     text: "예약을 위해서는 나의팀을 등록해주세요:)",
-      //     width: "300px",
-      //     confirmButtonText: "나의팀 등록하러 가기",
+      //     text: "예약은 나의 팀 등록 후 사용 가능합니다",
+      //     width: "340px",
+      //     showCancelButton: true,
+      //     confirmButtonText: "로그인",
       //     confirmButtonColor: "#40d295",
+      //     cancelButtonColor: "#FF00B4",
+      //     cancelButtonText: "둘러보기",
       //     showClass: { popup: "animated fadeInDown faster" },
       //     hideClass: { popup: "animated fadeOutUp faster" },
       //   }).then((result) => {

@@ -27,7 +27,7 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
-  max-width: 600px;
+  max-width: 390px;
   width: 100%;
   display: flex;
   flex-direction: column;

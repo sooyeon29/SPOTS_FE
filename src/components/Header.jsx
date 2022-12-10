@@ -40,7 +40,7 @@ const Header = () => {
 export default Header;
 
 const StHeader = styled.div`
-  max-width: 600px;
+  max-width: 390px;
   width: 100%;
   padding: 0;
   background-color: #000000;
