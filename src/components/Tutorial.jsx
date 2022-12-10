@@ -43,24 +43,24 @@ export default Tutorial;
 
 const TutorialSlider = styled(Slider)`
   .slick-list {
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
   }
 
   .slick-track {
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
   }
 
   .slick-slide img {
-    /* object-fit: cover; */
-    /* height: 100vh; */
-    /* width: 100vw; */
+    object-fit: cover;
+    height: 100vh;
+    width: 100vw;
     box-sizing: border-box;
   }
 
   .slick-track {
-    width: 100vw;
+    /* width: 100vw; */
   }
 
   .slick-list {
@@ -73,7 +73,8 @@ const Container = styled.div`
   z-index: 99999;
 
   img {
-    width: 100vw;
+    width: 100vh;
+    /* max-width: 400px; */
   }
 `;
 
