@@ -61,6 +61,7 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
+  console.log("================유저정보=============", user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const handleImagePreview = (file) => {
@@ -706,7 +707,7 @@ const MyPage = () => {
                     width: "350px",
                     showCancelButton: true,
                     confirmButtonColor: "#40d295",
-                    cancelButtonColor: "#d33",
+                    cancelButtonColor: "#FF00B4",
                     confirmButtonText: "회원탈퇴",
                     cancelButtonText: "취소",
                     showClass: { popup: "animated fadeInDown faster" },
@@ -717,6 +718,16 @@ const MyPage = () => {
                         .then((res) => {
                           console.log(res);
                           if (res.status === 200) {
+                            Swal.fire({
+                              text: "계정이 휴면 처리되었습니다",
+                              width: "300px",
+                              confirmButtonText: "확인",
+                              confirmButtonColor: "#40d295",
+                              showClass: {
+                                popup: "animated fadeInDown faster",
+                              },
+                              hideClass: { popup: "animated fadeOutUp faster" },
+                            });
                             localStorage.clear();
                             navigate("/");
                           }
@@ -726,14 +737,6 @@ const MyPage = () => {
                           if (err.status === 400) {
                           }
                         });
-                      Swal.fire({
-                        text: "계정이 휴면 처리되었습니다",
-                        width: "300px",
-                        confirmButtonText: "확인",
-                        confirmButtonColor: "#40d295",
-                        showClass: { popup: "animated fadeInDown faster" },
-                        hideClass: { popup: "animated fadeOutUp faster" },
-                      });
                     }
                   });
                 }}
