@@ -706,7 +706,7 @@ const MyPage = () => {
                     width: "350px",
                     showCancelButton: true,
                     confirmButtonColor: "#40d295",
-                    cancelButtonColor: "#d33",
+                    cancelButtonColor: "#FF00B4",
                     confirmButtonText: "회원탈퇴",
                     cancelButtonText: "취소",
                     showClass: { popup: "animated fadeInDown faster" },

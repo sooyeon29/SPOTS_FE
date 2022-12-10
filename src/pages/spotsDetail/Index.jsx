@@ -49,6 +49,7 @@ import {
   WaitingMatch2,
   WrapAll,
 } from "./Styles";
+import Swal from "sweetalert2";
 const SpotsDetail = () => {
   const title = "예약";
   const myTime = [
@@ -153,6 +154,17 @@ const SpotsDetail = () => {
   };
 
   const pickDateHandler = (date, name) => {
+    const today = new Date();
+    if (date.toLocaleDateString() === today.toLocaleDateString()) {
+      Swal.fire({
+        text: "※주의※ 당일예약은 취소 불가합니다",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+    }
     setStartDate(date);
     const bookDate = date?.toLocaleDateString().substring(0, 12);
     dispatch(__getAllMatch({ place: name, date: bookDate }));
@@ -254,20 +266,24 @@ const SpotsDetail = () => {
                   <div>
                     <div>
                       {spot.spotKind === "실내" && (
-                        <img alt="" src="house.png" width="16px" />
+                        <img alt="" src="/spotsdetail/house.png" width="16px" />
                       )}
                       {spot.spotKind === "실외" && (
-                        <img alt="" src="/outside.png" width="16px" />
+                        <img
+                          alt=""
+                          src="/spotsdetail/outside.png"
+                          width="16px"
+                        />
                       )}
                       {spot.spotKind}
                     </div>
                     <div>
-                      <img alt="" src="/check.png" width="20px" />
+                      <img alt="" src="/spotsdetail/check.png" width="20px" />
                       {spot.comforts}
                     </div>
                   </div>
                   <div>
-                    <img alt="" src="/point.png" width="20px" />
+                    <img alt="" src="/spotsdetail/point.png" width="20px" />
                     {Number(spot.price).toLocaleString("ko-KR")} 포인트
                   </div>
                 </MoreInfo>
