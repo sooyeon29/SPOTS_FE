@@ -46,10 +46,22 @@ const Login = () => {
           localStorage.setItem("nickname", res.data.nickname);
           navigate("/");
         } else if (res.status === 202) {
-          if (window.confirm("휴면계정입니다. 계정을 활성화하시겠습니까?")) {
-            localStorage.setItem("token", res.data.accessToken);
-            navigate("/switchaccount", { state: loginInfo.id });
-          }
+          Swal.fire({
+            text: "휴면계정입니다. 계정을 활성화하시겠습니까?",
+            width: "350px",
+            showCancelButton: true,
+            confirmButtonColor: "#40d295",
+            cancelButtonColor: "#FF00B4",
+            confirmButtonText: "계정 활성화하러 가기",
+            cancelButtonText: "취소",
+            showClass: { popup: "animated fadeInDown faster" },
+            hideClass: { popup: "animated fadeOutUp faster" },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              localStorage.setItem("token", res.data.accessToken);
+              navigate("/switchaccount", { state: loginInfo.id });
+            }
+          });
         }
       })
       .catch((err) => {

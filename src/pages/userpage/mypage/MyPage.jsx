@@ -61,6 +61,7 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
+  console.log("================유저정보=============", user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
   const handleImagePreview = (file) => {
@@ -733,6 +734,10 @@ const MyPage = () => {
                         confirmButtonColor: "#40d295",
                         showClass: { popup: "animated fadeInDown faster" },
                         hideClass: { popup: "animated fadeOutUp faster" },
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          navigate("/login");
+                        }
                       });
                     }
                   });
