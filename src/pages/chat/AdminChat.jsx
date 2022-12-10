@@ -9,16 +9,15 @@ import {
   RoomInput,
   RoomBtn,
 } from "./Styles";
-//import { io } from "socket.io-client";
-
+// import { io } from "socket.io-client";
+// const socket = io.connect(process.env.REACT_APP_SOCKET, {
+//   path: "/socket.io",
+//   cors: {
+//     origin: "http://localhost:3000",
+//   },
+//   transports: ["websocket", "polling"],
+// });
 const AdminChat = () => {
-  // const socket = io.connect(process.env.REACT_APP_SOCKET, {
-  //   path: "/socket.io",
-  //   cors: {
-  //     origin: "http://localhost:3000",
-  //   },
-  //   transports: ["websocket", "polling"],
-  // });
   const location = useLocation();
   const roomName = location.state;
   const [msg, setMsg] = useState("");
@@ -58,7 +57,7 @@ const AdminChat = () => {
         <div>Room Name:{roomName} </div>
         <ChatBox>
           {chatting?.map((chat, index) => (
-            <div>
+            <div key={index}>
               <div>{chat.nickname}</div>
               <div>{chat.message}</div>
             </div>

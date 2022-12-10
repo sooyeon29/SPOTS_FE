@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 import { AiTwotoneHome } from "react-icons/ai";
@@ -13,27 +14,42 @@ const Tutorial = ({ handleClose }) => {
     variableWidth: true,
   };
 
+  const [currSlideIndex, setCurrSlideIndex] = useState(0);
+
+  console.log(currSlideIndex);
+
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+
   return (
     <Container>
       <JumpBtn onClick={handleClose}>
         <AiTwotoneHome size="25" />
       </JumpBtn>
-      <TutorialSlider {...settings}>
-        <div>
-          <img alt="" src="/tutorial/tutorial_01.jpg" />
-        </div>
-        <div>
-          <img alt="" src="/tutorial/tutorial_02.jpg" />
-        </div>
-        <div>
-          <img alt="" src="/tutorial/tutorial_03.jpg" />
-        </div>
-        <div>
-          <img alt="" src="/tutorial/tutorial_04.jpg" />
-        </div>
-        <div>
-          <img alt="" src="/tutorial/tutorial_05.jpg" />
-        </div>
+
+      <TutorialSlider
+        {...settings}
+        afterChange={(currentSlide) => setCurrSlideIndex(currentSlide)}
+      >
+        {Array.from({ length: 5 }).map((_, index) => {
+          const isActiveSlide = currSlideIndex === index;
+          console.log("isActiveSlide: ", isActiveSlide);
+          return (
+            <Slide key={index}>
+              <img alt="" src={`/tutorial/tutorial_0${index + 1}.jpg`} />
+            </Slide>
+          );
+        })}
       </TutorialSlider>
     </Container>
   );
@@ -41,53 +57,18 @@ const Tutorial = ({ handleClose }) => {
 
 export default Tutorial;
 
-const TutorialSlider = styled(Slider)`
-  .slick-list {
-    /* width: 100vw; */
-    /* height: 100vh; */
-  }
-
-  .slick-track {
-    /* width: 100vw; */
-    /* height: 100vh; */
-  }
-
-  .slick-slide img {
-    object-fit: cover;
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-  }
-
-  .slick-track {
-    /* width: 100vw; */
-  }
-
-  .slick-list {
-    width: 100vw;
-  }
-`;
-
 const Container = styled.div`
-  position: fixed;
-  z-index: 99999;
-
-  img {
-    width: 100vh;
-    /* max-width: 400px; */
-  }
+  position: relative;
+  padding: 0;
+  margin: 0;
 `;
 
 const JumpBtn = styled.button`
-  border: none;
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
+  position: absolute;
   z-index: 999999;
-  margin-top: 15px;
-  margin-left: 80%;
+  top: 20px;
+  right: 20px;
+  border: none;
   font-size: 16px;
   cursor: pointer;
   background-color: #c2c2c2;
@@ -96,3 +77,41 @@ const JumpBtn = styled.button`
   height: 45px;
   border-radius: 50px;
 `;
+
+const TutorialSlider = styled(Slider)`
+  position: absolute;
+  overflow: hidden;
+
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 99999;
+
+  .slick-list {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slick-track {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slick-slide img {
+    object-fit: cover;
+
+    width: 100vw;
+    max-width: 600px;
+    box-sizing: border-box;
+  }
+
+  .slick-track {
+    width: 100vw;
+  }
+
+  .slick-list {
+    width: 100vw;
+  }
+`;
+
+const Slide = styled.div``;

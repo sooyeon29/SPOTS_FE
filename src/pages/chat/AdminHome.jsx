@@ -10,19 +10,17 @@ import {
 } from "./Styles.jsx";
 //import { io } from "socket.io-client";
 
-// const socket = io.connect(process.env.REACT_APP_SOCKET, {
-//   path: "/socket.io",
-//   cors: {
-//     origin: "http://localhost:3000",
-//   },
-//   transports: ["websocket", "polling"],
-// });
-
 const AdminHome = () => {
+  // const socket = io.connect(process.env.REACT_APP_SOCKET, {
+  //   path: "/socket.io",
+  //   cors: {
+  //     origin: "http://localhost:3000",
+  //   },
+  //   transports: ["websocket", "polling"],
+  // });
   const navigate = useNavigate();
   const [roomList, setRoomList] = useState();
   const [roomName, setRoomName] = useState();
-  const [chatList, setChatList] = useState();
 
   useEffect(() => {
     console.log("socket", socket);
@@ -48,11 +46,6 @@ const AdminHome = () => {
             <li key={index}>{list}</li>
           ))}
         </ul>
-        {/* <ul style={{ color: "blue" }}>
-          {chatList?.map((list, index) => (
-            <li key={index}>{list}</li>
-          ))}
-        </ul> */}
         <RoomForm onSubmit={enterRoomHandler}>
           <RoomInput
             name="roomName"
