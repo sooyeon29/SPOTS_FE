@@ -1,9 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { io } from "socket.io-client";
 
 const ChatBtn = ({ chatHandler, chatRef }) => {
   const navigate = useNavigate();
+
+  const socket = io.connect(process.env.REACT_APP_SOCKET, {
+    cors: {
+      origin: "http://localhost:3000",
+    },
+    transports: ["websocket", "polling"],
+  });
+
   return (
     <>
       <Btn onClick={chatHandler} ref={chatRef}>
