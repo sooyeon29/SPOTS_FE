@@ -31,6 +31,7 @@ import {
 } from "./Styles";
 import Tutorial from "../../components/Tutorial";
 import { margin } from "polished";
+import Banner from "./Banner";
 
 const MainMaps = () => {
   const [showTutorial, setShowTutorial] = useState(false);
@@ -97,9 +98,7 @@ const MainMaps = () => {
           src="/mainpage/mainSearch.png"
           onClick={() => navigate("/book")}
         />
-        <MainBanner>
-          <img alt="" src="/mainpage/mainBanner.png" />
-        </MainBanner>
+        <Banner />
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
           <BannerSlider {...settings}>
