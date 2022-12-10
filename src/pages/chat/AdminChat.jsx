@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-//import socket from "../../tools/socket";
+import socket from "../../tools/socket";
 import {
   StContainer,
   StWrap,
@@ -9,17 +9,16 @@ import {
   RoomInput,
   RoomBtn,
 } from "./Styles";
-import { io } from "socket.io-client";
-
-const socket = io.connect(process.env.REACT_APP_SOCKET, {
-  path: "/socket.io",
-  cors: {
-    origin: "http://localhost:3000",
-  },
-  transports: ["websocket", "polling"],
-});
+//import { io } from "socket.io-client";
 
 const AdminChat = () => {
+  // const socket = io.connect(process.env.REACT_APP_SOCKET, {
+  //   path: "/socket.io",
+  //   cors: {
+  //     origin: "http://localhost:3000",
+  //   },
+  //   transports: ["websocket", "polling"],
+  // });
   const location = useLocation();
   const roomName = location.state;
   const [msg, setMsg] = useState("");
