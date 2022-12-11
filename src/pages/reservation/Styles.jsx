@@ -48,7 +48,7 @@ export const PlaceList = styled.div`
 export const ListBar = styled.div`
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   width: 100px;
   height: 0.1px;
   border: 2px solid #c4c4c4;

@@ -1,5 +1,5 @@
-import Slider from "react-slick";
-import styled from "styled-components";
+import Slider from 'react-slick';
+import styled from 'styled-components';
 
 export const MainSearch = styled.img`
   max-width: 390px;
@@ -25,12 +25,17 @@ export const SpotContainer = styled.div`
   margin-top: 10px;
 `;
 export const Section = styled.div`
-  margin: 5px 0px 8px 10px;
+  margin: 10px 0px 8px 10px;
   font-size: 18px;
   font-weight: 900;
   font-family: SpoqaHanSansNeoBold;
 `;
 export const BannerSlider = styled(Slider)`
+  .slick-list {
+    margin-left: 8px;
+    padding-left: 2px;
+  }
+  
   .slick-slide div {
     margin: 0px 10px 0px 0px;
   }
@@ -63,7 +68,7 @@ export const InfoDiv = styled.div`
 export const Info = styled.div`
   width: 165px;
   div {
-    font-size: 12px;
+    font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

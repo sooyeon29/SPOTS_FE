@@ -10,6 +10,7 @@ import TapBar from '../../../components/TapBar';
 import useInput from '../../../hooks/useInput';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import imageCompression from 'browser-image-compression';
 import {
   StWrap,
   Btn,
@@ -61,20 +62,18 @@ const MyPage = () => {
   }, []);
 
   const { user } = useSelector((state) => state?.user);
-  console.log("================유저정보=============", user);
+  // console.log("================유저정보=============", user);
 
   const [isEdit, setIsEdit, clickEditMode] = useToggle();
-  const handleImagePreview = (file) => {
+  const handleImage = (file) => {
     setImg(null);
     setPreview([]);
 
     if (file.target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(file.target.files[0]);
-
       reader.onloadend = () => {
         setImg(file.target.files[0]);
-
         const base64 = reader.result;
         if (base64) {
           const previewSub = base64.toString();
@@ -82,6 +81,20 @@ const MyPage = () => {
         }
       };
     }
+
+    const prevFile = file.target.files[0];
+    // console.log(prevFile);
+    imageCompression(prevFile, {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+    }).then((compressedFile) => {
+      const newFile = new File([compressedFile], prevFile.name, {
+        type: prevFile.type,
+      });
+      setImg(newFile);
+      // console.log(newFile);
+    });
+    
   };
 
   const savePhoto = () => {
@@ -90,7 +103,7 @@ const MyPage = () => {
 
     UserpageAPI.patchMyPhoto(sendFD)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: '프로필 사진이 수정되었습니다',
@@ -322,7 +335,7 @@ const MyPage = () => {
                   type="file"
                   accept="image/*"
                   onChange={(e) => {
-                    handleImagePreview(e);
+                    handleImage(e);
                   }}
                   multiple="multiple"
                 />
@@ -336,7 +349,9 @@ const MyPage = () => {
                     onerror="this.style.display='none';"
                   />
                 ) : (
-                  <Preview></Preview>
+                  <Preview>
+                    <img src={user?.profileImg}/>
+                  </Preview>
                 )}
               </HostPreview>
             </ImageUpload>

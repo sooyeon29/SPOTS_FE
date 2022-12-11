@@ -313,7 +313,7 @@ export const TeamLayoutTR = styled.div`
   width: 90%;
   margin: auto;
   div:first-child {
-    width: 100px;
+    width: 50px;
     text-align: center;
     color: #545454;
     padding: 8px 8px 8px 8px;
@@ -322,7 +322,7 @@ export const TeamLayoutTR = styled.div`
 
 export const SportsLayout = styled.div`
   display: flex;
-  padding: 10px 10px 10px 10px;
+  padding: 20px 10px 20px 10px;
   border-bottom: 1px solid #cecece;
   font-size: 14px;
   font-weight: 600;
@@ -330,14 +330,14 @@ export const SportsLayout = styled.div`
   width: 90%;
   margin: auto;
   div:first-child {
-    width: 100px;
+    width: 50px;
     text-align: center;
     color: #545454;
     padding: 8px 8px 8px 8px;
   }
 
   div:last-child {
-    margin-left: 20px;
+    margin-right: 10px;
   }
 `;
 

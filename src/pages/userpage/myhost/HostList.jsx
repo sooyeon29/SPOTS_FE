@@ -24,6 +24,7 @@ const HostList = () => {
     dispatch(__getMyPrivateSpot());
   }, []);
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
+  console.log(placeList);
 
   return (
     <Layout>
