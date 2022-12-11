@@ -126,8 +126,9 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 export default SideBar;
 
 const SideMenu = styled.div`
-position: relative;
-background-color: #fff;
+  position: relative;
+  background-color: #fff;
+  z-index: 999999999;
 `;
 
 const Section = styled.div`
@@ -136,14 +137,13 @@ const Section = styled.div`
   width: 280px;
   padding-top: 30px;
   padding-left: 10px;
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
-  right: -300px;
+  right: 0;
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
-  z-index: 999999;
 
   ${({ isOpen }) =>
     isOpen &&
