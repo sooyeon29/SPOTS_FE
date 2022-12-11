@@ -58,7 +58,7 @@ export const InfoLayout = styled.div`
 
 export const SportsLayout = styled.div`
   padding: 10px;
-  max-width: 400px;
+  max-width: 390px;
   margin: auto;
   div:first-child {
     font-size: 14px;

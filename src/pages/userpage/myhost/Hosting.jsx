@@ -4,6 +4,7 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import FlexibleHeader from "../../../components/FlexibleHeader";
+import imageCompression from 'browser-image-compression';
 import TapBar from "../../../components/TapBar";
 import Swal from "sweetalert2";
 import {
@@ -61,24 +62,15 @@ const Hosting = () => {
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
 
-  const handleImagePreview = (file) => {
+  const handleImage = (file) => {
     setImg(null);
     setPreview([]);
-    // setImg(file.target.files);
-    // file.target.files.length < 4
-    //   ? setImg(file.target.files)
-    //   : alert("사진은 최대 4개까지만 추가 가능합니다");
 
-    //프리뷰 (핸들러를 통해 받은 이미지를 base64로 인코딩)
-    // for (let i = 0; i < file.target.files.length; i++) {
     if (file.target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(file.target.files[0]);
-
       reader.onloadend = () => {
         setImg(file.target.files[0]);
-
-        //.onloadend : 읽기가 완료 되었을 때
         const base64 = reader.result;
         if (base64) {
           const previewSub = base64.toString();
@@ -86,7 +78,20 @@ const Hosting = () => {
         }
       };
     }
-    // }
+
+    const prevFile = file.target.files[0];
+    console.log(prevFile);
+    imageCompression(prevFile, {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+    }).then((compressedFile) => {
+      const newFile = new File([compressedFile], prevFile.name, {
+        type: prevFile.type,
+      });
+      setImg(newFile);
+      console.log(newFile);
+    });
+
   };
 
   const onCheckedElement = (checked, item) => {
@@ -296,7 +301,7 @@ const Hosting = () => {
               type="file"
               accept="image/*"
               onChange={(e) => {
-                handleImagePreview(e);
+                handleImage(e);
               }}
               multiple="multiple"
             />

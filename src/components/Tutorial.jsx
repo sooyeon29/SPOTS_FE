@@ -101,7 +101,7 @@ const TutorialSlider = styled(Slider)`
     object-fit: cover;
 
     width: 100vw;
-    max-width: 600px;
+    max-width: 390px;
     box-sizing: border-box;
   }
 

@@ -24,6 +24,7 @@ const HostList = () => {
     dispatch(__getMyPrivateSpot());
   }, []);
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
+  console.log(placeList);
 
   return (
     <Layout>
@@ -53,7 +54,10 @@ const HostList = () => {
                 <div>
                   {place?.sports === "배드민턴장" ? (
                     <>
-                      <img alt="badminton_img" src="/myspots/host_badminton.png" />
+                      <img
+                        alt="badminton_img"
+                        src="/myspots/host_badminton.png"
+                      />
                     </>
                   ) : null}
                   {place?.sports === "풋살장" ? (

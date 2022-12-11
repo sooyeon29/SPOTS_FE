@@ -30,6 +30,8 @@ import {
   WaitingMatchMain2,
 } from "./Styles";
 import Tutorial from "../../components/Tutorial";
+import { margin } from "polished";
+import Banner from "./Banner";
 
 const MainMaps = () => {
   const [showTutorial, setShowTutorial] = useState(false);
@@ -47,11 +49,11 @@ const MainMaps = () => {
     speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     autoplaySpeed: 5000,
     autoplay: true,
-    slidesToShow: 1, // 한번에 몇개의 슬라이드를 보여줄지
+    slidesToShow: 2, // 한번에 몇개의 슬라이드를 보여줄지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     arrows: true,
     adaptiveHeight: true,
-    centerMode: true,
+    // centerMode: true,
     // variableWidth: true,
   };
 
@@ -96,9 +98,7 @@ const MainMaps = () => {
           src="/mainpage/mainSearch.png"
           onClick={() => navigate("/book")}
         />
-        <MainBanner>
-          <img alt="" src="/mainpage/mainBanner.png" />
-        </MainBanner>
+        <Banner />
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
           <BannerSlider {...settings}>
@@ -148,11 +148,14 @@ const MainMaps = () => {
               <SixMatch key={index}>
                 <Link
                   to={`/spotsdetail/${sixmatch.place?.placesId}`}
-                  style={{ color: "black", textDecoration: "none" }}
+                  style={{
+                    color: "black",
+                    textDecoration: "none",
+                  }}
                 >
                   <WaitingMatchMain>
                     <div>
-                      <img alt="" src="/mainpage/date.png" width="25px" />
+                      <img alt="" src="/mainpage/date.png" width="23px" />
                       <span>
                         {sixmatch.match?.date.substring(6, 8)}월
                         {sixmatch.match?.date.substring(10, 13)}일
@@ -162,11 +165,11 @@ const MainMaps = () => {
                   </WaitingMatchMain>
                   <WaitingMatchMain2>
                     <div>
-                      <img alt="" src="/mainpage/time.png" width="25px" />
+                      <img alt="" src="/mainpage/time.png" width="23px" />
                       <span>{sixmatch.match?.matchId.substring(0, 13)}</span>
                     </div>
                     <div>
-                      <img alt="" src="/mainpage/people.png" width="25px" />
+                      <img alt="" src="/mainpage/people.png" width="23px" />
                       <span>{sixmatch.match?.member}명</span>
                     </div>
                   </WaitingMatchMain2>

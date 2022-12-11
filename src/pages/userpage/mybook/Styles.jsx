@@ -28,7 +28,7 @@ export const ReservedSpot = styled.div``;
 export const MyReserve = styled.div`
   width: 90%;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 80px;
   margin-bottom: 72px;
   align-items: center;
 `;

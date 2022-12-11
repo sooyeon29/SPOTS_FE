@@ -18,7 +18,6 @@ const Btn = styled.div`
   height: 60px;
   border-radius: 50%;
   z-index: 9;
-  right: 5%;
   bottom: 80px;
   display: flex;
   justify-content: space-between;
