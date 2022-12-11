@@ -28,18 +28,11 @@ const GlobalStyle = createGlobalStyle`
 
 
   *, *::before, *::after {
-    /* font-family: 'SpoqaHanSansNeo-Regular'; */
-    /* box-sizing: border-box; */
   }
 
   body {
   font-family: 'SpoqaHanSansNeoRegular';
-  margin: 0px;
-    /* font-weight: normal; */
-    /* font-size: 16px; */
-    /* line-height: 24px; */
-    /* color: var(--gray-900); */
-    /* display: block; */
+  margin: auto;
 
   }
   :root {

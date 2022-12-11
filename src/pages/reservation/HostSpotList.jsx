@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import {
   PrivateBlock,
   PublicBlock,
@@ -8,8 +8,8 @@ import {
   LowerLine,
   PublicInfo,
   NoResult,
-} from './Style';
-import { CgSearchLoading } from 'react-icons/cg'
+} from "./Styles";
+import { CgSearchLoading } from "react-icons/cg";
 
 const SpotList = ({ spotList }) => {
   const navigate = useNavigate();
@@ -18,7 +18,9 @@ const SpotList = ({ spotList }) => {
   if (spotList === undefined) {
     return (
       <NoResult>
-        <p><CgSearchLoading style={{fontSize:'40px', marginBottom: '10px'}}/></p>
+        <p>
+          <CgSearchLoading style={{ fontSize: "40px", marginBottom: "10px" }} />
+        </p>
         <p>'{param.keywords}'에 해당하는 검색 결과가 없어요!</p>
         <p>다른 키워드로 검색해볼까요?</p>
       </NoResult>
@@ -30,14 +32,15 @@ const SpotList = ({ spotList }) => {
           return (
             <PrivateBlock
               key={privSpot.placesId}
-              onClick={() => navigate(`/spotsdetail/${privSpot.placesId}`)}>
+              onClick={() => navigate(`/spotsdetail/${privSpot.placesId}`)}
+            >
               <UpperLine>
                 <div>
-                  {privSpot.sports === '테니스장' ? (
+                  {privSpot.sports === "테니스장" ? (
                     <img alt="tennis img" src="/reservation/newTennis.png" />
                   ) : (
                     <>
-                      {privSpot.sports === '풋살장' ? (
+                      {privSpot.sports === "풋살장" ? (
                         <img
                           alt="futsal img"
                           src="/reservation/newFutsal.png"
@@ -58,10 +61,10 @@ const SpotList = ({ spotList }) => {
               <div>
                 <p>{privSpot.spotName}</p>
                 <p>
-                  {privSpot.address.split(' ')[0]}{' '}
-                  {privSpot.address.split(' ')[1]}{' '}
-                  {privSpot.address.split(' ')[2]}{' '}
-                  {privSpot.address.split(' ')[3]}
+                  {privSpot.address.split(" ")[0]}{" "}
+                  {privSpot.address.split(" ")[1]}{" "}
+                  {privSpot.address.split(" ")[2]}{" "}
+                  {privSpot.address.split(" ")[3]}
                 </p>
               </div>
             </PrivateBlock>
@@ -72,15 +75,16 @@ const SpotList = ({ spotList }) => {
             <PublicReserve
               href={pubSpot.svcurl}
               target="_blank"
-              key={pubSpot.opensId}>
+              key={pubSpot.opensId}
+            >
               <PublicBlock>
                 <LowerLine>
                   <div>
-                    {pubSpot.minclassnm === '테니스장' ? (
+                    {pubSpot.minclassnm === "테니스장" ? (
                       <img alt="tennis img" src="/reservation/newTennis.png" />
                     ) : (
                       <>
-                        {pubSpot.minclassnm === '풋살장' ? (
+                        {pubSpot.minclassnm === "풋살장" ? (
                           <img
                             alt="futsal img"
                             src="/reservation/newFutsal.png"

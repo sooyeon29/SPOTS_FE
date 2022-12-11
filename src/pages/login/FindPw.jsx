@@ -1,27 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import useInput from "../../hooks/useInput";
 import useToggle from "../../hooks/useToggle";
 import { LoginAPI } from "../../tools/instance";
-import {
-  Stinput,
-  PageTitle,
-  StWraps,
-  InputWrap,
-  LoginBtn,
-  CodeBtn,
-  Logo,
-  InputWrapLower,
-  GrayBorder,
-} from "./Styles";
-
 import Swal from "sweetalert2";
-import { ContentWrap } from "../signUp/Styles";
 import TapBar from "../../components/TapBar";
+import { ContentWrap, GrayBorder, LoginBtn, Logo, StWraps } from "./Styles";
 
 const FindPw = () => {
-  const navigate = useNavigate();
   const [isCode, setIsCode] = useToggle();
   const [id, setId, enterId] = useInput();
   const [phoneNum, setPhoneNum, enterPhoneNum] = useInput();
@@ -54,21 +40,29 @@ const FindPw = () => {
           });
         })
         .catch((err) => {
-          console.log(err);
-          Swal.fire({
-            text: "예상하지 못한 오류가 발생하였습니다",
-            width: "300px",
-            confirmButtonText: "확인",
-            confirmButtonColor: "#40d295",
-            showClass: { popup: "animated fadeInDown faster" },
-            hideClass: { popup: "animated fadeOutUp faster" },
-          });
+          if (err.response.status === 406) {
+            Swal.fire({
+              text: "해당 번호로 가입된 아이디가 없습니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+          } else {
+            Swal.fire({
+              text: "예상하지 못한 오류가 발생하였습니다",
+              width: "300px",
+              confirmButtonText: "확인",
+              confirmButtonColor: "#40d295",
+              showClass: { popup: "animated fadeInDown faster" },
+              hideClass: { popup: "animated fadeOutUp faster" },
+            });
+          }
         });
     }
   };
-  console.log(id);
-  console.log(phoneNum);
-  console.log(veriCode);
+
   const findPwHandler = () => {
     if (id.id.length < 1) {
       Swal.fire({
@@ -141,6 +135,7 @@ const FindPw = () => {
         );
     }
   };
+
   return (
     <Layout>
       <Header />
@@ -149,7 +144,6 @@ const FindPw = () => {
           <Logo>
             <img alt="" src="/spotslogo.png" />
           </Logo>
-
           <GrayBorder>
             <input
               placeholder="아이디를 입력해주세요"
@@ -203,7 +197,7 @@ const FindPw = () => {
           {isCode && (
             <GrayBorder>
               <input
-                placeholder="인증번호를 입력하세요(제한 시간 3분)"
+                placeholder="인증번호를 입력하세요"
                 type="text"
                 required
                 name="code"

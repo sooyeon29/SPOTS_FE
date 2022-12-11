@@ -1,62 +1,80 @@
 import styled from "styled-components";
 import { lighten, darken } from "polished";
 
+// findId&pw / index 스타일
 export const StWraps = styled.div`
   margin-top: 70px;
   margin-bottom: 60px;
   padding: 30px;
 `;
-
-export const PageTitle = styled.div`
-  font-size: 20px;
-  margin-bottom: 40px;
-  font-weight: 700;
-  align-items: left;
-`;
-
-export const LoginBtn = styled.button`
-  height: 50px;
-  /* padding: 11px 0px 10px; */
-  background: #1746c7;
-  color: white;
-  display: flex;
-
-  /* text-align: center; */
-  align-items: center;
-  justify-content: center;
-  width: 330px;
-  border: none;
-  border-radius: 47px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
-  margin: auto;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${lighten(0.1, "#1746c7")};
+export const ContentWrap = styled.div`
+  text-align: center;
+  p {
+    margin-top: 0;
+    font-size: 13px;
+    text-align: left;
+    text-align: center;
+    color: #ff00b3;
   }
-`;
-export const CodeBtn = styled(LoginBtn)`
-  background: #ff00b4;
-  margin-top: 20px;
-  &:hover {
-    background-color: ${lighten(0.1, "#FF00B4")};
-  }
-`;
-
-export const InputWrap = styled.div`
-  /* border: 2px solid black; */
-  width: 330px;
-  margin: auto;
 `;
 export const Logo = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 60px;
   margin-top: 30px;
+`;
+export const GrayBorder = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 10px;
+  padding: 3px 5px 3px 15px;
+  max-width: 330px;
+  width: 90%;
+  height: 40px;
+  margin: auto;
+  margin-bottom: 10px;
+  font-size: 14px;
+  input {
+    background-color: transparent;
+    border: none;
+    margin: 0px 5px 0px 10px;
+    width: 60%;
+    height: 70%;
+    :focus {
+      outline: none;
+      background-color: #f4f4f4;
+    }
+    ::placeholder {
+      color: #c2c2c2;
+    }
+  }
+`;
+export const LoginBtn = styled.button`
+  height: 50px;
+  background: #1746c7;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  width: 100%;
+  border: none;
+  border-radius: 47px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 20px auto 10px auto;
+  cursor: pointer;
+  &:hover {
+    background-color: ${lighten(0.1, "#1746c7")};
+  }
+`;
+export const InputWrap = styled.div`
+  width: 330px;
+  margin: auto;
 `;
 export const Stinput = styled.input`
   background-color: transparent;
@@ -80,7 +98,7 @@ export const InputWrapLower = styled.div`
   background-color: #f4f4f4;
   border: none;
   border-radius: 10px;
-  padding: 3px 0px 3px 18px;
+  padding: 3px 10px 3px 18px;
   margin: auto;
   margin-bottom: 10px;
   button {
@@ -89,49 +107,23 @@ export const InputWrapLower = styled.div`
     cursor: pointer;
   }
 `;
-
-export const FindButs = styled.div`
-  width: 330px;
-  margin: auto;
-  margin-top: 20px;
-  display: flex;
-  /* flex-direction: row; */
-  justify-content: space-around;
-  /* background-color: lightcyan; */
-  button {
-    /* background-color: blue; */
-    /* width: 100px; */
-    background-color: transparent;
-    border: none;
-    font-size: 14px;
-    /* font-weight: bold; */
-  }
-`;
-
-export const KakaoBtn = styled.button`
+export const KakaoBtn = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
   height: 50px;
-  /* padding: 11px 0px 10px; */
   background: #fed600;
-  width: 47%;
+  width: 90%;
   border: none;
   border-radius: 47px;
-  cursor: pointer;
   font-weight: bold;
   font-size: 14px;
   line-height: 24px;
   margin-top: 10px;
-
-  a {
-    text-decoration: none;
-    color: #3a1d1d;
-  }
   &:hover {
-    background-color: ${lighten(0.2, "#ffcd2a")};
+    background-color: ${lighten(0.1, "#ffcd2a")};
   }
   img {
     margin-right: 10px;
@@ -145,52 +137,29 @@ export const GoogleBtn = styled(KakaoBtn)`
   }
 `;
 export const SocialLogin = styled.div`
-  width: 340px;
+  max-width: 350px;
   margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-`;
-
-export const PwInput = styled.div`
-  button {
-    border: none;
-    background-color: #fff;
-    height: 40px;
-    margin-top: 1px;
+  a {
     cursor: pointer;
+    text-decoration: none;
+    color: #3a1d1d;
+    width: 100%;
   }
 `;
-export const GrayBorder = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #f4f4f4;
-  border: none;
-  border-radius: 10px;
-  /* padding-top: 7px; */
-  padding: 3px 0px 3px 15px;
-  max-width: 330px;
-  width: 90%;
-  height: 40px;
-
+export const FindButs = styled.div`
+  width: 330px;
   margin: auto;
-  margin-bottom: 10px;
-  font-size: 14px;
-
-  input {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  button {
     background-color: transparent;
     border: none;
-    margin: 0px 5px 0px 10px;
-    width: 60%;
-    height: 70%;
-    :focus {
-      outline: none;
-      background-color: #f4f4f4;
-    }
-    ::placeholder {
-      color: #c2c2c2;
-    }
+    font-size: 14px;
+    cursor: pointer;
   }
 `;

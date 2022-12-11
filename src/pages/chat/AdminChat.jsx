@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import styled from "styled-components";
 import socket from "../../tools/socket";
-
+import {
+  StContainer,
+  StWrap,
+  ChatBox,
+  RoomForm,
+  RoomInput,
+  RoomBtn,
+} from "./Styles";
+// import { io } from "socket.io-client";
+// const socket = io.connect(process.env.REACT_APP_SOCKET, {
+//   path: "/socket.io",
+//   cors: {
+//     origin: "http://localhost:3000",
+//   },
+//   transports: ["websocket", "polling"],
+// });
 const AdminChat = () => {
   const location = useLocation();
   const roomName = location.state;
@@ -43,7 +57,7 @@ const AdminChat = () => {
         <div>Room Name:{roomName} </div>
         <ChatBox>
           {chatting?.map((chat, index) => (
-            <div>
+            <div key={index}>
               <div>{chat.nickname}</div>
               <div>{chat.message}</div>
             </div>
@@ -64,42 +78,3 @@ const AdminChat = () => {
 };
 
 export default AdminChat;
-
-const StContainer = styled.div`
-  display: flex;
-`;
-
-const StWrap = styled.div``;
-
-const ChatBox = styled.div`
-  width: 350px;
-  height: 400px;
-  border: 1px solid lightgray;
-  overflow: scroll;
-`;
-const RoomForm = styled.form`
-  width: 350px;
-  height: 130px;
-  border: 1px solid lightgray;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const RoomInput = styled.input`
-  width: 330px;
-  height: 20px;
-  margin: -20px auto 0 auto;
-  border: 1px solid lightgray;
-`;
-
-const RoomBtn = styled.button`
-  width: 80px;
-  height: 40px;
-  color: white;
-  background-color: #3a6dfa;
-  border: none;
-  border-radius: 6px;
-  margin: 10px 0 0 8px;
-  cursor: pointer;
-`;

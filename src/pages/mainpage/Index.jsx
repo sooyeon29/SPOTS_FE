@@ -1,37 +1,41 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { PrivateApi, SpotsMatchApi } from "../../tools/instance";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import SpotsMap from "./SpotsMap";
+import TapBar from "../../components/TapBar";
+import useDetectClose from "../../hooks/useDetectClose";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {
-  New,
-  Image,
-  BannerSlider,
-  SpotContainer,
-  MainSearch,
-  Section,
-  InfoDiv,
-  MainBanner,
-  Icon,
-  Info,
-  SpotName,
-  SixMatch,
-  SpotInfoMain,
-  WaitingMatchMain,
-  TeamContainer,
-  Info2,
-} from "./Styles";
-import TapBar from "../../components/TapBar";
-import { LoginAPI, PrivateApi, SpotsMatchApi } from "../../tools/instance";
-import { useNavigate } from "react-router-dom";
 import ChatBtn from "../../components/ChatBtn";
-import useDetectClose from "../../hooks/useDetectClose";
 import ChatRoom from "../chat/ChatRoom";
-import { WaitingMatch } from "../spotsDetail/Styles";
-import { SpotInfo } from "../userpage/Styles";
+import {
+  BannerSlider,
+  Icon,
+  Image,
+  Info,
+  Info2,
+  InfoDiv,
+  LastTime,
+  MainBanner,
+  MainSearch,
+  New,
+  Section,
+  SixMatch,
+  SpotContainer,
+  SpotInfoMain,
+  SpotName,
+  TeamContainer,
+  WaitingMatchMain,
+  WaitingMatchMain2,
+} from "./Styles";
+import Tutorial from "../../components/Tutorial";
+import { margin } from "polished";
+import Banner from "./Banner";
 
 const MainMaps = () => {
+  const [showTutorial, setShowTutorial] = useState(false);
+  const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
   const [newSpot, setNewSpot] = useState();
   const [newMatch, setNewMatch] = useState();
   const navigate = useNavigate();
@@ -45,11 +49,11 @@ const MainMaps = () => {
     speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     autoplaySpeed: 5000,
     autoplay: true,
-    slidesToShow: 1, // 한번에 몇개의 슬라이드를 보여줄지
+    slidesToShow: 2, // 한번에 몇개의 슬라이드를 보여줄지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     arrows: true,
     adaptiveHeight: true,
-    centerMode: true,
+    // centerMode: true,
     // variableWidth: true,
   };
 
@@ -57,32 +61,44 @@ const MainMaps = () => {
     PrivateApi.getNewSpot()
       .then((res) => {
         setNewSpot(res?.data?.data);
-        // console.log('신규스팟', newSpot);
       })
       .catch((err) => console.log(err));
 
     SpotsMatchApi.getRecentMatch()
       .then((res) => {
-        // console.log('임박매치대기팀들!', res);
         setNewMatch(res?.data);
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log("왜 날짜 형식이 달라진거지", newMatch);
-  // console.log(newSpot);
-  // console.log('신규매치6개! 임박건!!!', newMatch);
+
+  useEffect(() => {
+    const handleShowTutorial = () => {
+      if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
+        return;
+      }
+      if (!HAS_VISITED_BEFORE) {
+        setShowTutorial(true);
+
+        let expires = new Date();
+        expires = expires.setMonth(expires.getMonth() + 12);
+        localStorage.setItem("hasVisitedBefore", expires);
+      }
+    };
+    window.setTimeout(handleShowTutorial);
+  }, [HAS_VISITED_BEFORE]);
+  const handleClose = () => setShowTutorial(false);
+
   return (
     <>
       <Layout>
+        {showTutorial && <Tutorial handleClose={handleClose} />}
         <Header />
         <MainSearch
           alt=""
           src="/mainpage/mainSearch.png"
           onClick={() => navigate("/book")}
         />
-        <MainBanner>
-          <img alt="" src="/mainpage/mainBanner.png" />
-        </MainBanner>
+        <Banner />
         <SpotContainer>
           <Section>최신 등록! MD 추천 스팟</Section>
           <BannerSlider {...settings}>
@@ -130,43 +146,45 @@ const MainMaps = () => {
           {newMatch?.map((sixmatch, index) => {
             return (
               <SixMatch key={index}>
-                <WaitingMatchMain>
-                  <div>
-                    <img alt="" src="/date.png" width="60px" />
-                    {sixmatch.match?.date.substring(6, 8)}월
-                    {sixmatch.match?.date.substring(10, 13)}일
-                  </div>
-                  <div>
-                    <img alt="" src="/time.png" width="60px" />
-                    {sixmatch.match?.matchId.substring(0, 13)}
-                  </div>
-                  <div>
-                    {" "}
-                    <img alt="" src="/people.png" width="70px" />
-                    {sixmatch.match?.member}명
-                    {/* {sixmatch.place.sports !== "풋살장" && (
-                      <>{!sixmatch.match.isDoubled ? "복식" : "단식"} 경기</>
-                    )} */}
-                  </div>
-                </WaitingMatchMain>
-                <hr />
-                <SpotInfoMain>
-                  <img alt="구장이미지" src={sixmatch.place?.image} />
-                  <Info2>
-                    <button
-                      onClick={() =>
-                        navigate(`/spotsdetail/${sixmatch.place?.placesId}`)
-                      }
-                    >
-                      {sixmatch.place?.spotName}
-                    </button>
+                <Link
+                  to={`/spotsdetail/${sixmatch.place?.placesId}`}
+                  style={{
+                    color: "black",
+                    textDecoration: "none",
+                  }}
+                >
+                  <WaitingMatchMain>
                     <div>
-                      {sixmatch.place?.address.split(" ")[0]}{" "}
-                      {sixmatch.place?.address.split(" ")[1]}{" "}
-                      {sixmatch.place?.address.split(" ")[2]}
+                      <img alt="" src="/mainpage/date.png" width="23px" />
+                      <span>
+                        {sixmatch.match?.date.substring(6, 8)}월
+                        {sixmatch.match?.date.substring(10, 13)}일
+                      </span>
                     </div>
-                  </Info2>
-                </SpotInfoMain>
+                    <LastTime>마감임박</LastTime>
+                  </WaitingMatchMain>
+                  <WaitingMatchMain2>
+                    <div>
+                      <img alt="" src="/mainpage/time.png" width="23px" />
+                      <span>{sixmatch.match?.matchId.substring(0, 13)}</span>
+                    </div>
+                    <div>
+                      <img alt="" src="/mainpage/people.png" width="23px" />
+                      <span>{sixmatch.match?.member}명</span>
+                    </div>
+                  </WaitingMatchMain2>
+                  <SpotInfoMain>
+                    <img alt="구장이미지" src={sixmatch.place?.image} />
+                    <Info2>
+                      <button>{sixmatch.place?.spotName}</button>
+                      <div>
+                        {sixmatch.place?.address.split(" ")[0]}{" "}
+                        {sixmatch.place?.address.split(" ")[1]}{" "}
+                        {sixmatch.place?.address.split(" ")[2]}
+                      </div>
+                    </Info2>
+                  </SpotInfoMain>
+                </Link>
               </SixMatch>
             );
           })}

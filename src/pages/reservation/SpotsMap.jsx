@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BtnWrap, Container } from "./Styles";
 import {
   Map,
   ZoomControl,
   MapMarker,
   CustomOverlayMap,
 } from "react-kakao-maps-sdk";
-import { useSelector } from "react-redux";
-import { BtnWrap, MylocationBtn, Container } from "./Style";
 
 const SpotsMap = ({ spotMarkers }) => {
+  const navigate = useNavigate();
   const [isPrivateOpen, setIsPrivateOpen] = useState([]);
   const [isPublicOpen, setIsPublicOpen] = useState([]);
   const [level, setLevel] = useState();
@@ -25,16 +26,13 @@ const SpotsMap = ({ spotMarkers }) => {
   const privateSpots = spotMarkers?.private;
   const publicSpots = spotMarkers?.public;
 
-  // console.log(publicSpots)
   const handlePrivateOnClick = (e, idx) => {
     setIsPrivateOpen(idx);
-    // console.log(idx);
     setIsPublicOpen(false);
   };
 
   const handlePublicOnClick = (e, idx) => {
     setIsPublicOpen(idx);
-    // console.log(idx);
     setIsPrivateOpen(false);
   };
 
@@ -42,35 +40,6 @@ const SpotsMap = ({ spotMarkers }) => {
     setFilter(sports);
   };
 
-  // const locationHandler = () => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         setState((prev) => ({
-  //           ...prev,
-  //           center: {
-  //             lat: position.coords.latitude, //위도
-  //             lng: position.coords.longitude, //경도
-  //           },
-  //           isLoading: false,
-  //         }));
-  //       },
-  //       (err) => {
-  //         setState((prev) => ({
-  //           ...prev,
-  //           errMsg: err.message,
-  //           isLoading: false,
-  //         }));
-  //       }
-  //     );
-  //   } else {
-  //     setState((prev) => ({
-  //       ...prev,
-  //       errMsg: '현재 위치를 불러올 수 없습니다...',
-  //       isLoading: false,
-  //     }));
-  //   }
-  // };
   return (
     <>
       <BtnWrap>
@@ -90,11 +59,6 @@ const SpotsMap = ({ spotMarkers }) => {
         onZoomChanged={(map) => setLevel(map.getLevel())}
       >
         <ZoomControl />
-        {/* 
-        <MylocationBtn onClick={locationHandler}>
-          현재 위치로 이동
-        </MylocationBtn>
-        <MapMarker position={state.center} /> */}
 
         {privateSpots?.map((privSpot, idx) => {
           if (filter === false) {
@@ -108,14 +72,13 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src: "/private.png", // 마커이미지의 주소입니다
-                    size: {
-                      width: 30,
-                      height: 30,
-                    },
+                    src: "/reservation/private.png", // 마커이미지의 주소입니다
+                    size:
+                      (level >= 8 && { width: 30, height: 30 }) ||
+                      (level >= 6 && { width: 35, height: 35 }) ||
+                      (level >= 4 && { width: 40, height: 40 }),
                   }} // 마커이미지의 크기입니다
                 />
-
                 {isPrivateOpen === idx ? (
                   <CustomOverlayMap
                     key={privSpot.idx}
@@ -126,6 +89,13 @@ const SpotsMap = ({ spotMarkers }) => {
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
                       <div>{privSpot.spotName}</div>
+                      <div
+                        onClick={() =>
+                          navigate(`/spotsdetail/${privSpot.placesId}`)
+                        }
+                      >
+                        구장 보기
+                      </div>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}
@@ -135,23 +105,18 @@ const SpotsMap = ({ spotMarkers }) => {
             return (
               <div key={privSpot.placesId}>
                 <MapMarker
-                  // key={privSpot.placesId}
                   position={{
                     lat: privSpot.y,
                     lng: privSpot.x,
                   }}
                   onClick={(e) => handlePrivateOnClick(e, idx)}
                   image={{
-                    src: "/private.png",
-                    // (privSpot.sports === '풋살장' && '/privateFutsal.png') ||
-                    // (privSpot.sports === '배드민턴장' &&
-                    //   '/privateBadminton.png') ||
-                    // (privSpot.sports === '테니스장' && '/privateTennis.png'),
-                    size: {
-                      width: 30,
-                      height: 30,
-                    },
-                  }}
+                    src: "/reservation/private.png", // 마커이미지의 주소입니다
+                    size:
+                      (level >= 8 && { width: 30, height: 30 }) ||
+                      (level >= 6 && { width: 35, height: 35 }) ||
+                      (level >= 4 && { width: 40, height: 40 }),
+                  }} // 마커이미지의 크기입니다
                 />
 
                 {isPrivateOpen === idx ? (
@@ -184,11 +149,11 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/public.png", // 마커이미지의 주소입니다
-                    size: {
-                      width: 30,
-                      height: 30,
-                    },
+                    src: "/reservation/public.png", // 마커이미지의 주소입니다
+                    size:
+                      (level >= 8 && { width: 30, height: 30 }) ||
+                      (level >= 6 && { width: 35, height: 35 }) ||
+                      (level >= 4 && { width: 40, height: 40 }),
                   }} // 마커이미지의 크기입니다
                 />
                 {isPublicOpen === idx ? (
@@ -201,6 +166,9 @@ const SpotsMap = ({ spotMarkers }) => {
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
                       <div>{pubSpot.placenm}</div>
+                      <a href={pubSpot.svcurl} target="_blank">
+                        예약하러 가기{" "}
+                      </a>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}
@@ -217,18 +185,12 @@ const SpotsMap = ({ spotMarkers }) => {
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/public.png",
-                    // (pubSpot.minclassnm === '풋살장' &&
-                    //   '/publicFutsal.png') || // 마커이미지의 주소입니다
-                    // (pubSpot.minclassnm === '배드민턴장' &&
-                    //   '/publicBadminton.png') ||
-                    // (pubSpot.minclassnm === '테니스장' &&
-                    //   '/publicTennis.png'),
-                    size: {
-                      width: 30,
-                      height: 30,
-                    },
-                  }}
+                    src: "/reservation/public.png", // 마커이미지의 주소입니다
+                    size:
+                      (level >= 8 && { width: 30, height: 30 }) ||
+                      (level >= 6 && { width: 35, height: 35 }) ||
+                      (level >= 4 && { width: 40, height: 40 }),
+                  }} // 마커이미지의 크기입니다
                 />
                 {isPublicOpen === idx ? (
                   <CustomOverlayMap

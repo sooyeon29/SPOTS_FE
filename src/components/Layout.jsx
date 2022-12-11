@@ -14,13 +14,11 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const Wrap = styled.div`
+  position: relative;
   -webkit-box-align: center;
   box-sizing: border-box;
   width: 100%;
-  max-width: 600px;
+  max-width: 390px;
   margin: auto;
-  /* position: absolute;
-  left: 0px;
-  top: 0px; */
   overflow-x: hidden;
 `;

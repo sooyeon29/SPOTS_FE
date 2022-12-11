@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.1.3",
+    "browser-image-compression": "^2.0.0",
     "date-fns": "^2.29.3",
     "env-cmd": "^10.1.0",
     "polished": "^4.2.2",
@@ -24,6 +25,7 @@
     "react-hook-form": "^7.39.1",
     "react-horizontal-scrolling-menu": "^3.2.3",
     "react-icons": "^4.6.0",
+    "react-intersection-observer": "^9.4.1",
     "react-kakao-maps-sdk": "^1.1.5",
     "react-redux": "^8.0.5",
     "react-responsive": "^9.0.0",
@@ -36,7 +38,6 @@
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.6.11",
     "web-vitals": "^2.1.0",
-    "yup": "^0.32.11",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^5.1.4",
@@ -48,7 +49,8 @@
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
+    "workbox-streams": "^5.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

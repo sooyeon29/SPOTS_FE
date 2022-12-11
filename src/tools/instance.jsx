@@ -7,38 +7,42 @@ const instance = axios.create({
 
 // 요청 인터셉터 추가
 instance.interceptors.request.use(
-  async (config) => {
+  (config) => {
     // 요청이 전달되기 전 작업 수행
-    // console.log("인터셉터리퀘스트:", config);
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = token;
-      // console.log("1번째 토큰!", token);
     }
     return config;
   },
   (error) => {
-    // 요청 오류가 있는 경우 작업 수행
-    // console.log("인터셉터에러", error);
     return Promise.reject(error);
   }
 );
-// // 응답 인터셉터 추가
+
 instance.interceptors.response.use(
   async (response) => {
     // 응답 데이터가 있는 작업 수행
-    //console.log("인터셉터리스판스+++++++++++++++++:", response);
+    const { config, data } = response;
+    const prevRequest = config;
+
     if (response.status === 200 && response.data.code === 1) {
-      window.localStorage.removeItem("token");
-      window.localStorage.setItem("token", response.data.myNewToken);
-      const newAccessToken = response.data.myNewToken;
-      return instance({
-        ...response.config,
-        headers: {
-          Authorization: `${newAccessToken}`,
-        },
-      });
+      try {
+        window.localStorage.removeItem("token");
+        window.localStorage.setItem("token", data.myNewToken);
+        instance(
+          (prevRequest.headers = {
+            "Content-Type": "application/json",
+            Authorization: `${data.myNewToken}`,
+          })
+        );
+        window.location.reload();
+        return await instance(prevRequest);
+      } catch (err) {
+        console.log(err);
+      }
     }
+
     return response;
   },
   (error) => {
@@ -53,7 +57,7 @@ instance.interceptors.response.use(
         hideClass: { popup: "animated fadeOutUp faster" },
       }).then((result) => {
         if (result.isConfirmed) {
-          window.localStorage.clear();
+          window.localStorage.removeItem("token");
           window.location.replace("/login");
         }
       });
@@ -75,7 +79,6 @@ export const LoginAPI = {
   postforCheckVCode: (payload) => instance.post(`users/checkSms`, payload),
   // 아이디 찾기
   findId: (payload) =>
-    // console.log(payload),
     instance.post(`users/findId`, {
       phone: payload.phone.phone,
       code: payload.code.code,
@@ -91,13 +94,9 @@ export const LoginAPI = {
 // 회원가입
 export const SignUpAPI = {
   signUp: (payload) => instance.post(`users/signup`, payload),
-  // console.log(payload),
   checkId: (payload) => instance.post(`users/checkId`, payload),
   checkNickname: (payload) => instance.post(`/users/checkNick`, payload),
-  // checkPhoneNum: (payload) => instance.post(`/users/checkPhone`, payload),
-  kakaoSingUp: (payload) =>
-    // console.log(payload),
-    instance.post(`auth/signup`, payload),
+  socialSignUp: (payload) => instance.post(`auth/signup`, payload),
 };
 
 // userpage
@@ -122,7 +121,6 @@ export const UserpageAPI = {
 // spotsdetail 실제 예약 서비스
 export const SpotsMatchApi = {
   postSpotsMatch: (payload) => instance.post(`reservations/register`, payload),
-
   getAllMatch: (payload) =>
     instance.get(`reservations/register/${payload.place}/${payload.date}`, {
       place: payload.place,
@@ -136,13 +134,13 @@ export const SpotsMatchApi = {
         date: payload.date,
       }
     ),
-
   getMyMatch: () => instance.get(`/reservations/me`),
   exitMyMatch: (payload) =>
     instance.put(`/reservations/register/delete`, payload),
   getRecentMatch: () => instance.get(`reservations/register`),
 };
 
+// 사설구장
 export const PrivateApi = {
   registerSpot: (payload) => instance.post(`places`, payload),
   // 등록한 사설 구장들 리스트
@@ -153,7 +151,6 @@ export const PrivateApi = {
   deletePrivateSpot: (payload) => instance.delete(`places/${payload}`),
   // 내가 등록한 구장 수정
   editPrivateSpot: (payload) =>
-    // console.log(payload),
     instance.patch(`/places/${payload.placesId}`, {
       spotName: payload.spotName,
       desc: payload.desc,
