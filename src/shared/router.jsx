@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/login/Index";
 import SignUp from "../pages/signUp/Index";
