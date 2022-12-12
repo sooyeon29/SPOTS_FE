@@ -43,10 +43,12 @@ import {
   HealthDiv,
   BaseballDiv,
   RecommendTitle,
+  Agreement,
 } from "./Styles";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BsFillPersonFill } from "react-icons/bs";
+import useToggle from "../../hooks/useToggle";
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
@@ -58,6 +60,7 @@ const SignUp = () => {
   const [idConfirm, setIdConfirm] = useState(false);
   const [nnConfirm, setNnConfirm] = useState(false);
   const [code, setCode] = useState("");
+  const [agree, setAgree, agreeHandler] = useToggle();
 
   const {
     handleSubmit,
@@ -154,6 +157,17 @@ const SignUp = () => {
     if (!codeConfirm) {
       Swal.fire({
         text: "휴대폰 인증을 해주세요",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+    }
+    if (!agree) {
+      Swal.fire({
+        text: "회원가입을 위해서는 개인정보 동의가 필요합니다",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -470,7 +484,7 @@ const SignUp = () => {
             {idAndPwPage ? (
               <FirstPage>
                 <Logo>
-                  <img src="/spotslogo.png" />
+                  <img alt="" src="/spotslogo.png" />
                 </Logo>
                 {/* <PageTitle>회원가입</PageTitle> */}
                 <ContentWrap>
@@ -542,10 +556,22 @@ const SignUp = () => {
             {phoneCertify ? (
               <SecondPage>
                 <Logo>
-                  <img src="/spotslogo.png" />
+                  <img alt="" src="/spotslogo.png" />
                 </Logo>
                 {/* <PageTitle>휴대폰 인증</PageTitle> */}
                 <ContentWrap>
+                  <Agreement>
+                    <div>개인정보 수집·이용에 동의합니다</div>
+                    <input
+                      type="checkbox"
+                      name="agreement"
+                      value={agree}
+                      onChange={agreeHandler}
+                      required
+                      onInvalid="alert('회원가입을 위해서는 개인정보 동의를 해주세요')"
+                      style={{ width: "10px" }}
+                    />
+                  </Agreement>
                   <GrayBorder>
                     <input
                       type="text"
@@ -625,7 +651,7 @@ const SignUp = () => {
             {addInfoPage ? (
               <ThirdPage>
                 <Logo>
-                  <img src="/spotslogo.png" />
+                  <img alt="" src="/spotslogo.png" />
                 </Logo>
                 {/* <PageTitle>추가 정보 입력</PageTitle> */}
                 <ContentWrap>

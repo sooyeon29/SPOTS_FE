@@ -41,6 +41,7 @@ import {
   HealthInput,
   HealthDiv,
   RecommendTitle,
+  Agreement,
 } from "./Styles";
 import { LoginBtn } from "../login/Styles";
 
@@ -52,7 +53,9 @@ const SocialSignUp = () => {
   const [codeSent, setCodeSent] = useToggle();
   const [addSport, setAddSport] = useToggle();
   const [nnConfirm, setNnConfirm] = useToggle();
+  const [agree, setAgree, agreeHandler] = useToggle();
   const [code, setCode] = useState("");
+  console.log(agree);
   const {
     handleSubmit,
     register,
@@ -267,6 +270,18 @@ const SocialSignUp = () => {
                   <img alt="" src="/spotslogo.png" />
                 </Logo>
                 <ContentWrap>
+                  <Agreement>
+                    <div>개인정보 수집·이용에 동의합니다</div>
+                    <input
+                      type="checkbox"
+                      name="agreement"
+                      value={agree}
+                      onChange={agreeHandler}
+                      required
+                      onInvalid="alert('회원가입을 위해서는 개인정보 동의를 해주세요')"
+                      style={{ width: "10px" }}
+                    />
+                  </Agreement>
                   <GrayBorder>
                     <input
                       type="text"
@@ -295,7 +310,6 @@ const SocialSignUp = () => {
                   {errors.nickname && errors.nickname.type === "minLegnth" && (
                     <p>닉네임을 한 글자 이상 입력해주세요</p>
                   )}
-
                   <div>
                     <input
                       style={{
@@ -345,6 +359,17 @@ const SocialSignUp = () => {
                         });
                         return;
                       }
+                      if (!agree) {
+                        Swal.fire({
+                          text: "회원가입을 위해서는 개인정보 동의가 필요합니다",
+                          width: "300px",
+                          confirmButtonText: "확인",
+                          confirmButtonColor: "#40d295",
+                          showClass: { popup: "animated fadeInDown faster" },
+                          hideClass: { popup: "animated fadeOutUp faster" },
+                        });
+                        return;
+                      }
                       nicknameHandler();
                       setPhoneCode(true);
                     }}
@@ -366,13 +391,12 @@ const SocialSignUp = () => {
                       {...register("phone", {
                         required: true,
                         maxLegnth: 11,
-                        pattern: /^[0-9]{3}[0-9]{3,4}[0-9]{4}/,
+                        pattern: /^[0]{1}[1]{1}[0-9]{1}[0-9]{3,4}[0-9]{4}/,
                       })}
                       maxLength={11}
                       placeholder="01012345678"
                       autoComplete="off"
                     />
-
                     {!codeSent ? (
                       <button
                         style={{
