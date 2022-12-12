@@ -85,7 +85,7 @@ const HostList = () => {
 
         <ResisterBtn onClick={() => navigate(`/hosting`)}>
           <div>
-            <img alt="구장추가아이콘" src="/plus_icon.png" />
+            <img alt="구장추가아이콘" src="/etc/plus_icon.png" />
           </div>
           <div>나의 스팟 등록하기</div>
         </ResisterBtn>
