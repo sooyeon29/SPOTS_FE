@@ -4,7 +4,7 @@ import { useDaumPostcodePopup } from "react-daum-postcode";
 import { PrivateApi } from "../../../tools/instance";
 import { useNavigate } from "react-router-dom";
 import FlexibleHeader from "../../../components/FlexibleHeader";
-import imageCompression from 'browser-image-compression';
+import imageCompression from "browser-image-compression";
 import TapBar from "../../../components/TapBar";
 import Swal from "sweetalert2";
 import {
@@ -91,7 +91,6 @@ const Hosting = () => {
       setImg(newFile);
       console.log(newFile);
     });
-
   };
 
   const onCheckedElement = (checked, item) => {

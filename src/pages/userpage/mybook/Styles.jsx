@@ -141,6 +141,7 @@ export const CancleBtn = styled.button`
   background-color: #ff00b4;
   border: none;
   border-radius: 20px;
+  cursor: pointer;
 `;
 
 export const MatchVS = styled.div`

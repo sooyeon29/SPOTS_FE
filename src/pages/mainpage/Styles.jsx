@@ -1,10 +1,11 @@
-import Slider from 'react-slick';
-import styled from 'styled-components';
+import Slider from "react-slick";
+import styled from "styled-components";
 
 export const MainSearch = styled.img`
   max-width: 390px;
   width: 100%;
   margin-top: 40px;
+  cursor: pointer;
 `;
 export const MainBanner = styled(Slider)`
   .slick-slide div {
@@ -35,7 +36,7 @@ export const BannerSlider = styled(Slider)`
     margin-left: 8px;
     padding-left: 2px;
   }
-  
+
   .slick-slide div {
     margin: 0px 10px 0px 0px;
   }

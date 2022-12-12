@@ -76,6 +76,7 @@ const Container = styled.div`
   height: auto;
   color: #fff;
   padding: 0;
+  z-index: 99;
 `;
 
 const HamburgButton = styled.div`
