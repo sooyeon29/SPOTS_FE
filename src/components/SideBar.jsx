@@ -137,10 +137,11 @@ const Section = styled.div`
   width: 280px;
   padding-top: 30px;
   padding-left: 10px;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
+  z-index: 99999999;
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
