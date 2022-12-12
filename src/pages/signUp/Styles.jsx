@@ -62,6 +62,14 @@ export const ContentWrap = styled.div`
     color: #ff00b3;
   }
 `;
+export const Agreement = styled.div`
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+`;
 
 export const FirstPage = styled.div`
   div {
@@ -133,8 +141,7 @@ export const ThirdPage = styled.div`
   }
 `;
 
-export const GenderSelect = styled.div`
-`;
+export const GenderSelect = styled.div``;
 
 export const ForthPage = styled.div`
   margin: auto;
