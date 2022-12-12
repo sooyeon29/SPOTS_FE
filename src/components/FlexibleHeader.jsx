@@ -52,7 +52,7 @@ const StWrap = styled.div`
 
 const PageTitle = styled.div`
   color: white;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   margin: auto;
 `;

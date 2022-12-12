@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export const Loading = () => {
   return (
     <Background>
       <LoadingText>SPOTS가 여러분과 함께합니다!</LoadingText>
-      <img src="/Spinner.gif"/>
+      <img src="/loading.gif" />
     </Background>
   );
 };
@@ -27,6 +27,6 @@ export const Background = styled.div`
 `;
 
 export const LoadingText = styled.div`
-  font: 1rem 'Noto Sans KR';
+  font: 1rem "Noto Sans KR";
   text-align: center;
 `;

@@ -25,7 +25,7 @@ export const SpotContainer = styled.div`
   margin-top: 10px;
 `;
 export const Section = styled.div`
-  margin: 5px 0px 8px 10px;
+  margin: 0px 0px 8px 10px;
   font-size: 18px;
   font-weight: 900;
   font-family: SpoqaHanSansNeoBold;
@@ -39,6 +39,7 @@ export const BannerSlider = styled(Slider)`
 
 export const New = styled.div`
   width: 80%;
+  height: 210px;
 `;
 
 export const Image = styled.img`
