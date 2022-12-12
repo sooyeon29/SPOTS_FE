@@ -35,7 +35,6 @@ const TeamPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-        {/* <Title>팀 관리</Title> */}
 
         <TeamBox>
           {team?.map((team) => {

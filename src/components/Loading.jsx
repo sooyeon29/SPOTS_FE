@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Loading = () => {
   return (
     <Background>
-      <img src="/reservation/Spinner.gif"/>
+      <img src="/etc/Spinner.gif"/>
     </Background>
   );
 };

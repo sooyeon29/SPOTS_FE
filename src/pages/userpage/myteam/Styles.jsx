@@ -180,7 +180,7 @@ export const TeamCardFootball = styled.div`
   width: 362px;
   height: 136px;
   margin-bottom: 25px;
-  background-image: url(/football.png);
+  background-image: url(/userpage/football.png);
   background-size: cover;
   border-radius: 17px;
   color: #fefefe;
@@ -200,7 +200,7 @@ export const TeamCardTennis = styled.div`
   width: 362px;
   height: 136px;
   margin-bottom: 25px;
-  background-image: url(/tennis.png);
+  background-image: url(/userpage/tennis.png);
   background-size: cover;
   border-radius: 17px;
   color: #fefefe;
@@ -220,7 +220,7 @@ export const TeamCardBadminton = styled.div`
   width: 362px;
   height: 136px;
   margin-bottom: 25px;
-  background-image: url(/badminton.png);
+  background-image: url(/userpage/badminton.png);
   background-size: cover;
   border-radius: 17px;
   color: #fefefe;

@@ -15,7 +15,7 @@ const SwitchAccount = () => {
         <Header />
         <Container>
           <Logo>
-            <img alt="logo" src="/switch_logo.png" />
+            <img alt="logo" src="/login/switch_logo.png" />
           </Logo>
           <First>
             <h2>

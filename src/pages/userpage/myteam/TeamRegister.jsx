@@ -161,11 +161,11 @@ const TeamRegister = () => {
                 <div>
                   {preview.length > 0 ? (
                     <span>
-                      <img alt="cancel_icon" src="/cancel_icon.png" />
+                      <img alt="cancel_icon" src="/etc/cancel_icon.png" />
                     </span>
                   ) : (
                     <span>
-                      <img alt="plus_icon" src="/plus_icon_blue.png" />
+                      <img alt="plus_icon" src="/etc/plus_icon_blue.png" />
                     </span>
                   )}
                 </div>

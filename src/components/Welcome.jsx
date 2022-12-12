@@ -68,7 +68,7 @@ const Welcome = () => {
     <Layout>
       <Header />
       <Wrap>
-        <Img src="/welcome_image.jpeg" />{" "}
+        <Img src="/etc/welcome_image.jpeg" />{" "}
         <Button
           onClick={
             () => {
