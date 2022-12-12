@@ -17,6 +17,8 @@
 |FE|김수연|BE|정우성|	
 |FE|고은비|BE|임다혜|
 
+![KakaoTalk_Photo_2022-12-12-04-52-49](https://user-images.githubusercontent.com/113861593/207015666-56c96905-4c69-4dcf-8a2c-6f5504c184e6.jpeg)
+
 ### 📍기술 스택
 <div>
   <h4>　 ▪ Backend </h4>
