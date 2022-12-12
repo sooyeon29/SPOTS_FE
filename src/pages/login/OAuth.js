@@ -1,7 +1,7 @@
 const CLIENT_ID = process.env.REACT_APP_KAKAO_LOGIN_API_KEY;
 const REDIRECT_URI = process.env.REACT_APP_KAKAO_LOGIN_REDIRECT_URI;
 
-export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri="https:/spots.co.kr/auth/kakao/callback"&response_type=code&prompts=none`;
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri="https://spots.co.kr/auth/kakao/callback"&response_type=code&prompts=none`;
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_LOGIN_API_KEY;
 const GOOGLE_REDIRECT_URI = process.env.REACT_APP_GOOGLE_LOGIN_REDIRECT_URI;
