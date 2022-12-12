@@ -119,7 +119,7 @@ const SpotsDetail = () => {
   const { user } = useSelector((state) => state.user);
   let myPoint = user.point;
   // 선택한 날짜를 알맞은 모양으로 보내기 위해 가공한다
-  const bookDate = startDate?.toLocaleDateString().substring(0, 12);
+  const bookDate = startDate?.toLocaleDateString();
   // console.log(pickedTime);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
 
@@ -129,7 +129,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime + 'nomatch' + startDate + name,
+        matchId: pickedTime + 'nomatch' + bookDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,

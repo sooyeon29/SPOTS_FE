@@ -1,5 +1,5 @@
 import React from "react";
-import { MainBanner } from "./Styles";
+import { BannerImg, MainBanner } from "./Styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -18,9 +18,9 @@ const Banner = () => {
   return (
     <MainBanner {...settings}>
       <img alt="mainBanner" src="/mainpage/mainBanner.png" />
-      <img alt="mainBanner2" src="/mainpage/mainBanner02.png" />
-      <img alt="mainBanner3" src="/mainpage/mainBanner03.png" />
-      <img alt="mainBanner4" src="/mainpage/mainBanner04.png" />
+      <BannerImg alt="mainBanner2" src="/mainpage/mainBanner02.jpeg" />
+      <BannerImg alt="mainBanner3" src="/mainpage/mainBanner03.jpeg" />
+      <BannerImg alt="mainBanner4" src="/mainpage/mainBanner04.jpeg" />
     </MainBanner>
   );
 };

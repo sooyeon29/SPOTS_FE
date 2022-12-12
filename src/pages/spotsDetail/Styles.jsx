@@ -12,7 +12,7 @@ export const Sports = styled.div`
 `;
 export const SpotPhoto = styled.div`
   width: 95%;
-  max-width: 390px;
+  max-width: 420px;
   padding: 0px;
   overflow: hidden;
   margin: auto;
@@ -31,7 +31,7 @@ export const PlaceInfo = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
   width: 85%;
-  max-width: 390px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   div {
@@ -125,7 +125,7 @@ export const SelectDone = styled.div`
   width: 85%;
   height: 40px;
   font-weight: bold;
-  max-width: 390px;
+  max-width: 420px;
   padding: 10px 20px;
   display: flex;
   flex-direction: row;
@@ -152,7 +152,7 @@ export const CalTime = styled.div`
   border: 1px solid #cecece;
   border-radius: 10px;
   width: 95%;
-  max-width: 390px;
+  max-width: 420px;
   padding: 10px 0px 0px 0px;
   margin: 10px auto;
   p {
@@ -358,7 +358,7 @@ export const TeamSelect = styled.select`
   border-radius: 10px;
   width: 95%;
   height: 50px;
-  max-width: 390px;
+  max-width: 420px;
   padding: 10px 10px;
   font-size: 17px;
   display: flex;
