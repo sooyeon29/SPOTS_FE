@@ -80,7 +80,7 @@ const Hosting = () => {
     }
 
     const prevFile = file.target.files[0];
-    console.log(prevFile);
+    // console.log(prevFile);
     imageCompression(prevFile, {
       maxSizeMB: 1,
       maxWidthOrHeight: 1920,
@@ -89,7 +89,7 @@ const Hosting = () => {
         type: prevFile.type,
       });
       setImg(newFile);
-      console.log(newFile);
+      // console.log(newFile);
     });
   };
 

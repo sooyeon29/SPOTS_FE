@@ -166,3 +166,7 @@ export const Info2 = styled.div`
     font-size: 14px;
   }
 `;
+
+export const BannerImg = styled.img`
+  border-radius: 8px;
+`
