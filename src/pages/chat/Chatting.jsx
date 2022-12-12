@@ -131,7 +131,7 @@ const Chatting = () => {
             <div key={index}>
               {chat.nickname === "admin" ? (
                 <StAdmin>
-                  <img alt="기본프로필" src="/myprofile_icon.png" />
+                  <img alt="기본프로필" src="/userpage/myprofile_icon.png" />
                   <StAdminMsg ref={scrollRef}>{chat.message}</StAdminMsg>
                 </StAdmin>
               ) : (
