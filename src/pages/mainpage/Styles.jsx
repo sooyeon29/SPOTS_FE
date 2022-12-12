@@ -31,15 +31,15 @@ export const Section = styled.div`
   font-weight: 700;
 `;
 export const BannerSlider = styled(Slider)`
-.slick-list {
-  margin-left: 5px;
-}
+  .slick-list {
+    margin-left: 5px;
+  }
   cursor: pointer;
 `;
 
 export const New = styled.div`
   height: 210px;
-  margin-left: 20px;
+  margin-left: 43px;
 `;
 
 export const Image = styled.img`
@@ -57,7 +57,7 @@ export const InfoDiv = styled.div`
   height: 55px;
   border-radius: 10px;
   position: absolute;
-  top: 55%;
+  top: 60%;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
   display: flex;
 `;
@@ -165,4 +165,4 @@ export const Info2 = styled.div`
 
 export const BannerImg = styled.img`
   border-radius: 8px;
-`
+`;
