@@ -152,7 +152,13 @@ const MainMaps = () => {
                 >
                   <WaitingMatchMain>
                     <div>
-                      <img alt="" src="/mainpage/date.png" width="23px" />
+                      <img
+                        alt=""
+                        src="/mainpage/date.png"
+                        width="23px"
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <span>
                         {sixmatch.match?.date.substring(6, 8)}월
                         {sixmatch.match?.date.substring(10, 13)}일

@@ -14,10 +14,10 @@ const App = ({ props }) => {
     src={
       props +
       getParametersForUnsplash({
-        width: 240,
-        height: 240,
+        width: 140,
+        height: 140,
         quality: 80,
-        format: "jpg",
+        format: "png",
       })
     }
     alt="thumbnail"
