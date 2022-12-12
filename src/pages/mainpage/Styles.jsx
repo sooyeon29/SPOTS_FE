@@ -26,29 +26,22 @@ export const SpotContainer = styled.div`
   margin-top: 10px;
 `;
 export const Section = styled.div`
-  margin: 10px 0px 8px 10px;
+  margin: 0px 0px 8px 10px;
   font-size: 18px;
   font-weight: 900;
   font-family: SpoqaHanSansNeoBold;
 `;
 export const BannerSlider = styled(Slider)`
-  .slick-list {
-    margin-left: 8px;
-    padding-left: 2px;
-  }
-
-  .slick-slide div {
-    margin: 0px 10px 0px 0px;
-  }
   cursor: pointer;
 `;
 
 export const New = styled.div`
-  width: 80%;
+  height: 210px;
+  margin-left: 22px;
 `;
 
 export const Image = styled.img`
-  width: 180px;
+  width: 175px;
   height: 180px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -58,7 +51,7 @@ export const Image = styled.img`
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 160px;
+  width: 155px;
   height: 55px;
   border-radius: 10px;
   position: absolute;

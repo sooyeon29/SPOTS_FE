@@ -49,12 +49,9 @@ const MainMaps = () => {
     speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     autoplaySpeed: 5000,
     autoplay: true,
-    slidesToShow: 2, // 한번에 몇개의 슬라이드를 보여줄지
+    slidesToShow: 2.1, // 한번에 몇개의 슬라이드를 보여줄지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     arrows: true,
-    adaptiveHeight: true,
-    // centerMode: true,
-    // variableWidth: true,
   };
 
   useEffect(() => {
@@ -155,7 +152,13 @@ const MainMaps = () => {
                 >
                   <WaitingMatchMain>
                     <div>
-                      <img alt="" src="/mainpage/date.png" width="23px" />
+                      <img
+                        alt=""
+                        src="/mainpage/date.png"
+                        width="23px"
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <span>
                         {sixmatch.match?.date.substring(6, 8)}월
                         {sixmatch.match?.date.substring(10, 13)}일
