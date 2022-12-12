@@ -1,18 +1,18 @@
 import Router from "./shared/router";
 
-function App(props) {
+const App = ({ props }) => {
   // 배포 환경에서 console.log, console.warn 지우기
   if (process.env.NODE_ENV === "production") {
     console.log = function no_console() {};
     console.warn = function no_console() {};
   }
-  function getParametersForUnsplash({ width, height, quality, format }) {
+  const getParametersForUnsplash = ({ width, height, quality, format }) => {
     return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
-  }
+  };
 
   <img
     src={
-      props.image +
+      props +
       getParametersForUnsplash({
         width: 240,
         height: 240,
@@ -28,6 +28,6 @@ function App(props) {
       <Router />
     </>
   );
-}
+};
 
 export default App;

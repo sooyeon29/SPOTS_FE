@@ -49,10 +49,10 @@ const MainMaps = () => {
     speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     autoplaySpeed: 5000,
     autoplay: true,
-    slidesToShow: 2.1, // 한번에 몇개의 슬라이드를 보여줄지
+    slidesToShow: 2, // 한번에 몇개의 슬라이드를 보여줄지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     arrows: true,
-    adaptiveHeight: true,
+    // adaptiveHeight: true,
     // centerMode: true,
     // variableWidth: true,
   };

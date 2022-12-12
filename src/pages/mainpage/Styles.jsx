@@ -43,8 +43,8 @@ export const New = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 175px;
-  height: 175px;
+  width: 180px;
+  height: 180px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@ export const Image = styled.img`
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 155px;
+  width: 160px;
   height: 55px;
   border-radius: 10px;
   position: absolute;
