@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import styled from "styled-components";
 
 export const MainSearch = styled.img`
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   margin-top: 40px;
   cursor: pointer;
@@ -13,7 +13,7 @@ export const MainBanner = styled(Slider)`
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 390px;
+    max-width: 420px;
   }
 
   img {
@@ -23,32 +23,27 @@ export const MainBanner = styled(Slider)`
 
 export const SpotContainer = styled.div`
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 export const Section = styled.div`
-  margin: 10px 0px 8px 10px;
+  margin: 0px 0px 8px 10px;
   font-size: 18px;
-  font-weight: 900;
-  font-family: SpoqaHanSansNeoBold;
+  font-weight: 700;
 `;
 export const BannerSlider = styled(Slider)`
-  .slick-list {
-    margin-left: 8px;
-    padding-left: 2px;
-  }
-
-  .slick-slide div {
-    margin: 0px 10px 0px 0px;
-  }
+.slick-list {
+  margin-left: 5px;
+}
   cursor: pointer;
 `;
 
 export const New = styled.div`
-  width: 80%;
+  height: 210px;
+  margin-left: 20px;
 `;
 
 export const Image = styled.img`
-  width: 180px;
+  width: 175px;
   height: 180px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -58,7 +53,7 @@ export const Image = styled.img`
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 160px;
+  width: 155px;
   height: 55px;
   border-radius: 10px;
   position: absolute;
@@ -85,6 +80,7 @@ export const SpotName = styled.div`
 `;
 export const TeamContainer = styled.div`
   margin-bottom: 65px;
+  margin-top: 10px;
 `;
 export const SixMatch = styled.div`
   background-color: #f0f0f0;

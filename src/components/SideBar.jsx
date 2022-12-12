@@ -40,7 +40,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       {!token ? (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/myprofile_icon.png" />
+            <img alt="프로필이미지" src="/userpage/myprofile_icon.png" />
             <div>
               <p>로그인 후 이용해주세요.</p>
             </div>

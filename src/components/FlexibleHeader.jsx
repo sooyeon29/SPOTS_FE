@@ -34,7 +34,7 @@ const FlexibleHeader = (props) => {
 export default FlexibleHeader;
 
 const StHeader = styled.div`
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   height: 62px;
   background-color: #000000;
@@ -52,7 +52,7 @@ const StWrap = styled.div`
 
 const PageTitle = styled.div`
   color: white;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: bold;
   margin: auto;
 `;

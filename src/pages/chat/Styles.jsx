@@ -61,7 +61,7 @@ export const StBox = styled.div`
     width: 600px;
     height: 500px;
   } */
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   height: 450px;
   display: flex;
