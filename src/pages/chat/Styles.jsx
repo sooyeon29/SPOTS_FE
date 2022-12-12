@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const StContainer = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const RoomBtn = styled.button`
 `;
 
 export const RoomStContainer = styled.div`
-  bottom: 60px;
+  bottom: 50px;
   position: fixed;
   z-index: 9999;
   visibility: hidden;
@@ -57,12 +57,13 @@ export const RoomStContainer = styled.div`
 `;
 
 export const StBox = styled.div`
-  @media screen and (min-width: 600px) {
+  /* @media screen and (min-width: 600px) {
     width: 600px;
     height: 500px;
-  }
+  } */
+  max-width: 390px;
   width: 100%;
-  height: 550px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   border-top-left-radius: 35px;
@@ -76,19 +77,19 @@ export const StHeader = styled.div`
   align-items: center;
   margin: 20px 0 0 23px;
   img {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 55px;
     border-radius: 45px;
   }
   div {
     font-size: 24px;
-    margin: 7px 0 0 9px;
-    font-weight: 500;
+    margin: 7px 0 0 20px;
+    font-weight: 700;
   }
   button {
-    @media screen and (min-width: 600px) {
+    /* @media screen and (min-width: 600px) {
       margin-left: 400px;
-    }
+    } */
     border: none;
     background-color: transparent;
     margin: 3px 0 0 190px;

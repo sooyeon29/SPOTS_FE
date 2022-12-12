@@ -27,26 +27,28 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
-  max-width: 600px;
+  max-width: 390px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 44vh;
+  height: ${({ open }) => (open ? "88vh" : "44vh")};
   background-color: #fff;
   display: flex;
   margin-bottom: 80px;
   padding-bottom: 50px;
   border-radius: 30px;
   position: absolute;
-  top: 50%;
+  top: ${({ open }) => (open ? "17%" : "50%")};
   z-index: 3;
   box-shadow: 0px -2px 11px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: 0.8s ease;
 `;
 
 export const ListBar = styled.div`
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   width: 100px;
   height: 0.1px;
   border: 2px solid #c4c4c4;

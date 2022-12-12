@@ -131,13 +131,13 @@ const Login = () => {
           <SocialLogin>
             <a href={KAKAO_AUTH_URL}>
               <KakaoBtn>
-                <img alt="" src="/kakao.png" width={25} />
+                <img alt="" src="/login/kakao.png" width={25} />
                 카카오 로그인
               </KakaoBtn>
             </a>
             <a href={GOOGLE_AUTH_URL}>
               <GoogleBtn>
-                <img alt="" src="/google.png" width={27} />
+                <img alt="" src="/login/google.png" width={27} />
                 구글 로그인
               </GoogleBtn>
             </a>

@@ -48,14 +48,14 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/login")}>
               <div>
-                <img alt="로그인" src="/login_icon.png" />
+                <img alt="로그인" src="/userpage/login_icon.png" />
                 <p>로그인하기</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/signup")}>
               <div>
-                <img alt="회원가입" src="/join_icon.png" />
+                <img alt="회원가입" src="/userpage/join_icon.png" />
                 <p>회원가입</p>
               </div>
               <IoIosArrowForward className="arrow" />
@@ -77,28 +77,28 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/mypage")}>
               <div>
-                <img alt="내 정보" src="/myprofile_icon.png" />
+                <img alt="내 정보" src="/userpage/myprofile_icon.png" />
                 <p>내 정보</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/teampage")}>
               <div>
-                <img alt="나의 팀" src="/myteam_icon.png" />
+                <img alt="나의 팀" src="/userpage/myteam_icon.png" />
                 <p>나의 팀</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/reservpage")}>
               <div>
-                <img alt="나의 예약" src="/myreserv_icon.png" />
+                <img alt="나의 예약" src="/userpage/myreserv_icon.png" />
                 <p>나의 예약</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="스팟 등록" src="/myhost_icon.png" />
+                <img alt="스팟 등록" src="/userpage/myhost_icon.png" />
                 <p>스팟 등록</p>
               </div>
               <IoIosArrowForward className="arrow" />
@@ -126,8 +126,9 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 export default SideBar;
 
 const SideMenu = styled.div`
-position: relative;
-background-color: #fff;
+  position: relative;
+  background-color: #fff;
+  z-index: 999999999;
 `;
 
 const Section = styled.div`
@@ -139,11 +140,11 @@ const Section = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -300px;
+  right: 0;
+  z-index: 99999999;
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
-  z-index: 999999;
 
   ${({ isOpen }) =>
     isOpen &&

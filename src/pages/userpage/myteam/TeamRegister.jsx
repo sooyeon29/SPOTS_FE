@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
-import { UserpageAPI } from "../../../tools/instance";
-import { useNavigate } from "react-router-dom";
-import Layout from "../../../components/Layout";
-import FlexibleHeader from "../../../components/FlexibleHeader";
-import TapBar from "../../../components/TapBar";
-import Swal from "sweetalert2";
+import React, { useRef, useState } from 'react';
+import { UserpageAPI } from '../../../tools/instance';
+import { useNavigate } from 'react-router-dom';
+import Layout from '../../../components/Layout';
+import FlexibleHeader from '../../../components/FlexibleHeader';
+import TapBar from '../../../components/TapBar';
+import imageCompression from 'browser-image-compression';
+import Swal from 'sweetalert2';
 import {
   StWrapTR,
   StTeamFormTR,
@@ -28,84 +29,94 @@ import {
   HostPreview,
   Preview,
   ProfilePhotoInput,
-} from "./Styles";
+} from './Styles';
+
 const TeamRegister = () => {
-  const title = "나의 팀";
+  const title = '나의 팀';
   const navigate = useNavigate();
 
   const [preview, setPreview] = useState([]);
   const [img, setImg] = useState(null);
 
   const nameRef = useRef();
-  const [sports, setSports] = useState("");
+  const [sports, setSports] = useState('');
   const [count, setCount] = useState(0);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   const handleImagePreview = (file) => {
     setImg(null);
     setPreview([]);
 
-    if (file.target.files[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file.target.files[0]);
+    const reader = new FileReader();
+    reader.readAsDataURL(file.target.files[0]);
+    reader.onloadend = () => {
+      setImg(file.target.files[0]);
+      const base64 = reader.result;
+      if (base64) {
+        const previewSub = base64.toString();
+        setPreview(previewSub);
+      }
+    };
 
-      reader.onloadend = () => {
-        setImg(file.target.files[0]);
-
-        const base64 = reader.result;
-        if (base64) {
-          const previewSub = base64.toString();
-          setPreview(previewSub);
-        }
-      };
-    }
+    const prevFile = file.target.files[0];
+    // console.log(prevFile);
+    imageCompression(prevFile, {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+    }).then((compressedFile) => {
+      const newFile = new File([compressedFile], prevFile.name, {
+        type: prevFile.type,
+      });
+      setImg(newFile);
+      // console.log(newFile);
+    });
   };
 
   if (!token) {
     Swal.fire({
-      text: "팀 등록은 로그인 후에 가능합니다",
-      width: "300px",
+      text: '팀 등록은 로그인 후에 가능합니다',
+      width: '300px',
       allowOutsideClick: false,
-      confirmButtonText: "확인",
-      confirmButtonColor: "#40d295",
-      showClass: { popup: "animated fadeInDown faster" },
-      hideClass: { popup: "animated fadeOutUp faster" },
+      confirmButtonText: '확인',
+      confirmButtonColor: '#40d295',
+      showClass: { popup: 'animated fadeInDown faster' },
+      hideClass: { popup: 'animated fadeOutUp faster' },
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/login");
+        navigate('/login');
       }
     });
   }
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    if (nameRef.current.value.trim() === "" || sports === "" || count === "") {
+    if (nameRef.current.value.trim() === '' || sports === '' || count === '') {
       return Swal.fire({
-        text: "모든 항목을 입력해주세요",
-        width: "300px",
-        confirmButtonText: "확인",
-        confirmButtonColor: "#40d295",
-        showClass: { popup: "animated fadeInDown faster" },
-        hideClass: { popup: "animated fadeOutUp faster" },
+        text: '모든 항목을 입력해주세요',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
       });
     } else if (count === 0 || count === 1) {
       Swal.fire({
-        text: "팀 등록은 2명부터 가능합니다",
-        width: "300px",
-        confirmButtonText: "확인",
-        confirmButtonColor: "#40d295",
-        showClass: { popup: "animated fadeInDown faster" },
-        hideClass: { popup: "animated fadeOutUp faster" },
+        text: '팀 등록은 2명부터 가능합니다',
+        width: '300px',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#40d295',
+        showClass: { popup: 'animated fadeInDown faster' },
+        hideClass: { popup: 'animated fadeOutUp faster' },
       });
     } else {
       const formData = new FormData();
-      formData.append("image", img);
-      formData.append("teamName", nameRef.current.value);
-      formData.append("sports", sports);
-      formData.append("member", count);
+      formData.append('image', img);
+      formData.append('teamName', nameRef.current.value);
+      formData.append('sports', sports);
+      formData.append('member', count);
 
       for (let a of formData.entries()) {
-        console.log("formData출력", a);
+        console.log('formData출력', a);
       }
 
       UserpageAPI.postMyteam(formData)
@@ -113,26 +124,26 @@ const TeamRegister = () => {
           console.log(res);
           if (res.status === 201) {
             Swal.fire({
-              text: "팀 등록이 완료되었습니다",
-              width: "300px",
-              confirmButtonText: "확인",
-              confirmButtonColor: "#40d295",
-              showClass: { popup: "animated fadeInDown faster" },
-              hideClass: { popup: "animated fadeOutUp faster" },
+              text: '팀 등록이 완료되었습니다',
+              width: '300px',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#40d295',
+              showClass: { popup: 'animated fadeInDown faster' },
+              hideClass: { popup: 'animated fadeOutUp faster' },
             });
-            navigate("/teampage");
+            navigate('/teampage');
           }
         })
         .catch((error) => {
           console.log(error);
           if (error.response.data.code === -2) {
             Swal.fire({
-              text: "중복된 팀 이름입니다",
-              width: "300px",
-              confirmButtonText: "확인",
-              confirmButtonColor: "#40d295",
-              showClass: { popup: "animated fadeInDown faster" },
-              hideClass: { popup: "animated fadeOutUp faster" },
+              text: '중복된 팀 이름입니다',
+              width: '300px',
+              confirmButtonText: '확인',
+              confirmButtonColor: '#40d295',
+              showClass: { popup: 'animated fadeInDown faster' },
+              hideClass: { popup: 'animated fadeOutUp faster' },
             });
           }
         });
@@ -150,11 +161,11 @@ const TeamRegister = () => {
                 <div>
                   {preview.length > 0 ? (
                     <span>
-                      <img alt="cancel_icon" src="/cancel_icon.png" />
+                      <img alt="cancel_icon" src="/etc/cancel_icon.png" />
                     </span>
                   ) : (
                     <span>
-                      <img alt="plus_icon" src="/plus_icon_blue.png" />
+                      <img alt="plus_icon" src="/etc/plus_icon_blue.png" />
                     </span>
                   )}
                 </div>
@@ -184,7 +195,7 @@ const TeamRegister = () => {
           </ImageUpload>
           <InputBoxTR>
             <TeamLayoutTR>
-              <div>팀이름</div>
+              <div>이름</div>
               <InputTextTR
                 type="text"
                 maxLength="10"
@@ -193,12 +204,12 @@ const TeamRegister = () => {
               />
             </TeamLayoutTR>
             <SportsLayout>
-              <div>선호운동</div>
+              <div>종목</div>
               <SpotsLabel>
                 <FootballInput
                   type="radio"
                   value="풋살장"
-                  checked={sports === "풋살장"}
+                  checked={sports === '풋살장'}
                   onChange={(e) => {
                     setSports(e.target.value);
                   }}
@@ -209,7 +220,7 @@ const TeamRegister = () => {
                 <TennisInput
                   type="radio"
                   value="테니스장"
-                  checked={sports === "테니스장"}
+                  checked={sports === '테니스장'}
                   onChange={(e) => {
                     setSports(e.target.value);
                   }}
@@ -220,7 +231,7 @@ const TeamRegister = () => {
                 <BadmintonInput
                   type="radio"
                   value="배드민턴장"
-                  checked={sports === "배드민턴장"}
+                  checked={sports === '배드민턴장'}
                   onChange={(e) => {
                     setSports(e.target.value);
                   }}
@@ -239,8 +250,7 @@ const TeamRegister = () => {
               <PlusBtnTR
                 onClick={() => {
                   setCount(count + 1);
-                }}
-              >
+                }}>
                 +
               </PlusBtnTR>
             </TeamLayoutTR>

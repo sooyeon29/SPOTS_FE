@@ -81,6 +81,7 @@ export const SpotsBtns = styled.div`
     margin-bottom: 70px;
     font-size: 16px;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 
@@ -169,6 +170,7 @@ export const SaveBtn = styled.button`
   text-align: center;
   border: none;
   margin-top: 30px;
+  cursor: pointer;
 `;
 
 export const InputText = styled.input`
@@ -186,6 +188,7 @@ export const SearchBtn = styled.button`
   width: 40px;
   border-radius: 5px;
   color: #000;
+  cursor: pointer;
 `;
 
 export const Preview = styled.div`
@@ -235,6 +238,7 @@ export const FootballDiv = styled.div`
   justify-content: center;
   background-image: url("/mypage/football_gray.png");
   background-size: 60px;
+  cursor: pointer;
 
   ${FootballInput}:checked + && {
     background-image: url("/mypage/football_blue.png");
@@ -256,6 +260,7 @@ export const TennisDiv = styled.div`
   justify-content: center;
   background-image: url("/mypage/tennis_gray.png");
   background-size: 60px;
+  cursor: pointer;
 
   ${TennisInput}:checked + && {
     background-image: url("/mypage/tennis_blue.png");
@@ -272,6 +277,7 @@ export const BadmintonDiv = styled.div`
   justify-content: center;
   background-image: url("/mypage/badminton_gray.png");
   background-size: 60px;
+  cursor: pointer;
 
   ${BadmintonInput}:checked + && {
     background-image: url("/mypage/badminton_blue.png");
@@ -299,7 +305,7 @@ export const IndoorDiv = styled.div`
   font-size: 12px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-
+  cursor: pointer;
   ${IndoorInput}:checked + && {
     background-color: #1746c7;
     color: #fff;
@@ -316,7 +322,7 @@ export const OutdoorDiv = styled.div`
   font-size: 12px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-
+  cursor: pointer;
   ${OutdoorInput}:checked + && {
     background-color: #1746c7;
     color: #fff;
@@ -362,8 +368,8 @@ export const LentalDiv = styled.div`
   border-radius: 10px;
   padding: 3px;
   color: #000;
-
-  ${LentalInput}:checked + && {
+  cursor: pointer;
+  ㅊ ${LentalInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
     display: flex;
@@ -382,6 +388,7 @@ export const LockerDiv = styled.div`
   border-radius: 10px;
   padding: 3px;
   color: #000;
+  cursor: pointer;
 
   ${LockerInput}:checked + && {
     background-color: #1746c7;
@@ -401,6 +408,7 @@ export const ParkingDiv = styled.div`
   justify-content: center;
   border-radius: 10px;
   padding: 3px;
+  cursor: pointer;
 
   ${ParkingInput}:checked + && {
     background-color: #1746c7;
@@ -420,6 +428,7 @@ export const ShowerDiv = styled.div`
   justify-content: center;
   border-radius: 10px;
   padding: 3px;
+  cursor: pointer;
 
   ${ShowerInput}:checked + && {
     background-color: #1746c7;
@@ -439,6 +448,7 @@ export const DressDiv = styled.div`
   justify-content: center;
   border-radius: 10px;
   padding: 3px;
+  cursor: pointer;
 
   ${DressInput}:checked + && {
     background-color: #1746c7;
@@ -491,6 +501,7 @@ export const StWrapHostList = styled.div`
   justify-content: center;
   margin-top: 80px;
   margin-bottom: 100px;
+  cursor: pointer;
 `;
 
 export const SpotImage = styled.div`
