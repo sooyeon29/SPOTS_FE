@@ -2,11 +2,11 @@ import React, { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import Loading from "../components/Loading";
+
 const MainMaps = lazy(() => import("../pages/mainpage/Index"));
 const Reservation = lazy(() => import("../pages/reservation/Index"));
 const SpotsDetail = lazy(() => import("../pages/spotsDetail/Index"));
 const Chatting = lazy(() => import("../pages/chat/Chatting"));
-const AdminHome = lazy(() => import("../pages/chat/AdminHome"));
 const AdminChat = lazy(() => import("../pages/chat/AdminChat"));
 const ScrollToTop = lazy(() => import("../components/ScrollTop"));
 const Login = lazy(() => import("../pages/login/Index"));
@@ -57,7 +57,6 @@ function Router() {
           <Route path="/hostlist" element={<HostList />} />
           <Route path="/hostdetail/:id" element={<HostDetail />} />
           <Route path="/addlogin" element={<SocialSignUp />} />
-          <Route path="/adminhome" element={<AdminHome />} />
           <Route path="/adminchat" element={<AdminChat />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/chatting" element={<Chatting />} />
