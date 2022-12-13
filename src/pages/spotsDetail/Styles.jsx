@@ -49,23 +49,16 @@ export const MoreInfo = styled.div`
     margin-top: 10px;
     font-weight: bold;
   }
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    div {
-      img {
-        margin-right: 5px;
-      }
-    }
-  }
-  div:last-child {
-    img {
-      margin-right: 5px;
-      width: 15px;
-    }
-    justify-content: flex-start;
+`;
+export const Comforts = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+export const Comfort = styled.div`
+  width: 50%;
+  img {
+    margin: 2px 7px 0px 0px;
   }
 `;
 export const Calen = styled.div`
@@ -454,4 +447,4 @@ export const UpperLine = styled.div`
     margin-left: 5px;
     margin-top: 2px;
   }
-`
+`;

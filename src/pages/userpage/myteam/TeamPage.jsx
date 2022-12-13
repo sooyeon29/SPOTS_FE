@@ -35,7 +35,6 @@ const TeamPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-
         <TeamBox>
           {team?.map((team) => {
             if (team.sports === "풋살장") {
@@ -69,7 +68,7 @@ const TeamPage = () => {
                     navigate(`/teamdetail/${team.teamId}`);
                   }}
                 >
-                  {team.image === null ? (
+                  {team.image === null || team.image === "" ? (
                     <img alt="spots" src="/myprofile_logo.png" />
                   ) : (
                     <img alt="팀프로필" src={team.image} />

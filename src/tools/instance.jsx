@@ -36,7 +36,6 @@ instance.interceptors.response.use(
             Authorization: `${data.myNewToken}`,
           })
         );
-        window.location.reload();
         return await instance(prevRequest);
       } catch (err) {
         console.log(err);

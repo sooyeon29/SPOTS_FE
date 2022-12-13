@@ -49,6 +49,8 @@ import {
   WaitingMatch,
   WaitingMatch2,
   WrapAll,
+  Comfort,
+  Comforts,
 } from "./Styles";
 import Swal from "sweetalert2";
 const SpotsDetail = () => {
@@ -255,13 +257,13 @@ const SpotsDetail = () => {
                   <Title>{spot.spotName}</Title>
                   <div>
                     {spot.sports === "풋살장" ? (
-                      <img src="/reservation/newFutsal.png" />
+                      <img alt="" src="/reservation/newFutsal.png" />
                     ) : null}
                     {spot.sports === "테니스장" ? (
-                      <img src="/reservation/newTennis.png" />
+                      <img alt="" src="/reservation/newTennis.png" />
                     ) : null}
                     {spot.sports === "배드민턴장" ? (
-                      <img src="/reservation/newBadminton.png" />
+                      <img alt="" src="/reservation/newBadminton.png" />
                     ) : null}
                   </div>
                 </UpperLine>
@@ -269,29 +271,35 @@ const SpotsDetail = () => {
                 <div>{spot.desc}</div>
                 <MoreInfo>
                   <li>시설 현황</li>
-                  <div>
-                    <div>
-                      {spot.spotKind === "실내" && (
-                        <img alt="" src="/spotsdetail/house.png" width="16px" />
-                      )}
-                      {spot.spotKind === "실외" && (
-                        <img
-                          alt=""
-                          src="/spotsdetail/outside.png"
-                          width="16px"
-                        />
-                      )}
-                      {spot.spotKind}
-                    </div>
-                    <div>
+                  <Comforts>
+                    <Comfort>
+                      <div>
+                        {spot.spotKind === "실내" && (
+                          <img
+                            alt=""
+                            src="/spotsdetail/house.png"
+                            width="20px"
+                          />
+                        )}
+                        {spot.spotKind === "실외" && (
+                          <img
+                            alt=""
+                            src="/spotsdetail/outside.png"
+                            width="16px"
+                          />
+                        )}
+                        {spot.spotKind}
+                      </div>
+                      <div>
+                        <img alt="" src="/spotsdetail/point.png" width="20px" />
+                        {Number(spot.price).toLocaleString("ko-KR")} 포인트
+                      </div>
+                    </Comfort>
+                    <Comfort>
                       <img alt="" src="/spotsdetail/check.png" width="20px" />
                       {spot.comforts}
-                    </div>
-                  </div>
-                  <div>
-                    <img alt="" src="/spotsdetail/point.png" width="20px" />
-                    {Number(spot.price).toLocaleString("ko-KR")} 포인트
-                  </div>
+                    </Comfort>
+                  </Comforts>
                 </MoreInfo>
               </PlaceInfo>
               {toggle && (
