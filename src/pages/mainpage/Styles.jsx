@@ -39,7 +39,7 @@ export const BannerSlider = styled(Slider)`
 
 export const New = styled.div`
   height: 210px;
-  margin-left: 43px;
+  margin-left: 20px;
 `;
 
 export const Image = styled.img`
