@@ -51,7 +51,7 @@ const Chatting = () => {
 
   useEffect(() => {
     boxRef.current.addEventListener("scroll", scroll);
-  });
+  }, []);
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {
@@ -88,7 +88,6 @@ const Chatting = () => {
     console.log("exit");
     socket.disconnect();
   };
-
   return (
     <Layout>
       <ChattingStWrap>
