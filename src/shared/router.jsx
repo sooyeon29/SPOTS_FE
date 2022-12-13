@@ -2,7 +2,6 @@ import React, { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import Loading from "../components/Loading";
-
 const MainMaps = lazy(() => import("../pages/mainpage/Index"));
 const Reservation = lazy(() => import("../pages/reservation/Index"));
 const SpotsDetail = lazy(() => import("../pages/spotsDetail/Index"));
