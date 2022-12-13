@@ -74,6 +74,18 @@ const SocialSignUp = () => {
   console.log(isMember);
 
   const onSubmit = async (data) => {
+    if (!agree) {
+      Swal.fire({
+        text: "회원가입을 위해서는 개인정보 동의가 필요합니다",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+    }
+    
     SignUpAPI.socialSignUp({ ...data, loginId: isMember, profileImg: myImg })
       .then((res) => {
         console.log(res);
@@ -203,7 +215,7 @@ const SocialSignUp = () => {
         });
     }
   };
-  
+
   const checkVCode = () => {
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
@@ -252,7 +264,7 @@ const SocialSignUp = () => {
                 </div>
                 <br />
                 <div>
-                  SPOTS 방문을 환영합니다.
+                  SPOTS 가입을 환영합니다!
                   <br />
                   원활한 서비스 이용을 위해 추가 정보를 기입해주세요.
                 </div>
@@ -349,17 +361,6 @@ const SocialSignUp = () => {
                       if (!nnConfirm) {
                         Swal.fire({
                           text: "닉네임을 중복확인을 해주세요",
-                          width: "300px",
-                          confirmButtonText: "확인",
-                          confirmButtonColor: "#40d295",
-                          showClass: { popup: "animated fadeInDown faster" },
-                          hideClass: { popup: "animated fadeOutUp faster" },
-                        });
-                        return;
-                      }
-                      if (!agree) {
-                        Swal.fire({
-                          text: "회원가입을 위해서는 개인정보 동의가 필요합니다",
                           width: "300px",
                           confirmButtonText: "확인",
                           confirmButtonColor: "#40d295",
