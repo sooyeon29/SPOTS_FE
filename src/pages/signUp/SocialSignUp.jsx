@@ -42,6 +42,9 @@ import {
   HealthDiv,
   RecommendTitle,
   Agreement,
+  AgreementWrap,
+  AgreementBtn,
+  AgreementTerm,
 } from "./Styles";
 import { LoginBtn } from "../login/Styles";
 
@@ -54,6 +57,7 @@ const SocialSignUp = () => {
   const [addSport, setAddSport] = useToggle();
   const [nnConfirm, setNnConfirm] = useToggle();
   const [agree, setAgree, agreeHandler] = useToggle();
+  const [agreementTerm, setAgreementTerm] = useState(false);
   const [code, setCode] = useState("");
   console.log(agree);
   const {
@@ -152,7 +156,7 @@ const SocialSignUp = () => {
     const phone = getValues("phone");
     if (phone.length < 10) {
       Swal.fire({
-        text: "10~11자리의 번호를 입력해주세요",
+        text: "10-11자리의 번호를 입력해주세요",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -199,6 +203,7 @@ const SocialSignUp = () => {
         });
     }
   };
+  
   const checkVCode = () => {
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
@@ -229,6 +234,11 @@ const SocialSignUp = () => {
         });
       });
   };
+
+  const agreementTermHandler = () => {
+    setAgreementTerm(!agreementTerm);
+  };
+
   return (
     <>
       <Layout>
@@ -244,7 +254,7 @@ const SocialSignUp = () => {
                 <div>
                   SPOTS 방문을 환영합니다.
                   <br />
-                  서비스 이용을 위해 추가 가입이 필요합니다.
+                  원활한 서비스 이용을 위해 추가 정보를 기입해주세요.
                 </div>
                 <NextBtn
                   onClick={() => {
@@ -270,18 +280,6 @@ const SocialSignUp = () => {
                   <img alt="" src="/spotslogo.png" />
                 </Logo>
                 <ContentWrap>
-                  <Agreement>
-                    <div>개인정보 수집·이용에 동의합니다</div>
-                    <input
-                      type="checkbox"
-                      name="agreement"
-                      value={agree}
-                      onChange={agreeHandler}
-                      required
-                      onInvalid="alert('회원가입을 위해서는 개인정보 동의를 해주세요')"
-                      style={{ width: "10px" }}
-                    />
-                  </Agreement>
                   <GrayBorder>
                     <input
                       type="text"
@@ -429,7 +427,7 @@ const SocialSignUp = () => {
                     <p>휴대폰 번호를 입력해주세요</p>
                   )}
                   {errors.phone && errors.phone.type === "pattern" && (
-                    <p>10~11자리의 번호를 입력해주세요</p>
+                    <p>10-11자리의 번호를 입력해주세요</p>
                   )}
                   {isCode && (
                     <GrayBorder>
@@ -559,6 +557,48 @@ const SocialSignUp = () => {
                       autoComplete="off"
                     />
                   </GrayBorder>
+                  <Agreement>
+                    <AgreementWrap>
+                      <input
+                        type="checkbox"
+                        name="agreement"
+                        value={agree}
+                        onChange={agreeHandler}
+                        // required
+                        onInvalid="alert('회원가입을 위해서는 개인정보 동의를 해주세요')"
+                        style={{ width: '10px' }}
+                      />
+                      <div>개인정보 수집·이용 동의</div>
+                      <AgreementBtn onClick={agreementTermHandler}>
+                        상세보기
+                      </AgreementBtn>
+                    </AgreementWrap>
+                  </Agreement>
+                  {agreementTerm ? (
+                    <AgreementTerm>
+                      SPOTS는 「개인정보보호법」에 의거하여 아래와 같은 내용으로
+                      개인정보를 수집하고 있습니다. 이용자가 제공한 모든 정보는
+                      다음의 목적을 위해 활용하며, 하기 목적 이외의 용도로는
+                      사용되지 않습니다.
+                      <br />
+                      <br />
+                      <b>① 개인정보 수집 항목 및 수집·이용 목적</b>
+                      <br />
+                      가) 수집 항목
+                      <br/>- 전화번호(휴대전화) 및 이메일
+                      <br />
+                      나) 수집 및 이용 목적
+                      <br/>- 본인 확인 용도(휴대전화) 및 예약
+                      정보 전달(이메일)
+                      <br />
+                      <b>② 개인정보 보유 및 이용기간</b>
+                      <br />- 수집·이용 동의일로부터 개인정보의 수집·이용목적을
+                      달성할 때까지
+                      <br /><b> ③ 동의거부관리 </b><br/>
+                      - 귀하께서는 본 안내에 따른 개인정보
+                      수집, 이용에 대하여 동의를 거부하실 권리가 있습니다.
+                    </AgreementTerm>
+                  ) : null}
                   <NextBtn type="submit">회원가입</NextBtn>
                 </SportsBlock>
               </ForthPage>

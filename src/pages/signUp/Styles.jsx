@@ -64,12 +64,26 @@ export const ContentWrap = styled.div`
 `;
 export const Agreement = styled.div`
   font-size: 12px;
-  display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 20px;
+
+  input {
+    margin: 0;
+    margin-right: 5px;
+  }
 `;
+
+export const AgreementWrap = styled.div`
+  display: flex;
+`
+
+export const AgreementBtn = styled.div`
+  margin-left: 3px;
+  cursor: pointer;
+  color: gray;
+
+`
 
 export const FirstPage = styled.div`
   div {
@@ -102,6 +116,15 @@ export const NextBtn = styled.button`
   line-height: 24px;
 `;
 
+export const AgreementTerm = styled.div`
+font-size: 12px;
+width: 80%;
+background-color: #f4f4f4;
+border-radius: 10px;
+padding: 10px;
+margin-top: 10px;
+  
+`
 export const SecondPage = styled.div`
   input {
     border: none;
