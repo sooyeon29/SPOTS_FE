@@ -35,7 +35,6 @@ const TeamPage = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-
         <TeamBox>
           {team?.map((team) => {
             if (team.sports === "풋살장") {
