@@ -104,9 +104,9 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
               <IoIosArrowForward className="arrow" />
             </Li>
             {user.nickname === "spotsadmin" ? (
-              <Li onClick={() => navigate("/adminhome ")}>
+              <Li onClick={() => navigate("/adminchat")}>
                 <div>
-                  <img alt="관리자 채팅방" src="/myhost_icon.png" />
+                  <img alt="관리자 채팅방" src="/userpage/join_icon.png" />
                   <p>관리자 채팅방</p>
                 </div>
                 <IoIosArrowForward className="arrow" />

@@ -17,22 +17,8 @@ import {
   StForm,
   StInput,
 } from "./Styles";
-// import { io } from "socket.io-client";
-
-// console.log("1");
-// let socket;
 
 const Chatting = () => {
-  // console.log("Chatting");
-  // socket = io.connect(process.env.REACT_APP_SOCKET, {
-  //   path: "/socket.io",
-  //   cors: {
-  //     origin: "http://localhost:3000",
-  //   },
-  //   transports: ["websocket", "polling"],
-  // });
-  // console.log("2");
-
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
   const [roomName, setRoomName] = useState();
@@ -125,9 +111,10 @@ const Chatting = () => {
               style={{ width: "100px", height: "100px" }}
             />
             <div>구장 예약, 경기 매칭 No.1 플랫폼 </div>
-            <div>상담시간 10:00-11:00</div>
+            <div>
+              <span>● </span>보통 수십 분 내 답변
+            </div>
           </ChatDesc>
-          {/* <button onClick={onChat}>1:1문의하기</button> */}
           {chatting?.map((chat, index) => (
             <div key={index}>
               {chat.nickname === "admin" ? (
