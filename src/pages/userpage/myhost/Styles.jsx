@@ -369,7 +369,7 @@ export const LentalDiv = styled.div`
   padding: 3px;
   color: #000;
   cursor: pointer;
-  ㅊ ${LentalInput}:checked + && {
+  ${LentalInput}:checked + && {
     background-color: #1746c7;
     width: 60px;
     display: flex;
