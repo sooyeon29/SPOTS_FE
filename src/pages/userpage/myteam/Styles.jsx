@@ -379,7 +379,7 @@ export const FootballDiv = styled.div`
   justify-content: center;
   background-image: url("/mypage/football_gray.png");
   background-size: 55px;
-
+  cursor: pointer;
   ${FootballInput}:checked + && {
     background-image: url("/mypage/football_blue.png");
     background-size: 55px;
@@ -400,6 +400,7 @@ export const TennisDiv = styled.div`
   justify-content: center;
   background-image: url("/mypage/tennis_gray.png");
   background-size: 55px;
+  cursor: pointer;
 
   ${TennisInput}:checked + && {
     background-image: url("/mypage/tennis_blue.png");
@@ -416,6 +417,7 @@ export const BadmintonDiv = styled.div`
   justify-content: center;
   background-image: url("/mypage/badminton_gray.png");
   background-size: 55px;
+  cursor: pointer;
 
   ${BadmintonInput}:checked + && {
     background-image: url("/mypage/badminton_blue.png");
