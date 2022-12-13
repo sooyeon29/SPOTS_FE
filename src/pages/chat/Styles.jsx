@@ -204,7 +204,7 @@ export const StForm = styled.form`
     cursor: pointer;
     margin: 0 10px 0 10px;
   }
-  bottom: -30px;
+  //bottom: -30px;
 `;
 
 export const StInput = styled.input`
@@ -267,5 +267,8 @@ export const ChatDesc = styled.div`
   color: #cecece;
   div {
     margin-top: 10px;
+  }
+  span {
+    color: #ff00b3;
   }
 `;
