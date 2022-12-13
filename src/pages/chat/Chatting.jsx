@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { BsXLg } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
-//import socket from "../../tools/socket";
+import socket from "../../tools/socket";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
 import _ from "lodash";
@@ -17,21 +17,21 @@ import {
   StForm,
   StInput,
 } from "./Styles";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 
-console.log("1");
-let socket;
+// console.log("1");
+// let socket;
 
 const Chatting = () => {
-  console.log("Chatting");
-  socket = io.connect(process.env.REACT_APP_SOCKET, {
-    path: "/socket.io",
-    cors: {
-      origin: "http://localhost:3000",
-    },
-    transports: ["websocket", "polling"],
-  });
-  console.log("2");
+  // console.log("Chatting");
+  // socket = io.connect(process.env.REACT_APP_SOCKET, {
+  //   path: "/socket.io",
+  //   cors: {
+  //     origin: "http://localhost:3000",
+  //   },
+  //   transports: ["websocket", "polling"],
+  // });
+  // console.log("2");
 
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
@@ -57,6 +57,7 @@ const Chatting = () => {
   const scroll = useCallback(scrollEvent, []);
 
   useEffect(() => {
+    console.log(socket);
     if (scrollState) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
