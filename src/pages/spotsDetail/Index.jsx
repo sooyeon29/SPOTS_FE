@@ -108,7 +108,7 @@ const SpotsDetail = () => {
       const second = "시간: " + mainTime + " / 인원: " + mainMember + "명";
       Toast.fire({
         title: `${first} <br/> ${second}`,
-        width: "350px",
+        width: "360px",
         icon: "info",
       });
     }

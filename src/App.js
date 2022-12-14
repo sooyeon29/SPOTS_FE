@@ -1,3 +1,4 @@
+import BackGround from "./components/Background";
 import Router from "./shared/router";
 
 const App = ({ props }) => {
@@ -25,6 +26,7 @@ const App = ({ props }) => {
 
   return (
     <>
+      <BackGround />
       <Router />
     </>
   );
