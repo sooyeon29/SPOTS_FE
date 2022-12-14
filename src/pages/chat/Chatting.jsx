@@ -62,7 +62,7 @@ const Chatting = () => {
       ]);
     });
     socket.on("left_notice", (message) => {
-      setChatting((chat) => [...chat, message]);
+      setChatting((chat) => [...chat, { message: message }]);
     });
   }, []);
 
