@@ -62,11 +62,6 @@ const StLogo = styled.div`
   cursor: pointer;
 `;
 
-const StSearch = styled.div`
-  margin: 3px 15px 0 0;
-  cursor: pointer;
-`;
-
 const StButtons = styled.ul`
   display: flex;
 `;
