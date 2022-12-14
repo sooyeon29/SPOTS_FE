@@ -125,33 +125,30 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 
 export default SideBar;
 
-const SideMenu = styled.div`
-  position: absolute;
-  background-color: #fff;
-  z-index: 999999999;
-`;
+const SideMenu = styled.div``;
 
 const Section = styled.div`
-  background-color: #fff;
+  background-color: white;
   color: #545454;
   width: 280px;
   padding-top: 30px;
   padding-left: 10px;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
-  z-index: 99999999;
+  margin-left: -15.5%;
+  z-index: 9999;
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
-
+  @media screen and (max-width: 420px) {
+    right: 0;
+  }
   ${({ isOpen }) =>
     isOpen &&
     css`
       opacity: 1;
       visibility: visible;
-      right: 0;
     `};
 `;
 
