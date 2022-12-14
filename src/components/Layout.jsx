@@ -6,21 +6,23 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      <BackGround>
-        <Wrap>{children}</Wrap>
-      </BackGround>
+      {/* <BackGround alt="" src="/background.png" /> */}
+      <Wrap>{children}</Wrap>
     </>
   );
 };
 
 export default Layout;
 
-const BackGround = styled.div`
-  background-image: url("/background.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  overflow: hidden;
-`;
+// const BackGround = styled.img`
+//   width: 100%;
+//   height: 100%;
+//   z-index: -999;
+//   /* background-image: url("/background.png"); */
+//   /* background-size: contain; */
+//   /* background-repeat: no-repeat; */
+//   /* overflow: hidden; */
+// `;
 const Wrap = styled.div`
   @media screen and (max-width: 420px) {
     margin: auto;
