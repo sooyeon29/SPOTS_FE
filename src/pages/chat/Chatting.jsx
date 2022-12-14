@@ -51,7 +51,7 @@ const Chatting = () => {
 
   useEffect(() => {
     boxRef.current.addEventListener("scroll", scroll);
-  }, []);
+  });
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {
