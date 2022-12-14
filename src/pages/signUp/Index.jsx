@@ -1,10 +1,14 @@
-import React, { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import Header from "../../components/Header";
-import Layout from "../../components/Layout";
-import TapBar from "../../components/TapBar";
-import { IoIosLock } from "react-icons/io";
-import { LoginAPI, SignUpAPI } from "../../tools/instance";
+import React, { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import TapBar from '../../components/TapBar';
+import Swal from 'sweetalert2';
+import useToggle from '../../hooks/useToggle';
+import { useNavigate } from 'react-router-dom';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { IoIosLock } from 'react-icons/io';
+import { LoginAPI, SignUpAPI } from '../../tools/instance';
 import {
   StWrap,
   PageTitle,
@@ -47,11 +51,8 @@ import {
   AgreementTerm,
   AgreementWrap,
   AgreementBtn,
-} from "./Styles";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { BsFillPersonFill } from "react-icons/bs";
-import useToggle from "../../hooks/useToggle";
+} from './Styles';
+
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
@@ -422,7 +423,6 @@ const SignUp = () => {
       })
       .catch((err) => {
         console.log(err);
-        // if(err.response.data === 401)
         Swal.fire({
           text: "인증 번호를 다시 확인해주세요",
           width: "300px",
@@ -482,7 +482,6 @@ const SignUp = () => {
   const agreementTermHandler = () => {
     setAgreementTerm(!agreementTerm);
   };
-  // console.log(agreementTerm);
 
   return (
     <>
@@ -495,7 +494,6 @@ const SignUp = () => {
                 <Logo>
                   <img alt="" src="/spotslogo.png" />
                 </Logo>
-                {/* <PageTitle>회원가입</PageTitle> */}
                 <ContentWrap>
                   <GrayBorder>
                     <BsFillPersonFill size={24} color={"#949494"} />
@@ -567,7 +565,6 @@ const SignUp = () => {
                 <Logo>
                   <img alt="" src="/spotslogo.png" />
                 </Logo>
-                {/* <PageTitle>휴대폰 인증</PageTitle> */}
                 <ContentWrap>
                   <GrayBorder>
                     <input
@@ -596,12 +593,10 @@ const SignUp = () => {
                     ) : (
                       <button
                         style={{
-                          // background: 'white',
-                          border: "none",
-                          // height: '39.5px',
-                          color: "#ff00b3",
-                          fontWeight: "600",
-                          cursor: "pointer",
+                          border: 'none',
+                          color: '#ff00b3',
+                          fontWeight: '600',
+                          cursor: 'pointer',
                         }}
                         type="button"
                         onClick={sendPhoneForCode}
@@ -627,12 +622,10 @@ const SignUp = () => {
                     />
                     <button
                       style={{
-                        // background: 'white',
-                        border: "none",
-                        // height: '39.5px',
-                        color: "#ff00b3",
-                        fontWeight: "600",
-                        cursor: "pointer",
+                        border: 'none',
+                        color: '#ff00b3',
+                        fontWeight: '600',
+                        cursor: 'pointer',
                       }}
                       type="button"
                       onClick={checkVCode}
@@ -650,7 +643,6 @@ const SignUp = () => {
                 <Logo>
                   <img alt="" src="/spotslogo.png" />
                 </Logo>
-                {/* <PageTitle>추가 정보 입력</PageTitle> */}
                 <ContentWrap>
                   <GrayBorder>
                     <input

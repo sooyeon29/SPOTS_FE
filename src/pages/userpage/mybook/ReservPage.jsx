@@ -87,7 +87,7 @@ const ReservPage = () => {
           <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.length === 0 && (
             <div>
-              <NoBookNow alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/matching/nobooknow.png" />
             </div>
           )}
           {spotReserve?.map((matchCom) => {
@@ -153,7 +153,7 @@ const ReservPage = () => {
           <AboutMatch>구장 예약 / 팀 매칭 대기</AboutMatch>
           {matchWaiting?.length === 0 && (
             <div>
-              <NoBookNow alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/matching/nobooknow.png" />
             </div>
           )}
           {matchWaiting?.map((matchWait) => {
@@ -228,7 +228,7 @@ const ReservPage = () => {
                     </VS>
 
                     <div>
-                      <img alt="" src="/waitgroup.png" />
+                      <img alt="" src="/matching/waitgroup.png" />
                     </div>
                   </WaitTeam>
                 </WaitedMatch>
@@ -251,7 +251,7 @@ const ReservPage = () => {
           <AboutMatch>구장 예약 / 팀 매칭 완료</AboutMatch>
           {myDoneMatches?.length === 0 && (
             <div>
-              <NoBookNow alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/matching/nobooknow.png" />
             </div>
           )}
           {myDoneMatches?.map((matchCom) => {

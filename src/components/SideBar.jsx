@@ -173,10 +173,12 @@ const Profile = styled.div`
     margin-right: 10px;
   }
 `;
+
 const Ul = styled.ul`
   padding-left: 10px;
   background-color: #fff;
 `;
+
 const Li = styled.li`
   margin: 13px 0;
   padding-bottom: 13px;

@@ -11,19 +11,19 @@ const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: 'SpoqaRegular';
   font-style: normal;
-  src: url(${SpoqaHanSansNeoRegular}),  format('truetype');
+  src: url(${SpoqaHanSansNeoRegular}), format('truetype');
 }
 
 @font-face {
   font-family: 'SpoqaBold';
   font-style: normal;
-  src: url(${SpoqaHanSansNeoBold}),  format('truetype');
+  src: url(${SpoqaHanSansNeoBold}), format('truetype');
 }
 
 @font-face {
   font-family: 'SpoqaThin';
   font-style: normal;
-  src: url(${SpoqaHanSansNeoThin}),  format('truetype');
+  src: url(${SpoqaHanSansNeoThin}), format('truetype');
 }
 
 

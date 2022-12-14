@@ -28,7 +28,6 @@ export const __getMyPrivateSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.getMyPrivateSpot(payload);
-      // console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -41,7 +40,6 @@ export const __deletePrivateSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PrivateApi.deletePrivateSpot(payload);
-      console.log("삭제할때 데이타!!", data);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -55,7 +53,6 @@ export const __editPrivateSpot = createAsyncThunk(
     console.log(payload);
     try {
       const { data } = await PrivateApi.editPrivateSpot(payload);
-      console.log("수정할때 데이타!!", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -68,7 +65,6 @@ export const __getPublicSpot = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await PublicApi.getPublicSpot();
-      // console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -110,7 +106,6 @@ const privateSlice = createSlice({
     },
     [__getPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      //   console.log(action.payload)
       state.privateSpot = action.payload;
     },
     [__getPrivateSpot.rejected]: (state, action) => {
@@ -123,7 +118,6 @@ const privateSlice = createSlice({
     },
     [__getMyPrivateSpot.fulfilled]: (state, action) => {
       state.isLoading = false;
-      //   console.log(action.payload)
       state.myPrivateSpot = action.payload;
     },
     [__getMyPrivateSpot.rejected]: (state, action) => {

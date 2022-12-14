@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import FlexibleHeader from "../../components/FlexibleHeader";
 import Layout from "../../components/Layout";
+import TapBar from "../../components/TapBar";
 import SpotList from "./HostSpotList";
+import Loading from "../../components/Loading";
+import SpotsMap from "../reservation/SpotsMap";
 import { FaSearchLocation } from "react-icons/fa";
 import {
   StWrap,
@@ -13,14 +17,10 @@ import {
   ListBar,
   Lists,
 } from "./Styles";
-import SpotsMap from "../reservation/SpotsMap";
 import {
   __getAllSpot,
   __getSearchedSpot,
 } from "../../redux/modules/spotsSlice";
-import TapBar from "../../components/TapBar";
-import FlexibleHeader from "../../components/FlexibleHeader";
-import Loading from "../../components/Loading";
 
 const Reservation = () => {
   const [keywords, setKeywords] = useState("");

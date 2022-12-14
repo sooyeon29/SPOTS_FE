@@ -17,7 +17,6 @@ import {
   Info2,
   InfoDiv,
   LastTime,
-  MainBanner,
   MainSearch,
   New,
   Section,
@@ -30,7 +29,6 @@ import {
   WaitingMatchMain2,
 } from "./Styles";
 import Tutorial from "../../components/Tutorial";
-import { margin } from "polished";
 import Banner from "./Banner";
 
 const MainMaps = () => {
@@ -39,9 +37,7 @@ const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
   const [newMatch, setNewMatch] = useState();
   const navigate = useNavigate();
-  //chatbtn
   const [chatOpen, chatRef, chatHandler] = useDetectClose(false);
-  //const chatOpenRef = useRef(null);
 
   const settings = {
     dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.

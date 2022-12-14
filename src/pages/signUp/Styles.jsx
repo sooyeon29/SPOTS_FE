@@ -85,11 +85,8 @@ export const AgreementBtn = styled.div`
 `;
 
 export const FirstPage = styled.div`
-  div {
-  }
-  input {
-  }
 `;
+
 export const IdConfirmBtn = styled.button`
   width: auto;
   cursor: pointer;
@@ -391,8 +388,6 @@ export const SportsBlock = styled.div`
 
 export const RecommendId = styled.input`
   border: none;
-  /* width: 220px; */
-  /* padding: 12px 15px; */
   margin-bottom: 10px;
   margin-top: 10px;
   background-color: transparent;
@@ -414,7 +409,6 @@ export const GrayBorder = styled.div`
   background-color: #f4f4f4;
   border: none;
   border-radius: 10px;
-  /* padding-top: 7px; */
   padding: 3px 0px 3px 18px;
   width: 310px;
   margin: auto;
