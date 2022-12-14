@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Banner = () => {
   const settings = {
-    dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
+    dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지
     infinite: true, // loop를 만들지(마지막 이미지-처음 이미지-중간 이미지들-마지막 이미지)
     speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     autoplaySpeed: 5000,

@@ -108,7 +108,7 @@ const SocialSignUp = () => {
         }
         if (error.response.status === 400) {
           Swal.fire({
-            text: "선택사항을 모두 골라주세요",
+            text: "선택사항을 모두 체크해주세요",
             width: "300px",
             confirmButtonText: "확인",
             confirmButtonColor: "#40d295",

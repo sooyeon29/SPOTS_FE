@@ -76,7 +76,6 @@ const Welcome = () => {
               googleHandler();
               loginHandler();
             }
-            // navigate('/login')
           }
         >
           SPOTS 시작하기
@@ -89,19 +88,20 @@ const Welcome = () => {
 
 export default Welcome;
 
-export const Wrap = styled.div`
+const Wrap = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
 `;
-export const Img = styled.img`
+
+const Img = styled.img`
   margin-top: 62px;
   height: 100%;
   width: 100%;
   position: relative;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   margin: auto;
   position: absolute;
   top: 70%;

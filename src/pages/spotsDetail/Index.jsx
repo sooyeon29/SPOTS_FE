@@ -668,7 +668,7 @@ const SpotsDetail = () => {
                                     {waitMatch.matchId.substring(0, 13)}
                                   </span>
                                   <span>Team A</span>
-                                  <img alt="" src="/graygroup.png" />
+                                  <img alt="" src="/spotsdetail/graygroup.png" />
                                   <span>
                                     {waitMatch.teamName.substring(0, 6)}
                                   </span>
@@ -691,7 +691,7 @@ const SpotsDetail = () => {
                                     {waitMatch.matchId.substring(0, 13)}
                                   </span>
                                   <span>Team A</span>
-                                  <img alt="" src="/whitegroup.png" />
+                                  <img alt="" src="/spotsdetail/whitegroup.png" />
                                   <span>{waitMatch.teamName}</span>
 
                                   {spot.sports !== "풋살장" && (
