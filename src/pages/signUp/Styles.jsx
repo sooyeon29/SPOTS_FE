@@ -76,14 +76,13 @@ export const Agreement = styled.div`
 
 export const AgreementWrap = styled.div`
   display: flex;
-`
+`;
 
 export const AgreementBtn = styled.div`
   margin-left: 3px;
   cursor: pointer;
   color: gray;
-
-`
+`;
 
 export const FirstPage = styled.div`
 `;
@@ -111,17 +110,17 @@ export const NextBtn = styled.button`
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
+  cursor: pointer;
 `;
 
 export const AgreementTerm = styled.div`
-font-size: 12px;
-width: 80%;
-background-color: #f4f4f4;
-border-radius: 10px;
-padding: 10px;
-margin-top: 10px;
-  
-`
+  font-size: 12px;
+  width: 80%;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+`;
 export const SecondPage = styled.div`
   input {
     border: none;

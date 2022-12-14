@@ -13,7 +13,6 @@ const Kakao = () => {
   useEffect(() => {
     LoginAPI.kakaoLogin(KAKAO_CODE)
       .then((res) => {
-        console.log(res);
         if (res.data.code === -1) {
           localStorage.setItem("loginId", JSON.stringify(res.data.loginId));
           localStorage.setItem("profile", res.data.profileImg);

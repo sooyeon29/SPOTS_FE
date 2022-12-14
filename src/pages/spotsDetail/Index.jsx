@@ -91,13 +91,11 @@ const SpotsDetail = () => {
   });
   const location = useLocation();
   const newMatchTeam = location.state?.state;
-  console.log(newMatchTeam);
+
   useEffect(() => {
     if (newMatchTeam !== undefined) {
       const mainTime = newMatchTeam?.matchId.substring(0, 13);
-      // console.log("+++++++++++++++++++++", mainTime);
       const mainDate = newMatchTeam?.date;
-      // console.log(mainDate);
       const mainMember = newMatchTeam?.member;
       const Toast = Swal.mixin({
         toast: true,
@@ -122,7 +120,6 @@ const SpotsDetail = () => {
   }, []);
   //=> a팀을 선택한 경우
   const teamPick = (time, price) => {
-    console.log(myTime[time], "*********************");
     setPickedTime(myTime[time]);
     setPayAPrice(price);
     setToggleTwo(false);
@@ -133,7 +130,6 @@ const SpotsDetail = () => {
   };
   //=> b팀을 선택한 경우
   const teamPick2 = (time, price) => {
-    console.log(myTime[time], "*********************");
     setPickedTime2(myTime[time]);
     setPayAPrice(price);
   };
@@ -143,7 +139,6 @@ const SpotsDetail = () => {
   };
   // 팀이 없더라도 오류가 나지 않도록 옵셔널 체이닝을 사용한다.
   const myTeams = useSelector((state) => state?.user.team);
-  // console.log("내팀들", myTeams);
 
   const [count, setCount] = useState(0); // 5. 경기에 참가할 인원수를 작성해준다.
 
@@ -153,7 +148,6 @@ const SpotsDetail = () => {
   let myPoint = user.point;
   // 선택한 날짜를 알맞은 모양으로 보내기 위해 가공한다
   const bookDate = startDate?.toLocaleDateString();
-  // console.log(pickedTime);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // 매칭없이 예약하기(구장만예약)
   const bookWithNoMatch = (name) => {
@@ -187,7 +181,6 @@ const SpotsDetail = () => {
   };
 
   const pickDateHandler = (date, name) => {
-    console.log(date, typeof date);
     const today = new Date();
     if (date.toLocaleDateString() === today.toLocaleDateString()) {
       Swal.fire({
@@ -212,14 +205,11 @@ const SpotsDetail = () => {
 
   // 해당구장 해당일에 신청된 매치 불러오기
   const allMatchToday = useSelector((state) => state?.matcher.allmatcher);
-  // console.log("allMatch", allMatchToday);
   // 매칭이 완료되지 않은 리스트 (구장예약건들도 들어있음)
   const noneMatchToday = useSelector((state) => state?.matcher.newmatcher);
-  // console.log("매칭전배열(구장&매칭전 모두들어있음)", noneMatchToday);
   const waitMatchToday = noneMatchToday.filter(
     (match) => match.matchId?.substring(13, 20) === "ismatch"
   );
-  // console.log("매칭대기팀들:", waitMatchToday);
 
   // 구장 예약이 된경우
   const reservedSpotTimeSlots = allMatchToday
@@ -246,7 +236,6 @@ const SpotsDetail = () => {
         return newObj;
       }
     }, {});
-  // console.log("------", allMatchingSlots);
   for (let [key, value] of Object.entries(allMatchingSlots)) {
     if (value === 1) {
       inCompleteTimeSlots.push(key);
@@ -254,10 +243,6 @@ const SpotsDetail = () => {
       completeTimeSlots.push(key);
     }
   }
-  console.log("done", completeTimeSlots);
-  console.log("not done", inCompleteTimeSlots);
-  console.log("all", reservedSpotTimeSlots);
-  console.log("로그인안했을때포인트", myPoint);
 
   const scrollPoint = useRef();
   const scrollDate = useRef();
