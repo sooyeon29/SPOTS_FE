@@ -37,7 +37,6 @@ export const __getMyteamList = createAsyncThunk(
 export const __getMyteamDetail = createAsyncThunk(
   "getMyteamDetail",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await UserpageAPI.getMyteamDetail(payload);
       return thunkAPI.fulfillWithValue(data);
@@ -61,7 +60,6 @@ const userSlice = createSlice({
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;
-      console.log(state.error);
     },
     [__getMyteamList.pending]: (state, action) => {
       state.isLoading = true;

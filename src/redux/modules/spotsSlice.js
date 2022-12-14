@@ -50,7 +50,6 @@ export const __deletePrivateSpot = createAsyncThunk(
 export const __editPrivateSpot = createAsyncThunk(
   "editPrivateSpot",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await PrivateApi.editPrivateSpot(payload);
       return thunkAPI.fulfillWithValue(data);
@@ -145,8 +144,6 @@ const privateSlice = createSlice({
     [__deletePrivateSpot.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      console.log(state.error);
-
       Swal.fire({
         text: "해당 구장에 예약 건이 있어 삭제할 수 없습니다.",
         width: "300px",

@@ -15,8 +15,6 @@ const Tutorial = ({ handleClose }) => {
 
   const [currSlideIndex, setCurrSlideIndex] = useState(0);
 
-  console.log(currSlideIndex);
-
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 
@@ -42,7 +40,6 @@ const Tutorial = ({ handleClose }) => {
       >
         {Array.from({ length: 5 }).map((_, index) => {
           const isActiveSlide = currSlideIndex === index;
-          console.log("isActiveSlide: ", isActiveSlide);
           return (
             <Slide key={index}>
               <img alt="" src={`/tutorial/tutorial_0${index + 1}.jpg`} />
