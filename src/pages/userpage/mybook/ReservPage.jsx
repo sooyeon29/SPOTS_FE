@@ -164,7 +164,7 @@ const ReservPage = () => {
                     <div>
                       {matchWait.matchData?.date.substring(0, 4)}년{" "}
                       {matchWait.matchData?.date.substring(6, 8)}월{" "}
-                      {matchWait.matchData?.date.substring(10, 12)}일
+                      {matchWait.matchData?.date.substring(9, 12)}일
                     </div>
                     <div>{matchWait.matchData?.matchId.substring(0, 13)}</div>
                   </DayTime>

@@ -145,6 +145,7 @@ const MainMaps = () => {
               <SixMatch key={index}>
                 <Link
                   to={`/spotsdetail/${sixmatch.place?.placesId}`}
+                  state={{ state: sixmatch.match }}
                   style={{
                     color: "black",
                     textDecoration: "none",
@@ -161,7 +162,7 @@ const MainMaps = () => {
                       />
                       <span>
                         {sixmatch.match?.date.substring(6, 8)}월
-                        {sixmatch.match?.date.substring(10, 13)}일
+                        {sixmatch.match?.date.substring(9, 12)}일
                       </span>
                     </div>
                     <LastTime>마감임박</LastTime>

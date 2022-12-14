@@ -40,7 +40,7 @@ const StHeader = styled.div`
   background-color: #000000;
   display: flex;
   position: fixed;
-  z-index: 9999;
+  z-index: 999;
 `;
 
 const StWrap = styled.div`
