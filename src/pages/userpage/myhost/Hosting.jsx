@@ -80,7 +80,6 @@ const Hosting = () => {
     }
 
     const prevFile = file.target.files[0];
-    console.log(prevFile);
     imageCompression(prevFile, {
       maxSizeMB: 1,
       maxWidthOrHeight: 1920,
@@ -89,7 +88,6 @@ const Hosting = () => {
         type: prevFile.type,
       });
       setImg(newFile);
-      console.log(newFile);
     });
   };
 
@@ -127,7 +125,6 @@ const Hosting = () => {
   };
 
   const onRegisterHandler = (spot) => {
-    // e.preventDefault();
     let x = null;
     let y = null;
     // 전체 주소 fullyAddress = 주소(daum post api) + 상세주소(input value값)
@@ -246,7 +243,6 @@ const Hosting = () => {
       }
       PrivateApi.registerSpot(sendFD)
         .then((res) => {
-          console.log(res);
           if (res.status === 201) {
             Swal.fire({
               text: "스팟 등록이 완료되었습니다.",
@@ -260,7 +256,6 @@ const Hosting = () => {
           }
         })
         .catch((error) => {
-          console.log(error);
           if (error.response.data.code === -2) {
             Swal.fire({
               text: "사진을 등록해주세요",
@@ -279,7 +274,6 @@ const Hosting = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        {/* <PageDesc>나의 구장 등록</PageDesc> */}
         <ImageUpload>
           <HostingPhotoUpload>
             <label htmlFor="upload-input">
@@ -328,7 +322,6 @@ const Hosting = () => {
             <InputLayout>
               <div>이름</div>
               <InputText
-                // required
                 type="text"
                 onChange={(e) => {
                   setSpotName(e.target.value);
@@ -408,7 +401,6 @@ const Hosting = () => {
             <InputLayout>
               <div>상세주소</div>
               <InputText
-                // required
                 type="text"
                 onChange={(e) => {
                   const { value } = e.target;
@@ -419,11 +411,9 @@ const Hosting = () => {
                 }}
               />
             </InputLayout>
-
             <InputLayout>
               <div>시간당</div>
               <InputText
-                // required
                 type="text"
                 placeholder="시간당 가격을 입력해주세요"
                 onChange={(e) => {
@@ -431,10 +421,8 @@ const Hosting = () => {
                 }}
               />
             </InputLayout>
-
             <InputLayout>
               <div> 시설</div>
-              {/* <p>스팟 설명</p> */}
               <div>
                 <ComfortsWrap>
                   <ComfortsLabel>
@@ -485,7 +473,6 @@ const Hosting = () => {
                       }}
                       checked={checkedList.includes("샤워실") ? true : false}
                     />
-
                     <ShowerDiv>샤워실</ShowerDiv>
                   </ComfortsLabel>
                   <ComfortsLabel>
@@ -504,7 +491,6 @@ const Hosting = () => {
               </div>
             </InputLayout>
             <TextArea
-              // required
               style={{ height: "100px", width: "240px" }}
               type="text"
               placeholder="설명을 입력해주세요"

@@ -12,7 +12,6 @@ import {
   SpotInfos,
   SpotIcons,
   ResisterBtn,
-  StWrap,
 } from "./Styles";
 
 const HostList = () => {
@@ -24,7 +23,6 @@ const HostList = () => {
     dispatch(__getMyPrivateSpot());
   }, []);
   const placeList = useSelector((state) => state.spots.myPrivateSpot);
-  console.log(placeList);
 
   return (
     <Layout>

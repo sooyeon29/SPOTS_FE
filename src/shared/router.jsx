@@ -4,17 +4,11 @@ import { Suspense } from "react";
 import Loading from "../components/Loading";
 
 const MainMaps = lazy(() => import("../pages/mainpage/Index"));
-
 const Reservation = lazy(() => import("../pages/reservation/Index"));
-
 const SpotsDetail = lazy(() => import("../pages/spotsDetail/Index"));
-
 const Chatting = lazy(() => import("../pages/chat/Chatting"));
-const AdminHome = lazy(() => import("../pages/chat/AdminHome"));
 const AdminChat = lazy(() => import("../pages/chat/AdminChat"));
-
 const ScrollToTop = lazy(() => import("../components/ScrollTop"));
-
 const Login = lazy(() => import("../pages/login/Index"));
 const Kakao = lazy(() => import("../pages/login/Kakao"));
 const Google = lazy(() => import("../pages/login/Google"));
@@ -24,7 +18,6 @@ const SignUp = lazy(() => import("../pages/signUp/Index"));
 const SocialSignUp = lazy(() => import("../pages/signUp/SocialSignUp"));
 const Welcome = lazy(() => import("../components/Welcome"));
 const SwitchAccount = lazy(() => import("../pages/login/SwitchAccount"));
-
 const UserPage = lazy(() => import("../pages/userpage/Index"));
 const MyPage = lazy(() => import("../pages/userpage/mypage/MyPage"));
 const TeamPage = lazy(() => import("../pages/userpage/myteam/TeamPage"));
@@ -64,7 +57,6 @@ function Router() {
           <Route path="/hostlist" element={<HostList />} />
           <Route path="/hostdetail/:id" element={<HostDetail />} />
           <Route path="/addlogin" element={<SocialSignUp />} />
-          <Route path="/adminhome" element={<AdminHome />} />
           <Route path="/adminchat" element={<AdminChat />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/chatting" element={<Chatting />} />

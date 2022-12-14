@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import TapBar from "../../components/TapBar";
+import Swal from "sweetalert2";
+import useToggle from "../../hooks/useToggle";
+import { useNavigate } from "react-router-dom";
+import { BsFillPersonFill } from "react-icons/bs";
 import { IoIosLock } from "react-icons/io";
 import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import {
@@ -43,10 +47,11 @@ import {
   HealthDiv,
   BaseballDiv,
   RecommendTitle,
+  Agreement,
+  AgreementTerm,
+  AgreementWrap,
+  AgreementBtn,
 } from "./Styles";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { BsFillPersonFill } from "react-icons/bs";
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
@@ -58,6 +63,8 @@ const SignUp = () => {
   const [idConfirm, setIdConfirm] = useState(false);
   const [nnConfirm, setNnConfirm] = useState(false);
   const [code, setCode] = useState("");
+  const [agree, setAgree, agreeHandler] = useToggle();
+  const [agreementTerm, setAgreementTerm] = useState(false);
 
   const {
     handleSubmit,
@@ -201,6 +208,17 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     const loginId = getValues("loginId");
+    if (!agree) {
+      Swal.fire({
+        text: "회원가입을 위해서는 개인정보 수집·이용에 동의가 필요합니다",
+        width: "300px",
+        confirmButtonText: "확인",
+        confirmButtonColor: "#40d295",
+        showClass: { popup: "animated fadeInDown faster" },
+        hideClass: { popup: "animated fadeOutUp faster" },
+      });
+      return;
+    }
     SignUpAPI.signUp(data)
       .then((res) => {
         if (res.status === 201) {
@@ -211,7 +229,6 @@ const SignUp = () => {
       })
       .catch((error) => {
         const errorMsg = error.response.data.code;
-        console.log(errorMsg);
         if (errorMsg === -1) {
           Swal.fire({
             text: "사용 중인 아이디입니다",
@@ -304,7 +321,6 @@ const SignUp = () => {
     }
     SignUpAPI.checkId({ loginId })
       .then((res) => {
-        // console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "사용 가능한 아이디입니다",
@@ -318,7 +334,6 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.status);
         if (error.response.status === 412) {
           Swal.fire({
             text: "이미 사용 중인 아이디입니다",
@@ -337,7 +352,7 @@ const SignUp = () => {
     const phone = getValues("phone");
     if (phone.length < 10 || phone.length > 11) {
       Swal.fire({
-        text: "10~11자리의 번호를 입력해주세요",
+        text: "10-11자리의 번호를 입력해주세요",
         width: "300px",
         confirmButtonText: "확인",
         confirmButtonColor: "#40d295",
@@ -347,7 +362,6 @@ const SignUp = () => {
     } else {
       LoginAPI.postforVCode({ phone })
         .then((res) => {
-          console.log(res);
           Swal.fire({
             text: "인증번호가 전송되었습니다",
             width: "300px",
@@ -359,7 +373,6 @@ const SignUp = () => {
           setCodeSent(true);
         })
         .catch((err) => {
-          console.log(err);
           if (err.response.status === 412) {
             Swal.fire({
               text: "이미 가입된 휴대폰 번호입니다",
@@ -389,7 +402,6 @@ const SignUp = () => {
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "인증이 완료되었습니다",
@@ -403,8 +415,6 @@ const SignUp = () => {
         setCodeConfirm(true);
       })
       .catch((err) => {
-        console.log(err);
-        // if(err.response.data === 401)
         Swal.fire({
           text: "인증 번호를 다시 확인해주세요",
           width: "300px",
@@ -432,7 +442,6 @@ const SignUp = () => {
     }
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "사용 가능한 닉네임입니다",
@@ -446,7 +455,6 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.status);
         if (error.response.status === 412) {
           Swal.fire({
             text: "이미 사용 중인 닉네임입니다",
@@ -461,6 +469,10 @@ const SignUp = () => {
       });
   };
 
+  const agreementTermHandler = () => {
+    setAgreementTerm(!agreementTerm);
+  };
+
   return (
     <>
       <Layout>
@@ -470,9 +482,8 @@ const SignUp = () => {
             {idAndPwPage ? (
               <FirstPage>
                 <Logo>
-                  <img src="/spotslogo.png" />
+                  <img alt="" src="/spotslogo.png" />
                 </Logo>
-                {/* <PageTitle>회원가입</PageTitle> */}
                 <ContentWrap>
                   <GrayBorder>
                     <BsFillPersonFill size={24} color={"#949494"} />
@@ -542,9 +553,8 @@ const SignUp = () => {
             {phoneCertify ? (
               <SecondPage>
                 <Logo>
-                  <img src="/spotslogo.png" />
+                  <img alt="" src="/spotslogo.png" />
                 </Logo>
-                {/* <PageTitle>휴대폰 인증</PageTitle> */}
                 <ContentWrap>
                   <GrayBorder>
                     <input
@@ -573,9 +583,7 @@ const SignUp = () => {
                     ) : (
                       <button
                         style={{
-                          // background: 'white',
                           border: "none",
-                          // height: '39.5px',
                           color: "#ff00b3",
                           fontWeight: "600",
                           cursor: "pointer",
@@ -604,9 +612,7 @@ const SignUp = () => {
                     />
                     <button
                       style={{
-                        // background: 'white',
                         border: "none",
-                        // height: '39.5px',
                         color: "#ff00b3",
                         fontWeight: "600",
                         cursor: "pointer",
@@ -625,9 +631,8 @@ const SignUp = () => {
             {addInfoPage ? (
               <ThirdPage>
                 <Logo>
-                  <img src="/spotslogo.png" />
+                  <img alt="" src="/spotslogo.png" />
                 </Logo>
-                {/* <PageTitle>추가 정보 입력</PageTitle> */}
                 <ContentWrap>
                   <GrayBorder>
                     <input
@@ -779,6 +784,48 @@ const SignUp = () => {
                       autoComplete="off"
                     />
                   </GrayBorder>
+                  <Agreement>
+                    <AgreementWrap>
+                      <input
+                        type="checkbox"
+                        name="agreement"
+                        value={agree}
+                        onChange={agreeHandler}
+                        // required
+                        onInvalid="alert('회원가입을 위해서는 개인정보 동의를 해주세요')"
+                        style={{ width: "10px" }}
+                      />
+                      <div>개인정보 수집·이용 동의</div>
+                      <AgreementBtn onClick={agreementTermHandler}>
+                        상세보기
+                      </AgreementBtn>
+                    </AgreementWrap>
+                  </Agreement>
+                  {agreementTerm ? (
+                    <AgreementTerm>
+                      SPOTS는 「개인정보보호법」에 의거하여 아래와 같은 내용으로
+                      개인정보를 수집하고 있습니다. 이용자가 제공한 모든 정보는
+                      다음의 목적을 위해 활용하며, 하기 목적 이외의 용도로는
+                      사용되지 않습니다.
+                      <br />
+                      <br />
+                      <b>① 개인정보 수집 항목 및 수집·이용 목적</b>
+                      <br />
+                      가) 수집 항목
+                      <br />- 전화번호(휴대전화) 및 이메일
+                      <br />
+                      나) 수집 및 이용 목적
+                      <br />- 본인 확인 용도(휴대전화) 및 예약 정보 전달(이메일)
+                      <br />
+                      <b>② 개인정보 보유 및 이용기간</b>
+                      <br />- 수집·이용 동의일로부터 개인정보의 수집·이용목적을
+                      달성할 때까지
+                      <br />
+                      <b> ③ 동의거부관리 </b>
+                      <br />- 귀하께서는 본 안내에 따른 개인정보 수집, 이용에
+                      대하여 동의를 거부하실 권리가 있습니다.
+                    </AgreementTerm>
+                  ) : null}
                   <NextBtn type="submit">회원가입</NextBtn>
                 </SportsBlock>
               </ForthPage>

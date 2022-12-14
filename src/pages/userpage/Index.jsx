@@ -8,8 +8,8 @@ import { __getMyInfo } from "../../redux/modules/userSlice";
 import { Container, Profile, PointBox, MenuBox } from "./Styles";
 
 const UserPage = () => {
-  const dispatch = useDispatch();
   const title = "내 계정";
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { CgSearchLoading } from "react-icons/cg";
 import {
   PrivateBlock,
   PublicBlock,
@@ -9,7 +10,6 @@ import {
   PublicInfo,
   NoResult,
 } from "./Styles";
-import { CgSearchLoading } from "react-icons/cg";
 
 const SpotList = ({ spotList }) => {
   const navigate = useNavigate();

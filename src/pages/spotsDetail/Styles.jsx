@@ -12,7 +12,7 @@ export const Sports = styled.div`
 `;
 export const SpotPhoto = styled.div`
   width: 95%;
-  max-width: 390px;
+  max-width: 420px;
   padding: 0px;
   overflow: hidden;
   margin: auto;
@@ -31,7 +31,7 @@ export const PlaceInfo = styled.div`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
   width: 85%;
-  max-width: 390px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   div {
@@ -49,23 +49,16 @@ export const MoreInfo = styled.div`
     margin-top: 10px;
     font-weight: bold;
   }
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    div {
-      img {
-        margin-right: 5px;
-      }
-    }
-  }
-  div:last-child {
-    img {
-      margin-right: 5px;
-      width: 15px;
-    }
-    justify-content: flex-start;
+`;
+export const Comforts = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+export const Comfort = styled.div`
+  width: 50%;
+  img {
+    margin: 2px 7px 0px 0px;
   }
 `;
 export const Calen = styled.div`
@@ -125,7 +118,7 @@ export const SelectDone = styled.div`
   width: 85%;
   height: 40px;
   font-weight: bold;
-  max-width: 390px;
+  max-width: 420px;
   padding: 10px 20px;
   display: flex;
   flex-direction: row;
@@ -152,7 +145,7 @@ export const CalTime = styled.div`
   border: 1px solid #cecece;
   border-radius: 10px;
   width: 95%;
-  max-width: 390px;
+  max-width: 420px;
   padding: 10px 0px 0px 0px;
   margin: 10px auto;
   p {
@@ -358,7 +351,7 @@ export const TeamSelect = styled.select`
   border-radius: 10px;
   width: 95%;
   height: 50px;
-  max-width: 390px;
+  max-width: 420px;
   padding: 10px 10px;
   font-size: 17px;
   display: flex;
@@ -454,4 +447,4 @@ export const UpperLine = styled.div`
     margin-left: 5px;
     margin-top: 2px;
   }
-`
+`;

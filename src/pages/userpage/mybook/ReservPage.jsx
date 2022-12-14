@@ -55,7 +55,6 @@ const ReservPage = () => {
       hideClass: { popup: "animated fadeOutUp faster" },
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result);
         dispatch(
           __exitMyMatch({
             matchId: id,
@@ -74,11 +73,6 @@ const ReservPage = () => {
   const matchWaiting = myNoneMatches?.filter(
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
   );
-
-  console.log("구장예약", spotReserve);
-  console.log("매칭대기중", matchWaiting);
-  console.log("매칭완료", myDoneMatches);
-
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -87,7 +81,7 @@ const ReservPage = () => {
           <AboutMatch>구장 예약</AboutMatch>
           {spotReserve?.length === 0 && (
             <div>
-              <NoBookNow alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/matching/nobooknow.png" />
             </div>
           )}
           {spotReserve?.map((matchCom) => {
@@ -153,7 +147,7 @@ const ReservPage = () => {
           <AboutMatch>구장 예약 / 팀 매칭 대기</AboutMatch>
           {matchWaiting?.length === 0 && (
             <div>
-              <NoBookNow alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/matching/nobooknow.png" />
             </div>
           )}
           {matchWaiting?.map((matchWait) => {
@@ -164,7 +158,7 @@ const ReservPage = () => {
                     <div>
                       {matchWait.matchData?.date.substring(0, 4)}년{" "}
                       {matchWait.matchData?.date.substring(6, 8)}월{" "}
-                      {matchWait.matchData?.date.substring(10, 12)}일
+                      {matchWait.matchData?.date.substring(9, 12)}일
                     </div>
                     <div>{matchWait.matchData?.matchId.substring(0, 13)}</div>
                   </DayTime>
@@ -228,7 +222,7 @@ const ReservPage = () => {
                     </VS>
 
                     <div>
-                      <img alt="" src="/waitgroup.png" />
+                      <img alt="" src="/matching/waitgroup.png" />
                     </div>
                   </WaitTeam>
                 </WaitedMatch>
@@ -251,7 +245,7 @@ const ReservPage = () => {
           <AboutMatch>구장 예약 / 팀 매칭 완료</AboutMatch>
           {myDoneMatches?.length === 0 && (
             <div>
-              <NoBookNow alt="" src="/nobooknow.png" />
+              <NoBookNow alt="" src="/matching/nobooknow.png" />
             </div>
           )}
           {myDoneMatches?.map((matchCom) => {

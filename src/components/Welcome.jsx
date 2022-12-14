@@ -22,7 +22,6 @@ const Welcome = () => {
 
       LoginAPI.kakaoLogin(KAKAO_CODE)
         .then((res) => {
-          console.log("카카오", res);
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
             navigate(`/`);
@@ -40,7 +39,6 @@ const Welcome = () => {
       const GOOGLE_CODE = PARAMS.get("code");
       LoginAPI.googleLogin(GOOGLE_CODE)
         .then((res) => {
-          console.log("구글", res);
           if (res.data.nickname) {
             localStorage.setItem("token", res.data.accessToken);
             navigate(`/`);
@@ -50,11 +48,9 @@ const Welcome = () => {
     }
     return;
   };
-  console.log(loginId);
   const loginHandler = () => {
     if (loginId && password) {
       LoginAPI.login({ loginId: loginId, password: password }).then((res) => {
-        console.log("로그인성공 response", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
@@ -70,14 +66,11 @@ const Welcome = () => {
       <Wrap>
         <Img src="/etc/welcome_image.jpeg" />{" "}
         <Button
-          onClick={
-            () => {
-              kakaoHandler();
-              googleHandler();
-              loginHandler();
-            }
-            // navigate('/login')
-          }
+          onClick={() => {
+            kakaoHandler();
+            googleHandler();
+            loginHandler();
+          }}
         >
           SPOTS 시작하기
         </Button>
@@ -89,19 +82,20 @@ const Welcome = () => {
 
 export default Welcome;
 
-export const Wrap = styled.div`
+const Wrap = styled.div`
   display: flex;
   justify-content: center;
   margin: auto;
 `;
-export const Img = styled.img`
+
+const Img = styled.img`
   margin-top: 62px;
   height: 100%;
   width: 100%;
   position: relative;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   margin: auto;
   position: absolute;
   top: 70%;

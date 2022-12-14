@@ -104,9 +104,9 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
               <IoIosArrowForward className="arrow" />
             </Li>
             {user.nickname === "spotsadmin" ? (
-              <Li onClick={() => navigate("/adminhome ")}>
+              <Li onClick={() => navigate("/adminchat")}>
                 <div>
-                  <img alt="관리자 채팅방" src="/myhost_icon.png" />
+                  <img alt="관리자 채팅방" src="/userpage/join_icon.png" />
                   <p>관리자 채팅방</p>
                 </div>
                 <IoIosArrowForward className="arrow" />
@@ -126,7 +126,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 export default SideBar;
 
 const SideMenu = styled.div`
-  position: relative;
+  position: absolute;
   background-color: #fff;
   z-index: 999999999;
 `;
@@ -137,7 +137,7 @@ const Section = styled.div`
   width: 280px;
   padding-top: 30px;
   padding-left: 10px;
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
@@ -165,7 +165,6 @@ const Profile = styled.div`
   background-color: #fff;
 
   img {
-    /* transform: translate(50, 50); */
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -173,10 +172,12 @@ const Profile = styled.div`
     margin-right: 10px;
   }
 `;
+
 const Ul = styled.ul`
   padding-left: 10px;
   background-color: #fff;
 `;
+
 const Li = styled.li`
   margin: 13px 0;
   padding-bottom: 13px;

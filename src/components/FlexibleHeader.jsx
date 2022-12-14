@@ -34,13 +34,13 @@ const FlexibleHeader = (props) => {
 export default FlexibleHeader;
 
 const StHeader = styled.div`
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   height: 62px;
   background-color: #000000;
   display: flex;
   position: fixed;
-  z-index: 9999;
+  z-index: 999;
 `;
 
 const StWrap = styled.div`

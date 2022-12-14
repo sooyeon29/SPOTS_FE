@@ -2,28 +2,28 @@ import { createGlobalStyle } from "styled-components";
 import SpoqaHanSansNeoRegular from "./fonts/SpoqaHanSansNeoRegular.woff";
 import SpoqaHanSansNeoBold from "./fonts/SpoqaHanSansNeoBold.woff";
 import SpoqaHanSansNeoThin from "./fonts/SpoqaHanSansNeoThin.woff";
-import NotoSansKRThin from "./fonts/NotoSansKRThin.otf";
-import NotoSansKRRegular from "./fonts/NotoSansKRRegular.otf";
-import NotoSansKRBold from "./fonts/NotoSansKRBold.otf";
+// import NotoSansKRThin from "./fonts/NotoSansKRThin.otf";
+// import NotoSansKRRegular from "./fonts/NotoSansKRRegular.otf";
+// import NotoSansKRBold from "./fonts/NotoSansKRBold.otf";
 
 const GlobalStyle = createGlobalStyle`
 
 @font-face {
   font-family: 'SpoqaRegular';
   font-style: normal;
-  src: url(${SpoqaHanSansNeoRegular}), url(${NotoSansKRRegular}) format('truetype');
+  src: url(${SpoqaHanSansNeoRegular}), format('truetype');
 }
 
 @font-face {
   font-family: 'SpoqaBold';
   font-style: normal;
-  src: url(${SpoqaHanSansNeoBold}), url(${NotoSansKRBold}) format('truetype');
+  src: url(${SpoqaHanSansNeoBold}), format('truetype');
 }
 
 @font-face {
   font-family: 'SpoqaThin';
   font-style: normal;
-  src: url(${SpoqaHanSansNeoThin}), url(${NotoSansKRThin}) format('truetype');
+  src: url(${SpoqaHanSansNeoThin}), format('truetype');
 }
 
 
@@ -87,6 +87,7 @@ const GlobalStyle = createGlobalStyle`
     --shadow-high: 0 8px 36px 0 rgba(0,0,0,0.15);
  
 }
+
 `;
 
 export default GlobalStyle;

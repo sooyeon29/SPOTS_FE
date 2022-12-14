@@ -5,7 +5,7 @@ export const Loading = () => {
   return (
     <Background>
       <LoadingText>SPOTS가 여러분과 함께합니다!</LoadingText>
-      <img alt="로딩" src="/loading.gif" />
+      <img alt="로딩" src="/etc/loading.gif" />
     </Background>
   );
 };

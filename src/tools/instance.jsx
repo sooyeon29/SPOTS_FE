@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
-  // headers: { "Accept-Encoding": "gzip" },
+  header: { "Content-Encoding": "gzip" },
 });
 
 // 요청 인터셉터 추가
@@ -43,11 +43,9 @@ instance.interceptors.response.use(
         console.log(err);
       }
     }
-
     return response;
   },
   (error) => {
-    console.log("나 인터셉터에러", error);
     if (error.status === 401 || error.response.status === 412) {
       Swal.fire({
         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",

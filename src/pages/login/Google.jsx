@@ -9,11 +9,9 @@ const Google = () => {
   const PARAMS = new URL(document.location).searchParams;
   const GOOGLE_CODE = PARAMS.get("code");
   window.localStorage.setItem("GOOGLE_CODE", GOOGLE_CODE);
-  // console.log(GOOGLE_CODE);
   useEffect(() => {
     LoginAPI.googleLogin(GOOGLE_CODE)
       .then((res) => {
-        console.log(res);
         if (res.data.code === -1) {
           localStorage.setItem("loginId", res.data.loginId);
           localStorage.setItem("profile", res.data.profileImg);
