@@ -150,7 +150,6 @@ export const Image = styled.div`
   margin-bottom: 20px;
 
   img {
-    /* transform: translate(50, 50); */
     width: 100px;
     height: 100px;
     object-fit: cover;

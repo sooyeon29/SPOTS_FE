@@ -59,7 +59,6 @@ const TeamRegister = () => {
     };
 
     const prevFile = file.target.files[0];
-    // console.log(prevFile);
     imageCompression(prevFile, {
       maxSizeMB: 1,
       maxWidthOrHeight: 1920,
@@ -68,7 +67,6 @@ const TeamRegister = () => {
         type: prevFile.type,
       });
       setImg(newFile);
-      // console.log(newFile);
     });
   };
 
@@ -115,13 +113,12 @@ const TeamRegister = () => {
       formData.append("sports", sports);
       formData.append("member", count);
 
-      for (let a of formData.entries()) {
-        console.log("formData출력", a);
-      }
+      // for (let a of formData.entries()) {
+      //   console.log("formData출력", a);
+      // }
 
       UserpageAPI.postMyteam(formData)
         .then((res) => {
-          console.log(res);
           if (res.status === 201) {
             Swal.fire({
               text: "팀 등록이 완료되었습니다",
@@ -135,7 +132,6 @@ const TeamRegister = () => {
           }
         })
         .catch((error) => {
-          console.log(error);
           if (error.response.data.code === -2) {
             Swal.fire({
               text: "중복된 팀 이름입니다",

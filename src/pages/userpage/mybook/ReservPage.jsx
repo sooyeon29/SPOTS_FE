@@ -55,7 +55,6 @@ const ReservPage = () => {
       hideClass: { popup: "animated fadeOutUp faster" },
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result);
         dispatch(
           __exitMyMatch({
             matchId: id,
@@ -74,11 +73,6 @@ const ReservPage = () => {
   const matchWaiting = myNoneMatches?.filter(
     (myMatch) => myMatch.matchData?.matchId.substring(13, 20) === "ismatch"
   );
-
-  console.log("구장예약", spotReserve);
-  console.log("매칭대기중", matchWaiting);
-  console.log("매칭완료", myDoneMatches);
-
   return (
     <Layout>
       <FlexibleHeader title={title} />

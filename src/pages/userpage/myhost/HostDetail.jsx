@@ -24,10 +24,10 @@ import {
 } from "./Styles";
 
 const HostDetail = () => {
+  const title = "나의 스팟";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const title = "나의 스팟";
 
   useEffect(() => {
     dispatch(__getMyPrivateSpot());
@@ -154,7 +154,6 @@ const HostDetail = () => {
                           <SpotsComforts>개인락커</SpotsComforts>
                         ) : null}
                       </div>
-                      {/* </ComfortsWrap> */}
                     </ComfortsLayout>
                     <SpotsLayout>
                       <div>설명</div>
