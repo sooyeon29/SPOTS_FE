@@ -18,21 +18,16 @@ const AdminChat = () => {
   const [chatMode, setChatMode] = useState(false);
 
   useEffect(() => {
-    console.log("socket", socket);
     socket.on("admin_roomlist", (roomList) => {
-      console.log("admin_roomlist", roomList);
       setRoomList(roomList);
     });
-    console.log(socket);
     socket.on("new_message", (data) => {
-      console.log("new_message", data);
       setChatting((chat) => [
         ...chat,
         { nickname: data.nickname, message: data.message },
       ]);
     });
     socket.on("left_notice", (message) => {
-      console.log("left_notice", message);
       setChatting((chat) => [...chat, message]);
     });
   }, []);
@@ -40,7 +35,6 @@ const AdminChat = () => {
   const enterRoomHandler = (e) => {
     e.preventDefault();
     socket.emit("admin_enter_room", roomName);
-    console.log(roomName);
     setChatMode(!chatMode);
   };
 
@@ -52,10 +46,8 @@ const AdminChat = () => {
       value: msg,
     };
     socket.emit("chatting", JSON.stringify(obj));
-    console.log(JSON.stringify(obj));
     setMsg("");
   };
-  console.log(chatting);
   return (
     <StContainer>
       {!chatMode ? (

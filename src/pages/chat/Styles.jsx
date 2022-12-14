@@ -57,10 +57,6 @@ export const RoomStContainer = styled.div`
 `;
 
 export const StBox = styled.div`
-  /* @media screen and (min-width: 600px) {
-    width: 600px;
-    height: 500px;
-  } */
   max-width: 420px;
   width: 100%;
   height: 450px;
@@ -87,9 +83,6 @@ export const StHeader = styled.div`
     font-weight: 700;
   }
   button {
-    /* @media screen and (min-width: 600px) {
-      margin-left: 400px;
-    } */
     border: none;
     background-color: transparent;
     margin: 3px 0 0 190px;
@@ -204,7 +197,6 @@ export const StForm = styled.form`
     cursor: pointer;
     margin: 0 10px 0 10px;
   }
-  //bottom: -30px;
 `;
 
 export const StInput = styled.input`
@@ -232,7 +224,7 @@ export const StAdminMsg = styled.div`
   color: #545454;
   border: none;
   border-radius: 15px;
-  word-break: keep-all;
+  word-break: break-all;
   white-space: pre-line;
 `;
 

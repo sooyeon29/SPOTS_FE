@@ -30,7 +30,6 @@ const Chatting = () => {
   const [scrollState, setScrollState] = useState(true); //자동 스크롤 여부
 
   const scrollEvent = _.debounce(() => {
-    console.log("scroll");
     const scrollTop = boxRef.current.scrollTop; // 스크롤 위치
     const clientHeight = boxRef.current.clientHeight; // 요소의 높이
     const scrollHeight = boxRef.current.scrollHeight; // 스크롤의 높이
@@ -43,7 +42,6 @@ const Chatting = () => {
   const scroll = useCallback(scrollEvent, []);
 
   useEffect(() => {
-    console.log(socket);
     if (scrollState) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -51,22 +49,19 @@ const Chatting = () => {
 
   useEffect(() => {
     boxRef.current.addEventListener("scroll", scroll);
-  }, []);
+  });
 
   useEffect(() => {
     socket.on("client_main", (roomName) => {
-      console.log("client_main", roomName);
       setRoomName(roomName);
     });
     socket.on("new_message", (data) => {
-      console.log("new_message", data);
       setChatting((chat) => [
         ...chat,
         { nickname: data.nickname, message: data.message },
       ]);
     });
     socket.on("left_notice", (message) => {
-      console.log("left_notice", message);
       setChatting((chat) => [...chat, message]);
     });
   }, []);
@@ -79,13 +74,10 @@ const Chatting = () => {
       value: msg,
     };
     socket.emit("chatting", JSON.stringify(obj));
-    console.log(obj);
     setMsg("");
   };
-  console.log(chatting);
 
   const exitChat = () => {
-    console.log("exit");
     socket.disconnect();
   };
   return (
