@@ -87,6 +87,7 @@ const GlobalStyle = createGlobalStyle`
     --shadow-high: 0 8px 36px 0 rgba(0,0,0,0.15);
  
 }
+
 `;
 
 export default GlobalStyle;

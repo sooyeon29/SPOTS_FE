@@ -100,21 +100,16 @@ const SpotsDetail = () => {
       const Toast = Swal.mixin({
         toast: true,
         position: "center",
-        showConfirmButton: true,
+        showConfirmButton: false,
         confirmButtonColor: "#40d295",
         confirmButtonText: "닫기",
-        allowOutsideClick: false,
       });
+      const first = "매칭임박 대기팀: " + mainDate;
+      const second = "시간: " + mainTime + " / 인원: " + mainMember + "명";
       Toast.fire({
-        title:
-          "매칭임박 대기팀: " +
-          mainDate +
-          "시간: " +
-          mainTime +
-          " / 인원: " +
-          mainMember +
-          "명",
-        width: "320px",
+        title: `${first} <br/> ${second}`,
+        width: "350px",
+        icon: "info",
       });
     }
   }, []);
@@ -653,7 +648,10 @@ const SpotsDetail = () => {
                                     {waitMatch.matchId.substring(0, 13)}
                                   </span>
                                   <span>Team A</span>
-                                  <img alt="" src="/spotsdetail/graygroup.png" />
+                                  <img
+                                    alt=""
+                                    src="/spotsdetail/graygroup.png"
+                                  />
                                   <span>
                                     {waitMatch.teamName.substring(0, 6)}
                                   </span>
@@ -676,7 +674,10 @@ const SpotsDetail = () => {
                                     {waitMatch.matchId.substring(0, 13)}
                                   </span>
                                   <span>Team A</span>
-                                  <img alt="" src="/spotsdetail/whitegroup.png" />
+                                  <img
+                                    alt=""
+                                    src="/spotsdetail/whitegroup.png"
+                                  />
                                   <span>{waitMatch.teamName}</span>
 
                                   {spot.sports !== "풋살장" && (

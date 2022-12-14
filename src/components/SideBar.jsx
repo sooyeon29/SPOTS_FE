@@ -126,7 +126,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 export default SideBar;
 
 const SideMenu = styled.div`
-  position: relative;
+  position: absolute;
   background-color: #fff;
   z-index: 999999999;
 `;
@@ -137,7 +137,7 @@ const Section = styled.div`
   width: 280px;
   padding-top: 30px;
   padding-left: 10px;
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
@@ -165,7 +165,6 @@ const Profile = styled.div`
   background-color: #fff;
 
   img {
-    /* transform: translate(50, 50); */
     width: 80px;
     height: 80px;
     object-fit: cover;
