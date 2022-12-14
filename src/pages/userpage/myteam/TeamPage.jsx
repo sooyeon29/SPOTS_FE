@@ -30,7 +30,6 @@ const TeamPage = () => {
 
   const { team } = useSelector((state) => state.user);
 
-  console.log(team);
   return (
     <Layout>
       <FlexibleHeader title={title} />
@@ -107,7 +106,6 @@ const TeamPage = () => {
           })}
         </TeamBox>
         <BtnTeamPage onClick={() => navigate("/teamregister")}>
-          {" "}
           팀 등록하기
         </BtnTeamPage>
       </Container>
