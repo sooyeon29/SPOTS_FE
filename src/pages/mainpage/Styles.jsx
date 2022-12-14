@@ -88,7 +88,7 @@ export const SpotName = styled.div`
 
 export const TeamContainer = styled.div`
   margin-bottom: 65px;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 export const SixMatch = styled.div`
