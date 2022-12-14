@@ -40,7 +40,6 @@ const Login = () => {
     e.preventDefault();
     LoginAPI.login({ loginId: loginInfo.id, password: loginInfo.password })
       .then((res) => {
-        // console.log("로그인성공 response", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
@@ -65,7 +64,6 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 400) {
           Swal.fire({
             text: "이미 로그인된 상태입니다",

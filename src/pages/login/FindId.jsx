@@ -30,7 +30,6 @@ const FindId = () => {
       setCodeSent(true);
       LoginAPI.postforFindIdPw(phoneNum)
         .then((res) => {
-          console.log(res);
           Swal.fire({
             text: "인증번호가 전송되었습니다",
             width: "300px",
@@ -76,7 +75,6 @@ const FindId = () => {
     } else {
       LoginAPI.findId({ phone: phoneNum, code: veriCode })
         .then((res) => {
-          console.log(res);
           if (res.status === 200 && res.data.sns) {
             Swal.fire({
               text: "소셜가입 회원입니다 : " + res.data.sns,
