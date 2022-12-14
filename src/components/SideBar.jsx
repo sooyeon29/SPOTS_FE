@@ -137,7 +137,7 @@ const Section = styled.div`
   width: 280px;
   padding-top: 30px;
   padding-left: 10px;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;

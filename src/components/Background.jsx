@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const BackGround = () => {
   return (
@@ -6,8 +6,8 @@ const BackGround = () => {
       <Image />
       <Logo src="/etc/background-logo.png" />
       <Members>
-        <span>FE</span> 김미래 고은비 김수연 &nbsp; &nbsp;  <span>BE</span> 서주리 임다혜 정우성 &nbsp;
-        &nbsp;  <span>UX|UI</span> 하은진
+        <span>FE</span> 김미래 고은비 김수연 <br /> <span>BE</span> 서주리
+        임다혜 정우성 <br /> <span>UX|UI</span> 하은진
       </Members>
     </>
   );
@@ -18,7 +18,7 @@ const Image = styled.div`
   height: 100%;
   width: 100%;
   position: fixed;
-  background-image: url('/etc/background-map.png');
+  background-image: url("/etc/background-map.png");
   background-position: center bottom;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -40,7 +40,7 @@ const Members = styled.div`
   bottom: 3%;
   right: 3%;
 
-  span{
+  span {
     font-weight: 600;
   }
 `;
