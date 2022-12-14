@@ -12,7 +12,7 @@ import {
   __getOkMatch,
   __postSpotsMatch,
 } from "../../redux/modules/matchSlice";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { __getPrivateSpot } from "../../redux/modules/spotsSlice";
 import TapBar from "../../components/TapBar";
 import FlexibleHeader from "../../components/FlexibleHeader";
@@ -89,6 +89,37 @@ const SpotsDetail = () => {
   const selectSpot = placeList?.filter((place) => {
     return place.placesId === parseInt(id);
   });
+  const location = useLocation();
+  const newMatchTeam = location.state?.state;
+  console.log(newMatchTeam);
+  useEffect(() => {
+    if (newMatchTeam !== undefined) {
+      const mainTime = newMatchTeam?.matchId.substring(0, 13);
+      // console.log("+++++++++++++++++++++", mainTime);
+      const mainDate = newMatchTeam?.date;
+      // console.log(mainDate);
+      const mainMember = newMatchTeam?.member;
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center",
+        showConfirmButton: true,
+        confirmButtonColor: "#40d295",
+        confirmButtonText: "닫기",
+        allowOutsideClick: false,
+      });
+      Toast.fire({
+        title:
+          "매칭임박 대기팀: " +
+          mainDate +
+          "시간: " +
+          mainTime +
+          " / 인원: " +
+          mainMember +
+          "명",
+        width: "320px",
+      });
+    }
+  }, []);
   //=> a팀을 선택한 경우
   const teamPick = (time, price) => {
     console.log(myTime[time], "*********************");
@@ -121,7 +152,7 @@ const SpotsDetail = () => {
   const { user } = useSelector((state) => state.user);
   let myPoint = user.point;
   // 선택한 날짜를 알맞은 모양으로 보내기 위해 가공한다
-  const bookDate = startDate?.toLocaleDateString().substring(0, 12);
+  const bookDate = startDate?.toLocaleDateString();
   // console.log(pickedTime);
   // 모든것을 선택하고 예약하기 버튼을 드디어 눌렀다!!! 서버로 post 해주자!
   // 매칭없이 예약하기(구장만예약)
@@ -130,7 +161,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime + "nomatch" + startDate + name,
+        matchId: pickedTime + "nomatch" + bookDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
@@ -145,7 +176,7 @@ const SpotsDetail = () => {
       __postSpotsMatch({
         place: name,
         date: bookDate,
-        matchId: pickedTime2 + "ismatch" + startDate + name,
+        matchId: pickedTime2 + "ismatch" + bookDate + name,
         isDouble: isTwo,
         teamName: myTeam?.myteam,
         member: count,
@@ -156,6 +187,7 @@ const SpotsDetail = () => {
   };
 
   const pickDateHandler = (date, name) => {
+    console.log(date, typeof date);
     const today = new Date();
     if (date.toLocaleDateString() === today.toLocaleDateString()) {
       Swal.fire({
@@ -168,7 +200,7 @@ const SpotsDetail = () => {
       });
     }
     setStartDate(date);
-    const bookDate = date?.toLocaleDateString().substring(0, 12);
+    const bookDate = date?.toLocaleDateString();
     dispatch(__getAllMatch({ place: name, date: bookDate }));
     dispatch(__getOkMatch({ place: name, date: bookDate }));
     setToggel(false);
@@ -239,8 +271,6 @@ const SpotsDetail = () => {
   const goTeam = () => {
     scrollTeam.current.scrollIntoView({ behavior: "smooth" });
   };
-
-  const token = localStorage.getItem("token");
 
   return (
     <>

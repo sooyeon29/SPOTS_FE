@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER,
+  header: { "Content-Encoding": "gzip" },
 });
 
 // 요청 인터셉터 추가
@@ -36,12 +37,12 @@ instance.interceptors.response.use(
             Authorization: `${data.myNewToken}`,
           })
         );
+        window.location.reload();
         return await instance(prevRequest);
       } catch (err) {
         console.log(err);
       }
     }
-
     return response;
   },
   (error) => {
