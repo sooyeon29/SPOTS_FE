@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import Header from '../../components/Header';
-import Layout from '../../components/Layout';
-import TapBar from '../../components/TapBar';
-import Swal from 'sweetalert2';
-import useToggle from '../../hooks/useToggle';
-import { useNavigate } from 'react-router-dom';
-import { BsFillPersonFill } from 'react-icons/bs';
-import { IoIosLock } from 'react-icons/io';
-import { LoginAPI, SignUpAPI } from '../../tools/instance';
+import React, { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import TapBar from "../../components/TapBar";
+import Swal from "sweetalert2";
+import useToggle from "../../hooks/useToggle";
+import { useNavigate } from "react-router-dom";
+import { BsFillPersonFill } from "react-icons/bs";
+import { IoIosLock } from "react-icons/io";
+import { LoginAPI, SignUpAPI } from "../../tools/instance";
 import {
   StWrap,
   PageTitle,
@@ -51,8 +51,7 @@ import {
   AgreementTerm,
   AgreementWrap,
   AgreementBtn,
-} from './Styles';
-
+} from "./Styles";
 
 const SignUp = () => {
   const [idAndPwPage, setIdAndPwPage] = useState(true);
@@ -230,7 +229,6 @@ const SignUp = () => {
       })
       .catch((error) => {
         const errorMsg = error.response.data.code;
-        console.log(errorMsg);
         if (errorMsg === -1) {
           Swal.fire({
             text: "사용 중인 아이디입니다",
@@ -323,7 +321,6 @@ const SignUp = () => {
     }
     SignUpAPI.checkId({ loginId })
       .then((res) => {
-        // console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "사용 가능한 아이디입니다",
@@ -337,7 +334,6 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.status);
         if (error.response.status === 412) {
           Swal.fire({
             text: "이미 사용 중인 아이디입니다",
@@ -366,7 +362,6 @@ const SignUp = () => {
     } else {
       LoginAPI.postforVCode({ phone })
         .then((res) => {
-          console.log(res);
           Swal.fire({
             text: "인증번호가 전송되었습니다",
             width: "300px",
@@ -378,7 +373,6 @@ const SignUp = () => {
           setCodeSent(true);
         })
         .catch((err) => {
-          console.log(err);
           if (err.response.status === 412) {
             Swal.fire({
               text: "이미 가입된 휴대폰 번호입니다",
@@ -408,7 +402,6 @@ const SignUp = () => {
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "인증이 완료되었습니다",
@@ -422,7 +415,6 @@ const SignUp = () => {
         setCodeConfirm(true);
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           text: "인증 번호를 다시 확인해주세요",
           width: "300px",
@@ -450,7 +442,6 @@ const SignUp = () => {
     }
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "사용 가능한 닉네임입니다",
@@ -464,7 +455,6 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.status);
         if (error.response.status === 412) {
           Swal.fire({
             text: "이미 사용 중인 닉네임입니다",
@@ -593,10 +583,10 @@ const SignUp = () => {
                     ) : (
                       <button
                         style={{
-                          border: 'none',
-                          color: '#ff00b3',
-                          fontWeight: '600',
-                          cursor: 'pointer',
+                          border: "none",
+                          color: "#ff00b3",
+                          fontWeight: "600",
+                          cursor: "pointer",
                         }}
                         type="button"
                         onClick={sendPhoneForCode}
@@ -622,10 +612,10 @@ const SignUp = () => {
                     />
                     <button
                       style={{
-                        border: 'none',
-                        color: '#ff00b3',
-                        fontWeight: '600',
-                        cursor: 'pointer',
+                        border: "none",
+                        color: "#ff00b3",
+                        fontWeight: "600",
+                        cursor: "pointer",
                       }}
                       type="button"
                       onClick={checkVCode}

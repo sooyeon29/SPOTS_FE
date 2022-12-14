@@ -46,7 +46,6 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log("나 인터셉터에러", error);
     if (error.status === 401 || error.response.status === 412) {
       Swal.fire({
         text: "로그인 시간이 만료되었습니다. 다시 로그인해주세요!",

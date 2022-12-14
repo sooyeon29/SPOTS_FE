@@ -59,7 +59,6 @@ const SocialSignUp = () => {
   const [agree, setAgree, agreeHandler] = useToggle();
   const [agreementTerm, setAgreementTerm] = useState(false);
   const [code, setCode] = useState("");
-  console.log(agree);
   const {
     handleSubmit,
     register,
@@ -71,7 +70,6 @@ const SocialSignUp = () => {
 
   const isMember = localStorage.getItem("loginId");
   const myImg = localStorage.getItem("profile");
-  console.log(isMember);
 
   const onSubmit = async (data) => {
     if (!agree) {
@@ -85,17 +83,15 @@ const SocialSignUp = () => {
       });
       return;
     }
-    
+
     SignUpAPI.socialSignUp({ ...data, loginId: isMember, profileImg: myImg })
       .then((res) => {
-        console.log(res);
         if (res.status === 201) {
           window.localStorage.removeItem("profile", "loginId");
           navigate(`/welcome`);
         }
       })
       .catch((error) => {
-        console.log(error);
         if (error.response.status === 412 && error.response.data.code === -4) {
           Swal.fire({
             text: "잘못된 추천인아이디입니다",
@@ -135,7 +131,6 @@ const SocialSignUp = () => {
     }
     SignUpAPI.checkNickname({ nickname })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "사용 가능한 닉네임입니다",
@@ -149,7 +144,6 @@ const SocialSignUp = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.status);
         if (error.response.status === 412) {
           Swal.fire({
             text: "이미 사용 중인 닉네임입니다",
@@ -178,7 +172,6 @@ const SocialSignUp = () => {
     } else {
       LoginAPI.postforVCode({ phone })
         .then((res) => {
-          console.log(res);
           Swal.fire({
             text: "인증번호가 전송되었습니다",
             width: "300px",
@@ -190,7 +183,6 @@ const SocialSignUp = () => {
           setIsCode(true);
         })
         .catch((err) => {
-          console.log(err);
           if (err.response.status === 412) {
             Swal.fire({
               text: "이미 가입된 휴대폰 번호입니다",
@@ -220,7 +212,6 @@ const SocialSignUp = () => {
     const phone = getValues("phone");
     LoginAPI.postforCheckVCode({ code, phone })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           Swal.fire({
             text: "인증이 완료되었습니다",
@@ -235,7 +226,6 @@ const SocialSignUp = () => {
         setPhoneCode(false);
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           text: "인증 번호를 다시 확인주세요",
           width: "300px",
@@ -567,7 +557,7 @@ const SocialSignUp = () => {
                         onChange={agreeHandler}
                         // required
                         onInvalid="alert('회원가입을 위해서는 개인정보 동의를 해주세요')"
-                        style={{ width: '10px' }}
+                        style={{ width: "10px" }}
                       />
                       <div>개인정보 수집·이용 동의</div>
                       <AgreementBtn onClick={agreementTermHandler}>
@@ -586,18 +576,18 @@ const SocialSignUp = () => {
                       <b>① 개인정보 수집 항목 및 수집·이용 목적</b>
                       <br />
                       가) 수집 항목
-                      <br/>- 전화번호(휴대전화) 및 이메일
+                      <br />- 전화번호(휴대전화) 및 이메일
                       <br />
                       나) 수집 및 이용 목적
-                      <br/>- 본인 확인 용도(휴대전화) 및 예약
-                      정보 전달(이메일)
+                      <br />- 본인 확인 용도(휴대전화) 및 예약 정보 전달(이메일)
                       <br />
                       <b>② 개인정보 보유 및 이용기간</b>
                       <br />- 수집·이용 동의일로부터 개인정보의 수집·이용목적을
                       달성할 때까지
-                      <br /><b> ③ 동의거부관리 </b><br/>
-                      - 귀하께서는 본 안내에 따른 개인정보
-                      수집, 이용에 대하여 동의를 거부하실 권리가 있습니다.
+                      <br />
+                      <b> ③ 동의거부관리 </b>
+                      <br />- 귀하께서는 본 안내에 따른 개인정보 수집, 이용에
+                      대하여 동의를 거부하실 권리가 있습니다.
                     </AgreementTerm>
                   ) : null}
                   <NextBtn type="submit">회원가입</NextBtn>
