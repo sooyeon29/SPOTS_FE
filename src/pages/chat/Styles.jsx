@@ -232,7 +232,7 @@ export const StAdminMsg = styled.div`
   color: #545454;
   border: none;
   border-radius: 15px;
-  word-break: keep-all;
+  word-break: break-all;
   white-space: pre-line;
 `;
 
