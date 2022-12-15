@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useDetectClose from "../hooks/useDetectClose";
 import { GiHamburgerMenu } from "react-icons/gi";
-import useToggle from "../hooks/useToggle";
 import SideBar from "./SideBar";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [toggle, setToggle, ClickToggle] = useToggle(false);
   const [barIsOpen, barRef, barHandler] = useDetectClose(false);
   const dropDownRef = useRef(null);
 

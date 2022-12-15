@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { FaRegBell } from "react-icons/fa";
-import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyInfo } from "../redux/modules/userSlice";
