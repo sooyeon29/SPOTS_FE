@@ -36,8 +36,7 @@ const ReservPage = () => {
   const myDoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.doneMatchTotal
   );
-  console.log(myNoneMatches);
-  console.log(myDoneMatches);
+
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
