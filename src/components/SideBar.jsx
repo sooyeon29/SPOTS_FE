@@ -61,10 +61,6 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
               <IoIosArrowForward className="arrow" />
             </Li>
           </Ul>
-          <Bottom>
-            <FaRegBell className="icon" />
-            <VscSettingsGear className="icon" />
-          </Bottom>
         </Section>
       ) : (
         <Section isOpen={barIsOpen}>
@@ -114,7 +110,6 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
             ) : null}
           </Ul>
           <Bottom>
-            <FaRegBell className="icon" />
             <BiLogOut className="icon" onClick={logout} />
           </Bottom>
         </Section>
