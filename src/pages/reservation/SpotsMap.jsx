@@ -129,6 +129,13 @@ const SpotsMap = ({ spotMarkers }) => {
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
                       <div>{privSpot.spotName}</div>
+                      <div
+                        onClick={() =>
+                          navigate(`/spotsdetail/${privSpot.placesId}`)
+                        }
+                      >
+                        구장 보기
+                      </div>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}
@@ -200,6 +207,9 @@ const SpotsMap = ({ spotMarkers }) => {
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
                       <div>{pubSpot.placenm}</div>
+                      <a href={pubSpot.svcurl} target="_blank">
+                        예약하러 가기{" "}
+                      </a>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}
