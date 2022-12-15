@@ -152,9 +152,9 @@ SPOTS에서 구장을 검색하고, 예약하고, 팀매칭을 신청해보세�
 
 | 역할 | 이름 | GitHub |
 | --- | --- | --- |
-| FE🔰 | 김미래 | [https://github.com/Edward-SI03](https://github.com/MiraeKim1031) |
-| FE | 고은비 | [https://github.com/kimdaerin](https://github.com/eunrain) |
-| FE | 김수연 | [https://github.com/JJooonji](https://github.com/sooyeon29) |
+| FE🔰 | 김미래 | [https://github.com/MiraeKim1031](https://github.com/MiraeKim1031) |
+| FE | 고은비 | [https://github.com/eunrain](https://github.com/eunrain) |
+| FE | 김수연 | [https://github.com/sooyeon29](https://github.com/sooyeon29) |
 | BE🔰 | 서주리 | [https://github.com/devyouth94](https://github.com/Thorjuri) |
 | BE | 임다혜 | https://github.com/dahye24|
 | BE | 정우성 | https://github.com/dntjd960403 |
