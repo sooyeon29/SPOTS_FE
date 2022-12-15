@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
 
