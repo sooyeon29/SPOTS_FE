@@ -75,6 +75,7 @@ const SpotsDetail = () => {
   const [pickedTime2, setPickedTime2] = useState("");
   const [payAPrice, setPayAPrice] = useState(0); // 예약 시간,팀 선택시 해당 포인트 확인됨
   const [isTwo, setIsTwo, pickTwoHandler] = useToggle(); // 3.단식경기를할지 복식경기를 할지 선택하기
+  console.log(isTwo);
   // 4. 나의 팀중에서 하나를 선택한다 ( 나의 정보에서 가져온다)
   // 내 포인트도 가져와주었다(결제를 위해 밑에서 사용할예정이다 -> patch이용할것)
   const dispatch = useDispatch();
@@ -779,14 +780,14 @@ const SpotsDetail = () => {
               </TeamSelect>
               {pickedTime2 !== "" && !isTwo && spot.sports !== "풋살장" && (
                 <Pick>
-                  <One onClick={pickTwoHandler}>단식</One>
+                  <One>단식</One>
                   <Two onClick={pickTwoHandler}>복식</Two>
                 </Pick>
               )}
               {pickedTime2 !== "" && isTwo && spot.sports !== "풋살장" && (
                 <Pick>
                   <Two onClick={pickTwoHandler}>단식</Two>
-                  <One onClick={pickTwoHandler}>복식</One>
+                  <One>복식</One>
                 </Pick>
               )}
               {pickedTime !== "" && bookDate !== undefined && (
