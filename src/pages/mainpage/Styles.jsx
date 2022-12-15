@@ -19,6 +19,7 @@ export const MainBanner = styled(Slider)`
 
   img {
     width: 98%;
+    max-width: 420px;
   }
 `;
 
@@ -177,4 +178,6 @@ export const Info2 = styled.div`
 
 export const BannerImg = styled.img`
   border-radius: 8px;
+  width: 100%;
+  max-width: 420px;
 `;
