@@ -21,6 +21,7 @@ const Wrap = styled.div`
   -webkit-box-align: center;
   box-sizing: border-box;
   width: 100%;
+  height: 100vh;
   max-width: 420px;
   margin-left: 45%;
   overflow-x: hidden;
