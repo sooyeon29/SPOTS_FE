@@ -36,15 +36,15 @@ const ReservPage = () => {
   const myDoneMatches = useSelector(
     (state) => state.matcher?.mymatcher.doneMatchTotal
   );
-
+  console.log(myNoneMatches);
+  console.log(myDoneMatches);
   useEffect(() => {
     dispatch(__getMyMatch());
   }, [dispatch]);
 
   const cancleMatchHandler = (id, place, team) => {
     Swal.fire({
-      title: "예약을 취소하시겠습니까?",
-      text: "취소수수료 10%가 차감됩니다",
+      text: "예약을 취소하시겠습니까?(취소수수료 10%)",
       width: "380px",
       showCancelButton: true,
       confirmButtonColor: "#40d295",
