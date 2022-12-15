@@ -1,105 +1,161 @@
-![new_spots_main-02 - 복사본](https://user-images.githubusercontent.com/112181770/203546357-f077ac8c-a67a-427a-bb5a-6561483eea3b.jpg)
+# ⚽️ 슬기로운 운동 생활 No.1 플랫폼 🎾
+국민생활체육 참여율 60% 돌파! <br/>
+그런데 어디서, 누구와 운동을 해야 할지 모르겠다면? <br/>
+SPOTS에서 구장을 검색하고, 예약하고, 팀매칭을 신청해보세요!
+
+<img width="800" alt="KakaoTalk_Photo_2022-12-15-04-31-28" src="https://user-images.githubusercontent.com/113861593/207846266-540358a0-6191-4e02-8447-1ad1743dd880.png">
+
+### 🏸 [SPOTS 둘러보기](https://www.spots.co.kr/)
+
+👉 [FE GitHub](https://github.com/eunrain/spots-fe)
+
+👉 [BE GitHub](https://github.com/Thorjuri/Final_SPOTS_BE)
 
 
-# 슬기로운 운동 생활 no1 플랫폼, SPOTS⚽🥎🏸
-## <a href="https://spots-fe.vercel.app/">🏸SPOTS 둘러보기</a>
-### <프로젝트 개요>
-#### 📍소개
-- 총 7인의 개발자 및 디자이너 협업하여 실제 웹 서비스를 개발하는 항해99의 최종 프로젝트 입니다.
-- 설계부터 개발, 디자인, 배포, 테스트와 업데이트까지 전체적인 개발 플로우를 경험합니다. 
-- Github, Notion 등 Project Management Tool을 적극 활용하며, 실무와 유사한 협업 프로세스를 지향합니다.
-- 더 효율적인 로직을 고민하고, 적극적인 트러블 슈팅을 통해 한 층 견고한 개발자로 거듭나고 있습니다.
-### 📍기간 : 2022. 11. 4 ~ 22. 12. 13 (6주)
-### 👥 팀원소개
-|프런트|이름|백엔드|이름|디자이너
-|---|---|---|---|---|
-|FE🔰|김미래|BE🔰|서주리|하은진|
-|FE|김수연|BE|정우성|	
-|FE|고은비|BE|임다혜|
+<br/>
 
-![KakaoTalk_Photo_2022-12-12-04-52-49](https://user-images.githubusercontent.com/113861593/207015666-56c96905-4c69-4dcf-8a2c-6f5504c184e6.jpeg)
+# 🏃서비스 소개
 
-### 📍기술 스택
-<div>
-  <h4>　 ▪ Backend </h4>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
-<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=black">
-<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=Express&logoColor=white">
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
-<img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white">
-<br>
-<img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white">
-<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white">
-<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
- <h4> 　▪ Frontend </h4>
- <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
- <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
- <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
- <img src="https://img.shields.io/badge/styled-components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
- <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
- <img src="https://img.shields.io/badge/React Hook Form-EC5990?style=for-the-badge&logo=React-Hook-Form&logoColor=white">
-</div>
-<br>
+## 📍SPOTS는?
+- 수도권을 대상으로 종목별 생활체육시설의 위치 및 정보를 확인하고, 시설의 예약 및 팀 매칭을 돕는 생활체육 플랫폼입니다.
+- 위치를 의미하는 스팟(SPOT) 과 서비스의 주요 소재인 스포츠(SPORTS)를 결합하여, 직관적이며 기억하기 쉽게 명칭했습니다.
+- 지역/종목별 구장을 지도 기반의 View를 통해 쉽게 조회하고, 내 팀을 생성·관리하여 예약 및 매칭을 신청할 수 있습니다.
+- 내가 운영하고 있는 사설구장을 직접 등록하여 예약을 받을 수 있습니다.
 
-### 💁‍♀️아키텍쳐 등 프로젝트 상세 내용은 하단의 '프로젝트 소개'를 참고해주세요 
+## 📍주요 기능
+### (1) 회원가입/로그인 및 휴면계정 전환 🎫
 
-<br>
+- 일반 로그인 및 소셜 로그인(카카오·구글)을 통한 로그인 기능
+- 휴대폰 인증 번호(SMS 발송)를 통한 아이디와 비밀번호 찾기 기능
+- 회원 탈퇴 시 휴면회원으로 전환 30일 후 사용자 정보 삭제
 
-# 서비스 소개 🥇 
-## 1. What's 'SPOTS' ? 
- - 수도권의 종목 별 생활 체육 시설의 위치를 한 눈에 보고, 팀을 등록하여 예약과 매치 신청을 한 번에 해결하는 생활 체육 플랫폼입니다.
- - 위치를 의미하는 스팟(SPOT) 과 서비스의 주요 소재인 스포츠(SPORTS)를 결합하여, 직관적이며 기억하기 쉽게 명칭했습니다.
- - 지역/종목 별 시설을 지도 기반의 view를 통해 쉽게 조회하고, 희망하는 시설/에 경기 매칭 예약을 신청할 수 있습니다.
- - 주 기능은 위치 및 시설 정보를 제공하는 '조회' 서비스, 그리고 시설 및 상대팀을 매칭하는 '예약' 서비스로 나뉘어집니다.
+### (2) 구장 조회 🍀
+
+- kakao maps 지도 기반의 직관적인 구장 위치 안내
+- 서울시 실시간 공공체육시설 위치 및 현재 예약 가능 여부 정보 조회
+- 사설체육시설의 위치와 상세 정보 조회
+- 키워드를 이용한 통합 검색
+
+### (3) 구장 및 팀 매칭 예약 🥅
+
+- 희망하는 날짜와 시간에 구장 예약(우리 팀끼리 사용하기)
+- 희망하는 날짜와 시간에 팀매칭 예약(다른 팀과 매칭하기)
+- 포인트 결제 시스템
+- 매칭 내역 메일링 서비스
+
+### (4) 사용자 정보 설정 👥
+
+- 나의 정보(프로필 이미지, 닉네임, 전화번호, 비밀번호 수정 및 회원탈퇴)
+- 나의 팀(팀 로고, 종목 및 인원 설정)
+- 나의 예약 내역(구장 예약 / 팀 매칭 대기 / 팀 매칭 완료 내역 제공)
+- 나의 스팟(등록 후 지도 및 메인 신규 구장 목록에 노출)
+
+### (5) 사용자 문의하기 💬
+
+- 문의하기 버튼을 통해 채팅방으로 진입
+- 관리자와 연결 후 1:1 실시간 채팅 가능
+
+<br/>
+
+---
+
+<br/>
+
+## ⚙️ 서비스 아키텍처
+
+![KakaoTalk_Photo_2022-12-15-05-21-04](https://user-images.githubusercontent.com/113861593/207850058-efca1500-01af-4b9d-9629-ffd72511bfbc.png)
 
 
-<br>
+<br/>
 
-## 2. 주요 기능
+## 🛠️ 기술적 의사 결정
 
-### (1) 회원가입/로그인 및 휴먼회원
-  - 일반 로그인 및 카카오 로그인을 통해 간편 로그인 가능
-  - 핸드폰 인증번호(문자발송)를 통한 아이디, 비밀번호 찾기 가능
-  - 휴먼회원으로 전환 및 복구
+| 사용 기술 | 선정 이유 |
+| --- | --- |
+| Redux Toolkit | 효율적인 데이터 전역 관리를 위해 도입, 특히 보일러플레이트가 감소된 Redux Toolkit을 선정했습니다. |
+| Pwa | 웹앱 설치를 유도하여 사용자의 편리성 및 재사용성을 증가하기 위해 도입했습니다. |
+| Vercel | AWS의 배포 서비스를 두고 고민하였으나, Github과 같은 저장소를 연결하여 즉시 빌드를 실행하고 CI/CD 배포가 용이하다는 장점이 있어 선택했습니다. |
+| Socket.io | 관리자와 유저간의 실시간 양방향 소통을 위하여 도입했습니다. socket.io는 ws와 달리 room 개념을 가지고 있어 1:1 채팅 구현이 용이하며, 다양한 내장 메서드들을 활용할 수 있기에 장점이 뚜렷하다고 생각했습니다. |
+| Axios-interceptors | 토큰이 필요한 페이지로 진입할 때마다 api 요청 전에 만료된 토큰인지 확인하고, 만료됐다면 토큰을 갱신하기 위해 사용했습니다.  |
+| Axios | Promise API를 활용하는 HTTP 통신 라이브러리로, 비동기로 HTTP 통신을 할 수 있으며 return을 promise 객체로 해주기 때문에 response 데이터를 다루기 쉽다는 장점에 선택했습니다. |
 
-### (2) 스팟 조회
-  - kakao maps 지도 기반의 직관적인 스팟 위치 안내
-  - openAPI를 이용한 서울시 실시간 공공 체육 시설 위치 안내
-  - 사설 체육 시설의 위치와 상세정보 조회
-  - 키워드 별 스팟 통합 검색
+<br/>
+
+
+
+## 💥 트러블 슈팅
+
+<details>
+  <summary>업로딩·다운로딩 시간을 단축하기 위한 이미지 리사이징</summary>
    
-### (3) 스팟 예약 / 매칭 예약
-  - 희망하는 날짜에 스팟 이용 예약
-  - 희망하는 스팟/날짜에 경기 매칭 신청 (팀 매칭)
-  - 희망하는 스팟/날짜에 경기 없이 구장 예약
-  - 포인트 결제 시스템
-  - 매칭 내역 메일링 서비스
+  <br/>
+  
+    문제상황 
+    
+    1. 서버 과부화를 방지하기 위해 이미지 용량을 2MB로 제한하였으나 사용자들은 일일이 용량을 확인하기가 불편함
+    2. 스마트폰으로 촬영한 이미지는 기본적으로 2MB가 넘어가는 추세
+    3. S3의 이미지 용량을 5MB로 상향하였으나 이미지 업로딩시간이 증가
+    
+    해결 과정
+    
+    1. 사용자가 이미지를 업로드하면 컴포넌트에서 자체 리사이징하여 서버로 전송
+    2. browser-image-compression 라이브러리를 채택, 최대 용량을 1MB, 최대 너비를 1920px으로 제한
+    
+    결과 분석
+    
+    1. 3MB가량의 이미지가 650KB로 압축(79%의 압축률)되어 업로딩과 다운로딩 시간이 절감
+    2. 이미지 용량이 줄어듦에 따라 서버 과부하 방지 효과를 획득
+  
+  </details>
+  
+  <details>
+  <summary>앱 성능 최적화 필요</summary>
    
-### (4) 마이페이지
-  - 나의 정보 (프로필 이미지, 닉네임, 전화번호 수정)
-  - 나의 팀 등록 (팀 등록 후 스팟 예약 진행가능)
-  - 나의 예약 확인 (내 예약 내역 확인)
-  - 스팟등록 (나의 구장을 등록 및 관리)
+  <br/>
+  
+    문제상황 
+    
+    1. 구글 크롬이 제공하는 Light House 검사 실행 시 FCP 시간이 2.1초로 측정, 단축이 필요함
+    2. SPA의 특성상 페이지 첫 진입 시 웹팩에서 압축한 번들 파일, 즉 전체 리소스가 한번에 다운로드 됨
+    3. 결국 사용자는 번들 파일이 다운로드되기 전까지는 로딩을 기다려야 하며, 이와 같은 방식은 사용자 경험을 저하시킴
+    
+    해결 과정
+    
+    1. 코드 분할(code-splitting)을 실행
+    2. 불필요한 코드 및 중복되는 코드 없이 적절한 사이즈의 코드가 적절한 타이밍에 동적으로 로딩되도록 함
+    
+    결과 분석
+    
+    FCP가 2.1초에서 0.9초로 절감됨
+  
+  </details>
+    
+<br/>
+    
 
-<br>
+## 📝 유저 피드백 수집 및 개선
 
- ## 3. 사이트 맵
- - (준비중)
+- 7일 간 유저 테스트를 진행하고 사용성 개선을 위한 피드백을 수집
+- 수집된 사용자 피드백의 개수 약 70여 개
+- ‼️ 회원가입 후 별도의 로그인이 필요 없는 자동 로그인 기능 추가
+- ‼️ 팀 매칭 단계에서의 혼란을 줄이고자 사이트 첫 방문 시 튜토리얼을 경험하도록 설정
+- ‼️ 사용자들의 보안만족도 증가를 위해 개인정보수집 목적을 명시하고 동의 버튼을 추가
+- ‼️ alert를 줄이고 이동해야 하는 경로를 직접 연결시켜줌으로써 사용자들의 편리성 증가
 
-<br>
+<br/>
 
-# 프로젝트 개요📋
-### 1. 서비스 아키텍쳐
-![008](https://user-images.githubusercontent.com/112181770/203515473-1ac0b9dc-1ebe-482e-a193-96ba292a5856.png)
-### 2. 개발 프로세스
-![006](https://user-images.githubusercontent.com/112181770/203515275-0d00686e-6a47-4450-b8dd-c86a4979f786.png)
-### 3. 기능 단위
-![007](https://user-images.githubusercontent.com/112181770/203515350-215d40c5-abf3-4862-8feb-8e4f5cff62e8.png)
+---
 
+<br/>
 
+## 💻 팀원 소개
 
-
-<!-- 하단 로고-->
-![spots_main-02_대지 1](https://user-images.githubusercontent.com/112181770/203052929-79cdb020-e24c-40ad-8963-1e0886693441.png)
-
- 
+| 역할 | 이름 | GitHub |
+| --- | --- | --- |
+| FE🔰 | 김미래 | [https://github.com/Edward-SI03](https://github.com/MiraeKim1031) |
+| FE | 고은비 | [https://github.com/kimdaerin](https://github.com/eunrain) |
+| FE | 김수연 | [https://github.com/JJooonji](https://github.com/sooyeon29) |
+| BE🔰 | 서주리 | [https://github.com/devyouth94](https://github.com/Thorjuri) |
+| BE | 임다혜 | https://github.com/dahye24|
+| BE | 정우성 | https://github.com/dntjd960403 |
+| Design | 하은진 | 디자인 담당 |
