@@ -193,7 +193,7 @@ const ReservPage = () => {
                   <span>
                     {matchWait.teamData?.sports !== "풋살장" && (
                       <>
-                        {!matchWait.matchData?.isDouble ? "단식" : "복식"} 경기
+                        {matchWait.matchData?.isDouble ? "복식" : "단식"} 경기
                       </>
                     )}
                   </span>
@@ -285,7 +285,7 @@ const ReservPage = () => {
                   매칭 대기
                   <span>
                     {matchCom.teamData?.sports !== "풋살장" && (
-                      <>{matchCom.matchData?.isDouble ? "단식" : "복식"} 경기</>
+                      <>{matchCom.matchData?.isDouble ? "복식" : "단식"} 경기</>
                     )}
                   </span>
                 </MidTitle>
