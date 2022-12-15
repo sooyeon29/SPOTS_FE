@@ -2,9 +2,13 @@ import styled, { css } from "styled-components";
 
 export const StContainer = styled.div`
   display: flex;
+  width: 100%;
+  height: 100vh;
 `;
 
-export const StWrap = styled.div``;
+export const StWrap = styled.div`
+  margin-left: 20px;
+`;
 
 export const ChatBox = styled.div`
   width: 350px;
