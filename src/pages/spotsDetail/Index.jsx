@@ -112,7 +112,7 @@ const SpotsDetail = () => {
         icon: "info",
       });
     }
-  }, []);
+  }, [newMatchTeam]);
   //=> a팀을 선택한 경우
   const teamPick = (time, price) => {
     setPickedTime(myTime[time]);
