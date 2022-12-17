@@ -15,7 +15,7 @@ const SwitchAccount = () => {
         <Header />
         <Container>
           <Logo>
-            <img alt="logo" src="/switch_logo.png" />
+            <img alt="logo" src="/login/switch_logo.png" />
           </Logo>
           <First>
             <h2>
@@ -33,7 +33,6 @@ const SwitchAccount = () => {
               onClick={() => {
                 UserpageAPI.switchMe()
                   .then((res) => {
-                    console.log(res);
                     if (res.status === 200) {
                       Swal.fire({
                         text: "계정이 활성화되었습니다.",
@@ -56,7 +55,6 @@ const SwitchAccount = () => {
             </button>
             <button
               onClick={() => {
-                // localStorage.clear();
                 navigate("/login");
               }}
             >

@@ -1,64 +1,67 @@
-import React from "react";
+import React, { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "../pages/login/Index";
-import SignUp from "../pages/signUp/Index";
-import MainMaps from "../pages/mainpage/Index";
-import SpotsDetail from "../pages/spotsDetail/Index";
-import MyPage from "../pages/userpage/mypage/MyPage";
-import TeamPage from "../pages/userpage/myteam/TeamPage";
-import TeamDetail from "../pages/userpage/myteam/TeamDetail";
-import TeamRegister from "../pages/userpage/myteam/TeamRegister";
-import Reservation from "../pages/reservation/Index";
-import Kakao from "../pages/login/Kakao";
-import Hosting from "../pages/userpage/myhost/Hosting";
-import SwitchAccount from "../pages/login/SwitchAccount";
-import ReservPage from "../pages/userpage/mybook/ReservPage";
-import HostList from "../pages/userpage/myhost/HostList";
-import HostDetail from "../pages/userpage/myhost/HostDetail";
-import FindPw from "../pages/login/FindPw";
-import FindId from "../pages/login/FindId";
-import UserPage from "../pages/userpage/Index";
-import AdminHome from "../pages/chat/AdminHome";
-import AdminChat from "../pages/chat/AdminChat";
-import Welcome from "../components/Welcome";
-import Chatting from "../pages/chat/Chatting";
-import Google from "../pages/login/Google";
-import ScrollToTop from "../components/ScrollTop";
-import SocialSignUp from "../pages/signUp/SocialSignUp";
-//import ChatStart from "../pages/chat/ChatStartBtn";
+import { Suspense } from "react";
+import Loading from "../components/Loading";
+
+const MainMaps = lazy(() => import("../pages/mainpage/Index"));
+const Reservation = lazy(() => import("../pages/reservation/Index"));
+const SpotsDetail = lazy(() => import("../pages/spotsDetail/Index"));
+const Chatting = lazy(() => import("../pages/chat/Chatting"));
+const AdminChat = lazy(() => import("../pages/chat/AdminChat"));
+const ScrollToTop = lazy(() => import("../components/ScrollTop"));
+const Login = lazy(() => import("../pages/login/Index"));
+const Kakao = lazy(() => import("../pages/login/Kakao"));
+const Google = lazy(() => import("../pages/login/Google"));
+const FindId = lazy(() => import("../pages/login/FindId"));
+const FindPw = lazy(() => import("../pages/login/FindPw"));
+const SignUp = lazy(() => import("../pages/signUp/Index"));
+const SocialSignUp = lazy(() => import("../pages/signUp/SocialSignUp"));
+const Welcome = lazy(() => import("../components/Welcome"));
+const SwitchAccount = lazy(() => import("../pages/login/SwitchAccount"));
+const UserPage = lazy(() => import("../pages/userpage/Index"));
+const MyPage = lazy(() => import("../pages/userpage/mypage/MyPage"));
+const TeamPage = lazy(() => import("../pages/userpage/myteam/TeamPage"));
+const TeamDetail = lazy(() => import("../pages/userpage/myteam/TeamDetail"));
+const TeamRegister = lazy(() =>
+  import("../pages/userpage/myteam/TeamRegister")
+);
+const HostList = lazy(() => import("../pages/userpage/myhost/HostList"));
+const HostDetail = lazy(() => import("../pages/userpage/myhost/HostDetail"));
+const Hosting = lazy(() => import("../pages/userpage/myhost/Hosting"));
+const ReservPage = lazy(() => import("../pages/userpage/mybook/ReservPage"));
 
 function Router() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<MainMaps />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/findpw" element={<FindPw />} />
-        <Route path="/findid" element={<FindId />} />
-        <Route path="/userpage" element={<UserPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/teampage" element={<TeamPage />} />
-        <Route path="/teamdetail/:id" element={<TeamDetail />} />
-        <Route path="/teamregister" element={<TeamRegister />} />
-        <Route path="/reservpage" element={<ReservPage />} />
-        <Route path="/spotsdetail/:id" element={<SpotsDetail />} />
-        <Route path="/book" element={<Reservation />} />
-        <Route path="/book/:keywords" element={<Reservation />} />
-        <Route path="/auth/kakao/callback" element={<Kakao />} />
-        <Route path="/auth/google/callback" element={<Google />} />
-        <Route path="/hosting" element={<Hosting />} />
-        <Route path="/switchaccount" element={<SwitchAccount />} />
-        <Route path="/hostlist" element={<HostList />} />
-        <Route path="/hostdetail/:id" element={<HostDetail />} />
-        <Route path="/addlogin" element={<SocialSignUp />} />
-        <Route path="/adminhome" element={<AdminHome />} />
-        <Route path="/adminchat" element={<AdminChat />} />
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/chatting" element={<Chatting />} />
-        {/*<Route path="/chatting" element={<ChatStart />} />*/}
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<MainMaps />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/findpw" element={<FindPw />} />
+          <Route path="/findid" element={<FindId />} />
+          <Route path="/userpage" element={<UserPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/teampage" element={<TeamPage />} />
+          <Route path="/teamdetail/:id" element={<TeamDetail />} />
+          <Route path="/teamregister" element={<TeamRegister />} />
+          <Route path="/reservpage" element={<ReservPage />} />
+          <Route path="/spotsdetail/:id" element={<SpotsDetail />} />
+          <Route path="/book" element={<Reservation />} />
+          <Route path="/book/:keywords" element={<Reservation />} />
+          <Route path="/auth/kakao/callback" element={<Kakao />} />
+          <Route path="/auth/google/callback" element={<Google />} />
+          <Route path="/hosting" element={<Hosting />} />
+          <Route path="/switchaccount" element={<SwitchAccount />} />
+          <Route path="/hostlist" element={<HostList />} />
+          <Route path="/hostdetail/:id" element={<HostDetail />} />
+          <Route path="/addlogin" element={<SocialSignUp />} />
+          <Route path="/adminchat" element={<AdminChat />} />
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/chatting" element={<Chatting />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

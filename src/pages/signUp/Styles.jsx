@@ -62,13 +62,31 @@ export const ContentWrap = styled.div`
     color: #ff00b3;
   }
 `;
+export const Agreement = styled.div`
+  font-size: 12px;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
 
-export const FirstPage = styled.div`
-  div {
-  }
   input {
+    margin: 0;
+    margin-right: 5px;
   }
 `;
+
+export const AgreementWrap = styled.div`
+  display: flex;
+`;
+
+export const AgreementBtn = styled.div`
+  margin-left: 3px;
+  cursor: pointer;
+  color: gray;
+`;
+
+export const FirstPage = styled.div`
+`;
+
 export const IdConfirmBtn = styled.button`
   width: auto;
   cursor: pointer;
@@ -92,8 +110,17 @@ export const NextBtn = styled.button`
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
+  cursor: pointer;
 `;
 
+export const AgreementTerm = styled.div`
+  font-size: 12px;
+  width: 80%;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+`;
 export const SecondPage = styled.div`
   input {
     border: none;
@@ -133,8 +160,7 @@ export const ThirdPage = styled.div`
   }
 `;
 
-export const GenderSelect = styled.div`
-`;
+export const GenderSelect = styled.div``;
 
 export const ForthPage = styled.div`
   margin: auto;
@@ -362,8 +388,6 @@ export const SportsBlock = styled.div`
 
 export const RecommendId = styled.input`
   border: none;
-  /* width: 220px; */
-  /* padding: 12px 15px; */
   margin-bottom: 10px;
   margin-top: 10px;
   background-color: transparent;
@@ -385,7 +409,6 @@ export const GrayBorder = styled.div`
   background-color: #f4f4f4;
   border: none;
   border-radius: 10px;
-  /* padding-top: 7px; */
   padding: 3px 0px 3px 18px;
   width: 310px;
   margin: auto;

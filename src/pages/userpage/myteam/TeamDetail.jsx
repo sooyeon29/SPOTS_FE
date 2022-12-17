@@ -40,11 +40,9 @@ const TeamDetail = () => {
   }, [dispatch, id]);
 
   const dropTeam = (teamId) => {
-    console.log(teamId);
     navigate("/teampage");
     UserpageAPI.deleteTeam(teamId)
       .then((res) => {
-        console.log(res);
         if (res.status === 201) {
           Swal.fire({
             text: "팀 삭제가 완료되었습니다",
@@ -58,7 +56,6 @@ const TeamDetail = () => {
       })
       .then(() => dispatch(__getMyteamList()))
       .catch((error) => {
-        console.log(error);
         if (error.response.status === 404) {
           Swal.fire({
             text: "해당 팀이 존재하지 않습니다",
@@ -85,7 +82,6 @@ const TeamDetail = () => {
     <Layout>
       <FlexibleHeader title={title} />
       <StWrap>
-        {/* <PageDesc>팀 상세페이지</PageDesc> */}
         <StTeamForm>
           {!isEdit ? (
             <>
@@ -117,7 +113,6 @@ const TeamDetail = () => {
                   <div>인원</div>
                   <div>{teamdetail.member}명</div>
                 </TeamLayout>
-
                 <TeamLayout>
                   <div>관리자</div>
                   <div>{teamdetail.admin}</div>
@@ -127,7 +122,6 @@ const TeamDetail = () => {
               <Btn
                 onClick={() => {
                   dropTeam(teamdetail.teamId);
-                  console.log(teamdetail.teamId);
                 }}
               >
                 삭제하기
@@ -180,7 +174,6 @@ const TeamDetail = () => {
                     newAdmin: adminRef.current.value,
                   })
                     .then((res) => {
-                      console.log(res);
                       if (res.status === 201) {
                         Swal.fire({
                           text: "수정이 완료되었습니다.",
@@ -194,7 +187,6 @@ const TeamDetail = () => {
                     })
                     .then(() => dispatch(__getMyteamDetail(id)))
                     .catch((err) => {
-                      console.log(err);
                       if (err.response.status === 403) {
                         Swal.fire({
                           text: "수정 권한이 없습니다.",

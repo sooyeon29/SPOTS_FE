@@ -37,7 +37,6 @@ export const __getMyteamList = createAsyncThunk(
 export const __getMyteamDetail = createAsyncThunk(
   "getMyteamDetail",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await UserpageAPI.getMyteamDetail(payload);
       return thunkAPI.fulfillWithValue(data);
@@ -58,11 +57,9 @@ const userSlice = createSlice({
     [__getMyInfo.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       localStorage.setItem("point", action.payload.user.point);
-      // console.log("내정보불러오기", state.user);
     },
     [__getMyInfo.rejected]: (state, action) => {
       state.error = action.payload;
-      console.log(state.error);
     },
     [__getMyteamList.pending]: (state, action) => {
       state.isLoading = true;
@@ -89,26 +86,6 @@ const userSlice = createSlice({
           }
         });
       }
-      // if (
-      //   action.payload.response.status === 404 &&
-      //   action.payload.response.status !== 401
-      // ) {
-      //   Swal.fire({
-      //     text: "예약은 나의 팀 등록 후 사용 가능합니다",
-      //     width: "340px",
-      //     showCancelButton: true,
-      //     confirmButtonText: "로그인",
-      //     confirmButtonColor: "#40d295",
-      //     cancelButtonColor: "#FF00B4",
-      //     cancelButtonText: "둘러보기",
-      //     showClass: { popup: "animated fadeInDown faster" },
-      //     hideClass: { popup: "animated fadeOutUp faster" },
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //       window.location.replace(`/teamregister`);
-      //     }
-      //   });
-      // }
     },
     [__getMyteamDetail.pending]: (state, action) => {
       state.isLoading = true;

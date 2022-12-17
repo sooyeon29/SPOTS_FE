@@ -8,8 +8,8 @@ import { __getMyInfo } from "../../redux/modules/userSlice";
 import { Container, Profile, PointBox, MenuBox } from "./Styles";
 
 const UserPage = () => {
-  const dispatch = useDispatch();
   const title = "내 계정";
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,22 +42,22 @@ const UserPage = () => {
         <MenuBox>
           <img
             alt="내 정보"
-            src="/my.png"
+            src="/userpage/my.png"
             onClick={() => navigate("/mypage")}
           />
           <img
             alt="나의 팀"
-            src="/Teamsetting.png"
+            src="/userpage/Teamsetting.png"
             onClick={() => navigate("/teampage")}
           />
           <img
             alt="나의 예약"
-            src="/myreservationlist.png"
+            src="/userpage/myreservationlist.png"
             onClick={() => navigate("/reservpage")}
           />
           <img
             alt="구장 등록"
-            src="/myplace.png"
+            src="/userpage/myplace.png"
             onClick={() => navigate("/hostlist")}
           />
         </MenuBox>

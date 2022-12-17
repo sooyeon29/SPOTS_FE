@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { FaRegBell } from "react-icons/fa";
-import { VscSettingsGear } from "react-icons/vsc";
 import { BiLogOut } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMyInfo } from "../redux/modules/userSlice";
@@ -40,7 +38,7 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
       {!token ? (
         <Section isOpen={barIsOpen}>
           <Profile>
-            <img alt="프로필이미지" src="/myprofile_icon.png" />
+            <img alt="프로필이미지" src="/userpage/myprofile_icon.png" />
             <div>
               <p>로그인 후 이용해주세요.</p>
             </div>
@@ -48,23 +46,19 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/login")}>
               <div>
-                <img alt="로그인" src="/login_icon.png" />
+                <img alt="로그인" src="/userpage/login_icon.png" />
                 <p>로그인하기</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/signup")}>
               <div>
-                <img alt="회원가입" src="/join_icon.png" />
+                <img alt="회원가입" src="/userpage/join_icon.png" />
                 <p>회원가입</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
           </Ul>
-          <Bottom>
-            <FaRegBell className="icon" />
-            <VscSettingsGear className="icon" />
-          </Bottom>
         </Section>
       ) : (
         <Section isOpen={barIsOpen}>
@@ -77,36 +71,36 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
           <Ul ref={dropDownRef}>
             <Li onClick={() => navigate("/mypage")}>
               <div>
-                <img alt="내 정보" src="/myprofile_icon.png" />
+                <img alt="내 정보" src="/userpage/myprofile_icon.png" />
                 <p>내 정보</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/teampage")}>
               <div>
-                <img alt="나의 팀" src="/myteam_icon.png" />
+                <img alt="나의 팀" src="/userpage/myteam_icon.png" />
                 <p>나의 팀</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/reservpage")}>
               <div>
-                <img alt="나의 예약" src="/myreserv_icon.png" />
+                <img alt="나의 예약" src="/userpage/myreserv_icon.png" />
                 <p>나의 예약</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             <Li onClick={() => navigate("/hostlist ")}>
               <div>
-                <img alt="스팟 등록" src="/myhost_icon.png" />
+                <img alt="스팟 등록" src="/userpage/myhost_icon.png" />
                 <p>스팟 등록</p>
               </div>
               <IoIosArrowForward className="arrow" />
             </Li>
             {user.nickname === "spotsadmin" ? (
-              <Li onClick={() => navigate("/adminhome ")}>
+              <Li onClick={() => navigate("/adminchat")}>
                 <div>
-                  <img alt="관리자 채팅방" src="/myhost_icon.png" />
+                  <img alt="관리자 채팅방" src="/userpage/join_icon.png" />
                   <p>관리자 채팅방</p>
                 </div>
                 <IoIosArrowForward className="arrow" />
@@ -114,7 +108,6 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
             ) : null}
           </Ul>
           <Bottom>
-            <FaRegBell className="icon" />
             <BiLogOut className="icon" onClick={logout} />
           </Bottom>
         </Section>
@@ -125,13 +118,10 @@ const SideBar = ({ barIsOpen, dropDownRef }) => {
 
 export default SideBar;
 
-const SideMenu = styled.div`
-position: relative;
-background-color: #fff;
-`;
+const SideMenu = styled.div``;
 
 const Section = styled.div`
-  background-color: #fff;
+  background-color: white;
   color: #545454;
   width: 280px;
   padding-top: 30px;
@@ -139,18 +129,19 @@ const Section = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -300px;
+  margin-left: -15.5%;
+  z-index: 9999;
   visibility: hidden;
   transition: 0.8s ease;
   opacity: 0;
-  z-index: 999999;
-
+  @media screen and (max-width: 420px) {
+    right: 0;
+  }
   ${({ isOpen }) =>
     isOpen &&
     css`
       opacity: 1;
       visibility: visible;
-      right: 0;
     `};
 `;
 
@@ -164,7 +155,6 @@ const Profile = styled.div`
   background-color: #fff;
 
   img {
-    /* transform: translate(50, 50); */
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -172,10 +162,12 @@ const Profile = styled.div`
     margin-right: 10px;
   }
 `;
+
 const Ul = styled.ul`
   padding-left: 10px;
   background-color: #fff;
 `;
+
 const Li = styled.li`
   margin: 13px 0;
   padding-bottom: 13px;

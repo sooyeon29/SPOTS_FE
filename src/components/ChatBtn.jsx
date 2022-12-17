@@ -14,6 +14,10 @@ const ChatBtn = ({ chatHandler, chatRef }) => {
 export default ChatBtn;
 
 const Btn = styled.div`
+  @media screen and (max-width: 420px) {
+    right: 8%;
+  }
+
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -22,6 +26,7 @@ const Btn = styled.div`
   display: flex;
   justify-content: space-between;
   position: fixed;
+  right: 28%;
   cursor: pointer;
   img {
     width: 60px;

@@ -40,7 +40,6 @@ const Login = () => {
     e.preventDefault();
     LoginAPI.login({ loginId: loginInfo.id, password: loginInfo.password })
       .then((res) => {
-        // console.log("로그인성공 response", res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.accessToken);
           localStorage.setItem("nickname", res.data.nickname);
@@ -65,7 +64,6 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 400) {
           Swal.fire({
             text: "이미 로그인된 상태입니다",
@@ -131,13 +129,13 @@ const Login = () => {
           <SocialLogin>
             <a href={KAKAO_AUTH_URL}>
               <KakaoBtn>
-                <img alt="" src="/kakao.png" width={25} />
+                <img alt="" src="/login/kakao.png" width={25} />
                 카카오 로그인
               </KakaoBtn>
             </a>
             <a href={GOOGLE_AUTH_URL}>
               <GoogleBtn>
-                <img alt="" src="/google.png" width={27} />
+                <img alt="" src="/login/google.png" width={27} />
                 구글 로그인
               </GoogleBtn>
             </a>

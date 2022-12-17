@@ -10,8 +10,13 @@ import {
   StChatContent,
   Button,
 } from "./Styles";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ChatRoom = ({ chatOpen }) => {
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
   return (
     <>
       <RoomStContainer isOpen={chatOpen}>
@@ -25,7 +30,7 @@ const ChatRoom = ({ chatOpen }) => {
           </StHeader>
           <StContent>
             슬기로운 운동 생활 No.1 플랫폼, SPOTS ⚽️🎾🏸
-            <p>문의하기 기능은 곧 오픈될 예정입니다!</p>
+            <p>궁금한 점은 언제든지 문의주세요.</p>
           </StContent>
           <StChat>
             <StChatContent>
@@ -40,7 +45,19 @@ const ChatRoom = ({ chatOpen }) => {
             </StChatContent>
             <Button
               onClick={() => {
-                window.location.replace("/chatting");
+                if (token) {
+                  window.location.replace("/chatting");
+                } else {
+                  Swal.fire({
+                    text: "로그인 후 이용해주세요",
+                    width: "300px",
+                    confirmButtonText: "확인",
+                    confirmButtonColor: "#40d295",
+                    showClass: { popup: "animated fadeInDown faster" },
+                    hideClass: { popup: "animated fadeOutUp faster" },
+                  });
+                  navigate("/login");
+                }
               }}
             >
               <IoSend />

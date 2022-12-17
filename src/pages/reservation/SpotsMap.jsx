@@ -77,7 +77,7 @@ const SpotsMap = ({ spotMarkers }) => {
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
                       (level >= 4 && { width: 40, height: 40 }),
-                  }} // 마커이미지의 크기입니다
+                  }} // 마커이미지의 크기
                 />
                 {isPrivateOpen === idx ? (
                   <CustomOverlayMap
@@ -116,7 +116,7 @@ const SpotsMap = ({ spotMarkers }) => {
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
                       (level >= 4 && { width: 40, height: 40 }),
-                  }} // 마커이미지의 크기입니다
+                  }} // 마커이미지의 크기
                 />
 
                 {isPrivateOpen === idx ? (
@@ -129,6 +129,13 @@ const SpotsMap = ({ spotMarkers }) => {
                   >
                     <Container onClick={() => setIsPrivateOpen(false)}>
                       <div>{privSpot.spotName}</div>
+                      <div
+                        onClick={() =>
+                          navigate(`/spotsdetail/${privSpot.placesId}`)
+                        }
+                      >
+                        구장 보기
+                      </div>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}
@@ -142,19 +149,18 @@ const SpotsMap = ({ spotMarkers }) => {
             return (
               <div key={pubSpot.opensId}>
                 <MapMarker
-                  // key={pubSpot.opensId}
                   position={{
                     lat: pubSpot.y,
                     lng: pubSpot.x,
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/reservation/public.png", // 마커이미지의 주소입니다
+                    src: "/reservation/public.png", // 마커이미지의 주소
                     size:
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
                       (level >= 4 && { width: 40, height: 40 }),
-                  }} // 마커이미지의 크기입니다
+                  }} // 마커이미지의 크기
                 />
                 {isPublicOpen === idx ? (
                   <CustomOverlayMap
@@ -178,19 +184,18 @@ const SpotsMap = ({ spotMarkers }) => {
             return (
               <div key={pubSpot.opensId}>
                 <MapMarker
-                  // key={pubSpot.opensId}
                   position={{
                     lat: pubSpot.y,
                     lng: pubSpot.x,
                   }}
                   onClick={(e) => handlePublicOnClick(e, idx)}
                   image={{
-                    src: "/reservation/public.png", // 마커이미지의 주소입니다
+                    src: "/reservation/public.png", // 마커이미지의 주소
                     size:
                       (level >= 8 && { width: 30, height: 30 }) ||
                       (level >= 6 && { width: 35, height: 35 }) ||
                       (level >= 4 && { width: 40, height: 40 }),
-                  }} // 마커이미지의 크기입니다
+                  }} // 마커이미지의 크기
                 />
                 {isPublicOpen === idx ? (
                   <CustomOverlayMap
@@ -202,6 +207,9 @@ const SpotsMap = ({ spotMarkers }) => {
                   >
                     <Container onClick={() => setIsPublicOpen(false)}>
                       <div>{pubSpot.placenm}</div>
+                      <a href={pubSpot.svcurl} target="_blank">
+                        예약하러 가기{" "}
+                      </a>
                     </Container>
                   </CustomOverlayMap>
                 ) : null}

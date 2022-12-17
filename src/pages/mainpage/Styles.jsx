@@ -1,70 +1,72 @@
-import Slider from 'react-slick';
-import styled from 'styled-components';
+import Slider from "react-slick";
+import styled from "styled-components";
 
 export const MainSearch = styled.img`
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   margin-top: 40px;
+  cursor: pointer;
 `;
+
 export const MainBanner = styled(Slider)`
   .slick-slide div {
     margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 390px;
+    max-width: 420px;
   }
 
   img {
     width: 98%;
+    max-width: 420px;
   }
 `;
 
 export const SpotContainer = styled.div`
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
+
 export const Section = styled.div`
-  margin: 10px 0px 8px 10px;
+  margin: 0px 0px 8px 10px;
   font-size: 18px;
-  font-weight: 900;
-  font-family: SpoqaHanSansNeoBold;
+  font-weight: 700;
 `;
+
 export const BannerSlider = styled(Slider)`
   .slick-list {
-    margin-left: 8px;
-    padding-left: 2px;
-  }
-  
-  .slick-slide div {
-    margin: 0px 10px 0px 0px;
+    margin-left: 5px;
   }
   cursor: pointer;
 `;
 
 export const New = styled.div`
-  width: 80%;
+  height: 210px;
+  margin-left: 20px;
 `;
 
 export const Image = styled.img`
-  width: 180px;
+  width: 175px;
   height: 180px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 50px;
 `;
+
 export const InfoDiv = styled.div`
   background-color: #fff;
   padding: 10px;
-  width: 160px;
+  width: 155px;
   height: 55px;
   border-radius: 10px;
   position: absolute;
-  top: 55%;
+  top: 60%;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
   display: flex;
 `;
+
 export const Info = styled.div`
   width: 165px;
   div {
@@ -74,17 +76,22 @@ export const Info = styled.div`
     overflow: hidden;
   }
 `;
+
 export const Icon = styled.img`
   height: 18px;
   margin-bottom: 5px;
 `;
+
 export const SpotName = styled.div`
   font-weight: bold;
   font-size: 14px;
 `;
+
 export const TeamContainer = styled.div`
   margin-bottom: 65px;
+  margin-top: 20px;
 `;
+
 export const SixMatch = styled.div`
   background-color: #f0f0f0;
   width: 370px;
@@ -98,6 +105,7 @@ export const SixMatch = styled.div`
   padding-top: 20px;
   padding-left: 15px;
 `;
+
 export const WaitingMatchMain = styled.div`
   font-weight: bold;
   display: flex;
@@ -119,19 +127,21 @@ export const WaitingMatchMain = styled.div`
     }
   }
 `;
+
 export const LastTime = styled.div`
   background-color: #ff00b4;
   color: white;
   border-radius: 10px;
   padding: 5px 7px;
   font-size: 13px;
-  /* margin-right: 10px; */
 `;
+
 export const WaitingMatchMain2 = styled(WaitingMatchMain)`
   div {
     width: 50%;
   }
 `;
+
 export const SpotInfoMain = styled.div`
   background-color: white;
   border-radius: 10px;
@@ -149,9 +159,9 @@ export const SpotInfoMain = styled.div`
     border-radius: 10px;
   }
 `;
+
 export const Info2 = styled.div`
   width: 100%;
-  /* padding: 0px 10px; */
   button {
     font-size: 15px;
     font-weight: bold;
@@ -164,4 +174,10 @@ export const Info2 = styled.div`
     margin-left: 5px;
     font-size: 14px;
   }
+`;
+
+export const BannerImg = styled.img`
+  border-radius: 8px;
+  width: 100%;
+  max-width: 420px;
 `;

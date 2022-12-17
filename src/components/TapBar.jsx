@@ -59,13 +59,13 @@ const TapBar = () => {
 export default TapBar;
 
 const Container = styled.div`
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   height: 60px;
   background-color: #ffffff;
   position: fixed;
   bottom: 0;
-  z-index: 999;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   div {

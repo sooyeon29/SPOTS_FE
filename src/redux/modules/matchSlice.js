@@ -7,10 +7,8 @@ import { SpotsMatchApi } from "../../tools/instance";
 export const __postSpotsMatch = createAsyncThunk(
   "spotsMatch/postSpotsMatch",
   async (payload, thunkApi) => {
-    // console.log("페이로드!!", payload);
     try {
       const { data } = await SpotsMatchApi.postSpotsMatch(payload);
-      // console.log("너데이터누구니", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -24,7 +22,6 @@ export const __getAllMatch = createAsyncThunk(
   async (payload, thunkApi) => {
     try {
       const { data } = await SpotsMatchApi.getAllMatch(payload);
-      // console.log("이제안줘???", data);
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
       return thunkApi.rejectWithValue(error);
@@ -53,7 +50,6 @@ export const __getMyMatch = createAsyncThunk(
       const { data } = await SpotsMatchApi.getMyMatch();
       return thunkApi.fulfillWithValue(data);
     } catch (error) {
-      // console.log("내예약왜안떠", error);
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -104,19 +100,14 @@ const matchSlice = createSlice({
         showClass: { popup: "animated fadeInDown faster" },
         hideClass: { popup: "animated fadeOutUp faster" },
       }).then((res) => {
-        console.log(res);
         if (res.isConfirmed) {
           window.location.replace(`/reservpage`);
         }
       });
-      // console.log("fulfilled 상태", state, action.payload);
-      // alert(action.payload.message);
-      // window.location.replace(`/reservpage`);
     },
     [__postSpotsMatch.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-      console.log(state.error);
       if (state.error.response.status === 500) {
         Swal.fire({
           text: "필수입력값을 모두 입력해주세요",
@@ -222,7 +213,6 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getAllMatch.fulfilled]: (state, action) => {
-      // console.log("모든매치", state, "모든매치액션", action.payload);
       state.isLoading = false;
       state.allmatcher = action.payload.data;
     },
@@ -235,10 +225,8 @@ const matchSlice = createSlice({
       state.isLoading = true;
     },
     [__getOkMatch.fulfilled]: (state, action) => {
-      // console.log("대기중매치", action.payload);
       state.isLoading = false;
       state.newmatcher = action.payload.noneMatching;
-      // console.log(state.newmatcher);
     },
     [__getOkMatch.rejected]: (state, action) => {
       state.isLoading = false;
@@ -265,19 +253,7 @@ const matchSlice = createSlice({
     [__exitMyMatch.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.message = action.payload;
-      // console.log(action);
-      // Swal.fire({
-      //   text: "예약 취소 및 포인트 반환 완료(예약 다음 날부터 취소수수료 10%가 차감됩니다)",
-      //   width: "300px",
-      //   confirmButtonColor: "#40d295",
-      //   confirmButtonText: "확인",
-      //   showClass: { popup: "animated fadeInDown faster" },
-      //   hideClass: { popup: "animated fadeOutUp faster" },
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-          window.location.reload();
-      //   }
-      // });
+      window.location.reload();
     },
     [__exitMyMatch.rejected]: (state, action) => {
       state.isLoading = false;

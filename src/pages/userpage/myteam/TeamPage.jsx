@@ -30,13 +30,10 @@ const TeamPage = () => {
 
   const { team } = useSelector((state) => state.user);
 
-  console.log(team);
   return (
     <Layout>
       <FlexibleHeader title={title} />
       <Container>
-        {/* <Title>팀 관리</Title> */}
-
         <TeamBox>
           {team?.map((team) => {
             if (team.sports === "풋살장") {
@@ -70,7 +67,7 @@ const TeamPage = () => {
                     navigate(`/teamdetail/${team.teamId}`);
                   }}
                 >
-                  {team.image === null ? (
+                  {team.image === null || team.image === "" ? (
                     <img alt="spots" src="/myprofile_logo.png" />
                   ) : (
                     <img alt="팀프로필" src={team.image} />
@@ -109,7 +106,6 @@ const TeamPage = () => {
           })}
         </TeamBox>
         <BtnTeamPage onClick={() => navigate("/teamregister")}>
-          {" "}
           팀 등록하기
         </BtnTeamPage>
       </Container>

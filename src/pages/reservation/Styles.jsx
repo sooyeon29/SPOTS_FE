@@ -8,7 +8,6 @@ export const StWrap = styled.div`
   padding-bottom: 0;
   margin: auto;
   img {
-    /* width: 30px; */
     height: 30px;
   }
 `;
@@ -27,7 +26,7 @@ export const Index = styled.div`
 `;
 
 export const PlaceList = styled.div`
-  max-width: 390px;
+  max-width: 420px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -136,10 +135,6 @@ export const PrivateBlock = styled.div`
     text-decoration: none;
     color: black;
   }
-  img {
-    /* width: 60px;
-    height: 23px; */
-  }
   p:first-child {
     margin: auto;
     margin-top: 5px;
@@ -188,9 +183,6 @@ export const PublicBlock = styled.div`
     text-decoration: none;
     color: black;
   }
-  img {
-    /* width: 100%; */
-  }
 `;
 
 export const PublicInfo = styled.div`
@@ -201,7 +193,6 @@ export const PublicInfo = styled.div`
     color: #545454;
   }
   span:first-child {
-    /* background-color: blue; */
     font-size: 18px;
     font-weight: 700;
     margin-right: 5px;

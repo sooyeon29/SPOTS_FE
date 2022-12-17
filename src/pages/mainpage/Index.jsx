@@ -17,7 +17,6 @@ import {
   Info2,
   InfoDiv,
   LastTime,
-  MainBanner,
   MainSearch,
   New,
   Section,
@@ -30,7 +29,6 @@ import {
   WaitingMatchMain2,
 } from "./Styles";
 import Tutorial from "../../components/Tutorial";
-import { margin } from "polished";
 import Banner from "./Banner";
 
 const MainMaps = () => {
@@ -39,9 +37,7 @@ const MainMaps = () => {
   const [newSpot, setNewSpot] = useState();
   const [newMatch, setNewMatch] = useState();
   const navigate = useNavigate();
-  //chatbtn
   const [chatOpen, chatRef, chatHandler] = useDetectClose(false);
-  //const chatOpenRef = useRef(null);
 
   const settings = {
     dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
@@ -49,12 +45,9 @@ const MainMaps = () => {
     speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     autoplaySpeed: 5000,
     autoplay: true,
-    slidesToShow: 2, // 한번에 몇개의 슬라이드를 보여줄지
+    slidesToShow: 2.1, // 한번에 몇개의 슬라이드를 보여줄지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     arrows: true,
-    adaptiveHeight: true,
-    // centerMode: true,
-    // variableWidth: true,
   };
 
   useEffect(() => {
@@ -148,6 +141,7 @@ const MainMaps = () => {
               <SixMatch key={index}>
                 <Link
                   to={`/spotsdetail/${sixmatch.place?.placesId}`}
+                  state={{ state: sixmatch.match }}
                   style={{
                     color: "black",
                     textDecoration: "none",
@@ -155,10 +149,16 @@ const MainMaps = () => {
                 >
                   <WaitingMatchMain>
                     <div>
-                      <img alt="" src="/mainpage/date.png" width="23px" />
+                      <img
+                        alt=""
+                        src="/mainpage/date.png"
+                        width="23px"
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <span>
                         {sixmatch.match?.date.substring(6, 8)}월
-                        {sixmatch.match?.date.substring(10, 13)}일
+                        {sixmatch.match?.date.substring(9, 12)}일
                       </span>
                     </div>
                     <LastTime>마감임박</LastTime>

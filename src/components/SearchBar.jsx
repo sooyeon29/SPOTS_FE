@@ -1,22 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import styled from "styled-components";
 
 const SearchBar = () => {
-  // const navigate = useNavigate();
   const [keywords, setKeywords] = useState("");
 
   const onSearchHandler = async (e) => {
     e.preventDefault();
     window.location.href = "/book/" + keywords;
   };
-  // console.log(keywords);
 
   return (
     <StSearch>
       <form onSubmit={onSearchHandler}>
-        {/* <SearchBar> */}
         <StInput
           type="text"
           value={keywords}
@@ -28,7 +24,6 @@ const SearchBar = () => {
         <StBtn type="button">
           <BsSearch style={{ color: "white", cursor: "pointer" }} />
         </StBtn>
-        {/* </SearchBar> */}
       </form>
     </StSearch>
   );

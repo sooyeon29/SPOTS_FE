@@ -7,7 +7,6 @@ const Tutorial = ({ handleClose }) => {
   const settings = {
     dots: false, // 캐러셀이미지가 몇번째인지 알려주는 점을 보여줄지 정한다.
     infinite: false, // loop를 만들지(마지막 이미지-처음 이미지-중간 이미지들-마지막 이미지)
-    //speed: 300, // 애니메이션의 속도, 단위는 milliseconds
     slidesToShow: 1, // 한번에 몇개의 슬라이드를 보여줄지
     slidesToScroll: 1, // 한번 스크롤시 몇장의 슬라이드를 넘길지
     adaptiveHeight: true,
@@ -15,8 +14,6 @@ const Tutorial = ({ handleClose }) => {
   };
 
   const [currSlideIndex, setCurrSlideIndex] = useState(0);
-
-  console.log(currSlideIndex);
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -43,7 +40,6 @@ const Tutorial = ({ handleClose }) => {
       >
         {Array.from({ length: 5 }).map((_, index) => {
           const isActiveSlide = currSlideIndex === index;
-          console.log("isActiveSlide: ", isActiveSlide);
           return (
             <Slide key={index}>
               <img alt="" src={`/tutorial/tutorial_0${index + 1}.jpg`} />
@@ -101,7 +97,7 @@ const TutorialSlider = styled(Slider)`
     object-fit: cover;
 
     width: 100vw;
-    max-width: 390px;
+    max-width: 420px;
     box-sizing: border-box;
   }
 
